@@ -102,22 +102,42 @@ function readJsonField(html, field) {
   return decodeJsonString(html.match(pattern)?.[1] ?? "");
 }
 
-async function fetchLatestDailyZodiac() {
+async function fetchLatestDailyZodiac(debug) {
+  const diag = { playlistOk: false, videoIds: 0, candidatos: [] };
   const playlistHtml = await fetchText(
     `https://www.youtube.com/playlist?list=${ZODIAC_PLAYLIST_ID}&hl=pt-PT&gl=PT`,
   );
-  if (!playlistHtml) throw new Error("Não foi possível consultar a playlist diária");
+  if (!playlistHtml) {
+    if (debug) return { data: null, diag };
+    throw new Error("Não foi possível consultar a playlist diária");
+  }
+  diag.playlistOk = true;
+  diag.playlistTamanho = playlistHtml.length;
 
   const videoIds = Array.from(
     new Set(Array.from(playlistHtml.matchAll(/"videoId":"([\w-]{11})"/g), (m) => m[1])),
   ).slice(0, 12);
-  if (videoIds.length === 0) throw new Error("A playlist diária não devolveu vídeos");
+  diag.videoIds = videoIds.length;
+  if (videoIds.length === 0) {
+    if (debug) return { data: null, diag };
+    throw new Error("A playlist diária não devolveu vídeos");
+  }
 
   const candidates = await Promise.all(videoIds.map(async (videoId) => {
     const html = await fetchText(`https://www.youtube.com/watch?v=${videoId}&hl=pt-PT&gl=PT`);
-    if (!html) return null;
+    if (!html) {
+      diag.candidatos.push({ videoId, erro: "sem html" });
+      return null;
+    }
     const description = readJsonField(html, "shortDescription");
     const timestamps = extractTimestamps(description);
+    diag.candidatos.push({
+      videoId,
+      titulo: readJsonField(html, "title").slice(0, 50),
+      htmlTamanho: html.length,
+      descTamanho: description.length,
+      nSignos: Object.keys(timestamps).length,
+    });
     if (Object.keys(timestamps).length < 10) return null;
     return {
       videoId,
@@ -129,7 +149,8 @@ async function fetchLatestDailyZodiac() {
 
   const valid = candidates.filter(Boolean);
   valid.sort((a, b) => b.published.localeCompare(a.published));
-  return valid[0] ?? null;
+  const best = valid[0] ?? null;
+  return debug ? { data: best, diag } : best;
 }
 // ======================================================================
 
@@ -139,6 +160,18 @@ export default {
 
     // Vídeo diário mais recente + minutos de cada signo (com cache de 15 min)
     if (url.pathname === "/api/zodiac") {
+      if (url.searchParams.get("debug") === "1") {
+        try {
+          const result = await fetchLatestDailyZodiac(true);
+          return new Response(JSON.stringify({ ok: true, ...result }), {
+            headers: { "Content-Type": "application/json" },
+          });
+        } catch (e) {
+          return new Response(JSON.stringify({ ok: false, error: String(e) }), {
+            status: 502, headers: { "Content-Type": "application/json" },
+          });
+        }
+      }
       const cacheKey = new Request(`https://cache.genialtarot/api/zodiac`);
       const cache = caches.default;
       const cached = await cache.match(cacheKey);
