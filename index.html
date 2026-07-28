@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Genial Tarot — Consultas de Tarot, Horóscopo e Orientação Espiritual</title>
+<meta name="description" content="Consulte o Tarot e mude a sua vida. Horóscopo semanal, previsão anual, marcações por WhatsApp e orientação espiritual personalizada." />
+<meta name="theme-color" content="#2a1a3e" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Genial Tarot — Orientação Espiritual e Tarot" />
+<meta property="og:description" content="Tarot Rider-Waite, horóscopos e previsões. Marque a sua consulta — resposta rápida no WhatsApp." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com" />
+<meta property="og:image" content="https://genialtarot.com/og-image.png" />
+<meta property="og:image:width" content="1920" />
+<meta property="og:image:height" content="1080" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Genial Tarot — Orientação Espiritual e Tarot" />
+<meta name="twitter:image" content="https://genialtarot.com/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============ Palette & tokens (Genial Tarot) ============ */
+:root {
+  --radius: 0.875rem;
+  --background: oklch(0.18 0.05 300);
+  --foreground: oklch(0.97 0.01 320);
+  --primary-foreground: oklch(0.99 0.01 300);
+  --border: oklch(0.55 0.10 305 / 0.25);
+  --mystic: oklch(0.62 0.18 305);
+  --mystic-deep: oklch(0.32 0.12 295);
+  --gold: oklch(0.82 0.14 85);
+  --gold-soft: oklch(0.88 0.10 90);
+  --agenda: oklch(0.72 0.20 145);
+  --font-display: "Cormorant Garamond", "Cinzel", Georgia, serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --gradient-hero: radial-gradient(ellipse at top, oklch(0.42 0.16 300) 0%, oklch(0.18 0.06 295) 55%, oklch(0.10 0.04 290) 100%);
+  --gradient-mystic: linear-gradient(135deg, oklch(0.55 0.18 305), oklch(0.42 0.18 290));
+  --gradient-gold: linear-gradient(135deg, oklch(0.88 0.12 90), oklch(0.72 0.16 75));
+  --gradient-agenda: linear-gradient(135deg, oklch(0.78 0.22 145), oklch(0.62 0.20 155));
+  --shadow-mystic: 0 20px 50px -15px oklch(0.40 0.20 300 / 0.55), 0 0 40px -10px oklch(0.65 0.22 305 / 0.35);
+  --shadow-3d: 0 1px 0 oklch(0.95 0.05 320 / 0.15) inset, 0 -3px 0 oklch(0.15 0.05 295 / 0.6) inset, 0 14px 30px -10px oklch(0.10 0.05 290 / 0.6), 0 0 30px -8px oklch(0.65 0.22 305 / 0.35);
+  --shadow-3d-hover: 0 1px 0 oklch(0.95 0.05 320 / 0.25) inset, 0 -3px 0 oklch(0.15 0.05 295 / 0.6) inset, 0 22px 45px -12px oklch(0.10 0.05 290 / 0.7), 0 0 50px -8px oklch(0.72 0.24 305 / 0.55);
+  --transition-smooth: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+* { box-sizing: border-box; border-color: var(--border); margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--gradient-hero);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: 0.01em; font-weight: 500; }
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding-left: 1.25rem; padding-right: 1.25rem; }
+@media (min-width: 640px) { .container { padding-left: 2rem; padding-right: 2rem; } }
+
+/* ============ Atmosphere ============ */
+.bg-starfield {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.6;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, oklch(0.95 0.02 90 / 0.8) 50%, transparent 100%),
+    radial-gradient(1px 1px at 70% 60%, oklch(0.95 0.02 90 / 0.7) 50%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 80%, oklch(0.95 0.02 90 / 0.9) 50%, transparent 100%),
+    radial-gradient(1px 1px at 85% 20%, oklch(0.95 0.02 90 / 0.6) 50%, transparent 100%),
+    radial-gradient(1px 1px at 15% 70%, oklch(0.85 0.04 320 / 0.7) 50%, transparent 100%),
+    radial-gradient(2px 2px at 60% 15%, oklch(0.95 0.02 90 / 0.85) 50%, transparent 100%),
+    radial-gradient(1px 1px at 90% 85%, oklch(0.95 0.02 90 / 0.7) 50%, transparent 100%),
+    radial-gradient(1px 1px at 30% 50%, oklch(0.85 0.06 320 / 0.6) 50%, transparent 100%);
+  background-size: 600px 600px;
+}
+.bg-glow-top { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 0%, oklch(0.55 0.20 310 / 0.35), transparent 60%); }
+.bg-glow-bottom { position: fixed; left: 0; right: 0; bottom: 0; height: 50%; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 100%, oklch(0.45 0.18 280 / 0.4), transparent 70%); }
+
+/* ============ Text helpers ============ */
+.font-serif { font-family: var(--font-serif); }
+.text-gold { color: var(--gold); }
+.text-gold-gradient { background: var(--gradient-gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.text-mystic-gradient {
+  background: linear-gradient(135deg, oklch(0.92 0.06 320), oklch(0.78 0.16 305), oklch(0.88 0.10 90));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.glass {
+  background: oklch(0.25 0.06 300 / 0.45);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid oklch(0.85 0.06 320 / 0.12);
+}
+.shadow-mystic { box-shadow: var(--shadow-mystic); }
+svg.icon { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+svg.icon-fill { fill: currentColor; stroke: none; }
+
+/* ============ Buttons 3D ============ */
+.btn-3d {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 1rem 1.75rem; border-radius: 1rem; font-weight: 600; font-size: 0.95rem;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--primary-foreground);
+  background: var(--gradient-mystic); border: 1px solid oklch(0.85 0.06 320 / 0.25);
+  box-shadow: var(--shadow-3d); transition: var(--transition-smooth); transform: translateY(0);
+  cursor: pointer; overflow: hidden;
+}
+.btn-3d::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, oklch(1 0 0 / 0.18), transparent 45%); pointer-events: none; }
+.btn-3d:hover { transform: translateY(-3px); box-shadow: var(--shadow-3d-hover); }
+.btn-3d:active { transform: translateY(-1px); }
+.btn-3d-gold { background: var(--gradient-gold); color: oklch(0.18 0.05 300); }
+.btn-3d-agenda { background: var(--gradient-agenda); color: oklch(0.15 0.05 145); }
+.btn-whatsapp { background: linear-gradient(135deg, oklch(0.72 0.18 150), oklch(0.55 0.16 155)); color: white; }
+.btn-loja { background: linear-gradient(135deg, oklch(0.70 0.22 25), oklch(0.55 0.20 15)); color: white; border-color: oklch(0.85 0.10 25 / 0.4); }
+.btn-ochre-2 { background: linear-gradient(135deg, oklch(0.92 0.20 100), oklch(0.80 0.22 95)); color: oklch(0.20 0.05 95); border-color: oklch(0.95 0.18 100 / 0.55); }
+.btn-ochre-3 { background: linear-gradient(135deg, oklch(0.80 0.14 90), oklch(0.58 0.13 75)); color: oklch(0.18 0.05 70); border-color: oklch(0.88 0.10 85 / 0.45); }
+.btn-ochre-4 { background: linear-gradient(135deg, oklch(0.72 0.16 40), oklch(0.48 0.16 30)); color: white; border-color: oklch(0.80 0.12 40 / 0.45); }
+.btn-ochre-5 { background: linear-gradient(135deg, oklch(0.76 0.15 100), oklch(0.54 0.13 85)); color: oklch(0.18 0.05 80); border-color: oklch(0.85 0.10 95 / 0.45); }
+.btn-ochre-6 { background: linear-gradient(135deg, oklch(0.70 0.17 65), oklch(0.46 0.15 50)); color: white; border-color: oklch(0.80 0.12 60 / 0.45); }
+.btn-sky { background: linear-gradient(135deg, oklch(0.85 0.12 230), oklch(0.65 0.18 240)); color: oklch(0.18 0.05 250); border-color: oklch(0.90 0.08 230 / 0.55); }
+.btn-violet-glow { position: relative; isolation: isolate; }
+.btn-violet-glow::after {
+  content: ""; position: absolute; inset: -14px; z-index: -1; border-radius: 1.5rem;
+  background: radial-gradient(ellipse at center, oklch(0.62 0.26 305 / 0.55), oklch(0.55 0.22 290 / 0.30) 45%, transparent 75%);
+  filter: blur(18px); opacity: 0.85; pointer-events: none; animation: violet-pulse 3.5s ease-in-out infinite;
+}
+.btn-sky-glow::after {
+  background: radial-gradient(ellipse at center, oklch(0.80 0.20 235 / 0.85), oklch(0.65 0.22 240 / 0.45) 45%, transparent 75%) !important;
+  animation: sky-pulse 2s ease-in-out infinite !important; filter: blur(22px); opacity: 1;
+}
+@keyframes violet-pulse { 0%, 100% { opacity: 0.65; filter: blur(18px); } 50% { opacity: 1; filter: blur(26px); } }
+@keyframes sky-pulse { 0%, 100% { opacity: 0.7; filter: blur(20px); transform: scale(1); } 50% { opacity: 1; filter: blur(32px); transform: scale(1.1); } }
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, oklch(1 0 0 / 0.18) 50%, transparent 70%); transform: translateX(-100%); animation: shimmer-move 4s ease-in-out infinite; }
+@keyframes shimmer-move { 0%, 60% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+@keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 0 0 oklch(0.72 0.20 145 / 0.5); } 50% { box-shadow: 0 0 0 14px oklch(0.72 0.20 145 / 0); } }
+.animate-pulse-glow { animation: pulse-glow 2.4s ease-out infinite; }
+@keyframes halo-pulse { 0%, 100% { opacity: 0.55; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+.animate-halo-pulse { animation: halo-pulse 3.6s ease-in-out infinite; }
+@keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+.animate-twinkle { animation: twinkle 3s ease-in-out infinite; }
+@keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-up { animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* ============ Header ============ */
+header { position: relative; z-index: 20; }
+.nav { display: flex; align-items: center; justify-content: space-between; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.brand { display: flex; align-items: center; gap: 0.625rem; }
+.brand-icon { position: relative; height: 2.5rem; width: 2.5rem; border-radius: 9999px; background: var(--gradient-mystic); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-mystic); }
+.brand-icon .moon { width: 1.25rem; height: 1.25rem; color: var(--gold-soft); }
+.brand-icon .star { position: absolute; top: -0.25rem; right: -0.25rem; width: 0.75rem; height: 0.75rem; color: var(--gold); }
+.brand-name { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600; letter-spacing: 0.025em; line-height: 1.2; }
+.brand-sub { font-size: 10px; text-transform: uppercase; letter-spacing: 0.3em; color: oklch(0.97 0.01 320 / 0.6); }
+.audio-btn { height: 2.75rem; padding: 0 1rem; border-radius: 9999px; display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: oklch(0.97 0.01 320 / 0.9); transition: color 0.3s; }
+.audio-btn:hover { color: var(--gold); }
+.audio-btn .icon { width: 1rem; height: 1rem; }
+.audio-label { display: none; font-family: var(--font-serif); letter-spacing: 0.025em; }
+@media (min-width: 640px) { .audio-label { display: inline; } }
+
+/* ============ Hero ============ */
+.hero { position: relative; z-index: 10; text-align: center; padding-top: 2.5rem; padding-bottom: 5rem; }
+@media (min-width: 640px) { .hero { padding-top: 4rem; padding-bottom: 7rem; } }
+.hero-avatar-wrap { display: flex; justify-content: center; margin-bottom: 2rem; }
+.hero-avatar { position: relative; height: 11rem; width: 11rem; display: block; transition: transform 0.3s; }
+.hero-avatar:hover { transform: scale(1.05); }
+@media (min-width: 640px) { .hero-avatar { height: 14rem; width: 14rem; } }
+.hero-halo-1 { position: absolute; inset: -1.5rem; border-radius: 9999px; background: radial-gradient(circle, oklch(0.75 0.22 310 / 0.7), oklch(0.55 0.20 290 / 0.35) 55%, transparent 75%); filter: blur(40px); }
+.hero-halo-2 { position: absolute; inset: -0.5rem; border-radius: 9999px; background: var(--gradient-mystic); opacity: 0.8; filter: blur(12px); animation-delay: 0.6s; }
+.hero-ring { position: relative; height: 100%; width: 100%; border-radius: 9999px; padding: 4px; background: linear-gradient(135deg, var(--gold), oklch(0.78 0.20 310), var(--gold-soft)); box-shadow: var(--shadow-mystic); }
+.hero-ring img { height: 100%; width: 100%; border-radius: 9999px; object-fit: cover; border: 2px solid oklch(0.18 0.05 300 / 0.4); }
+.hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.375rem 1rem; border-radius: 9999px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 2rem; }
+.hero-badge .icon { width: 0.875rem; height: 0.875rem; }
+.hero h1 { font-size: 3rem; line-height: 1.05; letter-spacing: -0.02em; animation-delay: 0.1s; }
+@media (min-width: 640px) { .hero h1 { font-size: 4.5rem; } }
+@media (min-width: 1024px) { .hero h1 { font-size: 6rem; } }
+.hero h1 .line { display: block; }
+.hero h1 .line2 { margin-top: 0.5rem; color: var(--foreground); }
+.hero h1 .line3 { font-style: italic; }
+.hero-sub { margin: 2rem auto 0; max-width: 42rem; font-size: 1.125rem; color: oklch(0.97 0.01 320 / 0.8); font-family: var(--font-serif); font-style: italic; line-height: 1.6; animation-delay: 0.25s; }
+@media (min-width: 640px) { .hero-sub { font-size: 1.25rem; } }
+
+/* ============ Banner + quick links ============ */
+.section { position: relative; z-index: 10; }
+.banner-wrap { position: relative; margin: 0 auto 3rem; max-width: 56rem; }
+.banner-glow { position: absolute; inset: -1.5rem; border-radius: 2rem; background: radial-gradient(ellipse at center, oklch(0.70 0.24 305 / 0.65), oklch(0.78 0.18 140 / 0.35) 50%, transparent 75%); filter: blur(48px); }
+@media (min-width: 640px) { .banner-glow { inset: -2.5rem; } }
+.banner-link { position: relative; overflow: hidden; border-radius: 1rem; border: 1px solid oklch(0.82 0.14 85 / 0.3); box-shadow: var(--shadow-mystic); display: block; transition: transform 0.3s; }
+.banner-link:hover { transform: scale(1.02); }
+@media (min-width: 640px) { .banner-link { border-radius: 1.5rem; } }
+.banner-link img { width: 100%; height: auto; }
+.kicker { text-align: center; margin-bottom: 1.5rem; }
+.kicker span { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 10px; text-transform: uppercase; letter-spacing: 0.35em; color: oklch(0.97 0.01 320 / 0.5); }
+.kicker .rule { height: 1px; width: 1.5rem; background: oklch(0.82 0.14 85 / 0.4); }
+.quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; padding-bottom: 5rem; }
+@media (min-width: 640px) { .quick-grid { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; } }
+@media (min-width: 1024px) { .quick-grid { grid-template-columns: repeat(4, 1fr); } }
+.quick-grid .btn-3d { flex-direction: column; padding: 1.75rem 1rem; text-align: center; font-size: 0.75rem; }
+@media (min-width: 640px) { .quick-grid .btn-3d { font-size: 0.875rem; } }
+.quick-grid .btn-3d .icon { width: 1.75rem; height: 1.75rem; margin-bottom: 0.5rem; }
+.quick-grid .btn-3d span { line-height: 1.3; }
+
+/* ============ Section headings ============ */
+.sec-head { text-align: center; margin-bottom: 2.5rem; }
+.sec-kicker { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 0.75rem; }
+.sec-kicker .rule { height: 1px; width: 2rem; background: oklch(0.82 0.14 85 / 0.6); }
+.sec-head h2 { font-family: var(--font-serif); font-size: 2.25rem; }
+@media (min-width: 640px) { .sec-head h2 { font-size: 3rem; } }
+.sec-head p { margin: 1rem auto 0; max-width: 36rem; color: oklch(0.97 0.01 320 / 0.7); font-family: var(--font-serif); font-style: italic; }
+
+/* ============ Tarot carousel ============ */
+.carousel-section { padding: 4rem 0; }
+@media (min-width: 640px) { .carousel-section { padding: 6rem 0; } }
+.carousel { position: relative; }
+.carousel-viewport { overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -webkit-overflow-scrolling: touch; cursor: grab; }
+.carousel-viewport::-webkit-scrollbar { display: none; }
+.carousel-viewport.dragging { cursor: grabbing; scroll-behavior: auto; }
+.carousel-track { display: flex; gap: 1.25rem; padding: 1.5rem 0.25rem; width: max-content; }
+.tarot-card {
+  position: relative; flex: 0 0 180px; aspect-ratio: 2 / 3.4; border-radius: 1rem; overflow: hidden;
+  transition: var(--transition-smooth); transform-style: preserve-3d; display: block;
+  background: oklch(0.25 0.06 300 / 0.45); border: 1px solid oklch(0.85 0.06 320 / 0.12);
+  box-shadow: var(--shadow-mystic);
+}
+@media (min-width: 640px) { .tarot-card { flex-basis: 210px; } }
+.tarot-card:hover { transform: translateY(-8px) rotateX(4deg); box-shadow: 0 30px 50px -15px oklch(0.10 0.05 290 / 0.7), 0 0 40px -5px oklch(0.72 0.22 305 / 0.6); }
+.tarot-inner { position: absolute; inset: 0.5rem; border-radius: 0.75rem; overflow: hidden; border: 1px solid oklch(0.82 0.14 85 / 0.4); background: oklch(0.18 0.06 295); }
+.tarot-inner img { position: absolute; inset: 0; height: 100%; width: 100%; object-fit: cover; transition: transform 0.7s; }
+.tarot-card:hover .tarot-inner img { transform: scale(1.05); }
+.tarot-veil { position: absolute; inset: 0; background: linear-gradient(to top, oklch(0.12 0.05 290 / 0.95), oklch(0.18 0.06 295 / 0.4) 50%, transparent); }
+.tarot-roman { position: absolute; top: 0.5rem; left: 0; right: 0; text-align: center; font-family: var(--font-serif); font-size: 11px; letter-spacing: 0.3em; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
+.tarot-names { position: absolute; bottom: 0.75rem; left: 0; right: 0; padding: 0 0.5rem; text-align: center; }
+.tarot-name-en { font-family: var(--font-serif); font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: oklch(0.85 0.14 85); }
+.tarot-name-pt { font-family: var(--font-serif); font-size: 0.875rem; font-style: italic; color: var(--foreground); margin-top: 2px; }
+.tarot-glow { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s; pointer-events: none; background: radial-gradient(circle at 50% 30%, oklch(0.78 0.20 310 / 0.35), transparent 70%); }
+.tarot-card:hover .tarot-glow { opacity: 1; }
+.carousel-btn { display: none; position: absolute; top: 50%; transform: translateY(-50%); height: 2.75rem; width: 2.75rem; align-items: center; justify-content: center; border-radius: 9999px; color: var(--gold); transition: transform 0.3s; z-index: 5; }
+.carousel-btn:hover { transform: translateY(-50%) scale(1.1); }
+.carousel-btn.prev { left: 0.5rem; }
+.carousel-btn.next { right: 0.5rem; }
+@media (min-width: 640px) { .carousel-btn { display: flex; } }
+
+/* ============ Marcação CTA ============ */
+.cta-section { padding: 5rem 0; }
+.cta-wa-wrap { display: flex; justify-content: center; margin-bottom: 2rem; }
+.cta-wa { padding: 1.25rem 2rem !important; font-size: 1rem; border-radius: 9999px !important; }
+@media (min-width: 640px) { .cta-wa { font-size: 1.125rem; } }
+.cta-wa .icon { width: 1.5rem; height: 1.5rem; }
+.cta-card { position: relative; overflow: hidden; border-radius: 1.5rem; padding: 2rem; text-align: center; box-shadow: var(--shadow-mystic); }
+@media (min-width: 640px) { .cta-card { padding: 3.5rem; } }
+.cta-card-glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, oklch(0.62 0.20 310 / 0.4), transparent 70%); }
+.cta-inner { position: relative; }
+.badge-agenda { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.375rem 1rem; border-radius: 9999px; background: var(--gradient-agenda); color: oklch(0.18 0.05 145); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 1.5rem; box-shadow: 0 8px 24px -6px oklch(0.72 0.20 145 / 0.6); }
+.badge-agenda .icon { width: 0.875rem; height: 0.875rem; }
+.cta-card h2 { font-family: var(--font-serif); font-size: 2.25rem; margin-bottom: 1rem; }
+@media (min-width: 640px) { .cta-card h2 { font-size: 3rem; } }
+.cta-card .lead { max-width: 36rem; margin: 0 auto 2rem; color: oklch(0.97 0.01 320 / 0.8); font-family: var(--font-serif); font-style: italic; }
+.cta-actions { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; }
+@media (min-width: 640px) { .cta-actions { flex-direction: row; align-items: flex-end; } }
+.agenda-stack { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.badge-agenda-sm { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 0.875rem; border-radius: 9999px; background: var(--gradient-agenda); color: oklch(0.18 0.05 145); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; box-shadow: 0 8px 24px -6px oklch(0.72 0.20 145 / 0.6); }
+.badge-agenda-sm .icon { width: 0.875rem; height: 0.875rem; }
+.cta-phone { margin-top: 1.5rem; font-size: 0.875rem; color: oklch(0.97 0.01 320 / 0.6); display: flex; align-items: center; justify-content: center; gap: 0.375rem; }
+.cta-phone .icon { width: 0.875rem; height: 0.875rem; }
+
+/* ============ Social ============ */
+.social-section { padding: 4rem 0; text-align: center; }
+.social-section h3 { font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0.5rem; }
+.social-section .sub { font-size: 0.875rem; color: oklch(0.97 0.01 320 / 0.6); margin-bottom: 2rem; }
+.social-row { display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+@media (min-width: 640px) { .social-row { gap: 1rem; } }
+.social-btn { height: 3.5rem; width: 3.5rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center; color: oklch(0.97 0.01 320 / 0.8); transition: var(--transition-smooth); }
+.social-btn:hover { color: var(--gold); transform: scale(1.1); }
+
+/* ============ Footer ============ */
+footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 305 / 0.1); padding: 2.5rem 0; margin-top: 2.5rem; text-align: center; font-size: 0.875rem; color: oklch(0.97 0.01 320 / 0.6); }
+.footer-brand { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-family: var(--font-serif); font-size: 1.125rem; margin-bottom: 0.5rem; }
+.footer-brand .icon { width: 1rem; height: 1rem; color: var(--gold); }
+
+/* ============ Floating WhatsApp ============ */
+.float-wa { position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 50; }
+.float-wa-btn { position: relative; height: 4rem; width: 4rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, oklch(0.72 0.18 150), oklch(0.55 0.16 155)); box-shadow: 0 15px 35px -8px oklch(0.55 0.18 150 / 0.7); }
+.float-wa .icon { width: 1.75rem; height: 1.75rem; color: white; }
+.float-wa-tip { position: absolute; right: 100%; margin-right: 0.75rem; top: 50%; transform: translateY(-50%); white-space: nowrap; padding: 0.375rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.float-wa:hover .float-wa-tip { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="bg-starfield"></div>
+<div class="bg-glow-top"></div>
+<div class="bg-glow-bottom"></div>
+
+<!-- ===== Top bar ===== -->
+<header>
+  <nav class="container nav">
+    <a href="#" class="brand">
+      <div class="brand-icon">
+        <svg class="icon moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        <svg class="icon icon-fill star animate-twinkle" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div>
+        <div class="brand-name text-mystic-gradient">Genial Tarot</div>
+        <div class="brand-sub">Oráculo · Orientação</div>
+      </div>
+    </a>
+    <div>
+      <audio id="bg-audio" src="mystic-ambient.mp3" loop preload="auto" playsinline></audio>
+      <button type="button" id="audio-toggle" class="glass audio-btn" aria-label="Ativar música ambiente">
+        <svg class="icon" id="audio-icon-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
+        <svg class="icon" id="audio-icon-on" viewBox="0 0 24 24" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+        <span class="audio-label" id="audio-label">A carregar...</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- ===== HERO ===== -->
+<section class="section hero">
+  <div class="container">
+    <div class="animate-fade-up hero-avatar-wrap">
+      <a href="https://linktr.ee/genialtarot/shop" target="_blank" rel="noopener noreferrer" aria-label="Loja Genial Tarot" class="hero-avatar">
+        <div class="hero-halo-1 animate-halo-pulse"></div>
+        <div class="hero-halo-2 animate-halo-pulse"></div>
+        <div class="hero-ring">
+          <img src="profile.png" alt="Genial Tarot — Tarólogo" width="448" height="448" fetchpriority="high" loading="eager" />
+        </div>
+      </a>
+    </div>
+
+    <div class="animate-fade-up hero-badge glass">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+      Tarot Rider-Waite · Consultas Personalizadas
+    </div>
+
+    <h1 class="animate-fade-up">
+      <span class="line text-mystic-gradient">Consulte o Tarot</span>
+      <span class="line line2">e mude a sua</span>
+      <span class="line line3 text-gold-gradient">vida.</span>
+    </h1>
+
+    <p class="animate-fade-up hero-sub">
+      Orientação espiritual sincera, intuitiva e acolhedora. Encontre clareza
+      no amor, no trabalho e na sua jornada — através da sabedoria milenar
+      dos Arcanos.
+    </p>
+  </div>
+</section>
+
+<!-- ===== Banner + Quick links ===== -->
+<section class="section">
+  <div class="container">
+    <div class="banner-wrap">
+      <div class="banner-glow animate-halo-pulse"></div>
+      <a href="https://linktr.ee/genialtarot/shop" target="_blank" rel="noopener noreferrer" aria-label="Loja Genial Tarot" class="banner-link">
+        <img src="tudo-aqui.png" alt="Tudo Aqui — Genial Tarot" loading="lazy" />
+      </a>
+    </div>
+    <div class="kicker">
+      <span><span class="rule"></span>Atalhos Místicos<span class="rule"></span></span>
+    </div>
+    <div class="quick-grid">
+      <a href="tarot-gratis.html" class="btn-3d btn-violet-glow btn-sky btn-sky-glow">
+        <svg class="icon" viewBox="0 0 24 24"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z"/><path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/><path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/></svg>
+        <span>Tarot Grátis</span>
+      </a>
+      <a href="https://calendar.app.google/JyKcQyW7a8dAMKeN7" target="_blank" rel="noopener noreferrer" class="btn-3d btn-violet-glow btn-3d-agenda">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+        <span>Agenda</span>
+      </a>
+      <a href="https://youtubgenialtarot.lovable.app/#top" target="_blank" rel="noopener noreferrer" class="btn-3d btn-violet-glow btn-ochre-2">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        <span>Horóscopo Diário</span>
+      </a>
+      <a href="https://gray-worm-525794.hostingersite.com/previsao-anual/" target="_blank" rel="noopener noreferrer" class="btn-3d btn-violet-glow btn-ochre-3">
+        <svg class="icon" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Previsão Anual 2026</span>
+      </a>
+      <a href="https://youtubgenialtarot.lovable.app/#fim-de-semana" target="_blank" rel="noopener noreferrer" class="btn-3d btn-violet-glow btn-ochre-4">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/><path d="M17 14h-6"/><path d="M13 18H7"/></svg>
+        <span>Horóscopo Fim de Semana</span>
+      </a>
+      <a href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer" class="btn-3d btn-violet-glow btn-whatsapp">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <a href="https://linktr.ee/genialtarot/shop" target="_blank" rel="noopener noreferrer" class="btn-3d btn-violet-glow btn-loja">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Loja Online</span>
+      </a>
+      <a href="https://a.co/d/031WF3W8" target="_blank" rel="noopener noreferrer" class="btn-3d btn-violet-glow btn-ochre-5">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+        <span>Livro Curso Tarot Completo</span>
+      </a>
+      <a href="https://pt.tutiempo.net/astronomia/visao-astronomica/#UTC20260422T161427,41.444785231543214,-8.164215087890627" target="_blank" rel="noopener noreferrer" class="btn-3d btn-violet-glow btn-ochre-6">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Observação do Céu</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Tarot carousel ===== -->
+<section class="section carousel-section">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-kicker"><span class="rule"></span>22 Arcanos Maiores<span class="rule"></span></div>
+      <h2 class="text-mystic-gradient">Os Mistérios do Tarot Rider-Waite</h2>
+      <p>Cada carta é uma porta. Deslize, escolha, descubra o que o universo tem para si hoje.</p>
+    </div>
+    <div class="carousel">
+      <div class="carousel-viewport" id="carousel-viewport">
+        <div class="carousel-track" id="carousel-track"><!-- cartas geradas por JS --></div>
+      </div>
+      <button class="carousel-btn prev glass" id="carousel-prev" aria-label="Anterior">
+        <svg class="icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button class="carousel-btn next glass" id="carousel-next" aria-label="Próximo">
+        <svg class="icon" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Marcação CTA ===== -->
+<section id="marcacao" class="section cta-section">
+  <div class="container">
+    <div class="cta-wa-wrap">
+      <a href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer" class="btn-3d btn-whatsapp shimmer animate-pulse-glow cta-wa">
+        <svg class="icon icon-fill" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.36.572-1 3.654 3.745-.985zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.793.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        Meu WhatsApp Direto
+      </a>
+    </div>
+    <div class="cta-card glass">
+      <div class="cta-card-glow"></div>
+      <div class="cta-inner">
+        <div class="badge-agenda">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+          Agenda Aberta
+        </div>
+        <h2 class="text-mystic-gradient">Marque a sua consulta agora</h2>
+        <p class="lead">Tire as suas dúvidas com clareza, discrição e acolhimento. Atendimento personalizado por WhatsApp.</p>
+        <div class="cta-actions">
+          <div class="agenda-stack">
+            <span class="badge-agenda-sm animate-pulse-glow">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+              Agenda
+            </span>
+            <a href="https://calendar.app.google/JyKcQyW7a8dAMKeN7" target="_blank" rel="noopener noreferrer" class="btn-3d btn-3d-gold">
+              <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+              Fazer uma Marcação
+            </a>
+          </div>
+          <a href="https://linktr.ee/genialtarot/shop" target="_blank" rel="noopener noreferrer" class="btn-3d btn-3d-gold">
+            <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            Escolha o seu Serviço
+          </a>
+        </div>
+        <p class="cta-phone">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +351 914 920 427
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Social bar ===== -->
+<section class="section social-section">
+  <div class="container">
+    <h3 class="text-mystic-gradient">Siga o universo Genial Tarot</h3>
+    <p class="sub">Conteúdos diários, mensagens dos Arcanos e previsões.</p>
+    <div class="social-row">
+      <a aria-label="Facebook" href="https://www.facebook.com/genial.tarot" target="_blank" rel="noopener noreferrer" class="glass social-btn">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a aria-label="Instagram" href="https://www.instagram.com/genialtarot/" target="_blank" rel="noopener noreferrer" class="glass social-btn">
+        <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a aria-label="TikTok" href="https://www.tiktok.com/@genialtarot" target="_blank" rel="noopener noreferrer" class="glass social-btn">
+        <svg class="icon icon-fill" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.69a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.12z"/></svg>
+      </a>
+      <a aria-label="YouTube" href="https://www.youtube.com/@Genialtarot" target="_blank" rel="noopener noreferrer" class="glass social-btn">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a aria-label="WhatsApp" href="https://api.whatsapp.com/send/?phone=351914920427&text=Ol%C3%A1%2C+em+que+posso+ajudar+%21&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="glass social-btn">
+        <svg class="icon icon-fill" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.36.572-1 3.654 3.745-.985zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.793.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-brand text-mystic-gradient">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      Genial Tarot
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    </div>
+    <p>© <span id="year"></span> Genial Tarot · Orientação espiritual com ética e acolhimento.</p>
+  </div>
+</footer>
+
+<!-- ===== Floating WhatsApp ===== -->
+<a href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp" class="float-wa">
+  <div class="float-wa-btn animate-pulse-glow">
+    <svg class="icon icon-fill" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.36.572-1 3.654 3.745-.985zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.793.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+  </div>
+  <span class="glass float-wa-tip">Resposta rápida</span>
+</a>
+
+<script>
+// ===== Ano no rodapé =====
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// ===== 22 Arcanos Maiores (edita cada `link` para apontar para uma página individual) =====
+const ARCANA = [
+  { roman: "0", name: "The Fool", pt: "O Louco", img: "https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg", link: "#" },
+  { roman: "I", name: "The Magician", pt: "O Mago", img: "https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg", link: "#" },
+  { roman: "II", name: "The High Priestess", pt: "A Sacerdotisa", img: "https://upload.wikimedia.org/wikipedia/commons/8/88/RWS_Tarot_02_High_Priestess.jpg", link: "#" },
+  { roman: "III", name: "The Empress", pt: "A Imperatriz", img: "https://upload.wikimedia.org/wikipedia/commons/d/d2/RWS_Tarot_03_Empress.jpg", link: "#" },
+  { roman: "IV", name: "The Emperor", pt: "O Imperador", img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/RWS_Tarot_04_Emperor.jpg", link: "#" },
+  { roman: "V", name: "The Hierophant", pt: "O Hierofante", img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/RWS_Tarot_05_Hierophant.jpg", link: "#" },
+  { roman: "VI", name: "The Lovers", pt: "Os Enamorados", img: "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg", link: "#" },
+  { roman: "VII", name: "The Chariot", pt: "O Carro", img: "https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg", link: "#" },
+  { roman: "VIII", name: "Strength", pt: "A Força", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg", link: "#" },
+  { roman: "IX", name: "The Hermit", pt: "O Eremita", img: "https://upload.wikimedia.org/wikipedia/commons/4/4d/RWS_Tarot_09_Hermit.jpg", link: "#" },
+  { roman: "X", name: "Wheel of Fortune", pt: "A Roda da Fortuna", img: "https://upload.wikimedia.org/wikipedia/commons/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg", link: "#" },
+  { roman: "XI", name: "Justice", pt: "A Justiça", img: "https://upload.wikimedia.org/wikipedia/commons/e/e0/RWS_Tarot_11_Justice.jpg", link: "#" },
+  { roman: "XII", name: "The Hanged Man", pt: "O Enforcado", img: "https://upload.wikimedia.org/wikipedia/commons/2/2b/RWS_Tarot_12_Hanged_Man.jpg", link: "#" },
+  { roman: "XIII", name: "Death", pt: "A Morte", img: "https://upload.wikimedia.org/wikipedia/commons/d/d7/RWS_Tarot_13_Death.jpg", link: "#" },
+  { roman: "XIV", name: "Temperance", pt: "A Temperança", img: "https://upload.wikimedia.org/wikipedia/commons/f/f8/RWS_Tarot_14_Temperance.jpg", link: "#" },
+  { roman: "XV", name: "The Devil", pt: "O Diabo", img: "https://upload.wikimedia.org/wikipedia/commons/5/55/RWS_Tarot_15_Devil.jpg", link: "#" },
+  { roman: "XVI", name: "The Tower", pt: "A Torre", img: "https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg", link: "#" },
+  { roman: "XVII", name: "The Star", pt: "A Estrela", img: "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg", link: "#" },
+  { roman: "XVIII", name: "The Moon", pt: "A Lua", img: "https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg", link: "#" },
+  { roman: "XIX", name: "The Sun", pt: "O Sol", img: "https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg", link: "#" },
+  { roman: "XX", name: "Judgement", pt: "O Julgamento", img: "https://upload.wikimedia.org/wikipedia/commons/d/dd/RWS_Tarot_20_Judgement.jpg", link: "#" },
+  { roman: "XXI", name: "The World", pt: "O Mundo", img: "https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg", link: "#" },
+];
+
+const track = document.getElementById("carousel-track");
+track.innerHTML = ARCANA.map(c => `
+  <a href="${c.link}" class="tarot-card" aria-label="${c.pt} — ${c.name}">
+    <div class="tarot-inner">
+      <img src="${c.img}" alt="Carta de Tarot Rider-Waite: ${c.pt} (${c.name})" loading="lazy" />
+      <div class="tarot-veil"></div>
+      <div class="tarot-roman text-gold-gradient">${c.roman}</div>
+      <div class="tarot-names">
+        <div class="tarot-name-en">${c.name}</div>
+        <div class="tarot-name-pt">${c.pt}</div>
+      </div>
+    </div>
+    <div class="tarot-glow"></div>
+  </a>`).join("");
+
+// ===== Carrossel: autoplay + setas + arrastar =====
+const viewport = document.getElementById("carousel-viewport");
+const CARD_STEP = () => (track.firstElementChild ? track.firstElementChild.getBoundingClientRect().width + 20 : 220);
+let autoplayTimer = null;
+let paused = false;
+
+function autoAdvance() {
+  if (paused) return;
+  const max = viewport.scrollWidth - viewport.clientWidth;
+  if (viewport.scrollLeft >= max - 4) {
+    viewport.scrollTo({ left: 0, behavior: "smooth" });
+  } else {
+    viewport.scrollBy({ left: CARD_STEP(), behavior: "smooth" });
+  }
+}
+function startAutoplay() {
+  if (autoplayTimer) clearInterval(autoplayTimer);
+  autoplayTimer = setInterval(autoAdvance, 3500);
+}
+startAutoplay();
+viewport.addEventListener("mouseenter", () => { paused = true; });
+viewport.addEventListener("mouseleave", () => { paused = false; });
+
+document.getElementById("carousel-prev").addEventListener("click", () => {
+  viewport.scrollBy({ left: -CARD_STEP(), behavior: "smooth" });
+});
+document.getElementById("carousel-next").addEventListener("click", () => {
+  viewport.scrollBy({ left: CARD_STEP(), behavior: "smooth" });
+});
+
+// Arrastar com o rato (no telemóvel o deslize é nativo)
+let isDown = false, startX = 0, startScroll = 0, dragged = false;
+viewport.addEventListener("mousedown", (e) => {
+  isDown = true; dragged = false;
+  startX = e.pageX; startScroll = viewport.scrollLeft;
+  viewport.classList.add("dragging");
+});
+window.addEventListener("mousemove", (e) => {
+  if (!isDown) return;
+  const dx = e.pageX - startX;
+  if (Math.abs(dx) > 5) dragged = true;
+  viewport.scrollLeft = startScroll - dx;
+});
+window.addEventListener("mouseup", () => {
+  isDown = false;
+  viewport.classList.remove("dragging");
+});
+viewport.addEventListener("click", (e) => { if (dragged) e.preventDefault(); }, true);
+
+// ===== Música ambiente =====
+const audio = document.getElementById("bg-audio");
+const audioBtn = document.getElementById("audio-toggle");
+const audioLabel = document.getElementById("audio-label");
+const iconOn = document.getElementById("audio-icon-on");
+const iconOff = document.getElementById("audio-icon-off");
+const VOLUME = 0.15;
+let audioReady = false;
+audio.volume = VOLUME;
+
+function setPlayingUI(playing) {
+  iconOn.style.display = playing ? "" : "none";
+  iconOff.style.display = playing ? "none" : "";
+  audioLabel.textContent = playing ? "Música ligada" : (audioReady ? "Ativar música" : "A carregar...");
+  audioBtn.setAttribute("aria-label", playing ? "Desligar música" : "Ativar música ambiente");
+}
+audio.addEventListener("canplaythrough", () => { audioReady = true; if (audio.paused) setPlayingUI(false); });
+audio.addEventListener("error", () => console.error("Audio failed to load:", audio.error));
+
+// Tenta autoplay imediato (os browsers normalmente bloqueiam sem interação)
+audio.play().then(() => setPlayingUI(true)).catch(() => {
+  const start = () => {
+    audio.volume = VOLUME;
+    audio.play().then(() => setPlayingUI(true)).catch(() => {});
+  };
+  ["pointerdown", "click", "touchstart", "keydown", "scroll"].forEach((ev) =>
+    window.addEventListener(ev, start, { once: true, passive: true })
+  );
+});
+
+// Pausa a música quando o utilizador clica em qualquer botão ou link (exceto o toggle)
+document.addEventListener("click", (e) => {
+  const interactive = e.target.closest("a, button");
+  if (!interactive || interactive === audioBtn || audioBtn.contains(interactive)) return;
+  const lbl = interactive.getAttribute("aria-label") || "";
+  if (lbl.toLowerCase().includes("música")) return;
+  if (!audio.paused) {
+    audio.pause();
+    audio.currentTime = 0;
+    setPlayingUI(false);
+  }
+}, true);
+
+audioBtn.addEventListener("click", async () => {
+  if (!audio.paused) {
+    audio.pause();
+    setPlayingUI(false);
+    return;
+  }
+  try {
+    audio.volume = VOLUME;
+    await audio.play();
+    setPlayingUI(true);
+  } catch (err) {
+    console.error("Audio play failed:", err);
+  }
+});
+setPlayingUI(false);
+</script>
+</body>
+</html>

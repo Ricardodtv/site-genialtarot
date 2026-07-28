@@ -1,0 +1,1616 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Genialtarot — Leitura de Tarot com o Mestre Alberto</title>
+<meta name="description" content="Genialtarot: leitura de Tarot online com o Mestre Alberto e o baralho Rider Waite. Escolhe a tua área da vida e revela 8 cartas numa mesa esotérica acolhedora, em português de Portugal." />
+<meta name="theme-color" content="#2a1a3e" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Genialtarot — Leitura de Tarot com o Mestre Alberto" />
+<meta property="og:description" content="Experiência de Tarot online com o Mestre Alberto, mística e acolhedora, com o baralho Rider Waite e interpretação realista." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.18 0.05 290);
+  --foreground: oklch(0.96 0.02 300);
+  --card: oklch(0.23 0.06 290);
+  --secondary: oklch(0.32 0.08 295);
+  --muted-foreground: oklch(0.78 0.04 300);
+  --border: oklch(0.4 0.07 295 / 0.4);
+  --input: oklch(0.3 0.06 295);
+  --gold: oklch(0.82 0.13 85);
+  --font-display: "Cormorant Garamond", "Cormorant", Georgia, serif;
+  --gradient-cosmic: radial-gradient(ellipse at top, oklch(0.32 0.12 300) 0%, oklch(0.18 0.05 290) 60%, oklch(0.12 0.04 285) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.85 0.13 85), oklch(0.7 0.15 60));
+  --gradient-mystic: linear-gradient(135deg, oklch(0.55 0.2 305), oklch(0.4 0.18 280));
+  --shadow-mystic: 0 20px 60px -20px oklch(0.5 0.25 305 / 0.5);
+  --shadow-gold: 0 0 40px oklch(0.82 0.13 85 / 0.3);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; border-color: var(--border); }
+html { scroll-behavior: smooth; }
+html, body { background: var(--gradient-cosmic); background-attachment: fixed; background-color: var(--background); color: var(--foreground); font-family: "Inter", ui-sans-serif, system-ui, sans-serif; }
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: 0.01em; font-weight: 600; }
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+.text-gold { color: var(--gold); }
+.bg-gradient-gold { background: var(--gradient-gold); }
+.bg-gradient-mystic { background: var(--gradient-mystic); }
+.shadow-mystic { box-shadow: var(--shadow-mystic); }
+.shadow-gold { box-shadow: var(--shadow-gold); }
+.text-glow { text-shadow: 0 0 30px oklch(0.7 0.18 305 / 0.6); }
+.muted { color: var(--muted-foreground); }
+.starfield {
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, oklch(0.95 0.02 300 / 0.8), transparent 50%),
+    radial-gradient(1px 1px at 70% 60%, oklch(0.85 0.05 85 / 0.7), transparent 50%),
+    radial-gradient(1.5px 1.5px at 40% 80%, oklch(0.95 0.02 300 / 0.6), transparent 50%),
+    radial-gradient(1px 1px at 85% 20%, oklch(0.9 0.05 300 / 0.7), transparent 50%),
+    radial-gradient(1px 1px at 10% 70%, oklch(0.85 0.1 85 / 0.6), transparent 50%);
+}
+.card-flip { perspective: 1200px; }
+.card-flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
+.card-flip.is-flipped .card-flip-inner { transform: rotateY(180deg); }
+.card-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 0.75rem; overflow: hidden; }
+.card-face-back { transform: rotateY(180deg); }
+@keyframes float-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.animate-float { animation: float-slow 4s ease-in-out infinite; }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.shimmer-gold { background: linear-gradient(90deg, oklch(0.7 0.13 85), oklch(0.92 0.13 85), oklch(0.7 0.13 85)); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 6s linear infinite; }
+@keyframes pulse-soft { 0%, 100% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0.5); transform: scale(1); } 50% { box-shadow: 0 0 0 8px oklch(0.82 0.13 85 / 0); transform: scale(1.04); } }
+.animate-pulse-soft { animation: pulse-soft 2.2s ease-in-out infinite; }
+@keyframes glow-pulse { 0%, 100% { box-shadow: 0 0 30px oklch(0.82 0.13 85 / 0.45), 0 0 0 0 oklch(0.82 0.13 85 / 0.5); } 50% { box-shadow: 0 0 60px oklch(0.82 0.13 85 / 0.85), 0 0 0 14px oklch(0.82 0.13 85 / 0); } }
+.animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+@keyframes flash-blink { 0%, 100% { opacity: 1; filter: brightness(1.1) saturate(1.2); transform: scale(1); } 25% { opacity: 0.55; filter: brightness(1.6) saturate(1.6); transform: scale(1.02); } 50% { opacity: 1; filter: brightness(1.4) saturate(1.4); transform: scale(1.04); } 75% { opacity: 0.7; filter: brightness(1.7) saturate(1.5); transform: scale(1.02); } }
+.animate-flash-blink { animation: flash-blink 0.9s ease-in-out infinite; }
+@keyframes mega-glow { 0%, 100% { box-shadow: 0 0 25px oklch(0.82 0.13 85 / 0.6), 0 0 60px oklch(0.65 0.22 305 / 0.5); } 50% { box-shadow: 0 0 80px oklch(0.82 0.13 85 / 1), 0 0 140px oklch(0.65 0.22 305 / 0.9), 0 0 0 18px oklch(0.82 0.13 85 / 0); } }
+.animate-mega-glow { animation: mega-glow 1.1s ease-in-out infinite; }
+@keyframes bounce-soft { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-3px) rotate(-6deg); } }
+.animate-bounce-soft { animation: bounce-soft 1.4s ease-in-out infinite; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-in { animation: fade-in 0.3s ease-out both; }
+svg.ico { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+.wrap-5xl { max-width: 64rem; margin: 0 auto; }
+.wrap-6xl { max-width: 72rem; margin: 0 auto; }
+.wrap-3xl { max-width: 48rem; margin: 0 auto; }
+section { position: relative; padding-left: 1rem; padding-right: 1rem; }
+.pill { display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 9999px; border: 1px solid oklch(0.82 0.13 85 / 0.4); background: oklch(0.23 0.06 290 / 0.4); backdrop-filter: blur(8px); padding: 0.375rem 1rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.25em; color: var(--gold); }
+.btn-gold { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 9999px; background: var(--gradient-gold); padding: 1rem 2.5rem; font-weight: 600; color: oklch(0.2 0.04 290); box-shadow: var(--shadow-gold); transition: transform 0.3s; }
+.btn-gold:hover { transform: scale(1.04); }
+.tag-free { position: absolute; top: -0.75rem; right: -0.75rem; border-radius: 9999px; background: oklch(0.65 0.22 145); color: white; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.625rem; box-shadow: 0 8px 20px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.3); }
+.card-box { border-radius: 1rem; border: 1px solid oklch(0.82 0.13 85 / 0.3); background: oklch(0.23 0.06 290 / 0.5); backdrop-filter: blur(12px); padding: 1.5rem; transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s, background 0.3s; }
+
+/* Hero */
+.hero { padding-top: 6rem; padding-bottom: 5rem; }
+@media (min-width: 768px) { .hero { padding-top: 8rem; padding-bottom: 7rem; } }
+.hero-grid { display: grid; gap: 2.5rem; align-items: center; }
+@media (min-width: 768px) { .hero-grid { grid-template-columns: auto 1fr; gap: 3rem; } }
+.hero-img-wrap { position: relative; margin: 0 auto; flex-shrink: 0; }
+@media (min-width: 768px) { .hero-img-wrap { margin: 0; } }
+.hero-img-halo { position: absolute; inset: -0.75rem; border-radius: 9999px; background: var(--gradient-mystic); filter: blur(40px); opacity: 0.7; }
+.hero-img { position: relative; height: 11rem; width: 11rem; border-radius: 9999px; object-fit: cover; border: 4px solid var(--gold); box-shadow: var(--shadow-gold); }
+@media (min-width: 768px) { .hero-img { height: 14rem; width: 14rem; } }
+.hero-img-tag { position: absolute; bottom: -0.5rem; left: 50%; transform: translateX(-50%); border-radius: 9999px; background: var(--gradient-gold); padding: 0.25rem 1rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: oklch(0.2 0.04 290); box-shadow: var(--shadow-gold); white-space: nowrap; }
+.hero-text { text-align: center; }
+@media (min-width: 768px) { .hero-text { text-align: left; } }
+.hero-text h1 { font-size: 3rem; line-height: 1.15; }
+@media (min-width: 768px) { .hero-text h1 { font-size: 4.5rem; } }
+.hero-text h1 .sub { display: block; margin-top: 0.5rem; font-size: 1.5rem; color: var(--muted-foreground); font-weight: 400; font-style: italic; }
+@media (min-width: 768px) { .hero-text h1 .sub { font-size: 1.875rem; } }
+.hero-cta { margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+@media (min-width: 768px) { .hero-cta { align-items: flex-start; } }
+
+/* Sections */
+.sect { padding-top: 5rem; padding-bottom: 5rem; }
+.sect-border { border-top: 1px solid oklch(0.4 0.07 295 / 0.2); }
+.h2c { font-size: 2.25rem; text-align: center; }
+@media (min-width: 768px) { .h2c { font-size: 3rem; } }
+.grid-3 { display: grid; gap: 1.5rem; margin-top: 3rem; }
+@media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+.grid-areas { display: grid; gap: 1.25rem; margin-top: 3rem; }
+@media (min-width: 640px) { .grid-areas { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid-areas { grid-template-columns: repeat(3, 1fr); } }
+.area-card { text-align: left; cursor: pointer; }
+.area-card:hover { background: oklch(0.23 0.06 290 / 0.8); border-color: oklch(0.82 0.13 85 / 0.6); transform: scale(1.02); }
+.area-card .icon-circle { border-radius: 9999px; background: var(--gradient-mystic); padding: 0.625rem; box-shadow: var(--shadow-mystic); display: inline-flex; }
+.area-card .head { display: flex; align-items: center; gap: 0.75rem; }
+.area-card h3 { font-size: 1.25rem; }
+.area-card p { margin-top: 0.75rem; font-size: 0.875rem; color: var(--muted-foreground); line-height: 1.6; }
+
+/* Experience */
+.exp-banner { position: relative; margin: 0 auto 2rem; max-width: 48rem; }
+.exp-banner-glow { position: absolute; inset: -0.5rem; border-radius: 1.5rem; background: var(--gradient-mystic); filter: blur(48px); opacity: 0.9; pointer-events: none; }
+.exp-banner-card { position: relative; border-radius: 1.5rem; border: 2px solid oklch(0.82 0.13 85 / 0.8); background: linear-gradient(135deg, oklch(0.28 0.1 300), oklch(0.22 0.08 290), oklch(0.28 0.1 320)); padding: 1.5rem; text-align: center; overflow: hidden; box-shadow: var(--shadow-gold); }
+@media (min-width: 768px) { .exp-banner-card { padding: 1.75rem 2.5rem; } }
+.exp-banner-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; text-shadow: 0 0 25px oklch(0.82 0.13 85 / 0.95), 0 0 50px oklch(0.65 0.22 305 / 0.8); }
+@media (min-width: 768px) { .exp-banner-title { font-size: 1.875rem; } }
+.form-box { border-radius: 1rem; border: 1px solid oklch(0.82 0.13 85 / 0.3); background: oklch(0.23 0.06 290 / 0.6); backdrop-filter: blur(12px); padding: 1.5rem; box-shadow: var(--shadow-mystic); }
+@media (min-width: 768px) { .form-box { padding: 2rem; } }
+.form-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+@media (min-width: 768px) { .form-grid { grid-template-columns: 1fr 1fr; } .span2 { grid-column: span 2; } }
+label.fld { display: block; }
+label.fld .lbl { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted-foreground); margin-bottom: 0.375rem; }
+.input { width: 100%; background: var(--input); border: 1px solid var(--border); color: var(--foreground); border-radius: 0.6rem; padding: 0.65rem 0.85rem; outline: none; transition: border-color .2s, box-shadow .2s; font: inherit; }
+.input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px oklch(0.82 0.13 85 / 0.2); }
+.chips { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.chip { position: relative; padding: 0.625rem 1.25rem; border-radius: 9999px; border: 1px solid oklch(0.82 0.13 85 / 0.4); background: oklch(0.32 0.08 295 / 0.4); font-size: 0.875rem; font-weight: 500; transition: all 0.3s; }
+.chip:hover { border-color: oklch(0.82 0.13 85 / 0.7); transform: scale(1.05); }
+.chip.sel { background: var(--gradient-mystic); border-color: oklch(0.82 0.13 85 / 0.7); box-shadow: var(--shadow-gold); transform: scale(1.05); }
+
+/* Mesa */
+.mesa-box { position: relative; border-radius: 1.5rem; border: 1px solid oklch(0.82 0.13 85 / 0.3); padding: 1.5rem; padding-top: 4rem; background: radial-gradient(ellipse at center, oklch(0.3 0.1 300) 0%, oklch(0.18 0.05 290) 70%); box-shadow: var(--shadow-mystic); overflow: visible; }
+@media (min-width: 768px) { .mesa-box { padding: 2.5rem; padding-top: 5rem; } }
+.mesa-tag { position: absolute; top: -1.5rem; left: 50%; transform: translateX(-50%); z-index: 10; }
+.mesa-tag-inner { display: flex; align-items: center; gap: 0.5rem; border-radius: 9999px; background: var(--gradient-gold); padding: 0.625rem 1.25rem; box-shadow: var(--shadow-gold); border: 1px solid rgba(255,255,255,0.4); }
+.mesa-grid { position: relative; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+@media (min-width: 640px) { .mesa-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; } }
+.tcard { position: relative; width: 100%; aspect-ratio: 2 / 3; }
+.tcard .name-strip { padding: 0.375rem 0.5rem; border-top: 1px solid oklch(0.82 0.13 85 / 0.3); background: var(--card); text-align: center; }
+.tcard .name-strip .nm { font-family: var(--font-display); font-size: 0.875rem; color: var(--gold); line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tcard .name-strip .kw { font-size: 9px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted-foreground); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tcard .imgwrap { flex: 1; position: relative; overflow: hidden; background: oklch(0.95 0.02 85); }
+.tcard .imgwrap img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Verdict */
+.verdict-box { margin-top: 3rem; border-radius: 1rem; border: 1px solid oklch(0.82 0.13 85 / 0.4); background: oklch(0.23 0.06 290 / 0.7); backdrop-filter: blur(12px); padding: 1.5rem; box-shadow: var(--shadow-gold); }
+@media (min-width: 768px) { .verdict-box { padding: 2.5rem; } }
+.verdict-head { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+@media (min-width: 640px) { .verdict-head { flex-direction: row; align-items: center; } }
+.verdict-head img { height: 4rem; width: 4rem; border-radius: 9999px; object-fit: cover; border: 2px solid var(--gold); box-shadow: var(--shadow-gold); }
+.verdict-text { color: oklch(0.96 0.02 300 / 0.9); line-height: 1.7; white-space: pre-line; font-size: 1rem; }
+@media (min-width: 768px) { .verdict-text { font-size: 1.125rem; } }
+.name-hl { display: inline-block; font-family: var(--font-display); font-weight: 700; color: var(--gold); padding: 0.125rem 0.5rem; margin: 0 0.125rem; font-size: 1.25rem; border-radius: 0.375rem; border: 1px solid oklch(0.82 0.13 85 / 0.5); background: var(--gradient-mystic); box-shadow: var(--shadow-gold); text-shadow: 0 0 18px oklch(0.82 0.13 85 / 0.9); }
+@media (min-width: 768px) { .name-hl { font-size: 1.5rem; } }
+.rating-box { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid oklch(0.82 0.13 85 / 0.3); }
+.rating-inner { border-radius: 0.75rem; border: 1px solid oklch(0.82 0.13 85 / 0.4); background: oklch(0.35 0.12 300 / 0.4); padding: 1.5rem; text-align: center; box-shadow: var(--shadow-mystic); }
+.stars { margin-top: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+.stars button { padding: 0.375rem; border-radius: 9999px; transition: transform 0.2s; }
+.stars button:hover { transform: scale(1.25); }
+.stars svg { width: 2rem; height: 2rem; fill: none; stroke: oklch(0.82 0.13 85 / 0.4); stroke-width: 1.5; transition: all 0.2s; }
+@media (min-width: 768px) { .stars svg { width: 2.25rem; height: 2.25rem; } }
+.stars svg.on { fill: var(--gold); stroke: var(--gold); filter: drop-shadow(0 0 10px oklch(0.82 0.13 85 / 0.8)); }
+
+/* Modal */
+.modal-overlay { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 0 1rem; }
+.modal-overlay.open { display: flex; }
+.modal-bg { position: absolute; inset: 0; background: oklch(0.1 0.04 290 / 0.85); backdrop-filter: blur(12px); }
+.modal-card-wrap { position: relative; width: 100%; max-width: 32rem; }
+.modal-glow { position: absolute; inset: -0.75rem; border-radius: 1.5rem; background: var(--gradient-mystic); filter: blur(48px); opacity: 0.9; pointer-events: none; }
+.modal-card { position: relative; border-radius: 1.5rem; border: 2px solid oklch(0.82 0.13 85 / 0.7); background: linear-gradient(135deg, oklch(0.22 0.09 295), oklch(0.18 0.07 290), oklch(0.24 0.1 320)); padding: 1.75rem; box-shadow: var(--shadow-gold); overflow: hidden; text-align: center; }
+@media (min-width: 768px) { .modal-card { padding: 2.25rem; } }
+.modal-icon { margin: 0 auto 1rem; display: inline-flex; align-items: center; justify-content: center; height: 4rem; width: 4rem; border-radius: 9999px; background: var(--gradient-gold); box-shadow: var(--shadow-gold); }
+.modal-icon svg { width: 2rem; height: 2rem; stroke: oklch(0.2 0.04 290); }
+.modal-title { font-size: 1.5rem; font-family: var(--font-display); }
+@media (min-width: 768px) { .modal-title { font-size: 1.875rem; } }
+.countdown { margin-top: 1rem; font-size: 1.5rem; font-family: var(--font-display); color: var(--gold); letter-spacing: 0.05em; }
+.modal-btn { margin-top: 1.5rem; }
+
+/* Toast */
+#toasts { position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; flex-direction: column; gap: 0.5rem; width: min(92vw, 26rem); }
+.toast { border-radius: 0.75rem; padding: 0.875rem 1.125rem; font-size: 0.875rem; line-height: 1.45; box-shadow: 0 10px 30px rgba(0,0,0,0.45); animation: fade-in 0.25s ease-out both; backdrop-filter: blur(10px); }
+.toast.ok { background: oklch(0.35 0.1 150 / 0.92); border: 1px solid oklch(0.6 0.15 150 / 0.6); }
+.toast.err { background: oklch(0.35 0.12 25 / 0.92); border: 1px solid oklch(0.6 0.18 25 / 0.6); }
+
+/* Audio toggle + WhatsApp */
+.audio-fab { position: fixed; bottom: 1.25rem; left: 1.25rem; z-index: 60; display: flex; align-items: center; gap: 0.5rem; border-radius: 9999px; padding: 0.625rem 1rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: 0.8rem; transition: color 0.3s; }
+.audio-fab:hover { color: var(--gold); }
+.wa-btn { display: inline-flex; align-items: center; gap: 0.75rem; border-radius: 9999px; background: oklch(0.7 0.18 150); padding: 1rem 2rem; font-weight: 600; color: white; box-shadow: var(--shadow-gold); transition: transform 0.3s; margin-top: 2rem; }
+.wa-btn:hover { transform: scale(1.04); }
+footer { padding: 2.5rem 1rem; text-align: center; font-size: 0.75rem; color: var(--muted-foreground); border-top: 1px solid oklch(0.4 0.07 295 / 0.2); }
+.backlink { position: fixed; top: 1rem; left: 1rem; z-index: 60; display: inline-flex; align-items: center; gap: 0.375rem; border-radius: 9999px; padding: 0.5rem 0.875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: 0.8rem; }
+.backlink:hover { color: var(--gold); }
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="starfield" style="position:fixed;inset:0;opacity:0.3;pointer-events:none"></div>
+
+<a class="backlink" href="index.html">
+  <svg class="ico" style="width:1rem;height:1rem" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+  genialtarot.com
+</a>
+
+<main style="position:relative;min-height:100vh">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap-5xl hero-grid">
+    <div class="hero-img-wrap">
+      <div class="hero-img-halo animate-glow-pulse"></div>
+      <img class="hero-img" src="mestre-alberto.jpg" alt="Mestre Alberto, tarólogo do Genialtarot" />
+      <span class="hero-img-tag">Mestre Alberto</span>
+    </div>
+    <div class="hero-text">
+      <div class="pill" style="margin-bottom:1.5rem">
+        <svg class="ico" style="width:0.875rem;height:0.875rem" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        Tarot Rider Waite · 78 cartas
+      </div>
+      <h1 class="text-glow">Genialtarot
+        <span class="sub">com o Mestre Alberto — lê o que as cartas têm para te dizer</span>
+      </h1>
+      <div class="hero-cta">
+        <button class="btn-gold animate-glow-pulse" onclick="document.getElementById('leitura').scrollIntoView({behavior:'smooth'})">
+          <span class="tag-free animate-bounce-soft">Grátis</span>
+          <svg class="ico" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+          Jogar o Tarot agora
+        </button>
+        <p class="muted" style="font-size:0.75rem">Leituras simples, simbólicas e realistas — sem promessas mágicas, apenas orientação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Como funciona -->
+<section class="sect sect-border">
+  <div class="wrap-6xl">
+    <h2 class="h2c text-glow">Como funciona o Genialtarot</h2>
+    <div class="grid-3" id="como-funciona"></div>
+  </div>
+</section>
+
+<!-- Porquê confiar -->
+<section class="sect">
+  <div class="wrap-5xl" style="text-align:center">
+    <h2 class="h2c text-glow">Porquê confiar no Genialtarot</h2>
+    <p class="muted" style="margin:1rem auto 0;max-width:48rem">
+      O Genialtarot usa o baralho clássico Rider Waite, um dos mais conhecidos e
+      estudados no mundo esotérico, com 78 cartas cheias de símbolos e arquétipos ricos.
+    </p>
+    <div class="grid-3" id="confiar" style="text-align:left"></div>
+  </div>
+</section>
+
+<!-- Áreas -->
+<section class="sect sect-border">
+  <div class="wrap-6xl">
+    <div style="text-align:center">
+      <h2 class="h2c text-glow">Escolhe a área que queres trabalhar</h2>
+      <p class="muted" style="margin:0.75rem auto 0;max-width:42rem">
+        Cada tiragem foca-se numa área específica da tua vida. Podes voltar quando quiseres
+        e explorar temas diferentes.
+      </p>
+    </div>
+    <div class="grid-areas" id="areas-grid"></div>
+  </div>
+</section>
+
+<!-- Som -->
+<section class="sect">
+  <div class="wrap-3xl card-box shadow-mystic" style="text-align:center;border-radius:1.5rem;padding:2.5rem">
+    <h2 style="font-size:1.875rem" class="text-gold">Envolve-te no ambiente esotérico</h2>
+    <p style="margin-top:1rem;color:oklch(0.96 0.02 300 / 0.85)">
+      Ativa o som ambiente para entrares ainda mais na energia da leitura: uma paisagem
+      sonora suave, mística e envolvente acompanha a tua tiragem.
+    </p>
+    <p class="muted" style="margin-top:0.5rem">
+      Se preferires silêncio, podes desligar o som a qualquer momento com um simples clique.
+    </p>
+  </div>
+</section>
+
+<!-- Experiência -->
+<section id="leitura" class="sect">
+  <div class="wrap-6xl">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <h2 class="h2c text-glow">A Mesa Esotérica do Mestre Alberto</h2>
+      <p class="muted" style="margin-top:0.75rem">Partilha um pouco sobre ti, escolhe a tua área e deixa as cartas virarem-se.</p>
+    </div>
+
+    <div class="exp-banner">
+      <div class="exp-banner-glow animate-mega-glow"></div>
+      <div class="exp-banner-card animate-mega-glow">
+        <div class="starfield animate-flash-blink" style="position:absolute;inset:0;opacity:0.4;pointer-events:none"></div>
+        <div class="animate-flash-blink" style="position:relative;display:flex;align-items:center;justify-content:center;gap:0.75rem;flex-wrap:wrap">
+          <svg class="ico text-gold" style="width:1.75rem;height:1.75rem" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+          <p class="exp-banner-title shimmer-gold">Quase a revelar as suas cartas</p>
+          <svg class="ico text-gold" style="width:1.75rem;height:1.75rem" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+        </div>
+        <p style="position:relative;margin-top:0.5rem;font-size:0.9rem;color:oklch(0.96 0.02 300 / 0.85)">
+          Preenche os teus dados, escolhe a tua área e deixa o Mestre Alberto revelar-te o que o Tarot tem para ti.
+        </p>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <div class="form-grid">
+        <label class="fld"><span class="lbl">Nome</span><input id="f-name" class="input" placeholder="Primeiro e último nome" /></label>
+        <label class="fld"><span class="lbl">Data de nascimento</span><input id="f-dob" class="input" placeholder="A tua data de nascimento" /></label>
+        <label class="fld"><span class="lbl">Cidade</span><input id="f-city" class="input" placeholder="Ex.: Lisboa" /></label>
+        <label class="fld"><span class="lbl">País</span><input id="f-country" class="input" value="Portugal" /></label>
+        <label class="fld span2"><span class="lbl">Email</span><input id="f-email" type="email" class="input" placeholder="exemplo@email.pt" /></label>
+      </div>
+      <div style="margin-top:1.5rem">
+        <div class="muted" style="font-size:0.875rem;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:0.75rem">Escolhe a área da tua vida</div>
+        <div class="chips" id="area-chips"></div>
+      </div>
+      <div style="margin-top:2rem;display:flex;flex-direction:column;align-items:center;gap:0.75rem">
+        <button id="play-btn" class="btn-gold animate-glow-pulse">
+          <span class="tag-free animate-bounce-soft">Grátis</span>
+          <svg class="ico" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+          Jogar o Tarot
+        </button>
+        <p class="muted" style="font-size:0.75rem">Os teus dados são usados apenas para registar a tua leitura.</p>
+      </div>
+    </div>
+
+    <!-- Mesa -->
+    <div id="mesa-wrap" class="hidden" style="margin-top:4rem">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <h3 style="font-size:1.75rem" class="text-gold">As cartas estão a virar-se…</h3>
+        <p class="muted" style="font-size:0.875rem;margin-top:0.5rem"><span id="revealed-count">0</span> de 8 reveladas</p>
+      </div>
+      <div class="mesa-box">
+        <div class="mesa-tag">
+          <div class="mesa-tag-inner animate-glow-pulse">
+            <svg class="ico" style="width:1rem;height:1rem;stroke:oklch(0.2 0.04 290)" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+            <span style="font-size:10px;text-transform:uppercase;letter-spacing:0.25em;color:oklch(0.2 0.04 290);font-weight:700">Área em leitura</span>
+            <span id="mesa-area" style="font-family:var(--font-display);font-weight:700;color:oklch(0.2 0.04 290)"></span>
+          </div>
+        </div>
+        <div class="starfield" style="position:absolute;inset:0;opacity:0.4;pointer-events:none;border-radius:1.5rem;overflow:hidden"></div>
+        <div class="mesa-grid" id="mesa-grid"></div>
+      </div>
+    </div>
+
+    <!-- Veredito -->
+    <div id="verdict-box" class="verdict-box hidden">
+      <div class="verdict-head">
+        <img src="mestre-alberto.jpg" alt="Mestre Alberto" />
+        <div style="flex:1">
+          <h3 style="font-size:1.75rem;display:flex;align-items:center;gap:0.5rem" class="shimmer-gold">
+            <svg class="ico text-gold" style="width:1.5rem;height:1.5rem" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+            O veredito do Mestre Alberto
+          </h3>
+          <div style="margin-top:0.5rem;display:inline-flex;align-items:center;gap:0.5rem;border-radius:9999px;border:1px solid oklch(0.82 0.13 85 / 0.6);background:var(--gradient-mystic);padding:0.375rem 1rem;box-shadow:var(--shadow-mystic)">
+            <span style="font-size:10px;text-transform:uppercase;letter-spacing:0.25em;font-weight:700" class="text-gold">Área analisada</span>
+            <span id="verdict-area" style="font-family:var(--font-display);font-weight:700"></span>
+          </div>
+        </div>
+      </div>
+      <div id="verdict-text" class="verdict-text"></div>
+      <div id="rating-wrap" class="rating-box hidden">
+        <div class="rating-inner">
+          <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-bottom:0.5rem">
+            <span style="font-size:10px;text-transform:uppercase;letter-spacing:0.28em;font-weight:700" class="text-gold">✦ Avalia a leitura ✦</span>
+          </div>
+          <p style="font-family:var(--font-display);font-size:1.125rem"><span id="rating-name" class="shimmer-gold" style="font-weight:700"></span>, o que achaste do veredito do Mestre Alberto?</p>
+          <p class="muted" style="font-size:0.875rem;margin-top:0.25rem">Toca nas estrelas para deixares a tua avaliação</p>
+          <div class="stars" id="stars"></div>
+          <p id="rating-done" class="text-gold animate-pulse-soft hidden" style="margin-top:0.75rem;font-size:0.875rem"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WhatsApp CTA -->
+<section class="sect sect-border">
+  <div class="wrap-3xl" style="text-align:center">
+    <h2 class="h2c text-glow">Queres uma consulta pessoal?</h2>
+    <p style="margin-top:1rem;font-size:1.125rem;color:oklch(0.96 0.02 300 / 0.85)">
+      Fala diretamente com o Mestre Alberto pelo WhatsApp e agenda a tua consulta privada.
+      Uma conversa pessoal, atenta e dedicada só a ti.
+    </p>
+    <p class="muted" style="margin-top:0.5rem">
+      Clica no botão e envia já a tua mensagem — o Mestre Alberto está à tua espera.
+    </p>
+    <a class="wa-btn animate-glow-pulse" href="https://wa.me/351914920427?text=Ol%C3%A1%20Mestre%20Alberto%2C%20gostaria%20de%20agendar%20uma%20consulta%20de%20Tarot." target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 32 32" style="height:1.5rem;width:1.5rem;fill:currentColor" aria-hidden="true">
+        <path d="M16 .4C7.4.4.4 7.4.4 16c0 2.8.7 5.5 2.1 7.9L.3 31.6l7.9-2.1c2.3 1.3 4.9 1.9 7.6 1.9h.1c8.6 0 15.6-7 15.6-15.6S24.6.4 16 .4zm0 28.4c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.7 20.7 3 18.4 3 16 3 8.8 8.8 3 16 3s13 5.8 13 13-5.8 12.8-13 12.8zm7.1-9.6c-.4-.2-2.3-1.1-2.7-1.3-.4-.1-.6-.2-.9.2s-1 1.3-1.3 1.5c-.2.2-.5.3-.9.1s-1.6-.6-3.1-1.9c-1.1-1-1.9-2.3-2.2-2.7-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.6.1-.2 0-.5-.1-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.7c.2.2 2.5 3.8 6 5.3.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.6.2-1.7-.1-.2-.4-.3-.8-.5z"/>
+      </svg>
+      Falar no WhatsApp com Mestre Alberto
+    </a>
+    <p class="muted" style="margin-top:0.75rem;font-size:0.75rem">+351 914 920 427 · Resposta personalizada</p>
+  </div>
+</section>
+
+<footer>Genialtarot · Leituras simbólicas · Não substitui aconselhamento profissional.</footer>
+</main>
+
+<!-- Audio toggle -->
+<button id="audio-fab" class="audio-fab" aria-label="Ativar som ambiente">
+  <svg class="ico" id="afab-off" style="width:1rem;height:1rem" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
+  <svg class="ico" id="afab-on" style="width:1rem;height:1rem;display:none" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+  <span id="afab-label">Som ambiente</span>
+</button>
+
+<!-- Modais -->
+<div class="modal-overlay" id="modal-rate">
+  <div class="modal-bg" onclick="closeModal('modal-rate')"></div>
+  <div class="modal-card-wrap animate-fade-in">
+    <div class="modal-glow animate-mega-glow"></div>
+    <div class="modal-card">
+      <div class="starfield" style="position:absolute;inset:0;opacity:0.5;pointer-events:none"></div>
+      <div style="position:relative">
+        <div class="modal-icon animate-glow-pulse">
+          <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="modal-title shimmer-gold">As cartas precisam de descansar 🌙</h3>
+        <p style="margin-top:1rem;line-height:1.6;color:oklch(0.96 0.02 300 / 0.9)">
+          Já fizeste as tuas <strong class="text-gold">2 leituras de hoje</strong>. O Tarot pede tempo para as mensagens assentarem.
+          Volta amanhã para uma nova tiragem ✨
+        </p>
+        <div class="countdown" id="rate-countdown"></div>
+        <p class="muted" style="font-size:0.8rem;margin-top:0.25rem">até às novas leituras</p>
+        <button class="btn-gold modal-btn" onclick="closeModal('modal-rate')">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-area">
+  <div class="modal-bg" onclick="closeModal('modal-area')"></div>
+  <div class="modal-card-wrap animate-fade-in">
+    <div class="modal-glow animate-mega-glow"></div>
+    <div class="modal-card">
+      <div class="starfield" style="position:absolute;inset:0;opacity:0.5;pointer-events:none"></div>
+      <div style="position:relative">
+        <div class="modal-icon animate-glow-pulse">
+          <svg class="ico" viewBox="0 0 24 24"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>
+        </div>
+        <h3 class="modal-title shimmer-gold" id="area-modal-title">Eh lá!</h3>
+        <p id="area-modal-text" style="margin-top:1rem;line-height:1.6;color:oklch(0.96 0.02 300 / 0.9)"></p>
+        <p class="muted" style="margin-top:0.75rem;font-size:0.9rem">Experimenta outra área hoje — ou volta amanhã para repetires esta 🔮</p>
+        <button class="btn-gold modal-btn" onclick="closeModal('modal-area')">Está bem!</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script type="module">
+/* ===== tarot-deck (embutido) ===== */
+// src/lib/tarot-deck.ts
+var IMG = (slug) => `https://www.trustedtarot.com/img/cards/${slug}.png`;
+var major = [
+  { id: "m0", name: "O Louco", arcana: "maior", keywords: ["novos começos", "liberdade", "espontaneidade", "salto de fé"], image: IMG("the-fool") },
+  { id: "m1", name: "O Mago", arcana: "maior", keywords: ["manifestação", "ação", "habilidade", "vontade"], image: IMG("the-magician") },
+  { id: "m2", name: "A Sacerdotisa", arcana: "maior", keywords: ["intuição", "mistério", "saber interior", "paciência"], image: IMG("the-high-priestess") },
+  { id: "m3", name: "A Imperatriz", arcana: "maior", keywords: ["abundância", "fertilidade", "cuidado", "criatividade"], image: IMG("the-empress") },
+  { id: "m4", name: "O Imperador", arcana: "maior", keywords: ["estrutura", "autoridade", "estabilidade", "disciplina"], image: IMG("the-emperor") },
+  { id: "m5", name: "O Hierofante", arcana: "maior", keywords: ["tradição", "ensinamento", "valores", "conselho"], image: IMG("the-heirophant") },
+  { id: "m6", name: "Os Enamorados", arcana: "maior", keywords: ["escolha", "união", "valores", "harmonia"], image: IMG("the-lovers") },
+  { id: "m7", name: "O Carro", arcana: "maior", keywords: ["determinação", "vitória", "controlo", "movimento"], image: IMG("the-chariot") },
+  { id: "m8", name: "A Força", arcana: "maior", keywords: ["coragem", "paciência", "ternura", "domínio interior"], image: IMG("strength") },
+  { id: "m9", name: "O Eremita", arcana: "maior", keywords: ["introspeção", "procura", "silêncio", "guia interior"], image: IMG("the-hermit") },
+  { id: "m10", name: "A Roda da Fortuna", arcana: "maior", keywords: ["ciclos", "destino", "mudança", "viragem"], image: IMG("wheel-of-fortune") },
+  { id: "m11", name: "A Justiça", arcana: "maior", keywords: ["verdade", "equilíbrio", "responsabilidade", "consequência"], image: IMG("justice") },
+  { id: "m12", name: "O Enforcado", arcana: "maior", keywords: ["pausa", "perspetiva", "entrega", "espera"], image: IMG("the-hanged-man") },
+  { id: "m13", name: "A Morte", arcana: "maior", keywords: ["fim de ciclo", "transformação", "renovação", "transição"], image: IMG("death") },
+  { id: "m14", name: "A Temperança", arcana: "maior", keywords: ["equilíbrio", "moderação", "paciência", "harmonia"], image: IMG("temperance") },
+  { id: "m15", name: "O Diabo", arcana: "maior", keywords: ["apego", "tentação", "padrões", "libertação necessária"], image: IMG("the-devil") },
+  { id: "m16", name: "A Torre", arcana: "maior", keywords: ["rutura", "revelação", "queda libertadora", "verdade"], image: IMG("the-tower") },
+  { id: "m17", name: "A Estrela", arcana: "maior", keywords: ["esperança", "inspiração", "cura", "fé renovada"], image: IMG("the-star") },
+  { id: "m18", name: "A Lua", arcana: "maior", keywords: ["ilusão", "intuição", "medo", "subconsciente"], image: IMG("the-moon") },
+  { id: "m19", name: "O Sol", arcana: "maior", keywords: ["alegria", "sucesso", "vitalidade", "clareza"], image: IMG("the-sun") },
+  { id: "m20", name: "O Julgamento", arcana: "maior", keywords: ["despertar", "balanço", "renovação", "chamado"], image: IMG("judgement") },
+  { id: "m21", name: "O Mundo", arcana: "maior", keywords: ["realização", "conclusão", "integração", "plenitude"], image: IMG("the-world") }
+];
+var suits = [
+  { s: "Paus", slug: "wands", theme: ["paixão", "ação", "energia", "criatividade"] },
+  { s: "Copas", slug: "cups", theme: ["emoções", "afeto", "relações", "intuição"] },
+  { s: "Espadas", slug: "swords", theme: ["pensamento", "decisões", "conflito", "verdade"] },
+  { s: "Ouros", slug: "pentacles", theme: ["material", "trabalho", "dinheiro", "corpo"] }
+];
+var ranks = [
+  { n: "Ás", slug: "ace", k: ["semente", "novo impulso", "potencial"] },
+  { n: "Dois", slug: "two", k: ["equilíbrio", "escolha", "dualidade"] },
+  { n: "Três", slug: "three", k: ["crescimento", "expansão", "primeiros frutos"] },
+  { n: "Quatro", slug: "four", k: ["estabilidade", "estrutura", "pausa"] },
+  { n: "Cinco", slug: "five", k: ["desafio", "perda", "ajuste"] },
+  { n: "Seis", slug: "six", k: ["harmonia", "partilha", "progresso"] },
+  { n: "Sete", slug: "seven", k: ["reflexão", "estratégia", "perseverança"] },
+  { n: "Oito", slug: "eight", k: ["movimento", "esforço", "domínio"] },
+  { n: "Nove", slug: "nine", k: ["realização", "quase pleno", "introspeção"] },
+  { n: "Dez", slug: "ten", k: ["culminação", "ciclo completo", "transição"] },
+  { n: "Pajem", slug: "page", k: ["mensagem", "aprendizagem", "curiosidade"] },
+  { n: "Cavaleiro", slug: "knight", k: ["ação decidida", "movimento", "missão"] },
+  { n: "Rainha", slug: "queen", k: ["maturidade", "cuidado", "domínio interior"] },
+  { n: "Rei", slug: "king", k: ["liderança", "autoridade", "domínio"] }
+];
+var minor = suits.flatMap(({ s, slug: ssl, theme }, si) => ranks.map((r, ri) => ({
+  id: `n${si}${ri}`,
+  name: `${r.n} de ${s}`,
+  arcana: "menor",
+  suit: s,
+  keywords: [...r.k, ...theme],
+  image: IMG(`${r.slug}-of-${ssl}`)
+})));
+var TAROT_DECK = [...major, ...minor];
+function drawCards(n = 8) {
+  const copy = [...TAROT_DECK];
+  for (let i = copy.length - 1;i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy.slice(0, n);
+}
+var AREAS = [
+  { key: "Trabalho", description: "Tendências para carreira, projetos, desafios profissionais e oportunidades de crescimento." },
+  { key: "Amor", description: "Energia das relações, afetos, encontros, reconciliações e autoconhecimento afetivo." },
+  { key: "Financeiro", description: "Fluxo de dinheiro, estabilidade, riscos, oportunidades e prudência necessária." },
+  { key: "Saúde", description: "Equilíbrio de energia, bem-estar físico e emocional (não substitui aconselhamento médico)." },
+  { key: "Família", description: "Dinâmicas familiares, laços, desafios e caminhos para maior harmonia." },
+  { key: "Espiritual", description: "Propósito, intuição, ciclos internos e desenvolvimento espiritual." }
+];
+var areaAdvice = {
+  Trabalho: [
+    "avança um passo de cada vez e regista o que vais aprendendo",
+    "observa quem te apoia em silêncio e quem só te observa de longe",
+    "valida ideias com gente de confiança antes de te comprometeres em demasia",
+    "não tenhas receio de pedir aquilo que sabes, no fundo, que mereces",
+    "pondera bem antes de aceitar mudanças tomadas no calor do momento",
+    "documenta o teu valor — números, resultados, gestos — para o dia em que precisares",
+    "negoceia o que te custa pedir; o pior que pode acontecer é ouvires um não",
+    "rodeia-te de quem te puxa para cima, mesmo que doa cortar laços antigos",
+    "trata cada erro como dado, não como veredicto sobre quem és"
+  ],
+  Amor: [
+    "fala com clareza sobre o que sentes e do que precisas, sem rodeios",
+    "respeita o teu próprio ritmo emocional sem te desculpares por isso",
+    "permite que o outro te mostre quem é, sem o pintares com tintas tuas",
+    "atreve-te a dar o primeiro passo se o coração realmente o pedir",
+    "afasta-te de quem te diminui, mesmo quando custa o adeus",
+    "mede o amor pelos atos do dia a dia, não pelas declarações de fim de semana",
+    "ama sem te perderes — e fica sem te apagares",
+    "lembra-te que solidão escolhida é mais saudável do que companhia que te esvazia",
+    "trata-te como tratarias quem amas profundamente"
+  ],
+  Financeiro: [
+    "revê o orçamento com calma e sem dramatismo",
+    "evita decisões financeiras impulsivas neste momento",
+    "valoriza pequenos ganhos consistentes mais do que promessas rápidas",
+    "uma oportunidade pode aparecer — analisa antes de a recusar",
+    "atenção a gastos emocionais nas próximas semanas",
+    "separa querer de precisar antes de cada compra significativa",
+    "constrói reserva de emergência, mesmo que a um ritmo modesto",
+    "não emprestes hoje o que não estás disposto(a) a perder amanhã",
+    "transforma cada pagamento em decisão consciente, não em automatismo"
+  ],
+  Saúde: [
+    "dá ao corpo descanso, água e movimento suave todos os dias",
+    "ouve sinais subtis antes de eles se transformarem em ruído",
+    "procura apoio profissional sempre que sentires necessidade",
+    "trata o stress como prioridade absoluta, não como detalhe menor",
+    "respira fundo três vezes antes de cada decisão importante",
+    "protege as tuas horas de sono como protegerias um filho pequeno",
+    "afasta-te de telas pelo menos uma hora antes de dormires",
+    "come devagar, com presença — e sente o que cada refeição te faz"
+  ],
+  Família: [
+    "ouve mais do que respondes nas próximas conversas em casa",
+    "estabelece limites com firmeza e ternura ao mesmo tempo",
+    "lembra-te que cuidar dos outros começa por cuidares de ti",
+    "uma reconciliação pode estar mais perto do que pensas",
+    "abraça com palavras quem talvez nunca peça abraços",
+    "perdoa para te libertares — não para esquecer, mas para soltares",
+    "aceita que cada membro da tua família tem o seu próprio caminho",
+    "guarda momentos pequenos como tesouros — são esses que ficam"
+  ],
+  Espiritual: [
+    "reserva momentos diários de silêncio e respiração",
+    "confia mais na tua intuição e menos na pressa do mundo",
+    "deixa que o que já não te serve possa partir",
+    "um sinal vai chegar — mantém-te atento(a) ao quotidiano",
+    "escreve o que sonhas — o invisível fala em camadas",
+    "agradece três coisas todas as noites antes de adormeceres",
+    "caminha na natureza sem destino e sem telemóvel ao menos uma vez por semana",
+    "abraça o silêncio como abraçarias um velho amigo"
+  ]
+};
+var SHADOW_IDS = new Set([
+  "m13",
+  "m15",
+  "m16",
+  "m18",
+  "n20",
+  "n23",
+  "n24",
+  "n28",
+  "n29",
+  "n14",
+  "n15",
+  "n18",
+  "n34",
+  "n35"
+]);
+var challenges = {
+  Trabalho: [
+    "Atreve-te a propor aquela ideia que andas a guardar — surpreende-te a ti próprio(a).",
+    "Esta semana, recusa pelo menos uma tarefa que não é tua. Vais sentir o ar a regressar.",
+    "Marca uma conversa difícil que andas a adiar; o teu futuro profissional agradece.",
+    "Atualiza o teu currículo, mesmo sem precisares — só por respeito ao teu valor.",
+    "Manda hoje aquele email que adias há semanas. Conta-me como te sentes depois.",
+    "Tira 30 minutos por dia para algo só teu, sem produtividade nenhuma."
+  ],
+  Amor: [
+    "Diz hoje, em voz alta, aquilo que costumas só pensar. Mesmo que tremas um pouco.",
+    "Faz um gesto inesperado por quem amas — ou por ti, se estás só(a). O coração precisa de prova de vida.",
+    "Liberta-te de uma comparação que te magoa. Tu não és substituto(a) de ninguém.",
+    "Escreve uma carta que talvez nunca envies — mas escreve mesmo assim.",
+    "Marca um encontro contigo: jantar, cinema, passeio. Sem ninguém.",
+    "Apaga uma conversa antiga que ainda relês. Liberta-te do eco."
+  ],
+  Financeiro: [
+    "Anota cada cêntimo que gastas durante 7 dias. A clareza é o teu maior poder agora.",
+    "Põe de lado um valor simbólico esta semana, mesmo que pequeno — estás a abrir um canal.",
+    "Diz não a uma despesa que sabes, no fundo, que não te traz alegria nenhuma.",
+    "Cancela uma assinatura que já nem usas. Pequeno gesto, grande mensagem ao universo.",
+    "Negoceia uma conta esta semana — telecom, banco, seguro. Vais surpreender-te.",
+    "Define um objetivo financeiro pequeno e concreto para os próximos 30 dias."
+  ],
+  Saúde: [
+    "Compromete-te com 20 minutos de movimento por dia durante uma semana. Só isso.",
+    "Esta noite, dorme uma hora mais cedo. O corpo lembra-se de quem cuida dele.",
+    "Marca aquela consulta que andas a empurrar. Tratar-te é um ato de respeito.",
+    "Bebe dois litros de água por dia esta semana. Repara como tudo muda.",
+    "Faz uma refeição em silêncio total, sem ecrã, esta semana.",
+    "Caminha 30 minutos ao ar livre, sem destino — só por estar no corpo."
+  ],
+  Família: [
+    "Faz uma chamada que andas a evitar. Pode mudar mais coisas do que imaginas.",
+    "Abre espaço para ouvir, mesmo quando discordas. A escuta é a maior cura familiar.",
+    "Diz a alguém da tua família algo bonito e verdadeiro — sem motivo nenhum.",
+    "Recupera uma fotografia antiga e partilha-a com quem aparece nela.",
+    "Cozinha algo que te lembre infância e convida alguém para partilhar.",
+    "Pede desculpa por algo pequeno que sabes, lá no fundo, que magoou."
+  ],
+  Espiritual: [
+    "Passa 10 minutos em silêncio total esta noite. Ouve o que aparece sem julgamento.",
+    "Anota um sonho ou uma intuição esta semana — vais perceber que não é coincidência.",
+    "Liberta-te de uma crença antiga que já não te serve. Agradece e deixa partir.",
+    "Acende uma vela e fica simplesmente a olhar para a chama durante 5 minutos.",
+    "Escreve uma carta de gratidão à tua versão de há 5 anos.",
+    "Sai de casa amanhã sem destino e segue só o que te chama."
+  ]
+};
+var areaOpenings = {
+  Trabalho: {
+    bright: [
+      "\uD83D\uDD2E NAME ✨, vejo a tua carreira a ganhar nova respiração \uD83C\uDF19. Algo que preparavas em silêncio começa, finalmente, a tornar-se visível \uD83D\uDCAB.",
+      "⭐ NAME, as cartas mostram-te numa fase de afirmação profissional \uD83E\uDE84. Vem aí oportunidade de mostrares ao mundo o que já sabes fazer \uD83C\uDF1F.",
+      "\uD83C\uDF1F No teu trabalho, NAME, o terreno está fértil ✨. Uma ideia tua será ouvida com atenção, e há quem repare em ti mais do que demonstra \uD83D\uDD2E.",
+      "\uD83D\uDCAB NAME, o vento vira a teu favor \uD83C\uDF19. Sente-se uma mudança suave — talvez convite, promoção discreta, ou apenas confirmação de rumo ✨.",
+      "✨ NAME, falo-te de colheita \uD83E\uDE84. O que tens semeado com dedicação está prestes a render, desde que mantenhas disciplina mais alguns passos \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, há reconhecimento a caminho \uD83C\uDF1F — não da forma como o imaginaste, mas exatamente da forma de que precisas agora ✨.",
+      "\uD83D\uDD2E NAME, o que parecia bloqueado começa a destrancar-se \uD83D\uDCAB. Move-te com calma estratégica e verás portas onde antes via paredes \uD83C\uDF19.",
+      "\uD83C\uDF19 NAME, vejo aliados a aproximarem-se \uD83C\uDF1F. Aceita ajuda — recusá-la agora seria orgulho, não força ✨.",
+      "✨ NAME, há um projeto que te chama há tempo \uD83D\uDD2E. Esta é a estação certa para lhe pegares com mãos firmes \uD83E\uDE84."
+    ],
+    mixed: [
+      "\uD83D\uDD2E NAME, no plano profissional há luz e nevoeiro \uD83C\uDF19. Existe decisão a tomar e nenhuma escolha é totalmente confortável ✨.",
+      "⭐ NAME, vejo-te num cruzamento profissional \uD83D\uDCAB. O que parecia certo deixou de o ser — sinal de que estás pronto(a) para mais \uD83E\uDE84.",
+      "\uD83C\uDF19 As cartas mostram movimento, NAME, mas não em linha reta \uD83D\uDD2E. Vais precisar de paciência estratégica nas próximas semanas ✨.",
+      "\uD83D\uDCAB NAME, há peso silencioso no ambiente profissional \uD83C\uDF1F. Talvez relação com colega ou chefia ande a desgastar-te mais do que admites \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, sinto pressão de prazos e expectativas \uD83C\uDF19. Respira fundo: nem tudo o que parece urgente é realmente teu para resolver hoje ✨.",
+      "\uD83C\uDF1F NAME, a tua ambição pede agora método, não velocidade \uD83D\uDD2E. Constrói degrau a degrau e o topo virá quando tiver de vir \uD83D\uDCAB.",
+      "✨ NAME, há um teste subtil neste período \uD83E\uDE84 — não de talento, mas de paciência e clareza de prioridades \uD83C\uDF19."
+    ],
+    shadow: [
+      "\uD83C\uDF19 NAME, as cartas trazem aviso firme sobre o teu trabalho \uD83D\uDD2E. Algo desalinhado pede coragem para ser olhado de frente ✨.",
+      "\uD83D\uDD2E NAME, sinto-te a carregar peso a mais \uD83D\uDCAB. Há tarefas alheias e expectativas que não são tuas — o cansaço já fala mais alto \uD83C\uDF19.",
+      "⭐ Cuidado, NAME: não tomes decisões profissionais a partir do medo nem da pressa \uD83E\uDE84. O que parece urgência hoje pode ser arrependimento amanhã \uD83D\uDD2E.",
+      "\uD83C\uDF19 NAME, há um ambiente que está a sugar-te o entusiasmo \uD83D\uDD2E. Reconhecer isso é o primeiro passo para o reorganizares ✨.",
+      "\uD83E\uDE84 NAME, lealdade não é sacrifício \uD83C\uDF19. Há contextos profissionais que só pagam quem sabe sair a tempo \uD83D\uDD2E.",
+      "\uD83D\uDCAB NAME, o burnout não chega de repente — instala-se em silêncio \uD83C\uDF1F. Esta tiragem pede travão antes da curva ✨."
+    ]
+  },
+  Amor: {
+    bright: [
+      "\uD83D\uDD2E NAME ✨, o teu coração está mais aberto do que pensas \uD83C\uDF19. As cartas falam de ligação que se aproxima ou que se aprofunda \uD83D\uDCAB.",
+      "⭐ NAME, vejo o amor a desenhar-se com mais leveza \uD83E\uDE84. Quem está só(a) sente uma presença a chegar; quem está acompanhado(a) reencontra a chama \uD83C\uDF1F.",
+      "\uD83C\uDF1F NAME, és merecedor(a) ✨. Algo bonito vem a caminho, mas só entrará se deixares mesmo a porta destrancada \uD83D\uDD2E.",
+      "\uD83D\uDCAB NAME, há reencontro afetivo escrito nesta tiragem \uD83C\uDF19 — pode ser com outra pessoa, ou contigo mesmo(a) ✨.",
+      "✨ NAME, a Lua sorri ao teu amor \uD83D\uDD2E. Um gesto pequeno vai mudar a temperatura da tua vida afetiva mais do que esperas \uD83E\uDE84.",
+      "\uD83E\uDE84 NAME, vem aí ternura inesperada \uD83C\uDF1F. Não a sabotes com a tua velha desconfiança \uD83D\uDCAB.",
+      "\uD83C\uDF19 NAME, alguém pensa em ti com mais frequência do que diz \uD83D\uDD2E. As cartas mostram um movimento subtil de aproximação ✨.",
+      "\uD83D\uDD2E NAME, há reciprocidade real à vista \uD83D\uDCAB. Permite-te sentir sem te armares de antemão \uD83C\uDF1F."
+    ],
+    mixed: [
+      "\uD83D\uDD2E NAME, no amor há verdades por dizer \uD83C\uDF19. As cartas pedem coragem para nomear o que sentes ✨.",
+      "⭐ NAME, vejo a tua vida afetiva num momento de balanço \uD83D\uDCAB. Distingue afeto verdadeiro de hábito cómodo \uD83E\uDE84.",
+      "\uD83C\uDF19 NAME, o teu coração anda dividido entre o que queres e o que aceitaste \uD83D\uDD2E. As cartas pedem honestidade contigo mesmo(a) ✨.",
+      "\uD83D\uDCAB NAME, há um amor a testar-te \uD83C\uDF1F — esta fase ensina-te a amar com menos receio e mais presença \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, há dúvidas legítimas no peito \uD83C\uDF19 — não as silencies em nome de uma paz aparente ✨.",
+      "\uD83C\uDF1F NAME, escolher é também perder \uD83D\uDD2E — mas nem escolher é a maior das perdas \uD83D\uDCAB.",
+      "✨ NAME, repara nos pequenos gestos quotidianos \uD83E\uDE84. É aí que o amor se revela ou se denuncia \uD83C\uDF19."
+    ],
+    shadow: [
+      "\uD83C\uDF19 NAME, olha de frente para uma ligação que te tem custado mais do que devolve \uD83D\uDD2E. Ficar por medo de estar só(a) é magoar-te em silêncio ✨.",
+      "\uD83D\uDD2E NAME, há uma idealização que precisa de cair \uD83D\uDCAB. Vês uma pessoa que tu construíste, não a que está mesmo à tua frente \uD83C\uDF19.",
+      "⭐ NAME, é tempo de soltar \uD83E\uDE84. Algo já não cabe na tua vida atual — segurar com força só vai estragar a memória do que houve de bom \uD83D\uDD2E.",
+      "\uD83C\uDF19 NAME, o silêncio do outro também é resposta \uD83D\uDD2E. Ouve-a com respeito por ti ✨.",
+      "\uD83E\uDE84 NAME, há padrão antigo a repetir-se \uD83C\uDF1F — desta vez, tens a clareza necessária para o quebrares \uD83D\uDCAB.",
+      "\uD83D\uDCAB NAME, sair de quem te magoa não é falhar \uD83C\uDF19 — é finalmente escolheres-te a ti \uD83D\uDD2E."
+    ]
+  },
+  Financeiro: {
+    bright: [
+      "\uD83D\uDD2E NAME ✨, o plano material começa a respirar melhor \uD83C\uDF19. As cartas mostram entradas, oportunidades concretas, e mudança subtil na tua relação com o dinheiro \uD83D\uDCAB.",
+      "⭐ NAME, vejo prosperidade discreta a chegar \uD83E\uDE84. Não é fortuna do nada — é resultado natural de escolhas mais conscientes \uD83C\uDF1F.",
+      "\uD83C\uDF1F NAME, há janela financeira a abrir-se ✨. Pode ser uma proposta, um acerto, um pagamento atrasado \uD83D\uDD2E.",
+      "\uD83D\uDCAB NAME, falo de estabilidade a construir-se \uD83C\uDF19. O que parece pouco hoje será alicerce sólido daqui a uns meses ✨.",
+      "✨ NAME, a Roda gira a teu favor \uD83D\uDD2E. Pé no chão e ambição no peito — esta combinação é, agora, a tua maior força \uD83E\uDE84.",
+      "\uD83E\uDE84 NAME, vem aí um sim inesperado em torno de números \uD83C\uDF1F. Recebe sem te encolheres ✨.",
+      "\uD83C\uDF19 NAME, está a formar-se uma ponte entre o teu trabalho e o teu rendimento \uD83D\uDD2E — atravessa-a com confiança \uD83D\uDCAB."
+    ],
+    mixed: [
+      "\uD83D\uDD2E NAME, o cenário financeiro pede atenção, não pânico \uD83C\uDF19. Há gastos que escapam ao radar e pequenas escolhas a corrigir ✨.",
+      "⭐ NAME, vejo decisão financeira no horizonte \uD83D\uDCAB — investir, mudar, esperar. Exige números à frente, não apenas intuição \uD83E\uDE84.",
+      "\uD83C\uDF19 NAME, o dinheiro está em movimento na tua vida \uD83D\uDD2E: entra por um lado, sai por outro. Fecha torneiras antes de abrires garrafas \uD83C\uDF1F.",
+      "\uD83D\uDCAB NAME, prudência sem medo \uD83E\uDE84. Há oportunidades reais, mas também promessas brilhantes que escondem armadilhas — não decidas no impulso \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, este é um período de organização \uD83C\uDF19 — não de grandes apostas, mas de afinação de hábitos \uD83D\uDCAB.",
+      "\uD83C\uDF1F NAME, separa o emocional do financeiro \uD83D\uDD2E. Comprar pela tristeza ou pela pressa cobra juros que nenhum extrato mostra ✨."
+    ],
+    shadow: [
+      "\uD83C\uDF19 NAME, alerta financeiro claro \uD83D\uDD2E. Algo está a sangrar no orçamento — uma despesa, uma dívida — e finges não ver para não sofrer ✨.",
+      "\uD83D\uDD2E NAME, é tempo de corte honesto \uD83D\uDCAB. Não há vergonha em rever, em adiar — vergonha é deixar o problema crescer em silêncio \uD83C\uDF19.",
+      "⭐ NAME, cuidado com decisões em emoção forte \uD83E\uDE84. Não assines, não compres, não emprestes nada relevante esta semana \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, há promessa de dinheiro fácil a tentar-te \uD83C\uDF19 — o preço aparece sempre depois, e mais alto \uD83D\uDD2E.",
+      "\uD83D\uDCAB NAME, gastar a partir de ferida nunca a cura \uD83C\uDF1F. Trata a fonte, não o sintoma ✨."
+    ]
+  },
+  Saúde: {
+    bright: [
+      "\uD83D\uDD2E NAME ✨, o teu corpo está a responder-te bem \uD83C\uDF19. Energia a regressar, sono a estabilizar, vontade nova de cuidar do que é teu mais profundo \uD83D\uDCAB.",
+      "⭐ NAME, vejo cura suave a entrar na tua vida \uD83E\uDE84. Pequenos hábitos novos terão efeito desproporcionalmente bom \uD83C\uDF1F.",
+      "\uD83C\uDF1F NAME, a tua vitalidade está a subir ✨. Aproveita esta janela para criar rotinas sustentáveis \uD83D\uDD2E.",
+      "\uD83D\uDCAB NAME, há leveza a chegar ao corpo e à mente \uD83C\uDF19. Algo que te pesava começa a soltar-se ✨.",
+      "\uD83E\uDE84 NAME, vem aí clareza física que se reflete em clareza mental \uD83C\uDF1F — confia no processo, mesmo lento \uD83D\uDD2E.",
+      "\uD83D\uDD2E NAME, pequenas escolhas diárias estão a recompensar-te em cadeia \uD83D\uDCAB — repara no que já está melhor \uD83C\uDF19."
+    ],
+    mixed: [
+      "\uD83D\uDD2E NAME, o teu corpo anda a falar contigo, mas baixinho \uD83C\uDF19. Para e escuta antes que precise de gritar ✨.",
+      "⭐ NAME, vejo desequilíbrio entre o que dás e o que recebes em descanso \uD83D\uDCAB. Pedir pausa é inteligência ✨.",
+      "\uD83C\uDF19 NAME, há sintoma pequeno que andas a desvalorizar \uD83D\uDD2E. Marca a consulta, faz o exame, tira a dúvida \uD83C\uDF1F.",
+      "\uD83D\uDCAB NAME, o stress ocupa mais espaço do que devia \uD83E\uDE84. Esta tiragem pede higiene mental urgente \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, andas a viver em modo urgência \uD83C\uDF19 — o teu sistema nervoso pede pausas reais, não só dormir \uD83D\uDCAB."
+    ],
+    shadow: [
+      "\uD83C\uDF19 NAME, as cartas pedem-te que pares \uD83D\uDD2E. O ritmo que impões ao corpo não é sustentável ✨.",
+      "\uD83D\uDD2E NAME, há cansaço acumulado que já não se resolve com fim de semana \uD83D\uDCAB. É preciso reorganização real, não remendo \uD83C\uDF19.",
+      "⭐ NAME, atenção emocional \uD83E\uDE84: o que sentes e não nomeias acaba por se instalar no corpo \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, o aviso de hoje vale mais do que a fatura de amanhã \uD83C\uDF19 — escuta antes que o silêncio do corpo se quebre \uD83D\uDD2E."
+    ]
+  },
+  Família: {
+    bright: [
+      "\uD83D\uDD2E NAME ✨, o teu núcleo familiar entra em fase mais quente \uD83C\uDF19. Reencontro, conversa há muito desejada, ou aprofundar silencioso de afetos \uD83D\uDCAB.",
+      "⭐ NAME, há harmonia a desenhar-se nos laços familiares \uD83E\uDE84. Mesmo quem parecia distante começa a aproximar-se à sua maneira \uD83C\uDF1F.",
+      "\uD83C\uDF1F NAME, vejo reconciliação possível ✨. Não vai ser perfeita, nem imediata, mas vai libertar-te de peso antigo \uD83D\uDD2E.",
+      "\uD83D\uDCAB NAME, o teu papel na família ganha nova clareza \uD83C\uDF19. És pilar de algo bonito, mesmo que nem sempre to digam \uD83E\uDE84.",
+      "\uD83E\uDE84 NAME, há gesto pequeno que vai abrir grande porta dentro de casa \uD83C\uDF1F — não o adies por timidez ✨."
+    ],
+    mixed: [
+      "\uD83D\uDD2E NAME, na família há conversas adiadas que pedem agora espaço próprio \uD83C\uDF19. Abre o diálogo com calma, não com queixa ✨.",
+      "⭐ NAME, vejo dinâmicas antigas a tentar repetir-se \uD83D\uDCAB. Tens hoje a maturidade para responder de forma diferente \uD83E\uDE84.",
+      "\uD83C\uDF19 NAME, alguém da tua família precisa de ti, mas não sabe pedir \uD83D\uDD2E. Aproxima-te com curiosidade, não com solução pronta ✨.",
+      "\uD83D\uDCAB NAME, é hora de redefinir limites com ternura \uD83E\uDE84. Amar não é estar disponível para tudo a qualquer hora \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, discordar não é deixar de amar \uD83C\uDF19 — e estar presente não é diluíres-te \uD83D\uDCAB."
+    ],
+    shadow: [
+      "\uD83C\uDF19 NAME, há conflito familiar que precisa de ser tratado \uD83D\uDD2E. Continuar a fingir paz custa-te mais do que a verdade ✨.",
+      "\uD83D\uDD2E NAME, cuida primeiro de ti antes de continuares a cuidar de todos \uD83D\uDCAB. Estás a esvaziar-te em silêncio \uD83C\uDF19.",
+      "⭐ NAME, há padrão familiar antigo a ressurgir \uD83E\uDE84. Reconhecê-lo é o primeiro passo para não o repetires \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, há peso familiar antigo que não é teu para carregar \uD83C\uDF19 — entrega-o de volta, com respeito \uD83D\uDD2E."
+    ]
+  },
+  Espiritual: {
+    bright: [
+      "\uD83D\uDD2E NAME ✨, o caminho interior abre-se com mais luz \uD83C\uDF19. Intuição mais afinada, sonhos mais nítidos, sinais que vais começar a reconhecer com facilidade \uD83D\uDCAB.",
+      "⭐ NAME, há despertar suave a acontecer em ti \uD83E\uDE84. Algo dentro reorganiza-se, e isso vai refletir-se em todas as outras áreas \uD83C\uDF1F.",
+      "\uD83C\uDF1F NAME, falo-te de propósito ✨. Estás mais perto do que pensas de uma compreensão maior sobre o teu lugar \uD83D\uDD2E.",
+      "\uD83D\uDCAB NAME, esta é fase de ligação \uD83C\uDF19. Confia nos teus pressentimentos — vão revelar-se mais certeiros do que o costume ✨.",
+      "\uD83E\uDE84 NAME, vem aí sinal claro \uD83C\uDF1F — vai chegar três vezes para teres a certeza ✨.",
+      "\uD83D\uDD2E NAME, o silêncio começa a tornar-se familiar \uD83D\uDCAB — e é nele que a tua sabedoria interior está a falar-te \uD83C\uDF19."
+    ],
+    mixed: [
+      "\uD83D\uDD2E NAME, há inquietação espiritual em ti que pede espaço \uD83C\uDF19. Não é crise — é convite para ires mais fundo ✨.",
+      "⭐ NAME, vejo-te entre dois caminhos internos \uD83D\uDCAB. As cartas pedem silêncio, não conselho de fora \uD83E\uDE84.",
+      "\uD83C\uDF19 NAME, alguma coisa antiga está a soltar-se em ti \uD83D\uDD2E. Permite o luto desse fim \uD83C\uDF1F.",
+      "\uD83D\uDCAB NAME, a tua intuição tem-te falado e tu tens-lhe respondido com pressa \uD83E\uDE84. Esta semana, abranda \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, suspende livros, podcasts e conselheiros por uns dias \uD83C\uDF19 — só silêncio puro \uD83D\uDCAB."
+    ],
+    shadow: [
+      "\uD83C\uDF19 NAME, as cartas pedem-te limpeza interior \uD83D\uDD2E. Crenças, vozes e culpas que carregas há demasiado tempo já não te pertencem ✨.",
+      "\uD83D\uDD2E NAME, há vazio que não se preenche com mais barulho \uD83D\uDCAB. É preciso silêncio, paciência e honestidade \uD83C\uDF19.",
+      "⭐ NAME, atenção a quem te orienta espiritualmente \uD83E\uDE84. Nem toda a luz exterior é tua \uD83D\uDD2E.",
+      "\uD83E\uDE84 NAME, atalhos espirituais não existem \uD83C\uDF19 — desconfia de quem te promete milagres rápidos \uD83D\uDD2E."
+    ]
+  }
+};
+var areaMessages = {
+  Trabalho: {
+    bright: [
+      "Há um nome teu a ser pronunciado em salas onde ainda não entras — prepara-te para essa porta abrir.",
+      "Uma colaboração nova traz oxigénio: deixa entrar a ajuda em vez de tudo controlar.",
+      "O reconhecimento que esperavas chega de forma diferente do que imaginaste — não o desvalorizes.",
+      "Uma proposta vai aparecer onde menos contas — não a recuses só por hábito de desconfiar.",
+      "Estás prestes a ser visto(a) por quem decide — apresenta-te com calma e firmeza.",
+      "Um ciclo profissional encerra-se em beleza, abrindo espaço para algo mais alinhado contigo."
+    ],
+    mixed: [
+      "Há decisão profissional que só te cabe a ti — nenhum conselho externo a pode substituir.",
+      "Cuidado com promessas verbais sem nada por escrito; pede clareza antes de te comprometeres.",
+      "Talvez precises de pedir aquilo que mereces — ninguém te oferece o que tu não nomeias.",
+      "Um colega ou parceiro não está a jogar limpo contigo — observa antes de confrontar.",
+      "O cansaço que sentes não é fraqueza — é sinal de que algo na tua estrutura precisa de mudar."
+    ],
+    shadow: [
+      "Algo no teu trabalho está a roubar-te energia muito além do horário — é hora de pôr limite.",
+      "Estás a sustentar dinâmicas que não te pertencem; recua um passo antes que custe a saúde.",
+      "Não confundas lealdade com sacrifício: há ambientes que só pagam quem sabe sair a tempo.",
+      "Uma ilusão profissional precisa de ser desmontada — vais respirar muito melhor depois."
+    ]
+  },
+  Amor: {
+    bright: [
+      "Mensagem inesperada pode mudar o tom da tua vida afetiva esta semana — repara nos sinais pequenos.",
+      "O amor está a chegar pela porta da amizade ou de algo já familiar — olha duas vezes para quem já lá estava.",
+      "Permite-te receber sem desconfiar: mereces, simplesmente porque sim.",
+      "Uma reaproximação vai surpreender-te pela suavidade — recebe-a sem pressa de a definir.",
+      "Há alguém a pensar em ti com mais ternura do que admite — em breve vais saber quem."
+    ],
+    mixed: [
+      "Conversa adiada vai acontecer — vai correr melhor do que esperas, se a fizeres sem armadura.",
+      "Pergunta-te com honestidade se estás a amar a pessoa real ou a pessoa que gostarias que fosse.",
+      "Não confundas intensidade com profundidade: nem tudo o que arde é amor verdadeiro.",
+      "Há ciúme silencioso a contaminar uma ligação — nomeia-o antes que envenene tudo."
+    ],
+    shadow: [
+      "Há padrão afetivo a repetir-se — desta vez tens a clareza necessária para o quebrares.",
+      "Sair de uma relação que magoa não é falhar: é finalmente escolheres-te a ti.",
+      "O silêncio do outro também é uma resposta. Ouve-a com respeito por ti.",
+      "Uma ilusão romântica precisa de cair para a tua paz voltar — e ela vai voltar, prometo."
+    ]
+  },
+  Financeiro: {
+    bright: [
+      "Conversa sobre dinheiro — salário, projeto, parceria — pode correr melhor do que esperas. Pede.",
+      "Há entrada inesperada a caminho, mesmo que pequena. Recebe sem te assustares com a mudança.",
+      "Esta é fase boa para começares a poupar com método — pequenos hábitos vão render muito.",
+      "Uma parceria material vai destrancar algo que estava parado há tempo demais."
+    ],
+    mixed: [
+      "Não invistas em algo que não compreendes a 100% — por mais sedutor que pareça.",
+      "Revê assinaturas, contratos e despesas fixas: há mais espaço de manobra do que parece.",
+      "Adia uma compra grande nas próximas duas semanas — ganha tempo para perceber se a queres mesmo.",
+      "Renegoceia condições que aceitaste no passado por pressa — hoje tens mais margem."
+    ],
+    shadow: [
+      "Há dívida ou pendência que pede coragem para ser olhada — esconder agrava sempre.",
+      "Cuidado com quem te promete dinheiro fácil: o preço aparece sempre depois, e mais alto.",
+      "Estás a gastar a partir de feridas emocionais — cura a fonte, não o sintoma.",
+      "Um compromisso financeiro antigo precisa de ser reestruturado — pede ajuda profissional sem vergonha."
+    ]
+  },
+  Saúde: {
+    bright: [
+      "Pequenas mudanças de rotina vão multiplicar-se em ganhos rápidos: aposta em consistência, não intensidade.",
+      "O teu sono vai estabilizar e devolver-te clareza mental — não sabotes essa janela com excessos.",
+      "Vais redescobrir o prazer de te mexer — segue esse impulso sem te exigir perfeição.",
+      "O teu corpo vai responder a qualquer gesto de cuidado nas próximas semanas — semeia agora."
+    ],
+    mixed: [
+      "Tens andado a viver em modo urgência — o teu sistema nervoso pede pausas reais, não apenas dormir.",
+      "Cuida da hidratação, da alimentação e do silêncio antes de procurares soluções complicadas.",
+      "Check-up simples pode poupar-te muito desconforto — não adies o básico.",
+      "Há emoção retida a manifestar-se no corpo — chorar também é higiene."
+    ],
+    shadow: [
+      "O teu corpo já avisou de várias formas — não esperes pela quarta para finalmente o ouvires.",
+      "Procura apoio profissional: emocional ou físico, não tens de aguentar tudo sozinho(a).",
+      "Há vícios pequenos a roubar-te muito mais do que parecem — esta semana, decide cortar um.",
+      "O cansaço crónico não se resolve com cafeína — resolve-se com verdade sobre o teu ritmo."
+    ]
+  },
+  Família: {
+    bright: [
+      "Gesto teu, mesmo simples, vai significar muito mais do que imaginas para alguém da família.",
+      "Há perdão no ar — talvez não palavras, mas presença. E isso muitas vezes basta.",
+      "Aproveita um momento aparentemente banal — refeição, passeio — para criar memória nova.",
+      "Uma chamada inesperada vai aquecer-te o peito — atende com tempo, não à pressa."
+    ],
+    mixed: [
+      "Não tentes resolver tudo numa conversa só — algumas curas familiares pedem várias estações.",
+      "Estabelece limites com calma e firmeza, sem te justificares em excesso.",
+      "Aprende a discordar sem te afastar — e a estar presente sem perderes a tua identidade.",
+      "Cuidado com comparações familiares — cada caminho é seu, e o teu é igualmente válido."
+    ],
+    shadow: [
+      "Há peso familiar antigo que não é teu para carregar — entrega-o de volta, com respeito.",
+      "Sair temporariamente de dinâmica tóxica não é abandono: é autoproteção.",
+      "Procurar ajuda terapêutica para feridas familiares é dos atos mais corajosos que podes ter.",
+      "Há segredo de família que pede ser nomeado — ainda que apenas dentro de ti."
+    ]
+  },
+  Espiritual: {
+    bright: [
+      "Vais reconhecer um sinal que se vai repetir três vezes — não o ignores, é resposta direta.",
+      "Prática simples — respiração, caminhada, oração à tua maneira — vai abrir mais portas do que muitos livros.",
+      "Confia: estás exatamente onde tens de estar, mesmo quando não consegues ver a planta toda.",
+      "Uma sincronicidade vai apanhar-te de surpresa — guarda-a, é mensagem importante."
+    ],
+    mixed: [
+      "Não procures fora respostas que estão à espera dentro de ti — apenas mais quietas.",
+      "Esta é fase de transição interior: não exijas clareza imediata.",
+      "Suspende por uns dias livros, podcasts e conselheiros — só silêncio puro.",
+      "Uma intuição persistente está a tentar avisar-te de algo — para e escuta sem julgar."
+    ],
+    shadow: [
+      "Há identidade antiga a morrer em ti — deixa que parta, mesmo que doa.",
+      "Atenção a falsos guias que te prometem atalhos espirituais — o caminho verdadeiro não vende milagres.",
+      "O vazio que sentes não é castigo: é espaço a ser feito para algo maior. Não o preenchas com pressa.",
+      "Há crença herdada que não é tua — devolve-a ao seu tempo e segue mais leve."
+    ]
+  }
+};
+var voices = {
+  poetica: {
+    framePrefix: ["Entre o luar e o silêncio,", "No respirar das estrelas,", "Como pétala que se abre,"],
+    middleLead: ["E ainda há mais a sussurrar-te", "A noite acrescenta este verso", "Repara neste detalhe que canta baixo"],
+    adviceLead: ["Como quem oferece uma flor", "Em jeito de cantiga antiga", "Com a doçura de quem sabe"],
+    challengeLead: ["E para selar este verso", "Como gesto pequeno e poético", "Para floresceres esta semana"],
+    closings: {
+      bright: "Caminha como quem dança — o universo já preparou a música. ✨",
+      mixed: "Mesmo sem ver a margem, segue a corrente — ela conhece o destino. \uD83D\uDCAB",
+      shadow: "Toda a noite tem a sua aurora — a tua não tarda a chegar. \uD83D\uDD6F️"
+    }
+  },
+  direta: {
+    framePrefix: ["Sem rodeios:", "Vou direto(a) ao ponto:", "Olha bem para isto:"],
+    middleLead: ["Mais um aviso claro", "Outro ponto importante", "E há ainda isto"],
+    adviceLead: ["Conselho prático", "Faz isto", "O que precisas mesmo de ouvir"],
+    challengeLead: ["Desafio concreto desta semana", "Ação para já", "Compromisso simples"],
+    closings: {
+      bright: "Move-te. A sorte premeia quem age. ✨",
+      mixed: "Decide. Adiar é escolher também — e raramente a melhor opção. \uD83D\uDCAB",
+      shadow: "Atravessa. Do outro lado há paz, e ela é tua. \uD83D\uDD6F️"
+    }
+  },
+  mistica: {
+    framePrefix: ["As brumas afastam-se e mostram-te isto:", "O véu levanta-se um instante:", "A energia do baralho murmura:"],
+    middleLead: ["O Tarot acrescenta esta camada oculta", "Há ainda este símbolo a brilhar", "Outra revelação se desenha"],
+    adviceLead: ["O oráculo segreda-te", "A voz dos Arcanos pede-te", "As cartas confidenciam"],
+    challengeLead: ["Como rito desta semana", "Como pequena oferenda ao destino", "Para honrar esta tiragem"],
+    closings: {
+      bright: "O cosmos conspira contigo — abre os braços e recebe. ✨",
+      mixed: "Os astros pedem coragem suave — a tua estrela está acesa. \uD83D\uDCAB",
+      shadow: "Esta noite passa, como passam todas. A luz chega sempre. \uD83D\uDD6F️"
+    }
+  },
+  intima: {
+    framePrefix: ["Olha, NAME, posso ser sincero(a) contigo?", "Entre nós,", "Aqui, só nós dois:"],
+    middleLead: ["E há mais uma coisa que te quero dizer", "Há ainda isto, do fundo do peito", "Quero contar-te outra coisa"],
+    adviceLead: ["Diz-te alguém que te quer bem", "Como quem te abraça", "Vai com este conselho ao colo"],
+    challengeLead: ["E faz isto por ti, prometes?", "Um pequeno mimo desta semana", "Como gesto de cuidado contigo"],
+    closings: {
+      bright: "Vai com o coração leve. Estou contigo. ✨",
+      mixed: "Confio em ti, mais do que tu por vezes. \uD83D\uDCAB",
+      shadow: "Não estás só(a) nesta travessia. Mesmo agora. \uD83D\uDD6F️"
+    }
+  },
+  profetica: {
+    framePrefix: ["Ouve-me bem:", "O que te vou dizer agora vai cumprir-se:", "Marca este momento:"],
+    middleLead: ["E o que se segue é igualmente certo", "Outra verdade vai revelar-se", "Não menos importante é isto"],
+    adviceLead: ["Segue este conselho com fé", "O caminho indica-te", "Levarás contigo esta sentença"],
+    challengeLead: ["O destino pede de ti um gesto", "Honrarás esta semana com isto", "Cumpre este selo"],
+    closings: {
+      bright: "Será como te digo — alinha-te e verás. ✨",
+      mixed: "O futuro depende do que escolheres agora. \uD83D\uDCAB",
+      shadow: "A travessia é certa, e a margem também. \uD83D\uDD6F️"
+    }
+  },
+  ancestral: {
+    framePrefix: ["Como diziam os antigos,", "Há sabedoria antiga neste momento:", "Os que vieram antes de ti sussurram:"],
+    middleLead: ["E a memória do baralho acrescenta", "Há ainda este saber antigo", "A tradição revela-te também"],
+    adviceLead: ["Sabedoria antiga ensina-te", "Como faziam os teus antepassados", "O conselho das estações"],
+    challengeLead: ["Honra a tradição com este gesto", "Como ritual desta semana", "Pratica este saber antigo"],
+    closings: {
+      bright: "O que está escrito há muito chega ao seu tempo — e o teu chegou. ✨",
+      mixed: "Os ciclos cumprem-se — confia no compasso da tua vida. \uD83D\uDCAB",
+      shadow: "Nada se perde — tudo se transforma, como sempre foi. \uD83D\uDD6F️"
+    }
+  },
+  luminosa: {
+    framePrefix: ["Há luz por todos os lados nesta tiragem:", "Sente esta claridade contigo:", "Algo brilha aqui, repara:"],
+    middleLead: ["E ainda mais brilho neste detalhe", "Outra centelha se acende", "Há mais luz a revelar-se"],
+    adviceLead: ["Caminha à luz deste conselho", "Iluminado(a) por isto", "Com esta clareza"],
+    challengeLead: ["Acende esta semana com isto", "Brilha através deste gesto", "Faz luz com este passo"],
+    closings: {
+      bright: "Que esta semana te encontre a sorrir. A luz é tua. ✨",
+      mixed: "Mesmo entre nuvens, há sol — confia que ele chega. \uD83D\uDCAB",
+      shadow: "Toda a sombra precisa de luz para existir — e a tua já se acende. \uD83D\uDD6F️"
+    }
+  }
+};
+var VOICE_ORDER = ["poetica", "direta", "mistica", "intima", "profetica", "ancestral", "luminosa"];
+var VOCE_REPLACEMENTS = [
+  [/\bcontigo\b/g, "consigo"],
+  [/\bteus\b/g, "seus"],
+  [/\bTeus\b/g, "Seus"],
+  [/\btuas\b/g, "suas"],
+  [/\bTuas\b/g, "Suas"],
+  [/\bteu\b/g, "seu"],
+  [/\bTeu\b/g, "Seu"],
+  [/\btua\b/g, "sua"],
+  [/\bTua\b/g, "Sua"],
+  [/\btens\b/g, "tem"],
+  [/\bTens\b/g, "Tem"],
+  [/\bestás\b/g, "está"],
+  [/\bEstás\b/g, "Está"],
+  [/\bés\b/g, "é"],
+  [/\bÉs\b/g, "É"],
+  [/\bvais\b/g, "vai"],
+  [/\bVais\b/g, "Vai"],
+  [/\bvens\b/g, "vem"],
+  [/\bVens\b/g, "Vem"],
+  [/\bvês\b/g, "vê"],
+  [/\bVês\b/g, "Vê"],
+  [/\bdás\b/g, "dá"],
+  [/\bDás\b/g, "Dá"],
+  [/\bqueres\b/g, "quer"],
+  [/\bQueres\b/g, "Quer"],
+  [/\bsabes\b/g, "sabe"],
+  [/\bSabes\b/g, "Sabe"],
+  [/\bpodes\b/g, "pode"],
+  [/\bPodes\b/g, "Pode"],
+  [/\bprecisas\b/g, "precisa"],
+  [/\bPrecisas\b/g, "Precisa"],
+  [/\bfazes\b/g, "faz"],
+  [/\bFazes\b/g, "Faz"],
+  [/\bouves\b/g, "ouve"],
+  [/\bOuves\b/g, "Ouve"],
+  [/\bandas\b/g, "anda"],
+  [/\bAndas\b/g, "Anda"],
+  [/\bdeves\b/g, "deve"],
+  [/\bDeves\b/g, "Deve"],
+  [/\bvives\b/g, "vive"],
+  [/\bVives\b/g, "Vive"],
+  [/\bdizes\b/g, "diz"],
+  [/\bDizes\b/g, "Diz"],
+  [/\bsentes\b/g, "sente"],
+  [/\bSentes\b/g, "Sente"],
+  [/\bpensas\b/g, "pensa"],
+  [/\bPensas\b/g, "Pensa"],
+  [/\bsegues\b/g, "segue"],
+  [/\bSegues\b/g, "Segue"],
+  [/\baceitas\b/g, "aceita"],
+  [/\bAceitas\b/g, "Aceita"],
+  [/\bcaminhas\b/g, "caminha"],
+  [/\bCaminhas\b/g, "Caminha"],
+  [/\babres\b/g, "abre"],
+  [/\bAbres\b/g, "Abre"],
+  [/\btomas\b/g, "toma"],
+  [/\bTomas\b/g, "Toma"],
+  [/\bcuidas\b/g, "cuida"],
+  [/\bCuidas\b/g, "Cuida"],
+  [/\bmereces\b/g, "merece"],
+  [/\bMereces\b/g, "Merece"],
+  [/\bcarregas\b/g, "carrega"],
+  [/\bCarregas\b/g, "Carrega"],
+  [/\bencontras\b/g, "encontra"],
+  [/\bEncontras\b/g, "Encontra"],
+  [/\bguardas\b/g, "guarda"],
+  [/\bGuardas\b/g, "Guarda"],
+  [/\bconseguires\b/g, "conseguir"],
+  [/\bsentires\b/g, "sentir"],
+  [/\bquiseres\b/g, "quiser"],
+  [/\bpuderes\b/g, "puder"],
+  [/\bestiveres\b/g, "estiver"],
+  [/\bfores\b/g, "for"],
+  [/\bteres\b/g, "ter"],
+  [/\bcumprires\b/g, "cumprir"],
+  [/\bcontigo mesmo\(a\)\b/g, "consigo mesmo(a)"],
+  [/\bti mesmo\(a\)\b/g, "si mesmo(a)"],
+  [/\bti\b/g, "si"],
+  [/\bTi\b/g, "Si"]
+];
+function toVoce(text) {
+  let out = text;
+  for (const [re, rep] of VOCE_REPLACEMENTS)
+    out = out.replace(re, rep);
+  return out;
+}
+function pickRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+function fingerprintKey(fp) {
+  return `${fp.voice}|${fp.tone}|${fp.openingIdx}|${fp.messageIdx}|${fp.adviceIdx}|${fp.challengeIdx}`;
+}
+function buildVerdict(area, cards, name, options = {}) {
+  const firstName = (name?.split(" ")[0] || "").trim() || "amigo(a)";
+  const shadowCount = cards.filter((c) => SHADOW_IDS.has(c.id)).length;
+  let tone;
+  const r = Math.random();
+  if (shadowCount >= 3)
+    tone = r < 0.7 ? "shadow" : "mixed";
+  else if (shadowCount === 0)
+    tone = r < 0.55 ? "bright" : "mixed";
+  else
+    tone = r < 0.5 ? "mixed" : r < 0.8 ? "bright" : "shadow";
+  const excluded = new Set(options.excludeFingerprints ?? []);
+  const openingPool = areaOpenings[area][tone];
+  const messagePool = areaMessages[area][tone];
+  const advicePool = areaAdvice[area];
+  const challengePool = challenges[area];
+  let fp = null;
+  for (let attempt = 0;attempt < 16; attempt++) {
+    const candidate = {
+      voice: VOICE_ORDER[Math.floor(Math.random() * VOICE_ORDER.length)],
+      tone,
+      openingIdx: Math.floor(Math.random() * openingPool.length),
+      messageIdx: Math.floor(Math.random() * messagePool.length),
+      adviceIdx: Math.floor(Math.random() * advicePool.length),
+      challengeIdx: Math.floor(Math.random() * challengePool.length)
+    };
+    if (!excluded.has(fingerprintKey(candidate))) {
+      fp = candidate;
+      break;
+    }
+    if (attempt === 15)
+      fp = candidate;
+  }
+  const chosen = fp;
+  const voice = voices[chosen.voice];
+  const opening = openingPool[chosen.openingIdx].replaceAll("NAME", firstName);
+  const message = messagePool[chosen.messageIdx];
+  const advice = advicePool[chosen.adviceIdx];
+  const challenge = challengePool[chosen.challengeIdx];
+  const frame = pickRandom(voice.framePrefix).replaceAll("NAME", firstName);
+  const middleLead = pickRandom(voice.middleLead);
+  const adviceLead = pickRandom(voice.adviceLead);
+  const challengeLead = pickRandom(voice.challengeLead);
+  const closing = voice.closings[chosen.tone];
+  const raw = [
+    `${frame} ${opening}`,
+    `⭐ ${firstName}, ${middleLead} \uD83E\uDE84: ${message} \uD83C\uDF1F ${closing}`,
+    `\uD83C\uDF19 ${adviceLead}, ${firstName}: ${advice} ✨. ${challengeLead} — ${challenge} \uD83D\uDD2E`
+  ].join(`
+
+`);
+  return { verdict: toVoce(raw), fingerprint: chosen };
+}
+
+/* ===== fim tarot-deck ===== */
+
+/* ============ Config ============ */
+const SUPABASE_URL = "https://bjucptcepnjlkicxcnmh.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqdWNwdGNlcG5qbGtpY3hjbm1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNzkzMzcsImV4cCI6MjA5Mzc1NTMzN30.FZA6k0bFhxtuk_kKe5E8DGi-uCX0sJcTr8WMZQZkI18";
+const NOTIFY_EMAIL = ["chequesegredo", "gmail.com"].join("@");
+const DAILY_LIMIT = 2;
+const SUSPICIOUS_LIMIT = 3;
+
+/* ============ Toasts ============ */
+function toast(msg, type = "ok", ms = 4000) {
+  const el = document.createElement("div");
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  document.getElementById("toasts").appendChild(el);
+  setTimeout(() => el.remove(), ms);
+}
+
+/* ============ Modais ============ */
+window.closeModal = (id) => document.getElementById(id).classList.remove("open");
+function openModal(id) { document.getElementById(id).classList.add("open"); }
+
+/* ============ Validação anti-abuso (local) ============ */
+function isSuspiciousName(raw) {
+  const n = raw.trim().toLowerCase();
+  if (n.length < 3) return true;
+  const letters = n.replace(/[^a-záàâãéêíóôõúçñ]/gi, "");
+  if (letters.length < 3) return true;
+  if (!/[aeiouáàâãéêíóôõú]/i.test(letters)) return true;
+  if (/^(.)\1+$/.test(letters)) return true;
+  if (/^(asdf|qwer|zxcv|hjkl|test|teste|abc|xyz|aaa|bbb|ccc|ddd)/i.test(n)) return true;
+  return false;
+}
+function isSuspiciousEmail(raw) {
+  const e = raw.trim().toLowerCase();
+  const at = e.indexOf("@");
+  if (at < 0) return true;
+  const local = e.slice(0, at);
+  if (local.length < 4) return true;
+  if (/^(.)\1+$/.test(local)) return true;
+  if (!/[aeiou]/i.test(local)) return true;
+  if (/^(asdf|qwer|zxcv|test|teste|abc|xyz|aaa|bbb|ccc|ddd|fake|noreply)/i.test(local)) return true;
+  return false;
+}
+
+/* ============ Dia de Lisboa (rate limit) ============ */
+function lisbonDayKey() {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Lisbon" }).format(new Date());
+}
+function lisbonMidnightUtc() {
+  const now = new Date();
+  const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Lisbon", hour12: false, hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  const parts = Object.fromEntries(fmt.formatToParts(now).map(p => [p.type, p.value]));
+  const ms = ((Number(parts.hour) * 60 + Number(parts.minute)) * 60 + Number(parts.second)) * 1000;
+  return new Date(now.getTime() - ms + 24 * 60 * 60 * 1000);
+}
+function store(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch {} }
+function load(key, fallback) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; } }
+
+/* ============ UI: secções geradas ============ */
+const areaIcons = {
+  Trabalho: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+  Amor: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+  Financeiro: '<circle cx="12" cy="12" r="8"/><path d="M12 8v8"/><path d="M9.5 9.5c0-.8.9-1.5 2.5-1.5s2.5.7 2.5 1.5c0 2.5-5 1.5-5 4 0 .8.9 1.5 2.5 1.5s2.5-.7 2.5-1.5"/>',
+  "Saúde": '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
+  "Família": '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  Espiritual: '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+};
+document.getElementById("como-funciona").innerHTML = [
+  { n: "01", t: "Partilha um pouco sobre ti", d: "Introduz o teu nome, data de nascimento, cidade, país e email. Estes dados ajudam a organizar as leituras e permitem-te revisitar o teu caminho mais tarde." },
+  { n: "02", t: "Escolhe a área da tua vida", d: "Trabalho, Amor, Financeiro, Saúde, Família ou Espiritual. Foca a tua intenção numa área e deixa que o Tarot fale sobre esse tema." },
+  { n: "03", t: "Revela as 8 cartas", d: "Clica em 'Jogar o Tarot', observa as 8 cartas viradas para baixo na mesa esotérica e vê-as revelarem-se uma a uma. No final, recebes uma interpretação geral e um conselho prático." },
+].map(b => `<div class="card-box"><div class="text-gold" style="font-family:var(--font-display);font-size:1.875rem;margin-bottom:0.5rem">${b.n}</div><h3 style="font-size:1.25rem">${b.t}</h3><p class="muted" style="margin-top:0.75rem;line-height:1.6">${b.d}</p></div>`).join("");
+
+document.getElementById("confiar").innerHTML = [
+  { t: "Interpretações simples e realistas", d: "Linguagem clara, sem fatalismos, para te ajudar a refletir e tomar decisões mais conscientes." },
+  { t: "Leitura orientada à tua área", d: "Trabalho, Amor, Finanças, Saúde, Família ou Espiritual: as cartas são lidas sempre dentro do contexto que escolheste." },
+  { t: "Experiência esotérica e acolhedora", d: "Cores lilás, símbolos místicos e som ambiente opcional para te ajudar a entrar no clima do Tarot." },
+].map(b => `<div class="card-box" style="border-color:var(--border)"><svg class="ico text-gold" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><h3 style="margin-top:0.75rem;font-size:1.125rem">${b.t}</h3><p class="muted" style="margin-top:0.5rem;font-size:0.875rem;line-height:1.6">${b.d}</p></div>`).join("");
+
+document.getElementById("areas-grid").innerHTML = AREAS.map(a => `
+  <button type="button" class="card-box area-card" data-area="${a.key}">
+    <div class="head">
+      <div class="icon-circle"><svg class="ico text-gold" viewBox="0 0 24 24">${areaIcons[a.key] || ""}</svg></div>
+      <h3>${a.key}</h3>
+    </div>
+    <p>${a.description}</p>
+  </button>`).join("");
+
+document.getElementById("area-chips").innerHTML = AREAS.map(a =>
+  `<button type="button" class="chip animate-pulse-soft" data-area="${a.key}">${a.key}</button>`).join("");
+
+/* ============ Estado ============ */
+let selectedArea = "";
+let cards = [];
+let revealedCount = 0;
+let readingId = null;
+let ratingDone = false;
+let flipTimer = null;
+
+function selectArea(key) {
+  selectedArea = key;
+  document.querySelectorAll("#area-chips .chip").forEach(c => {
+    c.classList.toggle("sel", c.dataset.area === key);
+    c.classList.toggle("animate-pulse-soft", c.dataset.area !== key);
+  });
+}
+document.getElementById("area-chips").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (b) selectArea(b.dataset.area);
+});
+document.getElementById("areas-grid").addEventListener("click", e => {
+  const b = e.target.closest(".area-card"); if (!b) return;
+  selectArea(b.dataset.area);
+  setTimeout(() => document.getElementById("leitura").scrollIntoView({ behavior: "smooth" }), 50);
+});
+
+/* ============ Som de virar carta ============ */
+let audioCtx = null;
+function playCardFlip() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    if (!audioCtx) audioCtx = new AC();
+    if (audioCtx.state === "suspended") audioCtx.resume().catch(() => {});
+    const ac = audioCtx, now = ac.currentTime;
+    const bufferSize = Math.floor(ac.sampleRate * 0.18);
+    const noise = ac.createBuffer(1, bufferSize, ac.sampleRate);
+    const data = noise.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
+    const src = ac.createBufferSource(); src.buffer = noise;
+    const bp = ac.createBiquadFilter(); bp.type = "bandpass";
+    bp.frequency.setValueAtTime(900, now); bp.frequency.exponentialRampToValueAtTime(2400, now + 0.15); bp.Q.value = 1.2;
+    const g = ac.createGain();
+    g.gain.setValueAtTime(0.0001, now); g.gain.exponentialRampToValueAtTime(0.35, now + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+    src.connect(bp).connect(g).connect(ac.destination); src.start(now); src.stop(now + 0.2);
+    const click = ac.createOscillator(); click.type = "triangle";
+    click.frequency.setValueAtTime(1800, now + 0.08); click.frequency.exponentialRampToValueAtTime(600, now + 0.16);
+    const cg = ac.createGain();
+    cg.gain.setValueAtTime(0.0001, now + 0.08); cg.gain.exponentialRampToValueAtTime(0.25, now + 0.09); cg.gain.exponentialRampToValueAtTime(0.0001, now + 0.17);
+    click.connect(cg).connect(ac.destination); click.start(now + 0.08); click.stop(now + 0.18);
+  } catch {}
+}
+
+/* ============ Mesa ============ */
+function renderMesa() {
+  document.getElementById("mesa-grid").innerHTML = cards.map((c, i) => `
+    <div class="tcard card-flip animate-float" style="animation-delay:${i * 0.15}s" id="tc-${i}" role="img" aria-label="Carta ${i + 1} virada para baixo">
+      <div class="card-flip-inner">
+        <div class="card-face bg-gradient-mystic shadow-mystic" style="border:1px solid oklch(0.82 0.13 85 / 0.4)">
+          <div class="starfield" style="position:absolute;inset:0;opacity:0.6"></div>
+          <div style="position:absolute;inset:0.5rem;border-radius:0.375rem;border:1px solid oklch(0.82 0.13 85 / 0.3);display:flex;align-items:center;justify-content:center">
+            <div style="position:relative">
+              <svg class="ico text-gold" style="width:2.5rem;height:2.5rem;filter:drop-shadow(0 0 12px oklch(0.82 0.13 85 / 0.7))" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+              <div style="position:absolute;inset:-0.75rem;border-radius:9999px;border:1px solid oklch(0.82 0.13 85 / 0.3)"></div>
+              <div style="position:absolute;inset:-1.5rem;border-radius:9999px;border:1px solid oklch(0.82 0.13 85 / 0.2)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-face card-face-back shadow-gold" style="background:var(--card);border:1px solid oklch(0.82 0.13 85 / 0.5);display:flex;flex-direction:column">
+          <div class="imgwrap"><img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.style.display='none'" /></div>
+          <div class="name-strip">
+            <div class="nm">${c.name}</div>
+            <div class="kw">${c.keywords.slice(0, 3).join(" · ")}</div>
+          </div>
+        </div>
+      </div>
+    </div>`).join("");
+}
+function revealNext() {
+  if (revealedCount >= cards.length) return;
+  const el = document.getElementById(`tc-${revealedCount}`);
+  if (el) { el.classList.add("is-flipped"); playCardFlip(); }
+  revealedCount++;
+  document.getElementById("revealed-count").textContent = String(Math.min(revealedCount, cards.length));
+  if (revealedCount < cards.length) {
+    flipTimer = setTimeout(revealNext, 750);
+  } else {
+    setTimeout(finishReading, 900);
+  }
+}
+
+/* ============ Guardar + avisar ============ */
+async function getVisitorInfo() {
+  try {
+    const r = await fetch("https://ipwho.is/?fields=ip,country");
+    if (r.ok) { const j = await r.json(); return { ip: j.ip || null, country: j.country || null }; }
+  } catch {}
+  return { ip: null, country: null };
+}
+async function saveReading(payload, verdict) {
+  const id = crypto.randomUUID();
+  const info = await getVisitorInfo();
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/tarot_readings`, {
+      method: "POST",
+      headers: {
+        "apikey": SUPABASE_KEY,
+        "Authorization": `Bearer ${SUPABASE_KEY}`,
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal",
+      },
+      body: JSON.stringify({ id, ...payload, verdict, ip_address: info.ip }),
+    });
+    if (!res.ok) throw new Error(`supabase ${res.status}`);
+    return { ok: true, id };
+  } catch (e) {
+    console.error("saveReading failed:", e);
+    return { ok: false, id: null };
+  }
+}
+async function notifyByEmail(subject, fields) {
+  try {
+    await fetch(`https://formsubmit.co/ajax/${NOTIFY_EMAIL}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ _subject: subject, _template: "table", _captcha: "false", ...fields }),
+    });
+  } catch (e) { console.error("notifyByEmail failed:", e); }
+}
+
+function finishReading() {
+  const name = document.getElementById("f-name").value.trim();
+  const dob = document.getElementById("f-dob").value.trim();
+  const city = document.getElementById("f-city").value.trim();
+  const country = document.getElementById("f-country").value.trim();
+  const email = document.getElementById("f-email").value.trim();
+
+  // Veredito com dedup local (não repetir combinações recentes)
+  const seen = load("gt_fingerprints", []);
+  const result = buildVerdict(selectedArea, cards, name, { excludeFingerprints: seen });
+  seen.push(fingerprintKey(result.fingerprint));
+  store("gt_fingerprints", seen.slice(-60));
+
+  const vb = document.getElementById("verdict-box");
+  vb.classList.remove("hidden");
+  document.getElementById("verdict-area").textContent = selectedArea;
+  renderVerdictText(result.verdict, name);
+  setTimeout(() => vb.scrollIntoView({ behavior: "smooth" }), 300);
+
+  // Registar leitura de hoje + área
+  const dayKey = lisbonDayKey();
+  const counts = load("gt_daily", {});
+  counts[dayKey] = (counts[dayKey] || 0) + 1;
+  store("gt_daily", { [dayKey]: counts[dayKey] });
+  const areaLog = load("gt_areas", []);
+  areaLog.push({ area: selectedArea, t: Date.now() });
+  store("gt_areas", areaLog.filter(a => Date.now() - a.t < 8 * 24 * 3600 * 1000));
+
+  const payload = {
+    name, date_of_birth: dob, city, country, email,
+    area: selectedArea,
+    cards: cards.map(c => ({ id: c.id, name: c.name, arcana: c.arcana, suit: c.suit ?? "" })),
+  };
+  saveReading(payload, result.verdict).then(({ ok, id }) => {
+    if (ok) {
+      readingId = id;
+      toast("A tua leitura foi guardada.");
+      document.getElementById("rating-wrap").classList.remove("hidden");
+      document.getElementById("rating-name").textContent = name.split(/\s+/)[0] || "Viajante";
+      renderStars();
+    } else {
+      toast("Não foi possível guardar a leitura.", "err");
+    }
+  });
+  notifyByEmail("🔮 Nova leitura de Tarot no Genialtarot", {
+    Nome: name, Email: email, Cidade: city, "País": country,
+    "Data de nascimento": dob, "Área": selectedArea,
+    Veredito: result.verdict.replace(/\n+/g, " | "),
+  });
+}
+
+function renderVerdictText(verdict, name) {
+  const box = document.getElementById("verdict-text");
+  box.textContent = "";
+  const trimmed = name.trim();
+  const first = trimmed.split(/\s+/)[0];
+  const targets = Array.from(new Set([trimmed, first].filter(Boolean))).sort((a, b) => b.length - a.length);
+  if (!targets.length) { box.textContent = verdict; return; }
+  const escaped = targets.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const regex = new RegExp(`(${escaped.join("|")})`, "gi");
+  const lower = new Set(targets.map(t => t.toLowerCase()));
+  verdict.split(regex).forEach(part => {
+    if (part && lower.has(part.toLowerCase())) {
+      const s = document.createElement("span");
+      s.className = "name-hl animate-pulse-soft";
+      s.textContent = `✨ ${part} ✨`;
+      box.appendChild(s);
+    } else {
+      box.appendChild(document.createTextNode(part));
+    }
+  });
+}
+
+/* ============ Avaliação ============ */
+function renderStars() {
+  const wrap = document.getElementById("stars");
+  wrap.innerHTML = [1, 2, 3, 4, 5].map(n =>
+    `<button type="button" data-n="${n}" aria-label="${n} estrela${n > 1 ? "s" : ""}"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>`).join("");
+  const paint = n => wrap.querySelectorAll("svg").forEach((s, i) => s.classList.toggle("on", i < n));
+  let current = 0;
+  wrap.querySelectorAll("button").forEach(b => {
+    b.addEventListener("mouseenter", () => !ratingDone && paint(Number(b.dataset.n)));
+    b.addEventListener("click", async () => {
+      if (ratingDone) return;
+      current = Number(b.dataset.n);
+      paint(current);
+      ratingDone = true;
+      const name = document.getElementById("f-name").value.trim().split(/\s+/)[0];
+      try {
+        await fetch(`${SUPABASE_URL}/rest/v1/tarot_readings?id=eq.${readingId}`, {
+          method: "PATCH",
+          headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}`, "Content-Type": "application/json", "Prefer": "return=minimal" },
+          body: JSON.stringify({ rating: current }),
+        });
+      } catch (e) { console.error(e); }
+      notifyByEmail("⭐ Avaliação de leitura no Genialtarot", {
+        Nome: document.getElementById("f-name").value.trim(),
+        "Área": selectedArea, "Avaliação": `${current}/5 estrelas`,
+      });
+      toast("Obrigado pela tua avaliação ✨");
+      const done = document.getElementById("rating-done");
+      done.textContent = `✨ Avaliação registada — obrigado, ${name}!`;
+      done.classList.remove("hidden");
+    });
+  });
+  wrap.addEventListener("mouseleave", () => !ratingDone && paint(current));
+}
+
+/* ============ Jogar ============ */
+document.getElementById("play-btn").addEventListener("click", () => {
+  const name = document.getElementById("f-name").value.trim();
+  const dob = document.getElementById("f-dob").value.trim();
+  const city = document.getElementById("f-city").value.trim();
+  const country = document.getElementById("f-country").value.trim();
+  const email = document.getElementById("f-email").value.trim();
+
+  if (!name || !dob || !city || !country || !/\S+@\S+\.\S+/.test(email) || !selectedArea) {
+    toast("Preenche todos os campos e escolhe uma área.", "err");
+    return;
+  }
+
+  // Bloqueio por dados inválidos repetidos
+  if (load("gt_blocked", false)) {
+    toast("Acesso bloqueado. Não pode utilizar este serviço.", "err", 6000);
+    return;
+  }
+  if (isSuspiciousName(name) || isSuspiciousEmail(email)) {
+    const attempts = load("gt_bad_attempts", 0) + 1;
+    store("gt_bad_attempts", attempts);
+    if (attempts >= SUSPICIOUS_LIMIT) {
+      store("gt_blocked", true);
+      toast("Acesso bloqueado devido à introdução repetida de dados não válidos.", "err", 7000);
+    } else {
+      toast(`Os dados parecem inválidos. Por favor coloca um nome e email verdadeiros. (${SUSPICIOUS_LIMIT - attempts} tentativa(s) restante(s))`, "err", 6000);
+    }
+    return;
+  }
+
+  // Limite diário
+  const counts = load("gt_daily", {});
+  if ((counts[lisbonDayKey()] || 0) >= DAILY_LIMIT) {
+    openRateModal();
+    notifyByEmail("⛔ Limite diário atingido no Genialtarot", { Nome: name, Email: email });
+    return;
+  }
+
+  // Área repetida (últimos 7 dias)
+  const areaLog = load("gt_areas", []);
+  if (areaLog.some(a => a.area === selectedArea && Date.now() - a.t < 7 * 24 * 3600 * 1000)) {
+    const first = name.split(/\s+/)[0];
+    document.getElementById("area-modal-title").textContent = `Eh lá, ${first}!`;
+    document.getElementById("area-modal-text").innerHTML =
+      `Já espreitaste o teu <strong class="text-gold">${selectedArea}</strong> hoje 🔮 — as cartas estão a fazer beicinho! 😅`;
+    openModal("modal-area");
+    return;
+  }
+
+  cards = drawCards(8);
+  revealedCount = 0;
+  readingId = null;
+  ratingDone = false;
+  if (flipTimer) clearTimeout(flipTimer);
+  document.getElementById("verdict-box").classList.add("hidden");
+  document.getElementById("rating-wrap").classList.add("hidden");
+  document.getElementById("rating-done").classList.add("hidden");
+  document.getElementById("mesa-wrap").classList.remove("hidden");
+  document.getElementById("mesa-area").textContent = selectedArea;
+  document.getElementById("revealed-count").textContent = "0";
+  renderMesa();
+  setTimeout(() => document.getElementById("mesa-wrap").scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+  flipTimer = setTimeout(revealNext, 900);
+});
+
+function openRateModal() {
+  openModal("modal-rate");
+  const target = lisbonMidnightUtc().getTime();
+  const el = document.getElementById("rate-countdown");
+  const tick = () => {
+    let ms = target - Date.now(); if (ms < 0) ms = 0;
+    const t = Math.floor(ms / 1000);
+    el.textContent = `${String(Math.floor(t / 3600)).padStart(2, "0")}h ${String(Math.floor((t % 3600) / 60)).padStart(2, "0")}m ${String(t % 60).padStart(2, "0")}s`;
+  };
+  tick();
+  const iv = setInterval(() => {
+    if (!document.getElementById("modal-rate").classList.contains("open")) { clearInterval(iv); return; }
+    tick();
+  }, 1000);
+}
+
+/* ============ Som ambiente ============ */
+const ambient = new Audio("ambient.mp3");
+ambient.loop = false; ambient.volume = 0.45; ambient.preload = "auto";
+const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off"), fabLabel = document.getElementById("afab-label");
+let ambientOn = false;
+function setAmbientUI(on) {
+  ambientOn = on;
+  fabOn.style.display = on ? "" : "none";
+  fabOff.style.display = on ? "none" : "";
+  fabLabel.textContent = on ? "Som ligado" : "Som ambiente";
+}
+ambient.play().then(() => setAmbientUI(true)).catch(() => {
+  const unlock = async () => {
+    try { await ambient.play(); setAmbientUI(true); } catch { setAmbientUI(false); }
+  };
+  ["pointerdown", "keydown", "touchstart", "scroll"].forEach(ev =>
+    window.addEventListener(ev, unlock, { once: true, passive: true }));
+  setAmbientUI(false);
+});
+document.getElementById("audio-fab").addEventListener("click", async (e) => {
+  e.stopPropagation();
+  if (ambientOn && !ambient.paused) { ambient.pause(); setAmbientUI(false); return; }
+  try { await ambient.play(); setAmbientUI(true); } catch { setAmbientUI(false); }
+});
+</script>
+</body>
+</html>

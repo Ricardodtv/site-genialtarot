@@ -1,0 +1,39 @@
+GENIAL TAROT — VERSÃO SEM PASTAS (upload fácil)
+================================================
+
+Esta versão foi feita para o upload funcionar sem complicações:
+NÃO TEM PASTAS — são só ficheiros soltos. Podes usar o "choose your files"
+ou arrastar, tanto faz.
+
+FICHEIROS
+---------
+index.html          → site principal
+tarot-gratis.html   → jogo "Tarot Grátis" (o botão do site aponta para aqui)
+profile.png         → fotografia do site principal
+tudo-aqui.png       → banner "Tudo Aqui"
+mystic-ambient.mp3  → música do site principal
+mestre-alberto.jpg  → fotografia do Mestre Alberto (jogo)
+ambient.mp3         → som ambiente do jogo
+favicon.ico         → ícone do site
+og-image.png        → imagem de partilha (WhatsApp/Facebook)
+robots.txt          → motores de busca
+CNAME               → domínio próprio (genialtarot.com)
+
+COMO ATUALIZAR O REPOSITÓRIO
+----------------------------
+1. Abre o repositório site-genialtarot no GitHub.
+2. "Add file" → "Upload files".
+3. Seleciona TODOS os ficheiros desta pasta e envia
+   (podes usar o "choose your files" — já não há pastas).
+4. "Commit changes" e espera 1-2 minutos.
+5. Abre https://ricardodtv.github.io/site-genialtarot/ com Ctrl+F5.
+
+NOTA: se no repositório ficaram ficheiros soltos do upload anterior
+(ex.: mystic-ambient.mp3 já lá está), não faz mal — são substituídos
+ou simplesmente ficam a ser usados por esta versão.
+
+AVISOS POR EMAIL (Tarot Grátis)
+-------------------------------
+Recebes um email em chequesegredo@gmail.com por cada leitura nova.
+No PRIMEIRO email, o serviço FormSubmit pede confirmação:
+clica no botão "Activate" desse email (só uma vez).
