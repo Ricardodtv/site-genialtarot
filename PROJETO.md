@@ -69,6 +69,10 @@ jogo de trustedtarot.com.
 
 ## Outras notas
 
+- Navegação cruzada: as 3 páginas de horóscopo têm 2 botões grandes cada, a apontar
+  para as OUTRAS duas (nenhuma página tem botão para si própria). Na página principal,
+  os botões Diário/Anual/Fim de Semana usam as cores das páginas de destino
+  (roxo/rubi/esmeralda) e os efeitos pesados (halos blur) estão desligados em ecrãs ≤640px.
 - Links externos que se mantêm: WhatsApp +351 914 920 427, Agenda (calendar.app.google),
   Loja (linktr.ee/genialtarot), Livro (Amazon), Observação do Céu (tutiempo), redes sociais.
 - Futuro desejado: email profissional contacto@genialtarot.com via Cloudflare Email

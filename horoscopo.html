@@ -128,7 +128,7 @@ header { position: relative; z-index: 10; max-width: 72rem; margin: 0 auto; disp
 
 /* 3 big buttons */
 .big-btns { margin-top: 2rem; display: grid; gap: 1.25rem; }
-@media (min-width: 640px) { .big-btns { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 640px) { .big-btns { grid-template-columns: repeat(2, 1fr); max-width: 46rem; margin-left: auto; margin-right: auto; } }
 .big-btn { display: flex; min-height: 140px; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 1.75rem 1.5rem; text-align: center; }
 .big-btn .icon-wrap { display: grid; height: 3rem; width: 3rem; place-items: center; border-radius: 9999px; background: oklch(0.16 0.05 295 / 0.3); backdrop-filter: blur(8px); transition: transform 0.5s; }
 .big-btn:hover .icon-wrap { transform: rotate(12deg) scale(1.1); }
@@ -233,17 +233,13 @@ footer { position: relative; border-top: 1px solid oklch(0.70 0.10 300 / 0.15); 
     </div>
 
     <div class="big-btns animate-fade-up">
-      <a href="https://gray-worm-525794.hostingersite.com/previsao-anual/" target="_blank" rel="noopener noreferrer" class="btn-3d-mystic big-btn">
+      <a href="anual.html" class="btn-3d-mystic big-btn">
         <span class="icon-wrap"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span>
         <span class="btn-label">Previsão Anual</span>
       </a>
-      <a href="#fim-de-semana" class="btn-3d-mystic big-btn">
+      <a href="fimdesemana.html" class="btn-3d-mystic big-btn">
         <span class="icon-wrap"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
         <span class="btn-label">Horóscopo Fim de Semana</span>
-      </a>
-      <a href="#diario" class="btn-3d-mystic big-btn">
-        <span class="icon-wrap"><svg class="ico icon-fill" style="fill:currentColor;stroke:none" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
-        <span class="btn-label">Horóscopo Diário</span>
       </a>
     </div>
   </div>
