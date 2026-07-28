@@ -156,6 +156,14 @@ svg.icon-fill { fill: currentColor; stroke: none; }
 }
 .btn-3d { background-color: oklch(0.45 0.16 300); transform: translateZ(0); }
 
+/* Separador místico */
+.divisor-mistico { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 auto; max-width: 32rem; padding: 0.25rem 1.25rem 1.75rem; }
+.divisor-mistico .linha { height: 1px; flex: 1; background: linear-gradient(90deg, transparent, oklch(0.82 0.14 85 / 0.55)); }
+.divisor-mistico .linha.dir { background: linear-gradient(90deg, oklch(0.82 0.14 85 / 0.55), transparent); }
+.divisor-mistico .orna { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gold); font-size: 1rem; letter-spacing: 0.2em; white-space: nowrap; }
+.divisor-mistico .orna .tw { animation: twinkle 3s ease-in-out infinite; }
+.divisor-mistico .orna .tw2 { animation: twinkle 3s ease-in-out infinite; animation-delay: 1.5s; }
+
 /* Botão dourado Jogar Tarot Agora */
 .tarot-cta { position: relative; display: inline-block; }
 .tarot-cta .free-tag { position: absolute; top: -0.75rem; left: 50%; z-index: 10; transform: translateX(-50%); border-radius: 9999px; background: linear-gradient(90deg, oklch(0.8 0.2 150), oklch(0.6 0.17 160)); padding: 0.125rem 0.75rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.4); animation: cta-bounce 1.2s infinite; }
@@ -213,7 +221,7 @@ header { position: relative; z-index: 20; }
 .kicker { text-align: center; margin-bottom: 1.5rem; }
 .kicker span { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 10px; text-transform: uppercase; letter-spacing: 0.35em; color: oklch(0.97 0.01 320 / 0.5); }
 .kicker .rule { height: 1px; width: 1.5rem; background: oklch(0.82 0.14 85 / 0.4); }
-.quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; padding-bottom: 3rem; text-align: initial; }
+.quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; padding-bottom: 1.5rem; text-align: initial; }
 @media (min-width: 640px) { .quick-grid { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; } }
 @media (min-width: 1024px) { .quick-grid { grid-template-columns: repeat(4, 1fr); } }
 .quick-grid .btn-3d { flex-direction: column; padding: 1.75rem 1rem; text-align: center; font-size: 0.75rem; }
@@ -393,7 +401,13 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
     </div>
 
 
-    <div class="animate-fade-up" style="text-align:center;margin-top:-1rem;padding-bottom:2.5rem">
+    <div class="divisor-mistico animate-fade-up" aria-hidden="true">
+      <span class="linha"></span>
+      <span class="orna"><span class="tw">☽</span> ✦ <span class="tw2">☾</span></span>
+      <span class="linha dir"></span>
+    </div>
+
+    <div class="animate-fade-up" style="text-align:center;margin-top:0;padding-bottom:2.5rem">
       <a href="tarot-gratis.html" class="tarot-cta">
         <span class="free-tag">Grátis</span>
         <span class="gold-btn">
@@ -402,6 +416,12 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
           <svg viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
         </span>
       </a>
+    </div>
+
+    <div class="divisor-mistico animate-fade-up" aria-hidden="true">
+      <span class="linha"></span>
+      <span class="orna"><span class="tw">☽</span> ✦ <span class="tw2">☾</span></span>
+      <span class="linha dir"></span>
     </div>
 
     <div class="animate-fade-up hero-badge glass">
