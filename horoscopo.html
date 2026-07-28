@@ -386,6 +386,7 @@ grid.addEventListener("click", e => {
   if (!btn || btn.disabled || !zodiacData) return;
   const secs = zodiacData.timestamps[btn.dataset.key];
   document.getElementById("sign-modal-name").textContent = btn.dataset.label;
+  if (!audio.paused) { audio.pause(); setAudioUI(false); }
   modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${zodiacData.videoId}?start=${secs}&autoplay=1&mute=0&rel=0&playsinline=1" title="${btn.dataset.label}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
   modal.classList.add("open");
 });
@@ -397,19 +398,14 @@ modal.addEventListener("click", e => { if (e.target === modal) closeSignModal();
 const audio = new Audio("mystic-ambient.mp3");
 audio.loop = true; audio.volume = 0.35;
 const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off");
-let userDisabled = false;
 function setAudioUI(on) {
   fabOn.style.display = on ? "" : "none";
   fabOff.style.display = on ? "none" : "";
 }
 function tryPlay() {
-  if (userDisabled) return;
   audio.play().then(() => setAudioUI(true)).catch(() => setAudioUI(false));
 }
-tryPlay();
-const onFirstInteract = () => { if (audio.paused && !userDisabled) tryPlay(); };
-window.addEventListener("click", onFirstInteract, { once: true });
-window.addEventListener("touchstart", onFirstInteract, { once: true });
+// A música NUNCA arranca sozinha — só quando o visitante clica no botão de som.
 window.addEventListener("blur", () => {
   if (document.activeElement?.tagName === "IFRAME" && !audio.paused) {
     audio.pause(); setAudioUI(false);
@@ -417,8 +413,8 @@ window.addEventListener("blur", () => {
 });
 document.getElementById("audio-fab").addEventListener("click", e => {
   e.stopPropagation();
-  if (audio.paused) { userDisabled = false; tryPlay(); }
-  else { userDisabled = true; audio.pause(); setAudioUI(false); }
+  if (audio.paused) { tryPlay(); }
+  else { audio.pause(); setAudioUI(false); }
 });
 setAudioUI(false);
 </script>
