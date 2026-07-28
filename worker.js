@@ -123,34 +123,74 @@ async function fetchLatestDailyZodiac(debug) {
     throw new Error("A playlist diária não devolveu vídeos");
   }
 
-  const candidates = await Promise.all(videoIds.map(async (videoId) => {
-    const html = await fetchText(`https://www.youtube.com/watch?v=${videoId}&hl=pt-PT&gl=PT`);
-    if (!html) {
-      diag.candidatos.push({ videoId, erro: "sem html" });
+  const candidates = await Promise.all(videoIds.map(async (videoId, index) => {
+    const meta = await fetchVideoMeta(videoId);
+    if (!meta) {
+      diag.candidatos.push({ videoId, erro: "api falhou" });
       return null;
     }
-    const description = readJsonField(html, "shortDescription");
-    const timestamps = extractTimestamps(description);
+    const timestamps = extractTimestamps(meta.description);
     diag.candidatos.push({
       videoId,
-      titulo: readJsonField(html, "title").slice(0, 50),
-      htmlTamanho: html.length,
-      descTamanho: description.length,
+      titulo: (meta.title || "").slice(0, 50),
+      descTamanho: meta.description.length,
+      publicado: meta.published,
       nSignos: Object.keys(timestamps).length,
     });
     if (Object.keys(timestamps).length < 10) return null;
     return {
       videoId,
-      title: readJsonField(html, "title"),
-      published: readJsonField(html, "publishDate") || readJsonField(html, "uploadDate"),
+      title: meta.title,
+      published: meta.published,
+      index,
       timestamps,
     };
   }));
 
   const valid = candidates.filter(Boolean);
-  valid.sort((a, b) => b.published.localeCompare(a.published));
+  valid.sort((a, b) => {
+    const byDate = String(b.published).localeCompare(String(a.published));
+    return byDate !== 0 ? byDate : a.index - b.index;
+  });
   const best = valid[0] ?? null;
   return debug ? { data: best, diag } : best;
+}
+
+// API interna do YouTube (a mesma que a app usa) — mais fiável a partir de servidores
+async function fetchVideoMeta(videoId) {
+  const attempts = [
+    {
+      client: { clientName: "ANDROID", clientVersion: "19.09.37", androidSdkVersion: 30, hl: "pt", gl: "PT" },
+      userAgent: "com.google.android.youtube/19.09.37 (Linux; U; Android 11) gzip",
+    },
+    {
+      client: { clientName: "WEB", clientVersion: "2.20240701.00.00", hl: "pt", gl: "PT" },
+      userAgent: YT_HEADERS["user-agent"],
+    },
+  ];
+  for (const attempt of attempts) {
+    try {
+      const res = await fetch(
+        "https://www.youtube.com/youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8&prettyPrint=false",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "user-agent": attempt.userAgent },
+          body: JSON.stringify({ context: { client: attempt.client }, videoId }),
+        },
+      );
+      if (!res.ok) continue;
+      const j = await res.json();
+      const vd = j.videoDetails;
+      if (!vd || !vd.title) continue;
+      const micro = j.microformat?.playerMicroformatRenderer;
+      return {
+        title: vd.title,
+        description: vd.shortDescription || "",
+        published: micro?.publishDate || micro?.uploadDate || "",
+      };
+    } catch {}
+  }
+  return null;
 }
 // ======================================================================
 
