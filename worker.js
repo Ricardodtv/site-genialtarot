@@ -102,95 +102,74 @@ function readJsonField(html, field) {
   return decodeJsonString(html.match(pattern)?.[1] ?? "");
 }
 
-async function fetchLatestDailyZodiac(debug) {
-  const diag = { playlistOk: false, videoIds: 0, candidatos: [] };
-  const playlistHtml = await fetchText(
-    `https://www.youtube.com/playlist?list=${ZODIAC_PLAYLIST_ID}&hl=pt-PT&gl=PT`,
-  );
-  if (!playlistHtml) {
-    if (debug) return { data: null, diag };
-    throw new Error("Não foi possível consultar a playlist diária");
-  }
-  diag.playlistOk = true;
-  diag.playlistTamanho = playlistHtml.length;
-
-  const videoIds = Array.from(
-    new Set(Array.from(playlistHtml.matchAll(/"videoId":"([\w-]{11})"/g), (m) => m[1])),
-  ).slice(0, 12);
-  diag.videoIds = videoIds.length;
-  if (videoIds.length === 0) {
-    if (debug) return { data: null, diag };
-    throw new Error("A playlist diária não devolveu vídeos");
-  }
-
-  const candidates = await Promise.all(videoIds.map(async (videoId, index) => {
-    const meta = await fetchVideoMeta(videoId);
-    if (!meta) {
-      diag.candidatos.push({ videoId, erro: "api falhou" });
-      return null;
-    }
-    const timestamps = extractTimestamps(meta.description);
-    diag.candidatos.push({
-      videoId,
-      titulo: (meta.title || "").slice(0, 50),
-      descTamanho: meta.description.length,
-      publicado: meta.published,
-      nSignos: Object.keys(timestamps).length,
-    });
-    if (Object.keys(timestamps).length < 10) return null;
-    return {
-      videoId,
-      title: meta.title,
-      published: meta.published,
-      index,
-      timestamps,
-    };
-  }));
-
+function pickBest(candidates) {
   const valid = candidates.filter(Boolean);
   valid.sort((a, b) => {
     const byDate = String(b.published).localeCompare(String(a.published));
-    return byDate !== 0 ? byDate : a.index - b.index;
+    return byDate !== 0 ? byDate : (a.index ?? 0) - (b.index ?? 0);
   });
-  const best = valid[0] ?? null;
-  return debug ? { data: best, diag } : best;
+  return valid[0] ?? null;
 }
 
-// API interna do YouTube (a mesma que a app usa) — mais fiável a partir de servidores
-async function fetchVideoMeta(videoId) {
-  const attempts = [
-    {
-      client: { clientName: "ANDROID", clientVersion: "19.09.37", androidSdkVersion: 30, hl: "pt", gl: "PT" },
-      userAgent: "com.google.android.youtube/19.09.37 (Linux; U; Android 11) gzip",
-    },
-    {
-      client: { clientName: "WEB", clientVersion: "2.20240701.00.00", hl: "pt", gl: "PT" },
-      userAgent: YT_HEADERS["user-agent"],
-    },
-  ];
-  for (const attempt of attempts) {
-    try {
-      const res = await fetch(
-        "https://www.youtube.com/youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8&prettyPrint=false",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "user-agent": attempt.userAgent },
-          body: JSON.stringify({ context: { client: attempt.client }, videoId }),
-        },
-      );
-      if (!res.ok) continue;
-      const j = await res.json();
-      const vd = j.videoDetails;
-      if (!vd || !vd.title) continue;
-      const micro = j.microformat?.playerMicroformatRenderer;
-      return {
-        title: vd.title,
-        description: vd.shortDescription || "",
-        published: micro?.publishDate || micro?.uploadDate || "",
-      };
-    } catch {}
+// Estratégia 1: feed RSS público da playlist (uma só chamada, sem chave)
+async function zodiacViaRss(diag) {
+  const xml = await fetchText(
+    `https://www.youtube.com/feeds/videos.xml?playlist_id=${ZODIAC_PLAYLIST_ID}`,
+  );
+  if (!xml) { diag.rss = "falhou"; return null; }
+  diag.rss = `ok (${xml.length} bytes)`;
+  const entries = xml.split("<entry>").slice(1);
+  const candidates = entries.map((entry, index) => {
+    const videoId = entry.match(/<yt:videoId>([\w-]{11})<\/yt:videoId>/)?.[1];
+    if (!videoId) return null;
+    const title = entry.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? "";
+    const published = entry.match(/<published>([\s\S]*?)<\/published>/)?.[1] ?? "";
+    const rawDesc = entry.match(/<media:description>([\s\S]*?)<\/media:description>/)?.[1] ?? "";
+    const description = rawDesc
+      .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+    const timestamps = extractTimestamps(description);
+    diag.candidatos.push({ via: "rss", videoId, titulo: title.slice(0, 50), publicado: published, nSignos: Object.keys(timestamps).length });
+    if (Object.keys(timestamps).length < 10) return null;
+    return { videoId, title, published, index, timestamps };
+  });
+  return pickBest(candidates);
+}
+
+// Estratégia 2: API oficial do YouTube (precisa da chave YT_API_KEY na Cloudflare)
+async function zodiacViaApi(diag, apiKey) {
+  if (!apiKey) { diag.apiOficial = "sem chave YT_API_KEY"; return null; }
+  const listRes = await fetch(
+    `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=12&playlistId=${ZODIAC_PLAYLIST_ID}&key=${apiKey}`,
+  );
+  if (!listRes.ok) { diag.apiOficial = `playlistItems ${listRes.status}`; return null; }
+  const list = await listRes.json();
+  const ids = (list.items ?? []).map((i) => i.contentDetails?.videoId).filter(Boolean);
+  if (!ids.length) { diag.apiOficial = "sem vídeos"; return null; }
+  const vidsRes = await fetch(
+    `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${ids.join(",")}&key=${apiKey}`,
+  );
+  if (!vidsRes.ok) { diag.apiOficial = `videos ${vidsRes.status}`; return null; }
+  const vids = await vidsRes.json();
+  diag.apiOficial = `ok (${(vids.items ?? []).length} vídeos)`;
+  const candidates = (vids.items ?? []).map((v, index) => {
+    const description = v.snippet?.description ?? "";
+    const timestamps = extractTimestamps(description);
+    diag.candidatos.push({ via: "api", videoId: v.id, titulo: (v.snippet?.title ?? "").slice(0, 50), publicado: v.snippet?.publishedAt, nSignos: Object.keys(timestamps).length });
+    if (Object.keys(timestamps).length < 10) return null;
+    return { videoId: v.id, title: v.snippet?.title ?? "", published: v.snippet?.publishedAt ?? "", index, timestamps };
+  });
+  return pickBest(candidates);
+}
+
+async function fetchLatestDailyZodiac(debug, env) {
+  const diag = { candidatos: [] };
+  let best = null;
+  try { best = await zodiacViaRss(diag); } catch (e) { diag.rss = `erro: ${String(e).slice(0, 80)}`; }
+  if (!best) {
+    try { best = await zodiacViaApi(diag, env?.YT_API_KEY); } catch (e) { diag.apiOficial = `erro: ${String(e).slice(0, 80)}`; }
   }
-  return null;
+  return debug ? { data: best, diag } : best;
 }
 // ======================================================================
 
@@ -202,7 +181,7 @@ export default {
     if (url.pathname === "/api/zodiac") {
       if (url.searchParams.get("debug") === "1") {
         try {
-          const result = await fetchLatestDailyZodiac(true);
+          const result = await fetchLatestDailyZodiac(true, env);
           return new Response(JSON.stringify({ ok: true, ...result }), {
             headers: { "Content-Type": "application/json" },
           });
@@ -217,7 +196,7 @@ export default {
       const cached = await cache.match(cacheKey);
       if (cached) return cached;
       try {
-        const data = await fetchLatestDailyZodiac();
+        const data = await fetchLatestDailyZodiac(false, env);
         const response = new Response(JSON.stringify({ ok: true, data }), {
           headers: {
             "Content-Type": "application/json",
