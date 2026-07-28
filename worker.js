@@ -37,6 +37,7 @@ function buildMessage(type, d = {}) {
 
 // ===================== Horóscopo diário (YouTube) =====================
 const ZODIAC_PLAYLIST_ID = "PL1CDtoz2ES7SiWoZTboxt124gX-BKn8p6";
+const WEEKEND_PLAYLIST_ID = "PL1CDtoz2ES7SMhQqxpoRsJ2uzsi8caP48";
 const SIGN_PATTERNS = {
   carneiro: /carneiro|♈|aries|áries/i,
   touro: /touro|♉|taurus/i,
@@ -112,9 +113,9 @@ function pickBest(candidates) {
 }
 
 // Estratégia 1: feed RSS público da playlist (uma só chamada, sem chave)
-async function zodiacViaRss(diag) {
+async function zodiacViaRss(diag, playlistId) {
   const xml = await fetchText(
-    `https://www.youtube.com/feeds/videos.xml?playlist_id=${ZODIAC_PLAYLIST_ID}`,
+    `https://www.youtube.com/feeds/videos.xml?playlist_id=${playlistId}`,
   );
   if (!xml) { diag.rss = "falhou"; return null; }
   diag.rss = `ok (${xml.length} bytes)`;
@@ -137,10 +138,10 @@ async function zodiacViaRss(diag) {
 }
 
 // Estratégia 2: API oficial do YouTube (precisa da chave YT_API_KEY na Cloudflare)
-async function zodiacViaApi(diag, apiKey) {
+async function zodiacViaApi(diag, apiKey, playlistId) {
   if (!apiKey) { diag.apiOficial = "sem chave YT_API_KEY"; return null; }
   const listRes = await fetch(
-    `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=12&playlistId=${ZODIAC_PLAYLIST_ID}&key=${apiKey}`,
+    `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=12&playlistId=${playlistId}&key=${apiKey}`,
   );
   if (!listRes.ok) { diag.apiOficial = `playlistItems ${listRes.status}`; return null; }
   const list = await listRes.json();
@@ -197,12 +198,12 @@ async function fetchAnnualZodiac(debug) {
 }
 // ==================================================================
 
-async function fetchLatestDailyZodiac(debug, env) {
+async function fetchLatestDailyZodiac(debug, env, playlistId = ZODIAC_PLAYLIST_ID) {
   const diag = { candidatos: [] };
   let best = null;
-  try { best = await zodiacViaRss(diag); } catch (e) { diag.rss = `erro: ${String(e).slice(0, 80)}`; }
+  try { best = await zodiacViaRss(diag, playlistId); } catch (e) { diag.rss = `erro: ${String(e).slice(0, 80)}`; }
   if (!best) {
-    try { best = await zodiacViaApi(diag, env?.YT_API_KEY); } catch (e) { diag.apiOficial = `erro: ${String(e).slice(0, 80)}`; }
+    try { best = await zodiacViaApi(diag, env?.YT_API_KEY, playlistId); } catch (e) { diag.apiOficial = `erro: ${String(e).slice(0, 80)}`; }
   }
   return debug ? { data: best, diag } : best;
 }
@@ -232,6 +233,41 @@ export default {
       if (cached) return cached;
       try {
         const data = await fetchLatestDailyZodiac(false, env);
+        const response = new Response(JSON.stringify({ ok: true, data }), {
+          headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "public, s-maxage=900, max-age=300",
+          },
+        });
+        if (data) ctx.waitUntil(cache.put(cacheKey, response.clone()));
+        return response;
+      } catch (e) {
+        return new Response(JSON.stringify({ ok: false, error: String(e) }), {
+          status: 502, headers: { "Content-Type": "application/json" },
+        });
+      }
+    }
+
+    // Horóscopo Fim de Semana: último vídeo + minutos por signo (cache 15 min)
+    if (url.pathname === "/api/fimsemana") {
+      if (url.searchParams.get("debug") === "1") {
+        try {
+          const result = await fetchLatestDailyZodiac(true, env, WEEKEND_PLAYLIST_ID);
+          return new Response(JSON.stringify({ ok: true, ...result }), {
+            headers: { "Content-Type": "application/json" },
+          });
+        } catch (e) {
+          return new Response(JSON.stringify({ ok: false, error: String(e) }), {
+            status: 502, headers: { "Content-Type": "application/json" },
+          });
+        }
+      }
+      const cacheKey = new Request(`https://cache.genialtarot/api/fimsemana`);
+      const cache = caches.default;
+      const cached = await cache.match(cacheKey);
+      if (cached) return cached;
+      try {
+        const data = await fetchLatestDailyZodiac(false, env, WEEKEND_PLAYLIST_ID);
         const response = new Response(JSON.stringify({ ok: true, data }), {
           headers: {
             "Content-Type": "application/json",
