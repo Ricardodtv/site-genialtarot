@@ -33,7 +33,7 @@
 | `index.html` | **Página principal** — montra com atalhos, carrossel 22 arcanos, contactos |
 | `tarot-gratis.html` | **Tarot Grátis** — jogo: formulário, 8 cartas, veredito, avaliação ⭐ |
 | `horoscopo.html` | **Mensagens do Universo** — signos diários (tempos do último vídeo) + playlists |
-| `anual.html` | **Mensagem Anual** — Previsão Anual 2026, um vídeo por signo. Tema próprio: rubi/granada |
+| `anual.html` | **Mensagem Anual** — Previsão Anual 2026, um vídeo por signo. Tema próprio: rubi/granada. Sem NENHUM vídeo fixo (só os que abrem por signo); tem secção de contacto WhatsApp pulsante (Consultas · Rituais · Amuletos) |
 | `fimdesemana.html` | **Mensagem do Fim de Semana** — signos com tempos do último vídeo semanal. Tema próprio: verde-esmeralda (o Diário/horoscopo.html é roxo) |
 | `worker.js` | A "ponte" Cloudflare: serve o site + APIs (ver abaixo) |
 | `wrangler.jsonc` | Config Cloudflare (main: worker.js, assets: raiz) |
