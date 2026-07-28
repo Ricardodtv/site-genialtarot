@@ -156,17 +156,29 @@ svg.icon-fill { fill: currentColor; stroke: none; }
 }
 .btn-3d { background-color: oklch(0.45 0.16 300); transform: translateZ(0); }
 
-/* Planetas em órbita à volta da foto */
-.orbita { position: absolute; border-radius: 9999px; pointer-events: none; z-index: 3; border: 1px dashed oklch(0.85 0.06 320 / 0.10); animation: orbitar linear infinite; }
-.orbita.o1 { inset: -14%; animation-duration: 26s; }
-.orbita.o2 { inset: -26%; animation-duration: 44s; animation-direction: reverse; }
-.orbita.o3 { inset: -38%; animation-duration: 65s; }
+/* Sistema solar em órbita à volta da foto */
+.orbita { position: absolute; border-radius: 9999px; pointer-events: none; z-index: 3; border: 1px dashed oklch(0.85 0.06 320 / 0.08); animation: orbitar linear infinite; }
+.orbita.o1 { inset: -9%;  animation-duration: 16s; animation-delay: -3s; }
+.orbita.o2 { inset: -15%; animation-duration: 22s; animation-delay: -12s; }
+.orbita.o3 { inset: -21%; animation-duration: 30s; animation-delay: -7s; }
+.orbita.o4 { inset: -27%; animation-duration: 38s; animation-delay: -22s; }
+.orbita.o5 { inset: -33%; animation-duration: 52s; animation-delay: -15s; }
+.orbita.o6 { inset: -39%; animation-duration: 66s; animation-delay: -40s; }
+.orbita.o7 { inset: -45%; animation-duration: 80s; animation-delay: -28s; }
+.orbita.o8 { inset: -51%; animation-duration: 95s; animation-delay: -60s; }
 @keyframes orbitar { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .planeta { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); border-radius: 9999px; }
-.planeta.p1 { width: 9px; height: 9px; background: radial-gradient(circle at 30% 30%, oklch(0.92 0.12 90), oklch(0.68 0.15 70)); box-shadow: 0 0 8px oklch(0.85 0.14 85 / 0.9); }
-.planeta.p2 { width: 7px; height: 7px; background: radial-gradient(circle at 30% 30%, oklch(0.85 0.10 230), oklch(0.55 0.16 250)); box-shadow: 0 0 7px oklch(0.75 0.14 240 / 0.8); }
-.planeta.p3 { width: 11px; height: 11px; background: radial-gradient(circle at 30% 30%, oklch(0.85 0.10 25), oklch(0.55 0.16 15)); box-shadow: 0 0 8px oklch(0.7 0.15 20 / 0.8); }
-.planeta.p3::after { content: ""; position: absolute; top: 50%; left: 50%; width: 21px; height: 8px; border: 1px solid oklch(0.88 0.10 90 / 0.75); border-radius: 50%; transform: translate(-50%, -50%) rotate(-24deg); }
+.planeta.mercurio { width: 5px; height: 5px; background: radial-gradient(circle at 30% 30%, oklch(0.78 0.03 60), oklch(0.52 0.03 50)); box-shadow: 0 0 5px oklch(0.7 0.03 60 / 0.7); }
+.planeta.venus { width: 7px; height: 7px; background: radial-gradient(circle at 30% 30%, oklch(0.9 0.08 85), oklch(0.68 0.1 70)); box-shadow: 0 0 7px oklch(0.85 0.1 80 / 0.8); }
+.planeta.terra { width: 8px; height: 8px; background: radial-gradient(circle at 35% 35%, oklch(0.78 0.13 150) 0 24%, oklch(0.62 0.14 240) 32%, oklch(0.42 0.14 255)); box-shadow: 0 0 7px oklch(0.65 0.14 240 / 0.9); }
+.lua-orbita { position: absolute; inset: -5px; border-radius: 9999px; animation: orbitar 5s linear infinite; }
+.lua { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); width: 3px; height: 3px; border-radius: 9999px; background: oklch(0.88 0.01 90); box-shadow: 0 0 3px oklch(0.9 0.01 90 / 0.9); }
+.planeta.marte { width: 6px; height: 6px; background: radial-gradient(circle at 30% 30%, oklch(0.75 0.15 40), oklch(0.5 0.16 30)); box-shadow: 0 0 6px oklch(0.65 0.16 35 / 0.8); }
+.planeta.jupiter { width: 13px; height: 13px; background: linear-gradient(178deg, oklch(0.82 0.07 75) 0 20%, oklch(0.66 0.1 55) 25% 38%, oklch(0.8 0.06 80) 43% 58%, oklch(0.68 0.11 50) 63% 78%, oklch(0.78 0.07 70) 83%); box-shadow: 0 0 8px oklch(0.75 0.09 65 / 0.8); }
+.planeta.saturno { width: 11px; height: 11px; background: radial-gradient(circle at 30% 30%, oklch(0.87 0.08 90), oklch(0.65 0.1 75)); box-shadow: 0 0 8px oklch(0.8 0.09 85 / 0.8); }
+.planeta.saturno::after { content: ""; position: absolute; top: 50%; left: 50%; width: 21px; height: 8px; border: 1px solid oklch(0.88 0.10 90 / 0.75); border-radius: 50%; transform: translate(-50%, -50%) rotate(-24deg); }
+.planeta.urano { width: 8px; height: 8px; background: radial-gradient(circle at 30% 30%, oklch(0.88 0.08 200), oklch(0.62 0.1 210)); box-shadow: 0 0 7px oklch(0.78 0.09 205 / 0.8); }
+.planeta.neptuno { width: 8px; height: 8px; background: radial-gradient(circle at 30% 30%, oklch(0.7 0.14 260), oklch(0.45 0.16 265)); box-shadow: 0 0 7px oklch(0.6 0.15 260 / 0.9); }
 
 /* Anéis de pulso à volta da foto */
 .hero-avatar::before, .hero-avatar::after { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2.5px solid oklch(0.85 0.14 90 / 0.95); animation: anel-pulso 3.2s ease-out infinite; pointer-events: none; z-index: 2; }
@@ -373,9 +385,14 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="https://linktr.ee/genialtarot/shop" target="_blank" rel="noopener noreferrer" aria-label="Loja Genial Tarot" class="hero-avatar">
         <div class="hero-halo-1 animate-halo-pulse"></div>
         <div class="hero-halo-2 animate-halo-pulse"></div>
-        <span class="orbita o1"><span class="planeta p1"></span></span>
-        <span class="orbita o2"><span class="planeta p2"></span></span>
-        <span class="orbita o3"><span class="planeta p3"></span></span>
+        <span class="orbita o1"><span class="planeta mercurio"></span></span>
+        <span class="orbita o2"><span class="planeta venus"></span></span>
+        <span class="orbita o3"><span class="planeta terra"><span class="lua-orbita"><span class="lua"></span></span></span></span>
+        <span class="orbita o4"><span class="planeta marte"></span></span>
+        <span class="orbita o5"><span class="planeta jupiter"></span></span>
+        <span class="orbita o6"><span class="planeta saturno"></span></span>
+        <span class="orbita o7"><span class="planeta urano"></span></span>
+        <span class="orbita o8"><span class="planeta neptuno"></span></span>
         <div class="hero-ring">
           <img src="profile.png" alt="Genial Tarot — Tarólogo" width="448" height="448" fetchpriority="high" loading="eager" />
         </div>
