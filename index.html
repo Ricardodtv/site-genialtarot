@@ -156,6 +156,22 @@ svg.icon-fill { fill: currentColor; stroke: none; }
 }
 .btn-3d { background-color: oklch(0.45 0.16 300); transform: translateZ(0); }
 
+/* Pulsar suave dos Atalhos Místicos */
+.quick-grid .btn-3d { animation: atalho-pulso 3.4s ease-in-out infinite; }
+.quick-grid a:nth-child(2) { animation-delay: 0.4s; }
+.quick-grid a:nth-child(3) { animation-delay: 0.8s; }
+.quick-grid a:nth-child(4) { animation-delay: 1.2s; }
+.quick-grid a:nth-child(5) { animation-delay: 1.6s; }
+.quick-grid a:nth-child(6) { animation-delay: 2.0s; }
+.quick-grid a:nth-child(7) { animation-delay: 2.4s; }
+.quick-grid a:nth-child(8) { animation-delay: 2.8s; }
+.quick-grid a:nth-child(9) { animation-delay: 3.2s; }
+@keyframes atalho-pulso {
+  0%, 100% { transform: translateZ(0) scale(1); }
+  50% { transform: translateZ(0) scale(1.03); }
+}
+.quick-grid .btn-3d:hover { animation-play-state: paused; transform: translateY(-3px) scale(1.02); }
+
 /* Sistema solar em órbita à volta da foto */
 .orbita { position: absolute; border-radius: 9999px; pointer-events: none; z-index: 3; border: 1px dashed oklch(0.85 0.06 320 / 0.08); animation: orbitar linear infinite; }
 .orbita.o1 { inset: -9%;  animation-duration: 16s; animation-delay: -3s; }
