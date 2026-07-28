@@ -33,8 +33,8 @@
 | `index.html` | **Página principal** — montra com atalhos, carrossel 22 arcanos, contactos |
 | `tarot-gratis.html` | **Tarot Grátis** — jogo: formulário, 8 cartas, veredito, avaliação ⭐ |
 | `horoscopo.html` | **Mensagens do Universo** — signos diários (tempos do último vídeo) + playlists |
-| `anual.html` | **Mensagem Anual** — Previsão Anual 2026, um vídeo por signo |
-| `fimdesemana.html` | **Mensagem do Fim de Semana** — signos com tempos do último vídeo semanal. Tema próprio: verde-esmeralda (as outras páginas de horóscopo são roxas) |
+| `anual.html` | **Mensagem Anual** — Previsão Anual 2026, um vídeo por signo. Tema próprio: rubi/granada |
+| `fimdesemana.html` | **Mensagem do Fim de Semana** — signos com tempos do último vídeo semanal. Tema próprio: verde-esmeralda (o Diário/horoscopo.html é roxo) |
 | `worker.js` | A "ponte" Cloudflare: serve o site + APIs (ver abaixo) |
 | `wrangler.jsonc` | Config Cloudflare (main: worker.js, assets: raiz) |
 | `.assetsignore` | Esconde ficheiros técnicos do público |
