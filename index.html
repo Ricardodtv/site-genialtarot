@@ -156,6 +156,15 @@ svg.icon-fill { fill: currentColor; stroke: none; }
 }
 .btn-3d { background-color: oklch(0.45 0.16 300); transform: translateZ(0); }
 
+/* Anel viajante que percorre os atalhos */
+.anel-btn { position: absolute; inset: -5px; border-radius: 1.2rem; border: 2.5px solid oklch(0.85 0.14 90 / 0.95); opacity: 0; pointer-events: none; z-index: 5; }
+a.anel-ativo .anel-btn { animation: anel-btn-pulso 2.4s ease-out; }
+@keyframes anel-btn-pulso {
+  0% { opacity: 0.95; transform: scale(0.97); }
+  70% { opacity: 0; transform: scale(1.14); }
+  100% { opacity: 0; transform: scale(1.14); }
+}
+
 /* Pulsar suave dos Atalhos Místicos */
 .quick-grid .btn-3d { animation: atalho-pulso 3.4s ease-in-out infinite; }
 .quick-grid a:nth-child(2) { animation-delay: 0.4s; }
@@ -775,6 +784,23 @@ audioBtn.addEventListener("click", async () => {
   }
 });
 setPlayingUI(false);
+// ===== Anel viajante nos Atalhos Místicos =====
+const atalhos = Array.from(document.querySelectorAll(".quick-grid a"));
+atalhos.forEach(b => {
+  const anel = document.createElement("span");
+  anel.className = "anel-btn";
+  b.appendChild(anel);
+});
+let filaAnel = [];
+function anelSeguinte() {
+  if (!filaAnel.length) filaAnel = atalhos.map((_, i) => i).sort(() => Math.random() - 0.5);
+  const b = atalhos[filaAnel.shift()];
+  if (!b) return;
+  b.classList.add("anel-ativo");
+  setTimeout(() => b.classList.remove("anel-ativo"), 2500);
+}
+anelSeguinte();
+setInterval(anelSeguinte, 2800);
 </script>
 </body>
 </html>
