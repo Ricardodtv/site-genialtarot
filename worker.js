@@ -162,6 +162,41 @@ async function zodiacViaApi(diag, apiKey) {
   return pickBest(candidates);
 }
 
+// ============ Previsão Anual 2026: um vídeo por signo ============
+const ANNUAL_PLAYLIST_ID = "PL1CDtoz2ES7Rj4Pgnzsk1B0yMJ5MsZRim";
+
+async function fetchAnnualZodiac(debug) {
+  const diag = { entradas: 0, porSigno: {} };
+  const xml = await fetchText(
+    `https://www.youtube.com/feeds/videos.xml?playlist_id=${ANNUAL_PLAYLIST_ID}`,
+  );
+  if (!xml) {
+    if (debug) return { data: null, diag: { ...diag, rss: "falhou" } };
+    throw new Error("Não foi possível consultar a playlist anual");
+  }
+  diag.rss = `ok (${xml.length} bytes)`;
+  const entries = xml.split("<entry>").slice(1);
+  diag.entradas = entries.length;
+  const signs = {};
+  for (const entry of entries) {
+    const videoId = entry.match(/<yt:videoId>([\w-]{11})<\/yt:videoId>/)?.[1];
+    if (!videoId) continue;
+    const title = (entry.match(/<title>([\s\S]*?)<\/title>/)?.[1] ?? "")
+      .replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+    const rawDesc = entry.match(/<media:description>([\s\S]*?)<\/media:description>/)?.[1] ?? "";
+    for (const [key, pattern] of Object.entries(SIGN_PATTERNS)) {
+      if (!signs[key] && (pattern.test(title) || pattern.test(rawDesc.slice(0, 200)))) {
+        signs[key] = { videoId, title };
+        diag.porSigno[key] = title.slice(0, 60);
+        break;
+      }
+    }
+  }
+  const data = Object.keys(signs).length > 0 ? { signs, encontrados: Object.keys(signs).length } : null;
+  return debug ? { data, diag } : data;
+}
+// ==================================================================
+
 async function fetchLatestDailyZodiac(debug, env) {
   const diag = { candidatos: [] };
   let best = null;
@@ -201,6 +236,41 @@ export default {
           headers: {
             "Content-Type": "application/json",
             "Cache-Control": "public, s-maxage=900, max-age=300",
+          },
+        });
+        if (data) ctx.waitUntil(cache.put(cacheKey, response.clone()));
+        return response;
+      } catch (e) {
+        return new Response(JSON.stringify({ ok: false, error: String(e) }), {
+          status: 502, headers: { "Content-Type": "application/json" },
+        });
+      }
+    }
+
+    // Previsão Anual 2026: vídeos organizados por signo (cache 1h)
+    if (url.pathname === "/api/anual") {
+      if (url.searchParams.get("debug") === "1") {
+        try {
+          const result = await fetchAnnualZodiac(true);
+          return new Response(JSON.stringify({ ok: true, ...result }), {
+            headers: { "Content-Type": "application/json" },
+          });
+        } catch (e) {
+          return new Response(JSON.stringify({ ok: false, error: String(e) }), {
+            status: 502, headers: { "Content-Type": "application/json" },
+          });
+        }
+      }
+      const cacheKey = new Request(`https://cache.genialtarot/api/anual`);
+      const cache = caches.default;
+      const cached = await cache.match(cacheKey);
+      if (cached) return cached;
+      try {
+        const data = await fetchAnnualZodiac(false);
+        const response = new Response(JSON.stringify({ ok: true, data }), {
+          headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "public, s-maxage=3600, max-age=600",
           },
         });
         if (data) ctx.waitUntil(cache.put(cacheKey, response.clone()));
