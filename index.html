@@ -156,6 +156,18 @@ svg.icon-fill { fill: currentColor; stroke: none; }
 }
 .btn-3d { background-color: oklch(0.45 0.16 300); transform: translateZ(0); }
 
+/* Planetas em órbita à volta da foto */
+.orbita { position: absolute; border-radius: 9999px; pointer-events: none; z-index: 3; border: 1px dashed oklch(0.85 0.06 320 / 0.10); animation: orbitar linear infinite; }
+.orbita.o1 { inset: -14%; animation-duration: 26s; }
+.orbita.o2 { inset: -26%; animation-duration: 44s; animation-direction: reverse; }
+.orbita.o3 { inset: -38%; animation-duration: 65s; }
+@keyframes orbitar { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.planeta { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); border-radius: 9999px; }
+.planeta.p1 { width: 9px; height: 9px; background: radial-gradient(circle at 30% 30%, oklch(0.92 0.12 90), oklch(0.68 0.15 70)); box-shadow: 0 0 8px oklch(0.85 0.14 85 / 0.9); }
+.planeta.p2 { width: 7px; height: 7px; background: radial-gradient(circle at 30% 30%, oklch(0.85 0.10 230), oklch(0.55 0.16 250)); box-shadow: 0 0 7px oklch(0.75 0.14 240 / 0.8); }
+.planeta.p3 { width: 11px; height: 11px; background: radial-gradient(circle at 30% 30%, oklch(0.85 0.10 25), oklch(0.55 0.16 15)); box-shadow: 0 0 8px oklch(0.7 0.15 20 / 0.8); }
+.planeta.p3::after { content: ""; position: absolute; top: 50%; left: 50%; width: 21px; height: 8px; border: 1px solid oklch(0.88 0.10 90 / 0.75); border-radius: 50%; transform: translate(-50%, -50%) rotate(-24deg); }
+
 /* Anéis de pulso à volta da foto */
 .hero-avatar::before, .hero-avatar::after { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2.5px solid oklch(0.85 0.14 90 / 0.95); animation: anel-pulso 3.2s ease-out infinite; pointer-events: none; z-index: 2; }
 .hero-avatar::after { animation-delay: 1.6s; border-color: oklch(0.75 0.20 310 / 0.9); }
@@ -361,6 +373,9 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="https://linktr.ee/genialtarot/shop" target="_blank" rel="noopener noreferrer" aria-label="Loja Genial Tarot" class="hero-avatar">
         <div class="hero-halo-1 animate-halo-pulse"></div>
         <div class="hero-halo-2 animate-halo-pulse"></div>
+        <span class="orbita o1"><span class="planeta p1"></span></span>
+        <span class="orbita o2"><span class="planeta p2"></span></span>
+        <span class="orbita o3"><span class="planeta p3"></span></span>
         <div class="hero-ring">
           <img src="profile.png" alt="Genial Tarot — Tarólogo" width="448" height="448" fetchpriority="high" loading="eager" />
         </div>
