@@ -63,4 +63,4 @@ NOTAS
   como cópia, mas sem avisos Telegram. O "oficial" passa a ser o da
   Cloudflare — e é a esse que depois ligamos o domínio genialtarot.com.
 - O token NUNCA aparece no código do site — fica guardado na Cloudflare.
- 
+  
