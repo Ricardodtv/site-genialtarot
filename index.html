@@ -156,6 +156,14 @@ svg.icon-fill { fill: currentColor; stroke: none; }
 }
 .btn-3d { background-color: oklch(0.45 0.16 300); transform: translateZ(0); }
 
+/* Botão dourado Jogar Tarot Agora */
+.tarot-cta { position: relative; display: inline-block; }
+.tarot-cta .free-tag { position: absolute; top: -0.75rem; left: 50%; z-index: 10; transform: translateX(-50%); border-radius: 9999px; background: linear-gradient(90deg, oklch(0.8 0.2 150), oklch(0.6 0.17 160)); padding: 0.125rem 0.75rem; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: white; box-shadow: 0 8px 20px rgba(0,0,0,0.4); animation: cta-bounce 1.2s infinite; }
+@keyframes cta-bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -25%); } }
+.tarot-cta .gold-btn { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 1rem; border: 1px solid oklch(0.9 0.15 95); background: linear-gradient(180deg, oklch(0.88 0.16 95), oklch(0.85 0.17 90), oklch(0.75 0.16 75)); padding: 0.85rem 1.75rem; font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; letter-spacing: 0.025em; color: black; box-shadow: 0 8px 24px -4px rgba(250,200,0,0.6); animation: pulse-glow 2.4s ease-out infinite; transition: transform 0.3s; }
+.tarot-cta .gold-btn:hover { transform: scale(1.05); }
+.tarot-cta .gold-btn svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; }
+
 /* ============ Header ============ */
 header { position: relative; z-index: 20; }
 .nav { display: flex; align-items: center; justify-content: space-between; padding-top: 1.25rem; padding-bottom: 1.25rem; }
@@ -205,7 +213,7 @@ header { position: relative; z-index: 20; }
 .kicker { text-align: center; margin-bottom: 1.5rem; }
 .kicker span { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 10px; text-transform: uppercase; letter-spacing: 0.35em; color: oklch(0.97 0.01 320 / 0.5); }
 .kicker .rule { height: 1px; width: 1.5rem; background: oklch(0.82 0.14 85 / 0.4); }
-.quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; padding-bottom: 5rem; }
+.quick-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; padding-bottom: 3rem; text-align: initial; }
 @media (min-width: 640px) { .quick-grid { grid-template-columns: repeat(3, 1fr); gap: 1.75rem; } }
 @media (min-width: 1024px) { .quick-grid { grid-template-columns: repeat(4, 1fr); } }
 .quick-grid .btn-3d { flex-direction: column; padding: 1.75rem 1rem; text-align: center; font-size: 0.75rem; }
@@ -342,34 +350,6 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       </a>
     </div>
 
-    <div class="animate-fade-up hero-badge glass">
-      <svg class="icon" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
-      Tarot Rider-Waite · Consultas Personalizadas
-    </div>
-
-    <h1 class="animate-fade-up">
-      <span class="line text-mystic-gradient">Consulte o Tarot</span>
-      <span class="line line2">e mude a sua</span>
-      <span class="line line3 text-gold-gradient">vida.</span>
-    </h1>
-
-    <p class="animate-fade-up hero-sub">
-      Orientação espiritual sincera, intuitiva e acolhedora. Encontre clareza
-      no amor, no trabalho e na sua jornada — através da sabedoria milenar
-      dos Arcanos.
-    </p>
-  </div>
-</section>
-
-<!-- ===== Banner + Quick links ===== -->
-<section class="section">
-  <div class="container">
-    <div class="banner-wrap">
-      <div class="banner-glow animate-halo-pulse"></div>
-      <a href="https://linktr.ee/genialtarot/shop" target="_blank" rel="noopener noreferrer" aria-label="Loja Genial Tarot" class="banner-link">
-        <img src="tudo-aqui.png" alt="Tudo Aqui — Genial Tarot" loading="lazy" />
-      </a>
-    </div>
     <div class="kicker">
       <span><span class="rule"></span>Atalhos Místicos<span class="rule"></span></span>
     </div>
@@ -409,6 +389,47 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="https://pt.tutiempo.net/astronomia/visao-astronomica/#UTC20260422T161427,41.444785231543214,-8.164215087890627" target="_blank" rel="noopener noreferrer" class="btn-3d btn-violet-glow btn-ochre-6">
         <svg class="icon" viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
         <span>Observação do Céu</span>
+      </a>
+    </div>
+
+
+    <div class="animate-fade-up" style="text-align:center;margin-top:-1rem;padding-bottom:2.5rem">
+      <a href="tarot-gratis.html" class="tarot-cta">
+        <span class="free-tag">Grátis</span>
+        <span class="gold-btn">
+          <svg viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+          Jogar Tarot Agora
+          <svg viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <div class="animate-fade-up hero-badge glass">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+      Tarot Rider-Waite · Consultas Personalizadas
+    </div>
+
+    <h1 class="animate-fade-up">
+      <span class="line text-mystic-gradient">Consulte o Tarot</span>
+      <span class="line line2">e mude a sua</span>
+      <span class="line line3 text-gold-gradient">vida.</span>
+    </h1>
+
+    <p class="animate-fade-up hero-sub">
+      Orientação espiritual sincera, intuitiva e acolhedora. Encontre clareza
+      no amor, no trabalho e na sua jornada — através da sabedoria milenar
+      dos Arcanos.
+    </p>
+  </div>
+</section>
+
+<!-- ===== Banner + Quick links ===== -->
+<section class="section">
+  <div class="container">
+    <div class="banner-wrap">
+      <div class="banner-glow animate-halo-pulse"></div>
+      <a href="https://linktr.ee/genialtarot/shop" target="_blank" rel="noopener noreferrer" aria-label="Loja Genial Tarot" class="banner-link">
+        <img src="tudo-aqui.png" alt="Tudo Aqui — Genial Tarot" loading="lazy" />
       </a>
     </div>
   </div>
