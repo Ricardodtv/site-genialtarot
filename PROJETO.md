@@ -3,6 +3,15 @@
 > Documento de contexto para o Claude (Cowork). Se estás a ler isto numa conversa
 > nova: este ficheiro descreve toda a arquitetura do site do Alberto (Mestre
 > Alberto, Genial Tarot). Lê-o antes de fazer alterações.
+>
+> **REGRA DE MANUTENÇÃO:** sempre que fizeres uma alteração significativa ao site
+> (página nova, rota nova no worker, mudança de arquitetura ou de links), atualiza
+> este PROJETO.md e entrega-o ao Alberto junto com os ficheiros alterados, para
+> ele subir tudo ao repositório de uma só vez.
+>
+> **SEGURANÇA:** este repositório é PÚBLICO. Nunca colocar aqui tokens, senhas,
+> chaves privadas ou dados pessoais de clientes — segredos vivem só na Cloudflare
+> (Variables and Secrets).
 
 ## O essencial
 
