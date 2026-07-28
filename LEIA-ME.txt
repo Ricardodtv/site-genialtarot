@@ -1,39 +1,65 @@
-GENIAL TAROT — VERSÃO SEM PASTAS (upload fácil)
-================================================
+GENIAL TAROT — VERSÃO CLOUDFLARE + TELEGRAM
+============================================
 
-Esta versão foi feita para o upload funcionar sem complicações:
-NÃO TEM PASTAS — são só ficheiros soltos. Podes usar o "choose your files"
-ou arrastar, tanto faz.
+Como funciona a partir de agora:
+- O GITHUB guarda os ficheiros (continuas a fazer upload lá, como sempre).
+- A CLOUDFLARE liga-se ao GitHub e publica o site automaticamente
+  a cada alteração — e envia os avisos para o teu TELEGRAM.
 
 FICHEIROS
 ---------
 index.html          → site principal
-tarot-gratis.html   → jogo "Tarot Grátis" (o botão do site aponta para aqui)
-profile.png         → fotografia do site principal
-tudo-aqui.png       → banner "Tudo Aqui"
-mystic-ambient.mp3  → música do site principal
-mestre-alberto.jpg  → fotografia do Mestre Alberto (jogo)
-ambient.mp3         → som ambiente do jogo
-favicon.ico         → ícone do site
-og-image.png        → imagem de partilha (WhatsApp/Facebook)
-robots.txt          → motores de busca
-CNAME               → domínio próprio (genialtarot.com)
+tarot-gratis.html   → jogo "Tarot Grátis"
+_worker.js          → NOVO: a "ponte" que envia avisos ao Telegram
+profile.png, tudo-aqui.png, mestre-alberto.jpg → imagens
+mystic-ambient.mp3, ambient.mp3 → músicas
+favicon.ico, og-image.png, robots.txt, CNAME → apoio
 
-COMO ATUALIZAR O REPOSITÓRIO
+PASSO 1 — ATUALIZAR O GITHUB
 ----------------------------
-1. Abre o repositório site-genialtarot no GitHub.
-2. "Add file" → "Upload files".
-3. Seleciona TODOS os ficheiros desta pasta e envia
-   (podes usar o "choose your files" — já não há pastas).
-4. "Commit changes" e espera 1-2 minutos.
-5. Abre https://ricardodtv.github.io/site-genialtarot/ com Ctrl+F5.
+1. Repositório site-genialtarot → "Add file" → "Upload files".
+2. Envia TODOS os ficheiros desta pasta (substitui os antigos).
+3. "Commit changes".
 
-NOTA: se no repositório ficaram ficheiros soltos do upload anterior
-(ex.: mystic-ambient.mp3 já lá está), não faz mal — são substituídos
-ou simplesmente ficam a ser usados por esta versão.
+PASSO 2 — CRIAR A CONTA CLOUDFLARE E LIGAR AO GITHUB
+----------------------------------------------------
+1. Vai a dash.cloudflare.com → "Sign up" (só email e password).
+2. No menu lateral: "Workers & Pages" (ou "Compute (Workers)").
+3. "Create" → separador "Pages" → "Connect to Git" (ou "Import an
+   existing Git repository").
+4. Autoriza o GitHub quando ele pedir e escolhe o repositório
+   site-genialtarot.
+5. Nas definições de build: Framework preset = None; Build command =
+   (vazio); Build output directory = / (barra). → "Save and Deploy".
+6. No fim aparece o endereço do site, algo como:
+   https://site-genialtarot.pages.dev
 
-AVISOS POR EMAIL (Tarot Grátis)
--------------------------------
-Recebes um email em chequesegredo@gmail.com por cada leitura nova.
-No PRIMEIRO email, o serviço FormSubmit pede confirmação:
-clica no botão "Activate" desse email (só uma vez).
+PASSO 3 — GUARDAR OS SEGREDOS DO TELEGRAM
+-----------------------------------------
+1. Ainda na Cloudflare, abre o teu projeto → "Settings" →
+   "Variables and Secrets" (ou "Environment variables").
+2. Adiciona DUAS variáveis (tipo: Secret), em "Production":
+   Nome: TELEGRAM_BOT_TOKEN   Valor: o token do teu bot
+   Nome: TELEGRAM_CHAT_ID     Valor: o teu chat id
+3. Grava e volta ao separador "Deployments" → botão "Retry deployment"
+   (ou faz qualquer alteração no GitHub) para o site recarregar os segredos.
+
+COMO DESCOBRIR O TOKEN E O CHAT ID
+----------------------------------
+- Token do bot: no Telegram, fala com @BotFather → /mybots →
+  escolhe o teu bot → "API Token". (Se já usas o bot noutro sítio,
+  usa o token que já tens guardado.)
+- Chat ID: no Telegram, fala com @userinfobot — ele responde com o
+  teu "Id" (um número). É esse.
+
+TESTE FINAL
+-----------
+Abre https://site-genialtarot.pages.dev/tarot-gratis.html,
+faz uma leitura de teste — deves receber o veredito no Telegram. 📲
+
+NOTAS
+-----
+- O site do GitHub Pages (ricardodtv.github.io/...) continua a funcionar
+  como cópia, mas sem avisos Telegram. O "oficial" passa a ser o da
+  Cloudflare — e é a esse que depois ligamos o domínio genialtarot.com.
+- O token NUNCA aparece no código do site — fica guardado na Cloudflare.

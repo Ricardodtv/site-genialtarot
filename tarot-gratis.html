@@ -1183,7 +1183,6 @@ function buildVerdict(area, cards, name, options = {}) {
 /* ============ Config ============ */
 const SUPABASE_URL = "https://bjucptcepnjlkicxcnmh.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqdWNwdGNlcG5qbGtpY3hjbm1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNzkzMzcsImV4cCI6MjA5Mzc1NTMzN30.FZA6k0bFhxtuk_kKe5E8DGi-uCX0sJcTr8WMZQZkI18";
-const NOTIFY_EMAIL = ["chequesegredo", "gmail.com"].join("@");
 const DAILY_LIMIT = 2;
 const SUSPICIOUS_LIMIT = 3;
 
@@ -1388,14 +1387,14 @@ async function saveReading(payload, verdict) {
     return { ok: false, id: null };
   }
 }
-async function notifyByEmail(subject, fields) {
+async function notifyTelegram(type, data) {
   try {
-    await fetch(`https://formsubmit.co/ajax/${NOTIFY_EMAIL}`, {
+    await fetch("/notify", {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({ _subject: subject, _template: "table", _captcha: "false", ...fields }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type, data }),
     });
-  } catch (e) { console.error("notifyByEmail failed:", e); }
+  } catch (e) { console.error("notifyTelegram failed:", e); }
 }
 
 function finishReading() {
@@ -1442,10 +1441,10 @@ function finishReading() {
       toast("Não foi possível guardar a leitura.", "err");
     }
   });
-  notifyByEmail("🔮 Nova leitura de Tarot no Genialtarot", {
-    Nome: name, Email: email, Cidade: city, "País": country,
-    "Data de nascimento": dob, "Área": selectedArea,
-    Veredito: result.verdict.replace(/\n+/g, " | "),
+  notifyTelegram("reading", {
+    name, email, city, country,
+    date_of_birth: dob, area: selectedArea,
+    verdict: result.verdict,
   });
 }
 
@@ -1493,9 +1492,9 @@ function renderStars() {
           body: JSON.stringify({ rating: current }),
         });
       } catch (e) { console.error(e); }
-      notifyByEmail("⭐ Avaliação de leitura no Genialtarot", {
-        Nome: document.getElementById("f-name").value.trim(),
-        "Área": selectedArea, "Avaliação": `${current}/5 estrelas`,
+      notifyTelegram("rating", {
+        name: document.getElementById("f-name").value.trim(),
+        area: selectedArea, rating: current,
       });
       toast("Obrigado pela tua avaliação ✨");
       const done = document.getElementById("rating-done");
@@ -1530,6 +1529,7 @@ document.getElementById("play-btn").addEventListener("click", () => {
     if (attempts >= SUSPICIOUS_LIMIT) {
       store("gt_blocked", true);
       toast("Acesso bloqueado devido à introdução repetida de dados não válidos.", "err", 7000);
+      notifyTelegram("blocked", { name });
     } else {
       toast(`Os dados parecem inválidos. Por favor coloca um nome e email verdadeiros. (${SUSPICIOUS_LIMIT - attempts} tentativa(s) restante(s))`, "err", 6000);
     }
@@ -1540,7 +1540,7 @@ document.getElementById("play-btn").addEventListener("click", () => {
   const counts = load("gt_daily", {});
   if ((counts[lisbonDayKey()] || 0) >= DAILY_LIMIT) {
     openRateModal();
-    notifyByEmail("⛔ Limite diário atingido no Genialtarot", { Nome: name, Email: email });
+    notifyTelegram("ratelimit", { name, email });
     return;
   }
 
