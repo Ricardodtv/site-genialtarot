@@ -29,7 +29,11 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  background: radial-gradient(ellipse at 50% -10%, oklch(0.22 0.05 270) 0%, var(--fundo) 55%, oklch(0.11 0.025 260) 100%);
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 8%, oklch(0.24 0.08 305 / 0.5), transparent 70%),
+    radial-gradient(ellipse 55% 38% at 85% 30%, oklch(0.23 0.09 250 / 0.45), transparent 70%),
+    radial-gradient(ellipse 65% 45% at 50% 75%, oklch(0.21 0.07 320 / 0.4), transparent 70%),
+    radial-gradient(ellipse at 50% -10%, oklch(0.22 0.05 270) 0%, var(--fundo) 55%, oklch(0.10 0.03 262) 100%);
   background-attachment: fixed; background-color: var(--fundo);
   color: var(--texto); font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; overflow-x: hidden;
 }
@@ -48,6 +52,32 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     radial-gradient(2px 2px at 60% 12%, oklch(0.95 0.04 90 / 0.7), transparent 60%),
     radial-gradient(1px 1px at 12% 70%, oklch(0.9 0.03 270 / 0.6), transparent 60%);
   background-size: 620px 620px; }
+.estrelas::after { content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1.6px 1.6px at 32% 18%, oklch(0.96 0.05 92 / 0.9), transparent 60%),
+    radial-gradient(1.2px 1.2px at 78% 42%, oklch(0.92 0.04 265 / 0.8), transparent 60%),
+    radial-gradient(2px 2px at 12% 55%, oklch(0.96 0.06 90 / 0.85), transparent 60%),
+    radial-gradient(1.4px 1.4px at 55% 88%, oklch(0.94 0.03 280 / 0.8), transparent 60%),
+    radial-gradient(1.2px 1.2px at 90% 75%, oklch(0.96 0.05 92 / 0.85), transparent 60%);
+  background-size: 780px 780px; animation: cintilar 4.5s ease-in-out infinite alternate; }
+@keyframes cintilar { from { opacity: 0.2; } to { opacity: 0.95; } }
+
+/* Nebulosas a derivar devagar */
+.nebulosa { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.nebulosa span { position: absolute; border-radius: 50%; filter: blur(70px); }
+.nebulosa .n1 { width: 46vw; height: 46vw; left: -12vw; top: 4vh; background: oklch(0.32 0.11 302 / 0.4); animation: derivar1 48s ease-in-out infinite alternate; }
+.nebulosa .n2 { width: 42vw; height: 42vw; right: -10vw; top: 34vh; background: oklch(0.3 0.1 252 / 0.38); animation: derivar2 60s ease-in-out infinite alternate; }
+.nebulosa .n3 { width: 36vw; height: 36vw; left: 22vw; bottom: -12vh; background: oklch(0.34 0.08 88 / 0.22); animation: derivar1 72s ease-in-out infinite alternate-reverse; }
+@keyframes derivar1 { from { transform: translate(0, 0) scale(1); } to { transform: translate(6vw, -4vh) scale(1.18); } }
+@keyframes derivar2 { from { transform: translate(0, 0) scale(1.12); } to { transform: translate(-5vw, 5vh) scale(0.94); } }
+@media (max-width: 640px) { .nebulosa span { filter: blur(42px); } }
+
+/* Geometria sagrada ténue a rodar */
+.geometria { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.08; }
+.geometria::before, .geometria::after { content: ""; position: absolute; border: 1.5px dashed var(--ouro); border-radius: 50%; }
+.geometria::before { width: 72vmin; height: 72vmin; top: -22vmin; right: -20vmin; animation: rodar 150s linear infinite; }
+.geometria::after { width: 88vmin; height: 88vmin; bottom: -32vmin; left: -26vmin; animation: rodar 190s linear infinite reverse; }
+@keyframes rodar { to { transform: rotate(360deg); } }
 @keyframes brilho { 0%,100% { box-shadow: 0 0 22px oklch(0.82 0.11 85 / 0.35); } 50% { box-shadow: 0 0 45px oklch(0.82 0.11 85 / 0.65); } }
 @keyframes surgir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 .surgir { animation: surgir 0.8s ease-out both; }
@@ -86,6 +116,15 @@ label.campo .rot { display: block; font-size: 0.68rem; text-transform: uppercase
 .btn-som:hover { transform: scale(1.08); }
 .btn-som.ligado { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); animation: brilho 2.6s ease-in-out infinite; }
 .btn-som.desligado::after { content: ""; position: absolute; left: 50%; top: 50%; width: 78%; height: 3px; background: oklch(0.58 0.22 25); border-radius: 2px; transform: translate(-50%, -50%) rotate(-45deg); box-shadow: 0 0 8px oklch(0.58 0.22 25 / 0.8); }
+
+/* ===== Seta-guia para a síntese ===== */
+.guia-sintese { position: fixed; left: 50%; bottom: 4.9rem; transform: translateX(-50%); z-index: 58; display: flex; flex-direction: column; align-items: center; gap: 0.05rem; background: oklch(0.2 0.05 265 / 0.96); border: 1.5px solid oklch(0.85 0.15 95); border-radius: 1rem; padding: 0.55rem 1.1rem 0.35rem; box-shadow: 0 10px 34px rgba(0,0,0,0.6), 0 0 25px oklch(0.85 0.15 95 / 0.3); cursor: pointer; text-align: center; max-width: 92vw; }
+.guia-sintese[hidden] { display: none; }
+.guia-texto { font-size: 0.86rem; color: #fff; line-height: 1.4; }
+.guia-nome { color: oklch(0.87 0.16 95); font-weight: 700; }
+.guia-imp { color: oklch(0.62 0.24 27); font-weight: 800; letter-spacing: 0.05em; }
+.guia-seta { font-size: 1.5rem; color: oklch(0.87 0.16 95); line-height: 1.1; animation: seta-calma 2.4s ease-in-out infinite; text-shadow: 0 0 14px oklch(0.87 0.16 95 / 0.8); }
+@keyframes seta-calma { 0%, 100% { transform: translateY(-2px); opacity: 0.7; } 50% { transform: translateY(6px); opacity: 1; } }
 
 /* ===== Avisos (toasts) ===== */
 #avisos { position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; flex-direction: column; gap: 0.5rem; width: min(92vw, 24rem); }
@@ -159,6 +198,8 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
 </head>
 <body>
 <div class="estrelas"></div>
+<div class="nebulosa" aria-hidden="true"><span class="n1"></span><span class="n2"></span><span class="n3"></span></div>
+<div class="geometria" aria-hidden="true"></div>
 
 <header>
   <a class="marca" href="index.html">
@@ -190,6 +231,10 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
 </section>
 
 <button id="btn-som" class="btn-som" aria-label="Ligar ou desligar o som de fundo" title="Som de fundo">♪</button>
+<div id="guia-sintese" class="guia-sintese" hidden role="button" aria-label="Ir para a Síntese">
+  <span class="guia-texto"><span class="guia-nome" id="guia-nome"></span> <span class="guia-imp">IMPORTANTE</span> — depois veja a <b>SÍNTESE</b></span>
+  <span class="guia-seta">⬇</span>
+</div>
 <div id="avisos"></div>
 
 <section class="zona-arvore">
@@ -410,7 +455,17 @@ function baralhar() {
 function limpar() {
   document.querySelectorAll(".no").forEach(no => no.classList.remove("revelado"));
   document.getElementById("leitura").classList.remove("mostrar");
+  guia.hidden = true;
 }
+
+/* Seta-guia: aparece durante a leitura da árvore e leva à síntese */
+const guia = document.getElementById("guia-sintese");
+guia.addEventListener("click", () => {
+  document.querySelector(".sintese").scrollIntoView({ behavior: "smooth", block: "center" });
+});
+new IntersectionObserver(entradas => {
+  entradas.forEach(e => { if (e.isIntersecting) guia.hidden = true; });
+}, { threshold: 0.35 }).observe(document.querySelector(".sintese"));
 
 btn.addEventListener("click", async () => {
   if (aLancar) return;
@@ -461,7 +516,11 @@ btn.addEventListener("click", async () => {
 
     setTimeout(() => {
       no.classList.add("revelado");
-      if (i === 0) no.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (i === 0) {
+        no.scrollIntoView({ behavior: "smooth", block: "center" });
+        document.getElementById("guia-nome").textContent = primeiroNome() + ",";
+        guia.hidden = false;
+      }
     }, 600 + i * 950);
   });
 
