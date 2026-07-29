@@ -369,7 +369,166 @@ export default {
       }
     }
 
+    // ===== Estatísticas de visitas (página privada, dados da Cloudflare) =====
+    // Precisa de 3 valores em Settings → Variables and Secrets:
+    //   CF_API_TOKEN (Secret)  → token da API com permissão "Analytics: Read" na zona
+    //   CF_ZONE_ID   (texto)   → Zone ID do domínio (página Overview, coluna direita)
+    //   STATS_KEY    (Secret)  → a palavra-passe que abre a página de estatísticas
+    if (url.pathname === "/api/stats") {
+      const jsonResp = (obj, status) => new Response(JSON.stringify(obj), {
+        status: status || 200, headers: { "Content-Type": "application/json" },
+      });
+      if (url.searchParams.get("debug") === "1") {
+        return jsonResp({ ok: true, temToken: !!env.CF_API_TOKEN, temZona: !!env.CF_ZONE_ID, temChave: !!env.STATS_KEY });
+      }
+      const chave = url.searchParams.get("chave") || "";
+      if (!env.STATS_KEY || chave !== env.STATS_KEY) return jsonResp({ ok: false, error: "chave errada" }, 403);
+      if (!env.CF_API_TOKEN || !env.CF_ZONE_ID) return jsonResp({ ok: false, error: "faltam CF_API_TOKEN / CF_ZONE_ID nas Variables and Secrets" }, 500);
+      const dias = Math.min(60, Math.max(7, Number(url.searchParams.get("dias")) || 30));
+      const desde = new Date(Date.now() - dias * 864e5).toISOString().slice(0, 10);
+      try {
+        const consulta = {
+          query: "query($zona:String!,$desde:Date!){viewer{zones(filter:{zoneTag:$zona}){httpRequests1dGroups(limit:70,filter:{date_geq:$desde},orderBy:[date_ASC]){dimensions{date}sum{requests pageViews}uniq{uniques}}}}}",
+          variables: { zona: env.CF_ZONE_ID, desde },
+        };
+        const r = await fetch("https://api.cloudflare.com/client/v4/graphql", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${env.CF_API_TOKEN}`, "Content-Type": "application/json" },
+          body: JSON.stringify(consulta),
+        });
+        const j = await r.json();
+        const grupos = j && j.data && j.data.viewer && j.data.viewer.zones && j.data.viewer.zones[0]
+          ? j.data.viewer.zones[0].httpRequests1dGroups : null;
+        if (!grupos) return jsonResp({ ok: false, error: "Cloudflare respondeu: " + JSON.stringify(j && j.errors ? j.errors : j).slice(0, 300) }, 502);
+        return jsonResp({
+          ok: true,
+          dias: grupos.map(g => ({ data: g.dimensions.date, paginas: g.sum.pageViews, pedidos: g.sum.requests, visitantes: g.uniq.uniques })),
+        });
+      } catch (e) {
+        return jsonResp({ ok: false, error: String(e) }, 502);
+      }
+    }
+
+    if (url.pathname === "/estatisticas") {
+      return new Response(PAGINA_ESTATISTICAS, { headers: { "Content-Type": "text/html; charset=utf-8" } });
+    }
+
     // Tudo o resto: servir o site normalmente
     return env.ASSETS.fetch(request);
   },
 };
+
+// ===== Página privada de estatísticas =====
+const PAGINA_ESTATISTICAS = `<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Estatísticas — Genial Tarot</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: radial-gradient(ellipse at 50% -10%, oklch(0.22 0.05 270), oklch(0.15 0.03 265) 55%, oklch(0.1 0.03 262)); background-attachment: fixed; min-height: 100vh; color: oklch(0.95 0.01 280); font-family: system-ui, sans-serif; padding: 1.2rem; }
+.caixa { max-width: 46rem; margin: 0 auto; }
+h1 { font-family: Georgia, serif; color: oklch(0.88 0.08 90); text-align: center; margin: 1rem 0 0.3rem; font-size: 1.7rem; }
+.sub { text-align: center; color: oklch(0.75 0.03 275); font-size: 0.85rem; margin-bottom: 1.4rem; }
+.painel { border: 1px solid oklch(0.82 0.11 85 / 0.35); border-radius: 1rem; background: oklch(0.2 0.05 265 / 0.75); padding: 1.2rem; margin-bottom: 1rem; }
+input { width: 100%; background: oklch(0.26 0.05 265); border: 1px solid oklch(0.82 0.11 85 / 0.35); color: inherit; border-radius: 0.6rem; padding: 0.7rem 0.9rem; font: inherit; outline: none; }
+input:focus { border-color: oklch(0.82 0.11 85); }
+button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; padding: 0.75rem; font: inherit; font-weight: 700; background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); cursor: pointer; }
+.erro { color: oklch(0.78 0.14 25); text-align: center; margin-top: 0.6rem; font-size: 0.85rem; }
+.cartoes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; margin-bottom: 1rem; }
+.cartao { border: 1px solid oklch(0.82 0.11 85 / 0.3); border-radius: 0.8rem; background: oklch(0.2 0.05 265 / 0.75); padding: 0.8rem 0.6rem; text-align: center; }
+.cartao .num { font-size: 1.5rem; font-weight: 800; color: oklch(0.88 0.08 90); }
+.cartao .rot { font-size: 0.68rem; color: oklch(0.75 0.03 275); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; }
+.grafico { display: flex; align-items: flex-end; gap: 2px; height: 180px; padding-top: 0.5rem; }
+.barra { flex: 1; background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.6 0.11 78)); border-radius: 3px 3px 0 0; min-height: 2px; position: relative; }
+.barra:hover { background: linear-gradient(180deg, oklch(0.92 0.14 90), oklch(0.7 0.12 80)); }
+.legenda { display: flex; justify-content: space-between; color: oklch(0.75 0.03 275); font-size: 0.7rem; margin-top: 0.4rem; }
+.filtros { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem; }
+.filtros button { width: auto; margin: 0; padding: 0.4rem 1.1rem; font-size: 0.85rem; background: oklch(0.26 0.05 265); color: oklch(0.85 0.05 90); border: 1px solid oklch(0.82 0.11 85 / 0.35); }
+.filtros button.ativo { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); }
+.rodape { text-align: center; color: oklch(0.7 0.03 275); font-size: 0.75rem; margin-top: 1.5rem; }
+#zona-dados { display: none; }
+</style>
+</head>
+<body>
+<div class="caixa">
+  <h1>✦ Estatísticas do Genial Tarot ✦</h1>
+  <p class="sub">visitas ao site — dados da Cloudflare, só para os seus olhos</p>
+
+  <div class="painel" id="zona-chave">
+    <input id="chave" type="password" placeholder="Palavra-passe" />
+    <button id="entrar">Ver estatísticas</button>
+    <div class="erro" id="msg-erro"></div>
+  </div>
+
+  <div id="zona-dados">
+    <div class="filtros">
+      <button data-d="7">7 dias</button>
+      <button data-d="30" class="ativo">30 dias</button>
+      <button data-d="60">60 dias</button>
+    </div>
+    <div class="cartoes">
+      <div class="cartao"><div class="num" id="t-paginas">–</div><div class="rot">Páginas vistas</div></div>
+      <div class="cartao"><div class="num" id="t-visitantes">–</div><div class="rot">Visitantes</div></div>
+      <div class="cartao"><div class="num" id="t-media">–</div><div class="rot">Média/dia</div></div>
+    </div>
+    <div class="painel">
+      <div class="grafico" id="grafico"></div>
+      <div class="legenda"><span id="l-ini"></span><span>páginas vistas por dia</span><span id="l-fim"></span></div>
+    </div>
+  </div>
+
+  <p class="rodape">Genial Tarot · página privada — não partilhe este endereço.</p>
+</div>
+<script>
+var diasAtual = 30;
+function fmt(n) { return n >= 10000 ? Math.round(n / 1000) + " mil" : String(n); }
+function dataPt(iso) { var p = iso.split("-"); return p[2] + "/" + p[1]; }
+function carregar() {
+  var chave = document.getElementById("chave").value || localStorage.getItem("stats_chave") || "";
+  if (!chave) return;
+  document.getElementById("msg-erro").textContent = "A carregar…";
+  fetch("/api/stats?chave=" + encodeURIComponent(chave) + "&dias=" + diasAtual)
+    .then(function (r) { return r.json(); })
+    .then(function (j) {
+      if (!j.ok) { document.getElementById("msg-erro").textContent = "⚠️ " + (j.error || "erro"); return; }
+      localStorage.setItem("stats_chave", chave);
+      document.getElementById("zona-chave").style.display = "none";
+      document.getElementById("zona-dados").style.display = "block";
+      var d = j.dias, totP = 0, totV = 0, max = 1;
+      d.forEach(function (x) { totP += x.paginas; totV += x.visitantes; if (x.paginas > max) max = x.paginas; });
+      document.getElementById("t-paginas").textContent = fmt(totP);
+      document.getElementById("t-visitantes").textContent = fmt(totV);
+      document.getElementById("t-media").textContent = fmt(Math.round(totP / Math.max(1, d.length)));
+      var g = document.getElementById("grafico");
+      g.innerHTML = "";
+      d.forEach(function (x) {
+        var b = document.createElement("div");
+        b.className = "barra";
+        b.style.height = Math.max(2, Math.round(x.paginas / max * 170)) + "px";
+        b.title = dataPt(x.data) + " — " + x.paginas + " páginas · " + x.visitantes + " visitantes";
+        g.appendChild(b);
+      });
+      if (d.length) {
+        document.getElementById("l-ini").textContent = dataPt(d[0].data);
+        document.getElementById("l-fim").textContent = dataPt(d[d.length - 1].data);
+      }
+    })
+    .catch(function () { document.getElementById("msg-erro").textContent = "⚠️ Não foi possível carregar."; });
+}
+document.getElementById("entrar").addEventListener("click", carregar);
+document.getElementById("chave").addEventListener("keydown", function (e) { if (e.key === "Enter") carregar(); });
+document.querySelectorAll(".filtros button").forEach(function (b) {
+  b.addEventListener("click", function () {
+    document.querySelectorAll(".filtros button").forEach(function (x) { x.classList.remove("ativo"); });
+    b.classList.add("ativo");
+    diasAtual = Number(b.dataset.d);
+    carregar();
+  });
+});
+if (localStorage.getItem("stats_chave")) { document.getElementById("chave").value = localStorage.getItem("stats_chave"); carregar(); }
+</script>
+</body>
+</html>`;
