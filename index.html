@@ -787,14 +787,14 @@ audio.addEventListener("error", () => console.error("Audio failed to load:", aud
 
 // Tenta autoplay imediato (os browsers normalmente bloqueiam sem interação)
 if (!musEstado || musEstado.on) {
-  const durFade = musEstado && musEstado.on ? 1200 : 3500; // retoma rápida se já vinha a tocar
+  const durFade = musEstado && musEstado.on ? 1200 : 5000; // 5s ao abrir; retoma rápida se já vinha a tocar
   audio.volume = 0;
   audio.play().then(() => { setPlayingUI(true); fadeInAudio(durFade); }).catch(() => {
     audio.volume = VOLUME;
     const start = () => {
       audio.play().then(() => { setPlayingUI(true); fadeInAudio(durFade); }).catch(() => {});
     };
-    ["pointerdown", "click", "touchstart", "keydown", "scroll"].forEach((ev) =>
+    ["pointerdown", "click", "touchstart", "touchend", "keydown", "scroll"].forEach((ev) =>
       window.addEventListener(ev, start, { once: true, passive: true })
     );
   });
