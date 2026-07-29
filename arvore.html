@@ -99,6 +99,9 @@ header { position: relative; z-index: 10; max-width: 72rem; margin: 0 auto; disp
 .selo { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid oklch(0.82 0.11 85 / 0.4); border-radius: 9999px; padding: 0.4rem 1.1rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.35em; color: var(--ouro); margin-bottom: 1.2rem; }
 .heroi h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 6vw, 3.6rem); color: var(--ouro-suave); text-shadow: 0 0 30px oklch(0.82 0.11 85 / 0.4); }
 .heroi p.sub { margin: 0.9rem auto 0; max-width: 46rem; color: var(--mudo); font-size: 1rem; line-height: 1.65; }
+.aviso-sintese { margin: 0.7rem auto 0; font-size: 0.95rem; color: oklch(0.87 0.16 95); letter-spacing: 0.04em; animation: piscar-suave 2.6s ease-in-out infinite; }
+.aviso-sintese b { font-weight: 700; }
+@keyframes piscar-suave { 0%, 100% { opacity: 1; text-shadow: 0 0 14px oklch(0.87 0.16 95 / 0.6); } 50% { opacity: 0.45; text-shadow: none; } }
 .btn-lancar { position: relative; margin-top: 1.6rem; display: inline-flex; align-items: center; gap: 0.6rem; border-radius: 9999px; border: 1.5px solid var(--ouro); background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); padding: 0.95rem 2.2rem; font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.03em; animation: brilho 2.6s ease-in-out infinite; transition: transform 0.3s; }
 .btn-lancar:hover { transform: scale(1.05); }
 .btn-lancar:disabled { opacity: 0.55; cursor: wait; transform: none; }
@@ -133,7 +136,9 @@ label.campo .rot { display: block; font-size: 0.68rem; text-transform: uppercase
 /* ===== Avisos (toasts) ===== */
 #avisos { position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; flex-direction: column; gap: 0.5rem; width: min(92vw, 24rem); }
 .aviso { border-radius: 0.7rem; border: 1px solid oklch(0.82 0.11 85 / 0.5); background: oklch(0.24 0.05 265 / 0.97); color: var(--texto); padding: 0.7rem 1rem; font-size: 0.88rem; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.5); animation: surgir 0.3s ease-out; }
-.aviso.erro { border-color: oklch(0.6 0.18 25 / 0.7); color: oklch(0.85 0.09 25); }
+.aviso.erro { background: linear-gradient(180deg, oklch(0.62 0.24 28), oklch(0.5 0.23 25)); border: 2px solid oklch(0.88 0.14 90); color: #fff; font-weight: 600; font-size: 0.92rem; box-shadow: 0 10px 44px oklch(0.6 0.24 27 / 0.65), 0 0 30px oklch(0.62 0.24 28 / 0.5); animation: surgir 0.3s ease-out, aviso-abana 0.6s ease-in-out 0.3s; }
+.aviso-titulo { display: block; font-weight: 800; letter-spacing: 0.25em; font-size: 1rem; margin-bottom: 0.3rem; color: oklch(0.95 0.08 95); text-shadow: 0 1px 6px rgba(0,0,0,0.4); }
+@keyframes aviso-abana { 0%, 100% { transform: none; } 20% { transform: translateX(-7px); } 40% { transform: translateX(7px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(5px); } }
 
 /* ===== Árvore ===== */
 .zona-arvore { position: relative; z-index: 5; max-width: 56rem; margin: 1.5rem auto 0; padding: 0 0.5rem; }
@@ -236,8 +241,8 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
 <section class="heroi">
   <div class="selo surgir">✦ Cabala · Arcanos Maiores ✦</div>
   <h1 class="surgir">Tiragem da Árvore da Vida</h1>
-  <p class="sub surgir">Dez cartas, dez Sefirot — de Malkuth, a situação concreta, até Kether, a resposta final.
-  Concentre-se na sua pergunta, lance as cartas e leia a Árvore de baixo para cima.</p>
+  <p class="sub surgir">Dez Cartas. Concentre-se na sua pergunta, lance as cartas e leia a Árvore de baixo para cima.</p>
+  <p class="aviso-sintese surgir">✦ Importante: ler a <b>Síntese</b> no fim ✦</p>
 
   <div class="form-arvore surgir">
     <div class="titulo-form">✦ Identifique-se antes de lançar ✦</div>
@@ -599,9 +604,10 @@ function aviso(msg, erro) {
   const box = document.getElementById("avisos");
   const el = document.createElement("div");
   el.className = "aviso" + (erro ? " erro" : "");
-  el.textContent = msg;
+  if (erro) el.innerHTML = `<span class="aviso-titulo">⚠️ ATENÇÃO ⚠️</span>` + esc(msg);
+  else el.textContent = msg;
   box.appendChild(el);
-  setTimeout(() => el.remove(), 5000);
+  setTimeout(() => el.remove(), erro ? 6000 : 5000);
 }
 
 /* ===== Guardar contacto + avisar o Mestre (igual ao Tarot Grátis) ===== */
@@ -724,7 +730,7 @@ function subirVolume() {
   const t = somCtx.currentTime;
   somMaster.gain.cancelScheduledValues(t);
   somMaster.gain.setValueAtTime(somMaster.gain.value, t);
-  somMaster.gain.linearRampToValueAtTime(0.55, t + 2.5);
+  somMaster.gain.linearRampToValueAtTime(0.28, t + 4);
   clearTimeout(somTimer); somTimer = setTimeout(sino, 1500);
 }
 function ligarSom() {
