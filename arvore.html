@@ -169,6 +169,15 @@ label.campo .rot { display: block; font-size: 0.68rem; text-transform: uppercase
 .nome-ouro { color: var(--ouro); font-weight: 700; }
 .no.revelado .resposta { display: block; animation: surgir 0.7s ease-out 0.85s both; }
 
+/* ===== Separador místico (como na página principal) ===== */
+.divisor-mistico { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 1.6rem auto 0; max-width: 32rem; padding: 0.25rem 1.25rem; }
+.divisor-mistico .linha { height: 1px; flex: 1; background: linear-gradient(90deg, transparent, oklch(0.82 0.14 85 / 0.55)); }
+.divisor-mistico .linha.dir { background: linear-gradient(90deg, oklch(0.82 0.14 85 / 0.55), transparent); }
+.divisor-mistico .orna { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--ouro); font-size: 1rem; letter-spacing: 0.2em; white-space: nowrap; }
+.divisor-mistico .orna .tw { animation: piscar-tw 3s ease-in-out infinite; }
+.divisor-mistico .orna .tw2 { animation: piscar-tw 3s ease-in-out infinite; animation-delay: 1.5s; }
+@keyframes piscar-tw { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
 /* ===== Leitura escrita ===== */
 .leitura { position: relative; z-index: 5; max-width: 46rem; margin: 2.5rem auto 0; padding: 0 1.25rem; display: none; }
 .leitura.mostrar { display: block; }
@@ -182,6 +191,11 @@ label.campo .rot { display: block; font-size: 0.68rem; text-transform: uppercase
 .sintese { margin-top: 1.6rem; border: 1.5px solid oklch(0.82 0.11 85 / 0.6); border-radius: 1rem; background: var(--cartao); padding: 1.4rem 1.5rem; }
 .sintese h3 { font-family: 'Cinzel', var(--font-display); letter-spacing: 0.2em; color: var(--ouro); font-size: 0.95rem; margin-bottom: 0.7rem; text-align: center; }
 .sintese p { font-size: 0.95rem; line-height: 1.75; color: var(--texto); }
+.conselhos { margin-top: 1.3rem; border-top: 1px solid oklch(0.82 0.11 85 / 0.2); padding-top: 1.1rem; }
+.conselhos h4 { font-family: 'Cinzel', var(--font-display); font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase; color: oklch(0.78 0.17 150); text-align: center; margin-bottom: 0.8rem; }
+.conselhos ol { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.conselhos li { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.95rem; line-height: 1.6; color: oklch(0.82 0.15 150); }
+.conselhos .c-num { flex: none; display: grid; place-items: center; height: 1.55rem; width: 1.55rem; border-radius: 9999px; background: oklch(0.62 0.17 150); color: white; font-weight: 700; font-size: 0.8rem; margin-top: 0.1rem; box-shadow: 0 0 12px oklch(0.62 0.17 150 / 0.5); }
 .aviso-pedagogico { margin-top: 1.2rem; text-align: center; font-size: 0.78rem; color: var(--mudo); font-style: italic; }
 
 /* ===== Contacto ===== */
@@ -246,12 +260,18 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
 </section>
 
 <section class="leitura" id="leitura">
-  <h2>Leitura posição a posição</h2>
-  <p class="nota">de baixo para cima — é assim que a Árvore se lê</p>
-  <div id="passos"></div>
+  <div class="divisor-mistico" aria-hidden="true">
+    <span class="linha"></span>
+    <span class="orna"><span class="tw">☽</span> ✦ <span class="tw2">☾</span></span>
+    <span class="linha dir"></span>
+  </div>
   <div class="sintese">
     <h3>✦ SÍNTESE ✦</h3>
     <p id="sintese-texto"></p>
+    <div class="conselhos">
+      <h4>✦ 3 Conselhos para progredir ✦</h4>
+      <ol id="lista-conselhos"></ol>
+    </div>
   </div>
   <p class="aviso-pedagogico">Leitura simbólica gerada na Árvore da Vida · não substitui uma consulta pessoal com o Mestre Alberto.</p>
 </section>
@@ -263,6 +283,11 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.36.572-1 3.654 3.745-.985zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.793.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
   </a>
   <p style="margin-top:0.9rem;font-size:0.85rem">📞 +351 914 920 427 · WhatsApp direto</p>
+  <div class="divisor-mistico" aria-hidden="true">
+    <span class="linha"></span>
+    <span class="orna"><span class="tw">☽</span> ✦ <span class="tw2">☾</span></span>
+    <span class="linha dir"></span>
+  </div>
   <div class="servicos">
     <span class="servico">🔮 Consultas de Tarot</span>
     <span class="servico">🕯️ Rituais</span>
@@ -539,29 +564,26 @@ btn.addEventListener("click", async () => {
   }, total);
 });
 
-/* ===== Leitura escrita + síntese ===== */
+/* ===== Síntese resumida + 3 conselhos ===== */
 function montarLeitura(cartas) {
-  const passos = document.getElementById("passos");
-  passos.innerHTML = cartas.map((c, i) => {
-    const s = SEFIROT[i];
-    const pt = s.pt.charAt(0) + s.pt.slice(1).toLowerCase();
-    return `<div class="passo">
-      <span class="n">${s.n}</span>
-      <div><b>${pt}</b> <span class="orig-peq">(${s.nome})</span> — <b>${c.nome}</b>${c.invertida ? ' <span class="inv">(invertida)</span>' : ''}: ${s.rotulo.toLowerCase()} — ${c.invertida ? c.inv : c.up}.</div>
-    </div>`;
-  }).join("");
-
   const e = i => (cartas[i].invertida ? cartas[i].inv : cartas[i].up);
-  const n = i => cartas[i].nome + (cartas[i].invertida ? " (invertida)" : "");
   const p = primeiroNome();
-  const sintese = `${p}, na base, ${n(0)} mostra que ${e(0)}. ` +
-    `Entre a razão (${n(2)}: ${e(2)}) e o coração (${n(3)}: ${e(3)}), o centro da Árvore — ${n(4)} — resolve a tensão: ${e(4)}. ` +
-    `O que trava ou pede corte é ${n(5)} (${e(5)}), enquanto ${n(6)} abre espaço: ${e(6)}. ` +
-    `Por trás de tudo, ${n(7)} sugere que ${e(7)}, impulsionado por ${n(8)}: ${e(8)}. ` +
-    `E no topo, ${p}, ${n(9)} sela a sua resposta — ${e(9)}.`;
+  // Resumo da lógica da Árvore, sem repetir as cartas (elas já estão visíveis em cima)
+  const sintese = `${p}, a base da sua situação é esta: ${e(0)}. ` +
+    `Entre o que a mente diz e o que o coração deseja, o ponto de equilíbrio encontra-se aqui: ${e(4)}. ` +
+    `E, no topo da Árvore, a resposta final é clara: ${e(9)}.`;
   document.getElementById("sintese-texto").innerHTML = destacarNome(sintese, p);
+
+  const conselhos = [
+    `Corte sem medo o que trava o caminho: ${e(5)}.`,
+    `Abra espaço ao que quer crescer: ${e(6)}.`,
+    `Apoie-se na força que o impulsiona: ${e(8)}.`,
+  ];
+  document.getElementById("lista-conselhos").innerHTML = conselhos.map((c, i) =>
+    `<li><span class="c-num">${i + 1}</span><span>${esc(c)}</span></li>`).join("");
+
   document.getElementById("leitura").classList.add("mostrar");
-  return sintese;
+  return sintese + "\n\nCONSELHOS:\n" + conselhos.map((c, i) => `${i + 1}. ${c}`).join("\n");
 }
 
 /* ===== Avisos ===== */
