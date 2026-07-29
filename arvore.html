@@ -752,18 +752,24 @@ function desligarSom() {
     somMaster.gain.linearRampToValueAtTime(0, t + 0.8);
   }
 }
-btnSom.addEventListener("click", () => (somLigado ? desligarSom() : ligarSom()));
+btnSom.addEventListener("click", (e) => { e.stopPropagation(); somLigado ? desligarSom() : ligarSom(); });
 
-// Som ligado por defeito ao abrir a página.
-// Se o navegador travar o arranque automático, o som começa ao primeiro toque/clique.
-ligarSom();
-["pointerdown", "touchstart", "keydown"].forEach(ev =>
-  document.addEventListener(ev, () => {
-    if (somLigado && somCtx && somCtx.state === "suspended") {
-      somCtx.resume().then(() => { if (somLigado) subirVolume(); }).catch(() => {});
-    }
-  }, { passive: true })
-);
+// Som ligado POR DEFEITO ao abrir a página: tenta arrancar já; se o navegador
+// travar o autoplay, arranca ao primeiro gesto (toque, clique, tecla ou scroll).
+somLigado = true;
+btnSom.classList.add("ligado");
+function tentarArranque() {
+  if (!somLigado) return;
+  if (!somCtx) criarSom();
+  if (somCtx.state === "suspended") {
+    somCtx.resume().then(() => { if (somLigado && somCtx.state === "running") subirVolume(); }).catch(() => {});
+  } else if (somMaster && somMaster.gain.value < 0.01) {
+    subirVolume();
+  }
+}
+tentarArranque();
+["pointerdown", "touchend", "click", "keydown", "scroll"].forEach(ev =>
+  document.addEventListener(ev, tentarArranque, { passive: true }));
 </script>
 </body>
 </html>
