@@ -740,7 +740,7 @@ const audioBtn = document.getElementById("audio-toggle");
 const audioLabel = document.getElementById("audio-label");
 const iconOn = document.getElementById("audio-icon-on");
 const iconOff = document.getElementById("audio-icon-off");
-const VOLUME = 0.04;
+const VOLUME = 0.02;
 let audioReady = false;
 audio.volume = VOLUME;
 // Fade-in suave para nunca assustar
@@ -787,7 +787,7 @@ audio.addEventListener("error", () => console.error("Audio failed to load:", aud
 
 // Tenta autoplay imediato (os browsers normalmente bloqueiam sem interação)
 if (!musEstado || musEstado.on) {
-  const durFade = musEstado && musEstado.on ? 1200 : 5000; // 5s ao abrir; retoma rápida se já vinha a tocar
+  const durFade = 1000; // fade-in de 1 segundo
   audio.volume = 0;
   audio.play().then(() => { setPlayingUI(true); fadeInAudio(durFade); }).catch(() => {
     audio.volume = VOLUME;
