@@ -57,7 +57,7 @@ jogo de trustedtarot.com.
 - `/api/fimsemana` → idem, playlist Fim de Semana `PL1CDtoz2ES7SMhQqxpoRsJ2uzsi8caP48`.
 - `/api/anual` → playlist Anual `PL1CDtoz2ES7Rj4Pgnzsk1B0yMJ5MsZRim`, organiza
   vídeos por signo pelo TÍTULO. Cache 1h. (Virgem em falta na playlist — acende sozinho se for adicionado.)
-- `/estatisticas` → página PRIVADA de visitas (protegida por palavra-passe) com gráfico
+- `/Estataomp8` → página PRIVADA de visitas (endereço discreto de propósito; protegida por palavra-passe) com gráfico
   de barras e totais; `/api/stats` vai buscar os números à API da Cloudflare.
   Precisa de 3 valores em Settings → Variables and Secrets do Worker:
   `CF_API_TOKEN` (Secret; token com permissão Analytics:Read na zona),

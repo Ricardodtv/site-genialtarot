@@ -409,7 +409,7 @@ export default {
       }
     }
 
-    if (url.pathname === "/estatisticas") {
+    if (url.pathname === "/Estataomp8") {
       return new Response(PAGINA_ESTATISTICAS, { headers: { "Content-Type": "text/html; charset=utf-8" } });
     }
 
