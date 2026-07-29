@@ -35,6 +35,7 @@
 | `horoscopo.html` | **Mensagens do Universo** — signos diários (tempos do último vídeo). Sem vídeos fixos; contacto WhatsApp pulsante |
 | `anual.html` | **Mensagem Anual** — Previsão Anual 2026, um vídeo por signo. Tema próprio: rubi/granada. Sem NENHUM vídeo fixo (só os que abrem por signo); tem secção de contacto WhatsApp pulsante (Consultas · Rituais · Amuletos) |
 | `fimdesemana.html` | **Mensagem do Fim de Semana** — signos com tempos do último vídeo semanal. Tema verde-esmeralda (Diário é roxo). Sem vídeos fixos; contacto WhatsApp pulsante |
+| `arvore.html` | **Árvore da Vida** — tiragem de Cabala: 10 Arcanos Maiores nas 10 Sefirot, animação de baixo para cima. Em cada nó: nome da carta → pergunta (dourada) → resposta (branca, frases variadas a cada tiragem, com o nome da pessoa destacado a dourado, tal como a síntese). Formulário de contacto obrigatório antes de lançar (grava no Supabase + avisa o Telegram com dados + síntese). **Limite: 1 tiragem por dia** por visitante (localStorage + verificação por IP no Supabase; excesso avisa o Telegram). Balão verde GRÁTIS no botão de lançar. Som de fundo místico gerado por Web Audio (sem ficheiro de áudio), **ligado por defeito** (os navegadores só deixam começar ao 1.º toque/clique do visitante); botão flutuante ♪ com risco vermelho diagonal quando desligado. Lista de serviços (Árvore, Mapas Astrais, Conselhos Empresariais/Espirituais, Hipnose) por baixo do WhatsApp. Leitura por posição + síntese, tema azul-noite/dourado, contacto WhatsApp |
 | `worker.js` | A "ponte" Cloudflare: serve o site + APIs (ver abaixo) |
 | `wrangler.jsonc` | Config Cloudflare (main: worker.js, assets: raiz) |
 | `.assetsignore` | Esconde ficheiros técnicos do público |
@@ -73,6 +74,8 @@ jogo de trustedtarot.com.
   para as OUTRAS duas (nenhuma página tem botão para si própria). Na página principal,
   os botões Diário/Anual/Fim de Semana usam as cores das páginas de destino
   (roxo/rubi/esmeralda) e os efeitos pesados (halos blur) estão desligados em ecrãs ≤640px.
+  Atalho "Árvore da Vida" (azul-noite/dourado, ícone SVG com o esquema das 10 Sefirot)
+  aponta para arvore.html e pulsa como os restantes.
 - Links externos que se mantêm: WhatsApp +351 914 920 427, Agenda (calendar.app.google),
   Loja (linktr.ee/genialtarot), Livro (Amazon), Observação do Céu (tutiempo), redes sociais.
 - Futuro desejado: email profissional contacto@genialtarot.com via Cloudflare Email

@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Árvore da Vida — Tiragem de Cabala com Arcanos Maiores</title>
+<meta name="description" content="Tiragem da Árvore da Vida: 10 Arcanos Maiores lançados nas 10 Sefirot, de Malkuth a Kether, com leitura posição a posição e síntese — pelo Mestre Alberto." />
+<meta name="theme-color" content="#0d1226" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Árvore da Vida — Tiragem de Cabala" />
+<meta property="og:description" content="Lance 10 Arcanos Maiores na Árvore da Vida e receba a leitura completa, de Malkuth a Kether." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cinzel:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --fundo: oklch(0.15 0.03 265);
+  --noite: oklch(0.18 0.035 265);
+  --cartao: oklch(0.20 0.04 265 / 0.85);
+  --ouro: oklch(0.82 0.11 85);
+  --ouro-suave: oklch(0.88 0.08 90);
+  --prata: oklch(0.93 0.01 270);
+  --texto: oklch(0.95 0.01 280);
+  --mudo: oklch(0.75 0.03 275);
+  --vermelho: oklch(0.68 0.14 25);
+  --azul: oklch(0.7 0.1 250);
+  --font-display: 'Cormorant Garamond', 'Cinzel', Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: radial-gradient(ellipse at 50% -10%, oklch(0.22 0.05 270) 0%, var(--fundo) 55%, oklch(0.11 0.025 260) 100%);
+  background-attachment: fixed; background-color: var(--fundo);
+  color: var(--texto); font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+.font-display { font-family: var(--font-display); }
+.ouro { color: var(--ouro); }
+.mudo { color: var(--mudo); }
+.estrelas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.55;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, oklch(0.95 0.02 90 / 0.7), transparent 60%),
+    radial-gradient(1px 1px at 70% 60%, oklch(0.9 0.03 270 / 0.6), transparent 60%),
+    radial-gradient(1.5px 1.5px at 40% 80%, oklch(0.95 0.02 90 / 0.8), transparent 60%),
+    radial-gradient(1px 1px at 85% 20%, oklch(0.9 0.03 270 / 0.5), transparent 60%),
+    radial-gradient(2px 2px at 60% 12%, oklch(0.95 0.04 90 / 0.7), transparent 60%),
+    radial-gradient(1px 1px at 12% 70%, oklch(0.9 0.03 270 / 0.6), transparent 60%);
+  background-size: 620px 620px; }
+@keyframes brilho { 0%,100% { box-shadow: 0 0 22px oklch(0.82 0.11 85 / 0.35); } 50% { box-shadow: 0 0 45px oklch(0.82 0.11 85 / 0.65); } }
+@keyframes surgir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.surgir { animation: surgir 0.8s ease-out both; }
+
+/* ===== Topo ===== */
+header { position: relative; z-index: 10; max-width: 72rem; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 1rem; }
+.marca { display: flex; align-items: center; gap: 0.6rem; }
+.marca-icone { display: grid; height: 2.3rem; width: 2.3rem; place-items: center; border-radius: 9999px; border: 1.5px solid var(--ouro); color: var(--ouro); animation: brilho 4s ease-in-out infinite; font-size: 1.05rem; }
+.marca-nome { font-family: var(--font-display); font-size: 1.2rem; letter-spacing: 0.06em; color: var(--prata); }
+.voltar { border: 1px solid oklch(0.82 0.11 85 / 0.35); border-radius: 9999px; padding: 0.45rem 0.9rem; font-size: 0.8rem; color: var(--mudo); }
+.voltar:hover { color: var(--ouro); border-color: var(--ouro); }
+
+/* ===== Herói ===== */
+.heroi { position: relative; z-index: 5; text-align: center; padding: 1.5rem 1rem 0.5rem; }
+.selo { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid oklch(0.82 0.11 85 / 0.4); border-radius: 9999px; padding: 0.4rem 1.1rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.35em; color: var(--ouro); margin-bottom: 1.2rem; }
+.heroi h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 6vw, 3.6rem); color: var(--ouro-suave); text-shadow: 0 0 30px oklch(0.82 0.11 85 / 0.4); }
+.heroi p.sub { margin: 0.9rem auto 0; max-width: 46rem; color: var(--mudo); font-size: 1rem; line-height: 1.65; }
+.btn-lancar { position: relative; margin-top: 1.6rem; display: inline-flex; align-items: center; gap: 0.6rem; border-radius: 9999px; border: 1.5px solid var(--ouro); background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); padding: 0.95rem 2.2rem; font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.03em; animation: brilho 2.6s ease-in-out infinite; transition: transform 0.3s; }
+.btn-lancar:hover { transform: scale(1.05); }
+.btn-lancar:disabled { opacity: 0.55; cursor: wait; transform: none; }
+.tag-gratis { position: absolute; top: -0.85rem; right: -0.85rem; border-radius: 9999px; background: oklch(0.65 0.22 145); color: white; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.25rem 0.65rem; box-shadow: 0 8px 20px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.3); animation: gratis-salta 2.2s ease-in-out infinite; }
+@keyframes gratis-salta { 0%, 100% { transform: translateY(0) rotate(6deg); } 50% { transform: translateY(-4px) rotate(6deg); } }
+
+/* ===== Formulário de contacto (antes de lançar) ===== */
+.form-arvore { max-width: 40rem; margin: 1.8rem auto 0; text-align: left; border: 1px solid oklch(0.82 0.11 85 / 0.35); border-radius: 1rem; background: oklch(0.2 0.05 265 / 0.65); backdrop-filter: blur(10px); padding: 1.4rem 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.35); }
+.form-arvore .titulo-form { text-align: center; font-family: 'Cinzel', var(--font-display); font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--ouro); margin-bottom: 1rem; }
+.grelha-form { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+@media (min-width: 700px) { .grelha-form { grid-template-columns: 1fr 1fr; } .campo-2 { grid-column: span 2; } }
+label.campo .rot { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--mudo); margin-bottom: 0.3rem; }
+.entrada { width: 100%; background: oklch(0.26 0.05 265); border: 1px solid oklch(0.82 0.11 85 / 0.3); color: var(--texto); border-radius: 0.6rem; padding: 0.6rem 0.8rem; outline: none; font: inherit; font-size: 0.95rem; transition: border-color .2s, box-shadow .2s; }
+.entrada:focus { border-color: var(--ouro); box-shadow: 0 0 0 3px oklch(0.82 0.11 85 / 0.2); }
+.nota-priv { text-align: center; font-size: 0.7rem; color: var(--mudo); font-style: italic; margin-top: 0.8rem; }
+
+/* ===== Botão flutuante do som ===== */
+.btn-som { position: fixed; bottom: 1.1rem; right: 1.1rem; z-index: 60; display: grid; place-items: center; height: 3.1rem; width: 3.1rem; border-radius: 9999px; border: 1.5px solid var(--ouro); background: oklch(0.22 0.05 265 / 0.92); color: var(--ouro); font-size: 1.25rem; box-shadow: 0 6px 22px rgba(0,0,0,0.5); cursor: pointer; transition: transform .25s; }
+.btn-som:hover { transform: scale(1.08); }
+.btn-som.ligado { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); animation: brilho 2.6s ease-in-out infinite; }
+.btn-som.desligado::after { content: ""; position: absolute; left: 50%; top: 50%; width: 78%; height: 3px; background: oklch(0.58 0.22 25); border-radius: 2px; transform: translate(-50%, -50%) rotate(-45deg); box-shadow: 0 0 8px oklch(0.58 0.22 25 / 0.8); }
+
+/* ===== Avisos (toasts) ===== */
+#avisos { position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 200; display: flex; flex-direction: column; gap: 0.5rem; width: min(92vw, 24rem); }
+.aviso { border-radius: 0.7rem; border: 1px solid oklch(0.82 0.11 85 / 0.5); background: oklch(0.24 0.05 265 / 0.97); color: var(--texto); padding: 0.7rem 1rem; font-size: 0.88rem; text-align: center; box-shadow: 0 8px 30px rgba(0,0,0,0.5); animation: surgir 0.3s ease-out; }
+.aviso.erro { border-color: oklch(0.6 0.18 25 / 0.7); color: oklch(0.85 0.09 25); }
+
+/* ===== Árvore ===== */
+.zona-arvore { position: relative; z-index: 5; max-width: 56rem; margin: 1.5rem auto 0; padding: 0 0.5rem; }
+.arvore { position: relative; width: 100%; }
+.linhas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.linhas line { stroke: oklch(0.82 0.11 85 / 0.28); stroke-width: 1; }
+.no {
+  position: absolute; width: 26%; transform: translate(-50%, -50%);
+  background: var(--cartao); border: 1.5px solid oklch(0.82 0.11 85 / 0.8); border-radius: 0.9rem;
+  padding: 1.15rem 0.5rem 0.5rem; text-align: center; z-index: 2;
+}
+@media (max-width: 560px) { .no { width: 31%; } }
+.arvore.medindo .resultado, .arvore.medindo .resposta { display: block !important; visibility: hidden; animation: none !important; }
+.no .num { position: absolute; top: -0.85rem; left: 0.55rem; display: grid; place-items: center; height: 1.7rem; width: 1.7rem; border-radius: 9999px; background: var(--ouro); color: oklch(0.22 0.05 80); font-weight: 700; font-size: 0.9rem; box-shadow: 0 3px 10px rgba(0,0,0,0.5); }
+.no .sefira { font-family: 'Cinzel', var(--font-display); font-size: clamp(0.6rem, 1.6vw, 0.85rem); font-weight: 600; letter-spacing: 0.14em; color: var(--ouro); text-transform: uppercase; }
+.no .pergunta { margin-top: 0.3rem; font-style: italic; font-weight: 600; font-size: clamp(0.55rem, 1.4vw, 0.75rem); color: var(--ouro); line-height: 1.35; min-height: 0; }
+.no.pilar-esq { border-color: oklch(0.62 0.12 20 / 0.75); }
+.no.pilar-dir { border-color: oklch(0.62 0.1 255 / 0.75); }
+
+/* Ranhura da carta */
+.ranhura { position: relative; margin: 0.35rem auto 0; width: 42%; aspect-ratio: 3 / 5; perspective: 700px; }
+.ranhura .vazio { position: absolute; inset: 0; border: 1px dashed oklch(0.82 0.11 85 / 0.45); border-radius: 0.55rem; display: grid; place-items: center; color: oklch(0.75 0.03 275 / 0.7); font-size: clamp(0.5rem, 1.3vw, 0.7rem); font-style: italic; }
+.carta3d { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.9s cubic-bezier(0.35, 0, 0.25, 1); transform: rotateY(180deg); opacity: 0; }
+.no.revelado .carta3d { opacity: 1; transform: rotateY(0deg); }
+.face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 0.55rem; overflow: hidden; border: 1.5px solid var(--ouro); }
+.face.frente { background: oklch(0.95 0.02 85); }
+.face.frente img { width: 100%; height: 100%; object-fit: cover; }
+.face.frente img.invertida { transform: rotate(180deg); }
+.face.verso { transform: rotateY(180deg); background: linear-gradient(150deg, oklch(0.3 0.09 280), oklch(0.2 0.06 265)); display: grid; place-items: center; color: var(--ouro); font-size: 1.3rem; }
+.no.revelado .ranhura { animation: brilho 1.6s ease-out 1; }
+.no .resultado { margin-top: 0.45rem; display: none; }
+.no.revelado .resultado { display: block; animation: surgir 0.7s ease-out 0.75s both; }
+.no .nome-carta { font-family: 'Cinzel', var(--font-display); font-size: clamp(0.55rem, 1.5vw, 0.8rem); font-weight: 600; letter-spacing: 0.08em; color: var(--prata); text-transform: uppercase; }
+.no .tag-inv { color: var(--vermelho); font-size: clamp(0.5rem, 1.2vw, 0.68rem); font-style: italic; }
+.no .resposta { margin-top: 0.25rem; font-size: clamp(0.52rem, 1.35vw, 0.72rem); color: #ffffff; line-height: 1.45; display: none; }
+.nome-ouro { color: var(--ouro); font-weight: 700; }
+.no.revelado .resposta { display: block; animation: surgir 0.7s ease-out 0.85s both; }
+
+/* ===== Leitura escrita ===== */
+.leitura { position: relative; z-index: 5; max-width: 46rem; margin: 2.5rem auto 0; padding: 0 1.25rem; display: none; }
+.leitura.mostrar { display: block; }
+.leitura h2 { font-family: var(--font-display); font-size: 1.9rem; color: var(--ouro-suave); text-align: center; margin-bottom: 0.4rem; }
+.leitura .nota { text-align: center; font-size: 0.85rem; color: var(--mudo); font-style: italic; margin-bottom: 1.4rem; }
+.passo { display: flex; gap: 0.8rem; padding: 0.65rem 0; border-bottom: 1px solid oklch(0.82 0.11 85 / 0.14); font-size: 0.95rem; line-height: 1.6; }
+.passo .n { flex: none; display: grid; place-items: center; height: 1.6rem; width: 1.6rem; border-radius: 9999px; background: var(--ouro); color: oklch(0.22 0.05 80); font-weight: 700; font-size: 0.8rem; margin-top: 0.15rem; }
+.passo b { color: var(--ouro); font-weight: 600; }
+.passo .inv { color: var(--vermelho); font-style: italic; }
+.sintese { margin-top: 1.6rem; border: 1.5px solid oklch(0.82 0.11 85 / 0.6); border-radius: 1rem; background: var(--cartao); padding: 1.4rem 1.5rem; }
+.sintese h3 { font-family: 'Cinzel', var(--font-display); letter-spacing: 0.2em; color: var(--ouro); font-size: 0.95rem; margin-bottom: 0.7rem; text-align: center; }
+.sintese p { font-size: 0.95rem; line-height: 1.75; color: var(--texto); }
+.aviso-pedagogico { margin-top: 1.2rem; text-align: center; font-size: 0.78rem; color: var(--mudo); font-style: italic; }
+
+/* ===== Contacto ===== */
+.contacto { position: relative; z-index: 5; text-align: center; padding: 3.5rem 1rem 1rem; }
+.contacto h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.6rem); color: var(--ouro-suave); text-shadow: 0 0 25px oklch(0.82 0.11 85 / 0.35); }
+.contacto p { margin: 0.8rem auto 0; max-width: 40rem; color: var(--mudo); }
+.servicos { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin: 1.4rem auto 0; max-width: 44rem; }
+.servico { display: inline-flex; align-items: center; gap: 0.4rem; border: 1px solid oklch(0.82 0.11 85 / 0.45); border-radius: 9999px; padding: 0.45rem 1rem; font-size: 0.85rem; color: var(--ouro-suave); background: oklch(0.22 0.05 265 / 0.7); box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
+.wa-big { margin-top: 1.6rem; display: inline-grid; place-items: center; height: 6.2rem; width: 6.2rem; border-radius: 9999px; background: linear-gradient(135deg, #2ee06f, #12b45a); color: white; }
+.wa-big svg { width: 3.3rem; height: 3.3rem; fill: currentColor; }
+@keyframes wa-pulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 22px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0.5); } 50% { transform: scale(1.09); box-shadow: 0 0 55px rgba(37,211,102,0.9), 0 0 0 20px rgba(37,211,102,0); } }
+.wa-big { animation: wa-pulse 1.4s ease-in-out infinite; }
+footer { position: relative; z-index: 5; text-align: center; padding: 2.2rem 1rem 2.6rem; color: var(--mudo); font-size: 0.8rem; border-top: 1px solid oklch(0.82 0.11 85 / 0.12); margin-top: 2.5rem; }
+footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--ouro); margin-bottom: 0.3rem; }
+</style>
+</head>
+<body>
+<div class="estrelas"></div>
+
+<header>
+  <a class="marca" href="index.html">
+    <span class="marca-icone">✡</span>
+    <span class="marca-nome">Árvore da Vida · Genial Tarot</span>
+  </a>
+  <a class="voltar" href="index.html">‹ genialtarot.com</a>
+</header>
+
+<section class="heroi">
+  <div class="selo surgir">✦ Cabala · Arcanos Maiores ✦</div>
+  <h1 class="surgir">Tiragem da Árvore da Vida</h1>
+  <p class="sub surgir">Dez cartas, dez Sefirot — de Malkuth, a situação concreta, até Kether, a resposta final.
+  Concentre-se na sua pergunta, lance as cartas e leia a Árvore de baixo para cima.</p>
+
+  <div class="form-arvore surgir">
+    <div class="titulo-form">✦ Identifique-se antes de lançar ✦</div>
+    <div class="grelha-form">
+      <label class="campo"><span class="rot">Nome</span><input id="f-name" class="entrada" placeholder="Primeiro e último nome" /></label>
+      <label class="campo"><span class="rot">Data de nascimento</span><input id="f-dob" class="entrada" placeholder="A sua data de nascimento" /></label>
+      <label class="campo"><span class="rot">Cidade</span><input id="f-city" class="entrada" placeholder="Ex.: Lisboa" /></label>
+      <label class="campo"><span class="rot">País</span><input id="f-country" class="entrada" value="Portugal" /></label>
+      <label class="campo campo-2"><span class="rot">Email</span><input id="f-email" type="email" class="entrada" placeholder="exemplo@email.pt" /></label>
+    </div>
+    <p class="nota-priv">Os seus dados ficam registados junto com a sua tiragem, para o Mestre Alberto poder acompanhá-lo.</p>
+  </div>
+
+  <button id="btn-lancar" class="btn-lancar surgir">✦ Lançar as Cartas ✦<span class="tag-gratis">Grátis</span></button>
+</section>
+
+<button id="btn-som" class="btn-som" aria-label="Ligar ou desligar o som de fundo" title="Som de fundo">♪</button>
+<div id="avisos"></div>
+
+<section class="zona-arvore">
+  <div class="arvore" id="arvore">
+    <svg class="linhas" id="linhas" preserveAspectRatio="none"></svg>
+  </div>
+</section>
+
+<section class="leitura" id="leitura">
+  <h2>Leitura posição a posição</h2>
+  <p class="nota">de baixo para cima — é assim que a Árvore se lê</p>
+  <div id="passos"></div>
+  <div class="sintese">
+    <h3>✦ SÍNTESE ✦</h3>
+    <p id="sintese-texto"></p>
+  </div>
+  <p class="aviso-pedagogico">Leitura simbólica gerada na Árvore da Vida · não substitui uma consulta pessoal com o Mestre Alberto.</p>
+</section>
+
+<section class="contacto">
+  <h2>✦ Quer uma leitura feita por mim? ✦</h2>
+  <p>Consultas pessoais, Rituais e Amuletos — contacte o Mestre Alberto no WhatsApp e receba orientação dedicada.</p>
+  <a class="wa-big" href="https://wa.me/351914920427?text=Ol%C3%A1%20Mestre%20Alberto%2C%20gostaria%20de%20uma%20leitura%20da%20%C3%81rvore%20da%20Vida." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp com o Mestre Alberto">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.36.572-1 3.654 3.745-.985zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.793.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+  </a>
+  <p style="margin-top:0.9rem;font-size:0.85rem">📞 +351 914 920 427 · WhatsApp direto</p>
+  <div class="servicos">
+    <span class="servico">🌳 Leitura de Árvore da Vida</span>
+    <span class="servico">🌌 Mapas Astrais</span>
+    <span class="servico">💼 Conselhos Empresariais</span>
+    <span class="servico">🕊️ Conselhos Espirituais</span>
+    <span class="servico">🌀 Hipnose</span>
+  </div>
+</section>
+
+<footer>
+  <div class="assin">✦ Central Tarot — Cabala ✦</div>
+  © <span id="ano"></span> Genial Tarot · Que a Árvore ilumine o seu caminho.
+</footer>
+
+<script>
+document.getElementById("ano").textContent = new Date().getFullYear();
+
+/* ===== Arcanos Maiores ===== */
+const IMG = s => `https://www.trustedtarot.com/img/cards/${s}.png`;
+const ARCANOS = [
+  { r:"0", nome:"O Louco", img:IMG("the-fool"), up:"a força é o salto de fé — começar de novo, sem garantias", inv:"impulsividade sem rede — o risco pede um plano antes do salto" },
+  { r:"I", nome:"O Mago", img:IMG("the-magician"), up:"tem à mão todos os recursos para agir agora", inv:"talento disperso — falta foco, não capacidade" },
+  { r:"II", nome:"A Sacerdotisa", img:IMG("the-high-priestess"), up:"confiar na intuição, não só na lógica", inv:"sinais interiores ignorados — o saber profundo está a ser abafado" },
+  { r:"III", nome:"A Imperatriz", img:IMG("the-empress"), up:"crescimento fértil — algo quer florescer e ser nutrido", inv:"tanto cuidar dos outros que se esquece de si" },
+  { r:"IV", nome:"O Imperador", img:IMG("the-emperor"), up:"estrutura e disciplina são a base segura", inv:"rigidez a mais — um controlo que começa a sufocar" },
+  { r:"V", nome:"O Hierofante", img:IMG("the-heirophant"), up:"apoio na tradição e no conselho de quem já caminhou", inv:"regras herdadas que já não servem o seu caminho" },
+  { r:"VI", nome:"Os Enamorados", img:IMG("the-lovers"), up:"uma escolha de coração alinhada com os seus valores", inv:"escolha adiada — ficar dividido é ficar parado" },
+  { r:"VII", nome:"O Carro", img:IMG("the-chariot"), up:"vontade firme e rumo definido — avançar com determinação", inv:"forçar o avanço sem direção clara desgasta as rédeas" },
+  { r:"VIII", nome:"A Força", img:IMG("strength"), up:"coragem suave — domínio interior, não força bruta", inv:"a força existe; o que falta é confiar nela" },
+  { r:"IX", nome:"O Eremita", img:IMG("the-hermit"), up:"tempo a sós para pensar, pesquisar e amadurecer", inv:"isolamento a mais — a resposta pede partilha e luz de fora" },
+  { r:"X", nome:"A Roda da Fortuna", img:IMG("wheel-of-fortune"), up:"ponto de viragem natural do ciclo — a roda já gira", inv:"resistir à mudança que já está em curso só cansa" },
+  { r:"XI", nome:"A Justiça", img:IMG("justice"), up:"verdade e equilíbrio — colher o que foi semeado", inv:"autoengano — falta olhar os factos de frente" },
+  { r:"XII", nome:"O Enforcado", img:IMG("the-hanged-man"), up:"uma pausa que muda a perspetiva — esperar com propósito", inv:"sacrifício sem sentido — é hora de soltar a espera" },
+  { r:"XIII", nome:"A Morte", img:IMG("death"), up:"fim de ciclo necessário — transformação profunda", inv:"agarrar o que já terminou atrasa o que quer nascer" },
+  { r:"XIV", nome:"A Temperança", img:IMG("temperance"), up:"equilíbrio paciente — misturar os opostos com calma", inv:"excessos e pressa a desalinhar o processo" },
+  { r:"XV", nome:"O Diabo", img:IMG("the-devil"), up:"um apego ou padrão prende mais do que parece", inv:"cortar o apego ao medo e à zona de conforto" },
+  { r:"XVI", nome:"A Torre", img:IMG("the-tower"), up:"rutura que liberta — a verdade derruba o que era falso", inv:"já era insustentável, mesmo sem mudar nada" },
+  { r:"XVII", nome:"A Estrela", img:IMG("the-star"), up:"esperança real — uma oportunidade genuína à espera", inv:"a fé anda fragilizada — a cura pede tempo e gentileza" },
+  { r:"XVIII", nome:"A Lua", img:IMG("the-moon"), up:"medo e confusão no fundo — nem tudo é o que parece", inv:"o nevoeiro começa a levantar — clareza a caminho" },
+  { r:"XIX", nome:"O Sol", img:IMG("the-sun"), up:"entusiasmo, clareza e vitalidade — um sim luminoso", inv:"o otimismo está tapado por nuvens passageiras" },
+  { r:"XX", nome:"O Julgamento", img:IMG("judgement"), up:"um chamado a renascer — balanço e decisão madura", inv:"a autocrítica está a travar o recomeço" },
+  { r:"XXI", nome:"O Mundo", img:IMG("the-world"), up:"conclusão e plenitude — fechar o ciclo e subir de nível", inv:"falta um último passo para fechar o ciclo" },
+];
+
+/* ===== As 10 Sefirot (colunas: centro / esquerda / direita) ===== */
+const SEFIROT = [
+  { n:1,  nome:"MALKUTH",  col:"c", pergunta:"Qual é a situação concreta, agora?", rotulo:"A situação concreta" },
+  { n:2,  nome:"YESOD",    col:"c", pergunta:"O que se passa no subconsciente/emoções?", rotulo:"No subconsciente" },
+  { n:3,  nome:"HOD",      col:"e", pergunta:"O que a razão ou mente diz?", rotulo:"A razão diz", pilar:"esq" },
+  { n:4,  nome:"NETZACH",  col:"d", pergunta:"O que o coração ou desejo quer?", rotulo:"O coração quer", pilar:"dir" },
+  { n:5,  nome:"TIFERET",  col:"c", pergunta:"Qual é o equilíbrio, a verdade central?", rotulo:"A verdade central" },
+  { n:6,  nome:"GEBURAH",  col:"e", pergunta:"O que precisa de ser cortado ou disciplinado?", rotulo:"O que cortar", pilar:"esq" },
+  { n:7,  nome:"CHESED",   col:"d", pergunta:"Onde há abertura, expansão possível?", rotulo:"A abertura", pilar:"dir" },
+  { n:8,  nome:"BINAH",    col:"e", pergunta:"Que compreensão mais profunda há por trás?", rotulo:"A compreensão profunda", pilar:"esq" },
+  { n:9,  nome:"CHOKMAH",  col:"d", pergunta:"Que força ou inspiração impulsiona isto?", rotulo:"A força que impulsiona", pilar:"dir" },
+  { n:10, nome:"KETHER",   col:"c", pergunta:"Qual é o propósito maior, a resposta final?", rotulo:"A resposta final" },
+];
+/* Filas da árvore, de cima para baixo (para o cálculo automático das alturas) */
+const FILAS = [[10],[8,9],[6,7],[5],[3,4],[2],[1]];
+
+/* ===== Modelos de resposta (variam a cada tiragem; o sentido mantém-se) ===== */
+const RESPOSTAS = {
+  1: ["No plano concreto, {nome}, a carta responde: {e}.", "A sua realidade, aqui e agora, mostra isto — {e}.", "O chão que pisa neste momento, {nome}, revela: {e}.", "É esta a situação presente: {e}."],
+  2: ["Por baixo da superfície, {nome}, sente-se isto: {e}.", "Nas emoções profundas, a carta aponta — {e}.", "O seu mundo interior murmura, {nome}: {e}.", "No subconsciente move-se isto: {e}."],
+  3: ["A sua mente responde com clareza, {nome}: {e}.", "Do lado da razão, a carta diz — {e}.", "O pensamento lógico aponta para isto: {e}.", "A cabeça, fria e atenta, indica-lhe, {nome}: {e}."],
+  4: ["O seu coração pede isto, {nome}: {e}.", "Do lado do desejo, a carta revela — {e}.", "O que a sua vontade quer é claro: {e}.", "As emoções que o impulsionam, {nome}, dizem: {e}."],
+  5: ["No centro da Árvore, {nome}, a verdade é esta: {e}.", "O ponto de equilíbrio revela — {e}.", "A verdade central da questão: {e}.", "Onde tudo se harmoniza, a carta mostra-lhe, {nome}: {e}."],
+  6: ["O que pede corte, {nome}, é isto: {e}.", "A espada de Geburah aponta — {e}.", "Aqui exige-se disciplina: {e}.", "Para avançar, {nome}, há que podar: {e}."],
+  7: ["A porta que se abre para si, {nome}, mostra: {e}.", "Do lado da expansão, a carta oferece — {e}.", "Há espaço para crescer aqui: {e}.", "A generosidade do momento revela, {nome}: {e}."],
+  8: ["A compreensão profunda que emerge, {nome}: {e}.", "Por trás dos acontecimentos entende-se — {e}.", "A sabedoria silenciosa de Binah mostra: {e}.", "O entendimento maduro diz-lhe, {nome}: {e}."],
+  9: ["A força que impulsiona tudo isto, {nome}: {e}.", "A centelha original revela — {e}.", "O que move esta história desde o início: {e}.", "A inspiração por trás de tudo, {nome}, diz: {e}."],
+  10: ["A resposta final para si, {nome}: {e}.", "O propósito maior revela-se — {e}.", "A coroa de Kether sela a leitura, {nome}: {e}.", "No fim de tudo, fica esta luz: {e}."],
+};
+
+/* Nome da pessoa nas respostas (destacado a dourado, como no Tarot Grátis) */
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+function primeiroNome() {
+  const bruto = (visitante?.nome || "").trim().split(/\s+/)[0] || "Viajante";
+  return bruto.charAt(0).toUpperCase() + bruto.slice(1);
+}
+function destacarNome(texto, nome) {
+  const alvo = esc(nome).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return esc(texto).replace(new RegExp(alvo, "g"), `<span class="nome-ouro">${esc(nome)}</span>`);
+}
+const escolherResposta = (n, essencia) => {
+  const m = RESPOSTAS[n];
+  return m[Math.floor(Math.random() * m.length)].replace("{e}", essencia).split("{nome}").join(primeiroNome());
+};
+const LIGACOES = [[1,2],[2,3],[2,4],[3,4],[3,5],[4,5],[2,5],[5,6],[5,7],[6,7],[6,8],[7,9],[8,9],[8,10],[9,10],[5,10],[8,5],[9,5]];
+
+/* ===== Construir a árvore ===== */
+const arvore = document.getElementById("arvore");
+
+SEFIROT.forEach(s => {
+  const no = document.createElement("div");
+  no.className = "no" + (s.pilar === "esq" ? " pilar-esq" : s.pilar === "dir" ? " pilar-dir" : "");
+  no.id = "no-" + s.n;
+  no.innerHTML = `
+    <span class="num">${s.n}</span>
+    <div class="sefira">${s.nome}</div>
+    <div class="ranhura">
+      <div class="vazio">coloque aqui<br>a carta</div>
+      <div class="carta3d">
+        <div class="face frente"><img alt="" /></div>
+        <div class="face verso">✦</div>
+      </div>
+    </div>
+    <div class="resultado">
+      <div class="nome-carta"></div>
+      <div class="tag-inv" style="display:none">(invertida)</div>
+    </div>
+    <div class="pergunta">${s.pergunta}</div>
+    <div class="resposta"></div>`;
+  arvore.appendChild(no);
+});
+
+/* ===== Disposição automática (mede as caixas para nunca se sobreporem) ===== */
+const posPx = {}; // n -> {x, y} em píxeis
+const TXT_LONGO = ARCANOS.flatMap(c => [c.up, c.inv]).reduce((a, b) => (a.length > b.length ? a : b));
+
+function dispor() {
+  const W = arvore.clientWidth;
+  const estreito = W < 560;
+  const xCol = estreito ? { e: 18, c: 50, d: 82 } : { e: 23.5, c: 50, d: 76.5 };
+
+  // 1) medir a altura real de cada caixa com o texto mais longo possível lá dentro
+  arvore.classList.add("medindo");
+  const alturas = {};
+  SEFIROT.forEach(s => {
+    const no = document.getElementById("no-" + s.n);
+    const rsp = no.querySelector(".resposta"), nc = no.querySelector(".nome-carta"), ti = no.querySelector(".tag-inv");
+    const gR = rsp.textContent, gN = nc.textContent, gT = ti.style.display;
+    rsp.textContent = RESPOSTAS[s.n].reduce((a, b) => (a.length > b.length ? a : b)).replace("{e}", TXT_LONGO).split("{nome}").join("Constantina");
+    nc.textContent = "XVIII · A RODA DA FORTUNA"; ti.style.display = "";
+    alturas[s.n] = no.offsetHeight;
+    rsp.textContent = gR; nc.textContent = gN; ti.style.display = gT;
+  });
+  arvore.classList.remove("medindo");
+
+  // 2) calcular o centro vertical de cada fila, garantindo folga entre caixas da mesma coluna
+  const GAP = 24;
+  const hFila = i => Math.max(...FILAS[i].map(n => alturas[n]));
+  const folga = (i, j) => (hFila(i) + hFila(j)) / 2 + GAP;
+  const r = [];
+  r[0] = hFila(0) / 2 + 14;                                   // Kether
+  r[1] = r[0] + 0.6 * folga(0, 1);                            // Chokmah/Binah (coluna lateral — pode aproximar-se)
+  r[2] = r[1] + folga(1, 2);                                  // Chesed/Geburah (mesma coluna que a fila 1)
+  r[3] = Math.max(r[0] + folga(0, 3), r[2] + 0.6 * folga(2, 3)); // Tiferet (coluna central)
+  r[4] = Math.max(r[2] + folga(2, 4), r[3] + 0.6 * folga(3, 4)); // Netzach/Hod
+  r[5] = Math.max(r[3] + folga(3, 5), r[4] + 0.6 * folga(4, 5)); // Yesod
+  r[6] = r[5] + folga(5, 6);                                  // Malkuth
+  arvore.style.height = (r[6] + hFila(6) / 2 + 14) + "px";
+
+  // 3) posicionar as caixas e guardar as coordenadas para as linhas
+  FILAS.forEach((fila, i) => fila.forEach(n => {
+    const s = SEFIROT.find(q => q.n === n);
+    const no = document.getElementById("no-" + n);
+    const x = xCol[s.col];
+    no.style.left = x + "%";
+    no.style.top = r[i] + "px";
+    posPx[n] = { x: x / 100 * W, y: r[i] };
+  }));
+  desenharLinhas();
+}
+
+function desenharLinhas() {
+  const svg = document.getElementById("linhas");
+  const W = arvore.clientWidth, H = arvore.clientHeight;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = LIGACOES.map(([a, b]) => {
+    const A = posPx[a], B = posPx[b];
+    return `<line x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" />`;
+  }).join("");
+}
+dispor();
+window.addEventListener("resize", dispor);
+
+/* ===== Tiragem ===== */
+const btn = document.getElementById("btn-lancar");
+let aLancar = false;
+const rotularBtn = t => { btn.innerHTML = `${t}<span class="tag-gratis">Grátis</span>`; };
+
+function baralhar() {
+  const copia = ARCANOS.map((c, i) => i);
+  for (let i = copia.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copia[i], copia[j]] = [copia[j], copia[i]];
+  }
+  return copia.slice(0, 10).map(idx => ({ ...ARCANOS[idx], invertida: Math.random() < 0.32 }));
+}
+
+function limpar() {
+  document.querySelectorAll(".no").forEach(no => no.classList.remove("revelado"));
+  document.getElementById("leitura").classList.remove("mostrar");
+}
+
+btn.addEventListener("click", async () => {
+  if (aLancar) return;
+
+  // Identificação obrigatória (como no Tarot Grátis)
+  const nome = document.getElementById("f-name").value.trim();
+  const nasc = document.getElementById("f-dob").value.trim();
+  const cidade = document.getElementById("f-city").value.trim();
+  const pais = document.getElementById("f-country").value.trim();
+  const email = document.getElementById("f-email").value.trim();
+  if (!nome || !nasc || !cidade || !pais || !/\S+@\S+\.\S+/.test(email)) {
+    aviso("Preencha o seu nome, data de nascimento, cidade, país e um email válido antes de lançar as cartas.", true);
+    document.querySelector(".form-arvore").scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+  visitante = { nome, nasc, cidade, pais, email };
+
+  // Limite: 1 tiragem por dia (navegador + IP na base de dados)
+  btn.disabled = true;
+  const jaFez = tiragensHoje() >= 1 || (await jaTirouHojePorIP());
+  if (jaFez) {
+    btn.disabled = false;
+    aviso("🌳 A Árvore já falou consigo hoje. Volte amanhã para uma nova tiragem — ou marque uma consulta pessoal com o Mestre Alberto no WhatsApp.", true);
+    try {
+      fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "ratelimit", data: { name: nome + " (Árvore da Vida)", email } }) });
+    } catch {}
+    return;
+  }
+  marcarTiragem();
+
+  aLancar = true;
+  btn.disabled = true;
+  rotularBtn("✦ As cartas estão a cair… ✦");
+  limpar();
+
+  const cartas = baralhar();
+  cartas.forEach((carta, i) => {
+    const s = SEFIROT[i];
+    const no = document.getElementById("no-" + s.n);
+    const img = no.querySelector(".face.frente img");
+    img.src = carta.img;
+    img.alt = carta.nome;
+    img.classList.toggle("invertida", carta.invertida);
+    no.querySelector(".nome-carta").textContent = `${carta.r} · ${carta.nome}`;
+    no.querySelector(".tag-inv").style.display = carta.invertida ? "" : "none";
+    no.querySelector(".resposta").innerHTML = destacarNome(escolherResposta(s.n, carta.invertida ? carta.inv : carta.up), primeiroNome());
+
+    setTimeout(() => {
+      no.classList.add("revelado");
+      if (i === 0) no.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 600 + i * 950);
+  });
+
+  const total = 600 + 10 * 950 + 600;
+  setTimeout(() => {
+    const sintese = montarLeitura(cartas);
+    registarTiragem(cartas, sintese);
+    btn.disabled = false;
+    rotularBtn("✦ Nova Tiragem Amanhã ✦");
+    aLancar = false;
+  }, total);
+});
+
+/* ===== Leitura escrita + síntese ===== */
+function montarLeitura(cartas) {
+  const passos = document.getElementById("passos");
+  passos.innerHTML = cartas.map((c, i) => {
+    const s = SEFIROT[i];
+    return `<div class="passo">
+      <span class="n">${s.n}</span>
+      <div><b>${s.nome.charAt(0) + s.nome.slice(1).toLowerCase()}</b> — <b>${c.nome}</b>${c.invertida ? ' <span class="inv">(invertida)</span>' : ''}: ${s.rotulo.toLowerCase()} — ${c.invertida ? c.inv : c.up}.</div>
+    </div>`;
+  }).join("");
+
+  const e = i => (cartas[i].invertida ? cartas[i].inv : cartas[i].up);
+  const n = i => cartas[i].nome + (cartas[i].invertida ? " (invertida)" : "");
+  const p = primeiroNome();
+  const sintese = `${p}, na base, ${n(0)} mostra que ${e(0)}. ` +
+    `Entre a razão (${n(2)}: ${e(2)}) e o coração (${n(3)}: ${e(3)}), o centro da Árvore — ${n(4)} — resolve a tensão: ${e(4)}. ` +
+    `O que trava ou pede corte é ${n(5)} (${e(5)}), enquanto ${n(6)} abre espaço: ${e(6)}. ` +
+    `Por trás de tudo, ${n(7)} sugere que ${e(7)}, impulsionado por ${n(8)}: ${e(8)}. ` +
+    `E no topo, ${p}, ${n(9)} sela a sua resposta — ${e(9)}.`;
+  document.getElementById("sintese-texto").innerHTML = destacarNome(sintese, p);
+  document.getElementById("leitura").classList.add("mostrar");
+  return sintese;
+}
+
+/* ===== Avisos ===== */
+function aviso(msg, erro) {
+  const box = document.getElementById("avisos");
+  const el = document.createElement("div");
+  el.className = "aviso" + (erro ? " erro" : "");
+  el.textContent = msg;
+  box.appendChild(el);
+  setTimeout(() => el.remove(), 5000);
+}
+
+/* ===== Guardar contacto + avisar o Mestre (igual ao Tarot Grátis) ===== */
+const SUPABASE_URL = "https://bjucptcepnjlkicxcnmh.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJqdWNwdGNlcG5qbGtpY3hjbm1oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNzkzMzcsImV4cCI6MjA5Mzc1NTMzN30.FZA6k0bFhxtuk_kKe5E8DGi-uCX0sJcTr8WMZQZkI18";
+let visitante = null;
+let visitanteIP = null;
+
+/* Limite diário: 1 tiragem por dia (registo no navegador + verificação por IP) */
+const chaveDia = () => "arv_tiragens_" + new Date().toISOString().slice(0, 10);
+function tiragensHoje() {
+  try { return Number(localStorage.getItem(chaveDia()) || 0); } catch { return 0; }
+}
+function marcarTiragem() {
+  try { localStorage.setItem(chaveDia(), tiragensHoje() + 1); } catch {}
+}
+async function jaTirouHojePorIP() {
+  try {
+    const r = await fetch("https://ipwho.is/?fields=ip");
+    if (r.ok) visitanteIP = (await r.json()).ip || null;
+  } catch {}
+  if (!visitanteIP) return false;
+  try {
+    const hoje = new Date().toISOString().slice(0, 10);
+    const q = await fetch(`${SUPABASE_URL}/rest/v1/tarot_readings?select=id&ip_address=eq.${encodeURIComponent(visitanteIP)}&area=eq.${encodeURIComponent("Árvore da Vida")}&created_at=gte.${hoje}T00:00:00Z&limit=1`, {
+      headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` },
+    });
+    if (!q.ok) return false;
+    return (await q.json()).length > 0;
+  } catch { return false; }
+}
+
+async function registarTiragem(cartas, sintese) {
+  if (!visitante) return;
+  const resumo = cartas.map((c, i) => {
+    const s = SEFIROT[i];
+    return `${s.n}. ${s.nome}: ${c.nome}${c.invertida ? " (invertida)" : ""}`;
+  }).join("\n");
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/tarot_readings`, {
+      method: "POST",
+      headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}`, "Content-Type": "application/json", "Prefer": "return=minimal" },
+      body: JSON.stringify({
+        id: crypto.randomUUID(),
+        name: visitante.nome, date_of_birth: visitante.nasc, city: visitante.cidade,
+        country: visitante.pais, email: visitante.email, area: "Árvore da Vida",
+        cards: cartas.map((c, i) => ({ id: "arv-" + SEFIROT[i].n, name: `${SEFIROT[i].nome}: ${c.nome}${c.invertida ? " (inv)" : ""}`, arcana: "maior", suit: "" })),
+        verdict: resumo + "\n\nSÍNTESE: " + sintese,
+        ip_address: visitanteIP,
+      }),
+    });
+  } catch (e) { console.error("registo falhou:", e); }
+  try {
+    await fetch("/notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "reading", data: {
+        name: visitante.nome, email: visitante.email, city: visitante.cidade,
+        country: visitante.pais, date_of_birth: visitante.nasc, area: "🌳 Árvore da Vida",
+        verdict: resumo + "\n\nSÍNTESE: " + sintese,
+      } }),
+    });
+  } catch (e) { console.error("aviso falhou:", e); }
+}
+
+/* ===== Som de fundo (gerado — sem ficheiros; pad calmo e cabalístico) ===== */
+let somCtx = null, somMaster = null, somLigado = false, somTimer = null;
+const btnSom = document.getElementById("btn-som");
+
+function criarSom() {
+  somCtx = new (window.AudioContext || window.webkitAudioContext)();
+  somMaster = somCtx.createGain();
+  somMaster.gain.value = 0;
+  const filtro = somCtx.createBiquadFilter();
+  filtro.type = "lowpass"; filtro.frequency.value = 750; filtro.Q.value = 0.4;
+  somMaster.connect(filtro); filtro.connect(somCtx.destination);
+
+  // respiração lenta do filtro (como uma maré)
+  const lfo = somCtx.createOscillator(), lfoGain = somCtx.createGain();
+  lfo.frequency.value = 0.035; lfoGain.gain.value = 320;
+  lfo.connect(lfoGain); lfoGain.connect(filtro.frequency); lfo.start();
+
+  // bordão em Ré menor (Ré–Lá–Ré–Fá), duas vozes desafinadas por nota
+  [[73.42, "triangle", 0.16], [110.0, "sine", 0.12], [146.83, "sine", 0.1], [174.61, "sine", 0.07]].forEach(([f, tipo, vol]) => {
+    [0, 0.7].forEach(det => {
+      const o = somCtx.createOscillator(), g = somCtx.createGain();
+      o.type = tipo; o.frequency.value = f + det;
+      g.gain.value = vol / 2;
+      // ondulação suave e independente de cada voz
+      const l = somCtx.createOscillator(), lg = somCtx.createGain();
+      l.frequency.value = 0.05 + Math.random() * 0.06; lg.gain.value = vol / 5;
+      l.connect(lg); lg.connect(g.gain); l.start();
+      o.connect(g); g.connect(somMaster); o.start();
+    });
+  });
+
+  // eco para os sinos
+  const eco = somCtx.createDelay(1.2), ecoGain = somCtx.createGain();
+  eco.delayTime.value = 0.48; ecoGain.gain.value = 0.38;
+  eco.connect(ecoGain); ecoGain.connect(eco); ecoGain.connect(somMaster);
+  somCtx._eco = eco;
+}
+
+function sino() {
+  if (!somLigado || !somCtx) return;
+  const notas = [293.66, 349.23, 392.0, 440.0, 523.25, 587.33, 698.46, 880.0];
+  const f = notas[Math.floor(Math.random() * notas.length)];
+  const o = somCtx.createOscillator(), g = somCtx.createGain();
+  o.type = "sine"; o.frequency.value = f;
+  const t = somCtx.currentTime;
+  g.gain.setValueAtTime(0, t);
+  g.gain.linearRampToValueAtTime(0.09, t + 0.02);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + 5);
+  o.connect(g); g.connect(somMaster); g.connect(somCtx._eco);
+  o.start(t); o.stop(t + 5.2);
+  somTimer = setTimeout(sino, 6000 + Math.random() * 8000);
+}
+
+function subirVolume() {
+  const t = somCtx.currentTime;
+  somMaster.gain.cancelScheduledValues(t);
+  somMaster.gain.setValueAtTime(somMaster.gain.value, t);
+  somMaster.gain.linearRampToValueAtTime(0.55, t + 2.5);
+  clearTimeout(somTimer); somTimer = setTimeout(sino, 1500);
+}
+function ligarSom() {
+  if (!somCtx) criarSom();
+  somLigado = true;
+  btnSom.classList.add("ligado"); btnSom.classList.remove("desligado");
+  if (somCtx.state === "suspended") {
+    somCtx.resume().then(() => { if (somLigado) subirVolume(); }).catch(() => {});
+  } else subirVolume();
+}
+function desligarSom() {
+  somLigado = false;
+  btnSom.classList.remove("ligado"); btnSom.classList.add("desligado");
+  clearTimeout(somTimer);
+  if (somCtx && somMaster) {
+    const t = somCtx.currentTime;
+    somMaster.gain.cancelScheduledValues(t);
+    somMaster.gain.setValueAtTime(somMaster.gain.value, t);
+    somMaster.gain.linearRampToValueAtTime(0, t + 0.8);
+  }
+}
+btnSom.addEventListener("click", () => (somLigado ? desligarSom() : ligarSom()));
+
+// Som ligado por defeito ao abrir a página.
+// Se o navegador travar o arranque automático, o som começa ao primeiro toque/clique.
+ligarSom();
+["pointerdown", "touchstart", "keydown"].forEach(ev =>
+  document.addEventListener(ev, () => {
+    if (somLigado && somCtx && somCtx.state === "suspended") {
+      somCtx.resume().then(() => { if (somLigado) subirVolume(); }).catch(() => {});
+    }
+  }, { passive: true })
+);
+</script>
+</body>
+</html>
