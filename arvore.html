@@ -145,6 +145,7 @@ label.campo .rot { display: block; font-size: 0.68rem; text-transform: uppercase
 .arvore.medindo .resultado, .arvore.medindo .resposta { display: block !important; visibility: hidden; animation: none !important; }
 .no .num { position: absolute; top: -0.85rem; left: 0.55rem; display: grid; place-items: center; height: 1.7rem; width: 1.7rem; border-radius: 9999px; background: var(--ouro); color: oklch(0.22 0.05 80); font-weight: 700; font-size: 0.9rem; box-shadow: 0 3px 10px rgba(0,0,0,0.5); }
 .no .sefira { font-family: 'Cinzel', var(--font-display); font-size: clamp(0.6rem, 1.6vw, 0.85rem); font-weight: 600; letter-spacing: 0.14em; color: var(--ouro); text-transform: uppercase; }
+.sefira-orig { display: block; font-family: 'Inter', system-ui, sans-serif; font-size: clamp(0.45rem, 1.1vw, 0.62rem); font-weight: 500; letter-spacing: 0.06em; color: var(--mudo); text-transform: none; margin-top: 0.05rem; }
 .no .pergunta { margin-top: 0.3rem; font-style: italic; font-weight: 600; font-size: clamp(0.55rem, 1.4vw, 0.75rem); color: var(--ouro); line-height: 1.35; min-height: 0; }
 .no.pilar-esq { border-color: oklch(0.62 0.12 20 / 0.75); }
 .no.pilar-dir { border-color: oklch(0.62 0.1 255 / 0.75); }
@@ -177,6 +178,7 @@ label.campo .rot { display: block; font-size: 0.68rem; text-transform: uppercase
 .passo .n { flex: none; display: grid; place-items: center; height: 1.6rem; width: 1.6rem; border-radius: 9999px; background: var(--ouro); color: oklch(0.22 0.05 80); font-weight: 700; font-size: 0.8rem; margin-top: 0.15rem; }
 .passo b { color: var(--ouro); font-weight: 600; }
 .passo .inv { color: var(--vermelho); font-style: italic; }
+.passo .orig-peq { font-size: 0.75em; color: var(--mudo); }
 .sintese { margin-top: 1.6rem; border: 1.5px solid oklch(0.82 0.11 85 / 0.6); border-radius: 1rem; background: var(--cartao); padding: 1.4rem 1.5rem; }
 .sintese h3 { font-family: 'Cinzel', var(--font-display); letter-spacing: 0.2em; color: var(--ouro); font-size: 0.95rem; margin-bottom: 0.7rem; text-align: center; }
 .sintese p { font-size: 0.95rem; line-height: 1.75; color: var(--texto); }
@@ -262,6 +264,9 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
   </a>
   <p style="margin-top:0.9rem;font-size:0.85rem">📞 +351 914 920 427 · WhatsApp direto</p>
   <div class="servicos">
+    <span class="servico">🔮 Consultas de Tarot</span>
+    <span class="servico">🕯️ Rituais</span>
+    <span class="servico">🧿 Amuletos</span>
     <span class="servico">🌳 Leitura de Árvore da Vida</span>
     <span class="servico">🌌 Mapas Astrais</span>
     <span class="servico">💼 Conselhos Empresariais</span>
@@ -307,16 +312,16 @@ const ARCANOS = [
 
 /* ===== As 10 Sefirot (colunas: centro / esquerda / direita) ===== */
 const SEFIROT = [
-  { n:1,  nome:"MALKUTH",  col:"c", pergunta:"Qual é a situação concreta, agora?", rotulo:"A situação concreta" },
-  { n:2,  nome:"YESOD",    col:"c", pergunta:"O que se passa no subconsciente/emoções?", rotulo:"No subconsciente" },
-  { n:3,  nome:"HOD",      col:"e", pergunta:"O que a razão ou mente diz?", rotulo:"A razão diz", pilar:"esq" },
-  { n:4,  nome:"NETZACH",  col:"d", pergunta:"O que o coração ou desejo quer?", rotulo:"O coração quer", pilar:"dir" },
-  { n:5,  nome:"TIFERET",  col:"c", pergunta:"Qual é o equilíbrio, a verdade central?", rotulo:"A verdade central" },
-  { n:6,  nome:"GEBURAH",  col:"e", pergunta:"O que precisa de ser cortado ou disciplinado?", rotulo:"O que cortar", pilar:"esq" },
-  { n:7,  nome:"CHESED",   col:"d", pergunta:"Onde há abertura, expansão possível?", rotulo:"A abertura", pilar:"dir" },
-  { n:8,  nome:"BINAH",    col:"e", pergunta:"Que compreensão mais profunda há por trás?", rotulo:"A compreensão profunda", pilar:"esq" },
-  { n:9,  nome:"CHOKMAH",  col:"d", pergunta:"Que força ou inspiração impulsiona isto?", rotulo:"A força que impulsiona", pilar:"dir" },
-  { n:10, nome:"KETHER",   col:"c", pergunta:"Qual é o propósito maior, a resposta final?", rotulo:"A resposta final" },
+  { n:1,  nome:"Malkuth",  pt:"REINO",        col:"c", pergunta:"Qual é a situação concreta, agora?", rotulo:"A situação concreta" },
+  { n:2,  nome:"Yesod",    pt:"FUNDAMENTO",   col:"c", pergunta:"O que se passa no subconsciente/emoções?", rotulo:"No subconsciente" },
+  { n:3,  nome:"Hod",      pt:"ESPLENDOR",    col:"e", pergunta:"O que a razão ou mente diz?", rotulo:"A razão diz", pilar:"esq" },
+  { n:4,  nome:"Netzach",  pt:"VITÓRIA",      col:"d", pergunta:"O que o coração ou desejo quer?", rotulo:"O coração quer", pilar:"dir" },
+  { n:5,  nome:"Tiferet",  pt:"BELEZA",       col:"c", pergunta:"Qual é o equilíbrio, a verdade central?", rotulo:"A verdade central" },
+  { n:6,  nome:"Geburah",  pt:"SEVERIDADE",   col:"e", pergunta:"O que precisa de ser cortado ou disciplinado?", rotulo:"O que cortar", pilar:"esq" },
+  { n:7,  nome:"Chesed",   pt:"MISERICÓRDIA", col:"d", pergunta:"Onde há abertura, expansão possível?", rotulo:"A abertura", pilar:"dir" },
+  { n:8,  nome:"Binah",    pt:"ENTENDIMENTO", col:"e", pergunta:"Que compreensão mais profunda há por trás?", rotulo:"A compreensão profunda", pilar:"esq" },
+  { n:9,  nome:"Chokmah",  pt:"SABEDORIA",    col:"d", pergunta:"Que força ou inspiração impulsiona isto?", rotulo:"A força que impulsiona", pilar:"dir" },
+  { n:10, nome:"Kether",   pt:"COROA",        col:"c", pergunta:"Qual é o propósito maior, a resposta final?", rotulo:"A resposta final" },
 ];
 /* Filas da árvore, de cima para baixo (para o cálculo automático das alturas) */
 const FILAS = [[10],[8,9],[6,7],[5],[3,4],[2],[1]];
@@ -360,7 +365,7 @@ SEFIROT.forEach(s => {
   no.id = "no-" + s.n;
   no.innerHTML = `
     <span class="num">${s.n}</span>
-    <div class="sefira">${s.nome}</div>
+    <div class="sefira">${s.pt} <span class="sefira-orig">(${s.nome})</span></div>
     <div class="ranhura">
       <div class="vazio">coloque aqui<br>a carta</div>
       <div class="carta3d">
@@ -539,9 +544,10 @@ function montarLeitura(cartas) {
   const passos = document.getElementById("passos");
   passos.innerHTML = cartas.map((c, i) => {
     const s = SEFIROT[i];
+    const pt = s.pt.charAt(0) + s.pt.slice(1).toLowerCase();
     return `<div class="passo">
       <span class="n">${s.n}</span>
-      <div><b>${s.nome.charAt(0) + s.nome.slice(1).toLowerCase()}</b> — <b>${c.nome}</b>${c.invertida ? ' <span class="inv">(invertida)</span>' : ''}: ${s.rotulo.toLowerCase()} — ${c.invertida ? c.inv : c.up}.</div>
+      <div><b>${pt}</b> <span class="orig-peq">(${s.nome})</span> — <b>${c.nome}</b>${c.invertida ? ' <span class="inv">(invertida)</span>' : ''}: ${s.rotulo.toLowerCase()} — ${c.invertida ? c.inv : c.up}.</div>
     </div>`;
   }).join("");
 
@@ -602,7 +608,7 @@ async function registarTiragem(cartas, sintese) {
   if (!visitante) return;
   const resumo = cartas.map((c, i) => {
     const s = SEFIROT[i];
-    return `${s.n}. ${s.nome}: ${c.nome}${c.invertida ? " (invertida)" : ""}`;
+    return `${s.n}. ${s.pt.charAt(0) + s.pt.slice(1).toLowerCase()} (${s.nome}): ${c.nome}${c.invertida ? " (invertida)" : ""}`;
   }).join("\n");
   try {
     await fetch(`${SUPABASE_URL}/rest/v1/tarot_readings`, {
@@ -612,7 +618,7 @@ async function registarTiragem(cartas, sintese) {
         id: crypto.randomUUID(),
         name: visitante.nome, date_of_birth: visitante.nasc, city: visitante.cidade,
         country: visitante.pais, email: visitante.email, area: "Árvore da Vida",
-        cards: cartas.map((c, i) => ({ id: "arv-" + SEFIROT[i].n, name: `${SEFIROT[i].nome}: ${c.nome}${c.invertida ? " (inv)" : ""}`, arcana: "maior", suit: "" })),
+        cards: cartas.map((c, i) => ({ id: "arv-" + SEFIROT[i].n, name: `${SEFIROT[i].pt} (${SEFIROT[i].nome}): ${c.nome}${c.invertida ? " (inv)" : ""}`, arcana: "maior", suit: "" })),
         verdict: resumo + "\n\nSÍNTESE: " + sintese,
         ip_address: visitanteIP,
       }),
