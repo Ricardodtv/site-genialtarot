@@ -176,6 +176,15 @@ footer { position: relative; border-top: 1px solid oklch(0.70 0.10 15 / 0.15); p
   100% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0); }
 }
 .som-chama { animation: pulso-som 1.1s ease-out infinite; border-radius: 9999px; }
+
+/* Botão de som unificado — canto superior direito, igual em todas as páginas */
+.som-fix { position: fixed; top: 1rem; right: 1rem; z-index: 90; display: grid; place-items: center; height: 3rem; width: 3rem; padding: 0; border-radius: 9999px; border: 1.5px solid oklch(0.82 0.11 85); background: oklch(0.22 0.05 265 / 0.92); color: oklch(0.82 0.11 85); font-size: 1.2rem; box-shadow: 0 6px 22px rgba(0,0,0,0.5); cursor: pointer; transition: transform .25s; }
+.som-fix:hover { transform: scale(1.08); }
+.som-fix.ligado { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); animation: brilho-som 2.6s ease-in-out infinite; }
+.som-fix.desligado::after { content: ""; position: absolute; left: 50%; top: 50%; width: 78%; height: 3px; background: oklch(0.58 0.22 25); border-radius: 2px; transform: translate(-50%, -50%) rotate(-45deg); box-shadow: 0 0 8px oklch(0.58 0.22 25 / 0.8); }
+.som-fix::before { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2px solid oklch(0.87 0.16 95 / 0.9); animation: anel-pisca-som 1.1s ease-in-out infinite; pointer-events: none; }
+@keyframes anel-pisca-som { 0%, 100% { opacity: 0.15; transform: scale(1); } 50% { opacity: 1; transform: scale(1.14); } }
+@keyframes brilho-som { 0%, 100% { box-shadow: 0 0 22px oklch(0.82 0.11 85 / 0.35); } 50% { box-shadow: 0 0 45px oklch(0.82 0.11 85 / 0.65); } }
 </style>
 </head>
 <body>
@@ -297,10 +306,7 @@ footer { position: relative; border-top: 1px solid oklch(0.70 0.10 15 / 0.15); p
   genialtarot.com
 </a>
 
-<button id="audio-fab" class="audio-fab" aria-label="Ligar música de fundo">
-  <svg class="ico" id="afab-on" style="width:1.25rem;height:1.25rem" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-  <svg class="ico" id="afab-off" style="width:1.25rem;height:1.25rem;display:none" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg>
-</button>
+<button id="audio-fab" class="som-fix" aria-label="Ligar ou desligar o som">♪</button>
 
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
@@ -359,12 +365,13 @@ modal.addEventListener("click", e => { if (e.target === modal) closeSignModal();
 
 /* ===== Música de fundo ===== */
 const audio = new Audio("mystic-ambient.mp3");
-audio.loop = true; audio.volume = 0.17;
+audio.loop = true; audio.volume = 0.02;
 const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off");
 function setAudioUI(on) {
-  fabOn.style.display = on ? "" : "none";
-  fabOff.style.display = on ? "none" : "";
-  document.getElementById("audio-fab").classList.toggle("som-chama", !on);
+  const b = document.getElementById("audio-fab");
+  b.classList.toggle("ligado", on);
+  b.classList.toggle("desligado", !on);
+  b.classList.toggle("som-chama", !on);
 }
 let fadeMus = null;
 function tryPlay(dur) {
@@ -372,7 +379,7 @@ function tryPlay(dur) {
   audio.play().then(() => {
     setAudioUI(true);
     clearInterval(fadeMus); audio.volume = 0; let i = 0;
-    fadeMus = setInterval(() => { i++; audio.volume = Math.min(0.17, 0.17 * i / 35); if (i >= 35) clearInterval(fadeMus); }, dur / 35);
+    fadeMus = setInterval(() => { i++; audio.volume = Math.min(0.02, 0.02 * i / 35); if (i >= 35) clearInterval(fadeMus); }, dur / 35);
   }).catch(() => setAudioUI(false));
 }
 

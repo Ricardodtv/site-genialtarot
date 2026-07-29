@@ -77,8 +77,10 @@ jogo de trustedtarot.com.
   Atalho "Árvore da Vida" (azul-noite/dourado, ícone SVG com o esquema das 10 Sefirot)
   aponta para arvore.html e pulsa como os restantes.
 - Áudio de fundo: TODAS as páginas têm som ligado POR DEFEITO (arranca ao 1.º toque se o
-  navegador travar o autoplay), fade-in suave (~3,5s; 1,2s ao retomar) e volumes baixos —
-  index 0.04, tarot-gratis 0.09, horóscopos 0.17, árvore 0.28 (Web Audio).
+  navegador travar o autoplay) com fade-in. Botão de som UNIFICADO em todas as páginas:
+  círculo ♪ fixo no canto superior direito, anel amarelo a piscar (1,1s), dourado quando
+  ligado, risco vermelho diagonal quando desligado. Volume IGUAL em todas (0.02),
+  exceto a árvore (0.45, som gerado por Web Audio). Fade index: 1s.
   **Continuidade:** a música partilhada (mystic-ambient: index + 3 horóscopos) continua no
   mesmo ponto ao mudar de página (sessionStorage `mus_mystic`; tarot-gratis usa `mus_ambient`).
   Se o visitante desligar o som, fica desligado durante a sessão.
