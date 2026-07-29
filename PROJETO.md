@@ -76,6 +76,12 @@ jogo de trustedtarot.com.
   (roxo/rubi/esmeralda) e os efeitos pesados (halos blur) estão desligados em ecrãs ≤640px.
   Atalho "Árvore da Vida" (azul-noite/dourado, ícone SVG com o esquema das 10 Sefirot)
   aponta para arvore.html e pulsa como os restantes.
+- Áudio de fundo: TODAS as páginas têm som ligado POR DEFEITO (arranca ao 1.º toque se o
+  navegador travar o autoplay), fade-in suave (~3,5s; 1,2s ao retomar) e volumes baixos —
+  index 0.04, tarot-gratis 0.09, horóscopos 0.17, árvore 0.28 (Web Audio).
+  **Continuidade:** a música partilhada (mystic-ambient: index + 3 horóscopos) continua no
+  mesmo ponto ao mudar de página (sessionStorage `mus_mystic`; tarot-gratis usa `mus_ambient`).
+  Se o visitante desligar o som, fica desligado durante a sessão.
 - Links externos que se mantêm: WhatsApp +351 914 920 427, Agenda (calendar.app.google),
   Loja (linktr.ee/genialtarot), Livro (Amazon), Observação do Céu (tutiempo), redes sociais.
 - Futuro desejado: email profissional contacto@genialtarot.com via Cloudflare Email

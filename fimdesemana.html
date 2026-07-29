@@ -357,16 +357,52 @@ modal.addEventListener("click", e => { if (e.target === modal) closeSignModal();
 
 /* ===== Música de fundo ===== */
 const audio = new Audio("mystic-ambient.mp3");
-audio.loop = true; audio.volume = 0.35;
+audio.loop = true; audio.volume = 0.17;
 const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off");
 function setAudioUI(on) {
   fabOn.style.display = on ? "" : "none";
   fabOff.style.display = on ? "none" : "";
 }
-function tryPlay() {
-  audio.play().then(() => setAudioUI(true)).catch(() => setAudioUI(false));
+let fadeMus = null;
+function tryPlay(dur) {
+  dur = dur || 3500;
+  audio.play().then(() => {
+    setAudioUI(true);
+    clearInterval(fadeMus); audio.volume = 0; let i = 0;
+    fadeMus = setInterval(() => { i++; audio.volume = Math.min(0.17, 0.17 * i / 35); if (i >= 35) clearInterval(fadeMus); }, dur / 35);
+  }).catch(() => setAudioUI(false));
 }
-// A música NUNCA arranca sozinha — só quando o visitante clica no botão de som.
+
+// ===== Continuidade do som entre páginas (mesma música, mesma sessão) =====
+const MUS_KEY = "mus_mystic";
+let musEstado = null;
+try { musEstado = JSON.parse(sessionStorage.getItem(MUS_KEY) || "null"); } catch {}
+const tentaRestauro = () => {
+  if (!(musEstado && musEstado.pos > 0) || !isFinite(audio.duration) || audio.duration <= 0) return;
+  const alvo = musEstado.pos % audio.duration;
+  for (let i = 0; i < audio.seekable.length; i++) {
+    if (audio.seekable.start(i) <= alvo && audio.seekable.end(i) >= alvo) {
+      audio.currentTime = alvo; musEstado.pos = 0;
+      ["loadedmetadata", "canplay", "progress"].forEach(ev => audio.removeEventListener(ev, tentaRestauro));
+      return;
+    }
+  }
+};
+["loadedmetadata", "canplay", "progress"].forEach(ev => audio.addEventListener(ev, tentaRestauro));
+window.addEventListener("pagehide", () => {
+  try { sessionStorage.setItem(MUS_KEY, JSON.stringify({ on: !audio.paused, pos: audio.currentTime || 0 })); } catch {}
+});
+// Som ligado POR DEFEITO ao abrir a página. Se já vinha a tocar noutra página,
+// retoma no mesmo ponto (fade curto). Se o navegador travar o arranque automático,
+// o som começa ao primeiro toque/clique. Se o visitante o desligou, fica desligado.
+if (!musEstado || musEstado.on) {
+  const durFade = musEstado && musEstado.on ? 1200 : 3500;
+  tryPlay(durFade);
+  const retomar = () => { if (audio.paused) tryPlay(durFade); };
+  ["pointerdown", "touchstart", "keydown", "scroll"].forEach(ev =>
+    window.addEventListener(ev, retomar, { once: true, passive: true }));
+}
+// Pausa a música quando um vídeo do YouTube ganha foco.
 window.addEventListener("blur", () => {
   if (document.activeElement?.tagName === "IFRAME" && !audio.paused) {
     audio.pause(); setAudioUI(false);

@@ -1617,7 +1617,35 @@ function openRateModal() {
 
 /* ============ Som ambiente ============ */
 const ambient = new Audio("ambient.mp3");
-ambient.loop = false; ambient.volume = 0.18; ambient.preload = "auto";
+ambient.loop = false; ambient.volume = 0.09; ambient.preload = "auto";
+const AMB_VOL = 0.09;
+let ambFade = null;
+function ambFadeIn(dur) {
+  dur = dur || 3500;
+  clearInterval(ambFade); ambient.volume = 0; let i = 0;
+  ambFade = setInterval(() => { i++; ambient.volume = Math.min(AMB_VOL, AMB_VOL * i / 35); if (i >= 35) clearInterval(ambFade); }, dur / 35);
+}
+
+// ===== Continuidade do som (mesma sessão) =====
+const AMB_KEY = "mus_ambient";
+let ambEstado = null;
+try { ambEstado = JSON.parse(sessionStorage.getItem(AMB_KEY) || "null"); } catch {}
+const tentaRestauroAmb = () => {
+  if (!(ambEstado && ambEstado.pos > 0) || !isFinite(ambient.duration) || ambient.duration <= 0) return;
+  if (ambEstado.pos >= ambient.duration - 1) { ambEstado.pos = 0; return; }
+  const alvo = ambEstado.pos;
+  for (let i = 0; i < ambient.seekable.length; i++) {
+    if (ambient.seekable.start(i) <= alvo && ambient.seekable.end(i) >= alvo) {
+      ambient.currentTime = alvo; ambEstado.pos = 0;
+      ["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.removeEventListener(ev, tentaRestauroAmb));
+      return;
+    }
+  }
+};
+["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.addEventListener(ev, tentaRestauroAmb));
+window.addEventListener("pagehide", () => {
+  try { sessionStorage.setItem(AMB_KEY, JSON.stringify({ on: !ambient.paused, pos: ambient.currentTime || 0 })); } catch {}
+});
 const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off"), fabLabel = document.getElementById("afab-label");
 let ambientOn = false;
 function setAmbientUI(on) {
@@ -1626,9 +1654,10 @@ function setAmbientUI(on) {
   fabOff.style.display = on ? "none" : "";
   fabLabel.textContent = on ? "Som ligado" : "Som ambiente";
 }
-ambient.play().then(() => setAmbientUI(true)).catch(() => {
+const ambRetoma = ambEstado && ambEstado.on ? 1200 : 3500;
+if (!ambEstado || ambEstado.on) ambient.play().then(() => { setAmbientUI(true); ambFadeIn(ambRetoma); }).catch(() => {
   const unlock = async () => {
-    try { await ambient.play(); setAmbientUI(true); } catch { setAmbientUI(false); }
+    try { await ambient.play(); setAmbientUI(true); ambFadeIn(ambRetoma); } catch { setAmbientUI(false); }
   };
   ["pointerdown", "keydown", "touchstart", "scroll"].forEach(ev =>
     window.addEventListener(ev, unlock, { once: true, passive: true }));
@@ -1637,7 +1666,7 @@ ambient.play().then(() => setAmbientUI(true)).catch(() => {
 document.getElementById("audio-fab").addEventListener("click", async (e) => {
   e.stopPropagation();
   if (ambientOn && !ambient.paused) { ambient.pause(); setAmbientUI(false); return; }
-  try { await ambient.play(); setAmbientUI(true); } catch { setAmbientUI(false); }
+  try { await ambient.play(); setAmbientUI(true); ambFadeIn(); } catch { setAmbientUI(false); }
 });
 </script>
 </body>
