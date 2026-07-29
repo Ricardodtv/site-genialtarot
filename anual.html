@@ -168,6 +168,14 @@ footer { position: relative; border-top: 1px solid oklch(0.70 0.10 15 / 0.15); p
 .backlink:hover { color: var(--foreground); }
 .bg-fx { pointer-events: none; position: fixed; inset: 0; z-index: -1; }
 .blob { position: absolute; border-radius: 9999px; }
+
+/* Pulsar rápido no botão de som quando está desligado — convida a ligar */
+@keyframes pulso-som {
+  0% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0.75); }
+  70% { box-shadow: 0 0 0 13px oklch(0.82 0.13 85 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0); }
+}
+.som-chama { animation: pulso-som 1.1s ease-out infinite; border-radius: 9999px; }
 </style>
 </head>
 <body>
@@ -356,6 +364,7 @@ const fabOn = document.getElementById("afab-on"), fabOff = document.getElementBy
 function setAudioUI(on) {
   fabOn.style.display = on ? "" : "none";
   fabOff.style.display = on ? "none" : "";
+  document.getElementById("audio-fab").classList.toggle("som-chama", !on);
 }
 let fadeMus = null;
 function tryPlay(dur) {
