@@ -96,7 +96,9 @@ jogo de trustedtarot.com.
   mesmo ponto ao mudar de página (sessionStorage `mus_mystic`; tarot-gratis usa `mus_ambient`).
   Se o visitante desligar o som, fica desligado durante a sessão.
 - Links externos que se mantêm: WhatsApp +351 914 920 427, Agenda (calendar.app.google),
-  Loja (linktr.ee/genialtarot), Livro (Amazon), Observação do Céu (tutiempo), redes sociais.
+  Livro (Amazon), Observação do Céu (tutiempo), redes sociais. O botão "Loja Online" da
+  página principal (2.º atalho, fúchsia com etiqueta NOVA e anel a piscar) aponta para
+  loja.html (a antiga ligação ao linktr.ee foi substituída).
 - Futuro desejado: email profissional contacto@genialtarot.com via Cloudflare Email
   Routing → Gmail (chequesegredo@gmail.com).
 - História: o site nasceu de 3 projetos Lovable convertidos para estático em jul/2026.
