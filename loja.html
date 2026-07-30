@@ -90,8 +90,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .heroi { position: relative; z-index: 5; text-align: center; padding: 4.2rem 1rem 0.5rem; }
 
 /* Foto redonda do Mestre com anéis de pulso (como na página principal) */
-.foto-mestre { position: relative; display: inline-block; height: 13rem; width: 13rem; margin-bottom: 1.3rem; }
-@media (min-width: 640px) { .foto-mestre { height: 16rem; width: 16rem; } }
+.foto-mestre { position: relative; display: inline-block; height: 9rem; width: 9rem; margin-bottom: 1.1rem; }
+@media (min-width: 640px) { .foto-mestre { height: 11rem; width: 11rem; } }
 .foto-mestre::before, .foto-mestre::after { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2.5px solid oklch(0.85 0.14 90 / 0.95); animation: anel-pulso 3.2s ease-out infinite; pointer-events: none; z-index: 2; }
 .foto-mestre::after { animation-delay: 1.6s; border-color: oklch(0.75 0.2 310 / 0.9); }
 @keyframes anel-pulso {
@@ -105,10 +105,17 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .heroi h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 6vw, 3.6rem); color: var(--ouro-suave); text-shadow: 0 0 30px oklch(0.82 0.11 85 / 0.4); }
 .heroi p.sub { margin: 0.9rem auto 0; max-width: 44rem; color: var(--mudo); font-size: 1rem; line-height: 1.65; }
 
-/* Navegação de categorias */
-.nav-cat { position: relative; z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem; margin: 1.6rem auto 0; max-width: 50rem; padding: 0 1rem; }
-.nav-cat a { border: 1px solid oklch(0.82 0.11 85 / 0.45); border-radius: 9999px; padding: 0.5rem 1.1rem; font-size: 0.88rem; background: oklch(0.22 0.05 265 / 0.7); color: var(--ouro-suave); transition: transform .2s, background .2s; }
+/* Navegação de categorias — 3 filas, botões grandes */
+.nav-cat { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; gap: 0.85rem; margin: 1.3rem auto 0; max-width: 52rem; padding: 0 1rem; }
+.nav-linha { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; }
+.nav-cat a { position: relative; border: 1.5px solid oklch(0.82 0.11 85 / 0.5); border-radius: 9999px; padding: 0.65rem 1.5rem; font-size: 1rem; font-weight: 600; background: oklch(0.22 0.05 265 / 0.75); color: var(--ouro-suave); transition: transform .2s, background .2s; }
 .nav-cat a:hover { transform: scale(1.06); background: oklch(0.28 0.06 270 / 0.9); }
+.nav-emerg { font-size: 1.18rem !important; padding: 0.85rem 2.2rem !important; border-color: oklch(0.62 0.2 25 / 0.8) !important; background: linear-gradient(180deg, oklch(0.34 0.1 25 / 0.85), oklch(0.26 0.08 20 / 0.85)) !important; color: oklch(0.92 0.05 40) !important; box-shadow: 0 0 24px oklch(0.62 0.22 27 / 0.35); }
+.nav-emerg::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: -8px; height: 3.5px; border-radius: 3px; background: oklch(0.62 0.24 27); box-shadow: 0 0 12px oklch(0.62 0.24 27 / 0.9); animation: sublinha-pisca 1.1s ease-in-out infinite; }
+.nav-consultas::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: -8px; height: 3.5px; border-radius: 3px; background: oklch(0.85 0.13 88); box-shadow: 0 0 12px oklch(0.85 0.13 88 / 0.9); animation: sublinha-pisca 1.1s ease-in-out infinite; }
+@keyframes sublinha-pisca { 0%, 100% { opacity: 0.15; } 50% { opacity: 1; } }
+.sirene { display: inline-block; animation: girar-sirene 1.6s linear infinite; }
+@keyframes girar-sirene { to { transform: rotate(360deg); } }
 
 /* ===== Secções e cartas de produto ===== */
 .zona { position: relative; z-index: 5; max-width: 62rem; margin: 0 auto; padding: 0 1rem; }
@@ -202,11 +209,8 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
   </div>
   <div class="selo surgir">✦ Loja Mística · Mestre Alberto ✦</div>
   <h1 class="surgir">A Loja do Genial Tarot</h1>
-  <p class="sub surgir">Consultas dedicadas, rituais realizados com devoção e amuletos preparados um a um.
-  Escolha o que a sua alma pede — e deixe o resto com o Mestre.</p>
+  <nav class="nav-cat surgir" id="nav-cat" aria-label="Categorias"></nav>
 </section>
-
-<nav class="nav-cat surgir" id="nav-cat" aria-label="Categorias"></nav>
 
 <div class="zona" id="zona-loja"></div>
 
@@ -271,8 +275,17 @@ function montarLoja() {
   const base = ORDEM_CAT.filter(c => porCat[c] && c !== "Cursos");
   const cats = [...base, ...extras, ...(porCat["Cursos"] ? ["Cursos"] : [])];
 
-  nav.innerHTML = cats.map(c =>
-    `<a href="#cat-${esc(c.toLowerCase().replace(/\s+/g, "-"))}">${ICONES_CAT[c] || "✦"} ${esc(c)}</a>`).join("");
+  const idCat = c => "cat-" + c.toLowerCase().replace(/\s+/g, "-");
+  const LINHAS_NAV = [["Emergências"], ["Consultas", "Rituais"], ["Amuletos", "Mapas Astrais", "Cursos"]];
+  const previstas = LINHAS_NAV.flat();
+  const filas = LINHAS_NAV.map(l => l.filter(c => porCat[c]));
+  filas[2] = [...filas[2], ...cats.filter(c => !previstas.includes(c))];
+  nav.innerHTML = filas.filter(l => l.length).map(linha =>
+    `<div class="nav-linha">` + linha.map(c => {
+      const classes = c === "Emergências" ? "nav-emerg" : c === "Consultas" ? "nav-consultas" : "";
+      const icone = c === "Emergências" ? '<span class="sirene">🚨</span>' : (ICONES_CAT[c] || "✦");
+      return `<a class="${classes}" href="#${idCat(c)}">${icone} ${esc(c)}</a>`;
+    }).join("") + `</div>`).join("");
 
   zona.innerHTML = cats.map(c => {
     const id = "cat-" + c.toLowerCase().replace(/\s+/g, "-");
