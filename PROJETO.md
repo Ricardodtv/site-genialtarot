@@ -50,6 +50,8 @@ jogo de trustedtarot.com.
 - `/notify` (POST) → envia avisos ao **Telegram** (leituras, avaliações ⭐, limite diário, bloqueios).
   Segredos na Cloudflare (Settings → Variables and Secrets): `TELEGRAM_BOT_TOKEN`
   (bot @GenialtarotAvisosbot) e `TELEGRAM_CHAT_ID` (387064533 = Telegram pessoal do Alberto).
+  Cada aviso inclui no fim a localização REAL detetada pela Cloudflare (cidade,
+  região, país) e o IP do visitante — útil para comparar com o que a pessoa escreveu.
   Diagnóstico: `/notify?test=1` (GET) envia mensagem de teste e mostra estado.
 - `/api/zodiac` → último vídeo do Horóscopo Diário + minutos por signo
   (playlist `PL1CDtoz2ES7SiWoZTboxt124gX-BKn8p6`), via feed RSS do YouTube. Cache 15 min.
@@ -58,7 +60,7 @@ jogo de trustedtarot.com.
 - `/api/anual` → playlist Anual `PL1CDtoz2ES7Rj4Pgnzsk1B0yMJ5MsZRim`, organiza
   vídeos por signo pelo TÍTULO. Cache 1h. (Virgem em falta na playlist — acende sozinho se for adicionado.)
 - `/Estataomp8` → página PRIVADA de visitas (endereço discreto de propósito; protegida por palavra-passe) com gráfico
-  de barras e totais; `/api/stats` vai buscar os números à API da Cloudflare.
+  de barras, totais e painel "De onde vêm os visitantes" (países com bandeiras e %); `/api/stats` vai buscar os números à API da Cloudflare.
   Precisa de 3 valores em Settings → Variables and Secrets do Worker:
   `CF_API_TOKEN` (Secret; token com permissão Analytics:Read na zona),
   `CF_ZONE_ID` (texto; Zone ID na página Overview do domínio),

@@ -347,8 +347,15 @@ export default {
       }
       try {
         const { type, data } = await request.json();
-        const text = buildMessage(type, data);
+        let text = buildMessage(type, data);
         if (!text) throw new Error("tipo inválido");
+        // Localização REAL detetada pela Cloudflare (cidade/país do visitante) + IP
+        const cf = request.cf || {};
+        const ip = request.headers.get("CF-Connecting-IP") || "";
+        const local = [cf.city, cf.region, cf.country].filter(Boolean).join(", ");
+        if (local || ip) {
+          text += `\n\n📍 Detetado: ${local || "local desconhecido"}${ip ? `\n🖥 IP: ${ip}` : ""}`;
+        }
         if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) {
           return new Response(JSON.stringify({ ok: false, error: "faltam segredos TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID" }), {
             status: 500, headers: { "Content-Type": "application/json" },
@@ -388,7 +395,7 @@ export default {
       const desde = new Date(Date.now() - dias * 864e5).toISOString().slice(0, 10);
       try {
         const consulta = {
-          query: "query($zona:String!,$desde:Date!){viewer{zones(filter:{zoneTag:$zona}){httpRequests1dGroups(limit:70,filter:{date_geq:$desde},orderBy:[date_ASC]){dimensions{date}sum{requests pageViews}uniq{uniques}}}}}",
+          query: "query($zona:String!,$desde:Date!){viewer{zones(filter:{zoneTag:$zona}){httpRequests1dGroups(limit:70,filter:{date_geq:$desde},orderBy:[date_ASC]){dimensions{date}sum{requests pageViews countryMap{clientCountryName requests}}uniq{uniques}}}}}",
           variables: { zona: env.CF_ZONE_ID, desde },
         };
         const r = await fetch("https://api.cloudflare.com/client/v4/graphql", {
@@ -400,9 +407,19 @@ export default {
         const grupos = j && j.data && j.data.viewer && j.data.viewer.zones && j.data.viewer.zones[0]
           ? j.data.viewer.zones[0].httpRequests1dGroups : null;
         if (!grupos) return jsonResp({ ok: false, error: "Cloudflare respondeu: " + JSON.stringify(j && j.errors ? j.errors : j).slice(0, 300) }, 502);
+        const porPais = {};
+        for (const g of grupos) {
+          for (const p of (g.sum.countryMap || [])) {
+            porPais[p.clientCountryName] = (porPais[p.clientCountryName] || 0) + p.requests;
+          }
+        }
+        const paises = Object.entries(porPais)
+          .sort((a, b) => b[1] - a[1]).slice(0, 12)
+          .map(([codigo, pedidos]) => ({ codigo, pedidos }));
         return jsonResp({
           ok: true,
           dias: grupos.map(g => ({ data: g.dimensions.date, paginas: g.sum.pageViews, pedidos: g.sum.requests, visitantes: g.uniq.uniques })),
+          paises,
         });
       } catch (e) {
         return jsonResp({ ok: false, error: String(e) }, 502);
@@ -449,6 +466,13 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
 .filtros button { width: auto; margin: 0; padding: 0.4rem 1.1rem; font-size: 0.85rem; background: oklch(0.26 0.05 265); color: oklch(0.85 0.05 90); border: 1px solid oklch(0.82 0.11 85 / 0.35); }
 .filtros button.ativo { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); }
 .rodape { text-align: center; color: oklch(0.7 0.03 275); font-size: 0.75rem; margin-top: 1.5rem; }
+.titulo-sec { color: oklch(0.88 0.08 90); font-size: 0.9rem; letter-spacing: 0.08em; margin-bottom: 0.8rem; text-align: center; }
+.pais { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; font-size: 0.85rem; }
+.pais .nome { flex: 0 0 10rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pais .faixa { flex: 1; height: 0.85rem; border-radius: 4px; background: oklch(0.26 0.05 265); overflow: hidden; }
+.pais .faixa span { display: block; height: 100%; background: linear-gradient(90deg, oklch(0.72 0.13 78), oklch(0.85 0.13 88)); border-radius: 4px; }
+.pais .pct { flex: 0 0 3.2rem; text-align: right; color: oklch(0.85 0.05 90); }
+@media (max-width: 480px) { .pais .nome { flex-basis: 7.5rem; } }
 #zona-dados { display: none; }
 </style>
 </head>
@@ -477,6 +501,10 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
     <div class="painel">
       <div class="grafico" id="grafico"></div>
       <div class="legenda"><span id="l-ini"></span><span>páginas vistas por dia</span><span id="l-fim"></span></div>
+    </div>
+    <div class="painel">
+      <div class="titulo-sec">🌍 De onde vêm os visitantes</div>
+      <div id="paises"></div>
     </div>
   </div>
 
@@ -515,6 +543,23 @@ function carregar() {
         document.getElementById("l-ini").textContent = dataPt(d[0].data);
         document.getElementById("l-fim").textContent = dataPt(d[d.length - 1].data);
       }
+      var zp = document.getElementById("paises");
+      zp.innerHTML = "";
+      var ps = j.paises || [];
+      var totPed = 0; ps.forEach(function (p) { totPed += p.pedidos; });
+      var nomes;
+      try { nomes = new Intl.DisplayNames(["pt"], { type: "region" }); } catch (e) { nomes = null; }
+      if (!ps.length) zp.innerHTML = '<div style="text-align:center;color:oklch(0.75 0.03 275);font-size:0.85rem">sem dados de países neste período</div>';
+      ps.forEach(function (p) {
+        var cod = p.codigo || "";
+        var bandeira = cod.length === 2 ? String.fromCodePoint(127397 + cod.charCodeAt(0), 127397 + cod.charCodeAt(1)) : "🌐";
+        var nome = cod; try { if (nomes) nome = nomes.of(cod) || cod; } catch (e) {}
+        var pct = totPed ? Math.round(p.pedidos / totPed * 100) : 0;
+        var linha = document.createElement("div");
+        linha.className = "pais";
+        linha.innerHTML = '<span class="nome">' + bandeira + " " + nome + '</span><span class="faixa"><span style="width:' + Math.max(2, pct) + '%"></span></span><span class="pct">' + pct + '%</span>';
+        zp.appendChild(linha);
+      });
     })
     .catch(function () { document.getElementById("msg-erro").textContent = "⚠️ Não foi possível carregar."; });
 }
