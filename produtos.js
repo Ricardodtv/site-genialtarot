@@ -21,6 +21,8 @@
                em primeiro lugar na sua secção (opcional)
    etiqueta  → texto para um selo próprio em violeta (ex.: "MAPA ASTRAL");
                substitui o selo POPULAR (opcional)
+   topvendas → true mostra o selo DOURADO "✦ Top Vendas ✦" com
+               ⭐⭐⭐ por cima (opcional; também põe o produto à frente)
    ============================================================ */
 
 const PRODUTOS = [
