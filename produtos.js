@@ -26,7 +26,7 @@ const PRODUTOS = [
   {
     nome: "🔮 1 Pergunta de Tarot por Escrito – Feita pelo Mestre Alberto 📜",
     categoria: "Consultas",
-    preco: "",
+    preco: "25 €",
     foto: "pergunta-escrita.jpg",
     descricao: "Faça a sua pergunta e receba a resposta do Mestre Alberto por escrito, tirada nas cartas com dedicação exclusiva ao seu caso. Clara, direta e guardada para reler sempre que precisar. Sem marcações, sem esperas — a orientação chega até si.",
     link: "https://mypos.com/vmp/btn/BKXR2JQ2BEB19",
