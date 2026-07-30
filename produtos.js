@@ -49,6 +49,7 @@ const PRODUTOS = [
     foto: "consulta-30min.jpg",
     descricao: "Meia hora a sós com as cartas e com o Mestre. Ideal para uma ou duas questões objetivas — amor, trabalho, decisões — com resposta clara e orientação prática, por chamada ou vídeo, no conforto da sua casa.",
     link: "https://mypos.com/vmp/btn/BTSGROA5LPZ61",
+    topvendas: true,
   },
 
   {
