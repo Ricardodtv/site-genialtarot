@@ -123,7 +123,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .produto h3 { font-family: var(--font-display); font-size: 1.35rem; color: var(--ouro-suave); line-height: 1.25; }
 .produto .desc { margin-top: 0.5rem; color: var(--mudo); font-size: 0.88rem; line-height: 1.6; flex: 1; }
 .produto .rodape-p { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; margin-top: 1rem; }
-.produto .preco { font-family: 'Cinzel', var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--ouro); text-shadow: 0 0 14px oklch(0.82 0.11 85 / 0.5); white-space: nowrap; }
+.produto .preco { font-family: 'Cinzel', var(--font-display); font-size: 1.7rem; font-weight: 700; color: oklch(0.88 0.13 90); text-shadow: 0 0 18px oklch(0.85 0.13 88 / 0.8), 0 0 40px oklch(0.82 0.11 85 / 0.4); white-space: nowrap; }
 .btn-adquirir { position: relative; display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 9999px; border: 1.5px solid var(--ouro); background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); padding: 0.55rem 1.2rem; font-weight: 700; font-size: 0.9rem; animation: compra-pulsa 1.6s ease-out infinite; transition: transform .25s; }
 .btn-adquirir:hover { transform: scale(1.07); }
 .btn-adquirir::before { content: ""; position: absolute; inset: -4px; border-radius: 9999px; border: 2px solid oklch(0.87 0.16 95 / 0.9); animation: anel-pisca-som 1.1s ease-in-out infinite; pointer-events: none; }
@@ -136,7 +136,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .alt-pag.aberta { display: block; animation: surgir 0.35s ease-out; }
 .alt-linha { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; color: var(--texto); padding: 0.35rem 0; }
 .alt-linha + .alt-linha { border-top: 1px solid oklch(0.82 0.11 85 / 0.15); }
-.mbway-badge { flex: none; display: inline-grid; place-items: center; background: #d40511; color: white; font-weight: 800; font-size: 0.62rem; letter-spacing: 0.03em; border-radius: 0.45rem; padding: 0.35rem 0.5rem; box-shadow: 0 3px 10px rgba(0,0,0,0.4); }
+.mbway-badge { flex: none; display: inline-grid; place-items: center; background: white; border-radius: 0.45rem; padding: 0.28rem 0.45rem; box-shadow: 0 3px 10px rgba(0,0,0,0.4); }
+.mbway-badge img { height: 15px; width: auto; display: block; }
 .alt-linha b { letter-spacing: 0.04em; }
 .alt-linha a { color: oklch(0.8 0.12 150); text-decoration: underline; }
 .selo-pop { position: absolute; top: 0.7rem; right: 0.7rem; z-index: 2; border-radius: 9999px; background: oklch(0.65 0.22 145); color: white; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.3rem 0.7rem; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.3); animation: pop-salta 2.2s ease-in-out infinite; }
@@ -281,7 +282,7 @@ function montarLoja() {
           </div>
           <button type="button" class="alt-pag-toggle">💳 Outras formas de pagamento <span class="seta-alt">▾</span></button>
           <div class="alt-pag">
-            <div class="alt-linha"><span class="mbway-badge">MB WAY</span> <b>914 920 427</b></div>
+            <div class="alt-linha"><span class="mbway-badge"><img src="mbway.png" alt="MB Way" /></span> <b>914 920 427</b></div>
             <div class="alt-linha">🏦 Transferência Bancária — <a href="https://wa.me/351914920427?text=${encodeURIComponent("Olá Mestre Alberto, quero pagar por transferência bancária: " + p.nome)}" target="_blank" rel="noopener noreferrer">peça os dados no WhatsApp</a></div>
           </div>
         </div>
