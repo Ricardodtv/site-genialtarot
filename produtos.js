@@ -24,12 +24,12 @@
 const PRODUTOS = [
 
   {
-    nome: "Ritual da Chama Dourada",
-    categoria: "Rituais",
-    preco: "45 €",
-    foto: "ritual-exemplo.jpg",
-    descricao: "Ritual de proteção e abertura de caminhos, realizado pelo Mestre Alberto com vela consagrada e oração dedicada ao seu caso. Inclui relatório final com fotografias do ritual. Ideal para momentos de bloqueio, inveja ou recomeço.",
-    link: "",
+    nome: "🔮 1 Pergunta de Tarot por Escrito – Feita pelo Mestre Alberto 📜",
+    categoria: "Consultas",
+    preco: "",
+    foto: "pergunta-escrita.jpg",
+    descricao: "Faça a sua pergunta e receba a resposta do Mestre Alberto por escrito, tirada nas cartas com dedicação exclusiva ao seu caso. Clara, direta e guardada para reler sempre que precisar. Sem marcações, sem esperas — a orientação chega até si.",
+    link: "https://mypos.com/vmp/btn/BKXR2JQ2BEB19",
     destaque: true,
   },
 
