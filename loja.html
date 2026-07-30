@@ -154,7 +154,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .selo-pop { position: absolute; top: 0.7rem; right: 0.7rem; z-index: 2; border-radius: 9999px; background: oklch(0.65 0.22 145); color: white; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.3rem 0.7rem; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.3); animation: pop-salta 2.2s ease-in-out infinite; }
 .selo-wrap { position: absolute; top: 0.55rem; right: 0.7rem; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 2px; animation: pop-salta 2.2s ease-in-out infinite; }
 .estrelas-top { font-size: 0.72rem; line-height: 1; letter-spacing: 0.1em; filter: drop-shadow(0 0 6px oklch(0.85 0.15 90 / 0.9)); }
-.selo-wrap .selo-pop.selo-top { position: static; animation: none; }
+.selo-wrap .selo-pop { position: static; animation: none; }
 .selo-pop.selo-top { background: linear-gradient(180deg, oklch(0.88 0.14 90), oklch(0.72 0.13 78)); color: oklch(0.25 0.05 80); border: 1px solid oklch(0.95 0.06 95 / 0.8); box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 18px oklch(0.85 0.13 88 / 0.7); }
 .selo-pop.selo-violeta { background: linear-gradient(135deg, oklch(0.55 0.25 305), oklch(0.48 0.22 280)); box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 16px oklch(0.55 0.25 305 / 0.6); }
 .selo-pop.selo-verde { background: oklch(0.65 0.22 145); }
@@ -304,7 +304,12 @@ function montarLoja() {
         ? `<img class="foto" src="${esc(p.foto)}" alt="${esc(p.nome)}" loading="lazy" onerror="this.outerHTML='<div class=&quot;foto-simbolo&quot;>${ICONES_CAT[c] || "✦"}</div>'" />`
         : `<div class="foto-simbolo">${ICONES_CAT[c] || "✦"}</div>`;
       return `<article class="produto">
-        ${p.topvendas ? '<span class="selo-wrap"><span class="estrelas-top">⭐⭐⭐</span><span class="selo-pop selo-top">✦ Top Vendas ✦</span></span>' : p.etiqueta ? '<span class="selo-pop selo-' + (["verde","violeta","vermelho","azul","laranja","rosa","dourado"].includes(p.cor) ? p.cor : "violeta") + '">✦ ' + esc(p.etiqueta) + ' ✦</span>' : p.destaque ? '<span class="selo-pop">✦ Popular ✦</span>' : ""}
+        ${p.topvendas ? '<span class="selo-wrap"><span class="estrelas-top">⭐⭐⭐</span><span class="selo-pop selo-top">✦ Top Vendas ✦</span></span>' : p.etiqueta ? (function () {
+          const cor = ["verde","violeta","vermelho","azul","laranja","rosa","dourado"].includes(p.cor) ? p.cor : "violeta";
+          const selo = '<span class="selo-pop selo-' + cor + '">✦ ' + esc(p.etiqueta) + ' ✦</span>';
+          const n = Math.max(0, Math.min(5, Number(p.estrelas) || 0));
+          return n ? '<span class="selo-wrap"><span class="estrelas-top">' + "⭐".repeat(n) + '</span>' + selo + '</span>' : selo;
+        })() : p.destaque ? '<span class="selo-pop">✦ Popular ✦</span>' : ""}
         ${foto}
         <div class="corpo">
           <h3>${esc(p.nome)}</h3>

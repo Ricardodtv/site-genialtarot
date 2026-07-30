@@ -24,6 +24,7 @@
    cor       → a cor da etiqueta: "verde", "violeta", "vermelho",
                "azul", "laranja", "rosa" ou "dourado"
                (se não escrever nada, fica violeta)
+   estrelas  → número de ⭐ por cima da etiqueta, de 1 a 5 (opcional)
    topvendas → true mostra o selo DOURADO "✦ Top Vendas ✦" com
                ⭐⭐⭐ por cima (opcional; também põe o produto à frente)
    ============================================================ */
@@ -59,6 +60,7 @@ const PRODUTOS = [
     foto: "consulta-1hora.jpg",
     descricao: "Uma hora completa para abrir o jogo da sua vida: amor, carreira, família, dinheiro, caminhos. Tempo para aprofundar cada tema, fazer todas as perguntas e sair com um rumo definido.",
     link: "https://mypos.com/vmp/btn/B35PHJ9OQMU04",
+    etiqueta: "A MAIS COMPLETA", cor: "vermelho", estrelas: 5,
   },
 
   {
@@ -68,6 +70,7 @@ const PRODUTOS = [
     foto: "previsao-anual.jpg",
     descricao: "Os seus próximos 12 meses, mês a mês, escritos pelo Mestre Alberto: amor, dinheiro, saúde e os caminhos a abraçar ou evitar. Um documento para guardar e consultar durante todo o ano.",
     link: "https://mypos.com/vmp/btn/B5IA82S63VN50",
+    etiqueta: "SEU FUTURO", cor: "azul", estrelas: 3,
   },
 
   {
@@ -77,6 +80,7 @@ const PRODUTOS = [
     foto: "terapia-casais.jpg",
     descricao: "Uma hora dedicada aos dois. As cartas revelam o que une, o que desgasta e o que pode renascer na relação — com orientação franca e caminhos concretos para reencontrarem o equilíbrio.",
     link: "https://mypos.com/vmp/btn/B1CMBQSYWEW69",
+    etiqueta: "VOLTE A AMAR", cor: "rosa", estrelas: 3,
   },
 
   {
@@ -86,6 +90,7 @@ const PRODUTOS = [
     foto: "parecer-cartas.jpg",
     descricao: "Vai tomar uma decisão importante — um negócio, uma mudança, uma proposta? O Mestre Alberto consulta as cartas sobre o seu assunto e envia-lhe um parecer escrito, claro e fundamentado, para decidir com segurança.",
     link: "https://mypos.com/vmp/btn/BLQ1NIUDJ2K11",
+    etiqueta: "BÚSSOLA EMPRESARIAL", cor: "laranja", estrelas: 3,
   },
 
   {
