@@ -52,6 +52,21 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 @keyframes derivar1 { from { transform: translate(0,0) scale(1); } to { transform: translate(6vw,-4vh) scale(1.18); } }
 @keyframes derivar2 { from { transform: translate(0,0) scale(1.12); } to { transform: translate(-5vw,5vh) scale(0.94); } }
 @media (max-width: 640px) { .nebulosa span { filter: blur(42px); } }
+
+/* ===== Fundo místico: cartas de tarot e símbolos a flutuar ===== */
+.fundo-mistico { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.carta-fundo { position: absolute; width: 68px; height: 108px; border: 1.5px solid oklch(0.82 0.11 85 / 0.5); border-radius: 9px; opacity: 0.14;
+  background:
+    radial-gradient(circle at 50% 50%, oklch(0.4 0.1 290 / 0.9) 0%, transparent 55%),
+    repeating-linear-gradient(45deg, oklch(0.3 0.08 280), oklch(0.3 0.08 280) 6px, oklch(0.24 0.06 270) 6px, oklch(0.24 0.06 270) 12px);
+  display: grid; place-items: center; color: oklch(0.82 0.11 85); font-size: 1.5rem;
+  animation: baloico var(--dur, 16s) ease-in-out infinite alternate; }
+.carta-fundo::before { content: ""; position: absolute; inset: 5px; border: 1px solid oklch(0.82 0.11 85 / 0.4); border-radius: 5px; }
+.simbolo-fundo { position: absolute; color: oklch(0.82 0.11 85); opacity: 0.13; text-shadow: 0 0 18px oklch(0.82 0.11 85 / 0.6);
+  animation: derivar-simbolo var(--dur, 18s) ease-in-out infinite alternate; }
+@keyframes baloico { from { transform: rotate(var(--rot, -8deg)) translateY(0); } to { transform: rotate(calc(var(--rot, -8deg) + 6deg)) translateY(-16px); } }
+@keyframes derivar-simbolo { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(10px, -20px) rotate(12deg); } }
+@media (max-width: 640px) { .carta-fundo { width: 52px; height: 84px; opacity: 0.11; } .simbolo-fundo { opacity: 0.1; } }
 @keyframes brilho { 0%,100% { box-shadow: 0 0 22px oklch(0.82 0.11 85 / 0.35); } 50% { box-shadow: 0 0 45px oklch(0.82 0.11 85 / 0.65); } }
 @keyframes surgir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 .surgir { animation: surgir 0.8s ease-out both; }
@@ -73,6 +88,19 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 
 /* ===== Topo ===== */
 .heroi { position: relative; z-index: 5; text-align: center; padding: 4.2rem 1rem 0.5rem; }
+
+/* Foto redonda do Mestre com anéis de pulso (como na página principal) */
+.foto-mestre { position: relative; display: inline-block; height: 13rem; width: 13rem; margin-bottom: 1.3rem; }
+@media (min-width: 640px) { .foto-mestre { height: 16rem; width: 16rem; } }
+.foto-mestre::before, .foto-mestre::after { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2.5px solid oklch(0.85 0.14 90 / 0.95); animation: anel-pulso 3.2s ease-out infinite; pointer-events: none; z-index: 2; }
+.foto-mestre::after { animation-delay: 1.6s; border-color: oklch(0.75 0.2 310 / 0.9); }
+@keyframes anel-pulso {
+  0% { transform: scale(0.985); opacity: 0.95; }
+  70% { transform: scale(1.25); opacity: 0; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+.anel-foto { position: relative; height: 100%; width: 100%; border-radius: 9999px; padding: 4px; background: linear-gradient(135deg, var(--ouro), oklch(0.78 0.2 310), var(--ouro-suave)); box-shadow: 0 0 40px oklch(0.82 0.11 85 / 0.35); }
+.anel-foto img { height: 100%; width: 100%; border-radius: 9999px; object-fit: cover; border: 2px solid oklch(0.18 0.05 300 / 0.4); }
 .selo { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid oklch(0.82 0.11 85 / 0.4); border-radius: 9999px; padding: 0.4rem 1.1rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.35em; color: var(--ouro); margin-bottom: 1.2rem; }
 .heroi h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 6vw, 3.6rem); color: var(--ouro-suave); text-shadow: 0 0 30px oklch(0.82 0.11 85 / 0.4); }
 .heroi p.sub { margin: 0.9rem auto 0; max-width: 44rem; color: var(--mudo); font-size: 1rem; line-height: 1.65; }
@@ -126,6 +154,21 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
 <body>
 <div class="estrelas"></div>
 <div class="nebulosa" aria-hidden="true"><span class="n1"></span><span class="n2"></span></div>
+<div class="fundo-mistico" aria-hidden="true">
+  <div class="carta-fundo" style="left:4%;  top:12%; --rot:-11deg; --dur:15s">✦</div>
+  <div class="carta-fundo" style="right:5%; top:26%; --rot:9deg;  --dur:19s">☽</div>
+  <div class="carta-fundo" style="left:7%;  top:55%; --rot:6deg;  --dur:17s">☉</div>
+  <div class="carta-fundo" style="right:6%; top:70%; --rot:-7deg; --dur:21s">✧</div>
+  <div class="carta-fundo" style="left:3%;  top:86%; --rot:12deg; --dur:14s">☾</div>
+  <span class="simbolo-fundo" style="left:14%; top:8%;  font-size:1.6rem; --dur:16s">☿</span>
+  <span class="simbolo-fundo" style="right:16%; top:10%; font-size:2rem;   --dur:22s">☽</span>
+  <span class="simbolo-fundo" style="left:20%; top:38%; font-size:1.3rem; --dur:14s">♃</span>
+  <span class="simbolo-fundo" style="right:12%; top:46%; font-size:1.7rem; --dur:19s">✦</span>
+  <span class="simbolo-fundo" style="left:12%; top:70%; font-size:2.1rem; --dur:24s">☉</span>
+  <span class="simbolo-fundo" style="right:20%; top:84%; font-size:1.4rem; --dur:15s">♀</span>
+  <span class="simbolo-fundo" style="left:45%; top:95%; font-size:1.8rem; --dur:20s">⚹</span>
+  <span class="simbolo-fundo" style="right:40%; top:5%;  font-size:1.2rem; --dur:13s">✧</span>
+</div>
 
 <a class="backlink" href="index.html">
   <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
@@ -135,6 +178,9 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
 <button id="audio-fab" class="som-fix" aria-label="Ligar ou desligar o som"><svg class="som-ico som-ico-on" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><svg class="som-ico som-ico-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg></button>
 
 <section class="heroi">
+  <div class="foto-mestre surgir">
+    <div class="anel-foto"><img src="profile.png" alt="Mestre Alberto — Genial Tarot" /></div>
+  </div>
   <div class="selo surgir">✦ Loja Mística · Mestre Alberto ✦</div>
   <h1 class="surgir">A Loja do Genial Tarot</h1>
   <p class="sub surgir">Consultas dedicadas, rituais realizados com devoção e amuletos preparados um a um.
