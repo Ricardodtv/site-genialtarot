@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Loja Mística — Genial Tarot · Consultas, Rituais e Amuletos</title>
+<meta name="description" content="A Loja Mística do Mestre Alberto: consultas de tarot, rituais dedicados, amuletos consagrados e ajuda espiritual — escolha e adquira com confiança." />
+<meta name="theme-color" content="#0d1226" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Loja Mística — Genial Tarot" />
+<meta property="og:description" content="Consultas, Rituais, Amuletos e ajuda espiritual pelo Mestre Alberto." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Cinzel:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --fundo: oklch(0.15 0.03 265);
+  --cartao: oklch(0.2 0.04 265 / 0.85);
+  --ouro: oklch(0.82 0.11 85);
+  --ouro-suave: oklch(0.88 0.08 90);
+  --texto: oklch(0.95 0.01 280);
+  --mudo: oklch(0.75 0.03 275);
+  --font-display: 'Cormorant Garamond', 'Cinzel', Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 8%, oklch(0.24 0.08 305 / 0.5), transparent 70%),
+    radial-gradient(ellipse 55% 38% at 85% 30%, oklch(0.23 0.09 250 / 0.45), transparent 70%),
+    radial-gradient(ellipse 65% 45% at 50% 75%, oklch(0.21 0.07 320 / 0.4), transparent 70%),
+    radial-gradient(ellipse at 50% -10%, oklch(0.22 0.05 270), var(--fundo) 55%, oklch(0.1 0.03 262) 100%);
+  background-attachment: fixed; background-color: var(--fundo);
+  color: var(--texto); font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+.estrelas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.55;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, oklch(0.95 0.02 90 / 0.7), transparent 60%),
+    radial-gradient(1.5px 1.5px at 40% 80%, oklch(0.95 0.02 90 / 0.8), transparent 60%),
+    radial-gradient(1px 1px at 85% 20%, oklch(0.9 0.03 270 / 0.5), transparent 60%),
+    radial-gradient(2px 2px at 60% 12%, oklch(0.95 0.04 90 / 0.7), transparent 60%),
+    radial-gradient(1px 1px at 12% 70%, oklch(0.9 0.03 270 / 0.6), transparent 60%);
+  background-size: 620px 620px; }
+.nebulosa { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.nebulosa span { position: absolute; border-radius: 50%; filter: blur(70px); }
+.nebulosa .n1 { width: 46vw; height: 46vw; left: -12vw; top: 4vh; background: oklch(0.32 0.11 302 / 0.4); animation: derivar1 48s ease-in-out infinite alternate; }
+.nebulosa .n2 { width: 42vw; height: 42vw; right: -10vw; top: 34vh; background: oklch(0.3 0.1 252 / 0.38); animation: derivar2 60s ease-in-out infinite alternate; }
+@keyframes derivar1 { from { transform: translate(0,0) scale(1); } to { transform: translate(6vw,-4vh) scale(1.18); } }
+@keyframes derivar2 { from { transform: translate(0,0) scale(1.12); } to { transform: translate(-5vw,5vh) scale(0.94); } }
+@media (max-width: 640px) { .nebulosa span { filter: blur(42px); } }
+@keyframes brilho { 0%,100% { box-shadow: 0 0 22px oklch(0.82 0.11 85 / 0.35); } 50% { box-shadow: 0 0 45px oklch(0.82 0.11 85 / 0.65); } }
+@keyframes surgir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.surgir { animation: surgir 0.8s ease-out both; }
+
+.backlink { position: fixed; top: 1rem; left: 1rem; z-index: 60; display: inline-flex; align-items: center; gap: 0.375rem; border-radius: 9999px; padding: 0.5rem 0.875rem; background: oklch(0.2 0.05 265 / 0.75); border: 1px solid oklch(0.82 0.11 85 / 0.4); backdrop-filter: blur(10px); font-size: 0.8rem; color: var(--texto); transition: color 0.3s; }
+.backlink:hover { color: var(--ouro); }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Botão de som unificado */
+.som-fix { position: fixed; top: 1rem; right: 1rem; z-index: 90; display: grid; place-items: center; height: 3rem; width: 3rem; padding: 0; border-radius: 9999px; border: 1.5px solid oklch(0.82 0.11 85); background: oklch(0.22 0.05 265 / 0.92); color: oklch(0.82 0.11 85); font-size: 1.2rem; box-shadow: 0 6px 22px rgba(0,0,0,0.5); cursor: pointer; transition: transform .25s; }
+.som-fix:hover { transform: scale(1.08); }
+.som-fix.ligado { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); animation: brilho 2.6s ease-in-out infinite; }
+.som-fix::before { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2px solid oklch(0.87 0.16 95 / 0.9); animation: anel-pisca-som 1.1s ease-in-out infinite; pointer-events: none; }
+@keyframes anel-pisca-som { 0%, 100% { opacity: 0.15; transform: scale(1); } 50% { opacity: 1; transform: scale(1.14); } }
+.som-ico { width: 1.35rem; height: 1.35rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; grid-area: 1 / 1; }
+.som-ico-on { display: none; }
+.ligado .som-ico-on { display: block; }
+.ligado .som-ico-off { display: none; }
+
+/* ===== Topo ===== */
+.heroi { position: relative; z-index: 5; text-align: center; padding: 4.2rem 1rem 0.5rem; }
+.selo { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid oklch(0.82 0.11 85 / 0.4); border-radius: 9999px; padding: 0.4rem 1.1rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.35em; color: var(--ouro); margin-bottom: 1.2rem; }
+.heroi h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.2rem, 6vw, 3.6rem); color: var(--ouro-suave); text-shadow: 0 0 30px oklch(0.82 0.11 85 / 0.4); }
+.heroi p.sub { margin: 0.9rem auto 0; max-width: 44rem; color: var(--mudo); font-size: 1rem; line-height: 1.65; }
+
+/* Navegação de categorias */
+.nav-cat { position: relative; z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.55rem; margin: 1.6rem auto 0; max-width: 50rem; padding: 0 1rem; }
+.nav-cat a { border: 1px solid oklch(0.82 0.11 85 / 0.45); border-radius: 9999px; padding: 0.5rem 1.1rem; font-size: 0.88rem; background: oklch(0.22 0.05 265 / 0.7); color: var(--ouro-suave); transition: transform .2s, background .2s; }
+.nav-cat a:hover { transform: scale(1.06); background: oklch(0.28 0.06 270 / 0.9); }
+
+/* ===== Secções e cartas de produto ===== */
+.zona { position: relative; z-index: 5; max-width: 62rem; margin: 0 auto; padding: 0 1rem; }
+.titulo-cat { font-family: 'Cinzel', var(--font-display); font-size: clamp(1.3rem, 4vw, 1.8rem); letter-spacing: 0.12em; color: var(--ouro); text-align: center; margin: 2.8rem 0 0.3rem; text-transform: uppercase; }
+.sub-cat { text-align: center; color: var(--mudo); font-size: 0.85rem; font-style: italic; margin-bottom: 1.4rem; }
+.grelha { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.2rem; }
+.produto { position: relative; display: flex; flex-direction: column; border: 1.5px solid oklch(0.82 0.11 85 / 0.4); border-radius: 1rem; background: var(--cartao); overflow: hidden; transition: transform .3s, box-shadow .3s, border-color .3s; }
+.produto:hover { transform: translateY(-5px); border-color: oklch(0.82 0.11 85 / 0.85); box-shadow: 0 14px 40px rgba(0,0,0,0.5), 0 0 30px oklch(0.82 0.11 85 / 0.25); }
+.produto .foto { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; border-bottom: 1px solid oklch(0.82 0.11 85 / 0.25); }
+.produto .foto-simbolo { aspect-ratio: 4 / 3; display: grid; place-items: center; font-size: 4rem; background: radial-gradient(ellipse at 50% 40%, oklch(0.3 0.08 285), oklch(0.18 0.04 265)); border-bottom: 1px solid oklch(0.82 0.11 85 / 0.25); text-shadow: 0 0 30px oklch(0.82 0.11 85 / 0.8); }
+.produto .corpo { display: flex; flex-direction: column; flex: 1; padding: 1rem 1.1rem 1.2rem; }
+.produto h3 { font-family: var(--font-display); font-size: 1.35rem; color: var(--ouro-suave); line-height: 1.25; }
+.produto .desc { margin-top: 0.5rem; color: var(--mudo); font-size: 0.88rem; line-height: 1.6; flex: 1; }
+.produto .rodape-p { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; margin-top: 1rem; }
+.produto .preco { font-family: 'Cinzel', var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--ouro); text-shadow: 0 0 14px oklch(0.82 0.11 85 / 0.5); white-space: nowrap; }
+.btn-adquirir { display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 9999px; border: 1.5px solid var(--ouro); background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); padding: 0.55rem 1.2rem; font-weight: 700; font-size: 0.9rem; animation: brilho 2.6s ease-in-out infinite; transition: transform .25s; }
+.btn-adquirir:hover { transform: scale(1.07); }
+.selo-pop { position: absolute; top: 0.7rem; right: 0.7rem; z-index: 2; border-radius: 9999px; background: oklch(0.65 0.22 145); color: white; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.3rem 0.7rem; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.3); animation: pop-salta 2.2s ease-in-out infinite; }
+@keyframes pop-salta { 0%,100% { transform: translateY(0) rotate(4deg); } 50% { transform: translateY(-4px) rotate(4deg); } }
+.vazio-loja { text-align: center; color: var(--mudo); font-style: italic; padding: 3rem 1rem; }
+
+/* Separador místico */
+.divisor-mistico { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 2.6rem auto 0; max-width: 32rem; padding: 0.25rem 1.25rem; }
+.divisor-mistico .linha { height: 1px; flex: 1; background: linear-gradient(90deg, transparent, oklch(0.82 0.14 85 / 0.55)); }
+.divisor-mistico .linha.dir { background: linear-gradient(90deg, oklch(0.82 0.14 85 / 0.55), transparent); }
+.divisor-mistico .orna { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--ouro); font-size: 1rem; letter-spacing: 0.2em; white-space: nowrap; }
+.divisor-mistico .orna .tw { animation: piscar-tw 3s ease-in-out infinite; }
+.divisor-mistico .orna .tw2 { animation: piscar-tw 3s ease-in-out infinite; animation-delay: 1.5s; }
+@keyframes piscar-tw { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* Contacto */
+.contacto { position: relative; z-index: 5; text-align: center; padding: 2.2rem 1rem 1rem; }
+.contacto h2 { font-family: var(--font-display); font-size: clamp(1.6rem, 5vw, 2.3rem); color: var(--ouro-suave); text-shadow: 0 0 25px oklch(0.82 0.11 85 / 0.35); }
+.contacto p { margin: 0.8rem auto 0; max-width: 40rem; color: var(--mudo); }
+.wa-big { position: relative; display: inline-grid; place-items: center; height: 5.2rem; width: 5.2rem; margin-top: 1.4rem; border-radius: 9999px; background: oklch(0.7 0.18 150); box-shadow: 0 10px 34px rgba(0,0,0,0.45); animation: wa-pulsa 1.8s ease-in-out infinite; }
+.wa-big svg { width: 2.6rem; height: 2.6rem; fill: white; }
+@keyframes wa-pulsa { 0%,100% { box-shadow: 0 0 0 0 oklch(0.7 0.18 150 / 0.65); } 70% { box-shadow: 0 0 0 20px oklch(0.7 0.18 150 / 0); } }
+
+footer { position: relative; z-index: 5; text-align: center; padding: 2.2rem 1rem 2.6rem; color: var(--mudo); font-size: 0.8rem; border-top: 1px solid oklch(0.82 0.11 85 / 0.12); margin-top: 2.5rem; }
+footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--ouro); margin-bottom: 0.3rem; }
+</style>
+</head>
+<body>
+<div class="estrelas"></div>
+<div class="nebulosa" aria-hidden="true"><span class="n1"></span><span class="n2"></span></div>
+
+<a class="backlink" href="index.html">
+  <svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+  genialtarot.com
+</a>
+
+<button id="audio-fab" class="som-fix" aria-label="Ligar ou desligar o som"><svg class="som-ico som-ico-on" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><svg class="som-ico som-ico-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg></button>
+
+<section class="heroi">
+  <div class="selo surgir">✦ Loja Mística · Mestre Alberto ✦</div>
+  <h1 class="surgir">A Loja do Genial Tarot</h1>
+  <p class="sub surgir">Consultas dedicadas, rituais realizados com devoção e amuletos preparados um a um.
+  Escolha o que a sua alma pede — e deixe o resto com o Mestre.</p>
+</section>
+
+<nav class="nav-cat surgir" id="nav-cat" aria-label="Categorias"></nav>
+
+<div class="zona" id="zona-loja"></div>
+
+<div class="divisor-mistico" aria-hidden="true">
+  <span class="linha"></span>
+  <span class="orna"><span class="tw">☽</span> ✦ <span class="tw2">☾</span></span>
+  <span class="linha dir"></span>
+</div>
+
+<section class="contacto">
+  <h2>✦ Dúvidas antes de adquirir? ✦</h2>
+  <p>Fale diretamente com o Mestre Alberto no WhatsApp — cada caso é único e merece uma palavra pessoal.</p>
+  <a class="wa-big" href="https://wa.me/351914920427?text=Ol%C3%A1%20Mestre%20Alberto%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20a%20Loja%20M%C3%ADstica." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp com o Mestre Alberto">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.36.572-1 3.654 3.745-.985zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.793.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+  </a>
+  <p style="margin-top:0.9rem;font-size:0.85rem">📞 +351 914 920 427 · WhatsApp direto</p>
+</section>
+
+<footer>
+  <div class="assin">✦ Loja Mística — Genial Tarot ✦</div>
+  © <span id="ano"></span> Genial Tarot · Cada compra é acompanhada pessoalmente pelo Mestre Alberto.
+</footer>
+
+<script src="produtos.js"></script>
+<script>
+document.getElementById("ano").textContent = new Date().getFullYear();
+
+/* ===== Montar a loja a partir de produtos.js ===== */
+const ICONES_CAT = { "Consultas": "🔮", "Rituais": "🕯️", "Emergências": "🚨", "Amuletos": "🧿" };
+const FRASES_CAT = {
+  "Consultas": "orientação dedicada, olhos nos olhos com o destino",
+  "Rituais": "trabalhos realizados com devoção, um a um",
+  "Emergências": "quando a alma não pode esperar",
+  "Amuletos": "proteção consagrada para levar consigo",
+};
+const ORDEM_CAT = ["Consultas", "Rituais", "Emergências", "Amuletos"];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+function linkCompra(p) {
+  if (p.link) return esc(p.link);
+  return "https://wa.me/351914920427?text=" + encodeURIComponent("Olá Mestre Alberto, quero adquirir: " + p.nome);
+}
+
+function montarLoja() {
+  const zona = document.getElementById("zona-loja");
+  const nav = document.getElementById("nav-cat");
+  const lista = (typeof PRODUTOS !== "undefined" && Array.isArray(PRODUTOS)) ? PRODUTOS : [];
+  if (!lista.length) {
+    zona.innerHTML = '<div class="vazio-loja">✦ A loja está a ser preparada — volte em breve. ✦</div>';
+    return;
+  }
+  // agrupar por categoria, respeitando a ordem preferida
+  const porCat = {};
+  lista.forEach(p => {
+    const c = (p.categoria || "Outros").trim();
+    (porCat[c] = porCat[c] || []).push(p);
+  });
+  const cats = [...ORDEM_CAT.filter(c => porCat[c]), ...Object.keys(porCat).filter(c => !ORDEM_CAT.includes(c))];
+
+  nav.innerHTML = cats.map(c =>
+    `<a href="#cat-${esc(c.toLowerCase().replace(/\s+/g, "-"))}">${ICONES_CAT[c] || "✦"} ${esc(c)}</a>`).join("");
+
+  zona.innerHTML = cats.map(c => {
+    const id = "cat-" + c.toLowerCase().replace(/\s+/g, "-");
+    const cartas = porCat[c].map(p => {
+      const foto = p.foto
+        ? `<img class="foto" src="${esc(p.foto)}" alt="${esc(p.nome)}" loading="lazy" onerror="this.outerHTML='<div class=&quot;foto-simbolo&quot;>${ICONES_CAT[c] || "✦"}</div>'" />`
+        : `<div class="foto-simbolo">${ICONES_CAT[c] || "✦"}</div>`;
+      return `<article class="produto">
+        ${p.destaque ? '<span class="selo-pop">✦ Popular ✦</span>' : ""}
+        ${foto}
+        <div class="corpo">
+          <h3>${esc(p.nome)}</h3>
+          <p class="desc">${esc(p.descricao)}</p>
+          <div class="rodape-p">
+            <span class="preco">${esc(p.preco)}</span>
+            <a class="btn-adquirir" href="${linkCompra(p)}" target="_blank" rel="noopener noreferrer">✦ Adquirir ✦</a>
+          </div>
+        </div>
+      </article>`;
+    }).join("");
+    return `<h2 class="titulo-cat" id="${id}">${ICONES_CAT[c] || "✦"} ${esc(c)}</h2>
+      <p class="sub-cat">${esc(FRASES_CAT[c] || "escolhido e preparado pelo Mestre Alberto")}</p>
+      <div class="grelha">${cartas}</div>`;
+  }).join("");
+}
+montarLoja();
+
+/* ===== Som de fundo (partilhado com o resto do site) ===== */
+const audio = new Audio("mystic-ambient.mp3");
+audio.loop = true; audio.volume = 0.02;
+function setAudioUI(on) {
+  const b = document.getElementById("audio-fab");
+  b.classList.toggle("ligado", on);
+  b.classList.toggle("desligado", !on);
+}
+let fadeMus = null;
+function tryPlay(dur) {
+  dur = dur || 3500;
+  audio.play().then(() => {
+    setAudioUI(true);
+    clearInterval(fadeMus); audio.volume = 0; let i = 0;
+    fadeMus = setInterval(() => { i++; audio.volume = Math.min(0.02, 0.02 * i / 35); if (i >= 35) clearInterval(fadeMus); }, dur / 35);
+  }).catch(() => setAudioUI(false));
+}
+const MUS_KEY = "mus_mystic";
+let musEstado = null;
+try { musEstado = JSON.parse(sessionStorage.getItem(MUS_KEY) || "null"); } catch {}
+const tentaRestauro = () => {
+  if (!(musEstado && musEstado.pos > 0) || !isFinite(audio.duration) || audio.duration <= 0) return;
+  const alvo = musEstado.pos % audio.duration;
+  for (let i = 0; i < audio.seekable.length; i++) {
+    if (audio.seekable.start(i) <= alvo && audio.seekable.end(i) >= alvo) {
+      audio.currentTime = alvo; musEstado.pos = 0;
+      ["loadedmetadata", "canplay", "progress"].forEach(ev => audio.removeEventListener(ev, tentaRestauro));
+      return;
+    }
+  }
+};
+["loadedmetadata", "canplay", "progress"].forEach(ev => audio.addEventListener(ev, tentaRestauro));
+window.addEventListener("pagehide", () => {
+  try { sessionStorage.setItem(MUS_KEY, JSON.stringify({ on: !audio.paused, pos: audio.currentTime || 0 })); } catch {}
+});
+if (!musEstado || musEstado.on) {
+  const durFade = musEstado && musEstado.on ? 1200 : 3500;
+  tryPlay(durFade);
+  const retomar = () => { if (audio.paused) tryPlay(durFade); };
+  ["pointerdown", "touchend", "keydown", "scroll"].forEach(ev =>
+    window.addEventListener(ev, retomar, { once: true, passive: true }));
+}
+document.getElementById("audio-fab").addEventListener("click", e => {
+  e.stopPropagation();
+  if (audio.paused) tryPlay(1200);
+  else { audio.pause(); setAudioUI(false); }
+});
+setAudioUI(false);
+</script>
+</body>
+</html>
