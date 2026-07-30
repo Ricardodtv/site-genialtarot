@@ -188,6 +188,25 @@ footer { position: relative; border-top: 1px solid oklch(0.70 0.10 205 / 0.15); 
 .som-ico-on { display: none; }
 .ligado .som-ico-on { display: block; }
 .ligado .som-ico-off { display: none; }
+
+/* ===== Botões da Loja Mística (bloco partilhado — manter IGUAL em todas as páginas) ===== */
+.divisor-mistico { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 2rem auto 0; max-width: 32rem; padding: 0.25rem 1.25rem; }
+.divisor-mistico .linha { height: 1px; flex: 1; background: linear-gradient(90deg, transparent, oklch(0.82 0.14 85 / 0.55)); }
+.divisor-mistico .linha.dir { background: linear-gradient(90deg, oklch(0.82 0.14 85 / 0.55), transparent); }
+.divisor-mistico .orna { display: inline-flex; align-items: center; gap: 0.5rem; color: oklch(0.82 0.11 85); font-size: 1rem; letter-spacing: 0.2em; white-space: nowrap; }
+.divisor-mistico .orna .tw { animation: piscar-tw 3s ease-in-out infinite; }
+.divisor-mistico .orna .tw2 { animation: piscar-tw 3s ease-in-out infinite; animation-delay: 1.5s; }
+@keyframes piscar-tw { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.nav-loja { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; gap: 0.85rem; margin: 1.6rem auto 0; max-width: 52rem; padding: 0 1rem; }
+.nav-linha { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; }
+.nav-loja a { position: relative; border: 1.5px solid oklch(0.82 0.11 85 / 0.5); border-radius: 9999px; padding: 0.65rem 1.5rem; font-size: 1rem; font-weight: 600; background: oklch(0.22 0.05 265 / 0.75); color: oklch(0.88 0.08 90); transition: transform .2s, background .2s; }
+.nav-loja a:hover { transform: scale(1.06); background: oklch(0.28 0.06 270 / 0.9); }
+.nav-emerg { font-size: 1.18rem !important; padding: 0.85rem 2.2rem !important; border-color: oklch(0.62 0.2 25 / 0.8) !important; background: linear-gradient(180deg, oklch(0.34 0.1 25 / 0.85), oklch(0.26 0.08 20 / 0.85)) !important; color: oklch(0.92 0.05 40) !important; box-shadow: 0 0 24px oklch(0.62 0.22 27 / 0.35); }
+.nav-emerg::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: -8px; height: 3.5px; border-radius: 3px; background: oklch(0.62 0.24 27); box-shadow: 0 0 12px oklch(0.62 0.24 27 / 0.9); animation: sublinha-pisca 1.1s ease-in-out infinite; }
+.nav-consultas::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: -8px; height: 3.5px; border-radius: 3px; background: oklch(0.85 0.13 88); box-shadow: 0 0 12px oklch(0.85 0.13 88 / 0.9); animation: sublinha-pisca 1.1s ease-in-out infinite; }
+@keyframes sublinha-pisca { 0%, 100% { opacity: 0.15; } 50% { opacity: 1; } }
+.sirene { display: inline-block; animation: girar-sirene 1.6s linear infinite; }
+@keyframes girar-sirene { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
@@ -257,6 +276,28 @@ footer { position: relative; border-top: 1px solid oklch(0.70 0.10 205 / 0.15); 
         <span class="btn-label">Horóscopo Diário</span>
       </a>
     </div>
+
+    <div class="divisor-mistico" aria-hidden="true">
+      <span class="linha"></span>
+      <span class="orna"><span class="tw">☽</span> ✦ <span class="tw2">☾</span></span>
+      <span class="linha dir"></span>
+    </div>
+
+    <nav class="nav-loja" aria-label="Loja Mística">
+      <div class="nav-linha">
+        <a class="nav-emerg" href="loja.html#cat-emergências"><span class="sirene">🚨</span> Emergências</a>
+      </div>
+      <div class="nav-linha">
+        <a class="nav-consultas" href="loja.html#cat-consultas">🔮 Consultas</a>
+        <a href="loja.html#cat-rituais">🕯️ Rituais</a>
+      </div>
+      <div class="nav-linha">
+        <a href="loja.html#cat-amuletos">🧿 Amuletos</a>
+        <a href="loja.html#cat-mapas-astrais">🌌 Mapas Astrais</a>
+        <a href="loja.html#cat-cursos">📚 Cursos</a>
+      </div>
+    </nav>
+
   </div>
 </section>
 

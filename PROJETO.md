@@ -81,6 +81,12 @@ jogo de trustedtarot.com.
 
 ## Outras notas
 
+- **REGRA DOS BOTÕES DA LOJA:** o bloco de botões da Loja Mística (separador ☽✦☾ +
+  nav-loja: Emergências com sirene a girar/Consultas/Rituais/Amuletos/Mapas Astrais/Cursos,
+  a apontar para loja.html#cat-...) existe em: loja.html (topo), arvore.html,
+  horoscopo.html, anual.html e fimdesemana.html. QUALQUER alteração a estes botões
+  ou aos seus links deve ser replicada em TODAS estas páginas.
+
 - Navegação cruzada: as 3 páginas de horóscopo têm 2 botões grandes cada, a apontar
   para as OUTRAS duas (nenhuma página tem botão para si própria). Na página principal,
   os botões Diário/Anual/Fim de Semana usam as cores das páginas de destino
