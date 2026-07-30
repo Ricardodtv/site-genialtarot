@@ -19,8 +19,11 @@
                Deixe "" para abrir o WhatsApp com mensagem pronta.
    destaque  → true mostra o selo verde ✦ POPULAR ✦ e põe o produto
                em primeiro lugar na sua secção (opcional)
-   etiqueta  → texto para um selo próprio em violeta (ex.: "MAPA ASTRAL");
-               substitui o selo POPULAR (opcional)
+   etiqueta  → texto para um selo próprio no estilo do POPULAR
+               (ex.: "MAPA ASTRAL", "SUPER PROMOÇÃO") — opcional
+   cor       → a cor da etiqueta: "verde", "violeta", "vermelho",
+               "azul", "laranja", "rosa" ou "dourado"
+               (se não escrever nada, fica violeta)
    topvendas → true mostra o selo DOURADO "✦ Top Vendas ✦" com
                ⭐⭐⭐ por cima (opcional; também põe o produto à frente)
    ============================================================ */
