@@ -145,6 +145,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .wa-mini svg { width: 1rem; height: 1rem; fill: white; }
 .alt-linha a { color: oklch(0.8 0.12 150); text-decoration: underline; }
 .selo-pop { position: absolute; top: 0.7rem; right: 0.7rem; z-index: 2; border-radius: 9999px; background: oklch(0.65 0.22 145); color: white; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.3rem 0.7rem; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.3); animation: pop-salta 2.2s ease-in-out infinite; }
+.selo-pop.selo-alt { background: linear-gradient(135deg, oklch(0.55 0.25 305), oklch(0.48 0.22 280)); box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 16px oklch(0.55 0.25 305 / 0.6); }
 @keyframes pop-salta { 0%,100% { transform: translateY(0) rotate(4deg); } 50% { transform: translateY(-4px) rotate(4deg); } }
 .vazio-loja { text-align: center; color: var(--mudo); font-style: italic; padding: 3rem 1rem; }
 
@@ -234,14 +235,16 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
 document.getElementById("ano").textContent = new Date().getFullYear();
 
 /* ===== Montar a loja a partir de produtos.js ===== */
-const ICONES_CAT = { "Consultas": "🔮", "Rituais": "🕯️", "Emergências": "🚨", "Amuletos": "🧿" };
+const ICONES_CAT = { "Consultas": "🔮", "Rituais": "🕯️", "Emergências": "🚨", "Amuletos": "🧿", "Mapas Astrais": "🌌", "Cursos": "📚" };
 const FRASES_CAT = {
   "Consultas": "orientação dedicada, olhos nos olhos com o destino",
   "Rituais": "trabalhos realizados com devoção, um a um",
   "Emergências": "quando a alma não pode esperar",
   "Amuletos": "proteção consagrada para levar consigo",
+  "Mapas Astrais": "o céu que o desenhou, interpretado para si",
+  "Cursos": "aprenda com quem lê as cartas há uma vida",
 };
-const ORDEM_CAT = ["Consultas", "Rituais", "Emergências", "Amuletos"];
+const ORDEM_CAT = ["Consultas", "Rituais", "Emergências", "Amuletos", "Mapas Astrais", "Cursos"];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 function linkCompra(p) {
@@ -263,7 +266,10 @@ function montarLoja() {
     const c = (p.categoria || "Outros").trim();
     (porCat[c] = porCat[c] || []).push(p);
   });
-  const cats = [...ORDEM_CAT.filter(c => porCat[c]), ...Object.keys(porCat).filter(c => !ORDEM_CAT.includes(c))];
+  Object.values(porCat).forEach(l => l.sort((a, b) => (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0)));
+  const extras = Object.keys(porCat).filter(c => !ORDEM_CAT.includes(c));
+  const base = ORDEM_CAT.filter(c => porCat[c] && c !== "Cursos");
+  const cats = [...base, ...extras, ...(porCat["Cursos"] ? ["Cursos"] : [])];
 
   nav.innerHTML = cats.map(c =>
     `<a href="#cat-${esc(c.toLowerCase().replace(/\s+/g, "-"))}">${ICONES_CAT[c] || "✦"} ${esc(c)}</a>`).join("");
@@ -275,7 +281,7 @@ function montarLoja() {
         ? `<img class="foto" src="${esc(p.foto)}" alt="${esc(p.nome)}" loading="lazy" onerror="this.outerHTML='<div class=&quot;foto-simbolo&quot;>${ICONES_CAT[c] || "✦"}</div>'" />`
         : `<div class="foto-simbolo">${ICONES_CAT[c] || "✦"}</div>`;
       return `<article class="produto">
-        ${p.destaque ? '<span class="selo-pop">✦ Popular ✦</span>' : ""}
+        ${p.etiqueta ? '<span class="selo-pop selo-alt">✦ ' + esc(p.etiqueta) + ' ✦</span>' : p.destaque ? '<span class="selo-pop">✦ Popular ✦</span>' : ""}
         ${foto}
         <div class="corpo">
           <h3>${esc(p.nome)}</h3>
