@@ -91,8 +91,10 @@ jogo de trustedtarot.com.
   para as OUTRAS duas (nenhuma página tem botão para si própria). Na página principal,
   os botões Diário/Anual/Fim de Semana usam as cores das páginas de destino
   (roxo/rubi/esmeralda) e os efeitos pesados (halos blur) estão desligados em ecrãs ≤640px.
-  Atalho "Árvore da Vida" (azul-noite/dourado, ícone SVG com o esquema das 10 Sefirot)
-  aponta para arvore.html e pulsa como os restantes.
+  Atalho "Árvore da Vida" (azul-noite/dourado, ícone SVG fino com o esquema das 10 Sefirot)
+  aponta para arvore.html e pulsa como os restantes. Atalho "Horóscopo Escrito" (laranja-
+  âmbar, etiqueta violeta "DE HOJE") — DESTINO PROVISÓRIO: WhatsApp com mensagem pronta;
+  trocar quando existir página/produto próprio.
 - Áudio de fundo: TODAS as páginas têm som ligado POR DEFEITO (arranca ao 1.º toque se o
   navegador travar o autoplay) com fade-in. Botão de som UNIFICADO em todas as páginas:
   círculo ♪ fixo no canto superior direito, anel amarelo a piscar (1,1s), dourado quando

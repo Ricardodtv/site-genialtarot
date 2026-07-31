@@ -148,12 +148,16 @@ svg.icon-fill { fill: currentColor; stroke: none; }
 .btn-pg-diario { background: linear-gradient(160deg, oklch(0.58 0.22 305), oklch(0.40 0.20 285)); color: oklch(0.99 0.01 300); border-color: oklch(0.80 0.10 305 / 0.5); }
 .btn-pg-fds { background: linear-gradient(160deg, oklch(0.60 0.13 205), oklch(0.38 0.11 192)); color: oklch(0.98 0.01 200); border-color: oklch(0.85 0.08 200 / 0.5); }
 .btn-pg-anual { background: linear-gradient(160deg, oklch(0.52 0.19 20), oklch(0.33 0.14 8)); color: oklch(0.98 0.01 20); border-color: oklch(0.75 0.12 15 / 0.5); }
+.btn-horo-escrito { position: relative; background: linear-gradient(160deg, oklch(0.72 0.19 55), oklch(0.55 0.17 38)); color: oklch(0.18 0.05 45); border-color: oklch(0.88 0.12 70 / 0.65); animation: atalho-pulso 3.4s ease-in-out infinite; }
+.tag-hoje { position: absolute; top: 0.35rem; right: 0.45rem; z-index: 3; border-radius: 9999px; background: oklch(0.45 0.16 285); color: white; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.28rem 0.7rem; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.35); animation: nova-salta 2s ease-in-out infinite; }
 .btn-loja-nova { position: relative; background: linear-gradient(160deg, oklch(0.64 0.26 350), oklch(0.46 0.22 330)); color: oklch(0.98 0.01 350); border-color: oklch(0.85 0.12 355 / 0.7); animation: atalho-pulso 3.4s ease-in-out infinite, loja-pulsa 1.3s ease-out infinite !important; }
 @keyframes loja-pulsa { 0% { box-shadow: 0 0 0 0 oklch(0.7 0.24 350 / 0.7); } 70% { box-shadow: 0 0 0 14px oklch(0.7 0.24 350 / 0); } 100% { box-shadow: 0 0 0 0 oklch(0.7 0.24 350 / 0); } }
 .tag-nova { position: absolute; top: 0.35rem; right: 0.45rem; z-index: 3; border-radius: 9999px; background: oklch(0.68 0.23 40); color: white; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.28rem 0.7rem; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.35); animation: nova-salta 2s ease-in-out infinite; }
 @keyframes nova-salta { 0%, 100% { transform: translateY(0) rotate(6deg); } 50% { transform: translateY(-4px) rotate(6deg); } }
 .btn-pg-arvore { background: linear-gradient(160deg, oklch(0.44 0.13 302), oklch(0.33 0.1 254) 55%, oklch(0.22 0.06 265)); color: oklch(0.9 0.1 90); border-color: oklch(0.82 0.11 85 / 0.6); }
-.quick-grid .btn-3d.btn-pg-arvore .icon { width: 3.1rem; height: 3.1rem; margin-bottom: 0.3rem; }
+.quick-grid .btn-3d.btn-pg-arvore .icon { width: 3.2rem; height: 3.2rem; margin-bottom: 0.3rem; }
+.ico-arvore .arv-linhas { stroke-width: 0.55; stroke: oklch(0.9 0.09 90 / 0.85); fill: none; }
+.ico-arvore .arv-nos circle { stroke-width: 0.8; stroke: oklch(0.92 0.1 92); fill: oklch(0.26 0.07 266); }
 /* Telemóvel: aliviar efeitos pesados para os botões aparecerem logo */
 @media (max-width: 640px) {
   .btn-violet-glow::after, .btn-sky-glow::after { display: none; }
@@ -476,14 +480,23 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
         <span>Agenda</span>
       </a>
       <a href="arvore.html" class="btn-3d btn-violet-glow btn-pg-arvore">
-        <svg class="icon" viewBox="0 0 24 24" stroke-width="0.9">
-          <path d="M12 2.4V21.6M12 2.4 5 5.6M12 2.4l7 3.2M5 5.6h14M5 5.6v9.6M19 5.6v9.6M5 10.4h14M5 10.4 12 12.8 19 10.4M5 15.2h14M12 12.8 19 15.2M12 12.8 5 15.2M5 15.2 12 18l7-2.8" />
-          <circle style="fill:oklch(0.28 0.07 264)" cx="12" cy="2.4" r="1.5"/><circle style="fill:oklch(0.28 0.07 264)" cx="5" cy="5.6" r="1.5"/><circle style="fill:oklch(0.28 0.07 264)" cx="19" cy="5.6" r="1.5"/>
-          <circle style="fill:oklch(0.28 0.07 264)" cx="5" cy="10.4" r="1.5"/><circle style="fill:oklch(0.28 0.07 264)" cx="19" cy="10.4" r="1.5"/><circle style="fill:oklch(0.28 0.07 264)" cx="12" cy="12.8" r="1.5"/>
-          <circle style="fill:oklch(0.28 0.07 264)" cx="5" cy="15.2" r="1.5"/><circle style="fill:oklch(0.28 0.07 264)" cx="19" cy="15.2" r="1.5"/><circle style="fill:oklch(0.28 0.07 264)" cx="12" cy="18" r="1.5"/>
-          <circle style="fill:oklch(0.28 0.07 264)" cx="12" cy="21.6" r="1.5"/>
+        <svg class="icon ico-arvore" viewBox="0 0 24 24">
+          <g class="arv-linhas">
+            <path d="M12 3v18M12 3 5.5 6.2M12 3l6.5 3.2M5.5 6.2h13M5.5 6.2v4.9M18.5 6.2v4.9M5.5 11.1h13M5.5 11.1 12 13.6l6.5-2.5M5.5 11.1v4.9M18.5 11.1v4.9M5.5 16h13M12 13.6 5.5 16M12 13.6 18.5 16M5.5 16 12 18.5 18.5 16" />
+          </g>
+          <g class="arv-nos">
+            <circle cx="12" cy="3" r="1.7"/><circle cx="5.5" cy="6.2" r="1.7"/><circle cx="18.5" cy="6.2" r="1.7"/>
+            <circle cx="5.5" cy="11.1" r="1.7"/><circle cx="18.5" cy="11.1" r="1.7"/><circle cx="12" cy="13.6" r="1.7"/>
+            <circle cx="5.5" cy="16" r="1.7"/><circle cx="18.5" cy="16" r="1.7"/><circle cx="12" cy="18.5" r="1.7"/>
+            <circle cx="12" cy="21" r="1.7"/>
+          </g>
         </svg>
         <span>Árvore da Vida</span>
+      </a>
+      <a href="https://wa.me/351914920427?text=Ol%C3%A1%20Mestre%20Alberto%2C%20quero%20o%20meu%20Hor%C3%B3scopo%20Escrito%20de%20hoje." target="_blank" rel="noopener noreferrer" class="btn-3d btn-horo-escrito">
+        <span class="tag-hoje">DE HOJE</span>
+        <svg class="icon" viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a1 1 0 0 1 1 1v16.5a2.5 2.5 0 0 1-2.5 2.5H6.5A2.5 2.5 0 0 1 4 19.5Z"/><path d="M8 7h7"/><path d="M8 11h7"/><path d="M8 15h4"/><path d="m17.5 4.5.6 1.3 1.4.2-1 1 .3 1.4-1.3-.7-1.3.7.3-1.4-1-1 1.4-.2z"/></svg>
+        <span>Horóscopo Escrito</span>
       </a>
       <a href="horoscopo.html" class="btn-3d btn-violet-glow btn-pg-diario">
         <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
