@@ -422,7 +422,7 @@ export default {
         try {
           const hoje = new Date().toISOString().slice(0, 10);
           const consulta2 = {
-            query: "query($zona:String!,$desde:Date!,$hoje:Date!){viewer{zones(filter:{zoneTag:$zona}){periodo:httpRequestsAdaptiveGroups(limit:100,filter:{date_geq:$desde},orderBy:[count_DESC]){count dimensions{clientRequestPath}sum{visits}}hoje:httpRequestsAdaptiveGroups(limit:60,filter:{date:$hoje},orderBy:[count_DESC]){count dimensions{clientRequestPath}sum{visits}}}}}",
+            query: "query($zona:String!,$desde:Date!,$hoje:Date!){viewer{zones(filter:{zoneTag:$zona}){periodo:httpRequestsAdaptiveGroups(limit:100,filter:{date_geq:$desde},orderBy:[count_DESC]){count dimensions{clientRequestPath}sum{visits}}hoje:httpRequestsAdaptiveGroups(limit:60,filter:{date:$hoje},orderBy:[count_DESC]){count dimensions{clientRequestPath}sum{visits}}origens:httpRequestsAdaptiveGroups(limit:60,filter:{date_geq:$desde},orderBy:[count_DESC]){count dimensions{clientRefererHost}sum{visits}}}}}",
             variables: { zona: env.CF_ZONE_ID, desde, hoje },
           };
           const r2 = await fetch("https://api.cloudflare.com/client/v4/graphql", {
@@ -444,6 +444,19 @@ export default {
               .map(([caminho, visitas]) => ({ caminho, visitas }));
           };
           if (z2) porPagina = { hoje: filtrar(z2.hoje), periodo: filtrar(z2.periodo) };
+          if (z2 && z2.origens) {
+            const mapa = {};
+            for (const g of z2.origens) {
+              let hostv = (g.dimensions.clientRefererHost || "").toLowerCase();
+              if (hostv.startsWith("www.")) hostv = hostv.slice(4);
+              if (hostv === "genialtarot.com" || hostv.endsWith(".workers.dev")) continue; // navegação interna
+              if (!hostv) hostv = "(direto)";
+              const n = (g.sum && g.sum.visits) || g.count || 0;
+              mapa[hostv] = (mapa[hostv] || 0) + n;
+            }
+            porPagina.origens = Object.entries(mapa).sort((a, b) => b[1] - a[1]).slice(0, 12)
+              .map(([origem, visitas]) => ({ origem, visitas }));
+          }
         } catch (e) { porPagina = null; }
 
         return jsonResp({
@@ -542,6 +555,11 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
       <div id="pgs-periodo"></div>
     </div>
     <div class="painel">
+      <div class="titulo-sec">🚪 Por onde chegam (origens)</div>
+      <div id="origens"></div>
+      <div style="text-align:center;color:oklch(0.7 0.03 275);font-size:0.68rem;font-style:italic;margin-top:0.5rem">"Direto" = escreveu o endereço, favoritos ou apps que não anunciam a origem (ex.: WhatsApp)</div>
+    </div>
+    <div class="painel">
       <div class="titulo-sec">🌍 De onde vêm os visitantes</div>
       <div id="paises"></div>
     </div>
@@ -601,6 +619,27 @@ function carregar() {
           alvo.appendChild(linha);
         });
       }
+      var NOMES_ORIG = { "(direto)": "🔗 Direto / desconhecido", "google.com": "🔎 Google", "google.pt": "🔎 Google",
+        "facebook.com": "📘 Facebook", "m.facebook.com": "📘 Facebook", "l.facebook.com": "📘 Facebook", "lm.facebook.com": "📘 Facebook",
+        "instagram.com": "📸 Instagram", "l.instagram.com": "📸 Instagram", "youtube.com": "▶️ YouTube", "m.youtube.com": "▶️ YouTube",
+        "linktr.ee": "🌐 Linktree", "tiktok.com": "🎵 TikTok", "t.co": "🐦 X (Twitter)", "bing.com": "🔎 Bing", "duckduckgo.com": "🔎 DuckDuckGo" };
+      function encherOrigens(lista) {
+        var alvo = document.getElementById("origens");
+        alvo.innerHTML = "";
+        if (!lista || !lista.length) {
+          alvo.innerHTML = '<div style="color:oklch(0.75 0.03 275);font-size:0.8rem;padding:0.3rem 0">sem dados de origens neste período</div>';
+          return;
+        }
+        var max = lista[0].visitas || 1;
+        lista.forEach(function (o) {
+          var linha = document.createElement("div");
+          linha.className = "pais";
+          var nome = NOMES_ORIG[o.origem] || ("🌐 " + o.origem);
+          linha.innerHTML = '<span class="nome">' + nome + '</span><span class="faixa"><span style="width:' + Math.max(3, Math.round(o.visitas / max * 100)) + '%"></span></span><span class="pct">' + o.visitas + '</span>';
+          alvo.appendChild(linha);
+        });
+      }
+      encherOrigens(j.porPagina && j.porPagina.origens);
       document.getElementById("rot-periodo").textContent = "Nos últimos " + diasAtual + " dias";
       encherPgs("pgs-hoje", j.porPagina && j.porPagina.hoje);
       encherPgs("pgs-periodo", j.porPagina && j.porPagina.periodo);
