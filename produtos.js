@@ -90,7 +90,6 @@ const PRODUTOS = [
     foto: "parecer-cartas.jpg",
     descricao: "Vai tomar uma decisão importante — um negócio, uma mudança, uma proposta? O Mestre Alberto consulta as cartas sobre o seu assunto e envia-lhe um parecer escrito, claro e fundamentado, para decidir com segurança.",
     link: "https://mypos.com/vmp/btn/BLQ1NIUDJ2K11",
-    etiqueta: "BÚSSOLA EMPRESARIAL", cor: "laranja", estrelas: 3,
   },
 
   {
@@ -187,7 +186,7 @@ const PRODUTOS = [
     foto: "consulta-emergencia.jpg",
     descricao: "Para quando a alma não pode esperar: resposta garantida no máximo numa hora. 40 minutos inteiramente dedicados ao seu caso urgente, com prioridade absoluta na agenda do Mestre.",
     link: "https://mypos.com/vmp/btn/BKXKXFVMT7M49",
-    destaque: true,
+    etiqueta: "CONSULTA DE EMERGÊNCIA", cor: "vermelho", estrelas: 5,
   },
 
   /* ================= AMULETOS ================= */
