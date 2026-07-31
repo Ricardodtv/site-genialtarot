@@ -63,7 +63,7 @@ jogo de trustedtarot.com.
 - `/api/anual` → playlist Anual `PL1CDtoz2ES7Rj4Pgnzsk1B0yMJ5MsZRim`, organiza
   vídeos por signo pelo TÍTULO. Cache 1h. (Virgem em falta na playlist — acende sozinho se for adicionado.)
 - `/Estataomp8` → página PRIVADA de visitas (endereço discreto de propósito; protegida por palavra-passe) com gráfico
-  de barras, totais e painel "De onde vêm os visitantes" (países com bandeiras e %); `/api/stats` vai buscar os números à API da Cloudflare.
+  de barras, totais, painel "Páginas mais visitadas" (hoje + período; dataset detalhado da Cloudflare, guarda poucos dias no plano gratuito) e painel "De onde vêm os visitantes" (países com bandeiras e %); `/api/stats` vai buscar os números à API da Cloudflare.
   Precisa de 3 valores em Settings → Variables and Secrets do Worker:
   `CF_API_TOKEN` (Secret; token com permissão Analytics:Read na zona),
   `CF_ZONE_ID` (texto; Zone ID na página Overview do domínio),

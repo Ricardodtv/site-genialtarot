@@ -416,10 +416,41 @@ export default {
         const paises = Object.entries(porPais)
           .sort((a, b) => b[1] - a[1]).slice(0, 12)
           .map(([codigo, pedidos]) => ({ codigo, pedidos }));
+
+        // Páginas mais visitadas (hoje + período) — dataset detalhado; pode não existir em todos os planos
+        let porPagina = null;
+        try {
+          const hoje = new Date().toISOString().slice(0, 10);
+          const consulta2 = {
+            query: "query($zona:String!,$desde:Date!,$hoje:Date!){viewer{zones(filter:{zoneTag:$zona}){periodo:httpRequestsAdaptiveGroups(limit:100,filter:{date_geq:$desde},orderBy:[count_DESC]){count dimensions{clientRequestPath}sum{visits}}hoje:httpRequestsAdaptiveGroups(limit:60,filter:{date:$hoje},orderBy:[count_DESC]){count dimensions{clientRequestPath}sum{visits}}}}}",
+            variables: { zona: env.CF_ZONE_ID, desde, hoje },
+          };
+          const r2 = await fetch("https://api.cloudflare.com/client/v4/graphql", {
+            method: "POST",
+            headers: { "Authorization": `Bearer ${env.CF_API_TOKEN}`, "Content-Type": "application/json" },
+            body: JSON.stringify(consulta2),
+          });
+          const j2 = await r2.json();
+          const z2 = j2 && j2.data && j2.data.viewer && j2.data.viewer.zones && j2.data.viewer.zones[0];
+          const filtrar = (lista) => {
+            const mapa = {};
+            for (const g of (lista || [])) {
+              const p = (g.dimensions.clientRequestPath || "").split("?")[0];
+              if (p !== "/" && !p.endsWith(".html")) continue;
+              const n = (g.sum && g.sum.visits) || g.count || 0;
+              mapa[p] = (mapa[p] || 0) + n;
+            }
+            return Object.entries(mapa).sort((a, b) => b[1] - a[1]).slice(0, 12)
+              .map(([caminho, visitas]) => ({ caminho, visitas }));
+          };
+          if (z2) porPagina = { hoje: filtrar(z2.hoje), periodo: filtrar(z2.periodo) };
+        } catch (e) { porPagina = null; }
+
         return jsonResp({
           ok: true,
           dias: grupos.map(g => ({ data: g.dimensions.date, paginas: g.sum.pageViews, pedidos: g.sum.requests, visitantes: g.uniq.uniques })),
           paises,
+          porPagina,
         });
       } catch (e) {
         return jsonResp({ ok: false, error: String(e) }, 502);
@@ -467,6 +498,7 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
 .filtros button.ativo { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); }
 .rodape { text-align: center; color: oklch(0.7 0.03 275); font-size: 0.75rem; margin-top: 1.5rem; }
 .titulo-sec { color: oklch(0.88 0.08 90); font-size: 0.9rem; letter-spacing: 0.08em; margin-bottom: 0.8rem; text-align: center; }
+.abas-pg { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; color: oklch(0.75 0.03 275); margin-bottom: 0.4rem; }
 .pais { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; font-size: 0.85rem; }
 .pais .nome { flex: 0 0 10rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pais .faixa { flex: 1; height: 0.85rem; border-radius: 4px; background: oklch(0.26 0.05 265); overflow: hidden; }
@@ -501,6 +533,13 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
     <div class="painel">
       <div class="grafico" id="grafico"></div>
       <div class="legenda"><span id="l-ini"></span><span>páginas vistas por dia</span><span id="l-fim"></span></div>
+    </div>
+    <div class="painel">
+      <div class="titulo-sec">📄 Páginas mais visitadas</div>
+      <div class="abas-pg"><b>Hoje</b></div>
+      <div id="pgs-hoje"></div>
+      <div class="abas-pg" style="margin-top:0.9rem"><b id="rot-periodo">No período</b></div>
+      <div id="pgs-periodo"></div>
     </div>
     <div class="painel">
       <div class="titulo-sec">🌍 De onde vêm os visitantes</div>
@@ -543,6 +582,28 @@ function carregar() {
         document.getElementById("l-ini").textContent = dataPt(d[0].data);
         document.getElementById("l-fim").textContent = dataPt(d[d.length - 1].data);
       }
+      var NOMES_PG = { "/": "🏠 Página Principal", "/index.html": "🏠 Página Principal", "/loja.html": "🛍️ Loja Mística",
+        "/tarot-gratis.html": "🃏 Tarot Grátis", "/arvore.html": "🌳 Árvore da Vida", "/horoscopo.html": "🔮 Horóscopo Diário",
+        "/anual.html": "📅 Previsão Anual", "/fimdesemana.html": "🌙 Fim de Semana" };
+      function encherPgs(id, lista) {
+        var alvo = document.getElementById(id);
+        alvo.innerHTML = "";
+        if (!lista || !lista.length) {
+          alvo.innerHTML = '<div style="color:oklch(0.75 0.03 275);font-size:0.8rem;padding:0.3rem 0">sem dados (o plano gratuito guarda este detalhe só por alguns dias)</div>';
+          return;
+        }
+        var max = lista[0].visitas || 1;
+        lista.forEach(function (p) {
+          var linha = document.createElement("div");
+          linha.className = "pais";
+          var nome = NOMES_PG[p.caminho] || p.caminho;
+          linha.innerHTML = '<span class="nome">' + nome + '</span><span class="faixa"><span style="width:' + Math.max(3, Math.round(p.visitas / max * 100)) + '%"></span></span><span class="pct">' + p.visitas + '</span>';
+          alvo.appendChild(linha);
+        });
+      }
+      document.getElementById("rot-periodo").textContent = "Nos últimos " + diasAtual + " dias";
+      encherPgs("pgs-hoje", j.porPagina && j.porPagina.hoje);
+      encherPgs("pgs-periodo", j.porPagina && j.porPagina.periodo);
       var zp = document.getElementById("paises");
       zp.innerHTML = "";
       var ps = j.paises || [];
