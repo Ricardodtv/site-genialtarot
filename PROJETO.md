@@ -31,7 +31,7 @@
 | Ficheiro | O que é |
 |---|---|
 | `index.html` | **Página principal** — foto redonda grande (mestre-principal.jpg, círculo 14,5/18rem) com anéis de pulso + sistema solar; 9 Atalhos Místicos (Loja Online é o 2.º: fúchsia, etiqueta NOVA, anel a piscar → loja.html); botão dourado Jogar Tarot; bloco de botões da Loja; carrossel 22 arcanos, contactos |
-| `tarot-gratis.html` | **Tarot Grátis** — jogo: formulário, 8 cartas, veredito, avaliação ⭐. TODO o texto (interface e vereditos) em tratamento formal "você" — manter assim em alterações futuras |
+| `tarot-gratis.html` | **Tarot Grátis** — jogo: formulário, 8 cartas, veredito, avaliação ⭐. TODO o texto (interface e vereditos) em tratamento formal "você" — manter assim em alterações futuras. Em ago/2026 foram REMOVIDAS a pedido do Alberto as secções "Como funciona o Genialtarot", "Porquê confiar no Genialtarot", "Escolhe a área que queres trabalhar" (grelha de áreas; os chips do formulário mantêm-se) e "Envolva-se no ambiente esotérico" — não recriar sem ele pedir |
 | `horoscopo.html` | **Mensagens do Universo** — signos diários (tempos do último vídeo). Foto redonda própria (mestre-diario.jpg, círculo 16/20/22rem). Sem vídeos fixos; botões da Loja + contacto WhatsApp pulsante |
 | `anual.html` | **Mensagem Anual** — Previsão Anual 2026, um vídeo por signo. Tema rubi/granada. Foto redonda própria (mestre-anual.jpg). Sem NENHUM vídeo fixo; botões da Loja + contacto WhatsApp pulsante |
 | `fimdesemana.html` | **Mensagem do Fim de Semana** — signos com tempos do último vídeo semanal. Tema verde-esmeralda. Foto redonda própria (mestre-fds.jpg, círculo 16/20/22rem). Sem vídeos fixos; botões da Loja + contacto WhatsApp pulsante |

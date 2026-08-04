@@ -112,15 +112,6 @@ section { position: relative; padding-left: 1rem; padding-right: 1rem; }
 @media (min-width: 768px) { .h2c { font-size: 3rem; } }
 .grid-3 { display: grid; gap: 1.5rem; margin-top: 3rem; }
 @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
-.grid-areas { display: grid; gap: 1.25rem; margin-top: 3rem; }
-@media (min-width: 640px) { .grid-areas { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .grid-areas { grid-template-columns: repeat(3, 1fr); } }
-.area-card { text-align: left; cursor: pointer; }
-.area-card:hover { background: oklch(0.23 0.06 290 / 0.8); border-color: oklch(0.82 0.13 85 / 0.6); transform: scale(1.02); }
-.area-card .icon-circle { border-radius: 9999px; background: var(--gradient-mystic); padding: 0.625rem; box-shadow: var(--shadow-mystic); display: inline-flex; }
-.area-card .head { display: flex; align-items: center; gap: 0.75rem; }
-.area-card h3 { font-size: 1.25rem; }
-.area-card p { margin-top: 0.75rem; font-size: 0.875rem; color: var(--muted-foreground); line-height: 1.6; }
 
 /* Experience */
 .exp-banner { position: relative; margin: 0 auto 2rem; max-width: 48rem; }
@@ -262,54 +253,6 @@ footer { padding: 2.5rem 1rem; text-align: center; font-size: 0.75rem; color: va
         <p class="muted" style="font-size:0.75rem">Leituras simples, simbólicas e realistas — sem promessas mágicas, apenas orientação.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Como funciona -->
-<section class="sect sect-border">
-  <div class="wrap-6xl">
-    <h2 class="h2c text-glow">Como funciona o Genialtarot</h2>
-    <div class="grid-3" id="como-funciona"></div>
-  </div>
-</section>
-
-<!-- Porquê confiar -->
-<section class="sect">
-  <div class="wrap-5xl" style="text-align:center">
-    <h2 class="h2c text-glow">Porquê confiar no Genialtarot</h2>
-    <p class="muted" style="margin:1rem auto 0;max-width:48rem">
-      O Genialtarot usa o baralho clássico Rider Waite, um dos mais conhecidos e
-      estudados no mundo esotérico, com 78 cartas cheias de símbolos e arquétipos ricos.
-    </p>
-    <div class="grid-3" id="confiar" style="text-align:left"></div>
-  </div>
-</section>
-
-<!-- Áreas -->
-<section class="sect sect-border">
-  <div class="wrap-6xl">
-    <div style="text-align:center">
-      <h2 class="h2c text-glow">Escolhe a área que queres trabalhar</h2>
-      <p class="muted" style="margin:0.75rem auto 0;max-width:42rem">
-        Cada tiragem foca-se numa área específica da tua vida. Pode voltar quando quiser
-        e explorar temas diferentes.
-      </p>
-    </div>
-    <div class="grid-areas" id="areas-grid"></div>
-  </div>
-</section>
-
-<!-- Som -->
-<section class="sect">
-  <div class="wrap-3xl card-box shadow-mystic" style="text-align:center;border-radius:1.5rem;padding:2.5rem">
-    <h2 style="font-size:1.875rem" class="text-gold">Envolva-se no ambiente esotérico</h2>
-    <p style="margin-top:1rem;color:oklch(0.96 0.02 300 / 0.85)">
-      Ative o som ambiente para entrar ainda mais na energia da leitura: uma paisagem
-      sonora suave, mística e envolvente acompanha a sua tiragem.
-    </p>
-    <p class="muted" style="margin-top:0.5rem">
-      Se preferir silêncio, pode desligar o som a qualquer momento com um simples clique.
-    </p>
   </div>
 </section>
 
@@ -1281,35 +1224,6 @@ function store(key, val) { try { localStorage.setItem(key, JSON.stringify(val));
 function load(key, fallback) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch { return fallback; } }
 
 /* ============ UI: secções geradas ============ */
-const areaIcons = {
-  Trabalho: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
-  Amor: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
-  Financeiro: '<circle cx="12" cy="12" r="8"/><path d="M12 8v8"/><path d="M9.5 9.5c0-.8.9-1.5 2.5-1.5s2.5.7 2.5 1.5c0 2.5-5 1.5-5 4 0 .8.9 1.5 2.5 1.5s2.5-.7 2.5-1.5"/>',
-  "Saúde": '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
-  "Família": '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
-  Espiritual: '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
-};
-document.getElementById("como-funciona").innerHTML = [
-  { n: "01", t: "Partilhe um pouco sobre si", d: "Introduza o seu nome, data de nascimento, cidade, país e email. Estes dados ajudam a organizar as leituras e permitem-lhe revisitar o seu caminho mais tarde." },
-  { n: "02", t: "Escolha a área da sua vida", d: "Trabalho, Amor, Financeiro, Saúde, Família ou Espiritual. Foque a sua intenção numa área e deixe que o Tarot fale sobre esse tema." },
-  { n: "03", t: "Revele as 8 cartas", d: "Clique em 'Jogar o Tarot', observe as 8 cartas viradas para baixo na mesa esotérica e veja-as revelarem-se uma a uma. No final, recebe uma interpretação geral e um conselho prático." },
-].map(b => `<div class="card-box"><div class="text-gold" style="font-family:var(--font-display);font-size:1.875rem;margin-bottom:0.5rem">${b.n}</div><h3 style="font-size:1.25rem">${b.t}</h3><p class="muted" style="margin-top:0.75rem;line-height:1.6">${b.d}</p></div>`).join("");
-
-document.getElementById("confiar").innerHTML = [
-  { t: "Interpretações simples e realistas", d: "Linguagem clara, sem fatalismos, para o(a) ajudar a refletir e tomar decisões mais conscientes." },
-  { t: "Leitura orientada à tua área", d: "Trabalho, Amor, Finanças, Saúde, Família ou Espiritual: as cartas são lidas sempre dentro do contexto que escolheu." },
-  { t: "Experiência esotérica e acolhedora", d: "Cores lilás, símbolos místicos e som ambiente opcional para o(a) ajudar a entrar no clima do Tarot." },
-].map(b => `<div class="card-box" style="border-color:var(--border)"><svg class="ico text-gold" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><h3 style="margin-top:0.75rem;font-size:1.125rem">${b.t}</h3><p class="muted" style="margin-top:0.5rem;font-size:0.875rem;line-height:1.6">${b.d}</p></div>`).join("");
-
-document.getElementById("areas-grid").innerHTML = AREAS.map(a => `
-  <button type="button" class="card-box area-card" data-area="${a.key}">
-    <div class="head">
-      <div class="icon-circle"><svg class="ico text-gold" viewBox="0 0 24 24">${areaIcons[a.key] || ""}</svg></div>
-      <h3>${a.key}</h3>
-    </div>
-    <p>${a.description}</p>
-  </button>`).join("");
-
 document.getElementById("area-chips").innerHTML = AREAS.map(a =>
   `<button type="button" class="chip animate-pulse-soft" data-area="${a.key}">${a.key}</button>`).join("");
 
@@ -1331,12 +1245,6 @@ function selectArea(key) {
 document.getElementById("area-chips").addEventListener("click", e => {
   const b = e.target.closest(".chip"); if (b) selectArea(b.dataset.area);
 });
-document.getElementById("areas-grid").addEventListener("click", e => {
-  const b = e.target.closest(".area-card"); if (!b) return;
-  selectArea(b.dataset.area);
-  setTimeout(() => document.getElementById("leitura").scrollIntoView({ behavior: "smooth" }), 50);
-});
-
 /* ============ Som de virar carta ============ */
 let audioCtx = null;
 function playCardFlip() {
