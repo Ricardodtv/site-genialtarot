@@ -121,13 +121,22 @@ if (!s) {
 
     const saltar = () => {
       if (android) {
-        /* SEM package= de proposito: assim o Android abre no navegador que a
-           PESSOA usa, e nao no Chrome a forca. Isso importa porque o Google
-           Pay (e os cartoes guardados) so aparecem no navegador onde ela tem
-           a sessao iniciada. A 10/08/2026 o Ricardo usa Brave, foi largado no
-           Chrome e o Google Pay desapareceu. */
+        /* COM package=com.android.chrome, de proposito e por decisao dele a
+           10/08/2026.
+
+           O Google Pay so existe em navegadores baseados no Chromium. No
+           Firefox nao aparece -- e limitacao do proprio Firefox, nao ha
+           configuracao que o resolva -- e o cliente fica a escrever o numero
+           do cartao a mao, com o telemovel na rua. Muita gente desiste ai.
+
+           Forcando o Chrome, todos os clientes de Android ficam com o
+           pagamento de um toque. Para a esmagadora maioria nao muda nada,
+           porque o Chrome ja e o navegador deles.
+
+           O S.browser_fallback_url garante que, se o Chrome nao existir no
+           telemovel, a pagina abre a mesma. */
         location.href = "intent://" + s.link.replace(/^https?:\/\//, "") +
-          "#Intent;scheme=https;S.browser_fallback_url=" +
+          "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" +
           encodeURIComponent(s.link) + ";end";
       } else if (ios) {
         location.href = s.link.replace(/^https:/, "x-safari-https:");
