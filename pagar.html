@@ -75,7 +75,19 @@ const SERVICOS = {
     "curso-de-tarot-online-3-meses-com-mest": { nome: "Curso de Tarot Online 3 Meses com Mestre Alberto – Aprenda a Ler Cartas e Ganhar Confiança", preco: "2450 €", link: "https://mypos.com/vmp/btn/B8Q8NUM8CSD06" },};
 
 const p = new URLSearchParams(location.search);
-const s = SERVICOS[(p.get("c") || "").toLowerCase()];
+let s = SERVICOS[(p.get("c") || "").toLowerCase()];
+
+/* Tambem se aceita ?u=<link do myPOS>, para a propria loja poder mandar
+   toda a gente por aqui sem ser preciso dar um nome curto a cada produto.
+   SO SE ACEITAM ENDERECOS DO myPOS: sem esta trava, qualquer pessoa podia
+   fazer genialtarot.com/pagar.html?u=<sitio-burlao> e usar o bom nome do
+   site para enganar gente. */
+if (!s) {
+  const u = p.get("u") || "";
+  if (/^https:\/\/(www\.)?mypos\.com\//.test(u)) {
+    s = { nome: p.get("n") || "Pagamento", preco: p.get("v") || "", link: u };
+  }
+}
 const nome = document.getElementById("nome");
 const preco = document.getElementById("preco");
 const zona = document.getElementById("zona");

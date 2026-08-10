@@ -265,7 +265,11 @@ const ORDEM_CAT = ["Consultas", "Rituais", "Emergências", "Amuletos", "Mapas As
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 function linkCompra(p) {
-  if (p.link) return esc(p.link);
+  // Passa pelo /pagar.html em vez de ir direito ao myPOS: o checkout deles
+  // nao abre dentro do WhatsApp e mostra "o link de pagamento expirou", o que
+  // fazia perder vendas sem se dar por isso. A pagar.html abre em qualquer
+  // lado e trata de saltar para o navegador verdadeiro. -- 10/08/2026
+  if (p.link) return "/pagar.html?u=" + encodeURIComponent(p.link);
   return "https://wa.me/351914920427?text=" + encodeURIComponent("Olá Mestre Alberto, quero adquirir: " + p.nome);
 }
 
