@@ -121,8 +121,13 @@ if (!s) {
 
     const saltar = () => {
       if (android) {
+        /* SEM package= de proposito: assim o Android abre no navegador que a
+           PESSOA usa, e nao no Chrome a forca. Isso importa porque o Google
+           Pay (e os cartoes guardados) so aparecem no navegador onde ela tem
+           a sessao iniciada. A 10/08/2026 o Ricardo usa Brave, foi largado no
+           Chrome e o Google Pay desapareceu. */
         location.href = "intent://" + s.link.replace(/^https?:\/\//, "") +
-          "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" +
+          "#Intent;scheme=https;S.browser_fallback_url=" +
           encodeURIComponent(s.link) + ";end";
       } else if (ios) {
         location.href = s.link.replace(/^https:/, "x-safari-https:");

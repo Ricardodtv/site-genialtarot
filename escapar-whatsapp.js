@@ -40,9 +40,11 @@
     if (android) {
       // intent:// entrega o endereco ao Chrome, saindo da aplicacao
       var semEsquema = url.replace(/^https?:\/\//, "");
+      // sem package= : abre no navegador que a pessoa usa, nao no Chrome a
+      // forca -- o Google Pay so aparece onde ela tem a sessao iniciada
       window.location.href =
         "intent://" + semEsquema +
-        "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" +
+        "#Intent;scheme=https;S.browser_fallback_url=" +
         encodeURIComponent(url) + ";end";
       return true;
     }
