@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pagamento — Mestre Alberto</title>
+<!--
+  PAGINA DE PAGAMENTO  —  genialtarot.com/pagar.html
+  Escrita a 10/08/2026.
+
+  PARA QUE SERVE
+  Para se poder mandar links de pagamento pelo WhatsApp. O checkout do myPOS
+  nao abre dentro do WhatsApp -- diz "o link expirou" -- e como o site so tem
+  o WhatsApp como contacto, era por ai que se perdiam vendas sem se dar conta.
+
+  Esta pagina abre em qualquer lado. Depois:
+    · navegador normal -> encaminha para o myPOS sozinha, em 1 segundo
+    · dentro do WhatsApp -> obriga a abrir no navegador verdadeiro
+      (Android: intent:// para o Chrome; iPhone: x-safari-https:// para o Safari)
+    · se nada disso resultar -> mostra o botao para copiar o link
+
+  COMO SE USA
+    genialtarot.com/pagar.html?c=30min       (65 EUR)
+    genialtarot.com/pagar.html?c=1hora       (85 EUR)
+    genialtarot.com/pagar.html?c=1pergunta   (25 EUR)
+  Os nomes curtos de todos os produtos estao na lista SERVICOS aqui em baixo.
+-->
+<style>
+  body{margin:0;background:#faf8ff;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+       color:#2e2a3d;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+  .cartao{background:#fff;border-radius:18px;padding:30px 24px;max-width:380px;width:100%;
+          box-shadow:0 8px 30px rgba(60,30,110,.10);text-align:center}
+  h1{font-size:19px;margin:14px 0 4px;font-weight:600}
+  .preco{font-size:34px;font-weight:700;color:#5b2c9e;margin:6px 0 18px}
+  .btn{display:block;background:#5b2c9e;color:#fff;text-decoration:none;padding:16px;
+       border-radius:12px;font-size:16px;font-weight:700;border:0;width:100%;margin-top:8px}
+  .aviso{background:#fff8e6;border:1px solid #f0dfae;border-radius:12px;padding:14px;
+         font-size:14px;line-height:1.55;color:#5a5470;margin:16px 0;text-align:left}
+  .apagado{color:#8a849c;font-size:13px;margin-top:14px}
+  .sec{background:none;border:0;color:#8a849c;font-size:14px;padding:12px;width:100%}
+</style>
+</head>
+<body>
+<div class="cartao" id="cartao">
+  <div style="font-size:32px">🔮</div>
+  <h1 id="nome">A preparar o pagamento…</h1>
+  <div class="preco" id="preco"></div>
+  <div id="zona"></div>
+  <div class="apagado">Pagamento seguro · myPOS</div>
+</div>
+
+<script>
+/* --- os servicos, com nome curto para o endereco --------------------- */
+const SERVICOS = {
+    "1pergunta": { nome: "1 Pergunta de Tarot por Escrito – Feita pelo Mestre Alberto", preco: "25 €", link: "https://mypos.com/vmp/btn/BKXR2JQ2BEB19" },
+    "30min": { nome: "Consulta de Tarot Online – 30 Minutos com Mestre Alberto", preco: "65 €", link: "https://mypos.com/vmp/btn/BTSGROA5LPZ61" },
+    "1hora": { nome: "Consulta de Tarot Online – Todos os Temas (1 Hora com Mestre Alberto)", preco: "85 €", link: "https://mypos.com/vmp/btn/B35PHJ9OQMU04" },
+    "previsao-anual-para-12-meses-feita-pel": { nome: "Previsão Anual para 12 Meses – Feita pelo Mestre Alberto (Escrita)", preco: "185 €", link: "https://mypos.com/vmp/btn/B5IA82S63VN50" },
+    "consulta-de-terapia-de-casais-online-1": { nome: "Consulta de Terapia de Casais Online – 1 Hora com Mestre Alberto", preco: "185 €", link: "https://mypos.com/vmp/btn/B1CMBQSYWEW69" },
+    "parecer-sobre-qualquer-assunto-pelas-c": { nome: "Parecer sobre Qualquer Assunto pelas Cartas – Escrito pelo Mestre Alberto", preco: "125 €", link: "https://mypos.com/vmp/btn/BLQ1NIUDJ2K11" },
+    "leitura-da-sua-mao-por-quiromancia-onl": { nome: "Leitura da Sua Mão por Quiromancia Online – Pelo Mestre Alberto", preco: "80 €", link: "https://mypos.com/vmp/btn/BG2QB2ADANJ52" },
+    "ritual-de-prosperidade-financeira-pelo": { nome: "Ritual de Prosperidade Financeira – Pelo Mestre Alberto", preco: "895 €", link: "https://mypos.com/vmp/btn/BGBNMQV89HH04" },
+    "ritual-de-protecao-e-limpeza-pelo-mest": { nome: "Ritual de Proteção e Limpeza – Pelo Mestre Alberto", preco: "795 €", link: "https://mypos.com/vmp/btn/BOIQ5HO2K6G26" },
+    "vela-guia-oracao-e-protecao-com-o-mest": { nome: "Vela Guia, Oração e Proteção – Com o Mestre Alberto", preco: "95 €", link: "https://mypos.com/vmp/btn/BL5R83HROAB31" },
+    "ritual-de-lua-cheia-para-atrair-dinhei": { nome: "Ritual de Lua Cheia para Atrair Dinheiro – Feito pelo Mestre Alberto", preco: "225 €", link: "https://mypos.com/vmp/btn/BVSDFYHECEI85" },
+    "incenso-oracao-para-destino-e-protecao": { nome: "Incenso + Oração para Destino e Proteção – Pelo Mestre Alberto", preco: "125 €", link: "https://mypos.com/vmp/btn/BX27E8EEOBJ38" },
+    "ritual-de-abertura-de-caminhos-pelo-me": { nome: "Ritual de Abertura de Caminhos – Pelo Mestre Alberto", preco: "560 €", link: "https://mypos.com/vmp/btn/BJVR1FZMNW472" },
+    "ritual-de-atracao-forte-para-o-amor-pe": { nome: "Ritual de Atração Forte para o Amor – Pelo Mestre Alberto", preco: "995 €", link: "https://mypos.com/vmp/btn/B54ARU9RI3645" },
+    "ritual-de-prosperidade-para-empresas-e": { nome: "Ritual de Prosperidade para Empresas e Negócios", preco: "995 €", link: "https://mypos.com/vmp/btn/BRUEKAEBD7X05" },
+    "emergencia": { nome: "Consulta de Emergência com Mestre Alberto (Resposta em Máx. 1h) ⏰ – Duração: 40 Minutos", preco: "110 €", link: "https://mypos.com/vmp/btn/BKXKXFVMT7M49" },
+    "amuleto-cruz-da-boa-energia-e-sucesso": { nome: "Amuleto Cruz da Boa Energia e Sucesso – Envio para Todo o Mundo, Feito pelo Mestre Alberto", preco: "145 €", link: "https://mypos.com/vmp/btn/B5588K5PTFM42" },
+    "amuleto-pentagrama-de-equilibrio-com-r": { nome: "Amuleto Pentagrama de Equilíbrio com Ritual – Envio para Todo o Mundo, Pelo Mestre Alberto", preco: "165 €", link: "https://mypos.com/vmp/btn/B2PA7QQ3QA346" },
+    "mapa-astral-conheca-sua-personalidade": { nome: "Mapa Astral Conheça Sua Personalidade – Feito pelo Mestre Alberto", preco: "195 €", link: "https://mypos.com/vmp/btn/BF6O2I7O68M52" },
+    "analise-ao-seu-signo-e-personalidade-e": { nome: "Análise ao Seu Signo e Personalidade – Escrita pelo Mestre Alberto", preco: "145 €", link: "https://mypos.com/vmp/btn/BWEHSTP6TUV40" },
+    "curso-de-tarot-online-3-meses-com-mest": { nome: "Curso de Tarot Online 3 Meses com Mestre Alberto – Aprenda a Ler Cartas e Ganhar Confiança", preco: "2450 €", link: "https://mypos.com/vmp/btn/B8Q8NUM8CSD06" },};
+
+const p = new URLSearchParams(location.search);
+const s = SERVICOS[(p.get("c") || "").toLowerCase()];
+const nome = document.getElementById("nome");
+const preco = document.getElementById("preco");
+const zona = document.getElementById("zona");
+
+if (!s) {
+  nome.textContent = "Serviço não encontrado";
+  preco.textContent = "";
+  zona.innerHTML = '<a class="btn" href="/loja">Ver a Loja do Mestre Alberto</a>';
+} else {
+  nome.textContent = s.nome;
+  preco.textContent = s.preco;
+
+  const ua = navigator.userAgent || "";
+  const app = /WhatsApp|FBAN|FBAV|FB_IAB|Instagram|Line\/|MicroMessenger|Snapchat/i.test(ua);
+  const android = /Android/i.test(ua);
+  const ios = /iPhone|iPad|iPod/i.test(ua);
+
+  if (!app) {
+    /* navegador normal: segue sozinho, sem incomodar o cliente */
+    zona.innerHTML = '<a class="btn" href="' + s.link + '">Continuar para o pagamento</a>';
+    setTimeout(() => location.href = s.link, 900);
+  } else {
+    /* dentro de uma aplicacao: obrigar a sair para o navegador verdadeiro */
+    zona.innerHTML =
+      '<button class="btn" id="ir">Abrir pagamento seguro</button>' +
+      '<div class="aviso" id="ajuda" style="display:none">' +
+        'Se não abrir, toque no menu <b>⋮</b> (ou <b>···</b>) no canto do ecrã ' +
+        'e escolha <b>“Abrir no browser”</b>.' +
+      '</div>' +
+      '<button class="sec" id="copiar">Copiar o link</button>';
+
+    const saltar = () => {
+      if (android) {
+        location.href = "intent://" + s.link.replace(/^https?:\/\//, "") +
+          "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" +
+          encodeURIComponent(s.link) + ";end";
+      } else if (ios) {
+        location.href = s.link.replace(/^https:/, "x-safari-https:");
+      } else {
+        window.open(s.link, "_blank");
+      }
+      setTimeout(() => {
+        if (!document.hidden) document.getElementById("ajuda").style.display = "block";
+      }, 1400);
+    };
+
+    document.getElementById("ir").onclick = saltar;
+    document.getElementById("copiar").onclick = function () {
+      const b = this;
+      (navigator.clipboard ? navigator.clipboard.writeText(s.link) : Promise.reject())
+        .then(() => b.textContent = "Link copiado ✓")
+        .catch(() => window.prompt("Copie o link:", s.link));
+    };
+    saltar();   /* tenta logo, sem esperar pelo clique */
+  }
+}
+</script>
+</body>
+</html>
