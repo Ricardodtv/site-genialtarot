@@ -153,7 +153,11 @@ svg.icon-fill { fill: currentColor; stroke: none; }
 .btn-loja-nova { position: relative; background: linear-gradient(160deg, oklch(0.64 0.26 350), oklch(0.46 0.22 330)); color: oklch(0.98 0.01 350); border-color: oklch(0.85 0.12 355 / 0.7); animation: atalho-pulso 3.4s ease-in-out infinite, loja-pulsa 1.3s ease-out infinite !important; }
 @keyframes loja-pulsa { 0% { box-shadow: 0 0 0 0 oklch(0.7 0.24 350 / 0.7); } 70% { box-shadow: 0 0 0 14px oklch(0.7 0.24 350 / 0); } 100% { box-shadow: 0 0 0 0 oklch(0.7 0.24 350 / 0); } }
 .tag-nova { position: absolute; top: 0.35rem; right: 0.45rem; z-index: 3; border-radius: 9999px; background: oklch(0.68 0.23 40); color: white; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.28rem 0.7rem; box-shadow: 0 8px 20px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.35); animation: nova-salta 2s ease-in-out infinite; }
-@keyframes nova-salta { 0%, 100% { transform: translateY(0) rotate(6deg); } 50% { transform: translateY(-4px) rotate(6deg); } }
+/* Sem o rotate(6deg) que aqui estava: o "NOVA" ficava inclinado e o "MARCAR"
+   do botao ao lado ficava direito, e os dois lado a lado pareciam tortos.
+   Pedido dele a 15/08/2026 — alinhar o NOVA como o do botao da Agenda.
+   O salto fica; so a inclinacao e que saiu. */
+@keyframes nova-salta { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 /* O distintivo do botao da agenda. Irmao do .tag-nova da loja, com duas
    diferencas de proposito: MAGENTA (o botao da agenda e verde, e o magenta
    e a cor oposta ao verde — e o contraste maximo que ha), e PISCA em vez de
