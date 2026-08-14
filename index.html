@@ -167,6 +167,19 @@ svg.icon-fill { fill: currentColor; stroke: none; }
    fotossensibilidade — nao e um numero escolhido a esmo. */
 .tag-marcar { position: absolute; top: 0.35rem; right: 0.45rem; z-index: 3; border-radius: 9999px; background: oklch(0.62 0.29 330); color: white; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.28rem 0.7rem; box-shadow: 0 8px 22px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.45); animation: marcar-pisca 1.4s ease-in-out infinite; }
 @keyframes marcar-pisca { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(1.1); } }
+/* Os distintivos "GRATIS". Mesma forma e mesmo sitio dos outros; muda so a
+   cor, porque os dois botoes tem fundos opostos e uma cor so nao servia aos
+   dois. NAO PISCAM de proposito — ja ha tres a piscar na pagina, e quando
+   tudo pisca nada se destaca. Pisca-se com .tag-marcar se ele quiser. */
+.tag-gratis { position: absolute; top: 0.35rem; right: 0.45rem; z-index: 3; border-radius: 9999px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; padding: 0.28rem 0.7rem; box-shadow: 0 8px 22px rgba(0,0,0,0.45); border: 1px solid rgba(255,255,255,0.45); }
+/* Tarot Gratis: o botao e AZUL-CLARO (oklch 230-240). O vermelho-alaranjado
+   e a cor oposta ao azul, e sendo escuro destaca-se de um fundo claro. */
+.tag-gratis-azul { background: oklch(0.58 0.24 30); color: white; }
+/* Arvore da Vida: o botao e VIOLETA-ESCURO com letra e contorno DOURADOS.
+   O dourado contrasta com o fundo escuro e ao mesmo tempo condiz com o
+   proprio botao — que foi o que ele pediu. Letra escura, que o dourado
+   e claro de mais para levar branco por cima. */
+.tag-gratis-ouro { background: oklch(0.85 0.15 88); color: oklch(0.20 0.05 280); border-color: rgba(0,0,0,0.28); }
 @media (prefers-reduced-motion: reduce) { .tag-marcar { animation: none; } }
 /* O botao dourado "Fazer uma Marcacao" nao tinha contexto de posicionamento
    nenhum — o da fila de atalhos ja o tinha pelo .btn-violet-glow. Sem isto o
@@ -487,6 +500,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
     </div>
     <div class="quick-grid">
       <a href="tarot-gratis.html" class="btn-3d btn-violet-glow btn-sky btn-sky-glow">
+        <span class="tag-gratis tag-gratis-azul">Grátis</span>
         <svg class="icon" viewBox="0 0 24 24"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z"/><path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/><path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/></svg>
         <span>Tarot Grátis</span>
       </a>
@@ -501,6 +515,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
         <span>Agenda</span>
       </a>
       <a href="arvore.html" class="btn-3d btn-violet-glow btn-pg-arvore">
+        <span class="tag-gratis tag-gratis-ouro">Grátis</span>
         <svg class="icon ico-arvore" viewBox="0 0 24 24">
           <g class="arv-linhas">
             <path d="M12 3v18M12 3 5.5 6.2M12 3l6.5 3.2M5.5 6.2h13M5.5 6.2v4.9M18.5 6.2v4.9M5.5 11.1h13M5.5 11.1 12 13.6l6.5-2.5M5.5 11.1v4.9M18.5 11.1v4.9M5.5 16h13M12 13.6 5.5 16M12 13.6 18.5 16M5.5 16 12 18.5 18.5 16" />
