@@ -1,0 +1,116 @@
+/* Genial Tarot — folha de estilo das 22 paginas dos Arcanos Maiores.
+   Uma so' folha para as 22, em vez de repetir o CSS dentro de cada
+   ficheiro: o visitante descarrega-a uma vez e as outras 21 paginas
+   abrem instantaneamente. As cores sao as mesmas do resto do site. */
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.18 0.05 290);
+  --foreground: oklch(0.96 0.02 300);
+  --card: oklch(0.23 0.06 290);
+  --muted-foreground: oklch(0.78 0.04 300);
+  --border: oklch(0.4 0.07 295 / 0.4);
+  --gold: oklch(0.82 0.13 85);
+  --font-display: "Cormorant Garamond", "Cormorant", Georgia, serif;
+  --gradient-cosmic: radial-gradient(ellipse at top, oklch(0.32 0.12 300) 0%, oklch(0.18 0.05 290) 60%, oklch(0.12 0.04 285) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.85 0.13 85), oklch(0.7 0.15 60));
+  --shadow-glow: 0 0 50px oklch(0.6 0.2 305 / 0.35);
+  --shadow-gold: 0 0 40px oklch(0.82 0.13 85 / 0.3);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html, body {
+  background: var(--gradient-cosmic); background-attachment: fixed;
+  background-color: var(--background); color: var(--foreground);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: 0.01em; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+.container { width: 100%; max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+.text-gold-gradient { background: var(--gradient-gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ---- a seta de volta, em cima a' esquerda (pedido dele) ---- */
+.voltar-barra { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px);
+  background: oklch(0.18 0.05 290 / 0.72); border-bottom: 1px solid var(--border); }
+.voltar {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 1.25rem; font-size: 0.95rem; font-weight: 600;
+  color: var(--gold); letter-spacing: 0.01em;
+}
+.voltar svg { width: 1.1rem; height: 1.1rem; stroke: currentColor; fill: none;
+  stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.voltar:hover { color: oklch(0.92 0.1 88); }
+.voltar:hover svg { transform: translateX(-3px); }
+.voltar svg { transition: transform 0.18s ease; }
+
+/* ---- topo da carta ---- */
+.topo { text-align: center; padding: 2rem 0 0.5rem; }
+.foto-mestre {
+  height: 7rem; width: 7rem; border-radius: 9999px; object-fit: cover;
+  margin: 0 auto 1.1rem; box-shadow: var(--shadow-glow);
+  border: 2px solid oklch(0.92 0.02 5 / 0.6);
+}
+@media (min-width: 640px) { .foto-mestre { height: 8.5rem; width: 8.5rem; } }
+.romano { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.35em;
+  margin-bottom: 0.35rem; }
+h1 { font-size: 2.1rem; line-height: 1.15; }
+@media (min-width: 640px) { h1 { font-size: 2.8rem; } }
+.nome-en { margin-top: 0.4rem; font-size: 0.9rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted-foreground); }
+.chaves { margin: 1.1rem auto 0; display: flex; flex-wrap: wrap; gap: 0.45rem;
+  justify-content: center; }
+.chave { border: 1px solid var(--border); border-radius: 9999px;
+  padding: 0.28rem 0.8rem; font-size: 0.8rem; color: var(--muted-foreground);
+  background: oklch(0.23 0.06 290 / 0.6); }
+
+.carta-img { margin: 1.75rem auto 0; width: 15rem; border-radius: var(--radius);
+  box-shadow: 0 24px 60px -18px oklch(0.1 0.04 285 / 0.9); border: 1px solid var(--border); }
+
+/* ---- os dois sentidos ---- */
+.sentido { margin-top: 1.5rem; background: oklch(0.23 0.06 290 / 0.72);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 1.35rem 1.4rem; }
+.sentido h2 { display: flex; align-items: center; gap: 0.6rem; font-size: 1.45rem; }
+.sentido p { margin-top: 0.7rem; line-height: 1.75; color: oklch(0.92 0.02 300); }
+.selo { display: inline-flex; align-items: center; justify-content: center;
+  height: 2.1rem; width: 2.1rem; border-radius: 9999px; font-size: 1.1rem;
+  background: var(--gradient-gold); color: oklch(0.2 0.05 285); flex: none; }
+.sentido-invertido { border-color: oklch(0.6 0.16 25 / 0.45); }
+.sentido-invertido .selo { background: linear-gradient(135deg, oklch(0.66 0.2 25), oklch(0.5 0.18 15)); color: white; }
+
+/* ---- slogan e botoes ---- */
+.slogan { margin-top: 2rem; text-align: center; font-family: var(--font-display);
+  font-size: 1.5rem; line-height: 1.35; }
+@media (min-width: 640px) { .slogan { font-size: 1.8rem; } }
+.slogan-sub { margin-top: 0.6rem; text-align: center; color: var(--muted-foreground);
+  font-size: 0.98rem; }
+
+.botoes { margin: 1.6rem 0 0; display: grid; gap: 0.85rem; }
+@media (min-width: 560px) { .botoes { grid-template-columns: 1fr 1fr; } }
+.btn { display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  padding: 1rem 1.25rem; border-radius: var(--radius); font-weight: 700;
+  font-size: 1.02rem; border: 1px solid transparent; transition: transform 0.15s ease, filter 0.15s ease; }
+.btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.btn svg { width: 1.3rem; height: 1.3rem; flex: none; }
+.btn-loja { background: var(--gradient-gold); color: oklch(0.2 0.05 285);
+  box-shadow: var(--shadow-gold); }
+.btn-loja svg { stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-wa { background: linear-gradient(135deg, oklch(0.72 0.17 150), oklch(0.55 0.16 155));
+  color: white; box-shadow: 0 0 34px oklch(0.65 0.17 150 / 0.35); }
+.btn-wa svg { fill: currentColor; stroke: none; }
+
+/* ---- passar de carta em carta ---- */
+.vizinhas { margin-top: 2.25rem; display: flex; gap: 0.75rem; justify-content: space-between; }
+.vizinha { flex: 1 1 0; min-width: 0; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 0.8rem 0.9rem; background: oklch(0.23 0.06 290 / 0.5); font-size: 0.9rem; }
+.vizinha:hover { border-color: oklch(0.82 0.13 85 / 0.5); }
+.vizinha span { display: block; font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted-foreground); margin-bottom: 0.2rem; }
+.vizinha.direita { text-align: right; }
+.vizinha strong { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; }
+
+.rodape { margin-top: 3rem; padding: 2rem 0 3rem; border-top: 1px solid var(--border);
+  text-align: center; color: var(--muted-foreground); font-size: 0.88rem; }
+.rodape a { color: var(--gold); }
+.aviso { margin-top: 0.6rem; font-size: 0.8rem; opacity: 0.75; }
