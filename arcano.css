@@ -114,3 +114,29 @@ h1 { font-size: 2.1rem; line-height: 1.15; }
   text-align: center; color: var(--muted-foreground); font-size: 0.88rem; }
 .rodape a { color: var(--gold); }
 .aviso { margin-top: 0.6rem; font-size: 0.8rem; opacity: 0.75; }
+
+/* ---- indice: os 22 de uma vez, em grelha ----
+   O carrossel da pagina principal tem os 22, mas para os ver todos
+   e' preciso deslizar uma tira de 22 cartas de lado — no telemovel,
+   vinte e tal arrastoes. Existir nao e' o mesmo que dar para ver. */
+.indice-cabeca { text-align: center; padding: 2.5rem 0 0.5rem; }
+.indice-cabeca h1 { font-size: 2.2rem; }
+@media (min-width: 640px) { .indice-cabeca h1 { font-size: 3rem; } }
+.indice-cabeca p { margin: 0.9rem auto 0; max-width: 34rem; color: var(--muted-foreground);
+  line-height: 1.7; }
+.grelha { margin: 2rem 0 0; display: grid; gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 520px) { .grelha { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 820px) { .grelha { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.gcarta { display: block; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--border); background: oklch(0.23 0.06 290 / 0.6);
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease; }
+.gcarta:hover { transform: translateY(-5px); border-color: oklch(0.82 0.13 85 / 0.6);
+  box-shadow: 0 22px 44px -18px oklch(0.1 0.04 285 / 0.9); }
+.gcarta img { width: 100%; aspect-ratio: 2 / 3.4; object-fit: cover; }
+.gcarta .legenda { padding: 0.7rem 0.65rem 0.85rem; text-align: center; }
+.gcarta .g-romano { font-family: var(--font-display); font-size: 0.95rem;
+  letter-spacing: 0.2em; color: var(--gold); }
+.gcarta .g-nome { font-family: var(--font-display); font-size: 1.08rem;
+  font-weight: 600; line-height: 1.2; margin-top: 0.15rem; }
+.indice .container { max-width: 64rem; }
