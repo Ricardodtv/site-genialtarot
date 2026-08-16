@@ -6,5 +6,8 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS"
-  }
+  },
+  "kv_namespaces": [
+    { "binding": "CAPTURAS", "id": "2290d2931e8d4eaf986272a410a2f3ef" }
+  ]
 }

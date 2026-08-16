@@ -347,6 +347,26 @@ export default {
       }
       try {
         const { type, data } = await request.json();
+
+        // ── REDE DE SEGURANCA (16/08/2026) ───────────────────────────────
+        // Guarda a captura numa fila da Cloudflare ANTES de qualquer outra
+        // coisa. O cerebro vai la busca-la de minuto a minuto, cria a ficha
+        // com codigo e apaga. Se a casa estiver desligada, fica a espera.
+        // ⚠️ POR ACRESCIMO: nao substitui o Telegram nem o Supabase. Se esta
+        // parte falhar, o resto segue na mesma -- por isso o try/catch mudo.
+        try {
+          if (env.CAPTURAS) {
+            const cf2 = request.cf || {};
+            const chave = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+            await env.CAPTURAS.put(chave, JSON.stringify({
+              type, data,
+              recebido: new Date().toISOString(),
+              cidade: cf2.city || null,
+              pais: cf2.country || null,
+            }), { expirationTtl: 60 * 60 * 24 * 30 });
+          }
+        } catch (e) { /* nunca estragar o pedido do visitante por causa da fila */ }
+
         let text = buildMessage(type, data);
         if (!text) throw new Error("tipo inválido");
         // Localização REAL detetada pela Cloudflare (cidade/país do visitante) + IP
