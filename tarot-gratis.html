@@ -283,9 +283,9 @@ footer { padding: 2.5rem 1rem; text-align: center; font-size: 0.75rem; color: va
       <div class="form-grid">
         <label class="fld"><span class="lbl">Nome</span><input id="f-name" class="input" placeholder="Primeiro e último nome" /></label>
         <label class="fld"><span class="lbl">Data de nascimento</span><input id="f-dob" class="input" placeholder="A sua data de nascimento" /></label>
-        <label class="fld"><span class="lbl">Cidade</span><input id="f-city" class="input" placeholder="Ex.: Lisboa" /></label>
-        <label class="fld"><span class="lbl">País</span><input id="f-country" class="input" value="Portugal" /></label>
-        <label class="fld span2"><span class="lbl">Email</span><input id="f-email" type="email" class="input" placeholder="exemplo@email.pt" /></label>
+        <label class="fld"><span class="lbl">Cidade</span><input id="f-city" class="input" /></label>
+        <label class="fld"><span class="lbl">País</span><input id="f-country" class="input" /></label>
+        <label class="fld span2"><span class="lbl">Email</span><input id="f-email" type="email" class="input" /></label>
       </div>
       <div style="margin-top:1.5rem">
         <div class="muted" style="font-size:0.875rem;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:0.75rem">Escolha a área da sua vida</div>
@@ -1593,6 +1593,16 @@ document.getElementById("audio-fab").addEventListener("click", async (e) => {
   if (ambientOn && !ambient.paused) { ambient.pause(); setAmbientUI(false); return; }
   try { await ambient.play(); setAmbientUI(true); ambFadeIn(); } catch { setAmbientUI(false); }
 });
+</script>
+<script>
+// Preenche o país a partir de onde a pessoa está, em vez de assumir Portugal.
+(function () {
+  var NOMES = {"PT": "Portugal", "BR": "Brasil", "ES": "Espanha", "FR": "França", "GB": "Reino Unido", "IE": "Irlanda", "DE": "Alemanha", "CH": "Suíça", "LU": "Luxemburgo", "BE": "Bélgica", "NL": "Países Baixos", "IT": "Itália", "US": "Estados Unidos", "CA": "Canadá", "AO": "Angola", "MZ": "Moçambique", "CV": "Cabo Verde", "AD": "Andorra", "AT": "Áustria", "SE": "Suécia", "NO": "Noruega", "DK": "Dinamarca", "PL": "Polónia", "AU": "Austrália", "ZA": "África do Sul", "AR": "Argentina", "VE": "Venezuela", "CO": "Colômbia"};
+  fetch("/geo").then(function (r) { return r.json(); }).then(function (g) {
+    var c = document.getElementById("f-country");
+    if (c && !c.value && g && g.country) { c.value = NOMES[g.country] || g.country; }
+  }).catch(function () {});
+})();
 </script>
 </body>
 </html>

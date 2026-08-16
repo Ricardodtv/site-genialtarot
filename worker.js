@@ -318,6 +318,18 @@ export default {
       }
     }
 
+    // Diz a pagina de que pais vem o visitante, para o formulario ja vir
+    // preenchido com o pais certo em vez de "Portugal" para toda a gente.
+    // Posto a 16/08/2026: ele reparou que 62 registos diziam Portugal com
+    // cidade estrangeira, porque o campo vinha com valor por omissao.
+    if (url.pathname === "/geo") {
+      const g = request.cf || {};
+      return new Response(JSON.stringify({
+        country: g.country || null,
+        city: g.city || null,
+      }), { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
+    }
+
     if (url.pathname === "/notify") {
       if (request.method !== "POST") {
         // Modo diagnóstico: /notify?test=1 envia uma mensagem de teste ao Telegram

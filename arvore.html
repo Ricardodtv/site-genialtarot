@@ -288,9 +288,9 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
     <div class="grelha-form">
       <label class="campo"><span class="rot">Nome</span><input id="f-name" class="entrada" placeholder="Primeiro e último nome" /></label>
       <label class="campo"><span class="rot">Data de nascimento</span><input id="f-dob" class="entrada" placeholder="A sua data de nascimento" /></label>
-      <label class="campo"><span class="rot">Cidade</span><input id="f-city" class="entrada" placeholder="Ex.: Lisboa" /></label>
-      <label class="campo"><span class="rot">País</span><input id="f-country" class="entrada" value="Portugal" /></label>
-      <label class="campo campo-2"><span class="rot">Email</span><input id="f-email" type="email" class="entrada" placeholder="exemplo@email.pt" /></label>
+      <label class="campo"><span class="rot">Cidade</span><input id="f-city" class="entrada" /></label>
+      <label class="campo"><span class="rot">País</span><input id="f-country" class="entrada" /></label>
+      <label class="campo campo-2"><span class="rot">Email</span><input id="f-email" type="email" class="entrada" /></label>
     </div>
     <p class="nota-priv">Os seus dados ficam registados junto com a sua tiragem, para o Mestre Alberto poder acompanhá-lo.</p>
   </div>
@@ -816,6 +816,16 @@ function tentarArranque() {
 tentarArranque();
 ["pointerdown", "touchend", "click", "keydown", "scroll"].forEach(ev =>
   document.addEventListener(ev, tentarArranque, { passive: true }));
+</script>
+<script>
+// Preenche o país a partir de onde a pessoa está, em vez de assumir Portugal.
+(function () {
+  var NOMES = {"PT": "Portugal", "BR": "Brasil", "ES": "Espanha", "FR": "França", "GB": "Reino Unido", "IE": "Irlanda", "DE": "Alemanha", "CH": "Suíça", "LU": "Luxemburgo", "BE": "Bélgica", "NL": "Países Baixos", "IT": "Itália", "US": "Estados Unidos", "CA": "Canadá", "AO": "Angola", "MZ": "Moçambique", "CV": "Cabo Verde", "AD": "Andorra", "AT": "Áustria", "SE": "Suécia", "NO": "Noruega", "DK": "Dinamarca", "PL": "Polónia", "AU": "Austrália", "ZA": "África do Sul", "AR": "Argentina", "VE": "Venezuela", "CO": "Colômbia"};
+  fetch("/geo").then(function (r) { return r.json(); }).then(function (g) {
+    var c = document.getElementById("f-country");
+    if (c && !c.value && g && g.country) { c.value = NOMES[g.country] || g.country; }
+  }).catch(function () {});
+})();
 </script>
 </body>
 </html>
