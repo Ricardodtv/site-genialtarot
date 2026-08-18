@@ -472,6 +472,12 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
   box-shadow: 0 0 28px oklch(0.82 0.11 85 / 0.18); color: oklch(0.93 0.05 90);
   transition: transform .2s, box-shadow .2s; }
 .faixa-sobre:hover { transform: translateY(-2px); box-shadow: 0 0 40px oklch(0.82 0.11 85 / 0.32); }
+/* A cara dele no lugar do bonequinho generico. O aro e o circulo sao feitos
+   aqui e nao gravados na imagem: ficam nitidos em qualquer ecra, a imagem
+   pesa menos, e mudar a cor do aro passa a ser uma linha. */
+.faixa-sobre-foto { width: 2.7rem; height: 2.7rem; flex: none; border-radius: 50%;
+  object-fit: cover; border: 2px solid oklch(0.85 0.13 88 / 0.85);
+  box-shadow: 0 0 0 3px oklch(0.85 0.13 88 / 0.12); }
 .faixa-sobre .icon { width: 1.6rem; height: 1.6rem; flex: none; stroke: oklch(0.85 0.13 88);
   fill: none; stroke-width: 1.7; }
 .faixa-sobre-txt { display: flex; flex-direction: column; line-height: 1.25; text-align: left; }
@@ -534,7 +540,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 
     <a href="sobre.html" class="faixa-sobre animate-fade-up">
       <span class="faixa-sobre-eti">NOVO</span>
-      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 7-7h2a7 7 0 0 1 7 7v1"/></svg>
+      <img class="faixa-sobre-foto" src="mestre-avatar.jpg" srcset="mestre-avatar.jpg 1x, mestre-avatar@2x.jpg 2x" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <span class="faixa-sobre-txt">Conheça o <strong>Mestre Alberto</strong><small>18 anos a ler cartas · quem sou e como trabalho</small></span>
       <svg class="icon faixa-sobre-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
     </a>
