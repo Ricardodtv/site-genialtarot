@@ -166,13 +166,55 @@ async function zodiacViaApi(diag, apiKey, playlistId) {
 // ============ Previsão Anual 2026: um vídeo por signo ============
 const ANNUAL_PLAYLIST_ID = "PL1CDtoz2ES7Rj4Pgnzsk1B0yMJ5MsZRim";
 
-async function fetchAnnualZodiac(debug) {
+// Plano B do anual: a API oficial do YouTube.
+//
+// ⚠️ 21/08/2026: o YouTube MATOU os feeds RSS de playlists (dão 404). As três
+// páginas de signos do site ficaram sem fonte. O diário e o fim-de-semana tinham
+// plano B; o anual NÃO tinha nenhum -- só tentava o RSS e desistia. É por isso
+// que esta função existe.
+async function annualViaApi(diag, apiKey) {
+  if (!apiKey) { diag.apiOficial = "sem chave YT_API_KEY"; return null; }
+  const listRes = await fetch(
+    `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=25&playlistId=${ANNUAL_PLAYLIST_ID}&key=${apiKey}`,
+  );
+  if (!listRes.ok) { diag.apiOficial = `playlistItems ${listRes.status}`; return null; }
+  const list = await listRes.json();
+  const ids = (list.items ?? []).map((i) => i.contentDetails?.videoId).filter(Boolean);
+  if (!ids.length) { diag.apiOficial = "sem vídeos"; return null; }
+  const vidsRes = await fetch(
+    `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${ids.join(",")}&key=${apiKey}`,
+  );
+  if (!vidsRes.ok) { diag.apiOficial = `videos ${vidsRes.status}`; return null; }
+  const vids = await vidsRes.json();
+  diag.apiOficial = `ok (${(vids.items ?? []).length} vídeos)`;
+  const signs = {};
+  for (const v of vids.items ?? []) {
+    const title = v.snippet?.title ?? "";
+    const desc = (v.snippet?.description ?? "").slice(0, 200);
+    for (const [key, pattern] of Object.entries(SIGN_PATTERNS)) {
+      if (!signs[key] && (pattern.test(title) || pattern.test(desc))) {
+        signs[key] = { videoId: v.id, title };
+        diag.porSigno[key] = title.slice(0, 60);
+        break;
+      }
+    }
+  }
+  return Object.keys(signs).length > 0
+    ? { signs, encontrados: Object.keys(signs).length }
+    : null;
+}
+
+async function fetchAnnualZodiac(debug, env) {
   const diag = { entradas: 0, porSigno: {} };
   const xml = await fetchText(
     `https://www.youtube.com/feeds/videos.xml?playlist_id=${ANNUAL_PLAYLIST_ID}`,
   );
   if (!xml) {
-    if (debug) return { data: null, diag: { ...diag, rss: "falhou" } };
+    diag.rss = "falhou";
+    // ⚠️ já não se desiste aqui: tenta-se a API oficial antes de dar erro.
+    const porApi = await annualViaApi(diag, env?.YT_API_KEY);
+    if (porApi) return debug ? { data: porApi, diag } : porApi;
+    if (debug) return { data: null, diag };
     throw new Error("Não foi possível consultar a playlist anual");
   }
   diag.rss = `ok (${xml.length} bytes)`;
@@ -193,7 +235,13 @@ async function fetchAnnualZodiac(debug) {
       }
     }
   }
-  const data = Object.keys(signs).length > 0 ? { signs, encontrados: Object.keys(signs).length } : null;
+  let data = Object.keys(signs).length > 0 ? { signs, encontrados: Object.keys(signs).length } : null;
+  // ⚠️ o RSS pode responder e ainda assim vir incompleto (playlist truncada).
+  // Se não trouxer os 12 signos, tenta-se a API oficial e fica-se com a melhor.
+  if (!data || data.encontrados < 12) {
+    const porApi = await annualViaApi(diag, env?.YT_API_KEY);
+    if (porApi && (!data || porApi.encontrados > data.encontrados)) data = porApi;
+  }
   return debug ? { data, diag } : data;
 }
 // ==================================================================
@@ -236,7 +284,12 @@ export default {
         const response = new Response(JSON.stringify({ ok: true, data }), {
           headers: {
             "Content-Type": "application/json",
-            "Cache-Control": "public, s-maxage=900, max-age=300",
+            // ⚠️ 21/08/2026: uma falha PASSAGEIRA não pode ficar guardada 15
+            // minutos -- a página fica morta e parece avaria permanente. Com
+            // dados, guarda-se; sem dados, não se guarda e tenta-se outra vez.
+            "Cache-Control": data
+              ? "public, s-maxage=900, max-age=300"
+              : "no-store",
           },
         });
         if (data) ctx.waitUntil(cache.put(cacheKey, response.clone()));
@@ -271,7 +324,12 @@ export default {
         const response = new Response(JSON.stringify({ ok: true, data }), {
           headers: {
             "Content-Type": "application/json",
-            "Cache-Control": "public, s-maxage=900, max-age=300",
+            // ⚠️ 21/08/2026: uma falha PASSAGEIRA não pode ficar guardada 15
+            // minutos -- a página fica morta e parece avaria permanente. Com
+            // dados, guarda-se; sem dados, não se guarda e tenta-se outra vez.
+            "Cache-Control": data
+              ? "public, s-maxage=900, max-age=300"
+              : "no-store",
           },
         });
         if (data) ctx.waitUntil(cache.put(cacheKey, response.clone()));
@@ -287,7 +345,7 @@ export default {
     if (url.pathname === "/api/anual") {
       if (url.searchParams.get("debug") === "1") {
         try {
-          const result = await fetchAnnualZodiac(true);
+          const result = await fetchAnnualZodiac(true, env);
           return new Response(JSON.stringify({ ok: true, ...result }), {
             headers: { "Content-Type": "application/json" },
           });
@@ -302,11 +360,14 @@ export default {
       const cached = await cache.match(cacheKey);
       if (cached) return cached;
       try {
-        const data = await fetchAnnualZodiac(false);
+        const data = await fetchAnnualZodiac(false, env);
         const response = new Response(JSON.stringify({ ok: true, data }), {
           headers: {
             "Content-Type": "application/json",
-            "Cache-Control": "public, s-maxage=3600, max-age=600",
+            // ⚠️ ver a nota acima: falha passageira não se guarda.
+            "Cache-Control": data
+              ? "public, s-maxage=3600, max-age=600"
+              : "no-store",
           },
         });
         if (data) ctx.waitUntil(cache.put(cacheKey, response.clone()));
