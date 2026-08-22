@@ -5,17 +5,7 @@
   "observability": { "enabled": true },
   "assets": {
     "directory": ".",
-    "binding": "ASSETS",
-    // 🚨 22/08/2026 -- SEM ISTO O WORKER NAO CORRE NAS PAGINAS.
-    // Por omissao, quando existe um ficheiro que corresponde ao pedido, a
-    // Cloudflare serve-o DIRECTAMENTE e nao invoca o worker. Ou seja: o
-    // worker so corria em /api/... e /Estataomp8, que nao sao ficheiros.
-    // Por isso o beacon das estatisticas, injectado no fim do worker, nunca
-    // chegava a nenhuma pagina -- medido: 0 ocorrencias mesmo depois de
-    // publicado, e mesmo a saltar a cache.
-    // A lista e' so o HTML: imagens, CSS e JS continuam a ser servidos
-    // directamente, sem gastar invocacoes do worker.
-    "run_worker_first": ["/", "/*.html"]
+    "binding": "ASSETS"
   },
   "kv_namespaces": [
     { "binding": "CAPTURAS", "id": "2290d2931e8d4eaf986272a410a2f3ef" }
