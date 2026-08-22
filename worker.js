@@ -479,7 +479,16 @@ export default {
         status: status || 200, headers: { "Content-Type": "application/json" },
       });
       if (url.searchParams.get("debug") === "1") {
-        return jsonResp({ ok: true, temToken: !!env.CF_API_TOKEN, temZona: !!env.CF_ZONE_ID, temChave: !!env.STATS_KEY });
+        return jsonResp({ ok: true, temToken: !!env.CF_API_TOKEN, temZona: !!env.CF_ZONE_ID,
+                          temChave: !!env.STATS_KEY, temRum: !!env.CF_RUM_TOKEN });
+      }
+      // ?debug=rum&chave=... -> devolve a resposta do RUM em bruto, erros
+      // incluidos. E' assim que se afina um nome de dimensao sem adivinhar.
+      if (url.searchParams.get("debug") === "rum") {
+        if (!env.STATS_KEY || url.searchParams.get("chave") !== env.STATS_KEY) {
+          return jsonResp({ ok: false, error: "chave errada" }, 403);
+        }
+        return jsonResp({ ok: true, rum: await estatisticasRum(env, 30) });
       }
       const chave = url.searchParams.get("chave") || "";
       if (!env.STATS_KEY || chave !== env.STATS_KEY) return jsonResp({ ok: false, error: "chave errada" }, 403);
@@ -552,11 +561,17 @@ export default {
           }
         } catch (e) { porPagina = null; }
 
+        // O RUM nunca deita a resposta abaixo: se falhar, a pagina mostra o
+        // que ja mostrava e diz que essa parte nao veio.
+        let rum = null;
+        try { rum = await estatisticasRum(env, dias); } catch (e) { rum = { erro: String(e).slice(0, 200) }; }
+
         return jsonResp({
           ok: true,
           dias: grupos.map(g => ({ data: g.dimensions.date, paginas: g.sum.pageViews, pedidos: g.sum.requests, visitantes: g.uniq.uniques })),
           paises,
           porPagina,
+          rum,
         });
       } catch (e) {
         return jsonResp({ ok: false, error: String(e) }, 502);
@@ -571,6 +586,95 @@ export default {
     return env.ASSETS.fetch(request);
   },
 };
+
+// ===== Web Analytics (o contador que vive nas paginas) =====
+//
+// 🚨 ISTO E' UMA GAVETA DIFERENTE DA DE CIMA. A consulta anterior pergunta a
+// ZONA (o que o CDN ve passar: pedidos, paises). Esta pergunta ao RUM -- o que
+// o browser das pessoas reporta: que pagina viram, de onde vieram, com que
+// aparelho. Sao dois conjuntos de dados distintos, com tokens distintos:
+//    CF_API_TOKEN  -> Zone Analytics:Read     (a zona)
+//    CF_RUM_TOKEN  -> Account Analytics:Read  (o RUM)   ← posto a 22/08/2026
+//
+// ⚠️ E' ao nivel da CONTA, nao da zona -- por isso o accountTag.
+//
+// As chamadas vao SEPARADAS de proposito. Em GraphQL, um so nome de campo
+// errado deita a consulta INTEIRA abaixo; separadas, um engano num nome custa
+// um bloco e nao a pagina toda. As dimensoes do primeiro grupo estao
+// confirmadas na documentacao; as do segundo (navegador e sistema) nao, e por
+// isso e que vao a parte.
+const RUM_SITE = "cb93958364f0480799bc19b864fb9c62";
+const RUM_CONTA = "7ff4b84ec77c277416a1c036dfb36d18";
+
+async function perguntarRum(token, consulta, variaveis) {
+  const r = await fetch("https://api.cloudflare.com/client/v4/graphql", {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ query: consulta, variables: variaveis }),
+  });
+  const j = await r.json();
+  if (j && j.errors && j.errors.length) {
+    throw new Error(j.errors.map((e) => e.message).join(" | ").slice(0, 300));
+  }
+  const c = j && j.data && j.data.viewer && j.data.viewer.accounts && j.data.viewer.accounts[0];
+  if (!c) throw new Error("resposta sem accounts: " + JSON.stringify(j).slice(0, 200));
+  return c;
+}
+
+// Junta os grupos numa lista ordenada, com o nome ja limpo.
+function arrumar(grupos, campo, limpar) {
+  const mapa = {};
+  for (const g of (grupos || [])) {
+    let chave = (g.dimensions && g.dimensions[campo]) || "";
+    if (limpar) chave = limpar(chave);
+    if (chave === null) continue;
+    const n = (g.sum && g.sum.visits) || g.count || 0;
+    mapa[chave] = (mapa[chave] || 0) + n;
+  }
+  return Object.entries(mapa).sort((a, b) => b[1] - a[1]).slice(0, 12)
+    .map(([nome, visitas]) => ({ nome, visitas }));
+}
+
+async function estatisticasRum(env, dias) {
+  const token = env.CF_RUM_TOKEN;
+  if (!token) return { erro: "falta CF_RUM_TOKEN" };
+  const desde = new Date(Date.now() - dias * 864e5).toISOString();
+  const erros = [];
+  const fora = {};
+
+  // --- grupo 1: dimensoes confirmadas ---
+  const q1 = `query($c:String!,$s:String!,$d:Time!){viewer{accounts(filter:{accountTag:$c}){
+    paginas:rumPageloadEventsAdaptiveGroups(limit:60,filter:{siteTag:$s,datetime_geq:$d},orderBy:[count_DESC]){count sum{visits} dimensions{requestPath}}
+    origens:rumPageloadEventsAdaptiveGroups(limit:60,filter:{siteTag:$s,datetime_geq:$d},orderBy:[count_DESC]){count sum{visits} dimensions{refererHost}}
+    aparelhos:rumPageloadEventsAdaptiveGroups(limit:20,filter:{siteTag:$s,datetime_geq:$d},orderBy:[count_DESC]){count sum{visits} dimensions{deviceType}}
+    paises:rumPageloadEventsAdaptiveGroups(limit:30,filter:{siteTag:$s,datetime_geq:$d},orderBy:[count_DESC]){count sum{visits} dimensions{countryName}}
+  }}}`;
+  try {
+    const c = await perguntarRum(token, q1, { c: RUM_CONTA, s: RUM_SITE, d: desde });
+    fora.paginas = arrumar(c.paginas, "requestPath", (p) => (p || "/").split("?")[0]);
+    fora.origens = arrumar(c.origens, "refererHost", (h) => {
+      h = (h || "").toLowerCase().replace(/^www\./, "");
+      if (h === "genialtarot.com" || h.endsWith(".workers.dev")) return null; // navegacao interna
+      return h || "(direto)";
+    });
+    fora.aparelhos = arrumar(c.aparelhos, "deviceType");
+    fora.paises = arrumar(c.paises, "countryName");
+  } catch (e) { erros.push("grupo1: " + e.message); }
+
+  // --- grupo 2: navegador e sistema (nomes por confirmar) ---
+  const q2 = `query($c:String!,$s:String!,$d:Time!){viewer{accounts(filter:{accountTag:$c}){
+    navegadores:rumPageloadEventsAdaptiveGroups(limit:20,filter:{siteTag:$s,datetime_geq:$d},orderBy:[count_DESC]){count sum{visits} dimensions{userAgentBrowser}}
+    sistemas:rumPageloadEventsAdaptiveGroups(limit:20,filter:{siteTag:$s,datetime_geq:$d},orderBy:[count_DESC]){count sum{visits} dimensions{userAgentOS}}
+  }}}`;
+  try {
+    const c = await perguntarRum(token, q2, { c: RUM_CONTA, s: RUM_SITE, d: desde });
+    fora.navegadores = arrumar(c.navegadores, "userAgentBrowser");
+    fora.sistemas = arrumar(c.sistemas, "userAgentOS");
+  } catch (e) { erros.push("grupo2: " + e.message); }
+
+  if (erros.length) fora.erros = erros;
+  return fora;
+}
 
 // ===== Página privada de estatísticas =====
 const PAGINA_ESTATISTICAS = `<!doctype html>
@@ -656,6 +760,15 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
       <div class="titulo-sec">🌍 De onde vêm os visitantes</div>
       <div id="paises"></div>
     </div>
+    <div class="painel" id="painel-aparelhos">
+      <div class="titulo-sec">📱 Com que aparelho e programa</div>
+      <div class="abas-pg"><b>Aparelho</b></div>
+      <div id="aparelhos"></div>
+      <div class="abas-pg" style="margin-top:0.9rem"><b>Navegador</b></div>
+      <div id="navegadores"></div>
+      <div class="abas-pg" style="margin-top:0.9rem"><b>Sistema</b></div>
+      <div id="sistemas"></div>
+    </div>
   </div>
 
   <p class="rodape">Genial Tarot · página privada — não partilhe este endereço.</p>
@@ -732,10 +845,52 @@ function carregar() {
           alvo.appendChild(linha);
         });
       }
-      encherOrigens(j.porPagina && j.porPagina.origens);
+      // 🚨 O RUM manda quando existe. Mede PESSOAS (o contador nas paginas);
+      // o outro mede PEDIDOS que passam pelo CDN, e ai contam robos, sondas e
+      // pre-carregamentos. Numeros diferentes para coisas diferentes -- nao se
+      // somam nem se comparam.
+      var R = j.rum || {};
+      var temRum = !!(R.paginas && R.paginas.length) || !!(R.origens && R.origens.length);
+
+      function comoLista(l, campo) {   // uniformiza as duas origens de dados
+        return (l || []).map(function (x) {
+          return { nome: x.nome !== undefined ? x.nome : x[campo], visitas: x.visitas };
+        });
+      }
+      function encherBarras(id, lista, enfeitar) {
+        var alvo = document.getElementById(id);
+        if (!alvo) return;
+        alvo.innerHTML = "";
+        if (!lista || !lista.length) {
+          alvo.innerHTML = '<div style="color:oklch(0.75 0.03 275);font-size:0.8rem;padding:0.3rem 0">ainda sem dados</div>';
+          return;
+        }
+        var max = lista[0].visitas || 1;
+        lista.forEach(function (x) {
+          var linha = document.createElement("div");
+          linha.className = "pais";
+          var nome = enfeitar ? enfeitar(x.nome) : x.nome;
+          linha.innerHTML = '<span class="nome">' + nome + '</span><span class="faixa"><span style="width:' +
+            Math.max(3, Math.round(x.visitas / max * 100)) + '%"></span></span><span class="pct">' + x.visitas + '</span>';
+          alvo.appendChild(linha);
+        });
+      }
+
       document.getElementById("rot-periodo").textContent = "Nos últimos " + diasAtual + " dias";
-      encherPgs("pgs-hoje", j.porPagina && j.porPagina.hoje);
-      encherPgs("pgs-periodo", j.porPagina && j.porPagina.periodo);
+      if (temRum) {
+        encherBarras("pgs-periodo", comoLista(R.paginas), function (c) { return NOMES_PG[c] || NOMES_PG[c + ".html"] || c; });
+        encherBarras("origens", comoLista(R.origens), function (o) { return NOMES_ORIG[o] || ("🌐 " + o); });
+        document.getElementById("pgs-hoje").innerHTML =
+          '<div style="color:oklch(0.75 0.03 275);font-size:0.8rem;padding:0.3rem 0">o detalhe de hoje aparece no período</div>';
+      } else {
+        encherOrigens(j.porPagina && j.porPagina.origens);
+        encherPgs("pgs-hoje", j.porPagina && j.porPagina.hoje);
+        encherPgs("pgs-periodo", j.porPagina && j.porPagina.periodo);
+      }
+      var APAR = { desktop: "🖥️ Computador", mobile: "📱 Telemóvel", tablet: "📲 Tablet", other: "❓ Outro" };
+      encherBarras("aparelhos", comoLista(R.aparelhos), function (a) { return APAR[String(a).toLowerCase()] || a; });
+      encherBarras("navegadores", comoLista(R.navegadores));
+      encherBarras("sistemas", comoLista(R.sistemas));
       var zp = document.getElementById("paises");
       zp.innerHTML = "";
       var ps = j.paises || [];
