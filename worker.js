@@ -567,12 +567,37 @@ export default {
       return new Response(PAGINA_ESTATISTICAS, { headers: { "Content-Type": "text/html; charset=utf-8" } });
     }
 
-    // Tudo o resto: servir o site normalmente
-    return env.ASSETS.fetch(request);
+    // Tudo o resto: servir o site normalmente, com o beacon das estatisticas
+    const resposta = await env.ASSETS.fetch(request);
+
+    // ===== Cloudflare Web Analytics =====
+    // 🚨 PORQUE E' QUE ISTO TEM DE ESTAR AQUI, e nao chega ligar no painel:
+    // o site de Web Analytics existe na conta desde 28/07/2026 com
+    // auto_install ligado -- e mesmo assim NENHUMA pagina trazia o beacon.
+    // Medido a 22/08/2026: `curl https://genialtarot.com/ | grep
+    // cloudflareinsights` deu ZERO em duas paginas diferentes. A instalacao
+    // automatica da Cloudflare injecta o beacon nas respostas que passam pelo
+    // proxy dela; as respostas deste site sao geradas pelo Worker, e a essas
+    // ela nao toca. Resultado: quase um mes ligado a nao recolher nada.
+    //
+    // Sem o beacon nao ha paginas mais vistas, nem origens do trafego, nem
+    // navegadores -- que e exactamente o que faltava na /Estataomp8.
+    //
+    // O token daqui NAO e' segredo: vai no HTML de todas as paginas e qualquer
+    // visitante o ve. Veio da propria API da Cloudflare (rum/site_info).
+    const tipo = resposta.headers.get("content-type") || "";
+    if (!tipo.includes("text/html")) return resposta;
+    return new HTMLRewriter()
+      .on("head", { element(e) { e.append(BEACON_ESTATISTICAS, { html: true }); } })
+      .transform(resposta);
   },
 };
 
 // ===== Página privada de estatísticas =====
+// O codigo que conta as visitas. Copiado tal e qual do que a API da Cloudflare
+// devolve em rum/site_info -- nao foi escrito a mao.
+const BEACON_ESTATISTICAS = `<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "803a58a6fccd4bd9ac12cce898a73bce"}'></script><!-- End Cloudflare Web Analytics -->`;
+
 const PAGINA_ESTATISTICAS = `<!doctype html>
 <html lang="pt">
 <head>
