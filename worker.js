@@ -644,7 +644,11 @@ export default {
       const chave = url.searchParams.get("chave") || "";
       if (!env.STATS_KEY || chave !== env.STATS_KEY) return jsonResp({ ok: false, error: "chave errada" }, 403);
       if (!env.CF_API_TOKEN || !env.CF_ZONE_ID) return jsonResp({ ok: false, error: "faltam CF_API_TOKEN / CF_ZONE_ID nas Variables and Secrets" }, 500);
-      const dias = Math.min(60, Math.max(7, Number(url.searchParams.get("dias")) || 30));
+      // ⚠️ 08/09/2026: isto subia QUALQUER pedido para um minimo de 7 dias, sem
+      // o dizer a ninguem. O retrato que se guarda todas as noites no cofre
+      // pede 1 dia e recebia 7 -- e ficava gravado com a etiqueta "1 dia".
+      // Quem responde nao pode mentir na janela: se pedem 1, e' 1.
+      const dias = Math.min(60, Math.max(1, Number(url.searchParams.get("dias")) || 30));
       const desde = new Date(Date.now() - dias * 864e5).toISOString().slice(0, 10);
       try {
         const consulta = {
