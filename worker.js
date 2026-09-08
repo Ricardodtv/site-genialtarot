@@ -1076,8 +1076,10 @@ function carregar() {
             cd.appendChild(l);
           });
         }
+        function plural(n, um, muitos) { return n + " " + (n === 1 ? um : muitos); }
         fonte("contador-nota", diasC.length
-          ? totPessoas + " pessoas e " + totRobos + " robôs em " + diasC.length + (diasC.length === 1 ? " dia" : " dias")
+          ? plural(totPessoas, "pessoa", "pessoas") + " e " + plural(totRobos, "robô travado", "robôs travados") +
+            " em " + plural(diasC.length, "dia", "dias")
           : "");
       }
 
