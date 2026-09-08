@@ -944,6 +944,7 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
 var diasAtual = 30;
 function fmt(n) { return n >= 10000 ? Math.round(n / 1000) + " mil" : String(n); }
 function dataPt(iso) { var p = iso.split("-"); return p[2] + "/" + p[1]; }
+function plural(n, um, muitos) { return n + " " + (n === 1 ? um : muitos); }
 function carregar() {
   var chave = document.getElementById("chave").value || localStorage.getItem("stats_chave") || "";
   if (!chave) return;
@@ -1070,13 +1071,13 @@ function carregar() {
           diasC.forEach(function (k) {
             var l = document.createElement("div");
             l.className = "pais";
-            l.title = porDia[k].pessoa + " pessoas · " + porDia[k].robo + " robôs travados";
+            l.title = plural(porDia[k].pessoa, "pessoa", "pessoas") + " · " +
+              plural(porDia[k].robo, "robô travado", "robôs travados");
             l.innerHTML = '<span class="nome">' + dataPt(k) + '</span><span class="faixa"><span style="width:' +
               Math.max(3, Math.round(porDia[k].pessoa / maxC * 100)) + '%"></span></span><span class="pct">' + porDia[k].pessoa + '</span>';
             cd.appendChild(l);
           });
         }
-        function plural(n, um, muitos) { return n + " " + (n === 1 ? um : muitos); }
         fonte("contador-nota", diasC.length
           ? plural(totPessoas, "pessoa", "pessoas") + " e " + plural(totRobos, "robô travado", "robôs travados") +
             " em " + plural(diasC.length, "dia", "dias")
