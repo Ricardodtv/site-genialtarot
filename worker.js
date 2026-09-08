@@ -304,6 +304,14 @@ function contarVisita(request, url, env, ctx) {
   try {
     if (!env || !env.VISITAS || !ctx) return;
     if (request.method !== "GET") return;
+    // 🚨 08/09/2026, apanhado na primeira meia hora de dados: o worker tambem
+    // corre no que NAO tem ficheiro (as paginas com ficheiro estao na lista
+    // run_worker_first; imagens e CSS nunca chegam ca). Foi assim que um
+    // pedido de certificado -- /.well-known/acme-challenge/<token de 60
+    // letras> -- se sentou no topo das "paginas mais visitadas" com 10
+    // visitas. Nao e' uma pagina: nao se conta.
+    if (url.pathname.startsWith("/.well-known/") ||
+        /\.(jpg|jpeg|png|gif|webp|svg|ico|css|js|mjs|map|mp3|mp4|txt|xml|json|woff2?|ttf|pdf)$/i.test(url.pathname)) return;
     const ua = request.headers.get("user-agent") || "";
     const proprio = url.hostname.replace(/^www\./, "");
     const ponto = {
@@ -346,7 +354,9 @@ async function estatisticasVisitas(env, dias) {
   const consultas = {
     dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " GROUP BY dia, quem ORDER BY dia ASC",
     origens:  "SELECT blob2 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
-    paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
+    // O NOT LIKE limpa os pedidos de certificado que ficaram gravados antes
+    // de o contador passar a ignora-los (08/09).
+    paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " AND blob1 NOT LIKE '/.well-known/%' GROUP BY nome ORDER BY n DESC LIMIT 20",
     paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
     aparelhos:"SELECT blob4 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 5",
   };
@@ -853,13 +863,15 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
 .pais .faixa span { display: block; height: 100%; background: linear-gradient(90deg, oklch(0.72 0.13 78), oklch(0.85 0.13 88)); border-radius: 4px; }
 .pais .pct { flex: 0 0 3.2rem; text-align: right; color: oklch(0.85 0.05 90); }
 @media (max-width: 480px) { .pais .nome { flex-basis: 7.5rem; } }
+.fonte { text-align: center; color: oklch(0.7 0.03 275); font-size: 0.66rem; font-style: italic; margin-top: 0.6rem; }
+.nota { color: oklch(0.75 0.03 275); font-size: 0.75rem; margin-top: 0.6rem; text-align: center; }
 #zona-dados { display: none; }
 </style>
 </head>
 <body>
 <div class="caixa">
   <h1>✦ Estatísticas do Genial Tarot ✦</h1>
-  <p class="sub">visitas ao site — dados da Cloudflare, só para os seus olhos</p>
+  <p class="sub">visitas ao site — contador próprio + Cloudflare, só para os seus olhos</p>
 
   <div class="painel" id="zona-chave">
     <input id="chave" type="password" placeholder="Palavra-passe" />
@@ -881,6 +893,13 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
     <div class="painel">
       <div class="grafico" id="grafico"></div>
       <div class="legenda"><span id="l-ini"></span><span>páginas vistas por dia</span><span id="l-fim"></span></div>
+      <div class="fonte">fonte: pedidos ao CDN da Cloudflare — inclui robôs, sondas e pré-carregamentos</div>
+    </div>
+    <div class="painel">
+      <div class="titulo-sec">🧭 Contador próprio — pessoas e robôs</div>
+      <div id="contador-dias"></div>
+      <div class="nota" id="contador-nota"></div>
+      <div class="fonte">fonte: contado dentro do servidor a cada página servida — sem JavaScript, sem amostragem e sem bloqueadores. A barra conta pessoas; passe o rato (ou toque) para ver os robôs.</div>
     </div>
     <div class="painel">
       <div class="titulo-sec">📄 Páginas mais visitadas</div>
@@ -888,11 +907,13 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
       <div id="pgs-hoje"></div>
       <div class="abas-pg" style="margin-top:0.9rem"><b id="rot-periodo">No período</b></div>
       <div id="pgs-periodo"></div>
+      <div class="fonte" id="f-paginas"></div>
     </div>
     <div class="painel">
       <div class="titulo-sec">🚪 Por onde chegam (origens)</div>
       <div id="origens"></div>
       <div style="text-align:center;color:oklch(0.7 0.03 275);font-size:0.68rem;font-style:italic;margin-top:0.5rem">"Direto" = escreveu o endereço, favoritos ou apps que não anunciam a origem (ex.: WhatsApp)</div>
+      <div class="fonte" id="f-origens"></div>
     </div>
     <div class="painel">
       <div class="titulo-sec">🌍 De onde vêm os visitantes</div>
@@ -902,10 +923,14 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
       <div class="titulo-sec">📱 Com que aparelho e programa</div>
       <div class="abas-pg"><b>Aparelho</b></div>
       <div id="aparelhos"></div>
-      <div class="abas-pg" style="margin-top:0.9rem"><b>Navegador</b></div>
-      <div id="navegadores"></div>
-      <div class="abas-pg" style="margin-top:0.9rem"><b>Sistema</b></div>
-      <div id="sistemas"></div>
+      <div class="fonte" id="f-aparelhos"></div>
+      <div id="bloco-navegadores">
+        <div class="abas-pg" style="margin-top:0.9rem"><b>Navegador</b></div>
+        <div id="navegadores"></div>
+        <div class="abas-pg" style="margin-top:0.9rem"><b>Sistema</b></div>
+        <div id="sistemas"></div>
+        <div class="fonte">fonte: contador da Cloudflare nas páginas — morreu a 22/08, isto é histórico e não cresce mais</div>
+      </div>
     </div>
   </div>
 
@@ -946,7 +971,17 @@ function carregar() {
       }
       var NOMES_PG = { "/": "🏠 Página Principal", "/index.html": "🏠 Página Principal", "/loja.html": "🛍️ Loja Mística",
         "/tarot-gratis.html": "🃏 Tarot Grátis", "/arvore.html": "🌳 Árvore da Vida", "/horoscopo.html": "🔮 Horóscopo Diário",
-        "/anual.html": "📅 Previsão Anual", "/fimdesemana.html": "🌙 Fim de Semana" };
+        "/anual.html": "📅 Previsão Anual", "/fimdesemana.html": "🌙 Fim de Semana", "/sobre.html": "👤 Sobre o Mestre",
+        "/pagar.html": "💳 Pagamento", "/arcanos.html": "🎴 Os Arcanos", "/privacidade.html": "🔒 Privacidade",
+        "/termos.html": "📜 Termos" };
+      // Os 22 arcanos sao 22 linhas iguais; poe-se o nome a partir do endereco.
+      function nomePagina(c) {
+        if (NOMES_PG[c]) return NOMES_PG[c];
+        if (NOMES_PG[c + ".html"]) return NOMES_PG[c + ".html"];
+        var m = /^\/arcano-\d\d-(.+?)(\.html)?$/.exec(String(c));
+        if (m) return "🎴 " + m[1].replace(/-/g, " ").replace(/^./, function (x) { return x.toUpperCase(); });
+        return c;
+      }
       function encherPgs(id, lista) {
         var alvo = document.getElementById(id);
         alvo.innerHTML = "";
@@ -958,7 +993,7 @@ function carregar() {
         lista.forEach(function (p) {
           var linha = document.createElement("div");
           linha.className = "pais";
-          var nome = NOMES_PG[p.caminho] || p.caminho;
+          var nome = nomePagina(p.caminho);
           linha.innerHTML = '<span class="nome">' + nome + '</span><span class="faixa"><span style="width:' + Math.max(3, Math.round(p.visitas / max * 100)) + '%"></span></span><span class="pct">' + p.visitas + '</span>';
           alvo.appendChild(linha);
         });
@@ -990,6 +1025,58 @@ function carregar() {
       var R = j.rum || {};
       var temRum = !!(R.paginas && R.paginas.length) || !!(R.origens && R.origens.length);
 
+      // 🚨 08/09/2026: acima de tudo manda o CONTADOR PROPRIO (worker). Conta
+      // dentro do servidor a cada pagina servida: nao depende de JavaScript,
+      // nao e' travado por bloqueadores, nao tem amostragem, e e' o unico que
+      // sabe a ORIGEM. O RUM da Cloudflare morreu a 22/08 -- o beacon dispara
+      // e o colector responde 404 -- por isso so serve de historico ate 21/08.
+      // Ordem: contador proprio > RUM (historico) > zona (pedidos ao CDN).
+      var V = j.visitas || {};
+      function doContador(l) {   // {nome, n: "12"} -> {nome, visitas: 12}
+        if (!Array.isArray(l)) return [];
+        return l.filter(function (x) { return x && x.nome !== undefined && x.nome !== null; })
+                .map(function (x) { return { nome: String(x.nome), visitas: Number(x.n) || 0 }; });
+      }
+      var vPaginas = doContador(V.paginas), vOrigens = doContador(V.origens),
+          vAparelhos = doContador(V.aparelhos);
+      var temVis = !!(vPaginas.length || vOrigens.length);
+      function fonte(id, txt) { var e = document.getElementById(id); if (e) e.textContent = txt; }
+      var F_VIS = "fonte: contador próprio, no servidor — robôs conhecidos deixados de fora";
+      var F_RUM = "fonte: contador da Cloudflare nas páginas — parado desde 22/08, isto é histórico";
+      var F_CDN = "fonte: pedidos ao CDN — inclui robôs";
+
+      // Contador proprio, dia a dia: pessoas e robos lado a lado.
+      var cd = document.getElementById("contador-dias");
+      if (cd) {
+        var porDia = {}, totPessoas = 0, totRobos = 0;
+        (Array.isArray(V.dias) ? V.dias : []).forEach(function (r) {
+          if (!r || !r.dia) return;
+          var alvo = porDia[r.dia] || (porDia[r.dia] = { pessoa: 0, robo: 0 });
+          var n = Number(r.n) || 0;
+          if (r.quem === "robo") { alvo.robo += n; totRobos += n; } else { alvo.pessoa += n; totPessoas += n; }
+        });
+        var diasC = Object.keys(porDia).sort();
+        cd.innerHTML = "";
+        if (!diasC.length) {
+          cd.innerHTML = '<div style="color:oklch(0.75 0.03 275);font-size:0.8rem;padding:0.3rem 0;text-align:center">' +
+            (V.erro || (V.dias && V.dias.erro) ? "⚠️ o contador não respondeu" : "ainda sem dados — o contador próprio começou a 08/09/2026") + "</div>";
+        } else {
+          var maxC = 1;
+          diasC.forEach(function (k) { if (porDia[k].pessoa > maxC) maxC = porDia[k].pessoa; });
+          diasC.forEach(function (k) {
+            var l = document.createElement("div");
+            l.className = "pais";
+            l.title = porDia[k].pessoa + " pessoas · " + porDia[k].robo + " robôs travados";
+            l.innerHTML = '<span class="nome">' + dataPt(k) + '</span><span class="faixa"><span style="width:' +
+              Math.max(3, Math.round(porDia[k].pessoa / maxC * 100)) + '%"></span></span><span class="pct">' + porDia[k].pessoa + '</span>';
+            cd.appendChild(l);
+          });
+        }
+        fonte("contador-nota", diasC.length
+          ? totPessoas + " pessoas e " + totRobos + " robôs em " + diasC.length + (diasC.length === 1 ? " dia" : " dias")
+          : "");
+      }
+
       function comoLista(l, campo) {   // uniformiza as duas origens de dados
         return (l || []).map(function (x) {
           return { nome: x.nome !== undefined ? x.nome : x[campo], visitas: x.visitas };
@@ -1015,18 +1102,34 @@ function carregar() {
       }
 
       document.getElementById("rot-periodo").textContent = "Nos últimos " + diasAtual + " dias";
-      if (temRum) {
-        encherBarras("pgs-periodo", comoLista(R.paginas), function (c) { return NOMES_PG[c] || NOMES_PG[c + ".html"] || c; });
+      if (temVis) {
+        encherBarras("pgs-periodo", vPaginas, function (c) { return nomePagina(c); });
+        encherBarras("origens", vOrigens, function (o) { return NOMES_ORIG[o] || ("🌐 " + o); });
+        document.getElementById("pgs-hoje").innerHTML =
+          '<div style="color:oklch(0.75 0.03 275);font-size:0.8rem;padding:0.3rem 0">o detalhe de hoje aparece no período</div>';
+        fonte("f-paginas", F_VIS); fonte("f-origens", F_VIS);
+      } else if (temRum) {
+        encherBarras("pgs-periodo", comoLista(R.paginas), function (c) { return nomePagina(c); });
         encherBarras("origens", comoLista(R.origens), function (o) { return NOMES_ORIG[o] || ("🌐 " + o); });
         document.getElementById("pgs-hoje").innerHTML =
           '<div style="color:oklch(0.75 0.03 275);font-size:0.8rem;padding:0.3rem 0">o detalhe de hoje aparece no período</div>';
+        fonte("f-paginas", F_RUM); fonte("f-origens", F_RUM);
       } else {
         encherOrigens(j.porPagina && j.porPagina.origens);
         encherPgs("pgs-hoje", j.porPagina && j.porPagina.hoje);
         encherPgs("pgs-periodo", j.porPagina && j.porPagina.periodo);
+        fonte("f-paginas", F_CDN); fonte("f-origens", F_CDN);
       }
-      var APAR = { desktop: "🖥️ Computador", mobile: "📱 Telemóvel", tablet: "📲 Tablet", other: "❓ Outro" };
-      encherBarras("aparelhos", comoLista(R.aparelhos), function (a) { return APAR[String(a).toLowerCase()] || a; });
+      // O contador proprio escreve "computador"/"telemovel"; o RUM escrevia em ingles.
+      var APAR = { desktop: "🖥️ Computador", computador: "🖥️ Computador", mobile: "📱 Telemóvel",
+        telemovel: "📱 Telemóvel", tablet: "📲 Tablet", other: "❓ Outro", "?": "❓ Não diz" };
+      encherBarras("aparelhos", temVis ? vAparelhos : comoLista(R.aparelhos),
+        function (a) { return APAR[String(a).toLowerCase()] || a; });
+      fonte("f-aparelhos", temVis ? F_VIS : F_RUM);
+      // Navegador e sistema so o RUM os sabia. Sem RUM, esconder em vez de
+      // deixar duas listas vazias para sempre.
+      var bn = document.getElementById("bloco-navegadores");
+      if (bn) bn.style.display = temRum ? "block" : "none";
       encherBarras("navegadores", comoLista(R.navegadores));
       encherBarras("sistemas", comoLista(R.sistemas));
       var zp = document.getElementById("paises");
