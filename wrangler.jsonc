@@ -5,9 +5,61 @@
   "observability": { "enabled": true },
   "assets": {
     "directory": ".",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // 🚨 08/09/2026 -- SEM ISTO O WORKER NAO CORRE NAS PAGINAS.
+    // Por omissao, quando existe um ficheiro que corresponde ao pedido, a
+    // Cloudflare serve-o DIRECTAMENTE e nao invoca o worker.
+    //
+    // A tentativa de 22/08 usou ["/", "/*.html"] e SO O "/" pegou. A razao,
+    // percebida hoje: os enderecos deste site nao tem .html -- /horoscopo.html
+    // responde 307 para /horoscopo. O padrao "/*.html" nunca correspondia ao
+    // que chega mesmo. Por isso agora vai a LISTA COMPLETA, sem wildcards.
+    //
+    // So o HTML. Imagens, CSS e JS continuam servidos directamente, sem
+    // gastar invocacoes do worker.
+    "run_worker_first": [
+      "/",
+      "/anual",
+      "/arcano-00-o-louco",
+      "/arcano-01-o-mago",
+      "/arcano-02-a-sacerdotisa",
+      "/arcano-03-a-imperatriz",
+      "/arcano-04-o-imperador",
+      "/arcano-05-o-hierofante",
+      "/arcano-06-os-enamorados",
+      "/arcano-07-o-carro",
+      "/arcano-08-a-forca",
+      "/arcano-09-o-eremita",
+      "/arcano-10-a-roda-da-fortuna",
+      "/arcano-11-a-justica",
+      "/arcano-12-o-enforcado",
+      "/arcano-13-a-morte",
+      "/arcano-14-a-temperanca",
+      "/arcano-15-o-diabo",
+      "/arcano-16-a-torre",
+      "/arcano-17-a-estrela",
+      "/arcano-18-a-lua",
+      "/arcano-19-o-sol",
+      "/arcano-20-o-julgamento",
+      "/arcano-21-o-mundo",
+      "/arcanos",
+      "/arvore",
+      "/fimdesemana",
+      "/horoscopo",
+      "/loja",
+      "/pagar",
+      "/privacidade",
+      "/sobre",
+      "/tarot-gratis",
+      "/termos",
+      "/index"
+    ]
   },
   "kv_namespaces": [
     { "binding": "CAPTURAS", "id": "2290d2931e8d4eaf986272a410a2f3ef" }
+  ],
+  // Onde ficam as visitas contadas pelo proprio worker (ver contarVisita).
+  "analytics_engine_datasets": [
+    { "binding": "VISITAS", "dataset": "visitas_site" }
   ]
 }

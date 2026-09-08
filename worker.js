@@ -257,9 +257,117 @@ async function fetchLatestDailyZodiac(debug, env, playlistId = ZODIAC_PLAYLIST_I
 }
 // ======================================================================
 
+// ===== Contador de visitas, do lado do servidor =====
+//
+// 08/09/2026. O contador da Cloudflare (Web Analytics) morreu e nao ha como o
+// reparar daqui. Medido hoje com o Chromium sem ecra e o registo de rede: o
+// beacon carrega, dispara um POST de 812 bytes para
+// https://cloudflareinsights.com/cdn-cgi/rum, e a Cloudflare responde 404.
+// Tirar o beacon manual de uma pagina tambem nao trouxe de volta a injeccao
+// automatica (10 leituras em 5 minutos, nenhuma). Zero visitas desde 22/08.
+//
+// Este conta AQUI, antes de entregar a pagina:
+//   - nao depende de JavaScript, nenhum bloqueador o apanha
+//   - sem amostragem: conta todas, nao 1 em 10
+//   - da o REFERRER, que e o que responde a "aquele video trouxe gente?"
+//   - separa pessoas de robos, que os numeros da zona misturam
+//
+// 🔒 NAO guarda nada que identifique ninguem: sem IP, sem cookies, sem seguir
+// a pessoa de pagina em pagina. So a hora, a pagina, o dominio de onde veio,
+// o pais e o tipo de aparelho. A politica de privacidade do site continua
+// verdadeira.
+//
+// 🚨 Contar NUNCA pode derrubar o site: tudo dentro de try/catch e a escrita
+// vai por ctx.waitUntil, depois da resposta seguir.
+
+const ROBOS = /bot\b|bot\/|crawl|spider|slurp|preview|facebookexternalhit|whatsapp|telegram|headless|python-requests|curl\/|wget|scrapy|semrush|ahrefs|mj12|dotbot|petalbot|yandex|baidu|applebot|gptbot|claudebot|ccbot|bytespider|feedfetcher|monitoring|uptime|pingdom|lighthouse/i;
+
+function aparelhoDe(ua) {
+  if (!ua) return "?";
+  if (/ipad|tablet/i.test(ua)) return "tablet";
+  if (/mobi|android|iphone|ipod/i.test(ua)) return "telemovel";
+  return "computador";
+}
+
+// So o dominio de onde veio -- nunca o endereco completo, que pode levar
+// termos de pesquisa ou dados da pessoa.
+function origemDe(referer, proprio) {
+  if (!referer) return "(directo)";
+  try {
+    const h = new URL(referer).hostname.replace(/^www\./, "");
+    if (h === proprio || h.endsWith("." + proprio)) return "(interno)";
+    return h;
+  } catch (e) { return "(desconhecido)"; }
+}
+
+function contarVisita(request, url, env, ctx) {
+  try {
+    if (!env || !env.VISITAS || !ctx) return;
+    if (request.method !== "GET") return;
+    const ua = request.headers.get("user-agent") || "";
+    const proprio = url.hostname.replace(/^www\./, "");
+    const ponto = {
+      indexes: [url.pathname.slice(0, 90)],
+      blobs: [
+        url.pathname.slice(0, 120),
+        origemDe(request.headers.get("referer"), proprio).slice(0, 120),
+        (request.cf && request.cf.country) || "?",
+        aparelhoDe(ua),
+        ROBOS.test(ua) ? "robo" : "pessoa",
+      ],
+      doubles: [1],
+    };
+    ctx.waitUntil((async () => {
+      try { env.VISITAS.writeDataPoint(ponto); } catch (e) { /* silencio */ }
+    })());
+  } catch (e) { /* contar nunca pode derrubar a pagina */ }
+}
+
+// Le o que foi contado. Usa o CF_RUM_TOKEN (Account Analytics:Read), que ja
+// existe nos segredos. Cada consulta vai a parte: um erro numa nao deita as
+// outras abaixo -- a licao das consultas do RUM, 22/08.
+async function perguntarSQL(env, sql) {
+  const r = await fetch(
+    "https://api.cloudflare.com/client/v4/accounts/" + RUM_CONTA + "/analytics_engine/sql",
+    { method: "POST",
+      headers: { "Authorization": "Bearer " + env.CF_RUM_TOKEN, "Content-Type": "text/plain" },
+      body: sql });
+  const t = await r.text();
+  try {
+    const j = JSON.parse(t);
+    return Array.isArray(j.data) ? j.data : { erro: String(t).slice(0, 200) };
+  } catch (e) { return { erro: String(t).slice(0, 200) }; }
+}
+
+async function estatisticasVisitas(env, dias) {
+  if (!env.CF_RUM_TOKEN) return { erro: "falta o CF_RUM_TOKEN" };
+  const janela = "timestamp > now() - INTERVAL '" + Math.min(90, Math.max(1, dias)) + "' DAY";
+  const so = " AND blob5 = 'pessoa'";
+  const consultas = {
+    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " GROUP BY dia, quem ORDER BY dia ASC",
+    origens:  "SELECT blob2 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
+    paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
+    paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
+    aparelhos:"SELECT blob4 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 5",
+  };
+  const nomes = Object.keys(consultas);
+  const res = await Promise.all(nomes.map(k =>
+    perguntarSQL(env, consultas[k]).catch(e => ({ erro: String(e).slice(0, 120) }))));
+  const fora = {};
+  nomes.forEach((k, i) => { fora[k] = res[i]; });
+  return fora;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+
+    // Contar a visita antes de tudo. So paginas: fora as APIs, o /cdn-cgi/ da
+    // Cloudflare e a pagina privada das estatisticas (que sou eu a olhar).
+    if (!url.pathname.startsWith("/api/") && !url.pathname.startsWith("/cdn-cgi/") &&
+        url.pathname !== "/Estataomp8" && url.pathname !== "/geo" && url.pathname !== "/notify") {
+      contarVisita(request, url, env, ctx);
+    }
 
     // Vídeo diário mais recente + minutos de cada signo (com cache de 15 min)
     if (url.pathname === "/api/zodiac") {
@@ -484,6 +592,26 @@ export default {
       }
       // ?debug=rum&chave=... -> devolve a resposta do RUM em bruto, erros
       // incluidos. E' assim que se afina um nome de dimensao sem adivinhar.
+      // ?debug=zona -> a resposta CRUA da consulta dos referrers/paginas.
+      // E' assim que se sabe se este plano tem o httpRequestsAdaptiveGroups,
+      // sem adivinhar. Mesma porta e mesma chave do debug=rum.
+      if (url.searchParams.get("debug") === "zona") {
+        if (!env.STATS_KEY || url.searchParams.get("chave") !== env.STATS_KEY) {
+          return jsonResp({ ok: false, error: "chave errada" }, 403);
+        }
+        const desdeZ = new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 10);
+        const hojeZ = new Date().toISOString().slice(0, 10);
+        const rz = await fetch("https://api.cloudflare.com/client/v4/graphql", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${env.CF_API_TOKEN}`, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: "query($zona:String!,$desde:Date!){viewer{zones(filter:{zoneTag:$zona}){origens:httpRequestsAdaptiveGroups(limit:40,filter:{date_geq:$desde},orderBy:[count_DESC]){count dimensions{clientRefererHost}sum{visits}}}}}",
+            variables: { zona: env.CF_ZONE_ID, desde: desdeZ },
+          }),
+        });
+        return jsonResp({ ok: true, hoje: hojeZ, zona: await rz.json() });
+      }
+
       if (url.searchParams.get("debug") === "rum") {
         if (!env.STATS_KEY || url.searchParams.get("chave") !== env.STATS_KEY) {
           return jsonResp({ ok: false, error: "chave errada" }, 403);
@@ -538,7 +666,12 @@ export default {
             const mapa = {};
             for (const g of (lista || [])) {
               const p = (g.dimensions.clientRequestPath || "").split("?")[0];
-              if (p !== "/" && !p.endsWith(".html")) continue;
+              // 08/09/2026: aqui estava `!p.endsWith(".html")`, e por isso esta
+              // lista vinha SEMPRE vazia -- os enderecos deste site nao tem
+              // extensao (/horoscopo.html responde 307 para /horoscopo). Agora
+              // conta como pagina tudo o que nao tenha extensao de ficheiro.
+              const ultimo = p.split("/").pop() || "";
+              if (p !== "/" && ultimo.includes(".") && !p.endsWith(".html")) continue;
               const n = (g.sum && g.sum.visits) || g.count || 0;
               mapa[p] = (mapa[p] || 0) + n;
             }
@@ -566,12 +699,17 @@ export default {
         let rum = null;
         try { rum = await estatisticasRum(env, dias); } catch (e) { rum = { erro: String(e).slice(0, 200) }; }
 
+        // O contador proprio (worker). Tambem nunca deita a resposta abaixo.
+        let visitas = null;
+        try { visitas = await estatisticasVisitas(env, dias); } catch (e) { visitas = { erro: String(e).slice(0, 200) }; }
+
         return jsonResp({
           ok: true,
           dias: grupos.map(g => ({ data: g.dimensions.date, paginas: g.sum.pageViews, pedidos: g.sum.requests, visitantes: g.uniq.uniques })),
           paises,
           porPagina,
           rum,
+          visitas,
         });
       } catch (e) {
         return jsonResp({ ok: false, error: String(e) }, 502);
