@@ -350,13 +350,17 @@ async function perguntarSQL(env, sql) {
 async function estatisticasVisitas(env, dias) {
   if (!env.CF_RUM_TOKEN) return { erro: "falta o CF_RUM_TOKEN" };
   const janela = "timestamp > now() - INTERVAL '" + Math.min(90, Math.max(1, dias)) + "' DAY";
-  const so = " AND blob5 = 'pessoa'";
+  // 🚨 O NOT LIKE vai em TODAS as consultas, incluindo a dos dias. Os pedidos
+  // de certificado que ficaram gravados antes de o contador passar a
+  // ignora-los (08/09) sairam da lista de paginas mas continuavam no total do
+  // dia -- 23 visitas no topo da pagina e 10 na lista. Numeros que nao batem
+  // certo tiram a credibilidade a todos os outros.
+  const limpo = " AND blob1 NOT LIKE '/.well-known/%'";
+  const so = " AND blob5 = 'pessoa'" + limpo;
   const consultas = {
-    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " GROUP BY dia, quem ORDER BY dia ASC",
+    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " GROUP BY dia, quem ORDER BY dia ASC",
     origens:  "SELECT blob2 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
-    // O NOT LIKE limpa os pedidos de certificado que ficaram gravados antes
-    // de o contador passar a ignora-los (08/09).
-    paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " AND blob1 NOT LIKE '/.well-known/%' GROUP BY nome ORDER BY n DESC LIMIT 20",
+    paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
     paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
     aparelhos:"SELECT blob4 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 5",
   };
