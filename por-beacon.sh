@@ -9,6 +9,31 @@
 # correr a mao:  bash por-beacon.sh
 #
 # Sem argumentos, trata todos os .html. Com argumentos, so esses.
+#
+# ═══════════════════════════════════════════════════════════════════════
+# 🚨 DESLIGADO A 08/09/2026 -- NAO PONHA MAIS NADA NAS PAGINAS.
+#
+# O contador da Cloudflare (Web Analytics) MORREU a 22/08, e esta provado:
+# o beacon carrega, dispara o POST, e o colector publico
+# cloudflareinsights.com/cdn-cgi/rum responde 404 a tudo -- medido com o
+# registo de rede do Chromium na pagina ao vivo. Zero visitas desde 22/08,
+# enquanto a zona servia 200-600 paginas por dia.
+#
+# Tirar o snippet de uma pagina (teste da termos.html, commit e783243) NAO
+# fez a Cloudflare voltar a injecta-lo sozinha: 10 leituras em 5 minutos,
+# nenhuma. Os dois caminhos estao mortos ao mesmo tempo, e o PUT no
+# /rum/site_info da 403 com a chave que tenho. Nada a consertar deste lado.
+#
+# Ficar la so custava: um pedido que da 404 em CADA visita.
+#
+# Quem conta agora e' o proprio worker (contarVisita, commit 81405a1) --
+# do lado do servidor, sem JavaScript, sem bloqueadores e sem amostragem.
+#
+# Se um dia a Cloudflare consertar a zona, este guiao volta a servir:
+# basta apagar o `exit 0` desta linha de baixo.
+# ═══════════════════════════════════════════════════════════════════════
+exit 0
+
 set -uo pipefail
 cd "$(dirname "$0")" || exit 1
 
