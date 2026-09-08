@@ -300,6 +300,30 @@ function origemDe(referer, proprio) {
   } catch (e) { return "(desconhecido)"; }
 }
 
+// 🚨 08/09/2026 -- A MARCA NO LINK. O referrer nao chega para saber quem veio
+// do TikTok: quem abre o link dentro da aplicacao cai no navegador interno
+// dela, que muitas vezes NAO diz de onde veio. Essas visitas iam parar a
+// "(directo)", misturadas com quem escreveu o endereco a mao.
+//
+// Com uma marca no proprio link -- genialtarot.com/?de=tiktok -- a origem
+// deixa de depender da boa vontade do navegador. A pagina abre na mesma;
+// ninguem nota nada.
+//
+// So entram as marcas desta lista. Sem ela, qualquer pessoa escrevia o que
+// lhe apetecesse nas estatisticas dele so por abrir o site com ?de=<lixo>.
+const MARCAS = new Set(["tiktok", "youtube", "instagram", "facebook", "whatsapp",
+                        "telegram", "email", "cartao", "bio"]);
+
+function marcaDe(url) {
+  const m = (url.searchParams.get("de") || url.searchParams.get("utm_source") || "")
+    .toLowerCase().slice(0, 20);
+  if (!m) return null;
+  if (MARCAS.has(m)) return "marca:" + m;
+  // Uma marca desconhecida e' quase sempre um engano a escrever o link.
+  // Aparece assim, para dar nas vistas, em vez de se perder em silencio.
+  return /^[a-z0-9-]{1,20}$/.test(m) ? "marca:?" : null;
+}
+
 function contarVisita(request, url, env, ctx) {
   try {
     if (!env || !env.VISITAS || !ctx) return;
@@ -324,7 +348,8 @@ function contarVisita(request, url, env, ctx) {
       indexes: [url.pathname.slice(0, 90)],
       blobs: [
         url.pathname.slice(0, 120),
-        origemDe(request.headers.get("referer"), proprio).slice(0, 120),
+        // A marca do link manda; o referrer so entra quando ela nao existe.
+        (marcaDe(url) || origemDe(request.headers.get("referer"), proprio)).slice(0, 120),
         (request.cf && request.cf.country) || "?",
         aparelhoDe(ua),
         ROBOS.test(ua) ? "robo" : "pessoa",
@@ -1019,7 +1044,14 @@ function carregar() {
       var NOMES_ORIG = { "(direto)": "🔗 Direto / desconhecido", "google.com": "🔎 Google", "google.pt": "🔎 Google",
         "facebook.com": "📘 Facebook", "m.facebook.com": "📘 Facebook", "l.facebook.com": "📘 Facebook", "lm.facebook.com": "📘 Facebook",
         "instagram.com": "📸 Instagram", "l.instagram.com": "📸 Instagram", "youtube.com": "▶️ YouTube", "m.youtube.com": "▶️ YouTube",
-        "linktr.ee": "🌐 Linktree", "tiktok.com": "🎵 TikTok", "t.co": "🐦 X (Twitter)", "bing.com": "🔎 Bing", "duckduckgo.com": "🔎 DuckDuckGo" };
+        "linktr.ee": "🌐 Linktree", "tiktok.com": "🎵 TikTok", "t.co": "🐦 X (Twitter)", "bing.com": "🔎 Bing", "duckduckgo.com": "🔎 DuckDuckGo",
+        // Os links marcados (genialtarot.com/?de=tiktok). Estes nao dependem
+        // do navegador dizer de onde veio: sao a atribuicao certa.
+        "marca:tiktok": "🎵 TikTok — link marcado", "marca:youtube": "▶️ YouTube — link marcado",
+        "marca:instagram": "📸 Instagram — link marcado", "marca:facebook": "📘 Facebook — link marcado",
+        "marca:whatsapp": "💬 WhatsApp — link marcado", "marca:telegram": "✈️ Telegram — link marcado",
+        "marca:email": "✉️ Email — link marcado", "marca:cartao": "🪪 Cartão — link marcado",
+        "marca:bio": "🔗 Bio — link marcado", "marca:?": "⚠️ marca que eu não conheço (link mal escrito?)" };
       function encherOrigens(lista) {
         var alvo = document.getElementById("origens");
         alvo.innerHTML = "";
