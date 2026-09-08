@@ -304,14 +304,20 @@ function contarVisita(request, url, env, ctx) {
   try {
     if (!env || !env.VISITAS || !ctx) return;
     if (request.method !== "GET") return;
-    // 🚨 08/09/2026, apanhado na primeira meia hora de dados: o worker tambem
-    // corre no que NAO tem ficheiro (as paginas com ficheiro estao na lista
-    // run_worker_first; imagens e CSS nunca chegam ca). Foi assim que um
-    // pedido de certificado -- /.well-known/acme-challenge/<token de 60
-    // letras> -- se sentou no topo das "paginas mais visitadas" com 10
-    // visitas. Nao e' uma pagina: nao se conta.
-    if (url.pathname.startsWith("/.well-known/") ||
-        /\.(jpg|jpeg|png|gif|webp|svg|ico|css|js|mjs|map|mp3|mp4|txt|xml|json|woff2?|ttf|pdf)$/i.test(url.pathname)) return;
+    // 🚨 08/09/2026, apanhado nas primeiras horas de dados: o worker tambem
+    // corre em tudo o que NAO tem ficheiro (as paginas com ficheiro estao na
+    // lista run_worker_first; imagens e CSS nunca chegam ca). Entraram como
+    // "pessoas" um pedido de certificado (/.well-known/acme-challenge/<token>)
+    // e varrimentos de ataque -- /wp-login.php, /wp-json/, /.git/config.
+    //
+    // Em vez de uma lista negra que nunca acaba, so se conta o que TEM FEITIO
+    // DE PAGINA deste site: a raiz, ou um unico troco em minusculas sem ponto
+    // (/horoscopo, /tarot-gratis, /arcano-00-o-louco). Tudo o que traz ponto,
+    // maiuscula ou segunda barra nao e' pagina daqui.
+    //
+    // ⚠️ Se um dia nascer uma pagina com outro feitio, entra aqui tambem --
+    // senao existe e nao aparece nas contas.
+    if (!/^\/([a-z0-9][a-z0-9-]*)?$/.test(url.pathname)) return;
     const ua = request.headers.get("user-agent") || "";
     const proprio = url.hostname.replace(/^www\./, "");
     const ponto = {
@@ -350,12 +356,15 @@ async function perguntarSQL(env, sql) {
 async function estatisticasVisitas(env, dias) {
   if (!env.CF_RUM_TOKEN) return { erro: "falta o CF_RUM_TOKEN" };
   const janela = "timestamp > now() - INTERVAL '" + Math.min(90, Math.max(1, dias)) + "' DAY";
-  // 🚨 O NOT LIKE vai em TODAS as consultas, incluindo a dos dias. Os pedidos
-  // de certificado que ficaram gravados antes de o contador passar a
-  // ignora-los (08/09) sairam da lista de paginas mas continuavam no total do
-  // dia -- 23 visitas no topo da pagina e 10 na lista. Numeros que nao batem
-  // certo tiram a credibilidade a todos os outros.
-  const limpo = " AND blob1 NOT LIKE '/.well-known/%'";
+  // 🚨 O mesmo crivo do contarVisita, mas para o que JA ESTA GRAVADO: pedidos
+  // de certificado e varrimentos de ataque (/wp-login.php, /.git/config,
+  // /wp-json/) entraram antes de o contador aprender a ignora-los. Um ponto
+  // ou uma segunda barra chegam para os apanhar a todos.
+  //
+  // ⚠️ Vai em TODAS as consultas, incluindo a dos dias. Da primeira vez tirei
+  // o lixo so da lista de paginas e ficaram 23 no total contra 10 na lista --
+  // numeros que nao batem certo tiram a credibilidade a todos os outros.
+  const limpo = " AND blob1 NOT LIKE '%.%' AND blob1 NOT LIKE '/%/%'";
   const so = " AND blob5 = 'pessoa'" + limpo;
   const consultas = {
     dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " GROUP BY dia, quem ORDER BY dia ASC",
