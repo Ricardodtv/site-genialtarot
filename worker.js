@@ -904,7 +904,14 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
 .pais .faixa { flex: 1; height: 0.85rem; border-radius: 4px; background: oklch(0.26 0.05 265); overflow: hidden; }
 .pais .faixa span { display: block; height: 100%; background: linear-gradient(90deg, oklch(0.72 0.13 78), oklch(0.85 0.13 88)); border-radius: 4px; }
 .pais .pct { flex: 0 0 3.2rem; text-align: right; color: oklch(0.85 0.05 90); }
-@media (max-width: 480px) { .pais .nome { flex-basis: 7.5rem; } }
+/* No telemovel o nome nao cabe ao lado da barra e ficava cortado a meio
+   ("Pagina Princ...", "TikTok - lin..."). Passa para cima, em linha inteira,
+   e a barra fica por baixo. Visto num ecra de 390 px antes de subir. */
+@media (max-width: 480px) {
+  .pais { flex-wrap: wrap; row-gap: 0.15rem; margin-bottom: 0.7rem; }
+  .pais .nome { flex: 0 0 100%; white-space: normal; overflow: visible; }
+  .pais .faixa { flex: 1 1 auto; }
+}
 .fonte { text-align: center; color: oklch(0.7 0.03 275); font-size: 0.66rem; font-style: italic; margin-top: 0.6rem; }
 .nota { color: oklch(0.75 0.03 275); font-size: 0.75rem; margin-top: 0.6rem; text-align: center; }
 #zona-dados { display: none; }
