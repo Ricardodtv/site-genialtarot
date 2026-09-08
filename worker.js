@@ -1018,11 +1018,28 @@ function carregar() {
         "/pagar.html": "💳 Pagamento", "/arcanos.html": "🎴 Os Arcanos", "/privacidade.html": "🔒 Privacidade",
         "/termos.html": "📜 Termos" };
       // Os 22 arcanos sao 22 linhas iguais; poe-se o nome a partir do endereco.
+      //
+      // 🚨 08/09/2026 -- AQUI DENTRO NAO SE ESCREVEM EXPRESSOES REGULARES.
+      // Este guiao vive dentro de um template literal do worker (as crases),
+      // e o JavaScript come as barras invertidas na viagem: o meu
+      // /^\/arcano-\d\d-.../ chegou ao browser como /^/arcano-dd-.../ -- a
+      // primeira barra fechou a expressao, deu "Invalid regular expression
+      // flags", e o guiao INTEIRO da pagina deixou de correr. A pagina ficou
+      // com a caixa da senha e o botao morto durante uma hora.
+      // Se for mesmo preciso uma expressao regular, a barra invertida tem de
+      // ser dobrada. Aqui nao e' precisa: fazem-se as contas com texto.
       function nomePagina(c) {
         if (NOMES_PG[c]) return NOMES_PG[c];
         if (NOMES_PG[c + ".html"]) return NOMES_PG[c + ".html"];
-        var m = /^\/arcano-\d\d-(.+?)(\.html)?$/.exec(String(c));
-        if (m) return "🎴 " + m[1].replace(/-/g, " ").replace(/^./, function (x) { return x.toUpperCase(); });
+        var s = String(c);
+        if (s.indexOf("/arcano-") === 0) {
+          var t = s.slice(8);
+          if (t.slice(-5) === ".html") t = t.slice(0, -5);
+          var p = t.split("-");
+          if (p.length > 1 && p[0].length && !isNaN(Number(p[0]))) p.shift();
+          var nome = p.join(" ");
+          return "🎴 " + nome.charAt(0).toUpperCase() + nome.slice(1);
+        }
         return c;
       }
       function encherPgs(id, lista) {
