@@ -630,6 +630,31 @@ export default {
     //   CF_API_TOKEN (Secret)  → token da API com permissão "Analytics: Read" na zona
     //   CF_ZONE_ID   (texto)   → Zone ID do domínio (página Overview, coluna direita)
     //   STATS_KEY    (Secret)  → a palavra-passe que abre a página de estatísticas
+    // 🎯 09/09/2026 — O PUBLICO DO CANAL, para comparar com quem entra no site.
+    // Ideia dele: "as entradas do site devem ser parecidas com as estatisticas
+    // do canal". Nao sao, e e' isso que interessa ver -- 78% do canal e' Brasil
+    // e no site o Brasil sao 2%.
+    //
+    // 🚨 PORQUE E' QUE ISTO NAO E' UM FICHEIRO DO SITE: seria publico. Fica no
+    // mesmo armazem das capturas (KV), que so' se le com a senha dele, e quem
+    // escreve e' o cerebro (youtube-publico.py) porque so' ele tem a chave do
+    // canal -- o worker nunca ve credenciais do YouTube.
+    if (url.pathname === "/api/youtube") {
+      const j = (o, s) => new Response(JSON.stringify(o), {
+        status: s || 200, headers: { "Content-Type": "application/json" } });
+      if (!env.STATS_KEY || url.searchParams.get("chave") !== env.STATS_KEY) {
+        return j({ ok: false, error: "chave errada" }, 403);
+      }
+      if (!env.CAPTURAS) return j({ ok: false, error: "falta o armazem" }, 500);
+      if (request.method === "POST") {
+        const corpo = await request.text();
+        try { JSON.parse(corpo); } catch (e) { return j({ ok: false, error: "nao e' JSON" }, 400); }
+        await env.CAPTURAS.put("youtube-publico", corpo);
+        return j({ ok: true, guardado: corpo.length });
+      }
+      return j({ ok: true, canal: await env.CAPTURAS.get("youtube-publico", "json") });
+    }
+
     if (url.pathname === "/api/stats") {
       const jsonResp = (obj, status) => new Response(JSON.stringify(obj), {
         status: status || 200, headers: { "Content-Type": "application/json" },
@@ -755,8 +780,13 @@ export default {
         let visitas = null;
         try { visitas = await estatisticasVisitas(env, dias); } catch (e) { visitas = { erro: String(e).slice(0, 200) }; }
 
+        // o retrato do publico do canal, posto aqui pelo cerebro (ver /api/youtube)
+        let canal = null;
+        try { canal = env.CAPTURAS ? await env.CAPTURAS.get("youtube-publico", "json") : null; } catch (e) { canal = null; }
+
         return jsonResp({
           ok: true,
+          canal,
           dias: grupos.map(g => ({ data: g.dimensions.date, paginas: g.sum.pageViews, pedidos: g.sum.requests, visitantes: g.uniq.uniques })),
           paises,
           porPagina,
@@ -913,6 +943,7 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
   .pais .faixa { flex: 1 1 auto; }
 }
 .fonte { text-align: center; color: oklch(0.7 0.03 275); font-size: 0.66rem; font-style: italic; margin-top: 0.6rem; }
+#canal-linhas .pct { flex-basis: 6rem; }   /* cabem os dois numeros: canal · site */
 .nota { color: oklch(0.75 0.03 275); font-size: 0.75rem; margin-top: 0.6rem; text-align: center; }
 #zona-dados { display: none; }
 </style>
@@ -967,6 +998,13 @@ button { margin-top: 0.7rem; width: 100%; border: none; border-radius: 9999px; p
     <div class="painel">
       <div class="titulo-sec">🌍 De onde vêm os visitantes</div>
       <div id="paises"></div>
+    </div>
+    <div class="painel" id="painel-canal" style="display:none">
+      <div class="titulo-sec">🎯 O teu público × quem entra no site</div>
+      <div class="nota" id="canal-resumo"></div>
+      <div class="abas-pg" style="margin-top:0.8rem"><b>&nbsp;</b><span style="float:right">canal · site</span></div>
+      <div id="canal-linhas"></div>
+      <div class="fonte" id="canal-fonte"></div>
     </div>
     <div class="painel" id="painel-aparelhos">
       <div class="titulo-sec">📱 Com que aparelho e programa</div>
@@ -1112,7 +1150,7 @@ function carregar() {
                 .map(function (x) { return { nome: String(x.nome), visitas: Number(x.n) || 0 }; });
       }
       var vPaginas = doContador(V.paginas), vOrigens = doContador(V.origens),
-          vAparelhos = doContador(V.aparelhos);
+          vAparelhos = doContador(V.aparelhos), vPaises = doContador(V.paises);
       var temVis = !!(vPaginas.length || vOrigens.length);
       function fonte(id, txt) { var e = document.getElementById(id); if (e) e.textContent = txt; }
       var F_VIS = "fonte: contador próprio, no servidor — robôs conhecidos deixados de fora";
@@ -1225,6 +1263,51 @@ function carregar() {
         linha.innerHTML = '<span class="nome">' + bandeira + " " + nome + '</span><span class="faixa"><span style="width:' + Math.max(2, pct) + '%"></span></span><span class="pct">' + pct + '%</span>';
         zp.appendChild(linha);
       });
+
+      // 🎯 O PUBLICO DO CANAL AO LADO DE QUEM ENTRA NO SITE (09/09/2026).
+      // ⚠️ So' se comparam PROPORCOES: de um lado sao visualizacoes de video,
+      // do outro sao visitas a paginas. Os totais nao se comparam.
+      var C = j.canal;
+      var pc = document.getElementById("painel-canal");
+      if (pc && C && C.paises && C.paises.length && vPaises.length) {
+        var mapaC = {}, totC = 0;
+        C.paises.forEach(function (x) { mapaC[x[0]] = x[1]; totC += x[1]; });
+        var mapaS = {}, totS = 0;
+        vPaises.forEach(function (x) { mapaS[x.nome] = x.visitas; totS += x.visitas; });
+        var juntos = {};
+        Object.keys(mapaC).forEach(function (k) { juntos[k] = 1; });
+        Object.keys(mapaS).forEach(function (k) { juntos[k] = 1; });
+        var linhasC = Object.keys(juntos).map(function (k) {
+          return { pais: k,
+                   canal: (mapaC[k] || 0) * 100 / (totC || 1),
+                   site: (mapaS[k] || 0) * 100 / (totS || 1) };
+        }).sort(function (a, b) {
+          return Math.max(b.canal, b.site) - Math.max(a.canal, a.site);
+        }).slice(0, 7);
+        var alvoC = document.getElementById("canal-linhas");
+        alvoC.innerHTML = "";
+        var nomesP; try { nomesP = new Intl.DisplayNames(["pt"], { type: "region" }); } catch (e) { nomesP = null; }
+        linhasC.forEach(function (x) {
+          var band = x.pais.length === 2
+            ? String.fromCodePoint(127397 + x.pais.charCodeAt(0), 127397 + x.pais.charCodeAt(1)) : "🌐";
+          var nm = x.pais; try { if (nomesP) nm = nomesP.of(x.pais) || x.pais; } catch (e) {}
+          var li = document.createElement("div");
+          li.className = "pais";
+          li.innerHTML = '<span class="nome">' + band + " " + nm + '</span>' +
+            '<span class="faixa"><span style="width:' + Math.max(2, Math.round(x.canal)) + '%"></span></span>' +
+            '<span class="pct">' + Math.round(x.canal) + "% · " + Math.round(x.site) + '%</span>';
+          alvoC.appendChild(li);
+        });
+        var seuC = ((mapaC.PT || 0) + (mapaC.BR || 0)) * 100 / (totC || 1);
+        var seuS = ((mapaS.PT || 0) + (mapaS.BR || 0)) * 100 / (totS || 1);
+        document.getElementById("canal-resumo").innerHTML =
+          "Portugal e Brasil são <b>" + Math.round(seuC) + "%</b> de quem te vê no canal, " +
+          "mas só <b>" + Math.round(seuS) + "%</b> de quem entra no site.";
+        document.getElementById("canal-fonte").textContent =
+          "canal: visualizações dos últimos " + (C.dias || 28) + " dias · site: o período escolhido em cima · "
+          + "a barra desenha o canal; os números são canal · site";
+        pc.style.display = "block";
+      }
     })
     .catch(function () { document.getElementById("msg-erro").textContent = "⚠️ Não foi possível carregar."; });
 }
