@@ -324,6 +324,30 @@ function marcaDe(url) {
   return /^[a-z0-9-]{1,20}$/.test(m) ? "marca:?" : null;
 }
 
+// 🚨 09/09/2026 — AS PAGINAS QUE EXISTEM MESMO. O crivo anterior aceitava
+// tudo o que TIVESSE FEITIO de pagina (um troco em minusculas sem ponto), e a
+// prova de que nao chegava veio da propria lista das mais visitadas:
+// /settings, /login, /signup, /checkout, /pricing e /aws-credentials --
+// varrimentos a procura de falhas e de chaves, contados um a um como PESSOAS.
+// Era isso que enchia o site de "visitantes" dos Estados Unidos, de Singapura
+// e dos Paises Baixos, quando o publico do canal e' 78% Brasil e 21% Portugal.
+//
+// ⚠️ ESTA LISTA E' GEMEA DO run_worker_first do wrangler.jsonc. Pagina nova
+// entra nos DOIS sitios: no wrangler para o worker correr nela, e aqui para
+// ela contar. Se so entrar num, ou nao conta ou nem chega ca.
+const PAGINAS = new Set([
+  "/", "/index", "/anual", "/arcanos", "/arvore", "/fimdesemana", "/horoscopo",
+  "/loja", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos",
+  "/arcano-00-o-louco", "/arcano-01-o-mago", "/arcano-02-a-sacerdotisa",
+  "/arcano-03-a-imperatriz", "/arcano-04-o-imperador", "/arcano-05-o-hierofante",
+  "/arcano-06-os-enamorados", "/arcano-07-o-carro", "/arcano-08-a-forca",
+  "/arcano-09-o-eremita", "/arcano-10-a-roda-da-fortuna", "/arcano-11-a-justica",
+  "/arcano-12-o-enforcado", "/arcano-13-a-morte", "/arcano-14-a-temperanca",
+  "/arcano-15-o-diabo", "/arcano-16-a-torre", "/arcano-17-a-estrela",
+  "/arcano-18-a-lua", "/arcano-19-o-sol", "/arcano-20-o-julgamento",
+  "/arcano-21-o-mundo",
+]);
+
 function contarVisita(request, url, env, ctx) {
   try {
     if (!env || !env.VISITAS || !ctx) return;
@@ -339,9 +363,10 @@ function contarVisita(request, url, env, ctx) {
     // (/horoscopo, /tarot-gratis, /arcano-00-o-louco). Tudo o que traz ponto,
     // maiuscula ou segunda barra nao e' pagina daqui.
     //
-    // ⚠️ Se um dia nascer uma pagina com outro feitio, entra aqui tambem --
-    // senao existe e nao aparece nas contas.
-    if (!/^\/([a-z0-9][a-z0-9-]*)?$/.test(url.pathname)) return;
+    // ⚠️ 09/09: o crivo passou de "tem feitio de pagina" para "E' UMA pagina",
+    // depois de /aws-credentials, /login e /checkout aparecerem no topo das
+    // mais visitadas. Pagina nova entra na lista PAGINAS la em cima.
+    if (!PAGINAS.has(url.pathname)) return;
     const ua = request.headers.get("user-agent") || "";
     const proprio = url.hostname.replace(/^www\./, "");
     const ponto = {
@@ -389,7 +414,12 @@ async function estatisticasVisitas(env, dias) {
   // ⚠️ Vai em TODAS as consultas, incluindo a dos dias. Da primeira vez tirei
   // o lixo so da lista de paginas e ficaram 23 no total contra 10 na lista --
   // numeros que nao batem certo tiram a credibilidade a todos os outros.
-  const limpo = " AND blob1 NOT LIKE '%.%' AND blob1 NOT LIKE '/%/%'";
+  // 09/09: passou de lista negra (sem pontos, sem segunda barra) para a LISTA
+  // DAS PAGINAS QUE EXISTEM. Assim os dias ja gravados ficam limpos tambem --
+  // senao os /aws-credentials e /login de ontem continuavam a contar como
+  // pessoas na pagina, mesmo depois de o contador deixar de os gravar.
+  const limpo = " AND blob1 IN (" +
+    Array.from(PAGINAS).map(p => "'" + p + "'").join(",") + ")";
   const so = " AND blob5 = 'pessoa'" + limpo;
   const consultas = {
     dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " GROUP BY dia, quem ORDER BY dia ASC",
