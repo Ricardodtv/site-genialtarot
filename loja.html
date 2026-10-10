@@ -164,6 +164,30 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .selo-pop.selo-rosa { background: linear-gradient(135deg, oklch(0.66 0.26 350), oklch(0.54 0.23 335)); box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 16px oklch(0.66 0.26 350 / 0.6); }
 .selo-pop.selo-dourado { background: linear-gradient(180deg, oklch(0.88 0.14 90), oklch(0.72 0.13 78)); color: oklch(0.25 0.05 80); border: 1px solid oklch(0.95 0.06 95 / 0.8); box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 18px oklch(0.85 0.13 88 / 0.7); }
 @keyframes pop-salta { 0%,100% { transform: translateY(0) rotate(4deg); } 50% { transform: translateY(-4px) rotate(4deg); } }
+/* 🇧🇷 PIX para o Brasil — 10/10/2026 (conta brasileira da Ingrid; promoção de abertura −40 % até 10/11) */
+.pix-zona { margin-top: 0.8rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.pix-promo-selo { align-self: center; display: inline-flex; align-items: center; gap: 0.35rem; border-radius: 9999px; background: linear-gradient(135deg, oklch(0.62 0.2 145), oklch(0.55 0.17 160)); color: white; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.8rem; box-shadow: 0 0 16px oklch(0.75 0.2 120 / 0.6); animation: pix-pisca 1.2s ease-in-out infinite; }
+.pix-promo-selo .menos { background: oklch(0.88 0.18 95); color: oklch(0.25 0.05 80); border-radius: 0.4rem; padding: 0.05rem 0.35rem; font-size: 0.85rem; }
+@keyframes pix-pisca { 0%,100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.06); filter: brightness(1.25); } }
+.btn-pix { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; border-radius: 0.7rem; border: 1.5px solid #32BCAD; background: oklch(0.24 0.05 200 / 0.9); color: white; font-weight: 700; font-size: 0.9rem; padding: 0.55rem 0.8rem; cursor: pointer; transition: transform .2s, background .2s; }
+.btn-pix:hover { transform: scale(1.03); background: oklch(0.3 0.07 190); }
+.btn-pix .riscado { text-decoration: line-through; opacity: 0.6; font-weight: 400; font-size: 0.8rem; }
+.btn-pix .valor-pix { color: oklch(0.88 0.15 170); }
+.pix-logo { width: 1.25rem; height: 1.25rem; flex: none; }
+.pix-fundo { position: fixed; inset: 0; z-index: 100; display: none; place-items: center; background: rgba(5,5,20,0.82); padding: 1rem; }
+.pix-fundo.aberto { display: grid; animation: surgir .3s ease-out; }
+.pix-caixa { position: relative; width: 100%; max-width: 24rem; max-height: 92vh; overflow-y: auto; border-radius: 1rem; background: #fff; color: #1d1d2b; padding: 1.2rem 1.2rem 1.4rem; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+.pix-fechar { position: absolute; top: 0.4rem; right: 0.6rem; border: 0; background: none; font-size: 1.6rem; color: #666; cursor: pointer; }
+.pix-caixa h4 { display: flex; align-items: center; justify-content: center; gap: 0.4rem; font-size: 1.15rem; color: #0f766e; margin: 0.2rem 0 0.3rem; }
+.pix-caixa .pix-prod { font-size: 0.82rem; color: #555; line-height: 1.35; }
+.pix-caixa .pix-faixa { margin: 0.7rem 0 0.2rem; border-radius: 0.6rem; background: #dcfce7; color: #166534; font-weight: 800; font-size: 0.85rem; padding: 0.4rem; }
+.pix-caixa .pix-valor { font-size: 1.9rem; font-weight: 800; color: #0f766e; margin: 0.3rem 0 0; }
+.pix-caixa .pix-valor s { font-size: 1rem; color: #999; font-weight: 400; margin-right: 0.4rem; }
+.pix-caixa .pix-passo { margin: 0.6rem 0; font-size: 0.86rem; background: #fef9c3; border-radius: 0.6rem; padding: 0.5rem; line-height: 1.4; }
+.pix-caixa img.pix-qr { width: 15rem; max-width: 100%; height: auto; image-rendering: pixelated; margin: 0.2rem auto; display: block; }
+.pix-copiar { width: 100%; border: 0; border-radius: 0.6rem; background: #32BCAD; color: white; font-weight: 700; font-size: 0.95rem; padding: 0.7rem; margin-top: 0.5rem; cursor: pointer; }
+.pix-aviso { font-size: 0.78rem; color: #555; margin-top: 0.7rem; line-height: 1.45; }
+.pix-wa { display: inline-block; margin-top: 0.6rem; border-radius: 9999px; background: #25D366; color: white; font-weight: 700; font-size: 0.86rem; padding: 0.55rem 1rem; text-decoration: none; }
 .vazio-loja { text-align: center; color: var(--mudo); font-style: italic; padding: 3rem 1rem; }
 
 /* Separador místico */
@@ -246,6 +270,7 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
 </footer>
 
 <script src="produtos.js"></script>
+<script src="pix.js"></script>
 <script>
 document.getElementById("ano").textContent = new Date().getFullYear();
 
@@ -273,6 +298,69 @@ function linkCompra(p) {
   if (p.link) return "/pagar.html?u=" + encodeURIComponent(p.link);
   return "https://wa.me/351914920427?text=" + encodeURIComponent("Olá Mestre Alberto, quero adquirir: " + p.nome);
 }
+
+/* ===== 🇧🇷 PIX para o Brasil — 10/10/2026 =====
+   Os QR e os códigos vêm do pix.js (gerado por ~/pix/gerar_site.py no cerebro).
+   Até PIX_PROMO_FIM mostra a promoção de abertura (−PIX_PROMO_PCT %); depois troca sozinho
+   para o preço normal em reais. O valor vai escrito em grande porque a câmara do
+   telemóvel (testado no Banco do Brasil) abre a app SEM o valor — pela opção
+   "Pix → Ler QR Code" dentro da app aparece preenchido. */
+const PIX_SVG = '<svg class="pix-logo" viewBox="0 0 24 24" aria-hidden="true"><g fill="#32BCAD"><path d="M12 1.6l4.6 4.6-2.3 2.3a3.2 3.2 0 0 0-4.6 0L7.4 6.2z"/><path d="M22.4 12l-4.6 4.6-2.3-2.3a3.2 3.2 0 0 0 0-4.6l2.3-2.3z"/><path d="M12 22.4l-4.6-4.6 2.3-2.3a3.2 3.2 0 0 0 4.6 0l2.3 2.3z"/><path d="M1.6 12l4.6-4.6 2.3 2.3a3.2 3.2 0 0 0 0 4.6l-2.3 2.3z"/></g></svg>';
+const pixPromo = () => typeof PIX_PROMO_FIM !== "undefined" && Date.now() < PIX_PROMO_FIM;
+const brl = v => "R$ " + Number(v).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+function pixDados(p) { return (typeof PIX_PRODUTOS !== "undefined") ? PIX_PRODUTOS[p.nome] : null; }
+function pixHtml(p) {
+  const d = pixDados(p);
+  if (!d) return "";
+  const promo = pixPromo();
+  const selo = promo
+    ? `<span class="pix-promo-selo">🇧🇷 Novo para o Brasil <span class="menos">−${PIX_PROMO_PCT}%</span> abertura</span>`
+    : '<span class="pix-promo-selo">🇧🇷 Novo: PIX para o Brasil</span>';
+  const preco = promo
+    ? `<span class="riscado">${brl(d.normal.valor)}</span> <span class="valor-pix">${brl(d.promo.valor)}</span>`
+    : `<span class="valor-pix">${brl(d.normal.valor)}</span>`;
+  return `<div class="pix-zona">${selo}
+    <button type="button" class="btn-pix" data-pix="${esc(p.nome)}">${PIX_SVG} Pagar com PIX ${preco}</button></div>`;
+}
+function abrirPix(nome) {
+  const p = (PRODUTOS || []).find(x => x.nome === nome);
+  const d = p && pixDados(p);
+  if (!d) return;
+  const promo = pixPromo();
+  const e = promo ? d.promo : d.normal;
+  const fim = new Date(PIX_PROMO_FIM - 1).toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
+  const msg = "Olá Mestre Alberto, paguei por PIX " + brl(e.valor) + ": " + p.nome + ". Segue o comprovante.";
+  let fundo = document.getElementById("pix-fundo");
+  if (!fundo) {
+    fundo = document.createElement("div");
+    fundo.id = "pix-fundo"; fundo.className = "pix-fundo";
+    fundo.addEventListener("click", ev => { if (ev.target === fundo || ev.target.closest(".pix-fechar")) fundo.classList.remove("aberto"); });
+    document.body.appendChild(fundo);
+  }
+  fundo.innerHTML = `<div class="pix-caixa" role="dialog" aria-modal="true">
+    <button type="button" class="pix-fechar" aria-label="Fechar">×</button>
+    <h4>${PIX_SVG} Pagar com PIX</h4>
+    <div class="pix-prod">${esc(p.nome)}</div>
+    ${promo ? `<div class="pix-faixa">🇧🇷 Promoção de abertura: −${PIX_PROMO_PCT}% até ${fim}</div>` : ""}
+    <div class="pix-valor">${promo ? `<s>${brl(d.normal.valor)}</s>` : ""}${brl(e.valor)}</div>
+    <div class="pix-passo">📱 Abra a <b>app do seu banco</b> → <b>Pix</b> → <b>Ler QR Code</b>.<br>Confirme o valor: <b>${brl(e.valor)}</b>. Se o banco não o preencher sozinho, escreva-o.</div>
+    <img class="pix-qr" src="${esc(e.qr)}" alt="QR Code PIX ${brl(e.valor)}" width="240" height="240" />
+    <button type="button" class="pix-copiar" data-codigo="${esc(e.codigo)}">📋 Copiar código PIX (copia e cola)</button>
+    <div class="pix-aviso">O pagamento aparece em nome de <b>${esc(PIX_NOME)}</b>, da equipe do Mestre Alberto.<br>Depois de pagar, envie o comprovante pelo WhatsApp:</div>
+    <a class="pix-wa" href="https://wa.me/351914920427?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener noreferrer">💬 Enviar comprovante</a>
+  </div>`;
+  fundo.classList.add("aberto");
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".btn-pix");
+  if (b) { abrirPix(b.dataset.pix); return; }
+  const c = e.target.closest(".pix-copiar");
+  if (!c) return;
+  const txt = c.dataset.codigo;
+  const ok = () => { c.textContent = "✅ Código copiado! Cole no seu banco em Pix → Copia e Cola"; };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(ok, () => prompt("Copie o código:", txt));
+  else prompt("Copie o código:", txt);
+});
 
 function montarLoja() {
   const zona = document.getElementById("zona-loja");
@@ -327,6 +415,7 @@ function montarLoja() {
             <span class="preco">${esc(p.preco)}</span>
             <a class="btn-adquirir" href="${linkCompra(p)}" target="_blank" rel="noopener noreferrer">🛒 Comprar Aqui</a>
           </div>
+          ${pixHtml(p)}
           <button type="button" class="alt-pag-toggle">💳 Outras formas de pagamento <span class="seta-alt">▾</span></button>
           <div class="alt-pag">
             <div class="alt-linha"><span class="mbway-badge"><img src="mbway.png" alt="MB Way" /></span> <b>914 920 427</b> <span class="duvidas-txt">Dúvidas?</span> <a class="wa-mini" href="https://wa.me/351914920427?text=${encodeURIComponent("Olá Mestre Alberto, vou pagar por MB Way: " + p.nome)}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp direto"><svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.36.572-1 3.654 3.745-.985zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.793.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg></a></div>
