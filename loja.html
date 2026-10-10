@@ -165,7 +165,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .selo-pop.selo-dourado { background: linear-gradient(180deg, oklch(0.88 0.14 90), oklch(0.72 0.13 78)); color: oklch(0.25 0.05 80); border: 1px solid oklch(0.95 0.06 95 / 0.8); box-shadow: 0 8px 20px rgba(0,0,0,0.4), 0 0 18px oklch(0.85 0.13 88 / 0.7); }
 @keyframes pop-salta { 0%,100% { transform: translateY(0) rotate(4deg); } 50% { transform: translateY(-4px) rotate(4deg); } }
 /* 🇧🇷 PIX para o Brasil — 10/10/2026 (conta brasileira da Ingrid; promoção de abertura −30 % até 10/11) */
-.pix-zona { margin-top: 0.8rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.pix-zona { margin-top: 1.3rem; display: flex; flex-direction: column; gap: 0.55rem; }
+/* 10/10 20:08 — pedido dele: uma divisão e espaço, a dizer «está no Brasil? pague com PIX» */
+.pix-divisor { display: flex; align-items: center; gap: 0.6rem; color: oklch(0.85 0.12 170); font-size: 0.86rem; font-weight: 700; white-space: nowrap; }
+.pix-divisor::before, .pix-divisor::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #32BCAD); }
+.pix-divisor::after { background: linear-gradient(90deg, #32BCAD, transparent); }
 .pix-promo-selo { align-self: center; display: inline-flex; align-items: center; gap: 0.35rem; border-radius: 9999px; background: linear-gradient(135deg, oklch(0.62 0.2 145), oklch(0.55 0.17 160)); color: white; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.8rem; box-shadow: 0 0 16px oklch(0.75 0.2 120 / 0.6); animation: pix-pisca 1.2s ease-in-out infinite; }
 .pix-promo-selo .menos { background: oklch(0.88 0.18 95); color: oklch(0.25 0.05 80); border-radius: 0.4rem; padding: 0.05rem 0.35rem; font-size: 0.85rem; }
 @keyframes pix-pisca { 0%,100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.06); filter: brightness(1.25); } }
@@ -319,7 +323,7 @@ function pixHtml(p) {
   const preco = promo
     ? `<span class="riscado">${brl(d.normal.valor)}</span> <span class="valor-pix">${brl(d.promo.valor)}</span>`
     : `<span class="valor-pix">${brl(d.normal.valor)}</span>`;
-  return `<div class="pix-zona">${selo}
+  return `<div class="pix-zona"><div class="pix-divisor">🇧🇷 Está no Brasil? Pague com PIX</div>${selo}
     <button type="button" class="btn-pix" data-pix="${esc(p.nome)}">${PIX_SVG} Pagar com PIX ${preco}</button></div>`;
 }
 function abrirPix(nome) {
