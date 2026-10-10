@@ -33,6 +33,22 @@ const PRODUTOS = [
 
   /* ================= CONSULTAS ================= */
 
+  /* 10/10/2026 — o degrau de entrada barato (ponto 3 do plano do funil).
+     Pedido dele: "coloca essa opção na loja logo do início". Sem link de cartão
+     ainda (falta criar o botão no myPOS): o "Comprar Aqui" abre o WhatsApp. */
+  {
+    nome: "🎧 1 Pergunta Respondida em Áudio no WhatsApp – Pelo Mestre Alberto 🔮",
+    categoria: "Consultas",
+    preco: "15 €",
+    foto: "pergunta-audio.jpg",
+    descricao: "Envie a sua pergunta pelo WhatsApp como preferir — por áudio, por escrito ou em vídeo. O Mestre Alberto tira as cartas para a sua pergunta e responde-lhe com um áudio da leitura, feito só para si. Pessoal, simples e ao alcance de todos — a forma mais fácil de experimentar uma leitura com o Mestre.",
+    link: "",
+    destaque: true,
+    etiqueta: "NOVO · SÓ 15 €",
+    cor: "verde",
+    estrelas: 3,
+  },
+
   {
     nome: "🔮 1 Pergunta de Tarot por Escrito – Feita pelo Mestre Alberto 📜",
     categoria: "Consultas",
