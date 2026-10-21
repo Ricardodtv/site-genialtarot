@@ -134,7 +134,13 @@ h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.4rem, 3.4v
 .dia.fase.nova .ic { filter: drop-shadow(0 0 6px #fff) drop-shadow(0 0 18px oklch(0.80 0.18 305)); }
 .dia.fase.nova .nome-fase { color: oklch(0.95 0.04 300); text-shadow: 0 0 12px oklch(0.80 0.18 305); }
 .dia.fase.cheia:hover, .dia.fase.nova:hover { transform: scale(1.15); }
-.dia.hoje-d { outline: 2px solid var(--ouro); outline-offset: 1px; box-shadow: 0 0 24px oklch(0.85 0.13 88 / .45); }
+/* 21/10: pedido dele — o «Hoje» em VERDE e a pulsar. O anel é um ::after para não brigar com o brilho dos dias de fase */
+.dia.hoje-d { z-index: 4; }
+.dia.hoje-d::after { content: ""; position: absolute; inset: -3px; border-radius: inherit; pointer-events: none;
+  border: 3px solid oklch(0.80 0.20 145); animation: hoje-pulsa 1.6s ease-in-out infinite; }
+@keyframes hoje-pulsa {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.80 0.20 145 / .7), 0 0 16px oklch(0.80 0.20 145 / .55); }
+  50% { box-shadow: 0 0 0 7px oklch(0.80 0.20 145 / 0), 0 0 30px oklch(0.85 0.20 145 / .9); } }
 .dia .marca-esp { font-size: .62rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: .1rem .4rem; align-self: flex-start;
   color: oklch(0.22 0.06 300); background: var(--grad-ouro); }
 @media (max-width: 640px) {
@@ -157,7 +163,7 @@ h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.4rem, 3.4v
 .legenda { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1rem; font-size: .78rem; color: var(--suave); }
 .legenda span::before { content: ""; display: inline-block; width: .8rem; height: .8rem; border-radius: .25rem; margin-right: .35rem; vertical-align: -1px; }
 .legenda .l-fase::before { background: oklch(0.14 0.05 295); border: 1px solid oklch(0.85 0.10 312 / .7); }
-.legenda .l-hoje::before { border: 2px solid var(--ouro); }
+.legenda .l-hoje::before { border: 2px solid oklch(0.80 0.20 145); box-shadow: 0 0 8px oklch(0.80 0.20 145 / .8); }
 
 /* as fases do mês */
 .quatro { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
