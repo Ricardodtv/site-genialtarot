@@ -236,8 +236,8 @@ footer a { color: inherit; }
         <label class="campo">WhatsApp <small>(opcional, com o indicativo do país)</small>
           <input type="tel" id="tel" autocomplete="tel" maxlength="25" placeholder="+55 27 99999-9999" />
         </label>
-        <label class="campo">Data de nascimento
-          <input type="date" id="data" required min="1900-01-01" max="2026-12-31" />
+        <label class="campo">Data de nascimento <small>(dia/mês/ano, ex.: 15/03/1990)</small>
+          <input type="text" id="data" required inputmode="numeric" autocomplete="bday" maxlength="22" placeholder="DD/MM/AAAA" />
         </label>
         <label class="campo">Hora de nascimento <small>(a que está na certidão)</small>
           <input type="time" id="hora" step="60" />
@@ -395,6 +395,38 @@ footer a { color: inherit; }
   document.addEventListener("click", (e) => { if (!e.target.closest(".rel")) lista.classList.remove("aberta"); });
   $("semhora").addEventListener("change", (e) => { $("hora").disabled = e.target.checked; });
 
+  // ===== Data escrita à mão (21/10, pedido dele: «deixa colocar a data manualmente») =====
+  // Aceita 15/03/1990, 15-3-1990, 15.03.90, 15 03 1990, 15031990 e «15 de março de 1990».
+  // Enquanto se escreve só algarismos, as barras aparecem sozinhas.
+  const MESES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  function lerData(txt) {
+    let t = sem(txt).replace(/\bde\b/g, " ");
+    MESES.forEach((m, i) => { t = t.replace(new RegExp("\\b" + m + "[a-z]*", "g"), " " + (i + 1) + " "); });
+    let p = t.match(/\d+/g) || [];
+    if (p.length === 1 && /^\d{8}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length === 1 && /^\d{6}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length !== 3) return null;
+    let [d, m, a] = p.map(Number);
+    if (p[2].length <= 2) a += (a <= new Date().getFullYear() % 100) ? 2000 : 1900;
+    const dt = new Date(Date.UTC(a, m - 1, d));
+    if (a < 1900 || a > new Date().getFullYear() || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) return null;
+    return [a, m, d];
+  }
+  const inpData = $("data");
+  inpData.addEventListener("input", (e) => {
+    const v = inpData.value;
+    if (e.inputType && e.inputType.startsWith("delete")) return;
+    if (/^[\d\/]*$/.test(v)) {
+      const dig = v.replace(/\D/g, "").slice(0, 8);
+      inpData.value = dig.length > 4 ? dig.slice(0, 2) + "/" + dig.slice(2, 4) + "/" + dig.slice(4)
+                    : dig.length > 2 ? dig.slice(0, 2) + "/" + dig.slice(2) : dig;
+    }
+  });
+  inpData.addEventListener("blur", () => {
+    const r = lerData(inpData.value);
+    if (r) inpData.value = String(r[2]).padStart(2, "0") + "/" + String(r[1]).padStart(2, "0") + "/" + r[0];
+  });
+
   // ===== Calcular + enviar a captura =====
   function mostraErro(t) { const e = $("erro"); e.textContent = t; e.classList.toggle("ver", !!t); }
   $("form").addEventListener("submit", async (ev) => {
@@ -404,11 +436,13 @@ footer a { color: inherit; }
     const teste = /^\s*teste\b/i.test(inpCid.value);   // combinado com o Mestre: «teste» na cidade não cria ficha
     if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return mostraErro("Escreva o seu nome, por favor.");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return mostraErro("Esse email não parece certo. Confirme, por favor.");
+    const dataLida = lerData(data);
     if (!data) return mostraErro("Falta a data de nascimento.");
+    if (!dataLida) return mostraErro("Não percebi a data. Escreva assim: dia/mês/ano, por exemplo 15/03/1990.");
     if (!semhora && !hora) return mostraErro("Falta a hora de nascimento (ou marque «Não sei a hora»).");
     if (!escolhida && !teste) return mostraErro("Escolha a cidade onde nasceu na lista que aparece ao escrever.");
     if (!$("aceito").checked) return mostraErro("Para ver o resultado, aceite a nota de privacidade.");
-    const [A, M, D] = data.split("-").map(Number), [h, mi] = hora.split(":").map(Number);
+    const [A, M, D] = dataLida, [h, mi] = hora.split(":").map(Number);
     const c = escolhida || ["Lisboa", "", "PT", 38.72, -9.14, (CID ? CID.fusos.indexOf("Europe/Lisbon") : -1)];
     const tz = (CID && CID.fusos[c[5]]) || "Europe/Lisbon";
     let ms;
