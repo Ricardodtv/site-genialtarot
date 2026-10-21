@@ -344,6 +344,7 @@ footer a { color: inherit; }
   <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a> · Cidades: GeoNames (CC BY 4.0)
 </footer>
 
+<script src="amostra-limite.js"></script>
 <script src="ascendente-calc.js"></script>
 <script src="mapa-amor-calc.js"></script>
 <script src="mapa-amor-textos.js"></script>
@@ -494,6 +495,14 @@ footer a { color: inherit; }
     const tz = CID.fusos[escolhida[5]] || "UTC";
     let ms;
     try { ms = AstroAsc.localParaUTC(A, M, D, h, mi, tz); } catch (e) { return mostraErro("Não consegui ler a data. Confirme os dados, por favor."); }
+    // A regra dele (21/10/2026): 2 amostras no mesmo dia, depois 5 dias de espera. Rever o mesmo mapa não conta.
+    const vez = AmostraLimite.usar("mapa-amor", sem(nome) + "|" + A + "-" + M + "-" + D + "|" + hora + "|" + escolhida[0] + "|" + escolhida[2]);
+    if (!vez.ok) {
+      const e = $("erro");
+      e.innerHTML = `${esc(nome.split(/\s+/)[0])}, já fez as suas ${AmostraLimite.POR_DIA} amostras grátis do Mapa do Amor. A próxima fica disponível a <b>${AmostraLimite.dataCurta(vez.proxima)}</b>.<br>Não quer esperar? <a href="#completo">✨ Veja aqui a versão completa</a>`;
+      e.classList.add("ver");
+      return;
+    }
     const r = AstroAmor.venusMarte(ms);
     const iV = idx(r.venus), iM = idx(r.marte), eV = iV % 4, eM = iM % 4;
     ultimo = { name: nome, date_of_birth: `${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`,
