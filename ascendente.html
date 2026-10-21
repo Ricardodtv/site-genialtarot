@@ -135,6 +135,29 @@ input:focus { border-color: var(--lilas); box-shadow: 0 0 0 4px oklch(0.74 0.14 
 .texto-asc { font-family: var(--serifa); font-size: 1.22rem; line-height: 1.6; color: var(--lavanda); max-width: 44rem; margin: .6rem auto 0; text-align: center; }
 .aviso-hora { text-align: center; font-size: .86rem; color: oklch(0.88 0.12 90); margin-top: .8rem; }
 .dados-nasc { text-align: center; font-size: .82rem; color: var(--suave); margin-top: .4rem; }
+/* 21/10: o resultado PULSA (pedido dele: «a pessoa ter a sensação de que está a pulsar para ela») */
+#resultado.ver { animation: surgir .7s ease-out, pulsar 2.4s ease-in-out .7s infinite; border-color: oklch(0.82 0.11 312 / .7); }
+@keyframes pulsar {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.74 0.16 310 / .55), 0 20px 60px #0007; }
+  50% { box-shadow: 0 0 0 16px oklch(0.74 0.16 310 / 0), 0 0 70px oklch(0.70 0.18 310 / .55), 0 20px 60px #0007; } }
+.astro.asc { animation: pulsar-asc 2.4s ease-in-out infinite; }
+@keyframes pulsar-asc { 0%, 100% { box-shadow: 0 0 30px oklch(0.70 0.17 310 / .45); } 50% { box-shadow: 0 0 60px oklch(0.80 0.16 315 / .85), 0 0 0 4px oklch(0.88 0.09 312 / .5); } }
+.res-titulo { text-align: center; margin: 0 0 .4rem; font-family: var(--titulo); line-height: 1.1; }
+.res-nome { display: block; font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 14px oklch(0.85 0.13 88 / .45)); }
+.res-frase { display: block; font-family: var(--serifa); font-size: clamp(1.2rem, 3vw, 1.5rem); color: var(--lavanda); margin: .2rem 0; }
+.res-signo { display: inline-block; font-size: clamp(2.2rem, 7vw, 3.4rem); font-weight: 700; background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 18px oklch(0.75 0.17 310 / .7)); animation: brilho-signo 2.4s ease-in-out infinite; }
+@keyframes brilho-signo { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 14px oklch(0.75 0.17 310 / .6)); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 28px oklch(0.85 0.15 315 / .95)); } }
+.res-glifo { -webkit-text-fill-color: initial; color: var(--ouro); }
+/* partilhar */
+.partilha { margin-top: 1.2rem; text-align: center; }
+.partilha p { margin: 0 0 .5rem; font-size: .85rem; color: var(--suave); }
+.partilha-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: .45rem; }
+.partilha-btns a, .partilha-btns button { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--borda); background: oklch(0.20 0.07 302 / .8);
+  color: var(--texto); font: inherit; font-size: .82rem; font-weight: 600; text-decoration: none; border-radius: 999px; padding: .45rem .85rem; cursor: pointer; transition: transform .2s, background .2s; }
+.partilha-btns a:hover, .partilha-btns button:hover { transform: translateY(-2px); background: oklch(0.36 0.13 308 / .9); }
+.partilha-btns .principal { background: var(--grad-lilas); border: 0; color: white; font-weight: 800; }
 
 /* consulta */
 .consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
@@ -263,7 +286,7 @@ footer a { color: inherit; }
   </section>
 
   <section id="resultado" class="cartao" aria-live="polite">
-    <h2 id="res-titulo">O seu céu</h2>
+    <h2 id="res-titulo" class="res-titulo">O seu céu</h2>
     <div class="trio">
       <div class="astro"><div class="qual">☉ Sol</div><div class="glifo" id="g-sol"></div><div class="nome-signo" id="n-sol"></div><div class="grau" id="d-sol"></div></div>
       <div class="astro asc"><div class="qual">↑ Ascendente</div><div class="glifo" id="g-asc"></div><div class="nome-signo" id="n-asc"></div><div class="grau" id="d-asc"></div></div>
@@ -272,6 +295,18 @@ footer a { color: inherit; }
     <p class="texto-asc" id="texto-asc"></p>
     <p class="aviso-hora" id="aviso-hora"></p>
     <p class="dados-nasc" id="dados-nasc"></p>
+    <div class="partilha">
+      <p>Partilhe com quem gosta e descubra o Ascendente dos seus amigos:</p>
+      <div class="partilha-btns">
+        <button type="button" class="principal" id="p-nativo">📤 Partilhar</button>
+        <a id="p-wa" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        <a id="p-fb" target="_blank" rel="noopener noreferrer">📘 Facebook</a>
+        <a id="p-x" target="_blank" rel="noopener noreferrer">✖️ X</a>
+        <a id="p-tg" target="_blank" rel="noopener noreferrer">✈️ Telegram</a>
+        <a id="p-email">✉️ Enviar por email</a>
+        <button type="button" id="p-copiar">🔗 Copiar link</button>
+      </div>
+    </div>
   </section>
 
   <section id="consulta" class="cartao">
@@ -477,7 +512,26 @@ footer a { color: inherit; }
     $("g-lua").textContent = GLIFOS[iL]; $("n-lua").textContent = NOMES[iL]; $("d-lua").textContent = r.lua.grau;
     $("g-asc").textContent = GLIFOS[iA]; $("n-asc").textContent = NOMES[iA]; $("d-asc").textContent = r.asc.grau;
     const primeiro = nome.split(/\s+/)[0];
-    $("res-titulo").innerHTML = `${esc(primeiro)}, o seu <span class="lil">Ascendente</span> é ${esc(NOMES[iA].split(" (")[0])}`;
+    $("res-titulo").innerHTML = `<span class="res-nome">${esc(primeiro)}</span><span class="res-frase">o seu Ascendente é</span>` +
+      `<span class="res-signo"><span class="res-glifo">${GLIFOS[iA]}</span> ${esc(NOMES[iA].split(" (")[0])}</span>`;
+    // partilhar (21/10): o link da calculadora + o resultado da pessoa
+    const URL_CALC = "https://genialtarot.com/ascendente";
+    const txtP = `✨ Descobri o meu céu: Sol em ${NOMES[iS].split(" (")[0]}, Lua em ${NOMES[iL].split(" (")[0]} e Ascendente em ${NOMES[iA].split(" (")[0]}! Descubra o seu, grátis, com o Mestre Alberto:`;
+    $("p-wa").href = "https://wa.me/?text=" + encodeURIComponent(txtP + " " + URL_CALC);
+    $("p-fb").href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(URL_CALC) + "&quote=" + encodeURIComponent(txtP);
+    $("p-x").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(txtP) + "&url=" + encodeURIComponent(URL_CALC);
+    $("p-tg").href = "https://t.me/share/url?url=" + encodeURIComponent(URL_CALC) + "&text=" + encodeURIComponent(txtP);
+    $("p-email").href = "mailto:?subject=" + encodeURIComponent("O meu Ascendente é " + NOMES[iA].split(" (")[0] + " ✨") +
+      "&body=" + encodeURIComponent(`${txtP}\n${URL_CALC}\n\nNascimento: ${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`);
+    $("p-nativo").onclick = () => {
+      if (navigator.share) navigator.share({ title: "O meu Ascendente", text: txtP, url: URL_CALC }).catch(() => {});
+      else window.open($("p-wa").href, "_blank");
+    };
+    $("p-copiar").onclick = () => {
+      const t = txtP + " " + URL_CALC, b = $("p-copiar");
+      const feito = () => { b.textContent = "✅ Copiado!"; setTimeout(() => { b.textContent = "🔗 Copiar link"; }, 2500); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(t).then(feito, () => prompt("Copie:", t)); else prompt("Copie:", t);
+    };
     $("texto-asc").textContent = TEXTOS[iA];
     $("aviso-hora").textContent = semhora ? "⚠️ Sem a hora certa, o Ascendente é só uma aproximação (calculado ao meio-dia). O Sol fica certo; a Lua quase sempre." : "";
     const local = escolhida ? inpCid.value : "teste";
