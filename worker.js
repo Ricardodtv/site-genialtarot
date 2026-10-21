@@ -351,7 +351,7 @@ function marcaDe(url) {
 // ela contar. Se so entrar num, ou nao conta ou nem chega ca.
 const PAGINAS = new Set([
   "/", "/index", "/anual", "/arcanos", "/arvore", "/fimdesemana", "/horoscopo",
-  "/ascendente", "/loja", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos",
+  "/ascendente", "/loja", "/lua", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos",
   "/arcano-00-o-louco", "/arcano-01-o-mago", "/arcano-02-a-sacerdotisa",
   "/arcano-03-a-imperatriz", "/arcano-04-o-imperador", "/arcano-05-o-hierofante",
   "/arcano-06-os-enamorados", "/arcano-07-o-carro", "/arcano-08-a-forca",

@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calendário Lunar 2026 — Fases da Lua, Lua em cada Signo · Mestre Alberto</title>
+<meta name="description" content="Calendário Lunar com as fases da Lua, a Lua em cada signo dia a dia, eclipses e superluas. Calculado ao minuto pelo Swiss Ephemeris, na hora de Brasília ou de Portugal." />
+<meta name="theme-color" content="#3a2257" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Calendário Lunar — Mestre Alberto" />
+<meta property="og:description" content="As fases da Lua, a Lua em cada signo, eclipses e superluas, calculados ao minuto." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/lua" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Calendário Lunar — os lilases do Ascendente (21/10/2026) ============ */
+:root {
+  --fundo: oklch(0.17 0.06 305);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.05 310);
+  --lilas: oklch(0.74 0.14 310);
+  --lilas-claro: oklch(0.86 0.09 312);
+  --lavanda: oklch(0.92 0.05 310);
+  --ouro: oklch(0.85 0.13 88);
+  --borda: oklch(0.75 0.12 310 / 0.35);
+  --vidro: oklch(0.30 0.09 305 / 0.55);
+  --noite: oklch(0.13 0.05 295);
+  --grad-lilas: linear-gradient(135deg, oklch(0.80 0.12 320), oklch(0.66 0.18 300) 55%, oklch(0.55 0.19 290));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.40 0.16 310) 0%, oklch(0.20 0.08 305) 45%, oklch(0.12 0.05 300) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(72rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2rem; }
+
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.marca { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--texto); }
+.marca b { font-family: var(--titulo); font-size: 1.15rem; letter-spacing: .04em; background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.marca small { display: block; font-size: .72rem; color: var(--suave); letter-spacing: .12em; text-transform: uppercase; }
+.voltar { font-size: .85rem; color: var(--suave); text-decoration: none; border: 1px solid var(--borda); border-radius: 999px; padding: .4rem .9rem; }
+
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2.1rem, 6vw, 3.6rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.lil { background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 34rem; margin: 0 0 1rem; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.4rem, 3.4vw, 2rem); margin: 0 0 .4rem; text-align: center; }
+.int { text-align: center; color: var(--suave); margin: 0 auto 1.3rem; max-width: 38rem; }
+.cartao { background: linear-gradient(160deg, oklch(0.32 0.10 308 / .82), oklch(0.22 0.08 300 / .9)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; backdrop-filter: blur(6px); }
+
+/* herói + Lua de hoje */
+.heroi { display: grid; gap: 1.5rem; align-items: center; padding: .5rem 0 2rem; grid-template-columns: 1fr; text-align: center; }
+.heroi .sub { margin-left: auto; margin-right: auto; }
+@media (min-width: 860px) { .heroi { grid-template-columns: 1fr 1fr; text-align: left; } .heroi .sub { margin-left: 0; } }
+.fuso { display: inline-flex; gap: .3rem; padding: .3rem; border-radius: 999px; background: var(--vidro); border: 1px solid var(--borda); margin-top: .4rem; }
+.fuso button { border: 0; cursor: pointer; font: inherit; font-size: .85rem; font-weight: 700; color: var(--suave); background: none; border-radius: 999px; padding: .45rem 1rem; }
+.fuso button.ativo { color: white; background: var(--grad-lilas); box-shadow: 0 4px 16px oklch(0.55 0.19 300 / .5); }
+.nota-fuso { font-size: .78rem; color: var(--suave); margin-top: .5rem; }
+
+.hoje { display: grid; grid-template-columns: auto 1fr; gap: 1.3rem; align-items: center; text-align: left; }
+.hoje .lua-grande { width: clamp(7rem, 24vw, 10rem); filter: drop-shadow(0 0 28px oklch(0.92 0.05 90 / .45)); animation: flutua 6s ease-in-out infinite; }
+@keyframes flutua { 50% { transform: translateY(-6px); } }
+.hoje .rot { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.hoje .fase { font-family: var(--titulo); font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; line-height: 1.15; margin: .2rem 0; }
+.hoje .em { font-size: 1.05rem; color: var(--lavanda); }
+.hoje .em b { color: var(--ouro); font-weight: 700; }
+.hoje .det { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .7rem; }
+.hoje .det span { font-size: .8rem; background: oklch(0.18 0.06 300 / .7); border: 1px solid var(--borda); border-radius: 999px; padding: .3rem .75rem; }
+
+/* o mês */
+.nav-mes { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.nav-mes h2 { margin: 0; }
+.nav-mes button { border: 1px solid var(--borda); background: var(--vidro); color: var(--texto); font-size: 1.3rem; width: 2.8rem; height: 2.8rem; border-radius: 50%; cursor: pointer; flex: none; }
+.nav-mes button:hover { background: oklch(0.45 0.15 310 / .6); }
+.nav-mes button:disabled { opacity: .3; cursor: default; }
+.grelha { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .4rem; }
+.sem { text-align: center; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--suave); padding-bottom: .2rem; }
+.dia { position: relative; min-height: 7.2rem; border-radius: .9rem; padding: .5rem .55rem; background: oklch(0.20 0.06 300 / .6); border: 1px solid oklch(0.75 0.12 310 / .18);
+  display: flex; flex-direction: column; gap: .15rem; transition: transform .2s, border-color .2s; }
+.dia:hover { transform: translateY(-2px); border-color: var(--borda); }
+.dia.vazio { background: none; border: 0; }
+.dia .num { font-weight: 800; font-size: .95rem; }
+.dia .ic { width: 1.7rem; height: 1.7rem; position: absolute; top: .45rem; right: .45rem; }
+.dia .sig { margin-top: auto; font-size: .78rem; color: var(--lavanda); line-height: 1.25; }
+.dia .sig i { font-style: normal; color: var(--ouro); font-size: 1rem; margin-right: .15rem; }
+.dia .ing { font-size: .7rem; color: var(--suave); }
+.dia.fase { background: linear-gradient(160deg, oklch(0.12 0.05 295), oklch(0.20 0.09 300)); border: 1px solid oklch(0.85 0.10 312 / .55); box-shadow: 0 0 22px oklch(0.65 0.17 305 / .35); }
+.dia.fase .nome-fase { font-family: var(--titulo); font-size: .78rem; font-weight: 700; color: var(--lilas-claro); line-height: 1.15; }
+.dia.fase .hora { font-size: .72rem; color: var(--ouro); }
+.dia.hoje-d { outline: 2px solid var(--ouro); outline-offset: 1px; box-shadow: 0 0 24px oklch(0.85 0.13 88 / .45); }
+.dia .marca-esp { font-size: .62rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: .1rem .4rem; align-self: flex-start;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); }
+@media (max-width: 640px) {
+  .grelha { gap: .25rem; }
+  .dia { min-height: 4.6rem; padding: .3rem; border-radius: .6rem; align-items: center; text-align: center; }
+  .dia .ic { position: static; width: 1.35rem; height: 1.35rem; }
+  .dia .num { font-size: .8rem; }
+  .dia .sig { margin-top: 0; font-size: 0; } .dia .sig i { font-size: .95rem; margin: 0; }
+  .dia .ing, .dia.fase .nome-fase, .dia .marca-esp { display: none; }
+  .dia.fase .hora { font-size: .62rem; }
+  .sem { font-size: .6rem; letter-spacing: 0; }
+}
+.legenda { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1rem; font-size: .78rem; color: var(--suave); }
+.legenda span::before { content: ""; display: inline-block; width: .8rem; height: .8rem; border-radius: .25rem; margin-right: .35rem; vertical-align: -1px; }
+.legenda .l-fase::before { background: oklch(0.14 0.05 295); border: 1px solid oklch(0.85 0.10 312 / .7); }
+.legenda .l-hoje::before { border: 2px solid var(--ouro); }
+
+/* as fases do mês */
+.quatro { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.fase-c { text-align: center; border-radius: 1.1rem; padding: 1.2rem 1rem; background: oklch(0.18 0.06 300 / .7); border: 1px solid var(--borda); }
+.fase-c svg { width: 4rem; height: 4rem; filter: drop-shadow(0 0 14px oklch(0.92 0.05 90 / .35)); }
+.fase-c .n { font-family: var(--titulo); font-size: 1.2rem; font-weight: 700; margin-top: .4rem; }
+.fase-c .q { color: var(--ouro); font-weight: 700; }
+.fase-c .s { font-size: .9rem; color: var(--lavanda); }
+.fase-c .t { font-family: var(--serifa); font-size: 1.02rem; color: var(--suave); margin-top: .5rem; line-height: 1.4; }
+.fase-c .esp { display: inline-block; margin-top: .5rem; font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .2rem .6rem; }
+
+/* tabela do ano */
+.tabela-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 34rem; }
+th { font-family: var(--titulo); font-weight: 600; color: var(--lilas-claro); text-align: left; padding: .6rem .5rem; border-bottom: 1px solid var(--borda); }
+td { padding: .55rem .5rem; border-bottom: 1px solid oklch(0.75 0.12 310 / .12); vertical-align: top; }
+td.mes { font-weight: 700; text-transform: capitalize; }
+td small { color: var(--suave); display: block; }
+tr.este td { background: oklch(0.45 0.15 310 / .25); }
+td .x { color: var(--ouro); font-size: .72rem; font-weight: 700; }
+
+/* eclipses e superluas */
+.eventos { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.evento { border-radius: 1.1rem; padding: 1rem 1.1rem; background: oklch(0.18 0.06 300 / .7); border: 1px solid var(--borda); display: flex; gap: .9rem; align-items: center; }
+.evento .ico { font-size: 2rem; flex: none; }
+.evento b { display: block; font-family: var(--titulo); }
+.evento span { font-size: .86rem; color: var(--suave); }
+.evento.passou { opacity: .5; }
+
+.chamada { text-align: center; }
+.chamada p { font-family: var(--serifa); font-size: 1.25rem; color: var(--lavanda); max-width: 36rem; margin: 0 auto 1.2rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 800; border-radius: 999px; padding: .85rem 1.5rem; color: white; background: var(--grad-lilas); box-shadow: 0 10px 30px oklch(0.55 0.19 300 / .5); }
+.btn.ouro { color: oklch(0.22 0.06 300); background: var(--grad-ouro); box-shadow: 0 10px 30px oklch(0.75 0.15 75 / .35); }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="marca" href="/"><span style="font-size:1.6rem">☾</span><span><b>Genial Tarot</b><small>Mestre Alberto</small></span></a>
+    <a class="voltar" href="/">← Página inicial</a>
+  </header>
+
+  <section class="heroi">
+    <div>
+      <span class="selo">✦ Calculado ao minuto ✦</span>
+      <h1>Calendário <span class="lil">Lunar</span> <span id="ano-titulo"></span></h1>
+      <p class="sub">As fases da Lua, o signo por onde ela passa em cada dia, os eclipses e as superluas. Veja o céu antes de decidir.</p>
+      <div class="fuso" role="group" aria-label="Fuso horário">
+        <button type="button" data-tz="America/Sao_Paulo">🇧🇷 Hora de Brasília</button>
+        <button type="button" data-tz="Europe/Lisbon">🇵🇹 Hora de Portugal</button>
+      </div>
+      <div class="nota-fuso">Todas as horas desta página estão no fuso escolhido.</div>
+    </div>
+    <div class="cartao hoje" id="hoje"></div>
+  </section>
+
+  <section class="cartao">
+    <div class="nav-mes">
+      <button type="button" id="ant" aria-label="Mês anterior">‹</button>
+      <h2 id="mes-titulo"></h2>
+      <button type="button" id="seg" aria-label="Mês seguinte">›</button>
+    </div>
+    <div class="grelha" id="grelha"></div>
+    <div class="legenda"><span class="l-fase">Dia de mudança de fase</span><span class="l-hoje">Hoje</span><span>♈ ♉ ♊ … o signo da Lua nesse dia</span></div>
+  </section>
+
+  <section>
+    <h2>As fases da Lua em <span class="lil" id="mes-nome"></span></h2>
+    <p class="int">A hora exacta em que cada fase começa e o signo onde a Lua está nesse momento.</p>
+    <div class="quatro" id="quatro"></div>
+  </section>
+
+  <section class="cartao">
+    <h2>Fases da Lua em <span id="ano-tab"></span></h2>
+    <p class="int">O ano inteiro, mês a mês.</p>
+    <div class="tabela-wrap"><table id="tabela"></table></div>
+  </section>
+
+  <section>
+    <h2>Eclipses e <span class="lil">Superluas</span></h2>
+    <p class="int">Os momentos fortes do céu. A superlua é a Lua Cheia ou Nova mais perto da Terra.</p>
+    <div class="eventos" id="eventos"></div>
+  </section>
+
+  <section class="cartao chamada">
+    <h2>Quer saber o que esta Lua traz para <span class="lil">si</span>?</h2>
+    <p>Cada fase toca de forma diferente no seu signo e no seu Ascendente. Numa consulta eu olho para o seu céu e para as cartas.</p>
+    <div class="botoes">
+      <a class="btn" href="/ascendente">✨ Descobrir o meu Ascendente</a>
+      <a class="btn ouro" href="loja.html">🔮 Marcar uma consulta</a>
+    </div>
+  </section>
+  <p class="fonte" id="fonte"></p>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script src="lua-dados.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const L = window.LUA;
+  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
+  // Os nomes mudam com o fuso: no Brasil como lá se dizem, em Portugal como cá
+  const NOMES_BR = ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const NOMES_PT = ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const FASES = ["Lua Nova","Lua Crescente","Lua Cheia","Lua Minguante"];
+  const TEXTO_FASE = [
+    "Tempo de plantar intenções e começar em silêncio.",
+    "A energia cresce: agir, construir, dar o passo.",
+    "Tudo se ilumina: colher, celebrar, ver com clareza.",
+    "Tempo de soltar, limpar e fechar ciclos."
+  ];
+  const MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  const SEMANA = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+
+  let tz;
+  try { tz = localStorage.getItem("lua-fuso"); } catch (e) {}
+  if (!tz) tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").startsWith("Europe") ? "Europe/Lisbon" : "America/Sao_Paulo";
+  const nomes = () => tz === "Europe/Lisbon" ? NOMES_PT : NOMES_BR;
+
+  // partes de um instante no fuso escolhido
+  function partes(t) {
+    const p = {};
+    new Intl.DateTimeFormat("en-GB", { timeZone: tz, year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
+      .formatToParts(new Date(t)).forEach(x => p[x.type] = x.value);
+    return { a: +p.year, m: +p.month, d: +p.day, h: p.hour, min: p.minute };
+  }
+  // meia-noite local de um dia, em UTC
+  function meiaNoite(a, m, d) {
+    let t = Date.UTC(a, m - 1, d);
+    for (let i = 0; i < 2; i++) { const p = partes(t); t -= (Date.UTC(p.a, p.m - 1, p.d, +p.h, +p.min) - Date.UTC(a, m - 1, d)); }
+    return t;
+  }
+  const hora = (t) => { const p = partes(t); return p.h + ":" + p.min; };
+  const dataCurta = (t) => { const p = partes(t); return p.d + " " + MESES[p.m - 1].slice(0, 3); };
+
+  function signoEm(t) {
+    let s = L.ingressos[0].s;
+    for (const x of L.ingressos) { if (x.t <= t) s = x.s; else break; }
+    return s;
+  }
+  // elongação Lua−Sol entre duas fases (90° de cada vez), para desenhar a Lua do dia
+  function elong(t) {
+    const F = L.fases;
+    for (let i = 0; i < F.length - 1; i++) {
+      if (F[i].t <= t && t < F[i + 1].t) return (F[i].f * 90 + 90 * (t - F[i].t) / (F[i + 1].t - F[i].t)) % 360;
+    }
+    return 0;
+  }
+  const ilum = (e) => Math.round((1 - Math.cos(e * Math.PI / 180)) / 2 * 100);
+  function faseAtual(t) {
+    let f = 0; for (const x of L.fases) { if (x.t <= t) f = x.f; else break; } return f;
+  }
+
+  // a Lua desenhada: lado iluminado e terminador em elipse
+  function luaSVG(e, cls) {
+    const r = 48, c = 50, rx = Math.abs(Math.cos(e * Math.PI / 180)) * r;
+    const crescendo = e < 180;
+    // vista do hemisfério norte: a crescer, a luz está à direita
+    // vista do hemisfério norte: a crescer, a luz está à direita (conferido em foto a 21/10)
+    const fora = crescendo ? 1 : 0;
+    const term = crescendo ? (e < 90 ? 0 : 1) : (e > 270 ? 1 : 0);
+    const id = "g" + Math.random().toString(36).slice(2, 8);
+    const lit = (e < 2 || e > 358) ? "" :
+      (Math.abs(e - 180) < 2) ? `<circle cx="${c}" cy="${c}" r="${r}" fill="url(#${id})"/>` :
+      `<path d="M${c} ${c - r} A${r} ${r} 0 0 ${fora} ${c} ${c + r} A${rx.toFixed(2)} ${r} 0 0 ${term} ${c} ${c - r}Z" fill="url(#${id})"/>`;
+    return `<svg class="${cls || ""}" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="${id}" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#fffaf0"/><stop offset=".7" stop-color="#efe3c4"/><stop offset="1" stop-color="#cbb98f"/></radialGradient></defs>`
+      + `<circle cx="${c}" cy="${c}" r="${r}" fill="#2a1f3d" stroke="#b9a6d6" stroke-opacity=".35" stroke-width="1.2"/>${lit}</svg>`;
+  }
+
+  const agora = Date.now();
+  const pHoje = partes(agora);
+  const A0 = L.anos[0], A1 = L.anos[1];
+  let ano = Math.min(Math.max(pHoje.a, A0), A1), mes = pHoje.a < A0 ? 1 : pHoje.a > A1 ? 12 : pHoje.m;
+
+  function desenharHoje() {
+    const e = elong(agora), f = faseAtual(agora), s = signoEm(agora);
+    const prox = L.fases.find(x => x.t > agora);
+    const prIng = L.ingressos.find(x => x.t > agora);
+    const dias = prox ? Math.round((prox.t - agora) / 864e5) : null;
+    $("hoje").innerHTML = luaSVG(e, "lua-grande") + `<div><div class="rot">A Lua hoje · ${pHoje.d} de ${MESES[pHoje.m - 1]}</div>`
+      + `<div class="fase">${FASES[f]}</div><div class="em">em <b>${GLIFOS[s]} ${nomes()[s]}</b></div>`
+      + `<div class="det"><span>☀ ${ilum(e)}% iluminada</span>`
+      + (prIng ? `<span>Entra em ${GLIFOS[prIng.s]} ${nomes()[prIng.s]} ${dataCurta(prIng.t)} às ${hora(prIng.t)}</span>` : "")
+      + (prox ? `<span>${FASES[prox.f]} ${dias <= 0 ? "hoje" : dias === 1 ? "amanhã" : "daqui a " + dias + " dias"} · ${dataCurta(prox.t)} às ${hora(prox.t)}</span>` : "")
+      + `</div></div>`;
+  }
+
+  function desenharMes() {
+    $("mes-titulo").textContent = MESES[mes - 1].replace(/^./, c => c.toUpperCase()) + " " + ano;
+    $("mes-nome").textContent = MESES[mes - 1] + " " + ano;
+    $("ant").disabled = (ano === A0 && mes === 1);
+    $("seg").disabled = (ano === A1 && mes === 12);
+    const nDias = new Date(Date.UTC(ano, mes, 0)).getUTCDate();
+    const primeiro = new Date(Date.UTC(ano, mes - 1, 1)).getUTCDay();
+    let h = SEMANA.map(s => `<div class="sem">${s}</div>`).join("");
+    for (let i = 0; i < primeiro; i++) h += `<div class="dia vazio"></div>`;
+    for (let d = 1; d <= nDias; d++) {
+      const t0 = meiaNoite(ano, mes, d), t1 = meiaNoite(ano, mes, d + 1) ;
+      const meio = t0 + 12 * 36e5;
+      const fase = L.fases.find(x => x.t >= t0 && x.t < t1);
+      const ings = L.ingressos.filter(x => !x.inicio && x.t >= t0 && x.t < t1);
+      const ecl = L.eclipses.find(x => Math.abs(x.t - (fase ? fase.t : -1e15)) < 864e5);
+      const s = signoEm(meio);
+      const eHoje = (pHoje.a === ano && pHoje.m === mes && pHoje.d === d);
+      let c = `<div class="dia${fase ? " fase" : ""}${eHoje ? " hoje-d" : ""}"><span class="num">${d}</span>${luaSVG(fase ? fase.f * 90 : elong(meio), "ic")}`;
+      if (fase) {
+        c += `<span class="nome-fase">${FASES[fase.f]}</span><span class="hora">${hora(fase.t)}</span>`;
+        if (ecl) c += `<span class="marca-esp">Eclipse</span>`; else if (fase.super) c += `<span class="marca-esp">Superlua</span>`;
+      }
+      c += `<span class="sig"><i>${GLIFOS[s]}</i>${nomes()[s]}</span>`;
+      for (const x of ings) c += `<span class="ing">→ ${GLIFOS[x.s]} às ${hora(x.t)}</span>`;
+      h += c + `</div>`;
+    }
+    $("grelha").innerHTML = h;
+
+    const t0 = meiaNoite(ano, mes, 1), t1 = meiaNoite(ano, mes, nDias + 1);
+    $("quatro").innerHTML = L.fases.filter(x => x.t >= t0 && x.t < t1).map(x => {
+      const ecl = L.eclipses.find(e => Math.abs(e.t - x.t) < 864e5);
+      return `<div class="fase-c">${luaSVG(x.f * 90 + (x.f === 0 ? 0.001 : 0))}<div class="n">${FASES[x.f]}</div>`
+        + `<div class="q">${partes(x.t).d} de ${MESES[mes - 1]} · ${hora(x.t)}</div>`
+        + `<div class="s">em ${GLIFOS[x.s]} ${nomes()[x.s]} ${Math.floor(x.g)}°</div>`
+        + `<div class="t">${TEXTO_FASE[x.f]}</div>`
+        + (ecl ? `<span class="esp">Eclipse ${ecl.sol ? "do Sol" : "da Lua"} ${ecl.tipo}</span>` : x.super ? `<span class="esp">Superlua</span>` : "")
+        + `</div>`;
+    }).join("");
+    desenharTabela();
+  }
+
+  function desenharTabela() {
+    $("ano-tab").textContent = ano; $("ano-titulo").textContent = ano;
+    let h = `<tr><th>Mês</th>${FASES.map(f => `<th>${f}</th>`).join("")}</tr>`;
+    for (let m = 1; m <= 12; m++) {
+      const t0 = meiaNoite(ano, m, 1), t1 = meiaNoite(m === 12 ? ano + 1 : ano, m === 12 ? 1 : m + 1, 1);
+      const fs = L.fases.filter(x => x.t >= t0 && x.t < t1);
+      h += `<tr${m === mes ? ' class="este"' : ""}><td class="mes">${MESES[m - 1]}</td>`;
+      for (let f = 0; f < 4; f++) {
+        h += "<td>" + fs.filter(x => x.f === f).map(x => {
+          const ecl = L.eclipses.find(e => Math.abs(e.t - x.t) < 864e5);
+          return `${partes(x.t).d} · ${hora(x.t)}<small>${GLIFOS[x.s]} ${nomes()[x.s]}</small>` + (ecl ? `<span class="x">✦ eclipse</span>` : x.super ? `<span class="x">✦ superlua</span>` : "");
+        }).join("<br>") + "</td>";
+      }
+      h += "</tr>";
+    }
+    $("tabela").innerHTML = h;
+  }
+
+  function desenharEventos() {
+    const ev = [
+      ...L.eclipses.map(e => ({ t: e.t, ico: e.sol ? "🌑" : "🌕", n: `Eclipse ${e.tipo} ${e.sol ? "do Sol" : "da Lua"}`, s: e.s })),
+      ...L.fases.filter(x => x.super).map(x => ({ t: x.t, ico: x.f === 2 ? "🌕" : "🌑", n: `Superlua ${x.f === 2 ? "Cheia" : "Nova"}`, s: x.s, km: x.km }))
+    ].filter(e => { const a = partes(e.t).a; return a === ano; }).sort((a, b) => a.t - b.t);
+    $("eventos").innerHTML = ev.map(e => {
+      const p = partes(e.t);
+      return `<div class="evento${e.t < agora ? " passou" : ""}"><div class="ico">${e.ico}</div><div><b>${e.n}</b>`
+        + `<span>${p.d} de ${MESES[p.m - 1]} · ${hora(e.t)} · ${GLIFOS[e.s]} ${nomes()[e.s]}${e.km ? ` · ${e.km.toLocaleString("pt-PT")} km` : ""}</span></div></div>`;
+    }).join("");
+  }
+
+  function tudo() {
+    document.querySelectorAll(".fuso button").forEach(b => b.classList.toggle("ativo", b.dataset.tz === tz));
+    desenharHoje(); desenharMes(); desenharEventos();
+  }
+  document.querySelectorAll(".fuso button").forEach(b => b.addEventListener("click", () => {
+    tz = b.dataset.tz; try { localStorage.setItem("lua-fuso", tz); } catch (e) {} tudo();
+  }));
+  $("ant").addEventListener("click", () => { mes--; if (mes < 1) { mes = 12; ano--; desenharEventos(); } desenharMes(); });
+  $("seg").addEventListener("click", () => { mes++; if (mes > 12) { mes = 1; ano++; desenharEventos(); } desenharMes(); });
+  $("fonte").textContent = `Calculado pelo ${L.motor} (o mesmo do horóscopo diário) · superluas pelo critério de Richard Nolle.`;
+  tudo();
+})();
+</script>
+</body>
+</html>
