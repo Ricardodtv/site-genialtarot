@@ -359,7 +359,6 @@ body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklc
           <div class="marca-ok" id="cidade-ok"></div>
         </div>
         <label class="campo largo">
-          <span class="caixinha"><input type="checkbox" id="novidades" /><span>Quero receber novidades do Mestre Alberto por email (horóscopos, mapas e promoções). Pode cancelar quando quiser.</span></span>
         </label>
       </div>
       <div class="erro" id="erro" role="alert"></div>
@@ -695,7 +694,7 @@ body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklc
     const horaLida = semhora ? [12, 0] : lerHora($("hora").value);
     const hora = horaLida ? String(horaLida[0]).padStart(2, "0") + ":" + String(horaLida[1]).padStart(2, "0") : "";
     if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return mostraErro("Escreva o seu nome, por favor.");
-    const email = $("email").value.trim().toLowerCase(), tel = $("tel").value.trim(), novidades = $("novidades").checked;
+    const email = $("email").value.trim().toLowerCase(), tel = $("tel").value.trim(), novidades = false;  // 21/10/2026 (pedido dele): a caixa «quero receber novidades» saiu das páginas
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return mostraErro("Escreva o seu email, por favor.");
     const dataLida = lerData(data);
     if (!data) return mostraErro("Falta a data de nascimento.");

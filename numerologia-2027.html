@@ -243,11 +243,15 @@ body { background: radial-gradient(ellipse at top, oklch(0.36 0.10 185) 0%, oklc
 #resultado .tema .chave, #resultado .dados-nasc { color: oklch(0.92 0.03 175); }
 
 /* a conta a acontecer à frente da pessoa */
-.conta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .35rem .4rem; margin: 1rem auto .2rem; max-width: 34rem; font-family: var(--titulo); }
+.conta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .35rem .4rem; margin: 1rem auto .2rem; max-width: 40rem; font-family: var(--titulo); }
 .conta .bloco { display: inline-flex; flex-direction: column; align-items: center; gap: .15rem; }
 .conta .bloco small { font-family: Inter, sans-serif; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--suave); }
 .conta .alg { display: inline-grid; place-items: center; min-width: 2.1rem; height: 2.5rem; padding: 0 .35rem; border-radius: .55rem; font-size: 1.35rem; font-weight: 700;
   background: oklch(0.17 0.05 195); border: 1px solid oklch(0.85 0.12 88 / .55); color: var(--ouro); opacity: 0; animation: acende .5s ease-out forwards; }
+.conta .alg.total { min-width: 3.2rem; height: 3.2rem; font-size: 1.85rem; color: oklch(0.22 0.06 300); border: 2px solid oklch(0.92 0.12 90);
+  background: linear-gradient(135deg, oklch(0.90 0.14 90), oklch(0.74 0.15 65)); box-shadow: 0 0 22px oklch(0.85 0.14 88 / .6); }
+.conta .bloco-total { display: inline-flex; align-items: center; gap: .4rem; }
+.conta .bloco-total > .op { margin-bottom: .95rem; }
 .conta .op { font-size: 1.2rem; color: var(--lilas-claro); opacity: 0; animation: acende .4s ease-out forwards; }
 .conta .seta { width: 100%; text-align: center; font-size: 1rem; color: var(--suave); opacity: 0; animation: acende .4s ease-out forwards; }
 @keyframes acende { from { opacity: 0; transform: translateY(6px) scale(.9); } to { opacity: 1; transform: none; } }
@@ -337,7 +341,6 @@ body { background: radial-gradient(ellipse at top, oklch(0.36 0.10 185) 0%, oklc
           <input type="text" id="data" required inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" />
         </label>
         <label class="campo largo">
-          <span class="caixinha"><input type="checkbox" id="novidades" /><span>Quero receber novidades do Mestre Alberto por email (horóscopos, mapas e promoções). Pode cancelar quando quiser.</span></span>
         </label>
       </div>
       <div class="erro" id="erro" role="alert"></div>
@@ -490,7 +493,8 @@ body { background: radial-gradient(ellipse at top, oklch(0.36 0.10 185) 0%, oklc
       h += `<span class="bloco"><span>${s.split("").map((c, k) => (k ? op("+") : "") + alg(c)).join("")}</span><small>${rot}</small></span>`;
     });
     let soma = somaAlg(String(D) + String(M) + String(ANO));
-    h += op("=") + alg(soma);
+    // 21/10/2026 (pedido dele): o total na mesma linha dos algarismos (com legenda, como os blocos) e em destaque
+    h += `<span class="bloco-total">${op("=")}<span class="bloco"><span class="alg total" style="animation-delay:${(t += .25).toFixed(2)}s">${soma}</span><small>total</small></span></span>`;
     while (soma > 9) { const prox = somaAlg(soma); h += `<span class="seta" style="animation-delay:${(t += .2).toFixed(2)}s">${String(soma).split("").join(" + ")} = ${prox}</span>`; soma = prox; }
     $("conta").innerHTML = h;
     return t;
@@ -510,7 +514,7 @@ body { background: radial-gradient(ellipse at top, oklch(0.36 0.10 185) 0%, oklc
     mostraErro("");
     const nome = $("nome").value.trim(), data = $("data").value;
     if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return mostraErro("Escreva o seu nome, por favor.");
-    const email = $("email").value.trim().toLowerCase(), tel = $("tel").value.trim(), novidades = $("novidades").checked;
+    const email = $("email").value.trim().toLowerCase(), tel = $("tel").value.trim(), novidades = false;  // 21/10/2026 (pedido dele): a caixa «quero receber novidades» saiu das páginas
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return mostraErro("Escreva o seu email, por favor.");
     const dataLida = lerData(data);
     if (!data) return mostraErro("Falta a data de nascimento.");
