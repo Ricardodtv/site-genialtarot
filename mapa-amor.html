@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- RASCUNHO (21/10/2026) — pré-visualização, NÃO publicada: textos por aprovar pelo Mestre Alberto.
+     Não está no worker.js nem no wrangler.jsonc, nem tem link na página principal. -->
+<meta name="robots" content="noindex" />
+<title>Mapa do Amor e da Sedução Grátis — Genial Tarot · Mestre Alberto</title>
+<meta name="description" content="Descubra a sua Vénus e o seu Marte: o seu perfil no amor, o que o(a) atrai e como você seduz. Amostra grátis do Mapa do Amor e da Sedução do Mestre Alberto, com o céu calculado ao minuto." />
+<meta name="theme-color" content="#3a2257" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Mapa do Amor e da Sedução Grátis — Mestre Alberto" />
+<meta property="og:description" content="O seu perfil no amor, o que o(a) atrai e como você seduz, pela sua Vénus e o seu Marte." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/mapa-amor" />
+<meta property="og:image" content="https://genialtarot.com/atracao-amor.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Mapa do Amor e da Sedução — tons de lilás, como a calculadora de Ascendente (21/10/2026) ============ */
+:root {
+  --fundo: oklch(0.17 0.06 305);
+  --fundo-2: oklch(0.23 0.08 305);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.05 310);
+  --lilas: oklch(0.74 0.14 310);
+  --lilas-claro: oklch(0.86 0.09 312);
+  --lavanda: oklch(0.92 0.05 310);
+  --ameixa: oklch(0.40 0.15 310);
+  --ouro: oklch(0.85 0.13 88);
+  --rosa: oklch(0.78 0.13 355);
+  --borda: oklch(0.75 0.12 310 / 0.35);
+  --vidro: oklch(0.30 0.09 305 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.80 0.12 320), oklch(0.66 0.18 300) 55%, oklch(0.55 0.19 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.84 0.11 355), oklch(0.70 0.17 340) 55%, oklch(0.60 0.19 315));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.40 0.16 320) 0%, oklch(0.20 0.08 305) 45%, oklch(0.12 0.05 300) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(68rem, 100% - 2rem); margin: 0 auto; }
+
+/* topo */
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.marca { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--texto); }
+.marca b { font-family: var(--titulo); font-size: 1.15rem; letter-spacing: .04em; background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.marca small { display: block; font-size: .72rem; color: var(--suave); letter-spacing: .12em; text-transform: uppercase; }
+.voltar { font-size: .85rem; color: var(--suave); text-decoration: none; border: 1px solid var(--borda); border-radius: 999px; padding: .4rem .9rem; }
+
+/* herói */
+.heroi { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; text-align: center; padding: 1rem 0 2rem; }
+@media (min-width: 860px) { .heroi { grid-template-columns: 1.05fr 1fr; text-align: left; } }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+h1 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 34rem; margin: 0 auto 1rem; }
+@media (min-width: 860px) { .sub { margin-left: 0; } }
+.pontos { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: .8rem 0 1.2rem; padding: 0; list-style: none; }
+@media (min-width: 860px) { .pontos { justify-content: flex-start; } }
+.pontos li { font-size: .82rem; background: var(--vidro); border: 1px solid var(--borda); border-radius: 999px; padding: .35rem .8rem; }
+.btn-grande { display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+  color: white; background: var(--grad-lilas); border-radius: 999px; padding: .95rem 1.7rem; box-shadow: 0 10px 30px oklch(0.55 0.19 300 / .5), inset 0 1px 0 #fff5;
+  transition: transform .2s, box-shadow .2s; }
+.btn-grande:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 40px oklch(0.60 0.2 305 / .65); }
+
+/* a roda do zodíaco à volta da foto */
+.roda-wrap { position: relative; width: min(26rem, 88vw); aspect-ratio: 1; margin: 0 auto; }
+.roda { position: absolute; inset: 0; border-radius: 50%; animation: gira 60s linear infinite;
+  background: conic-gradient(from 0deg, oklch(0.72 0.15 345 / .35), oklch(0.55 0.18 300 / .2), oklch(0.80 0.10 320 / .35), oklch(0.55 0.18 300 / .2), oklch(0.72 0.15 345 / .35));
+  box-shadow: 0 0 60px oklch(0.72 0.16 335 / .45), inset 0 0 40px oklch(0.30 0.10 300 / .6); }
+.roda span { position: absolute; left: 50%; top: 50%; width: 2.2rem; height: 2.2rem; margin: -1.1rem 0 0 -1.1rem; display: grid; place-items: center;
+  font-size: 1.35rem; color: var(--ouro); text-shadow: 0 0 10px oklch(0.85 0.13 88 / .8); }
+@keyframes gira { to { transform: rotate(360deg); } }
+.foto-anel { position: absolute; inset: 15%; border-radius: 50%; overflow: hidden; border: 4px solid oklch(0.86 0.09 330);
+  box-shadow: 0 0 0 6px oklch(0.55 0.18 320 / .5), 0 20px 50px #0008; }
+.foto-anel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* cartões */
+.cartao { background: linear-gradient(160deg, oklch(0.32 0.10 308 / .82), oklch(0.22 0.08 300 / .9)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1.2rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; backdrop-filter: blur(6px); }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.1rem); margin: 0 0 .4rem; text-align: center; }
+h2 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cartao > p.int { text-align: center; color: var(--suave); margin: 0 auto 1.3rem; max-width: 36rem; }
+
+/* formulário (o mesmo da calculadora de Ascendente, sem email: aqui nada sai do aparelho) */
+.grelha { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 680px) { .grelha { grid-template-columns: 1fr 1fr; } .largo { grid-column: 1 / -1; } }
+label.campo { display: flex; flex-direction: column; gap: .35rem; font-size: .88rem; font-weight: 600; color: var(--lavanda); }
+label.campo small { font-weight: 400; color: var(--suave); }
+input[type=text] {
+  width: 100%; font: inherit; font-size: 1rem; color: var(--texto); background: oklch(0.16 0.05 300 / .75); border: 1.5px solid var(--borda);
+  border-radius: .8rem; padding: .8rem .9rem; outline: none; transition: border-color .2s, box-shadow .2s; color-scheme: dark; }
+input:focus { border-color: var(--lilas); box-shadow: 0 0 0 4px oklch(0.74 0.14 310 / .25); }
+input:disabled { opacity: .45; }
+.lista-cid { position: absolute; z-index: 20; left: 0; right: 0; top: 100%; margin-top: .25rem; max-height: 15rem; overflow-y: auto;
+  background: oklch(0.24 0.08 305); border: 1px solid var(--borda); border-radius: .8rem; box-shadow: 0 14px 40px #000a; display: none; }
+.lista-cid.aberta { display: block; }
+.lista-cid button { display: block; width: 100%; text-align: left; border: 0; background: none; color: var(--texto); font: inherit; font-size: .92rem; padding: .6rem .9rem; cursor: pointer; }
+.lista-cid button:hover, .lista-cid button.ativo { background: oklch(0.40 0.14 310 / .6); }
+.lista-cid button small { color: var(--suave); }
+.rel { position: relative; }
+.marca-ok { font-size: .8rem; color: oklch(0.85 0.14 150); min-height: 1.1em; }
+.caixinha { display: flex; gap: .6rem; align-items: flex-start; font-size: .84rem; color: var(--suave); font-weight: 400; }
+.caixinha input { margin-top: .2rem; accent-color: var(--lilas); width: 1.05rem; height: 1.05rem; flex: none; }
+.erro { display: none; margin-top: .9rem; padding: .7rem .9rem; border-radius: .8rem; background: oklch(0.40 0.14 20 / .35); border: 1px solid oklch(0.65 0.18 20 / .6); font-size: .9rem; }
+.erro.ver { display: block; }
+.enviar { display: flex; justify-content: center; margin-top: 1.3rem; }
+.nota-priv { text-align: center; font-size: .76rem; color: var(--suave); margin-top: .8rem; }
+
+/* resultado */
+#resultado { display: none; scroll-margin-top: 1rem; }
+#resultado.ver { display: block; animation: surgir .7s ease-out; border-color: oklch(0.82 0.11 330 / .7); }
+@keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.res-titulo { text-align: center; margin: 0 0 .4rem; font-family: var(--titulo); line-height: 1.1; }
+.res-nome { display: block; font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 14px oklch(0.85 0.13 88 / .45)); }
+.res-frase { display: block; font-family: var(--serifa); font-size: clamp(1.2rem, 3vw, 1.5rem); color: var(--lavanda); margin: .2rem 0; font-weight: 500; }
+.duo { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; margin: 1.2rem auto; max-width: 34rem; }
+.astro { text-align: center; border-radius: 1.1rem; padding: 1.1rem .6rem; background: linear-gradient(160deg, oklch(0.50 0.17 335 / .45), oklch(0.28 0.11 300 / .8));
+  border: 1px solid oklch(0.85 0.10 330 / .6); box-shadow: 0 0 34px oklch(0.70 0.17 330 / .35); display: flex; flex-direction: column; align-items: center; }
+.astro .elem { margin-top: auto !important; }
+.astro .grau { margin-bottom: .45rem; }
+.astro .qual { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.astro .glifo { font-size: 2.8rem; line-height: 1.1; color: var(--ouro); text-shadow: 0 0 18px oklch(0.85 0.13 88 / .7); margin: .3rem 0; }
+.astro .nome-signo { font-family: var(--titulo); font-size: clamp(1.05rem, 3.6vw, 1.35rem); font-weight: 700; line-height: 1.2; }
+.astro .grau { font-size: .8rem; color: var(--suave); }
+.astro .elem { display: inline-block; margin-top: .45rem; font-size: .74rem; font-weight: 700; border-radius: 999px; padding: .2rem .65rem; background: oklch(0.18 0.06 300 / .7); border: 1px solid var(--borda); }
+.tema { margin-top: 1.3rem; border-radius: 1.1rem; padding: 1.1rem 1.2rem 1.2rem; background: oklch(0.18 0.06 300 / .6); border: 1px solid var(--borda); }
+.tema .num { font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--rosa); }
+.tema h3 { font-family: var(--titulo); font-size: 1.2rem; margin: .15rem 0 .5rem; color: var(--lilas-claro); }
+.tema p { margin: 0; font-family: var(--serifa); font-size: 1.18rem; line-height: 1.6; color: var(--lavanda); }
+.tema .chave { display: block; margin-bottom: .35rem; font-family: Inter, system-ui, sans-serif; font-size: .8rem; color: var(--suave); }
+.aviso-hora { text-align: center; font-size: .86rem; color: oklch(0.88 0.12 90); margin-top: .9rem; }
+.dados-nasc { text-align: center; font-size: .82rem; color: var(--suave); margin-top: .4rem; }
+
+/* a versão completa, fechada */
+.completo { position: relative; overflow: hidden; }
+.completo .selo { display: table; margin: 0 auto .8rem; }
+.capitulos { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; grid-template-columns: 1fr; }
+@media (min-width: 680px) { .capitulos { grid-template-columns: 1fr 1fr; } }
+.capitulos li { display: flex; align-items: center; gap: .7rem; border-radius: .9rem; padding: .7rem .9rem; background: oklch(0.18 0.06 300 / .6); border: 1px solid var(--borda); }
+.capitulos .n { flex: none; width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 50%; font-weight: 800; font-size: .85rem;
+  background: var(--grad-lilas); color: white; }
+.capitulos .t { flex: 1; font-weight: 600; font-size: .92rem; }
+.capitulos .t small { display: block; font-weight: 400; color: var(--suave); font-size: .78rem; }
+.capitulos .cad { flex: none; font-size: .95rem; opacity: .8; }
+.em-breve { display: block; text-align: center; margin-top: 1.1rem; font-family: var(--serifa); font-size: 1.15rem; color: var(--lavanda); }
+
+/* consulta */
+.consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 860px) { .consulta { grid-template-columns: 0.8fr 1.2fr; } }
+.consulta-foto { border-radius: 1.3rem; overflow: hidden; border: 3px solid oklch(0.80 0.11 312); box-shadow: 0 20px 50px #0009, 0 0 40px oklch(0.65 0.17 305 / .4); max-width: 22rem; margin: 0 auto; }
+.consulta-foto img { display: block; width: 100%; height: auto; }
+.consulta h2 { text-align: left; }
+@media (max-width: 859px) { .consulta h2, .consulta .gancho, .consulta .botoes { text-align: center; justify-content: center; } }
+.gancho { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); margin: .2rem 0 1rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
+section { margin: 0 0 2.2rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="marca" href="/"><span style="font-size:1.6rem">☾</span><span><b>Genial Tarot</b><small>Mestre Alberto</small></span></a>
+    <a class="voltar" href="/">← Página inicial</a>
+  </header>
+
+  <section class="heroi">
+    <div>
+      <span class="selo">✦ Grátis · amostra ✦</span>
+      <h1>Mapa do <span class="lil">Amor</span> e da Sedução</h1>
+      <p class="sub">A sua Vénus mostra o que o seu coração deseja. O seu Marte mostra como você conquista. Descubra o que o céu do seu nascimento diz sobre a sua forma de amar.</p>
+      <ul class="pontos">
+        <li>♀&#xFE0E; Vénus</li><li>♂&#xFE0E; Marte</li><li>💞 3 temas grátis</li><li>🔭 Céu calculado ao minuto</li>
+      </ul>
+      <a class="btn-grande" href="#calcular">💗 Ver o meu Mapa do Amor</a>
+    </div>
+    <div class="roda-wrap" aria-hidden="true">
+      <div class="roda" id="roda"></div>
+      <div class="foto-anel"><img src="atracao-amor.jpg" alt="Mestre Alberto com o Livro do Amor e o Tarot do Amor" width="900" height="900" fetchpriority="high" /></div>
+    </div>
+  </section>
+
+  <section id="calcular" class="cartao">
+    <h2>O seu <span class="lil">céu do amor</span></h2>
+    <p class="int">Preencha com os dados do seu nascimento. Vénus e Marte andam devagar, por isso a hora só afina o resultado, mas a data e a cidade têm de estar certas.</p>
+    <form id="form" novalidate>
+      <div class="grelha">
+        <label class="campo largo">O seu nome
+          <input type="text" id="nome" autocomplete="off" required maxlength="80" />
+        </label>
+        <label class="campo">Data de nascimento <small>(dia/mês/ano, ex.: 15/03/1990)</small>
+          <input type="text" id="data" required inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" />
+        </label>
+        <label class="campo">Hora de nascimento <small>(a que está na certidão)</small>
+          <input type="text" id="hora" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="HH:MM (ex.: 14:30)" />
+        </label>
+        <label class="campo largo">
+          <span class="caixinha"><input type="checkbox" id="semhora" /><span>Não sei a hora em que nasci</span></span>
+        </label>
+        <div class="campo largo rel">
+          <label class="campo" for="cidade">Cidade onde nasceu <small>(escreva e escolha na lista)</small></label>
+          <input type="text" id="cidade" autocomplete="off" required />
+          <div class="lista-cid" id="lista-cid" role="listbox"></div>
+          <div class="marca-ok" id="cidade-ok"></div>
+        </div>
+      </div>
+      <div class="erro" id="erro" role="alert"></div>
+      <div class="enviar"><button class="btn-grande" type="submit" id="btn-calc">💗 Revelar o meu Mapa do Amor</button></div>
+      <p class="nota-priv">🔒 O cálculo é feito no seu próprio telemóvel ou computador. Os seus dados não saem daqui.</p>
+    </form>
+  </section>
+
+  <section id="resultado" class="cartao" aria-live="polite">
+    <h2 id="res-titulo" class="res-titulo">O seu Mapa do Amor</h2>
+    <div class="duo">
+      <div class="astro"><div class="qual">♀&#xFE0E; Vénus</div><div class="glifo" id="g-ven"></div><div class="nome-signo" id="n-ven"></div><div class="grau" id="d-ven"></div><span class="elem" id="e-ven"></span></div>
+      <div class="astro"><div class="qual">♂&#xFE0E; Marte</div><div class="glifo" id="g-mar"></div><div class="nome-signo" id="n-mar"></div><div class="grau" id="d-mar"></div><span class="elem" id="e-mar"></span></div>
+    </div>
+    <div class="tema"><span class="num">Tema 1</span><h3>O seu perfil no amor</h3><span class="chave" id="k-perfil"></span><p id="t-perfil"></p></div>
+    <div class="tema"><span class="num">Tema 2</span><h3 id="h-atrai">O que o(a) atrai</h3><span class="chave" id="k-atrai"></span><p id="t-atrai"></p></div>
+    <div class="tema"><span class="num">Tema 3</span><h3>Como você seduz</h3><span class="chave" id="k-seduz"></span><p id="t-seduz"></p></div>
+    <p class="aviso-hora" id="aviso-hora"></p>
+    <p class="dados-nasc" id="dados-nasc"></p>
+  </section>
+
+  <section id="completo" class="cartao completo">
+    <span class="selo">🔒 Versão completa · em breve</span>
+    <h2>O Mapa do Amor <span class="lil">completo</span></h2>
+    <p class="int">A amostra grátis mostra 3 temas. A versão completa lê o seu céu do amor em 9 capítulos:</p>
+    <ol class="capitulos">
+      <li><span class="n">1</span><span class="t">Vénus e Marte juntos<small>a química entre o que deseja e o que faz</small></span><span class="cad">🔒</span></li>
+      <li><span class="n">2</span><span class="t">Marte<small>o desejo, a iniciativa e a coragem</small></span><span class="cad">🔒</span></li>
+      <li><span class="n">3</span><span class="t">Vénus<small>o prazer, o afecto e o que valoriza</small></span><span class="cad">🔒</span></li>
+      <li><span class="n">4</span><span class="t">Lilith<small>a parte secreta e indomável</small></span><span class="cad">🔒</span></li>
+      <li><span class="n">5</span><span class="t">Lua<small>o que precisa para se sentir amado(a)</small></span><span class="cad">🔒</span></li>
+      <li><span class="n">6</span><span class="t">Casa 8<small>a intimidade e a entrega</small></span><span class="cad">🔒</span></li>
+      <li><span class="n">7</span><span class="t">Sol<small>a sua essência dentro da relação</small></span><span class="cad">🔒</span></li>
+      <li><span class="n">8</span><span class="t">Ascendente<small>a primeira impressão que deixa</small></span><span class="cad">🔒</span></li>
+      <li><span class="n">9</span><span class="t">Casa 7<small>o parceiro que procura</small></span><span class="cad">🔒</span></li>
+    </ol>
+    <span class="em-breve">✨ Em breve ✨</span>
+  </section>
+
+  <section id="consulta" class="cartao">
+    <div class="consulta">
+      <div class="consulta-foto"><img src="mestre-r14.jpg" alt="Mestre Alberto com as cartas do Tarot" width="800" height="800" loading="lazy" /></div>
+      <div>
+        <h2>O seu coração <span class="lil">merece respostas</span></h2>
+        <p class="gancho" id="gancho">Vénus e Marte contam como você ama. Numa consulta online, o Mestre Alberto junta o seu céu e as cartas do Tarot para olhar para a sua vida amorosa de agora: o que está a acontecer, o que se repete e o caminho que se abre.</p>
+        <div class="botoes">
+          <a class="btn-grande" href="loja.html">🔮 Marcar uma consulta</a>
+          <a class="btn-wa" id="wa-consulta" href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a> · Cidades: GeoNames (CC BY 4.0)
+</footer>
+
+<script src="ascendente-calc.js"></script>
+<script src="mapa-amor-calc.js"></script>
+<script src="mapa-amor-textos.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // O U+FE0E no fim de cada glifo pede o símbolo de texto: sem ele, os telemóveis desenham emojis
+  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map((g) => g + "︎");
+  // Nomes como o público do Brasil os conhece, com o nome de Portugal ao lado quando é diferente
+  const NOMES = ["Áries (Carneiro)","Touro","Gêmeos","Câncer (Caranguejo)","Leão","Virgem","Libra (Balança)","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const EMOJI_EL = ["🔥","🌿","💨","💧"];
+  const { ELEMENTOS, PERFIL, ATRAI, SEDUZ } = TextosAmor;
+  const idx = (lon) => Math.floor(((lon % 360) + 360) % 360 / 30);
+  const curto = (i) => NOMES[i].split(" (")[0];
+
+  // A roda à volta da foto
+  const roda = $("roda");
+  GLIFOS.forEach((g, i) => {
+    const s = document.createElement("span"); s.textContent = g;
+    s.dataset.a = (i * 30 - 90) * Math.PI / 180; roda.appendChild(s);
+  });
+  function poeGlifos() {
+    const w = roda.offsetWidth;
+    roda.querySelectorAll("span").forEach((s) => { const a = +s.dataset.a; s.style.transform = `translate(${Math.cos(a) * w * 0.425}px, ${Math.sin(a) * w * 0.425}px)`; });
+  }
+  poeGlifos(); addEventListener("resize", poeGlifos);
+
+  // ===== Cidades (a mesma lista do GeoNames da calculadora de Ascendente; só serve para o fuso) =====
+  let CID = null, carregando = null, escolhida = null;
+  const sem = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  function carregarCidades() {
+    if (CID) return Promise.resolve(CID);
+    if (!carregando) carregando = fetch("cidades.json?v=1").then((r) => r.json()).then((d) => {
+      d.cidades.forEach((c) => { c.push(sem(c[0])); });
+      CID = d; return d;
+    });
+    return carregando;
+  }
+  const inpCid = $("cidade"), lista = $("lista-cid"), ok = $("cidade-ok");
+  inpCid.addEventListener("focus", carregarCidades, { once: true });
+  let ativo = -1, opcoes = [];
+  function rotulo(c) { return `${c[0]}${c[1] ? ", " + c[1] : ""}, ${CID.paises[c[2]] || c[2]}`; }
+  function procurar(q) {
+    const comeca = [], contem = [];
+    for (const c of CID.cidades) {
+      if (c[6].startsWith(q)) comeca.push(c); else if (q.length >= 3 && c[6].includes(q)) contem.push(c);
+      if (comeca.length >= 12) break;
+    }
+    return comeca.concat(contem).slice(0, 12);
+  }
+  inpCid.addEventListener("input", async () => {
+    escolhida = null; ok.textContent = "";
+    const q = sem(inpCid.value);
+    if (q.length < 2) { lista.classList.remove("aberta"); return; }
+    await carregarCidades();
+    opcoes = procurar(q);
+    ativo = -1;
+    lista.innerHTML = opcoes.length ? opcoes.map((c, i) => `<button type="button" role="option" data-i="${i}">${esc(c[0])} <small>${esc((c[1] ? c[1] + " · " : "") + (CID.paises[c[2]] || c[2]))}</small></button>`).join("")
+      : `<button type="button" disabled>Não encontrei. Escreva a cidade grande mais próxima.</button>`;
+    lista.classList.add("aberta");
+  });
+  function escolher(i) {
+    const c = opcoes[i]; if (!c) return;
+    escolhida = c; inpCid.value = rotulo(c); lista.classList.remove("aberta");
+    ok.textContent = "✓ " + rotulo(c);
+  }
+  lista.addEventListener("click", (e) => { const b = e.target.closest("button[data-i]"); if (b) escolher(+b.dataset.i); });
+  inpCid.addEventListener("keydown", (e) => {
+    if (!lista.classList.contains("aberta")) return;
+    const bs = lista.querySelectorAll("button[data-i]");
+    if (e.key === "ArrowDown") { ativo = Math.min(ativo + 1, bs.length - 1); }
+    else if (e.key === "ArrowUp") { ativo = Math.max(ativo - 1, 0); }
+    else if (e.key === "Enter") { if (ativo >= 0) { e.preventDefault(); escolher(ativo); } return; }
+    else return;
+    e.preventDefault(); bs.forEach((b, i) => b.classList.toggle("ativo", i === ativo));
+  });
+  document.addEventListener("click", (e) => { if (!e.target.closest(".rel")) lista.classList.remove("aberta"); });
+  $("semhora").addEventListener("change", (e) => { $("hora").disabled = e.target.checked; });
+
+  // ===== Data e hora escritas à mão (as mesmas regras da calculadora de Ascendente) =====
+  // Aceita 15/03/1990, 15-3-1990, 15.03.90, 15 03 1990, 15031990 e «15 de março de 1990».
+  const MESES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  function lerData(txt) {
+    let t = sem(txt).replace(/\bde\b/g, " ");
+    MESES.forEach((m, i) => { t = t.replace(new RegExp("\\b" + m + "[a-z]*", "g"), " " + (i + 1) + " "); });
+    let p = t.match(/\d+/g) || [];
+    if (p.length === 1 && /^\d{8}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length === 1 && /^\d{6}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length !== 3) return null;
+    let [d, m, a] = p.map(Number);
+    if (p[2].length <= 2) a += (a <= new Date().getFullYear() % 100) ? 2000 : 1900;
+    const dt = new Date(Date.UTC(a, m - 1, d));
+    if (a < 1900 || a > new Date().getFullYear() || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) return null;
+    return [a, m, d];
+  }
+  // Aceita 14:30, 1430, 14h30, 14.30, 9, 9h.
+  function lerHora(txt) {
+    const t = sem(txt).replace(/\s+/g, "");
+    let m = t.match(/^(\d{1,2})(?:[:h.]?(\d{2}))?(?:h|min)?$/) || (/^\d{3,4}$/.test(t) && [null, t.slice(0, t.length - 2), t.slice(-2)]);
+    if (!m) return null;
+    const h = +m[1], mi = m[2] ? +m[2] : 0;
+    return (h <= 23 && mi <= 59) ? [h, mi] : null;
+  }
+  const inpHora = $("hora");
+  inpHora.addEventListener("input", (e) => {
+    if (e.inputType && e.inputType.startsWith("delete")) return;
+    const v = inpHora.value;
+    if (/^[\d:]*$/.test(v)) {
+      const dig = v.replace(/\D/g, "").slice(0, 4);
+      inpHora.value = dig.length > 2 ? dig.slice(0, 2) + ":" + dig.slice(2) : dig;
+    }
+  });
+  inpHora.addEventListener("blur", () => {
+    const r = lerHora(inpHora.value);
+    if (r) inpHora.value = String(r[0]).padStart(2, "0") + ":" + String(r[1]).padStart(2, "0");
+  });
+  const inpData = $("data");
+  inpData.addEventListener("input", (e) => {
+    const v = inpData.value;
+    if (e.inputType && e.inputType.startsWith("delete")) return;
+    if (/^[\d\/]*$/.test(v)) {
+      const dig = v.replace(/\D/g, "").slice(0, 8);
+      inpData.value = dig.length > 4 ? dig.slice(0, 2) + "/" + dig.slice(2, 4) + "/" + dig.slice(4)
+                    : dig.length > 2 ? dig.slice(0, 2) + "/" + dig.slice(2) : dig;
+    }
+  });
+  inpData.addEventListener("blur", () => {
+    const r = lerData(inpData.value);
+    if (r) inpData.value = String(r[2]).padStart(2, "0") + "/" + String(r[1]).padStart(2, "0") + "/" + r[0];
+  });
+
+  // ===== Calcular =====
+  function mostraErro(t) { const e = $("erro"); e.textContent = t; e.classList.toggle("ver", !!t); }
+  function calcular(rolar) {
+    mostraErro("");
+    const nome = $("nome").value.trim(), data = $("data").value, semhora = $("semhora").checked;
+    const horaLida = semhora ? [12, 0] : lerHora($("hora").value);
+    const hora = horaLida ? String(horaLida[0]).padStart(2, "0") + ":" + String(horaLida[1]).padStart(2, "0") : "";
+    if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return mostraErro("Escreva o seu nome, por favor.");
+    const dataLida = lerData(data);
+    if (!data) return mostraErro("Falta a data de nascimento.");
+    if (!dataLida) return mostraErro("Não percebi a data. Escreva assim: dia/mês/ano, por exemplo 15/03/1990.");
+    if (!semhora && !$("hora").value.trim()) return mostraErro("Falta a hora de nascimento (ou marque «Não sei a hora»).");
+    if (!semhora && !horaLida) return mostraErro("Não percebi a hora. Escreva assim: 14:30.");
+    if (!escolhida) return mostraErro("Escolha a cidade onde nasceu na lista que aparece ao escrever.");
+    const [A, M, D] = dataLida, [h, mi] = horaLida;
+    const tz = CID.fusos[escolhida[5]] || "UTC";
+    let ms;
+    try { ms = AstroAsc.localParaUTC(A, M, D, h, mi, tz); } catch (e) { return mostraErro("Não consegui ler a data. Confirme os dados, por favor."); }
+    const r = AstroAmor.venusMarte(ms);
+    const iV = idx(r.venus), iM = idx(r.marte), eV = iV % 4, eM = iM % 4;
+    $("g-ven").textContent = GLIFOS[iV]; $("n-ven").textContent = NOMES[iV]; $("d-ven").textContent = AstroAsc.grau(r.venus);
+    $("g-mar").textContent = GLIFOS[iM]; $("n-mar").textContent = NOMES[iM]; $("d-mar").textContent = AstroAsc.grau(r.marte);
+    $("e-ven").textContent = EMOJI_EL[eV] + " " + ELEMENTOS[eV]; $("e-mar").textContent = EMOJI_EL[eM] + " " + ELEMENTOS[eM];
+    const primeiro = nome.split(/\s+/)[0];
+    $("res-titulo").innerHTML = `<span class="res-nome">${esc(primeiro)}</span><span class="res-frase">o seu Mapa do Amor e da Sedução</span>`;
+    $("k-perfil").textContent = `♀︎ Vénus em ${ELEMENTOS[eV]} + ♂︎ Marte em ${ELEMENTOS[eM]}`;
+    $("t-perfil").textContent = PERFIL[ELEMENTOS[eV] + "+" + ELEMENTOS[eM]];
+    $("k-atrai").textContent = `♀︎ Vénus em ${curto(iV)}`;
+    $("t-atrai").textContent = ATRAI[iV];
+    $("k-seduz").textContent = `♂︎ Marte em ${curto(iM)}`;
+    $("t-seduz").textContent = SEDUZ[iM];
+    // Sem a hora: calcula-se ao meio-dia. Se Vénus ou Marte mudaram de signo nesse dia, diz-se (não se inventa)
+    let aviso = "";
+    if (semhora) {
+      const ini = AstroAmor.venusMarte(AstroAsc.localParaUTC(A, M, D, 0, 0, tz)), fim = AstroAmor.venusMarte(AstroAsc.localParaUTC(A, M, D, 23, 59, tz));
+      const muda = [];
+      if (idx(ini.venus) !== idx(fim.venus)) muda.push(`Vénus mudou de ${curto(idx(ini.venus))} para ${curto(idx(fim.venus))}`);
+      if (idx(ini.marte) !== idx(fim.marte)) muda.push(`Marte mudou de ${curto(idx(ini.marte))} para ${curto(idx(fim.marte))}`);
+      aviso = muda.length ? `⚠️ No dia em que nasceu, ${muda.join(" e ")}. Sem a hora certa, não dá para saber qual é o seu: o resultado foi calculado ao meio-dia.`
+                          : "Sem a hora, calculámos ao meio-dia. Vénus e Marte não mudaram de signo nesse dia, por isso o resultado está certo.";
+    }
+    $("aviso-hora").textContent = aviso;
+    $("dados-nasc").textContent = `Nascimento: ${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A} às ${semhora ? "hora desconhecida" : hora} · ${inpCid.value}`;
+    $("gancho").textContent = `${primeiro}, com Vénus em ${curto(iV)} e Marte em ${curto(iM)}, o seu céu já diz muito sobre como você ama. Numa consulta online, o Mestre Alberto junta o seu céu e as cartas do Tarot para olhar para a sua vida amorosa de agora: o que está a acontecer, o que se repete e o caminho que se abre.`;
+    $("wa-consulta").href = "https://wa.me/351914920427?text=" + encodeURIComponent(`Olá Mestre Alberto, fiz o Mapa do Amor no site: Vénus em ${NOMES[iV]} e Marte em ${NOMES[iM]}. Gostava de marcar uma consulta.`);
+    $("resultado").classList.add("ver");
+    if (rolar) $("resultado").scrollIntoView({ behavior: "smooth" });
+  }
+  $("form").addEventListener("submit", (ev) => { ev.preventDefault(); calcular(true); });
+
+  // ===== Vem com os dados no endereço (?nome=&data=&hora=&cidade=): preenche e calcula =====
+  const vem = new URLSearchParams(location.search);
+  if (vem.get("nome")) $("nome").value = vem.get("nome").slice(0, 80);
+  if (vem.get("data")) { inpData.value = vem.get("data").slice(0, 22); inpData.dispatchEvent(new Event("blur")); }
+  if (vem.get("hora")) { inpHora.value = vem.get("hora").slice(0, 12); inpHora.dispatchEvent(new Event("blur")); }
+  if (vem.get("cidade")) {
+    carregarCidades().then(() => {
+      const q = sem(vem.get("cidade"));
+      opcoes = procurar(q);
+      const i = Math.max(0, opcoes.findIndex((c) => c[6] === q));
+      if (opcoes.length) escolher(i); else inpCid.value = vem.get("cidade");
+      if (vem.get("nome") && vem.get("data")) calcular(vem.get("ver") !== "topo");
+    });
+  }
+})();
+</script>
+</body>
+</html>

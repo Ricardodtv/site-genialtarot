@@ -491,6 +491,21 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 @keyframes girar-sirene { to { transform: rotate(360deg); } }
 
 /* ✨ 21/10/2026 — destaque da Calculadora de Ascendente (pedido dele: «em destaque na página principal», tons de lilás) */
+/* 💘 21/10/2026: destaque do Mapa do Amor e da Sedução (amostra grátis), pedido dele */
+.faixa-amor { position: relative; z-index: 5; display: flex; align-items: center; gap: 1rem; text-decoration: none;
+  width: min(34rem, 92%); margin: 1.4rem auto 0.4rem; padding: 0.95rem 1.15rem; border-radius: 1rem; color: #fff;
+  border: 1.5px solid oklch(0.85 0.12 350 / 0.7);
+  background: linear-gradient(135deg, oklch(0.52 0.20 355 / 0.95), oklch(0.36 0.17 320 / 0.95) 55%, oklch(0.22 0.09 300 / 0.95));
+  box-shadow: 0 0 34px oklch(0.70 0.19 355 / 0.45); transition: transform .2s, box-shadow .2s; animation: faixa-amor-bate 2.4s ease-in-out infinite; }
+.faixa-amor:hover { transform: translateY(-2px); }
+@keyframes faixa-amor-bate { 50% { box-shadow: 0 0 52px oklch(0.75 0.20 355 / 0.8); } }
+.faixa-amor-ico { font-size: 2.4rem; line-height: 1; flex: none; filter: drop-shadow(0 0 10px oklch(0.80 0.20 355 / .8)); }
+.faixa-amor-txt { display: flex; flex-direction: column; line-height: 1.25; text-align: left; }
+.faixa-amor-txt strong { font-family: "Cinzel", var(--font-display); font-size: 1.08rem; }
+.faixa-amor-txt small { font-size: 0.8rem; opacity: 0.92; margin-top: 0.15rem; }
+.faixa-amor .faixa-sobre-seta { width: 1.6rem; height: 1.6rem; flex: none; stroke: #fff; fill: none; stroke-width: 1.7; }
+.faixa-amor-eti { position: absolute; top: -0.6rem; left: 1rem; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em; padding: 0.12rem 0.5rem; border-radius: 9999px;
+  background: linear-gradient(135deg, oklch(0.85 0.13 88), oklch(0.72 0.14 70)); color: oklch(0.2 0.05 285); }
 /* 🌙 21/10/2026: a Lua de hoje, que muda sozinha todos os dias e leva ao Calendário Lunar (/lua) */
 .faixa-lua { position: relative; z-index: 5; display: flex; align-items: center; gap: 1rem; text-decoration: none;
   width: min(34rem, 92%); margin: 1.4rem auto 0.4rem; padding: 0.9rem 1.15rem; border-radius: 1rem;
@@ -641,6 +656,14 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <img class="faixa-sobre-foto" src="mestre-avatar.jpg" srcset="mestre-avatar.jpg 1x, mestre-avatar@2x.jpg 2x" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <span class="faixa-sobre-txt">Conheça o <strong>Mestre Alberto</strong><small>18 anos a ler cartas · quem sou e como trabalho</small></span>
       <svg class="icon faixa-sobre-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+
+    <!-- 💘 21/10/2026: Mapa do Amor e da Sedução (amostra grátis) -->
+    <a href="/mapa-amor" class="faixa-amor animate-fade-up">
+      <span class="faixa-amor-eti">NOVO · GRÁTIS</span>
+      <span class="faixa-amor-ico" aria-hidden="true">💘</span>
+      <span class="faixa-amor-txt"><strong>Mapa do Amor e da Sedução</strong><small>Vénus e Marte no seu mapa: o que o atrai e como seduz</small></span>
+      <svg class="faixa-sobre-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
     </a>
 
     <!-- 🌙 21/10/2026: a Lua de hoje (preenchida pelo script no fim, com lua-dados.js) -->
