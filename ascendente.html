@@ -251,26 +251,26 @@ footer a { color: inherit; }
     <form id="form" novalidate>
       <div class="grelha">
         <label class="campo">O seu nome
-          <input type="text" id="nome" autocomplete="name" required maxlength="80" placeholder="Como gosta de ser chamado(a)" />
+          <input type="text" id="nome" autocomplete="off" required maxlength="80" />
         </label>
         <label class="campo">O seu email <small>(enviamos-lhe o resultado)</small>
-          <input type="email" id="email" autocomplete="email" required maxlength="120" placeholder="nome@exemplo.com" />
+          <input type="email" id="email" autocomplete="off" required maxlength="120" />
         </label>
         <label class="campo">WhatsApp <small>(opcional, com o indicativo do país)</small>
-          <input type="tel" id="tel" autocomplete="tel" maxlength="25" placeholder="+55 27 99999-9999" />
+          <input type="tel" id="tel" autocomplete="off" maxlength="25" />
         </label>
         <label class="campo">Data de nascimento <small>(dia/mês/ano, ex.: 15/03/1990)</small>
-          <input type="text" id="data" required inputmode="numeric" autocomplete="bday" maxlength="22" placeholder="DD/MM/AAAA" />
+          <input type="text" id="data" required inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" />
         </label>
         <label class="campo">Hora de nascimento <small>(a que está na certidão)</small>
-          <input type="text" id="hora" inputmode="numeric" maxlength="12" placeholder="HH:MM (ex.: 14:30)" />
+          <input type="text" id="hora" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="HH:MM (ex.: 14:30)" />
         </label>
         <label class="campo" style="justify-content:flex-end">
           <span class="caixinha"><input type="checkbox" id="semhora" /><span>Não sei a hora em que nasci</span></span>
         </label>
         <div class="campo largo rel">
           <label class="campo" for="cidade">Cidade onde nasceu <small>(escreva e escolha na lista)</small></label>
-          <input type="text" id="cidade" autocomplete="off" required placeholder="Ex.: Guarapari, Salvador, Lisboa, Porto…" />
+          <input type="text" id="cidade" autocomplete="off" required />
           <div class="lista-cid" id="lista-cid" role="listbox"></div>
           <div class="marca-ok" id="cidade-ok"></div>
         </div>
