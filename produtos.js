@@ -30,6 +30,11 @@
    pagamentos→ (opcional) com "pagina", a linha das formas de pagamento
    topvendas → true mostra o selo DOURADO "✦ Top Vendas ✦" com
                ⭐⭐⭐ por cima (opcional; também põe o produto à frente)
+
+   PRODUTOS EM PAUSA (no fim deste ficheiro):
+   o compartimento dos produtos que NÃO aparecem na loja, guardados
+   inteiros. Para voltar a pôr um à venda: mover o bloco de lá para
+   cá, para a sua categoria (e apagar a linha "pausado").
    ============================================================ */
 
 const PRODUTOS = [
@@ -282,16 +287,6 @@ const PRODUTOS = [
   /* ================= MAPAS ASTRAIS ================= */
 
   {
-    nome: "✨ Mapa Astral Conheça Sua Personalidade – Feito pelo Mestre Alberto 🌟",
-    categoria: "Mapas Astrais",
-    preco: "195 €",
-    foto: "mapa-astral.jpg",
-    descricao: "O retrato mais profundo de si: o seu mapa astral completo, interpretado pelo Mestre Alberto — talentos, desafios, missão de vida e o que os astros desenharam para si desde o nascimento. Entregue por escrito, para guardar para sempre.",
-    link: "https://mypos.com/vmp/btn/BF6O2I7O68M52",
-    etiqueta: "MAPA ASTRAL",
-  },
-
-  {
     nome: "🔮 Análise ao Seu Signo e Personalidade – Escrita pelo Mestre Alberto ✨",
     categoria: "Mapas Astrais",
     preco: "145 €",
@@ -309,6 +304,33 @@ const PRODUTOS = [
     foto: "curso-tarot.jpg",
     descricao: "Três meses de formação direta com o Mestre Alberto para aprender a ler as cartas do zero: arcanos, métodos de tiragem, prática acompanhada e a confiança para fazer as suas próprias leituras. Vagas limitadas.",
     link: "https://mypos.com/vmp/btn/B8Q8NUM8CSD06",
+  },
+
+];
+
+
+/* ============================================================
+   ⏸️ PRODUTOS EM PAUSA — guardados, mas NÃO aparecem na loja
+   ============================================================
+   A loja só lê a lista PRODUTOS, lá em cima; o que está aqui fica
+   escondido, com tudo guardado (fotos, links de pagamento, PIX).
+   Para voltar a pôr à venda: mover o bloco inteiro para a lista
+   PRODUTOS, na sua categoria, e apagar a linha "pausado".
+   ============================================================ */
+
+const PRODUTOS_EM_PAUSA = [
+
+  /* 21/10/2026 — pedido dele: retirar da loja o Mapa Astral de 195 €
+     (o Mapa Astral completo de 15 € fica nas promoções) */
+  {
+    nome: "✨ Mapa Astral Conheça Sua Personalidade – Feito pelo Mestre Alberto 🌟",
+    categoria: "Mapas Astrais",
+    preco: "195 €",
+    foto: "mapa-astral.jpg",
+    descricao: "O retrato mais profundo de si: o seu mapa astral completo, interpretado pelo Mestre Alberto — talentos, desafios, missão de vida e o que os astros desenharam para si desde o nascimento. Entregue por escrito, para guardar para sempre.",
+    link: "https://mypos.com/vmp/btn/BF6O2I7O68M52",
+    etiqueta: "MAPA ASTRAL",
+    pausado: "21/10/2026 — retirado da loja a pedido dele",
   },
 
 ];
