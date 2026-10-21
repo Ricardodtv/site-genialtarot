@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculadora de Ascendente Grátis — Genial Tarot · Mestre Alberto</title>
+<meta name="description" content="Descubra o seu Ascendente, o seu signo solar e a sua Lua em 1 minuto. Calculadora de Ascendente grátis do Mestre Alberto, com o céu calculado ao minuto." />
+<meta name="theme-color" content="#3a2257" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Calculadora de Ascendente Grátis — Mestre Alberto" />
+<meta property="og:description" content="Descubra o seu Ascendente, o seu Sol e a sua Lua em 1 minuto." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/ascendente" />
+<meta property="og:image" content="https://genialtarot.com/mestre-r06.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Calculadora de Ascendente — tons de lilás (21/10/2026) ============ */
+:root {
+  --fundo: oklch(0.17 0.06 305);
+  --fundo-2: oklch(0.23 0.08 305);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.05 310);
+  --lilas: oklch(0.74 0.14 310);
+  --lilas-claro: oklch(0.86 0.09 312);
+  --lavanda: oklch(0.92 0.05 310);
+  --ameixa: oklch(0.40 0.15 310);
+  --ouro: oklch(0.85 0.13 88);
+  --borda: oklch(0.75 0.12 310 / 0.35);
+  --vidro: oklch(0.30 0.09 305 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.80 0.12 320), oklch(0.66 0.18 300) 55%, oklch(0.55 0.19 290));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.40 0.16 310) 0%, oklch(0.20 0.08 305) 45%, oklch(0.12 0.05 300) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(68rem, 100% - 2rem); margin: 0 auto; }
+
+/* topo */
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.marca { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--texto); }
+.marca b { font-family: var(--titulo); font-size: 1.15rem; letter-spacing: .04em; background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.marca small { display: block; font-size: .72rem; color: var(--suave); letter-spacing: .12em; text-transform: uppercase; }
+.voltar { font-size: .85rem; color: var(--suave); text-decoration: none; border: 1px solid var(--borda); border-radius: 999px; padding: .4rem .9rem; }
+
+/* herói */
+.heroi { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; text-align: center; padding: 1rem 0 2rem; }
+@media (min-width: 860px) { .heroi { grid-template-columns: 1.05fr 1fr; text-align: left; } }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2.1rem, 6vw, 3.6rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+h1 .lil { background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 34rem; margin: 0 auto 1rem; }
+@media (min-width: 860px) { .sub { margin-left: 0; } }
+.pontos { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: .8rem 0 1.2rem; padding: 0; list-style: none; }
+@media (min-width: 860px) { .pontos { justify-content: flex-start; } }
+.pontos li { font-size: .82rem; background: var(--vidro); border: 1px solid var(--borda); border-radius: 999px; padding: .35rem .8rem; }
+.btn-grande { display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+  color: white; background: var(--grad-lilas); border-radius: 999px; padding: .95rem 1.7rem; box-shadow: 0 10px 30px oklch(0.55 0.19 300 / .5), inset 0 1px 0 #fff5;
+  transition: transform .2s, box-shadow .2s; }
+.btn-grande:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 40px oklch(0.60 0.2 305 / .65); }
+
+/* a roda do zodíaco à volta da foto */
+.roda-wrap { position: relative; width: min(26rem, 88vw); aspect-ratio: 1; margin: 0 auto; }
+.roda { position: absolute; inset: 0; border-radius: 50%; animation: gira 60s linear infinite;
+  background: conic-gradient(from 0deg, oklch(0.70 0.15 320 / .35), oklch(0.55 0.18 290 / .2), oklch(0.80 0.10 310 / .35), oklch(0.55 0.18 290 / .2), oklch(0.70 0.15 320 / .35));
+  box-shadow: 0 0 60px oklch(0.70 0.16 310 / .45), inset 0 0 40px oklch(0.30 0.10 300 / .6); }
+.roda span { position: absolute; left: 50%; top: 50%; width: 2.2rem; height: 2.2rem; margin: -1.1rem 0 0 -1.1rem; display: grid; place-items: center;
+  font-size: 1.35rem; color: var(--ouro); text-shadow: 0 0 10px oklch(0.85 0.13 88 / .8); }
+@keyframes gira { to { transform: rotate(360deg); } }
+.foto-anel { position: absolute; inset: 15%; border-radius: 50%; overflow: hidden; border: 4px solid oklch(0.86 0.09 312);
+  box-shadow: 0 0 0 6px oklch(0.55 0.18 300 / .5), 0 20px 50px #0008; }
+.foto-anel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* cartões */
+.cartao { background: linear-gradient(160deg, oklch(0.32 0.10 308 / .82), oklch(0.22 0.08 300 / .9)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1.2rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; backdrop-filter: blur(6px); }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.1rem); margin: 0 0 .4rem; text-align: center; }
+h2 .lil { background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cartao > p.int { text-align: center; color: var(--suave); margin: 0 auto 1.3rem; max-width: 36rem; }
+
+/* formulário */
+.grelha { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 680px) { .grelha { grid-template-columns: 1fr 1fr; } .largo { grid-column: 1 / -1; } }
+label.campo { display: flex; flex-direction: column; gap: .35rem; font-size: .88rem; font-weight: 600; color: var(--lavanda); }
+label.campo small { font-weight: 400; color: var(--suave); }
+input[type=text], input[type=email], input[type=tel], input[type=date], input[type=time] {
+  width: 100%; font: inherit; font-size: 1rem; color: var(--texto); background: oklch(0.16 0.05 300 / .75); border: 1.5px solid var(--borda);
+  border-radius: .8rem; padding: .8rem .9rem; outline: none; transition: border-color .2s, box-shadow .2s; color-scheme: dark; }
+input:focus { border-color: var(--lilas); box-shadow: 0 0 0 4px oklch(0.74 0.14 310 / .25); }
+.lista-cid { position: absolute; z-index: 20; left: 0; right: 0; top: 100%; margin-top: .25rem; max-height: 15rem; overflow-y: auto;
+  background: oklch(0.24 0.08 305); border: 1px solid var(--borda); border-radius: .8rem; box-shadow: 0 14px 40px #000a; display: none; }
+.lista-cid.aberta { display: block; }
+.lista-cid button { display: block; width: 100%; text-align: left; border: 0; background: none; color: var(--texto); font: inherit; font-size: .92rem; padding: .6rem .9rem; cursor: pointer; }
+.lista-cid button:hover, .lista-cid button.ativo { background: oklch(0.40 0.14 310 / .6); }
+.lista-cid button small { color: var(--suave); }
+.rel { position: relative; }
+.marca-ok { font-size: .8rem; color: oklch(0.85 0.14 150); min-height: 1.1em; }
+.caixinha { display: flex; gap: .6rem; align-items: flex-start; font-size: .84rem; color: var(--suave); font-weight: 400; }
+.caixinha input { margin-top: .2rem; accent-color: var(--lilas); width: 1.05rem; height: 1.05rem; flex: none; }
+.erro { display: none; margin-top: .9rem; padding: .7rem .9rem; border-radius: .8rem; background: oklch(0.40 0.14 20 / .35); border: 1px solid oklch(0.65 0.18 20 / .6); font-size: .9rem; }
+.erro.ver { display: block; }
+.enviar { display: flex; justify-content: center; margin-top: 1.3rem; }
+.nota-priv { text-align: center; font-size: .76rem; color: var(--suave); margin-top: .8rem; }
+
+/* resultado */
+#resultado { display: none; scroll-margin-top: 1rem; }
+#resultado.ver { display: block; animation: surgir .7s ease-out; }
+@keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.trio { display: grid; gap: 1rem; grid-template-columns: 1fr; margin: 1.2rem 0; }
+@media (min-width: 680px) { .trio { grid-template-columns: repeat(3, 1fr); } }
+.astro { text-align: center; border-radius: 1.1rem; padding: 1.2rem 1rem; background: oklch(0.18 0.06 300 / .7); border: 1px solid var(--borda); }
+.astro.asc { background: linear-gradient(160deg, oklch(0.55 0.18 305 / .55), oklch(0.32 0.12 298 / .8)); border-color: oklch(0.85 0.10 312 / .7);
+  box-shadow: 0 0 40px oklch(0.70 0.17 310 / .45); }
+@media (min-width: 680px) { .astro.asc { transform: scale(1.06); } }
+.astro .qual { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.astro .glifo { font-size: 3rem; line-height: 1.1; color: var(--ouro); text-shadow: 0 0 18px oklch(0.85 0.13 88 / .7); margin: .3rem 0; }
+.astro .nome-signo { font-family: var(--titulo); font-size: 1.45rem; font-weight: 700; }
+.astro .grau { font-size: .82rem; color: var(--suave); }
+.texto-asc { font-family: var(--serifa); font-size: 1.22rem; line-height: 1.6; color: var(--lavanda); max-width: 44rem; margin: .6rem auto 0; text-align: center; }
+.aviso-hora { text-align: center; font-size: .86rem; color: oklch(0.88 0.12 90); margin-top: .8rem; }
+.dados-nasc { text-align: center; font-size: .82rem; color: var(--suave); margin-top: .4rem; }
+
+/* consulta */
+.consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 860px) { .consulta { grid-template-columns: 0.8fr 1.2fr; } }
+.consulta-foto { border-radius: 1.3rem; overflow: hidden; border: 3px solid oklch(0.80 0.11 312); box-shadow: 0 20px 50px #0009, 0 0 40px oklch(0.65 0.17 305 / .4); max-width: 22rem; margin: 0 auto; }
+.consulta-foto img { display: block; width: 100%; height: auto; }
+.consulta h2 { text-align: left; }
+@media (max-width: 859px) { .consulta h2, .consulta .gancho { text-align: center; } }
+.gancho { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); margin: .2rem 0 1rem; }
+.planos { display: grid; gap: .9rem; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .planos { grid-template-columns: 1fr 1fr; } }
+.plano { position: relative; border-radius: 1.1rem; padding: 1.1rem 1rem 1rem; background: oklch(0.18 0.06 300 / .75); border: 1px solid var(--borda); display: flex; flex-direction: column; gap: .5rem; }
+.plano.top { border-color: oklch(0.85 0.13 88 / .8); box-shadow: 0 0 30px oklch(0.85 0.13 88 / .25); }
+.plano .eti { position: absolute; top: -.7rem; left: 1rem; font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .2rem .65rem; }
+.plano h3 { font-family: var(--titulo); font-size: 1.05rem; margin: .2rem 0 0; }
+.plano .preco { font-size: 1.6rem; font-weight: 800; color: var(--lilas-claro); }
+.btn-pagar { display: flex; align-items: center; justify-content: center; gap: .45rem; text-decoration: none; font-weight: 800; color: white; background: var(--grad-lilas);
+  border-radius: .8rem; padding: .7rem .8rem; box-shadow: 0 8px 22px oklch(0.55 0.19 300 / .45); transition: transform .2s; }
+.btn-pagar:hover { transform: scale(1.03); }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
+
+/* PIX (igual ao da loja, com as mesmas regras) */
+.pix-divisor { display: flex; align-items: center; gap: .6rem; color: oklch(0.85 0.12 170); font-size: .82rem; font-weight: 700; white-space: nowrap; margin-top: .2rem; }
+.pix-divisor::before, .pix-divisor::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #32BCAD); }
+.pix-divisor::after { background: linear-gradient(90deg, #32BCAD, transparent); }
+.pix-promo-selo { align-self: center; display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; background: linear-gradient(135deg, oklch(0.62 0.2 145), oklch(0.55 0.17 160)); color: white; font-size: .68rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: .28rem .75rem; box-shadow: 0 0 16px oklch(0.75 0.2 120 / .6); animation: pix-pisca 1.2s ease-in-out infinite; }
+.pix-promo-selo .menos { background: oklch(0.88 0.18 95); color: oklch(0.25 0.05 80); border-radius: .4rem; padding: .05rem .35rem; font-size: .82rem; }
+@keyframes pix-pisca { 0%,100% { transform: scale(1); filter: brightness(1); } 50% { transform: scale(1.06); filter: brightness(1.25); } }
+.btn-pix { display: flex; align-items: center; justify-content: center; gap: .5rem; width: 100%; border-radius: .8rem; border: 1.5px solid #32BCAD; background: oklch(0.24 0.05 200 / .9); color: white; font-weight: 700; font-size: .9rem; padding: .6rem .8rem; cursor: pointer; transition: transform .2s; }
+.btn-pix:hover { transform: scale(1.03); }
+.btn-pix .riscado { text-decoration: line-through; opacity: .6; font-weight: 400; font-size: .8rem; }
+.btn-pix .valor-pix { color: oklch(0.88 0.15 170); }
+.pix-logo { width: 1.25rem; height: 1.25rem; flex: none; }
+.pix-fundo { position: fixed; inset: 0; z-index: 100; display: none; place-items: center; background: rgba(5,5,20,.82); padding: 1rem; }
+.pix-fundo.aberto { display: grid; animation: surgir .3s ease-out; }
+.pix-caixa { position: relative; width: 100%; max-width: 24rem; max-height: 92vh; overflow-y: auto; border-radius: 1rem; background: #fff; color: #1d1d2b; padding: 1.2rem 1.2rem 1.4rem; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+.pix-fechar { position: absolute; top: .4rem; right: .6rem; border: 0; background: none; font-size: 1.6rem; color: #666; cursor: pointer; }
+.pix-caixa h4 { display: flex; align-items: center; justify-content: center; gap: .4rem; font-size: 1.15rem; color: #0f766e; margin: .2rem 0 .3rem; }
+.pix-caixa .pix-prod { font-size: .82rem; color: #555; line-height: 1.35; }
+.pix-caixa .pix-faixa { margin: .7rem 0 .2rem; border-radius: .6rem; background: #dcfce7; color: #166534; font-weight: 800; font-size: .85rem; padding: .4rem; }
+.pix-caixa .pix-valor { font-size: 1.9rem; font-weight: 800; color: #0f766e; margin: .3rem 0 0; }
+.pix-caixa .pix-valor s { font-size: 1rem; color: #999; font-weight: 400; margin-right: .4rem; }
+.pix-caixa .pix-passo { margin: .6rem 0; font-size: .86rem; background: #fef9c3; border-radius: .6rem; padding: .5rem; line-height: 1.4; }
+.pix-caixa img.pix-qr { width: 15rem; max-width: 100%; height: auto; image-rendering: pixelated; margin: .2rem auto; display: block; }
+.pix-copiar { width: 100%; border: 0; border-radius: .6rem; background: #32BCAD; color: white; font-weight: 700; font-size: .95rem; padding: .7rem; margin-top: .5rem; cursor: pointer; }
+.pix-aviso { font-size: .78rem; color: #555; margin-top: .7rem; line-height: 1.45; }
+.pix-wa { display: inline-block; margin-top: .6rem; border-radius: 999px; background: #25D366; color: white; font-weight: 700; font-size: .86rem; padding: .55rem 1rem; text-decoration: none; }
+
+/* os 12 signos */
+.signos { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; }
+@media (min-width: 680px) { .signos { grid-template-columns: repeat(6, 1fr); } }
+.signos div { text-align: center; border-radius: .9rem; padding: .7rem .3rem; background: oklch(0.18 0.06 300 / .6); border: 1px solid var(--borda); font-size: .8rem; color: var(--suave); }
+.signos div b { display: block; font-size: 1.7rem; color: var(--ouro); font-weight: 400; }
+.oque { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 1.2rem; }
+@media (min-width: 680px) { .oque { grid-template-columns: repeat(3, 1fr); } }
+.oque div { border-radius: 1rem; padding: 1rem; background: oklch(0.18 0.06 300 / .6); border: 1px solid var(--borda); }
+.oque h3 { margin: 0 0 .3rem; font-family: var(--titulo); font-size: 1.05rem; color: var(--lilas-claro); }
+.oque p { margin: 0; font-size: .9rem; color: var(--suave); }
+section { margin: 0 0 2.2rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="marca" href="/"><span style="font-size:1.6rem">☾</span><span><b>Genial Tarot</b><small>Mestre Alberto</small></span></a>
+    <a class="voltar" href="/">← Página inicial</a>
+  </header>
+
+  <section class="heroi">
+    <div>
+      <span class="selo">✦ Grátis · em 1 minuto ✦</span>
+      <h1>Descubra o seu <span class="lil">Ascendente</span></h1>
+      <p class="sub">O seu signo solar mostra quem você é por dentro. O Ascendente mostra como o mundo o vê, a primeira impressão que deixa e o caminho que a sua alma escolheu.</p>
+      <ul class="pontos">
+        <li>☉ Signo solar</li><li>☽ Signo da Lua</li><li>↑ Ascendente</li><li>🔭 Céu calculado ao minuto</li>
+      </ul>
+      <a class="btn-grande" href="#calcular">✨ Calcular o meu Ascendente</a>
+    </div>
+    <div class="roda-wrap" aria-hidden="true">
+      <div class="roda" id="roda"></div>
+      <div class="foto-anel"><img src="mestre-r06.jpg" alt="Mestre Alberto diante da roda do zodíaco" width="800" height="800" fetchpriority="high" /></div>
+    </div>
+  </section>
+
+  <section id="calcular" class="cartao">
+    <h2>A sua <span class="lil">carta do céu</span></h2>
+    <p class="int">Preencha com os dados do seu nascimento. Quanto mais certa a hora, mais certo o Ascendente: ele muda de signo a cada duas horas, mais ou menos.</p>
+    <form id="form" novalidate>
+      <div class="grelha">
+        <label class="campo">O seu nome
+          <input type="text" id="nome" autocomplete="name" required maxlength="80" placeholder="Como gosta de ser chamado(a)" />
+        </label>
+        <label class="campo">O seu email <small>(enviamos-lhe o resultado)</small>
+          <input type="email" id="email" autocomplete="email" required maxlength="120" placeholder="nome@exemplo.com" />
+        </label>
+        <label class="campo">WhatsApp <small>(opcional, com o indicativo do país)</small>
+          <input type="tel" id="tel" autocomplete="tel" maxlength="25" placeholder="+55 27 99999-9999" />
+        </label>
+        <label class="campo">Data de nascimento
+          <input type="date" id="data" required min="1900-01-01" max="2026-12-31" />
+        </label>
+        <label class="campo">Hora de nascimento <small>(a que está na certidão)</small>
+          <input type="time" id="hora" step="60" />
+        </label>
+        <label class="campo" style="justify-content:flex-end">
+          <span class="caixinha"><input type="checkbox" id="semhora" /><span>Não sei a hora em que nasci</span></span>
+        </label>
+        <div class="campo largo rel">
+          <label class="campo" for="cidade">Cidade onde nasceu <small>(escreva e escolha na lista)</small></label>
+          <input type="text" id="cidade" autocomplete="off" required placeholder="Ex.: Guarapari, Salvador, Lisboa, Porto…" />
+          <div class="lista-cid" id="lista-cid" role="listbox"></div>
+          <div class="marca-ok" id="cidade-ok"></div>
+        </div>
+        <label class="campo largo">
+          <span class="caixinha"><input type="checkbox" id="aceito" required />
+            <span>Aceito que o Mestre Alberto guarde estes dados para me enviar o resultado e me contactar sobre consultas. Pode pedir para os apagar quando quiser (<a href="privacidade.html" target="_blank">Política de Privacidade</a>).</span></span>
+        </label>
+      </div>
+      <div class="erro" id="erro" role="alert"></div>
+      <div class="enviar"><button class="btn-grande" type="submit" id="btn-calc">🔮 Revelar o meu Ascendente</button></div>
+      <p class="nota-priv">🔒 Os seus dados não são partilhados com ninguém.</p>
+    </form>
+  </section>
+
+  <section id="resultado" class="cartao" aria-live="polite">
+    <h2 id="res-titulo">O seu céu</h2>
+    <div class="trio">
+      <div class="astro"><div class="qual">☉ Sol</div><div class="glifo" id="g-sol"></div><div class="nome-signo" id="n-sol"></div><div class="grau" id="d-sol"></div></div>
+      <div class="astro asc"><div class="qual">↑ Ascendente</div><div class="glifo" id="g-asc"></div><div class="nome-signo" id="n-asc"></div><div class="grau" id="d-asc"></div></div>
+      <div class="astro"><div class="qual">☽ Lua</div><div class="glifo" id="g-lua"></div><div class="nome-signo" id="n-lua"></div><div class="grau" id="d-lua"></div></div>
+    </div>
+    <p class="texto-asc" id="texto-asc"></p>
+    <p class="aviso-hora" id="aviso-hora"></p>
+    <p class="dados-nasc" id="dados-nasc"></p>
+  </section>
+
+  <section id="consulta" class="cartao">
+    <div class="consulta">
+      <div class="consulta-foto"><img src="mestre-r14.jpg" alt="Mestre Alberto com as cartas do Tarot" width="800" height="800" loading="lazy" /></div>
+      <div>
+        <h2>O seu Ascendente é <span class="lil">só o começo</span></h2>
+        <p class="gancho" id="gancho">O Sol, a Lua e o Ascendente juntos contam uma história: o que o seu coração procura, os bloqueios que se repetem e o momento que está a viver agora. Numa consulta online, o Mestre Alberto lê o seu céu e as cartas para si, ao vivo.</p>
+        <div class="planos" id="planos"></div>
+        <a class="btn-wa" id="wa-consulta" href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer">💬 Falar com o Mestre no WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cartao">
+    <h2>O que é o <span class="lil">Ascendente</span>?</h2>
+    <p class="int">É o signo que estava a nascer no horizonte, a leste, no minuto exacto em que você nasceu. Por isso precisa da hora e do local.</p>
+    <div class="signos" aria-hidden="true">
+      <div><b>♈</b>Áries</div><div><b>♉</b>Touro</div><div><b>♊</b>Gêmeos</div><div><b>♋</b>Câncer</div><div><b>♌</b>Leão</div><div><b>♍</b>Virgem</div>
+      <div><b>♎</b>Libra</div><div><b>♏</b>Escorpião</div><div><b>♐</b>Sagitário</div><div><b>♑</b>Capricórnio</div><div><b>♒</b>Aquário</div><div><b>♓</b>Peixes</div>
+    </div>
+    <div class="oque">
+      <div><h3>☉ O Sol</h3><p>A sua essência: o que o move, a sua vontade e a luz que veio brilhar.</p></div>
+      <div><h3>☽ A Lua</h3><p>As suas emoções: o que o acalma, o que precisa para se sentir seguro(a) e amado(a).</p></div>
+      <div><h3>↑ O Ascendente</h3><p>A sua porta para o mundo: como os outros o vêem, o seu estilo e o caminho que escolheu.</p></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a> · Cidades: GeoNames (CC BY 4.0)
+</footer>
+
+<script src="ascendente-calc.js"></script>
+<script src="produtos.js"></script>
+<script src="pix.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
+  // Nomes como o público do Brasil os conhece, com o nome de Portugal ao lado quando é diferente
+  const NOMES = ["Áries (Carneiro)","Touro","Gêmeos","Câncer (Caranguejo)","Leão","Virgem","Libra (Balança)","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const TEXTOS = [
+    "Com Ascendente em Áries, você chega primeiro e chega inteiro(a). As pessoas vêem coragem, pressa e uma chama que não se apaga. A sua missão é aprender a liderar sem se queimar.",
+    "Com Ascendente em Touro, você transmite calma, confiança e uma beleza serena. Quem se aproxima sente que pode contar consigo. O seu caminho é construir, devagar e para sempre.",
+    "Com Ascendente em Gêmeos, você encanta pela conversa, pela curiosidade e pelo humor rápido. Parece sempre mais novo(a) do que é. O seu caminho é ligar pessoas e ideias.",
+    "Com Ascendente em Câncer, você acolhe antes de falar. Os outros sentem a sua sensibilidade e o seu cuidado de mãe ou de pai. O seu caminho é proteger sem se esconder.",
+    "Com Ascendente em Leão, você não passa despercebido(a): tem presença, calor e um brilho natural. O seu caminho é mostrar o seu coração ao mundo, com generosidade.",
+    "Com Ascendente em Virgem, você transmite elegância discreta, inteligência e vontade de ajudar. Repara em tudo. O seu caminho é servir com amor, sem se exigir a perfeição.",
+    "Com Ascendente em Libra, você conquista pela gentileza, pelo charme e pelo sentido de justiça. As pessoas sentem-se bem ao seu lado. O seu caminho é o equilíbrio e as parcerias.",
+    "Com Ascendente em Escorpião, você tem um olhar profundo e magnético, que parece ler a alma dos outros. É intenso(a) e reservado(a). O seu caminho é a transformação.",
+    "Com Ascendente em Sagitário, você traz alegria, optimismo e sede de liberdade. Parece sempre pronto(a) para uma viagem. O seu caminho é procurar sentido e ensinar o que aprende.",
+    "Com Ascendente em Capricórnio, você transmite seriedade, maturidade e força. Os outros confiam na sua palavra. O seu caminho é subir a montanha com paciência e chegar lá acima.",
+    "Com Ascendente em Aquário, você é original, livre e um pouco à frente do seu tempo. As pessoas vêem em si um amigo diferente de todos. O seu caminho é ser quem é, sem pedir licença.",
+    "Com Ascendente em Peixes, você tem um ar sonhador, doce e intuitivo, e sente o que os outros não dizem. O seu caminho é a espiritualidade, a arte e a compaixão.",
+  ];
+  const idx = (lon) => Math.floor(((lon % 360) + 360) % 360 / 30);
+
+  // A roda à volta da foto
+  const roda = $("roda");
+  GLIFOS.forEach((g, i) => {
+    const s = document.createElement("span"); s.textContent = g;
+    const a = (i * 30 - 90) * Math.PI / 180, r = 46;
+    s.style.transform = `translate(${Math.cos(a) * r * 0.01 * roda.offsetWidth || 0}px, ${Math.sin(a) * r * 0.01 * roda.offsetWidth || 0}px)`;
+    s.dataset.a = a; roda.appendChild(s);
+  });
+  function poeGlifos() {
+    const w = roda.offsetWidth;
+    roda.querySelectorAll("span").forEach((s) => { const a = +s.dataset.a; s.style.transform = `translate(${Math.cos(a) * w * 0.425}px, ${Math.sin(a) * w * 0.425}px)`; });
+  }
+  poeGlifos(); addEventListener("resize", poeGlifos);
+
+  // ===== Cidades (lista do GeoNames no próprio site, só se carrega quando é preciso) =====
+  let CID = null, carregando = null, escolhida = null;
+  const sem = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  function carregarCidades() {
+    if (CID) return Promise.resolve(CID);
+    if (!carregando) carregando = fetch("cidades.json?v=1").then((r) => r.json()).then((d) => {
+      d.cidades.forEach((c) => { c.push(sem(c[0])); });
+      CID = d; return d;
+    });
+    return carregando;
+  }
+  const inpCid = $("cidade"), lista = $("lista-cid"), ok = $("cidade-ok");
+  inpCid.addEventListener("focus", carregarCidades, { once: true });
+  let ativo = -1, opcoes = [];
+  function rotulo(c) { return `${c[0]}${c[1] ? ", " + c[1] : ""}, ${CID.paises[c[2]] || c[2]}`; }
+  inpCid.addEventListener("input", async () => {
+    escolhida = null; ok.textContent = "";
+    const q = sem(inpCid.value);
+    if (q.length < 2) { lista.classList.remove("aberta"); return; }
+    await carregarCidades();
+    const comeca = [], contem = [];
+    for (const c of CID.cidades) {
+      if (c[6].startsWith(q)) comeca.push(c); else if (q.length >= 3 && c[6].includes(q)) contem.push(c);
+      if (comeca.length >= 12) break;
+    }
+    opcoes = comeca.concat(contem).slice(0, 12);
+    ativo = -1;
+    lista.innerHTML = opcoes.length ? opcoes.map((c, i) => `<button type="button" role="option" data-i="${i}">${esc(c[0])} <small>${esc((c[1] ? c[1] + " · " : "") + (CID.paises[c[2]] || c[2]))}</small></button>`).join("")
+      : `<button type="button" disabled>Não encontrei. Escreva a cidade grande mais próxima.</button>`;
+    lista.classList.add("aberta");
+  });
+  function escolher(i) {
+    const c = opcoes[i]; if (!c) return;
+    escolhida = c; inpCid.value = rotulo(c); lista.classList.remove("aberta");
+    ok.textContent = "✓ " + rotulo(c);
+  }
+  lista.addEventListener("click", (e) => { const b = e.target.closest("button[data-i]"); if (b) escolher(+b.dataset.i); });
+  inpCid.addEventListener("keydown", (e) => {
+    if (!lista.classList.contains("aberta")) return;
+    const bs = lista.querySelectorAll("button[data-i]");
+    if (e.key === "ArrowDown") { ativo = Math.min(ativo + 1, bs.length - 1); }
+    else if (e.key === "ArrowUp") { ativo = Math.max(ativo - 1, 0); }
+    else if (e.key === "Enter") { if (ativo >= 0) { e.preventDefault(); escolher(ativo); } return; }
+    else return;
+    e.preventDefault(); bs.forEach((b, i) => b.classList.toggle("ativo", i === ativo));
+  });
+  document.addEventListener("click", (e) => { if (!e.target.closest(".rel")) lista.classList.remove("aberta"); });
+  $("semhora").addEventListener("change", (e) => { $("hora").disabled = e.target.checked; });
+
+  // ===== Calcular + enviar a captura =====
+  function mostraErro(t) { const e = $("erro"); e.textContent = t; e.classList.toggle("ver", !!t); }
+  $("form").addEventListener("submit", async (ev) => {
+    ev.preventDefault(); mostraErro("");
+    const nome = $("nome").value.trim(), email = $("email").value.trim(), tel = $("tel").value.trim();
+    const data = $("data").value, semhora = $("semhora").checked, hora = semhora ? "12:00" : $("hora").value;
+    const teste = /^\s*teste\b/i.test(inpCid.value);   // combinado com o Mestre: «teste» na cidade não cria ficha
+    if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return mostraErro("Escreva o seu nome, por favor.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return mostraErro("Esse email não parece certo. Confirme, por favor.");
+    if (!data) return mostraErro("Falta a data de nascimento.");
+    if (!semhora && !hora) return mostraErro("Falta a hora de nascimento (ou marque «Não sei a hora»).");
+    if (!escolhida && !teste) return mostraErro("Escolha a cidade onde nasceu na lista que aparece ao escrever.");
+    if (!$("aceito").checked) return mostraErro("Para ver o resultado, aceite a nota de privacidade.");
+    const [A, M, D] = data.split("-").map(Number), [h, mi] = hora.split(":").map(Number);
+    const c = escolhida || ["Lisboa", "", "PT", 38.72, -9.14, (CID ? CID.fusos.indexOf("Europe/Lisbon") : -1)];
+    const tz = (CID && CID.fusos[c[5]]) || "Europe/Lisbon";
+    let ms;
+    try { ms = AstroAsc.localParaUTC(A, M, D, h, mi, tz); } catch (e) { return mostraErro("Não consegui ler a data. Confirme os dados, por favor."); }
+    const r = AstroAsc.mapa(ms, c[3], c[4]);
+    const iS = idx(r.sol.lon), iL = idx(r.lua.lon), iA = idx(r.asc.lon);
+    $("g-sol").textContent = GLIFOS[iS]; $("n-sol").textContent = NOMES[iS]; $("d-sol").textContent = r.sol.grau;
+    $("g-lua").textContent = GLIFOS[iL]; $("n-lua").textContent = NOMES[iL]; $("d-lua").textContent = r.lua.grau;
+    $("g-asc").textContent = GLIFOS[iA]; $("n-asc").textContent = NOMES[iA]; $("d-asc").textContent = r.asc.grau;
+    const primeiro = nome.split(/\s+/)[0];
+    $("res-titulo").innerHTML = `${esc(primeiro)}, o seu <span class="lil">Ascendente</span> é ${esc(NOMES[iA].split(" (")[0])}`;
+    $("texto-asc").textContent = TEXTOS[iA];
+    $("aviso-hora").textContent = semhora ? "⚠️ Sem a hora certa, o Ascendente é só uma aproximação (calculado ao meio-dia). O Sol fica certo; a Lua quase sempre." : "";
+    const local = escolhida ? inpCid.value : "teste";
+    $("dados-nasc").textContent = `Nascimento: ${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A} às ${semhora ? "hora desconhecida" : hora} · ${local}`;
+    $("gancho").textContent = `${primeiro}, com o Sol em ${NOMES[iS].split(" (")[0]}, a Lua em ${NOMES[iL].split(" (")[0]} e o Ascendente em ${NOMES[iA].split(" (")[0]}, o seu céu conta uma história única: o que o seu coração procura, os bloqueios que se repetem e o momento que está a viver agora. Numa consulta online, o Mestre Alberto lê o seu céu e as cartas para si, ao vivo.`;
+    $("wa-consulta").href = "https://wa.me/351914920427?text=" + encodeURIComponent(`Olá Mestre Alberto, fiz a calculadora de Ascendente no site: Sol em ${NOMES[iS]}, Lua em ${NOMES[iL]}, Ascendente em ${NOMES[iA]}. Gostava de marcar uma consulta.`);
+    $("resultado").classList.add("ver");
+    $("resultado").scrollIntoView({ behavior: "smooth" });
+    // a captura segue para a fila (cria a ficha no cofre do Mestre) e para o Telegram
+    const veredito = `☉ Sol em ${NOMES[iS]} ${r.sol.grau} · ☽ Lua em ${NOMES[iL]} ${r.lua.grau} · ↑ Ascendente em ${NOMES[iA]} ${r.asc.grau}` +
+      (semhora ? " (hora desconhecida: Ascendente aproximado)" : "");
+    try {
+      await fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "ascendente", data: {
+        name: nome, email, phone: tel, date_of_birth: `${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`,
+        birth_time: semhora ? "desconhecida" : hora, city: escolhida ? escolhida[0] + (escolhida[1] ? " (" + escolhida[1] + ")" : "") : "teste",
+        country: escolhida ? (CID.paises[escolhida[2]] || escolhida[2]) : "", area: "Calculadora de Ascendente",
+        sign: NOMES[iS], ascendant: NOMES[iA], moon: NOMES[iL], verdict: veredito } }) });
+    } catch (e) { /* o resultado já está no ecrã; não estragar a experiência */ }
+  });
+
+  // ===== Consultas online (preços e links do produtos.js; PIX do pix.js, como na loja) =====
+  const PIX_SVG = '<svg class="pix-logo" viewBox="0 0 24 24" aria-hidden="true"><g fill="#32BCAD"><path d="M12 1.6l4.6 4.6-2.3 2.3a3.2 3.2 0 0 0-4.6 0L7.4 6.2z"/><path d="M22.4 12l-4.6 4.6-2.3-2.3a3.2 3.2 0 0 0 0-4.6l2.3-2.3z"/><path d="M12 22.4l-4.6-4.6 2.3-2.3a3.2 3.2 0 0 0 4.6 0l2.3 2.3z"/><path d="M1.6 12l4.6-4.6 2.3 2.3a3.2 3.2 0 0 0 0 4.6l-2.3 2.3z"/></g></svg>';
+  const pixPromo = () => typeof PIX_PROMO_FIM !== "undefined" && Date.now() < PIX_PROMO_FIM;
+  const brl = v => "R$ " + Number(v).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const QUERO = [
+    { procura: "30 Minutos", titulo: "Consulta Online · 30 minutos", eti: "" },
+    { procura: "Todos os Temas (1 Hora", titulo: "Consulta Online · 1 hora, todos os temas", eti: "A mais pedida" },
+  ];
+  const lista_p = (typeof PRODUTOS !== "undefined" && Array.isArray(PRODUTOS)) ? PRODUTOS : [];
+  const planos = QUERO.map((q) => ({ q, p: lista_p.find((x) => x.nome.includes(q.procura)) })).filter((x) => x.p);
+  $("planos").innerHTML = planos.map(({ q, p }) => {
+    const d = (typeof PIX_PRODUTOS !== "undefined") ? PIX_PRODUTOS[p.nome] : null;
+    const promo = pixPromo();
+    const pix = d ? `<div class="pix-divisor">🇧🇷 Está no Brasil? Pague com PIX</div>
+      ${promo ? `<span class="pix-promo-selo">🇧🇷 Novo para o Brasil <span class="menos">−${PIX_PROMO_PCT}%</span></span>` : ""}
+      <button type="button" class="btn-pix" data-pix="${esc(p.nome)}">${PIX_SVG} PIX ${promo ? `<span class="riscado">${brl(d.normal.valor)}</span> <span class="valor-pix">${brl(d.promo.valor)}</span>` : `<span class="valor-pix">${brl(d.normal.valor)}</span>`}</button>` : "";
+    const link = p.link ? "/pagar.html?u=" + encodeURIComponent(p.link) : "https://wa.me/351914920427?text=" + encodeURIComponent("Olá Mestre Alberto, quero adquirir: " + p.nome);
+    return `<div class="plano${q.eti ? " top" : ""}">${q.eti ? `<span class="eti">✦ ${esc(q.eti)} ✦</span>` : ""}
+      <h3>${esc(q.titulo)}</h3><div class="preco">${esc(p.preco)}</div>
+      <a class="btn-pagar" href="${link}" target="_blank" rel="noopener noreferrer">💳 Marcar e pagar com cartão</a>${pix}</div>`;
+  }).join("");
+
+  function abrirPix(nome) {
+    const p = lista_p.find(x => x.nome === nome);
+    const d = p && (typeof PIX_PRODUTOS !== "undefined") && PIX_PRODUTOS[p.nome];
+    if (!d) return;
+    const promo = pixPromo(), e = promo ? d.promo : d.normal;
+    const fim = new Date(PIX_PROMO_FIM - 1).toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
+    const msg = "Olá Mestre Alberto, paguei por PIX " + brl(e.valor) + ": " + p.nome + ". Segue o comprovante.";
+    let fundo = document.getElementById("pix-fundo");
+    if (!fundo) {
+      fundo = document.createElement("div"); fundo.id = "pix-fundo"; fundo.className = "pix-fundo";
+      fundo.addEventListener("click", ev => { if (ev.target === fundo || ev.target.closest(".pix-fechar")) fundo.classList.remove("aberto"); });
+      document.body.appendChild(fundo);
+    }
+    fundo.innerHTML = `<div class="pix-caixa" role="dialog" aria-modal="true">
+      <button type="button" class="pix-fechar" aria-label="Fechar">×</button>
+      <h4>${PIX_SVG} Pagar com PIX</h4>
+      <div class="pix-prod">${esc(p.nome)}</div>
+      ${promo ? `<div class="pix-faixa">🇧🇷 Promoção de abertura: −${PIX_PROMO_PCT}% até ${fim}</div>` : ""}
+      <div class="pix-valor">${promo ? `<s>${brl(d.normal.valor)}</s>` : ""}${brl(e.valor)}</div>
+      <div class="pix-passo">📱 Abra a <b>app do seu banco</b> → <b>Pix</b> → <b>Ler QR Code</b>.<br>Confirme o valor: <b>${brl(e.valor)}</b>. Se o banco não o preencher sozinho, escreva-o.</div>
+      <img class="pix-qr" src="${esc(e.qr)}" alt="QR Code PIX ${brl(e.valor)}" width="240" height="240" />
+      <button type="button" class="pix-copiar" data-codigo="${esc(e.codigo)}">📋 Copiar código PIX (copia e cola)</button>
+      <div class="pix-aviso">O pagamento aparece em nome de <b>${esc(PIX_NOME)}</b>, da equipe do Mestre Alberto.<br>Depois de pagar, envie o comprovante pelo WhatsApp:</div>
+      <a class="pix-wa" href="https://wa.me/351914920427?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener noreferrer">💬 Enviar comprovante</a>
+    </div>`;
+    fundo.classList.add("aberto");
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest(".btn-pix"); if (b) { abrirPix(b.dataset.pix); return; }
+    const c = e.target.closest(".pix-copiar"); if (!c) return;
+    const txt = c.dataset.codigo, ok2 = () => { c.textContent = "✅ Código copiado! Cole no seu banco em Pix → Copia e Cola"; };
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(ok2, () => prompt("Copie o código:", txt));
+    else prompt("Copie o código:", txt);
+  });
+})();
+</script>
+</body>
+</html>

@@ -489,6 +489,30 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
   background: var(--gradient-gold, linear-gradient(135deg, oklch(0.85 0.13 88), oklch(0.72 0.14 70)));
   color: oklch(0.2 0.05 285); }
 @keyframes girar-sirene { to { transform: rotate(360deg); } }
+
+/* ✨ 21/10/2026 — destaque da Calculadora de Ascendente (pedido dele: «em destaque na página principal», tons de lilás) */
+.faixa-asc { position: relative; z-index: 5; display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: center;
+  max-width: 40rem; margin: 1.6rem auto 0.4rem; padding: 1.1rem 1.2rem; border-radius: 1.4rem; text-decoration: none; color: oklch(0.98 0.01 315);
+  background: linear-gradient(135deg, oklch(0.62 0.17 315 / 0.95), oklch(0.45 0.18 298 / 0.95) 60%, oklch(0.36 0.15 290 / 0.95));
+  border: 1.5px solid oklch(0.88 0.08 312 / 0.8); box-shadow: 0 0 0 4px oklch(0.70 0.16 310 / 0.25), 0 18px 50px oklch(0.45 0.18 300 / 0.55);
+  animation: asc-brilho 3s ease-in-out infinite; transition: transform .25s; text-align: left; overflow: hidden; }
+.faixa-asc:hover { transform: translateY(-3px) scale(1.01); }
+@keyframes asc-brilho { 0%,100% { box-shadow: 0 0 0 4px oklch(0.70 0.16 310 / 0.25), 0 18px 50px oklch(0.45 0.18 300 / 0.55); }
+  50% { box-shadow: 0 0 0 7px oklch(0.78 0.14 312 / 0.35), 0 18px 60px oklch(0.60 0.20 305 / 0.75); } }
+.faixa-asc-eti { position: absolute; top: 0.7rem; right: 0.9rem; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75)); border-radius: 999px; padding: 0.22rem 0.7rem; }
+.faixa-asc-roda { position: relative; width: 6.2rem; height: 6.2rem; flex: none; }
+.faixa-asc-roda .anel { position: absolute; inset: 0; border-radius: 50%; animation: asc-gira 30s linear infinite;
+  background: conic-gradient(oklch(0.85 0.10 315 / .5), oklch(0.55 0.18 290 / .25), oklch(0.85 0.10 315 / .5), oklch(0.55 0.18 290 / .25), oklch(0.85 0.10 315 / .5)); }
+.faixa-asc-roda .anel i { position: absolute; left: 50%; top: 50%; font-style: normal; font-size: 0.72rem; color: oklch(0.90 0.12 90); width: 1rem; height: 1rem; margin: -0.5rem; display: grid; place-items: center; }
+.faixa-asc-roda img { position: absolute; inset: 0.9rem; width: calc(100% - 1.8rem); height: calc(100% - 1.8rem); border-radius: 50%; object-fit: cover; border: 2px solid oklch(0.92 0.06 312); }
+@keyframes asc-gira { to { transform: rotate(360deg); } }
+.faixa-asc-txt { display: flex; flex-direction: column; gap: 0.25rem; padding-right: 3.6rem; }
+.faixa-asc-txt strong { font-family: "Cinzel", var(--font-display); font-size: clamp(1.15rem, 3.6vw, 1.5rem); line-height: 1.15; }
+.faixa-asc-txt small { font-size: 0.86rem; opacity: 0.9; }
+.faixa-asc-btn { justify-self: start; display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.4rem; font-weight: 800; font-size: 0.92rem;
+  color: oklch(0.30 0.12 300); background: oklch(0.97 0.02 315); border-radius: 999px; padding: 0.5rem 1.05rem; box-shadow: 0 6px 18px #0005; }
+@media (max-width: 480px) { .faixa-asc { grid-template-columns: 1fr; text-align: center; justify-items: center; } .faixa-asc-txt { padding-right: 0; } .faixa-asc-btn { justify-self: center; } .faixa-asc-eti { top: .6rem; right: .6rem; } }
 </style>
 </head>
 <body>
@@ -543,6 +567,21 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <img class="faixa-sobre-foto" src="mestre-avatar.jpg" srcset="mestre-avatar.jpg 1x, mestre-avatar@2x.jpg 2x" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <span class="faixa-sobre-txt">Conheça o <strong>Mestre Alberto</strong><small>18 anos a ler cartas · quem sou e como trabalho</small></span>
       <svg class="icon faixa-sobre-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+
+
+    <!-- ✨ 21/10/2026: Calculadora de Ascendente em destaque -->
+    <a href="ascendente.html" class="faixa-asc animate-fade-up">
+      <span class="faixa-asc-eti">Novo · Grátis</span>
+      <span class="faixa-asc-roda" aria-hidden="true">
+        <span class="anel"><i style="transform:rotate(0deg) translateY(-2.75rem) rotate(-0deg)">♈</i><i style="transform:rotate(30deg) translateY(-2.75rem) rotate(-30deg)">♉</i><i style="transform:rotate(60deg) translateY(-2.75rem) rotate(-60deg)">♊</i><i style="transform:rotate(90deg) translateY(-2.75rem) rotate(-90deg)">♋</i><i style="transform:rotate(120deg) translateY(-2.75rem) rotate(-120deg)">♌</i><i style="transform:rotate(150deg) translateY(-2.75rem) rotate(-150deg)">♍</i><i style="transform:rotate(180deg) translateY(-2.75rem) rotate(-180deg)">♎</i><i style="transform:rotate(210deg) translateY(-2.75rem) rotate(-210deg)">♏</i><i style="transform:rotate(240deg) translateY(-2.75rem) rotate(-240deg)">♐</i><i style="transform:rotate(270deg) translateY(-2.75rem) rotate(-270deg)">♑</i><i style="transform:rotate(300deg) translateY(-2.75rem) rotate(-300deg)">♒</i><i style="transform:rotate(330deg) translateY(-2.75rem) rotate(-330deg)">♓</i></span>
+        <img src="mestre-r06.jpg" alt="" width="800" height="800" loading="lazy" decoding="async" />
+      </span>
+      <span class="faixa-asc-txt">
+        <strong>✨ Descubra o seu Ascendente</strong>
+        <small>Sol, Lua e Ascendente calculados ao minuto, de graça, pelo Mestre Alberto. Saiba como o mundo o vê.</small>
+        <span class="faixa-asc-btn">🔮 Calcular agora →</span>
+      </span>
     </a>
 
     <div class="kicker">

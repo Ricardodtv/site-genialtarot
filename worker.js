@@ -22,6 +22,20 @@ function buildMessage(type, d = {}) {
       clean(d.verdict, 3000),
     ].join("\n");
   }
+  // 21/10/2026: a Calculadora de Ascendente (ascendente.html) também é uma captura
+  if (type === "ascendente") {
+    return [
+      "✨ NOVA CALCULADORA DE ASCENDENTE — Genialtarot",
+      "",
+      `👤 Nome: ${clean(d.name)}`,
+      `📧 Email: ${clean(d.email)}`,
+      d.phone ? `📱 WhatsApp: ${clean(d.phone, 40)}` : null,
+      `🎂 Nascimento: ${clean(d.date_of_birth)} às ${clean(d.birth_time, 20)}`,
+      `📍 ${clean(d.city)}, ${clean(d.country)}`,
+      "",
+      `🔭 ${clean(d.verdict, 600)}`,
+    ].filter((l) => l !== null).join("\n");
+  }
   if (type === "rating") {
     const stars = "⭐".repeat(Math.max(1, Math.min(5, Number(d.rating) || 0)));
     return `${stars} AVALIAÇÃO — Genialtarot\n\n👤 ${clean(d.name)}\n🎯 Área: ${clean(d.area)}\n Nota: ${clean(d.rating)}/5`;
@@ -337,7 +351,7 @@ function marcaDe(url) {
 // ela contar. Se so entrar num, ou nao conta ou nem chega ca.
 const PAGINAS = new Set([
   "/", "/index", "/anual", "/arcanos", "/arvore", "/fimdesemana", "/horoscopo",
-  "/loja", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos",
+  "/ascendente", "/loja", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos",
   "/arcano-00-o-louco", "/arcano-01-o-mago", "/arcano-02-a-sacerdotisa",
   "/arcano-03-a-imperatriz", "/arcano-04-o-imperador", "/arcano-05-o-hierofante",
   "/arcano-06-os-enamorados", "/arcano-07-o-carro", "/arcano-08-a-forca",
