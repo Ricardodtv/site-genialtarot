@@ -130,7 +130,7 @@ input:disabled { opacity: .45; }
 
 /* resultado */
 #resultado { display: none; scroll-margin-top: 1rem; }
-#resultado.ver { display: block; animation: surgir .7s ease-out; border-color: oklch(0.82 0.11 330 / .7); }
+#resultado.ver { display: block; animation: surgir .35s ease-out; border-color: oklch(0.82 0.11 330 / .7); }
 @keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .res-titulo { text-align: center; margin: 0 0 .4rem; font-family: var(--titulo); line-height: 1.1; }
 .res-nome { display: block; font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -162,10 +162,10 @@ input:disabled { opacity: .45; }
 .astro .nome-signo { font-family: var(--titulo); font-size: clamp(1.05rem, 3.6vw, 1.35rem); font-weight: 700; line-height: 1.2; }
 .astro .grau { font-size: .8rem; color: var(--suave); }
 .astro .elem { display: inline-block; margin-top: .45rem; font-size: .74rem; font-weight: 700; border-radius: 999px; padding: .2rem .65rem; background: oklch(0.18 0.06 300 / .7); border: 1px solid var(--borda); }
-.tema { margin-top: 1.3rem; border-radius: 1.1rem; padding: 1.1rem 1.2rem 1.2rem; background: oklch(0.18 0.06 300 / .6); border: 1px solid var(--borda); }
+.tema { margin-top: 1.3rem; border-radius: 1.1rem; padding: 1.1rem 1.2rem 1.2rem; background: oklch(0.20 0.07 300 / .92); border: 1px solid oklch(0.80 0.10 320 / .45); }
 .tema .num { font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--rosa); }
 .tema h3 { font-family: var(--titulo); font-size: 1.2rem; margin: .15rem 0 .5rem; color: var(--lilas-claro); }
-.tema p { margin: 0; font-family: var(--serifa); font-size: 1.18rem; line-height: 1.6; color: var(--lavanda); }
+.tema p { margin: 0; font-family: var(--serifa); font-size: 1.2rem; line-height: 1.6; color: oklch(0.98 0.01 315); }
 .tema .chave { display: block; margin-bottom: .35rem; font-family: Inter, system-ui, sans-serif; font-size: .8rem; color: var(--suave); }
 .aviso-hora { text-align: center; font-size: .86rem; color: oklch(0.88 0.12 90); margin-top: .9rem; }
 .dados-nasc { text-align: center; font-size: .82rem; color: var(--suave); margin-top: .4rem; }
