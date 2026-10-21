@@ -653,6 +653,38 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .carta-frente img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @keyframes carta-vira { 0%, 30% { transform: rotateY(0deg); } 45%, 80% { transform: rotateY(180deg); } 95%, 100% { transform: rotateY(360deg); } }
 
+/* ✨ Mapa Astral e 🔢 Ano 2027 na página principal (21/10/2026, pedido dele: «cartões vistosos e animados»).
+   Só se anima transform e opacity — nada de blur animado (ver a nota dos Atalhos Místicos) */
+.porta-brilho::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 45%; pointer-events: none;
+  background: linear-gradient(105deg, transparent, oklch(1 0 0 / 0.13), transparent); transform: translateX(-120%) skewX(-12deg);
+  animation: porta-reflexo 5.5s ease-in-out infinite; }
+.porta-2027.porta-brilho::after { animation-delay: 2.6s; }
+@keyframes porta-reflexo { 0%, 62% { transform: translateX(-120%) skewX(-12deg); } 100% { transform: translateX(330%) skewX(-12deg); } }
+.porta-astral { background: linear-gradient(150deg, oklch(0.33 0.12 280 / .92), oklch(0.20 0.08 270 / .95)); border-color: oklch(0.85 0.13 88 / 0.45); }
+.porta-astral .porta-btn { background: var(--m-grad-ouro); color: oklch(0.22 0.06 300); }
+.mini-roda { position: relative; width: 3.8rem; height: 3.8rem; display: grid; place-items: center; }
+.mini-roda-anel { position: absolute; inset: 0; border-radius: 50%; border: 1px solid oklch(0.85 0.13 88 / 0.55);
+  background: radial-gradient(circle, oklch(0.30 0.10 280) 45%, oklch(0.22 0.08 275) 70%); animation: mini-roda-gira 24s linear infinite; }
+.mini-roda-anel i { position: absolute; left: 50%; top: 50%; width: 0.9rem; height: 0.9rem; margin: -0.45rem 0 0 -0.45rem; font-style: normal;
+  font-size: 0.62rem; line-height: 0.9rem; text-align: center; color: oklch(0.86 0.12 88); }
+.mini-roda-sol { position: relative; font-size: 1.35rem; color: oklch(0.88 0.14 88); text-shadow: 0 0 10px oklch(0.85 0.15 85 / .9);
+  animation: mini-sol 3s ease-in-out infinite; }
+@keyframes mini-roda-gira { to { transform: rotate(360deg); } }
+@keyframes mini-sol { 0%, 100% { transform: scale(1); opacity: .85; } 50% { transform: scale(1.18); opacity: 1; } }
+.porta-2027 { background: linear-gradient(150deg, oklch(0.36 0.09 185 / .92), oklch(0.20 0.06 200 / .95)); border-color: oklch(0.80 0.10 175 / 0.5); }
+.porta-2027 .porta-btn { background: linear-gradient(135deg, oklch(0.62 0.12 175), oklch(0.45 0.10 195)); box-shadow: 0 4px 16px oklch(0.45 0.10 185 / .55); }
+.porta-eti-novo { background: linear-gradient(135deg, oklch(0.75 0.19 145), oklch(0.62 0.17 160)); color: oklch(0.18 0.05 160);
+  animation: novo-pulsa 1.8s ease-in-out infinite; }
+@keyframes novo-pulsa { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+.medalha-2027 { position: relative; width: 3.8rem; height: 3.8rem; border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle at 35% 30%, oklch(0.50 0.11 180), oklch(0.24 0.06 195)); border: 2px solid oklch(0.85 0.13 88);
+  box-shadow: 0 0 18px oklch(0.85 0.13 88 / .45); }
+.medalha-2027 b { font-family: "Cinzel", var(--font-display); font-size: 0.95rem; color: oklch(0.90 0.13 88); letter-spacing: .02em; }
+.orbita-2027 { position: absolute; inset: -0.45rem; animation: mini-roda-gira 7s linear infinite; }
+.orbita-2027 i { position: absolute; font-style: normal; color: oklch(0.90 0.14 88); font-size: 0.8rem; line-height: 1; }
+.orbita-2027 i:first-child { top: -0.1rem; left: 50%; } .orbita-2027 i:last-child { bottom: -0.1rem; right: 45%; font-size: 0.6rem; }
+@media (prefers-reduced-motion: reduce) { .porta-brilho::after, .mini-roda-anel, .mini-roda-sol, .porta-eti-novo, .orbita-2027 { animation: none; } }
+
 /* Lua de hoje dentro do cartão (as cores especiais de Cheia/Nova continuam a valer) */
 .porta-lua { display: flex; flex-direction: column; align-items: stretch; width: auto; margin: 0; }
 .porta-lua[hidden] { display: none; }
@@ -788,6 +820,32 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
           </span>
         </div>
         <span class="porta-btn">Ver o meu mapa →</span>
+      </a>
+
+      <!-- ✨ Mapa Astral (21/10/2026, pedido dele: «vistoso e animado») — roda do zodíaco a girar, Sol ao centro -->
+      <a href="/mapa-astral" class="porta porta-astral porta-brilho">
+        <span class="porta-eti">Grátis</span>
+        <div class="porta-cabeca">
+          <span class="porta-visual mini-roda" aria-hidden="true"><span class="mini-roda-anel"><i style="transform:rotate(0deg) translateY(-1.55rem) rotate(-0deg)">♈</i><i style="transform:rotate(30deg) translateY(-1.55rem) rotate(-30deg)">♉</i><i style="transform:rotate(60deg) translateY(-1.55rem) rotate(-60deg)">♊</i><i style="transform:rotate(90deg) translateY(-1.55rem) rotate(-90deg)">♋</i><i style="transform:rotate(120deg) translateY(-1.55rem) rotate(-120deg)">♌</i><i style="transform:rotate(150deg) translateY(-1.55rem) rotate(-150deg)">♍</i><i style="transform:rotate(180deg) translateY(-1.55rem) rotate(-180deg)">♎</i><i style="transform:rotate(210deg) translateY(-1.55rem) rotate(-210deg)">♏</i><i style="transform:rotate(240deg) translateY(-1.55rem) rotate(-240deg)">♐</i><i style="transform:rotate(270deg) translateY(-1.55rem) rotate(-270deg)">♑</i><i style="transform:rotate(300deg) translateY(-1.55rem) rotate(-300deg)">♒</i><i style="transform:rotate(330deg) translateY(-1.55rem) rotate(-330deg)">♓</i></span><span class="mini-roda-sol">☉</span></span>
+          <span class="porta-txt">
+            <strong>Mapa Astral</strong>
+            <small>Os 10 planetas no minuto em que nasceu: quem você é, por inteiro.</small>
+          </span>
+        </div>
+        <span class="porta-btn">Ver o meu mapa →</span>
+      </a>
+
+      <!-- 🔢 Ano 2027 · Numerologia (21/10/2026, pedido dele: com «Novidade») — medalhão dourado com estrelas em órbita -->
+      <a href="/numerologia-2027" class="porta porta-2027 porta-brilho">
+        <span class="porta-eti porta-eti-novo">Novidade</span>
+        <div class="porta-cabeca">
+          <span class="porta-visual medalha-2027" aria-hidden="true"><span class="orbita-2027"><i>✦</i><i>✧</i></span><b>2027</b></span>
+          <span class="porta-txt">
+            <strong>O seu Ano 2027 · Numerologia</strong>
+            <small>O número que vai guiar o seu ano: oportunidades, amor e dinheiro.</small>
+          </span>
+        </div>
+        <span class="porta-btn">Descobrir o meu ano →</span>
       </a>
 
       <!-- 🔮 Tarot Grátis, com uma carta que se vira sozinha (só CSS) -->
