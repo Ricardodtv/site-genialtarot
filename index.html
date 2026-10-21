@@ -98,6 +98,8 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border: 1px solid oklch(0.85 0.06 320 / 0.12);
 }
+/* 21/10/2026: no telemóvel o vidro fosco (10 painéis) era a maior carga de pintura — fica um fundo um pouco mais opaco, sem blur */
+@media (max-width: 859px) { .glass { backdrop-filter: none; -webkit-backdrop-filter: none; background: oklch(0.24 0.06 300 / 0.72); } }
 .shadow-mystic { box-shadow: var(--shadow-mystic); }
 svg.icon { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 svg.icon-fill { fill: currentColor; stroke: none; }
@@ -134,8 +136,10 @@ svg.icon-fill { fill: currentColor; stroke: none; }
   background: radial-gradient(ellipse at center, oklch(0.80 0.20 235 / 0.85), oklch(0.65 0.22 240 / 0.45) 45%, transparent 75%) !important;
   animation: sky-pulse 2s ease-in-out infinite !important; filter: blur(22px); opacity: 1;
 }
-@keyframes violet-pulse { 0%, 100% { opacity: 0.65; filter: blur(18px); } 50% { opacity: 1; filter: blur(26px); } }
-@keyframes sky-pulse { 0%, 100% { opacity: 0.7; filter: blur(20px); transform: scale(1); } 50% { opacity: 1; filter: blur(32px); transform: scale(1.1); } }
+/* 21/10/2026: os brilhos pulsam só na opacidade e no tamanho — animar o blur obrigava o telemóvel a redesenhar
+   a cada fotograma e atrasava a pintura do resto da página (os Atalhos Místicos apareciam tarde) */
+@keyframes violet-pulse { 0%, 100% { opacity: 0.65; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
+@keyframes sky-pulse { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.1); } }
 .shimmer { position: relative; overflow: hidden; }
 .shimmer::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, oklch(1 0 0 / 0.18) 50%, transparent 70%); transform: translateX(-100%); animation: shimmer-move 4s ease-in-out infinite; }
 @keyframes shimmer-move { 0%, 60% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
@@ -602,7 +606,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .porta { position: relative; z-index: 5; display: flex; flex-direction: column; justify-content: space-between; gap: 0.8rem;
   width: auto; margin: 0; padding: 1rem 1.1rem; border-radius: 1.4rem; text-decoration: none; color: oklch(0.97 0.015 315);
   background: var(--m-cartao); border: 1px solid var(--m-borda);
-  box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; backdrop-filter: blur(6px);
+  box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; /* 21/10/2026: sem backdrop-filter — o fundo já é quase opaco e o blur atrasava a pintura no telemóvel */
   transition: transform .25s, box-shadow .25s, border-color .25s; animation: none; overflow: hidden; }
 .porta:hover { transform: translateY(-3px); border-color: oklch(0.80 0.12 310 / 0.7); box-shadow: 0 22px 60px #0008, 0 0 34px oklch(0.70 0.16 310 / 0.35); }
 @media (min-width: 860px) { .porta { padding: 1.3rem 1.4rem; } }
