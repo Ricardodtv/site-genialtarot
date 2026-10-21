@@ -279,6 +279,8 @@ footer a { color: inherit; }
   const NOMES_BR = ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
   const NOMES_PT = ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
   const FASES = ["Lua Nova","Lua Crescente","Lua Cheia","Lua Minguante"];
+  // 21/10/2026, regra dele: «Lua Cheia» só a partir de 98% iluminada e «Lua Nova» só até 2%; no meio, Crescente ou Minguante.
+  const nomeFase = (e) => { const i = (1 - Math.cos(e * Math.PI / 180)) / 2 * 100; return i >= 98 ? FASES[2] : i <= 2 ? FASES[0] : e < 180 ? FASES[1] : FASES[3]; };
   const TEXTO_FASE = [
     "Tempo de plantar intenções e começar em silêncio.",
     "A energia cresce: agir, construir, dar o passo.",
@@ -354,7 +356,7 @@ footer a { color: inherit; }
     const prIng = L.ingressos.find(x => x.t > agora);
     const dias = prox ? Math.round((prox.t - agora) / 864e5) : null;
     $("hoje").innerHTML = luaSVG(e, "lua-grande") + `<div><div class="rot">A Lua hoje · ${pHoje.d} de ${MESES[pHoje.m - 1]}</div>`
-      + `<div class="fase">${FASES[f]}</div><div class="em">em <b>${GLIFOS[s]} ${nomes()[s]}</b></div>`
+      + `<div class="fase">${nomeFase(e)}</div><div class="em">em <b>${GLIFOS[s]} ${nomes()[s]}</b></div>`
       + `<div class="det"><span>☀ ${ilum(e)}% iluminada</span>`
       + (prIng ? `<span>Entra em ${GLIFOS[prIng.s]} ${nomes()[prIng.s]} ${dataCurta(prIng.t)} às ${hora(prIng.t)}</span>` : "")
       + (prox ? `<span>${FASES[prox.f]} ${dias <= 0 ? "hoje" : dias === 1 ? "amanhã" : "daqui a " + dias + " dias"} · ${dataCurta(prox.t)} às ${hora(prox.t)}</span>` : "")

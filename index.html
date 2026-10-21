@@ -1162,7 +1162,8 @@ window.addEventListener("DOMContentLoaded", function () {
       fs.innerHTML = "É " + F[grande.f] + " em <b>" + G[grande.s] + "\uFE0E " + N[grande.s] + "</b>!";
       m.textContent = "Veja o que muda no Calendário Lunar →";
     } else {
-      fs.innerHTML = F[f] + " em <b>" + G[s] + "\uFE0E " + N[s] + "</b>";
+      var i_ = (1 - Math.cos(e * Math.PI / 180)) / 2 * 100;  // 21/10: Cheia só ≥98%, Nova só ≤2% (regra dele)
+      fs.innerHTML = (i_ >= 98 ? F[2] : i_ <= 2 ? F[0] : e < 180 ? F[1] : F[3]) + " em <b>" + G[s] + "\uFE0E " + N[s] + "</b>";
       var dias = Math.round((prox.t - agora) / 864e5);
       m.textContent = ilum + "% iluminada · " + F[prox.f] + (dias <= 1 ? " amanhã" : " daqui a " + dias + " dias") + " · Ver o calendário";
     }
