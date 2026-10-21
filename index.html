@@ -1339,13 +1339,15 @@ window.addEventListener("DOMContentLoaded", function () {
 (function () {
   if (!new URLSearchParams(location.search).has("tour")) return;
   var VEL = 70, PAUSA = 3000, y = 0, ultimo = null, parado = PAUSA;
+  // o site tem scroll-behavior: smooth, que anulava cada passo pequeno — aqui o salto é instantâneo
+  function ir(v) { window.scrollTo({ top: v, behavior: "instant" }); }
   function passo(t) {
     if (ultimo === null) ultimo = t;
     var dt = t - ultimo; ultimo = t;
     var fim = document.documentElement.scrollHeight - window.innerHeight;
     if (parado > 0) { parado -= dt; }
-    else if (y >= fim) { y = 0; window.scrollTo(0, 0); parado = PAUSA; }
-    else { y = Math.min(fim, y + VEL * dt / 1000); window.scrollTo(0, y); if (y >= fim) parado = PAUSA; }
+    else if (y >= fim) { y = 0; ir(0); parado = PAUSA; }
+    else { y = Math.min(fim, y + VEL * dt / 1000); ir(y); if (y >= fim) parado = PAUSA; }
     requestAnimationFrame(passo);
   }
   window.addEventListener("load", function () { setTimeout(function () { requestAnimationFrame(passo); }, 1500); });
