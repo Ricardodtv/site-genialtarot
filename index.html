@@ -491,6 +491,33 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 @keyframes girar-sirene { to { transform: rotate(360deg); } }
 
 /* ✨ 21/10/2026 — destaque da Calculadora de Ascendente (pedido dele: «em destaque na página principal», tons de lilás) */
+/* 🌙 21/10/2026: a Lua de hoje, que muda sozinha todos os dias e leva ao Calendário Lunar (/lua) */
+.faixa-lua { position: relative; z-index: 5; display: flex; align-items: center; gap: 1rem; text-decoration: none;
+  width: min(34rem, 92%); margin: 1.4rem auto 0.4rem; padding: 0.9rem 1.15rem; border-radius: 1rem;
+  border: 1.5px solid oklch(0.80 0.12 310 / 0.6); color: oklch(0.96 0.02 310);
+  background: linear-gradient(135deg, oklch(0.36 0.13 308 / 0.92), oklch(0.20 0.08 295 / 0.94));
+  box-shadow: 0 0 30px oklch(0.70 0.16 310 / 0.3); transition: transform .2s, box-shadow .2s; }
+.faixa-lua:hover { transform: translateY(-2px); box-shadow: 0 0 44px oklch(0.75 0.17 310 / 0.5); }
+.faixa-lua svg.lua-svg { width: 3.4rem; height: 3.4rem; flex: none; filter: drop-shadow(0 0 12px oklch(0.95 0.06 90 / .6)); }
+.faixa-lua-txt { display: flex; flex-direction: column; line-height: 1.25; text-align: left; }
+.faixa-lua-txt em { font-style: normal; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.75; }
+.faixa-lua-txt strong { font-family: "Cinzel", var(--font-display); font-size: 1.08rem; margin: 0.1rem 0; }
+.faixa-lua-txt strong b { color: oklch(0.86 0.13 88); }
+.faixa-lua-txt small { font-size: 0.8rem; opacity: 0.85; }
+.faixa-lua .faixa-sobre-seta { width: 1.6rem; height: 1.6rem; flex: none; stroke: oklch(0.86 0.10 312); fill: none; stroke-width: 1.7; }
+.faixa-lua.cheia { border-color: oklch(0.95 0.08 92); color: oklch(0.22 0.07 310);
+  background: radial-gradient(circle at 12% 50%, oklch(0.99 0.03 95), oklch(0.86 0.13 88) 30%, oklch(0.62 0.16 60) 75%, oklch(0.40 0.13 320));
+  animation: faixa-lua-cheia 2.2s ease-in-out infinite; }
+.faixa-lua.cheia .faixa-lua-txt strong b { color: oklch(0.32 0.13 320); }
+.faixa-lua.cheia .faixa-sobre-seta { stroke: oklch(0.25 0.09 310); }
+@keyframes faixa-lua-cheia { 50% { box-shadow: 0 0 60px oklch(0.92 0.14 92 / 0.95); } }
+.faixa-lua.nova { border-color: oklch(0.90 0.05 300);
+  background: radial-gradient(1.5px 1.5px at 30% 75%, #fff, transparent), radial-gradient(1px 1px at 62% 25%, #fffc, transparent), radial-gradient(1.5px 1.5px at 85% 70%, #fff, transparent),
+    radial-gradient(circle at 12% 50%, oklch(0.45 0.20 300), oklch(0.16 0.08 290) 45%, oklch(0.06 0.03 290));
+  animation: faixa-lua-nova 2.2s ease-in-out infinite; }
+@keyframes faixa-lua-nova { 50% { box-shadow: 0 0 60px oklch(0.75 0.22 305 / 0.95); } }
+.faixa-lua-eti { position: absolute; top: -0.6rem; left: 1rem; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.06em; padding: 0.12rem 0.5rem; border-radius: 9999px;
+  background: linear-gradient(135deg, oklch(0.85 0.13 88), oklch(0.72 0.14 70)); color: oklch(0.2 0.05 285); }
 .faixa-asc { position: relative; z-index: 5; display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: center;
   max-width: 40rem; margin: 1.6rem auto 0.4rem; padding: 1.1rem 1.2rem; border-radius: 1.4rem; text-decoration: none; color: oklch(0.98 0.01 315);
   background: linear-gradient(135deg, oklch(0.62 0.17 315 / 0.95), oklch(0.45 0.18 298 / 0.95) 60%, oklch(0.36 0.15 290 / 0.95));
@@ -614,6 +641,14 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <img class="faixa-sobre-foto" src="mestre-avatar.jpg" srcset="mestre-avatar.jpg 1x, mestre-avatar@2x.jpg 2x" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <span class="faixa-sobre-txt">Conheça o <strong>Mestre Alberto</strong><small>18 anos a ler cartas · quem sou e como trabalho</small></span>
       <svg class="icon faixa-sobre-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </a>
+
+    <!-- 🌙 21/10/2026: a Lua de hoje (preenchida pelo script no fim, com lua-dados.js) -->
+    <a href="/lua" class="faixa-lua animate-fade-up" id="faixa-lua" hidden>
+      <span class="faixa-lua-eti">NOVO · Calendário Lunar</span>
+      <span id="faixa-lua-svg"></span>
+      <span class="faixa-lua-txt"><em id="faixa-lua-quando">A Lua hoje</em><strong id="faixa-lua-fase"></strong><small id="faixa-lua-mais"></small></span>
+      <svg class="faixa-sobre-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
     </a>
 
 
@@ -1085,6 +1120,55 @@ setInterval(anelSeguinte, 2800);
     if (vazio) { e.preventDefault(); f.classList.add("erro"); vazio.focus(); }
   });
 })();
+</script>
+<script src="lua-dados.js" defer></script>
+<script>
+// 🌙 A Lua de hoje na página principal — os mesmos dados do /lua (Swiss Ephemeris)
+window.addEventListener("DOMContentLoaded", function () {
+  try {
+    var L = window.LUA, el = document.getElementById("faixa-lua");
+    if (!L || !el) return;
+    var europa = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").indexOf("Europe") === 0;
+    var tz = europa ? "Europe/Lisbon" : "America/Sao_Paulo";
+    var G = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
+    var N = europa ? ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"]
+                   : ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+    var F = ["Lua Nova","Lua Crescente","Lua Cheia","Lua Minguante"];
+    var agora = Date.now(), i, s = L.ingressos[0].s, f = 0, e = 0, prox = null;
+    for (i = 0; i < L.ingressos.length && L.ingressos[i].t <= agora; i++) s = L.ingressos[i].s;
+    for (i = 0; i < L.fases.length - 1; i++) {
+      var a = L.fases[i], b = L.fases[i + 1];
+      if (a.t <= agora && agora < b.t) { f = a.f; e = (a.f * 90 + 90 * (agora - a.t) / (b.t - a.t)) % 360; prox = b; break; }
+    }
+    if (!prox) return;  // os dados acabaram: a faixa fica escondida em vez de mentir
+    var dia = function (t) { return new Intl.DateTimeFormat("en-CA", { timeZone: tz }).format(new Date(t)); };
+    var hora = function (t) { return new Intl.DateTimeFormat("pt-PT", { timeZone: tz, hour: "2-digit", minute: "2-digit" }).format(new Date(t)); };
+    var hoje = dia(agora), amanha = dia(agora + 864e5);
+    // a fase grande (Cheia ou Nova) que acontece hoje ou amanhã ganha destaque
+    var grande = null;
+    for (i = 0; i < L.fases.length; i++) {
+      var x = L.fases[i];
+      if ((x.f === 0 || x.f === 2) && (dia(x.t) === hoje || dia(x.t) === amanha) && x.t > agora - 864e5) { grande = x; break; }
+    }
+    var r = 48, c = 50, rx = Math.abs(Math.cos(e * Math.PI / 180)) * r, cresce = e < 180;
+    var fora = cresce ? 1 : 0, term = cresce ? (e < 90 ? 0 : 1) : (e > 270 ? 1 : 0);
+    var luz = (e < 2 || e > 358) ? "" : '<path d="M' + c + ' ' + (c - r) + ' A' + r + ' ' + r + ' 0 0 ' + fora + ' ' + c + ' ' + (c + r) + ' A' + rx.toFixed(2) + ' ' + r + ' 0 0 ' + term + ' ' + c + ' ' + (c - r) + 'Z" fill="url(#fl-g)"/>';
+    document.getElementById("faixa-lua-svg").outerHTML = '<svg class="lua-svg" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="fl-g" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#fffaf0"/><stop offset=".7" stop-color="#efe3c4"/><stop offset="1" stop-color="#cbb98f"/></radialGradient></defs><circle cx="50" cy="50" r="48" fill="#2a1f3d" stroke="#b9a6d6" stroke-opacity=".4" stroke-width="1.2"/>' + luz + '</svg>';
+    var ilum = Math.round((1 - Math.cos(e * Math.PI / 180)) / 2 * 100);
+    var q = document.getElementById("faixa-lua-quando"), fs = document.getElementById("faixa-lua-fase"), m = document.getElementById("faixa-lua-mais");
+    if (grande) {
+      el.classList.add(grande.f === 2 ? "cheia" : "nova");
+      q.textContent = (dia(grande.t) === hoje ? "Hoje" : "Amanhã") + " às " + hora(grande.t);
+      fs.innerHTML = "É " + F[grande.f] + " em <b>" + G[grande.s] + "\uFE0E " + N[grande.s] + "</b>!";
+      m.textContent = "Veja o que muda no Calendário Lunar →";
+    } else {
+      fs.innerHTML = F[f] + " em <b>" + G[s] + "\uFE0E " + N[s] + "</b>";
+      var dias = Math.round((prox.t - agora) / 864e5);
+      m.textContent = ilum + "% iluminada · " + F[prox.f] + (dias <= 1 ? " amanhã" : " daqui a " + dias + " dias") + " · Ver o calendário";
+    }
+    el.hidden = false;
+  } catch (err) {}
+});
 </script>
 </body>
 </html>

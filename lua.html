@@ -268,7 +268,7 @@ footer a { color: inherit; }
 (function () {
   const $ = (id) => document.getElementById(id);
   const L = window.LUA;
-  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
+  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map(g => g + "\uFE0E");  // sem isto o telemóvel mostra emoji
   // Os nomes mudam com o fuso: no Brasil como lá se dizem, em Portugal como cá
   const NOMES_BR = ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
   const NOMES_PT = ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
