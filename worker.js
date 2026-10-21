@@ -36,6 +36,23 @@ function buildMessage(type, d = {}) {
       `🔭 ${clean(d.verdict, 600)}`,
     ].filter((l) => l !== null).join("\n");
   }
+  // 21/10/2026: pedido do Mapa do Amor completo (mapa-amor.html). Semi-automático:
+  // ele confirma o pagamento e só depois diz «envia».
+  if (type === "mapa-amor-pedido") {
+    const como = { cartao: "💳 Cartão (myPOS)", mbway: "📱 MB WAY", pix: "🇧🇷 PIX" }[d.metodo] || clean(d.metodo, 20);
+    return [
+      `💗 PEDIDO MAPA DO AMOR ${clean(d.pedido, 20)} — Genialtarot`,
+      "",
+      `${como} · ${clean(d.valor, 20)}`,
+      `👤 Nome: ${clean(d.name)}`,
+      `📧 Email: ${clean(d.email)}`,
+      `🎂 Nascimento: ${clean(d.date_of_birth)} às ${clean(d.birth_time, 20)}`,
+      `📍 ${clean(d.city)}, ${clean(d.country)}`,
+      `♀ ${clean(d.venus, 60)} · ♂ ${clean(d.marte, 60)}`,
+      "",
+      "⏳ Confirma se o pagamento entrou e diz «envia» — só então segue o mapa completo.",
+    ].join("\n");
+  }
   if (type === "rating") {
     const stars = "⭐".repeat(Math.max(1, Math.min(5, Number(d.rating) || 0)));
     return `${stars} AVALIAÇÃO — Genialtarot\n\n👤 ${clean(d.name)}\n🎯 Área: ${clean(d.area)}\n Nota: ${clean(d.rating)}/5`;

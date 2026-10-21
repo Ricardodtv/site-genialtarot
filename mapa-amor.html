@@ -163,6 +163,28 @@ input:disabled { opacity: .45; }
 .capitulos .cad { flex: none; font-size: .95rem; opacity: .8; }
 .em-breve { display: block; text-align: center; margin-top: 1.1rem; font-family: var(--serifa); font-size: 1.15rem; color: var(--lavanda); }
 
+/* 21/10/2026: a compra (10 € cartão/MB WAY · R$ 49,90 PIX). Escondida até ?venda=1 enquanto os 9 capítulos não estão escritos */
+.comprar { margin-top: 1.3rem; border-radius: 1.1rem; padding: 1.2rem; background: oklch(0.20 0.07 300 / .75); border: 1.5px solid oklch(0.88 0.12 88 / .6); text-align: center; }
+.comprar[hidden] { display: none; }
+.comprar .preco { font-family: var(--titulo); font-size: 2.4rem; font-weight: 800; color: var(--ouro); line-height: 1.1; }
+.comprar .preco small { display: block; font-family: Inter, system-ui, sans-serif; font-size: .85rem; font-weight: 600; color: var(--lavanda); }
+.comprar label { display: block; max-width: 26rem; margin: 1rem auto 0; text-align: left; font-size: .85rem; color: var(--suave); }
+.comprar input { width: 100%; margin-top: .3rem; border-radius: .7rem; border: 1px solid var(--borda); background: oklch(0.14 0.05 300); color: white; font-size: 1rem; padding: .65rem .8rem; }
+.metodos { display: grid; gap: .6rem; grid-template-columns: 1fr; max-width: 26rem; margin: 1rem auto 0; }
+.metodos button { display: flex; align-items: center; justify-content: center; gap: .5rem; border-radius: .8rem; border: 0; font-weight: 800; font-size: 1rem; padding: .8rem; cursor: pointer; transition: transform .2s; }
+.metodos button:hover { transform: scale(1.03); }
+.m-cartao { background: linear-gradient(135deg, oklch(0.93 0.10 92), oklch(0.78 0.15 75)); color: oklch(0.22 0.07 300); }
+.m-mbway { background: #d4002a; color: white; }
+.m-pix { background: oklch(0.24 0.05 200); color: white; border: 1.5px solid #32BCAD !important; }
+.m-info { max-width: 26rem; margin: 1rem auto 0; border-radius: .9rem; background: #fff; color: #1d1d2b; padding: 1rem; display: none; }
+.m-info.ver { display: block; animation: surgir .3s ease-out; }
+.m-info .num { font-size: 1.7rem; font-weight: 800; letter-spacing: .04em; color: #d4002a; }
+.m-info img { display: block; margin: .6rem auto; width: 220px; height: 220px; }
+.m-info a, .m-info button { display: inline-block; margin-top: .6rem; border-radius: 999px; border: 0; padding: .6rem 1.1rem; font-weight: 700; text-decoration: none; cursor: pointer; }
+.m-info a { background: #25D366; color: white; }
+.m-info button { background: #e6f7f5; color: #0f766e; }
+.comprar .nota { margin: .9rem 0 0; font-size: .84rem; color: var(--lavanda); }
+
 /* consulta */
 .consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
 @media (min-width: 860px) { .consulta { grid-template-columns: 0.8fr 1.2fr; } }
@@ -246,7 +268,7 @@ footer a { color: inherit; }
   </section>
 
   <section id="completo" class="cartao completo">
-    <span class="selo">🔒 Versão completa · em breve</span>
+    <span class="selo" id="selo-completo">🔒 Versão completa · em breve</span>
     <h2>O Mapa do Amor <span class="lil">completo</span></h2>
     <p class="int">A amostra grátis mostra 3 temas. A versão completa lê o seu céu do amor em 9 capítulos:</p>
     <ol class="capitulos">
@@ -260,7 +282,20 @@ footer a { color: inherit; }
       <li><span class="n">8</span><span class="t">Ascendente<small>a primeira impressão que deixa</small></span><span class="cad">🔒</span></li>
       <li><span class="n">9</span><span class="t">Casa 7<small>o parceiro que procura</small></span><span class="cad">🔒</span></li>
     </ol>
-    <span class="em-breve">✨ Em breve ✨</span>
+    <span class="em-breve" id="em-breve">✨ Em breve ✨</span>
+    <div class="comprar" id="comprar" hidden>
+      <div class="preco">10 €<small>No Brasil: R$ 49,90 por PIX</small></div>
+      <label>O seu email: é para lá que enviamos o mapa completo
+        <input type="email" id="email-pedido" autocomplete="email" maxlength="120" placeholder="o.seu@email.com" /></label>
+      <div class="metodos">
+        <button type="button" class="m-cartao" data-m="cartao">💳 Pagar com cartão · 10 €</button>
+        <button type="button" class="m-mbway" data-m="mbway">📱 MB WAY · 10 €</button>
+        <button type="button" class="m-pix" data-m="pix">🇧🇷 PIX · R$ 49,90</button>
+      </div>
+      <div class="erro" id="erro-pedido" role="alert"></div>
+      <div class="m-info" id="m-info"></div>
+      <p class="nota">💌 O seu Mapa do Amor completo chega por email depois de confirmarmos o pagamento.</p>
+    </div>
   </section>
 
   <section id="consulta" class="cartao">
@@ -435,6 +470,9 @@ footer a { color: inherit; }
     try { ms = AstroAsc.localParaUTC(A, M, D, h, mi, tz); } catch (e) { return mostraErro("Não consegui ler a data. Confirme os dados, por favor."); }
     const r = AstroAmor.venusMarte(ms);
     const iV = idx(r.venus), iM = idx(r.marte), eV = iV % 4, eM = iM % 4;
+    ultimo = { name: nome, date_of_birth: `${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`,
+      birth_time: semhora ? "desconhecida" : hora, city: escolhida[0] + (escolhida[1] ? " (" + escolhida[1] + ")" : ""),
+      country: CID.paises[escolhida[2]] || escolhida[2], venus: `${NOMES[iV]} ${AstroAsc.grau(r.venus)}`, marte: `${NOMES[iM]} ${AstroAsc.grau(r.marte)}` };
     $("g-ven").textContent = GLIFOS[iV]; $("n-ven").textContent = NOMES[iV]; $("d-ven").textContent = AstroAsc.grau(r.venus);
     $("g-mar").textContent = GLIFOS[iM]; $("n-mar").textContent = NOMES[iM]; $("d-mar").textContent = AstroAsc.grau(r.marte);
     $("e-ven").textContent = EMOJI_EL[eV] + " " + ELEMENTOS[eV]; $("e-mar").textContent = EMOJI_EL[eM] + " " + ELEMENTOS[eM];
@@ -464,6 +502,51 @@ footer a { color: inherit; }
     if (rolar) $("resultado").scrollIntoView({ behavior: "smooth" });
   }
   $("form").addEventListener("submit", (ev) => { ev.preventDefault(); calcular(true); });
+
+  // ===== A compra da versão completa (21/10/2026) =====
+  // Semi-automático, como ele pediu: o pedido vai para a fila (/notify) e para o Telegram,
+  // o cerebro avisa o Home Assistant, ele confirma o pagamento e diz «envia».
+  // Cartão pelo pagar.html (o checkout do myPOS não abre dentro do WhatsApp).
+  let ultimo = null;
+  // o link do myPOS (BIKOETG3DIP04, 10 €) está no pagar.html como c=mapa-amor
+  const PIX = { valor: "R$ 49,90", qr: "pix/GTAMOR.png",
+    codigo: "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa9520400005303986540549.905802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62100506GTAMOR63046D05" };
+  const vendaAberta = new URLSearchParams(location.search).has("venda");
+  if (vendaAberta) { $("comprar").hidden = false; $("em-breve").hidden = true; $("selo-completo").textContent = "💗 Versão completa · 9 capítulos"; }
+  const pedidoId = () => "MA-" + Date.now().toString(36).slice(-5).toUpperCase();
+  const erroPedido = (t) => { const e = $("erro-pedido"); e.textContent = t; e.classList.toggle("ver", !!t); };
+  document.querySelectorAll(".metodos button").forEach((b) => b.addEventListener("click", async () => {
+    erroPedido("");
+    const email = $("email-pedido").value.trim();
+    if (!ultimo) { erroPedido("Primeiro preencha os seus dados de nascimento lá em cima e carregue em «Revelar o meu Mapa do Amor»."); $("calcular").scrollIntoView({ behavior: "smooth" }); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return erroPedido("Escreva o seu email, por favor: é para lá que enviamos o mapa.");
+    const m = b.dataset.m, id = pedidoId();
+    const valor = m === "pix" ? PIX.valor : "10 €";
+    try {
+      fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
+        body: JSON.stringify({ type: "mapa-amor-pedido", data: { ...ultimo, email, metodo: m, valor, pedido: id } }) });
+    } catch (e) { /* o pagamento segue na mesma */ }
+    const info = $("m-info");
+    const msg = (como) => `Olá Mestre Alberto, paguei ${valor} por ${como} o Mapa do Amor completo (pedido ${id}). Segue o comprovante.`;
+    if (m === "cartao") {
+      info.innerHTML = `<b>Pedido ${id}</b><br>A abrir o pagamento seguro com cartão…<br><a href="/pagar.html?c=mapa-amor" target="_blank" rel="noopener noreferrer" style="background:#4a2fa0">💳 Abrir o pagamento</a>`;
+      window.open("/pagar.html?c=mapa-amor", "_blank", "noopener");
+    } else if (m === "mbway") {
+      info.innerHTML = `<b>Pedido ${id}</b><br>Envie <b>10 €</b> por MB WAY para:<div class="num">914 920 427</div>Depois envie o comprovante pelo WhatsApp:<br><a href="https://wa.me/351914920427?text=${encodeURIComponent(msg("MB WAY"))}" target="_blank" rel="noopener noreferrer">💬 Enviar comprovante</a>`;
+    } else {
+      info.innerHTML = `<b>Pedido ${id}</b><br>📱 Abra a <b>app do seu banco</b> → <b>Pix</b> → <b>Ler QR Code</b>. Valor: <b>${PIX.valor}</b>.
+        <img src="${PIX.qr}" alt="QR Code PIX ${PIX.valor}" width="220" height="220" />
+        <button type="button" id="copiar-pix">📋 Copiar código PIX</button><br>
+        <small>O pagamento aparece em nome de <b>${esc(typeof PIX_NOME !== "undefined" ? PIX_NOME : "Ingrid Evelyn Castro de Paula")}</b>, da equipe do Mestre Alberto.</small><br>
+        <a href="https://wa.me/351914920427?text=${encodeURIComponent(msg("PIX"))}" target="_blank" rel="noopener noreferrer">💬 Enviar comprovante</a>`;
+      $("copiar-pix").addEventListener("click", (ev) => {
+        const ok = () => { ev.target.textContent = "✅ Código copiado! Cole no banco em Pix → Copia e Cola"; };
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(PIX.codigo).then(ok, () => prompt("Copie o código:", PIX.codigo));
+        else prompt("Copie o código:", PIX.codigo);
+      });
+    }
+    info.classList.add("ver");
+  }));
 
   // ===== Vem com os dados no endereço (?nome=&data=&hora=&cidade=): preenche e calcula =====
   const vem = new URLSearchParams(location.search);
