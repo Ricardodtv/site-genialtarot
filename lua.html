@@ -102,9 +102,38 @@ h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.4rem, 3.4v
 .dia .sig { margin-top: auto; font-size: .78rem; color: var(--lavanda); line-height: 1.25; }
 .dia .sig i { font-style: normal; color: var(--ouro); font-size: 1rem; margin-right: .15rem; }
 .dia .ing { font-size: .7rem; color: var(--suave); }
-.dia.fase { background: linear-gradient(160deg, oklch(0.12 0.05 295), oklch(0.20 0.09 300)); border: 1px solid oklch(0.85 0.10 312 / .55); box-shadow: 0 0 22px oklch(0.65 0.17 305 / .35); }
-.dia.fase .nome-fase { font-family: var(--titulo); font-size: .78rem; font-weight: 700; color: var(--lilas-claro); line-height: 1.15; }
-.dia.fase .hora { font-size: .72rem; color: var(--ouro); }
+/* 21/10: pedido dele — «nos dias de mudança de fase quero um destaque maior» */
+.dia.fase { z-index: 2; transform: scale(1.06); background: linear-gradient(160deg, oklch(0.58 0.19 310), oklch(0.36 0.16 300) 60%, oklch(0.16 0.07 295));
+  border: 2px solid var(--ouro); box-shadow: 0 0 0 3px oklch(0.85 0.13 88 / .25), 0 0 34px oklch(0.75 0.17 310 / .75), 0 10px 26px #000a;
+  animation: brilho-fase 2.6s ease-in-out infinite; }
+.dia.fase:hover { transform: scale(1.09); }
+@keyframes brilho-fase { 50% { box-shadow: 0 0 0 5px oklch(0.85 0.13 88 / .35), 0 0 50px oklch(0.80 0.17 315 / .95), 0 10px 26px #000a; } }
+.dia.fase .ic { width: 2.6rem; height: 2.6rem; top: .35rem; right: .35rem; filter: drop-shadow(0 0 10px oklch(0.95 0.06 90 / .8)); }
+.dia.fase .num { font-size: 1.2rem; color: white; }
+.dia.fase .nome-fase { font-family: var(--titulo); font-size: .86rem; font-weight: 700; color: white; line-height: 1.15; margin-top: .55rem; text-shadow: 0 0 10px oklch(0.85 0.13 88 / .6); }
+.dia.fase .hora { font-size: .8rem; font-weight: 800; color: var(--ouro); }
+.dia.fase .sig, .dia.fase .ing { color: white; }
+.dia .curta { display: none; }
+/* 21/10: «algo mais chamativo na Lua Cheia e na Lua Nova» — a Cheia em ouro radiante, a Nova em noite com estrelas */
+.dia.fase.cheia { z-index: 3; transform: scale(1.12); border: 2px solid oklch(0.97 0.05 95);
+  background: radial-gradient(circle at 75% 22%, oklch(0.99 0.03 95) 0%, oklch(0.88 0.12 88) 22%, oklch(0.62 0.16 60) 55%, oklch(0.32 0.12 320) 100%);
+  animation: brilho-cheia 2.2s ease-in-out infinite; }
+@keyframes brilho-cheia { 0%,100% { box-shadow: 0 0 0 4px oklch(0.90 0.12 90 / .35), 0 0 40px oklch(0.90 0.14 90 / .8), 0 10px 26px #000a; }
+  50% { box-shadow: 0 0 0 7px oklch(0.90 0.12 90 / .45), 0 0 70px oklch(0.93 0.14 92 / 1), 0 10px 26px #000a; } }
+.dia.fase.cheia .num, .dia.fase.cheia .nome-fase, .dia.fase.cheia .curta { color: oklch(0.20 0.07 310); text-shadow: 0 0 8px #fff8; }
+.dia.fase.cheia .hora, .dia.fase.cheia .sig, .dia.fase.cheia .ing { color: oklch(0.25 0.09 310); font-weight: 800; }
+.dia.fase.cheia .sig i { color: oklch(0.30 0.12 320); }
+.dia.fase.cheia .ic { filter: drop-shadow(0 0 16px #fff) drop-shadow(0 0 30px oklch(0.95 0.12 90)); }
+.dia.fase.nova { z-index: 3; transform: scale(1.12); border: 2px solid oklch(0.92 0.04 300);
+  background: radial-gradient(1.5px 1.5px at 20% 70%, #fff, transparent), radial-gradient(1px 1px at 45% 85%, #fffc, transparent),
+    radial-gradient(1.5px 1.5px at 80% 75%, #fff, transparent), radial-gradient(1px 1px at 12% 40%, #fffa, transparent), radial-gradient(1px 1px at 62% 55%, #fffc, transparent),
+    radial-gradient(circle at 75% 22%, oklch(0.45 0.20 300) 0%, oklch(0.18 0.09 290) 45%, oklch(0.06 0.03 290) 100%);
+  animation: brilho-nova 2.2s ease-in-out infinite; }
+@keyframes brilho-nova { 0%,100% { box-shadow: 0 0 0 4px oklch(0.85 0.06 300 / .35), 0 0 40px oklch(0.70 0.20 300 / .85), 0 10px 26px #000a; }
+  50% { box-shadow: 0 0 0 7px oklch(0.88 0.06 300 / .5), 0 0 70px oklch(0.75 0.22 305 / 1), 0 10px 26px #000a; } }
+.dia.fase.nova .ic { filter: drop-shadow(0 0 6px #fff) drop-shadow(0 0 18px oklch(0.80 0.18 305)); }
+.dia.fase.nova .nome-fase { color: oklch(0.95 0.04 300); text-shadow: 0 0 12px oklch(0.80 0.18 305); }
+.dia.fase.cheia:hover, .dia.fase.nova:hover { transform: scale(1.15); }
 .dia.hoje-d { outline: 2px solid var(--ouro); outline-offset: 1px; box-shadow: 0 0 24px oklch(0.85 0.13 88 / .45); }
 .dia .marca-esp { font-size: .62rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: .1rem .4rem; align-self: flex-start;
   color: oklch(0.22 0.06 300); background: var(--grad-ouro); }
@@ -115,6 +144,13 @@ h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.4rem, 3.4v
   .dia .num { font-size: .8rem; }
   .dia .sig { margin-top: 0; font-size: 0; } .dia .sig i { font-size: .95rem; margin: 0; }
   .dia .ing, .dia.fase .nome-fase, .dia .marca-esp { display: none; }
+  .grelha { row-gap: .45rem; }
+  .dia { min-height: 6rem; }
+  .dia.fase { transform: none; border-width: 2px; }
+  .dia.fase.cheia, .dia.fase.nova { transform: scale(1.07); }
+  .dia.fase .ic { position: static; width: 1.9rem; height: 1.9rem; }
+  .dia.fase .num { font-size: .9rem; }
+  .dia.fase .curta { display: block; font-size: .56rem; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; color: white; line-height: 1.1; }
   .dia.fase .hora { font-size: .62rem; }
   .sem { font-size: .6rem; letter-spacing: 0; }
 }
@@ -336,9 +372,9 @@ footer a { color: inherit; }
       const ecl = L.eclipses.find(x => Math.abs(x.t - (fase ? fase.t : -1e15)) < 864e5);
       const s = signoEm(meio);
       const eHoje = (pHoje.a === ano && pHoje.m === mes && pHoje.d === d);
-      let c = `<div class="dia${fase ? " fase" : ""}${eHoje ? " hoje-d" : ""}"><span class="num">${d}</span>${luaSVG(fase ? fase.f * 90 : elong(meio), "ic")}`;
+      let c = `<div class="dia${fase ? " fase" + (fase.f === 0 ? " nova" : fase.f === 2 ? " cheia" : "") : ""}${eHoje ? " hoje-d" : ""}"><span class="num">${d}</span>${luaSVG(fase ? fase.f * 90 : elong(meio), "ic")}`;
       if (fase) {
-        c += `<span class="nome-fase">${FASES[fase.f]}</span><span class="hora">${hora(fase.t)}</span>`;
+        c += `<span class="nome-fase">${FASES[fase.f]}</span><span class="curta">${["Nova","Cresc.","Cheia","Ming."][fase.f]}</span><span class="hora">${hora(fase.t)}</span>`;
         if (ecl) c += `<span class="marca-esp">Eclipse</span>`; else if (fase.super) c += `<span class="marca-esp">Superlua</span>`;
       }
       c += `<span class="sig"><i>${GLIFOS[s]}</i>${nomes()[s]}</span>`;
