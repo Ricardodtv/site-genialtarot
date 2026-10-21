@@ -121,6 +121,11 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .zona { position: relative; z-index: 5; max-width: 62rem; margin: 0 auto; padding: 0 1rem; }
 .titulo-cat { font-family: 'Cinzel', var(--font-display); font-size: clamp(1.3rem, 4vw, 1.8rem); letter-spacing: 0.12em; color: var(--ouro); text-align: center; margin: 2.8rem 0 0.3rem; text-transform: uppercase; }
 .sub-cat { text-align: center; color: var(--mudo); font-size: 0.85rem; font-style: italic; margin-bottom: 1.4rem; }
+/* 21/10/2026: a promoção do Mapa do Amor em primeiro lugar, em rosa */
+.nav-cat a.nav-promo { background: linear-gradient(90deg, oklch(0.62 0.22 0), oklch(0.68 0.2 350)); border-color: oklch(0.88 0.1 350); color: white; box-shadow: 0 0 22px oklch(0.65 0.22 0 / .6); }
+.produto.produto-amor { border-color: oklch(0.75 0.17 355 / .9); box-shadow: 0 0 34px oklch(0.6 0.22 0 / .45); background: linear-gradient(180deg, oklch(0.26 0.09 355), oklch(0.18 0.06 340)); }
+.btn-amor { background: linear-gradient(90deg, oklch(0.62 0.22 0), oklch(0.7 0.19 350)) !important; color: white !important; }
+.pag-amor { margin: .7rem 0 0; text-align: center; font-size: .82rem; color: oklch(0.88 0.06 350); }
 .grelha { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.2rem; }
 .produto { position: relative; display: flex; flex-direction: column; border: 1.5px solid oklch(0.82 0.11 85 / 0.4); border-radius: 1rem; background: var(--cartao); overflow: hidden; transition: transform .3s, box-shadow .3s, border-color .3s; }
 .produto:hover { transform: translateY(-5px); border-color: oklch(0.82 0.11 85 / 0.85); box-shadow: 0 14px 40px rgba(0,0,0,0.5), 0 0 30px oklch(0.82 0.11 85 / 0.25); }
@@ -282,8 +287,9 @@ document.getElementById("ano").textContent = new Date().getFullYear();
 /* Sempre que trocar fotos com o MESMO nome, suba este número (2 → 3 → 4...)
    para os telemóveis deixarem de mostrar a foto antiga guardada em memória. */
 const VERSAO_FOTOS = "7";
-const ICONES_CAT = { "Consultas": "🔮", "Rituais": "🕯️", "Emergências": "🚨", "Amuletos": "🧿", "Mapas Astrais": "🌌", "Cursos": "📚" };
+const ICONES_CAT = { "Promoção": "💗", "Consultas": "🔮", "Rituais": "🕯️", "Emergências": "🚨", "Amuletos": "🧿", "Mapas Astrais": "🌌", "Cursos": "📚" };
 const FRASES_CAT = {
+  "Promoção": "o seu céu do amor, revelado pelo Mestre Alberto",
   "Consultas": "orientação dedicada, olhos nos olhos com o destino",
   "Rituais": "trabalhos realizados com devoção, um a um",
   "Emergências": "quando a alma não pode esperar",
@@ -291,7 +297,7 @@ const FRASES_CAT = {
   "Mapas Astrais": "o céu que o desenhou, interpretado para si",
   "Cursos": "aprenda com quem lê as cartas há uma vida",
 };
-const ORDEM_CAT = ["Consultas", "Rituais", "Emergências", "Amuletos", "Mapas Astrais", "Cursos"];
+const ORDEM_CAT = ["Promoção", "Consultas", "Rituais", "Emergências", "Amuletos", "Mapas Astrais", "Cursos"];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
 function linkCompra(p) {
@@ -386,13 +392,13 @@ function montarLoja() {
   const cats = [...base, ...extras, ...(porCat["Cursos"] ? ["Cursos"] : [])];
 
   const idCat = c => "cat-" + c.toLowerCase().replace(/\s+/g, "-");
-  const LINHAS_NAV = [["Emergências"], ["Consultas", "Rituais"], ["Amuletos", "Mapas Astrais", "Cursos"]];
+  const LINHAS_NAV = [["Promoção"], ["Emergências"], ["Consultas", "Rituais"], ["Amuletos", "Mapas Astrais", "Cursos"]];
   const previstas = LINHAS_NAV.flat();
   const filas = LINHAS_NAV.map(l => l.filter(c => porCat[c]));
   filas[2] = [...filas[2], ...cats.filter(c => !previstas.includes(c))];
   nav.innerHTML = filas.filter(l => l.length).map(linha =>
     `<div class="nav-linha">` + linha.map(c => {
-      const classes = c === "Emergências" ? "nav-emerg" : c === "Consultas" ? "nav-consultas" : "";
+      const classes = c === "Promoção" ? "nav-promo" : c === "Emergências" ? "nav-emerg" : c === "Consultas" ? "nav-consultas" : "";
       const icone = c === "Emergências" ? '<span class="sirene">🚨</span>' : (ICONES_CAT[c] || "✦");
       return `<a class="${classes}" href="#${idCat(c)}">${icone} ${esc(c)}</a>`;
     }).join("") + `</div>`).join("");
@@ -404,6 +410,19 @@ function montarLoja() {
       const foto = p.foto
         ? `<img class="foto" src="${esc(srcFoto)}" alt="${esc(p.nome)}" loading="lazy" onerror="this.outerHTML='<div class=&quot;foto-simbolo&quot;>${ICONES_CAT[c] || "✦"}</div>'" />`
         : `<div class="foto-simbolo">${ICONES_CAT[c] || "✦"}</div>`;
+      if (p.pagina) return `<article class="produto produto-amor">
+        <span class="selo-wrap"><span class="estrelas-top">${"⭐".repeat(Math.max(0, Math.min(5, Number(p.estrelas) || 0)))}</span><span class="selo-pop selo-rosa">✦ ${esc(p.etiqueta || "Promoção")} ✦</span></span>
+        ${foto}
+        <div class="corpo">
+          <h3>${esc(p.nome)}</h3>
+          <p class="desc">${esc(p.descricao)}</p>
+          <div class="rodape-p">
+            <span class="preco">${esc(p.preco)}</span>
+            <a class="btn-adquirir btn-amor" href="${esc(p.pagina)}">💗 Comprar Aqui</a>
+          </div>
+          ${p.pagamentos ? `<p class="pag-amor">${esc(p.pagamentos)}</p>` : ""}
+        </div>
+      </article>`;
       return `<article class="produto">
         ${p.topvendas ? '<span class="selo-wrap"><span class="estrelas-top">⭐⭐⭐</span><span class="selo-pop selo-top">✦ Top Vendas ✦</span></span>' : p.etiqueta ? (function () {
           const cor = ["verde","violeta","vermelho","azul","laranja","rosa","dourado"].includes(p.cor) ? p.cor : "violeta";

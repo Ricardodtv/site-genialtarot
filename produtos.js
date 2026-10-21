@@ -25,11 +25,33 @@
                "azul", "laranja", "rosa" ou "dourado"
                (se não escrever nada, fica violeta)
    estrelas  → número de ⭐ por cima da etiqueta, de 1 a 5 (opcional)
+   pagina    → (opcional) o botão leva a esta página do site em vez do
+               pagamento directo (ex.: "/mapa-amor", que pede os dados)
+   pagamentos→ (opcional) com "pagina", a linha das formas de pagamento
    topvendas → true mostra o selo DOURADO "✦ Top Vendas ✦" com
                ⭐⭐⭐ por cima (opcional; também põe o produto à frente)
    ============================================================ */
 
 const PRODUTOS = [
+
+  /* ================= PROMOÇÃO ================= */
+
+  /* 21/10/2026 — pedido dele: "na loja como primeiro preço a promoção do Mapa do Amor".
+     Leva à página /mapa-amor (é lá que a pessoa põe os dados de nascimento e o email,
+     sem os quais não há mapa para enviar). Cartão 10 € · MB WAY 10 € · PIX R$ 49,90. */
+  {
+    nome: "💗 Mapa do Amor e da Sedução – Versão Completa (9 capítulos)",
+    categoria: "Promoção",
+    preco: "10 €",
+    foto: "mapa-amor-loja.jpg",
+    descricao: "O seu céu do amor lido em 9 capítulos: Vénus, Marte, Lilith, a Lua, a Casa 7 e a Casa 8 — o que deseja, como seduz, o que precisa para se sentir amado(a) e o parceiro que procura. Calculado ao minuto a partir do seu nascimento e enviado para o seu email.",
+    link: "",
+    pagina: "/mapa-amor",
+    pagamentos: "💳 Cartão · 📱 MB WAY · 🇧🇷 PIX R$ 49,90",
+    etiqueta: "PROMOÇÃO",
+    cor: "rosa",
+    estrelas: 5,
+  },
 
   /* ================= CONSULTAS ================= */
 
