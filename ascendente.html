@@ -53,6 +53,10 @@ a { color: var(--lilas-claro); }
 
 /* topo */
 .topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+/* 21/10/2026: a pílula «‹ genialtarot.com» igual às outras páginas (pedido dele) */
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: oklch(0.85 0.13 88); }
 .marca { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--texto); }
 .marca b { font-family: var(--titulo); font-size: 1.15rem; letter-spacing: .04em; background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .marca small { display: block; font-size: .72rem; color: var(--suave); letter-spacing: .12em; text-transform: uppercase; }
@@ -225,8 +229,7 @@ footer a { color: inherit; }
 <div class="estrelas" aria-hidden="true"></div>
 <div class="caixa">
   <header class="topo">
-    <a class="marca" href="/"><span style="font-size:1.6rem">☾</span><span><b>Genial Tarot</b><small>Mestre Alberto</small></span></a>
-    <a class="voltar" href="/">← Página inicial</a>
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
   </header>
 
   <section class="heroi">
