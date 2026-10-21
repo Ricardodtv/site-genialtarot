@@ -15,16 +15,16 @@
   const gravar = (k, v) => { try { localStorage.setItem("amostra:" + k, JSON.stringify(v)); } catch (e) { /* sem memória: deixa passar */ } };
 
   // chave = o mapa ("mapa-amor", "mapa-astral", ...); assinatura = os dados de nascimento usados
-  // Devolve { ok: true } ou { ok: false, proxima: Date }
+  // Devolve { ok: true, nova } (nova = amostra nova; false = rever o mesmo mapa) ou { ok: false, proxima: Date }
   function usar(chave, assinatura, agora = Date.now()) {
     const e = ler(chave);
     if (e && agora < maisDias(e.inicio, ESPERA)) {
-      if (e.usos.includes(assinatura)) return { ok: true };
-      if (agora < maisDias(e.inicio, 1) && e.usos.length < POR_DIA) { e.usos.push(assinatura); gravar(chave, e); return { ok: true }; }
+      if (e.usos.includes(assinatura)) return { ok: true, nova: false };
+      if (agora < maisDias(e.inicio, 1) && e.usos.length < POR_DIA) { e.usos.push(assinatura); gravar(chave, e); return { ok: true, nova: true }; }
       return { ok: false, proxima: new Date(maisDias(e.inicio, ESPERA)) };
     }
     gravar(chave, { inicio: meiaNoite(agora), usos: [assinatura] });
-    return { ok: true };
+    return { ok: true, nova: true };
   }
 
   const dataCurta = (d) => d.toLocaleDateString("pt-PT", { day: "2-digit", month: "2-digit" });

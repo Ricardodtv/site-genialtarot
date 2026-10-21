@@ -125,6 +125,14 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .nav-cat a.nav-promo { background: linear-gradient(90deg, oklch(0.62 0.22 0), oklch(0.68 0.2 350)); border-color: oklch(0.88 0.1 350); color: white; box-shadow: 0 0 22px oklch(0.65 0.22 0 / .6); }
 .produto.produto-amor { border-color: oklch(0.75 0.17 355 / .9); box-shadow: 0 0 34px oklch(0.6 0.22 0 / .45); background: linear-gradient(180deg, oklch(0.26 0.09 355), oklch(0.18 0.06 340)); }
 .btn-amor { background: linear-gradient(90deg, oklch(0.62 0.22 0), oklch(0.7 0.19 350)) !important; color: white !important; }
+/* 21/10/2026: o Mapa Astral nas promoções, em azul-noite e dourado */
+.produto.produto-astral { border-color: oklch(0.85 0.12 88 / .85); box-shadow: 0 0 34px oklch(0.55 0.16 275 / .5); background: linear-gradient(180deg, oklch(0.27 0.09 275), oklch(0.17 0.06 270)); }
+.btn-astral { background: linear-gradient(90deg, oklch(0.62 0.16 275), oklch(0.82 0.13 85)) !important; color: white !important; }
+.produto-astral .pag-amor { color: oklch(0.90 0.05 270); }
+/* 21/10/2026: o Ano 2027 (Numerologia) nas promoções, em esmeralda e dourado */
+.produto.produto-ano { border-color: oklch(0.85 0.12 88 / .85); box-shadow: 0 0 34px oklch(0.55 0.10 180 / .5); background: linear-gradient(180deg, oklch(0.27 0.06 185), oklch(0.17 0.04 195)); }
+.btn-ano { background: linear-gradient(90deg, oklch(0.55 0.10 180), oklch(0.82 0.13 85)) !important; color: white !important; }
+.produto-ano .pag-amor { color: oklch(0.92 0.04 170); }
 .pag-amor { margin: .7rem 0 0; text-align: center; font-size: .82rem; color: oklch(0.88 0.06 350); }
 .grelha { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1.2rem; }
 .produto { position: relative; display: flex; flex-direction: column; border: 1.5px solid oklch(0.82 0.11 85 / 0.4); border-radius: 1rem; background: var(--cartao); overflow: hidden; transition: transform .3s, box-shadow .3s, border-color .3s; }
@@ -289,7 +297,7 @@ document.getElementById("ano").textContent = new Date().getFullYear();
 const VERSAO_FOTOS = "7";
 const ICONES_CAT = { "Promoção": "💗", "Consultas": "🔮", "Rituais": "🕯️", "Emergências": "🚨", "Amuletos": "🧿", "Mapas Astrais": "🌌", "Cursos": "📚" };
 const FRASES_CAT = {
-  "Promoção": "o seu céu do amor, revelado pelo Mestre Alberto",
+  "Promoção": "o seu céu, revelado pelo Mestre Alberto",
   "Consultas": "orientação dedicada, olhos nos olhos com o destino",
   "Rituais": "trabalhos realizados com devoção, um a um",
   "Emergências": "quando a alma não pode esperar",
@@ -410,15 +418,15 @@ function montarLoja() {
       const foto = p.foto
         ? `<img class="foto" src="${esc(srcFoto)}" alt="${esc(p.nome)}" loading="lazy" onerror="this.outerHTML='<div class=&quot;foto-simbolo&quot;>${ICONES_CAT[c] || "✦"}</div>'" />`
         : `<div class="foto-simbolo">${ICONES_CAT[c] || "✦"}</div>`;
-      if (p.pagina) return `<article class="produto produto-amor">
-        <span class="selo-wrap"><span class="estrelas-top">${"⭐".repeat(Math.max(0, Math.min(5, Number(p.estrelas) || 0)))}</span><span class="selo-pop selo-rosa">✦ ${esc(p.etiqueta || "Promoção")} ✦</span></span>
+      if (p.pagina) return `<article class="produto ${p.cor === "azul" ? "produto-astral" : p.cor === "verde" ? "produto-ano" : "produto-amor"}">
+        <span class="selo-wrap"><span class="estrelas-top">${"⭐".repeat(Math.max(0, Math.min(5, Number(p.estrelas) || 0)))}</span><span class="selo-pop selo-${p.cor === "azul" ? "azul" : p.cor === "verde" ? "verde" : "rosa"}">✦ ${esc(p.etiqueta || "Promoção")} ✦</span></span>
         ${foto}
         <div class="corpo">
           <h3>${esc(p.nome)}</h3>
           <p class="desc">${esc(p.descricao)}</p>
           <div class="rodape-p">
             <span class="preco">${esc(p.preco)}</span>
-            <a class="btn-adquirir btn-amor" href="${esc(p.pagina)}">💗 Comprar Aqui</a>
+            <a class="btn-adquirir ${p.cor === "azul" ? "btn-astral" : p.cor === "verde" ? "btn-ano" : "btn-amor"}" href="${esc(p.pagina)}">${p.cor === "azul" ? "✨" : p.cor === "verde" ? "🔢" : "💗"} Comprar Aqui</a>
           </div>
           ${p.pagamentos ? `<p class="pag-amor">${esc(p.pagamentos)}</p>` : ""}
         </div>

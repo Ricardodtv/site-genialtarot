@@ -108,7 +108,7 @@ h2 .lil { background: var(--grad-rosa); -webkit-background-clip: text; backgroun
 @media (min-width: 680px) { .grelha { grid-template-columns: 1fr 1fr; } .largo { grid-column: 1 / -1; } }
 label.campo { display: flex; flex-direction: column; gap: .35rem; font-size: .88rem; font-weight: 600; color: var(--lavanda); }
 label.campo small { font-weight: 400; color: var(--suave); }
-input[type=text] {
+input[type=text], input[type=email], input[type=tel] {
   width: 100%; font: inherit; font-size: 1rem; color: var(--texto); background: oklch(0.16 0.05 300 / .75); border: 1.5px solid var(--borda);
   border-radius: .8rem; padding: .8rem .9rem; outline: none; transition: border-color .2s, box-shadow .2s; color-scheme: dark; }
 input:focus { border-color: var(--lilas); box-shadow: 0 0 0 4px oklch(0.74 0.14 310 / .25); }
@@ -259,6 +259,12 @@ footer a { color: inherit; }
         <label class="campo largo">O seu nome
           <input type="text" id="nome" autocomplete="off" required maxlength="80" />
         </label>
+        <label class="campo">O seu email <small>(para lhe enviarmos novidades e o mapa)</small>
+          <input type="email" id="email" autocomplete="email" required maxlength="120" />
+        </label>
+        <label class="campo">WhatsApp <small>(opcional, com o indicativo do país)</small>
+          <input type="tel" id="tel" autocomplete="tel" maxlength="25" />
+        </label>
         <label class="campo">Data de nascimento <small>(dia/mês/ano, ex.: 15/03/1990)</small>
           <input type="text" id="data" required inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" />
         </label>
@@ -274,10 +280,13 @@ footer a { color: inherit; }
           <div class="lista-cid" id="lista-cid" role="listbox"></div>
           <div class="marca-ok" id="cidade-ok"></div>
         </div>
+        <label class="campo largo">
+          <span class="caixinha"><input type="checkbox" id="novidades" /><span>Quero receber novidades do Mestre Alberto por email (horóscopos, mapas e promoções). Pode cancelar quando quiser.</span></span>
+        </label>
       </div>
       <div class="erro" id="erro" role="alert"></div>
       <div class="enviar"><button class="btn-grande" type="submit" id="btn-calc">💗 Revelar o meu Mapa do Amor</button></div>
-      <p class="nota-priv">🔒 O cálculo é feito no seu próprio telemóvel ou computador. Os seus dados não saem daqui.</p>
+      <p class="nota-priv">🔒 O cálculo é feito no seu telemóvel ou computador. Os seus dados não são partilhados com ninguém.</p>
     </form>
   </section>
 
@@ -493,6 +502,8 @@ footer a { color: inherit; }
     const horaLida = semhora ? [12, 0] : lerHora($("hora").value);
     const hora = horaLida ? String(horaLida[0]).padStart(2, "0") + ":" + String(horaLida[1]).padStart(2, "0") : "";
     if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return mostraErro("Escreva o seu nome, por favor.");
+    const email = $("email").value.trim().toLowerCase(), tel = $("tel").value.trim(), novidades = $("novidades").checked;
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return mostraErro("Escreva o seu email, por favor.");
     const dataLida = lerData(data);
     if (!data) return mostraErro("Falta a data de nascimento.");
     if (!dataLida) return mostraErro("Não percebi a data. Escreva assim: dia/mês/ano, por exemplo 15/03/1990.");
@@ -559,6 +570,15 @@ footer a { color: inherit; }
     $("dados-nasc").textContent = `Nascimento: ${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A} às ${semhora ? "hora desconhecida" : hora} · ${inpCid.value}`;
     $("gancho").textContent = `${primeiro}, com Vénus em ${curto(iV)} e Marte em ${curto(iM)}, o seu céu já diz muito sobre como você ama. Numa consulta online, o Mestre Alberto junta o seu céu e as cartas do Tarot para olhar para a sua vida amorosa de agora: o que está a acontecer, o que se repete e o caminho que se abre.`;
     $("wa-consulta").href = "https://wa.me/351914920427?text=" + encodeURIComponent(`Olá Mestre Alberto, fiz o Mapa do Amor no site: Vénus em ${NOMES[iV]} e Marte em ${NOMES[iM]}. Gostava de marcar uma consulta.`);
+    // 21/10/2026 (pedido dele): cada amostra NOVA é uma captura — vai para a fila e cria/acrescenta a ficha no cofre
+    if (!$("email-pedido").value) $("email-pedido").value = email;
+    if (vez.nova) {
+      try {
+        fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true, body: JSON.stringify({ type: "mapa-captura", data: {
+          name: nome, email, phone: tel, novidades, date_of_birth: `${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`,
+          sign: "", birth_time: semhora ? "desconhecida" : hora, city: escolhida[0] + (escolhida[1] ? " (" + escolhida[1] + ")" : ""), country: CID.paises[escolhida[2]] || escolhida[2], area: "Mapa do Amor (amostra grátis)", verdict: `♀ Vénus em ${NOMES[iV]} ${AstroAsc.grau(r.venus)} · ♂ Marte em ${NOMES[iM]} ${AstroAsc.grau(r.marte)}` } }) });
+      } catch (e) { /* o resultado já está no ecrã */ }
+    }
     $("resultado").classList.add("ver");
     if (rolar) $("resultado").scrollIntoView({ behavior: "smooth" });
   }
@@ -610,6 +630,7 @@ footer a { color: inherit; }
   // ===== Vem com os dados no endereço (?nome=&data=&hora=&cidade=): preenche e calcula =====
   const vem = new URLSearchParams(location.search);
   if (vem.get("nome")) $("nome").value = vem.get("nome").slice(0, 80);
+  if (vem.get("email")) $("email").value = vem.get("email").slice(0, 120);
   if (vem.get("data")) { inpData.value = vem.get("data").slice(0, 22); inpData.dispatchEvent(new Event("blur")); }
   if (vem.get("hora")) { inpHora.value = vem.get("hora").slice(0, 12); inpHora.dispatchEvent(new Event("blur")); }
   if (vem.get("cidade")) {

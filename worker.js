@@ -53,6 +53,51 @@ function buildMessage(type, d = {}) {
       "⏳ Confirma se o pagamento entrou e diz «envia» — só então segue o mapa completo.",
     ].join("\n");
   }
+  // 21/10/2026: pedido do Mapa Astral completo (mapa-astral.html) — o mesmo fluxo do Mapa do Amor.
+  if (type === "mapa-astral-pedido") {
+    const como = { cartao: "💳 Cartão (myPOS)", mbway: "📱 MB WAY", pix: "🇧🇷 PIX (pelo WhatsApp)" }[d.metodo] || clean(d.metodo, 20);
+    return [
+      `✨ PEDIDO MAPA ASTRAL ${clean(d.pedido, 20)} — Genialtarot`,
+      "",
+      `${como} · ${clean(d.valor, 40)}`,
+      `👤 Nome: ${clean(d.name)}`,
+      `📧 Email: ${clean(d.email)}`,
+      `🎂 Nascimento: ${clean(d.date_of_birth)} às ${clean(d.birth_time, 20)}`,
+      `📍 ${clean(d.city)}, ${clean(d.country)}`,
+      `☉ ${clean(d.sol, 60)} · ☽ ${clean(d.lua, 60)} · ↑ ${clean(d.asc, 60)}`,
+      "",
+      "⏳ Confirma se o pagamento entrou e diz «envia» — só então segue o mapa completo.",
+    ].join("\n");
+  }
+  // 21/10/2026: amostra grátis de um mapa (Mapa do Amor, Mapa Astral, Ano 2027) — é uma CAPTURA (cria/acrescenta ficha)
+  if (type === "mapa-captura") {
+    return [
+      `🌟 NOVA AMOSTRA — ${clean(d.area, 80)} — Genialtarot`,
+      "",
+      `👤 Nome: ${clean(d.name)}`,
+      `📧 Email: ${clean(d.email)}${d.novidades ? " · 📬 aceita novidades" : ""}`,
+      d.phone ? `📱 WhatsApp: ${clean(d.phone, 40)}` : null,
+      `🎂 Nascimento: ${clean(d.date_of_birth)}${d.birth_time ? " às " + clean(d.birth_time, 20) : ""}`,
+      d.city ? `📍 ${clean(d.city)}, ${clean(d.country)}` : null,
+      "",
+      `🔭 ${clean(d.verdict, 600)}`,
+    ].filter((l) => l !== null).join("\n");
+  }
+  // 21/10/2026: pedido do Ano 2027 (Numerologia) completo — o mesmo fluxo dos outros mapas.
+  if (type === "numerologia-pedido") {
+    const como = { cartao: "💳 Cartão (myPOS)", mbway: "📱 MB WAY", pix: "🇧🇷 PIX (pelo WhatsApp)" }[d.metodo] || clean(d.metodo, 20);
+    return [
+      `🔢 PEDIDO ANO 2027 ${clean(d.pedido, 20)} — Genialtarot`,
+      "",
+      `${como} · ${clean(d.valor, 40)}`,
+      `👤 Nome: ${clean(d.name)}`,
+      `📧 Email: ${clean(d.email)}`,
+      `🎂 Nascimento: ${clean(d.date_of_birth)}`,
+      `🔢 Ano Pessoal ${clean(String(d.ano_pessoal ?? ""), 4)} · Caminho de Vida ${clean(String(d.caminho ?? ""), 4)}`,
+      "",
+      "⏳ Confirma se o pagamento entrou e diz «envia» — só então segue o Ano 2027 completo.",
+    ].join("\n");
+  }
   if (type === "rating") {
     const stars = "⭐".repeat(Math.max(1, Math.min(5, Number(d.rating) || 0)));
     return `${stars} AVALIAÇÃO — Genialtarot\n\n👤 ${clean(d.name)}\n🎯 Área: ${clean(d.area)}\n Nota: ${clean(d.rating)}/5`;
@@ -368,7 +413,7 @@ function marcaDe(url) {
 // ela contar. Se so entrar num, ou nao conta ou nem chega ca.
 const PAGINAS = new Set([
   "/", "/index", "/anual", "/arcanos", "/arvore", "/fimdesemana", "/horoscopo",
-  "/ascendente", "/loja", "/lua", "/mapa-amor", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos",
+  "/ascendente", "/loja", "/lua", "/mapa-amor", "/mapa-astral", "/numerologia-2027", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos",
   "/arcano-00-o-louco", "/arcano-01-o-mago", "/arcano-02-a-sacerdotisa",
   "/arcano-03-a-imperatriz", "/arcano-04-o-imperador", "/arcano-05-o-hierofante",
   "/arcano-06-os-enamorados", "/arcano-07-o-carro", "/arcano-08-a-forca",

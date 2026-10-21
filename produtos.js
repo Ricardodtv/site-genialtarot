@@ -53,6 +53,38 @@ const PRODUTOS = [
     estrelas: 5,
   },
 
+  /* 21/10/2026 — pedido dele: «coloca na loja nas promoções o anúncio com uma foto a condizer».
+     Leva à /mapa-astral (lá ficam os dados de nascimento e o email). Cartão 15 € (myPOS BQMNGTHSAHA83) · MB WAY · PIX pelo WhatsApp. */
+  {
+    nome: "✨ Mapa Astral – Versão Completa (9 capítulos + Mandala de nascimento)",
+    categoria: "Promoção",
+    preco: "15 €",
+    foto: "mapa-astral-loja.jpg",
+    descricao: "O seu céu inteiro lido em 9 capítulos: Sol e Ascendente, Lua, Vénus, Mercúrio, Marte, Júpiter, Saturno e os planetas da evolução — e a sua Mandala de nascimento desenhada, com os 10 planetas, as 12 casas e os aspectos. Calculado ao minuto a partir do seu nascimento e enviado para o seu email.",
+    link: "",
+    pagina: "/mapa-astral",
+    pagamentos: "💳 Cartão · 📱 MB WAY · 🇧🇷 PIX pelo WhatsApp",
+    etiqueta: "PROMOÇÃO",
+    cor: "azul",
+    estrelas: 5,
+  },
+
+  /* 21/10/2026 — pedido dele: «coloca também o mapa da numerologia online e anuncia na loja na zona das promoções».
+     Leva à /numerologia-2027 (lá fica o nome, a data e o email). Cartão 25 € (myPOS BXHAKT4BHSD02) · MB WAY · PIX pelo WhatsApp. */
+  {
+    nome: "🔢 Ano 2027 – Mapa Numerológico Completo (9 capítulos + Linha do Tempo)",
+    categoria: "Promoção",
+    preco: "25 €",
+    foto: "numerologia-2027-loja.jpg",
+    descricao: "O seu 2027 lido pela Numerologia: o seu Ano Pessoal, as oportunidades e os obstáculos, o amor, a carreira e o dinheiro, a família e a vida social — e a Linha do Tempo com os 12 meses do seu ano, cada um com o seu número e a sua energia. Calculado pelo seu nome e pela sua data de nascimento e enviado para o seu email.",
+    link: "",
+    pagina: "/numerologia-2027",
+    pagamentos: "💳 Cartão · 📱 MB WAY · 🇧🇷 PIX pelo WhatsApp",
+    etiqueta: "PROMOÇÃO",
+    cor: "verde",
+    estrelas: 5,
+  },
+
   /* ================= CONSULTAS ================= */
 
   /* 10/10/2026 — o degrau de entrada barato (ponto 3 do plano do funil).
