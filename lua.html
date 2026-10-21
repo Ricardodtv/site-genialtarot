@@ -205,6 +205,11 @@ td .x { color: var(--ouro); font-size: .72rem; font-weight: 700; }
 .fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
 footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
 footer a { color: inherit; }
+/* 21/10: tudo claro e limpo (pedido dele: «nada esfumado nos resultados de qualquer mapa») */
+.cartao { background: linear-gradient(160deg, oklch(0.30 0.10 308), oklch(0.21 0.08 300)); backdrop-filter: none; -webkit-backdrop-filter: none; }
+.fase-c .t, .dia .ing, td small, .evento span { color: oklch(0.92 0.03 310); }
+.dia.fase .nome-fase { text-shadow: none; }
+.dia.fase.cheia .num, .dia.fase.cheia .nome-fase, .dia.fase.cheia .curta { text-shadow: none; }
 </style>
 </head>
 <body>

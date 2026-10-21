@@ -218,6 +218,14 @@ input:disabled { opacity: .45; }
 section { margin: 0 0 2.2rem; }
 footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
 footer a { color: inherit; }
+/* 21/10: resultados limpos e nítidos (pedido dele: «nada esfumado nos resultados de qualquer mapa, tudo claro e limpo») */
+#resultado { background: linear-gradient(160deg, oklch(0.30 0.10 308), oklch(0.21 0.08 300)); backdrop-filter: none; -webkit-backdrop-filter: none; }
+#resultado .astro .glifo, #resultado .res-glifo { text-shadow: none; }
+#resultado p, #resultado .res-frase, #resultado .texto-asc, #resultado .tema p { color: oklch(0.98 0.01 315); }
+#resultado .astro .qual, #resultado .astro .grau, #resultado .dados-nasc, #resultado .tema .chave, #resultado .encaixe p, #resultado .partilha p { color: oklch(0.92 0.03 310); }
+#resultado .astro { background: linear-gradient(160deg, oklch(0.42 0.15 335), oklch(0.27 0.11 300)); }
+#resultado .astro .elem { background: oklch(0.20 0.07 300); }
+#resultado .tema { background: oklch(0.21 0.07 300); }
 </style>
 </head>
 <body>

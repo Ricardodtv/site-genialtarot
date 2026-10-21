@@ -223,6 +223,13 @@ input:focus { border-color: var(--lilas); box-shadow: 0 0 0 4px oklch(0.74 0.14 
 section { margin: 0 0 2.2rem; }
 footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
 footer a { color: inherit; }
+/* 21/10: resultados limpos e nítidos (pedido dele: «nada esfumado nos resultados de qualquer mapa, tudo claro e limpo») */
+#resultado { background: linear-gradient(160deg, oklch(0.30 0.10 308), oklch(0.21 0.08 300)); backdrop-filter: none; -webkit-backdrop-filter: none; }
+#resultado .astro .glifo, #resultado .res-glifo { text-shadow: none; }
+#resultado p, #resultado .res-frase, #resultado .texto-asc, #resultado .tema p { color: oklch(0.98 0.01 315); }
+#resultado .astro .qual, #resultado .astro .grau, #resultado .dados-nasc, #resultado .tema .chave, #resultado .encaixe p, #resultado .partilha p { color: oklch(0.92 0.03 310); }
+#resultado .astro { background: oklch(0.25 0.08 302); }
+#resultado .astro.asc { background: linear-gradient(160deg, oklch(0.48 0.17 305), oklch(0.31 0.12 298)); }
 </style>
 </head>
 <body>
