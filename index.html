@@ -513,6 +513,20 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .faixa-asc-btn { justify-self: start; display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.4rem; font-weight: 800; font-size: 0.92rem;
   color: oklch(0.30 0.12 300); background: oklch(0.97 0.02 315); border-radius: 999px; padding: 0.5rem 1.05rem; box-shadow: 0 6px 18px #0005; }
 @media (max-width: 480px) { .faixa-asc { grid-template-columns: 1fr; text-align: center; justify-items: center; } .faixa-asc-txt { padding-right: 0; } .faixa-asc-btn { justify-self: center; } .faixa-asc-eti { top: .6rem; right: .6rem; } }
+.asc-form { grid-template-columns: auto 1fr; }
+.asc-campos { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.7rem; align-items: end; width: 100%; }
+.asc-campos label { display: flex; flex-direction: column; gap: 0.3rem; text-align: left; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em; }
+.asc-campos input { width: 100%; box-sizing: border-box; font: inherit; font-size: 1.05rem; font-weight: 500; padding: 0.75rem 0.9rem; border-radius: 0.8rem;
+  border: 1.5px solid oklch(0.90 0.06 312 / 0.9); background: oklch(0.99 0.01 315); color: oklch(0.25 0.08 300); }
+.asc-campos input::placeholder { color: oklch(0.60 0.05 300); }
+.asc-campos input:focus { outline: 3px solid oklch(0.88 0.12 90); outline-offset: 1px; }
+.asc-campos .faixa-asc-btn { margin: 0; border: 0; cursor: pointer; font-family: inherit; font-size: 1rem; padding: 0.8rem 1.2rem; justify-self: stretch; justify-content: center;
+  background: linear-gradient(135deg, oklch(0.92 0.11 92), oklch(0.78 0.15 75)); color: oklch(0.22 0.06 300); }
+.asc-form.erro input:invalid { border-color: oklch(0.70 0.20 25); }
+.hero h1 { margin-top: 0; }
+.asc-gratis { font-weight: 800; color: oklch(0.90 0.12 90); text-transform: uppercase; letter-spacing: 0.08em; }
+.hero-badge-topo { margin: 1.4rem 0 0.6rem; }
+@media (max-width: 640px) { .asc-campos { grid-template-columns: 1fr; } .asc-form { grid-template-columns: auto 1fr; text-align: left; justify-items: stretch; padding: 1rem; gap: 0.8rem 0.9rem; } .asc-form .faixa-asc-txt { padding-right: 0; } .asc-form .faixa-asc-txt strong { font-size: 1.15rem; } .hero-badge-topo { letter-spacing: 0.12em; font-size: 0.68rem; margin-top: 0.8rem; } .hero-sub { line-height: 1.45; } .hero h1 { font-size: 2.5rem; } .hero-sub { margin-top: 1rem; font-size: 1.02rem; } .hero-avatar-wrap { margin-bottom: 1.2rem; } }
 </style>
 </head>
 <body>
@@ -562,6 +576,39 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       </a>
     </div>
 
+    <div class="animate-fade-up hero-badge glass hero-badge-topo">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+      18 anos de prática · Tarot Rider-Waite · Consultas Personalizadas
+    </div>
+
+    <h1 class="animate-fade-up">
+      <span class="line text-mystic-gradient">Consulte o Tarot</span>
+      <span class="line line2">e mude a sua</span>
+      <span class="line line3 text-gold-gradient">vida.</span>
+    </h1>
+
+    <p class="animate-fade-up hero-sub">
+      Orientação espiritual sincera, intuitiva e acolhedora. Encontre clareza
+      no amor, no trabalho e na sua jornada — através da sabedoria milenar
+      dos Arcanos.
+    </p>
+    <!-- ✨ 21/10/2026: Ascendente no primeiro ecrã (como a Personare): nome + data, o resto na página da calculadora -->
+    <form action="ascendente.html" method="get" class="faixa-asc asc-form animate-fade-up" id="asc-rapido" novalidate>
+      <span class="faixa-asc-roda" aria-hidden="true">
+        <span class="anel"><i style="transform:rotate(0deg) translateY(-2.75rem) rotate(-0deg)">♈</i><i style="transform:rotate(30deg) translateY(-2.75rem) rotate(-30deg)">♉</i><i style="transform:rotate(60deg) translateY(-2.75rem) rotate(-60deg)">♊</i><i style="transform:rotate(90deg) translateY(-2.75rem) rotate(-90deg)">♋</i><i style="transform:rotate(120deg) translateY(-2.75rem) rotate(-120deg)">♌</i><i style="transform:rotate(150deg) translateY(-2.75rem) rotate(-150deg)">♍</i><i style="transform:rotate(180deg) translateY(-2.75rem) rotate(-180deg)">♎</i><i style="transform:rotate(210deg) translateY(-2.75rem) rotate(-210deg)">♏</i><i style="transform:rotate(240deg) translateY(-2.75rem) rotate(-240deg)">♐</i><i style="transform:rotate(270deg) translateY(-2.75rem) rotate(-270deg)">♑</i><i style="transform:rotate(300deg) translateY(-2.75rem) rotate(-300deg)">♒</i><i style="transform:rotate(330deg) translateY(-2.75rem) rotate(-330deg)">♓</i></span>
+        <img src="mestre-r06.jpg" alt="" width="800" height="800" loading="lazy" decoding="async" />
+      </span>
+      <span class="faixa-asc-txt">
+        <strong>✨ Descubra o seu Ascendente</strong>
+        <small><b class="asc-gratis">Grátis</b> · Sol, Lua e Ascendente calculados ao minuto pelo Mestre Alberto.</small>
+      </span>
+      <div class="asc-campos">
+        <label><span>O seu nome</span><input type="text" name="nome" autocomplete="off" maxlength="80" required /></label>
+        <label><span>Data de nascimento</span><input type="text" name="data" id="asc-rapido-data" inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" required /></label>
+        <button type="submit" class="faixa-asc-btn">🔮 Descobrir grátis →</button>
+      </div>
+    </form>
+
     <a href="sobre.html" class="faixa-sobre animate-fade-up">
       <span class="faixa-sobre-eti">NOVO</span>
       <img class="faixa-sobre-foto" src="mestre-avatar.jpg" srcset="mestre-avatar.jpg 1x, mestre-avatar@2x.jpg 2x" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async" />
@@ -570,19 +617,6 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
     </a>
 
 
-    <!-- ✨ 21/10/2026: Calculadora de Ascendente em destaque -->
-    <a href="ascendente.html" class="faixa-asc animate-fade-up">
-      <span class="faixa-asc-eti">Novo · Grátis</span>
-      <span class="faixa-asc-roda" aria-hidden="true">
-        <span class="anel"><i style="transform:rotate(0deg) translateY(-2.75rem) rotate(-0deg)">♈</i><i style="transform:rotate(30deg) translateY(-2.75rem) rotate(-30deg)">♉</i><i style="transform:rotate(60deg) translateY(-2.75rem) rotate(-60deg)">♊</i><i style="transform:rotate(90deg) translateY(-2.75rem) rotate(-90deg)">♋</i><i style="transform:rotate(120deg) translateY(-2.75rem) rotate(-120deg)">♌</i><i style="transform:rotate(150deg) translateY(-2.75rem) rotate(-150deg)">♍</i><i style="transform:rotate(180deg) translateY(-2.75rem) rotate(-180deg)">♎</i><i style="transform:rotate(210deg) translateY(-2.75rem) rotate(-210deg)">♏</i><i style="transform:rotate(240deg) translateY(-2.75rem) rotate(-240deg)">♐</i><i style="transform:rotate(270deg) translateY(-2.75rem) rotate(-270deg)">♑</i><i style="transform:rotate(300deg) translateY(-2.75rem) rotate(-300deg)">♒</i><i style="transform:rotate(330deg) translateY(-2.75rem) rotate(-330deg)">♓</i></span>
-        <img src="mestre-r06.jpg" alt="" width="800" height="800" loading="lazy" decoding="async" />
-      </span>
-      <span class="faixa-asc-txt">
-        <strong>✨ Descubra o seu Ascendente</strong>
-        <small>Sol, Lua e Ascendente calculados ao minuto, de graça, pelo Mestre Alberto. Saiba como o mundo o vê.</small>
-        <span class="faixa-asc-btn">🔮 Calcular agora →</span>
-      </span>
-    </a>
 
     <div class="kicker">
       <span><span class="rule"></span>Atalhos Místicos<span class="rule"></span></span>
@@ -684,22 +718,6 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <span class="linha dir"></span>
     </div>
 
-    <div class="animate-fade-up hero-badge glass">
-      <svg class="icon" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
-      18 anos de prática · Tarot Rider-Waite · Consultas Personalizadas
-    </div>
-
-    <h1 class="animate-fade-up">
-      <span class="line text-mystic-gradient">Consulte o Tarot</span>
-      <span class="line line2">e mude a sua</span>
-      <span class="line line3 text-gold-gradient">vida.</span>
-    </h1>
-
-    <p class="animate-fade-up hero-sub">
-      Orientação espiritual sincera, intuitiva e acolhedora. Encontre clareza
-      no amor, no trabalho e na sua jornada — através da sabedoria milenar
-      dos Arcanos.
-    </p>
   </div>
 </section>
 
@@ -1049,6 +1067,24 @@ function anelSeguinte() {
 }
 anelSeguinte();
 setInterval(anelSeguinte, 2800);
+</script>
+<script>
+// Ascendente rápido (21/10): barras da data sozinhas e não deixa seguir vazio
+(function () {
+  const f = document.getElementById("asc-rapido"), d = document.getElementById("asc-rapido-data");
+  if (!f) return;
+  d.addEventListener("input", (e) => {
+    if (e.inputType && e.inputType.startsWith("delete")) return;
+    if (/^[\d\/]*$/.test(d.value)) {
+      const g = d.value.replace(/\D/g, "").slice(0, 8);
+      d.value = g.length > 4 ? g.slice(0, 2) + "/" + g.slice(2, 4) + "/" + g.slice(4) : g.length > 2 ? g.slice(0, 2) + "/" + g.slice(2) : g;
+    }
+  });
+  f.addEventListener("submit", (e) => {
+    const vazio = [...f.querySelectorAll("input")].find((i) => !i.value.trim());
+    if (vazio) { e.preventDefault(); f.classList.add("erro"); vazio.focus(); }
+  });
+})();
 </script>
 </body>
 </html>

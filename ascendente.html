@@ -482,6 +482,11 @@ footer a { color: inherit; }
     const r = lerData(inpData.value);
     if (r) inpData.value = String(r[2]).padStart(2, "0") + "/" + String(r[1]).padStart(2, "0") + "/" + r[0];
   });
+  // Vem da página principal com o nome e a data já escritos (21/10): preenche e leva ao que falta
+  const vem = new URLSearchParams(location.search);
+  if (vem.get("nome")) $("nome").value = vem.get("nome").slice(0, 80);
+  if (vem.get("data")) { inpData.value = vem.get("data").slice(0, 22); inpData.dispatchEvent(new Event("blur")); }
+  if (vem.get("nome") || vem.get("data")) { $("calcular").scrollIntoView({ block: "start" }); $("email").focus({ preventScroll: true }); }
 
   // ===== Calcular + enviar a captura =====
   function mostraErro(t) { const e = $("erro"); e.textContent = t; e.classList.toggle("ver", !!t); }
