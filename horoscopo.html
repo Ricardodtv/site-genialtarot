@@ -106,7 +106,21 @@ header { position: relative; z-index: 10; max-width: 72rem; margin: 0 auto; disp
 .zodiac-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
 @media (min-width: 640px) { .zodiac-grid { grid-template-columns: repeat(4, 1fr); } }
 @media (min-width: 768px) { .zodiac-grid { grid-template-columns: repeat(6, 1fr); } }
-.zodiac-btn { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; border-radius: 0.75rem; border: 1px solid var(--border); background: var(--card); padding: 0.75rem 0.5rem; text-align: center; backdrop-filter: blur(8px); transition: var(--transition-smooth); }
+.zodiac-btn { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; border-radius: 0.75rem; border: 1px solid var(--border); background: var(--card); padding: 0.75rem 0.5rem; text-align: center; overflow: hidden; cursor: pointer; transition: var(--transition-smooth); }
+/* 21/10/2026 (pedido dele): os signos «animados, para a pessoa sentir que tem de clicar» — só transform/opacity (leve no telemóvel) */
+.zodiac-btn:not(:disabled) { border-color: oklch(0.80 0.12 85 / 0.45); }
+.zodiac-btn:not(:disabled) .symbol { color: oklch(0.86 0.13 85); text-shadow: 0 0 12px oklch(0.85 0.14 85 / .55);
+  animation: signo-flutua 3.2s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.27s); }
+@keyframes signo-flutua { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.zodiac-btn:not(:disabled)::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(circle at 50% 35%, oklch(0.80 0.16 310 / .55), transparent 70%); opacity: 0;
+  animation: signo-onda 6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * 0.5s); }
+@keyframes signo-onda { 0%, 12%, 100% { opacity: 0; } 5% { opacity: 1; } }
+.zodiac-btn:not(:disabled)::after { content: "▶ ver"; position: relative; font-family: Inter, sans-serif; font-size: 0.62rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; color: oklch(0.86 0.13 85); opacity: .85; animation: signo-ver 2s ease-in-out infinite; }
+@keyframes signo-ver { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+.zodiac-btn:not(:disabled):active { transform: scale(0.96); }
+@media (prefers-reduced-motion: reduce) { .zodiac-btn .symbol, .zodiac-btn::before, .zodiac-btn::after { animation: none !important; } }
 .zodiac-btn:not(:disabled):hover { transform: translateY(-2px); border-color: oklch(0.55 0.22 310 / 0.7); box-shadow: var(--shadow-glow); }
 .zodiac-btn:disabled { opacity: 0.55; cursor: default; }
 .zodiac-btn .symbol { font-size: 1.5rem; line-height: 1; color: var(--silver); transition: transform 0.3s; }
@@ -259,7 +273,7 @@ footer { position: relative; border-top: 1px solid oklch(0.70 0.10 300 / 0.15); 
 <section class="zodiac-section animate-fade-up">
   <div class="wrap-5xl">
     <div class="zodiac-head">
-      <p class="kicker">Horóscopo Diário · escolha o seu signo</p>
+      <p class="kicker">Horóscopo Diário · escolha o seu signo · 👆 toque no seu signo</p>
       <p class="video-title" id="zodiac-video-title" style="display:none"></p>
     </div>
     <div class="zodiac-grid" id="zodiac-grid"></div>
@@ -378,9 +392,9 @@ const ZODIAC_SIGNS = [
 ];
 
 const grid = document.getElementById("zodiac-grid");
-grid.innerHTML = ZODIAC_SIGNS.map(s => `
-  <button type="button" class="zodiac-btn" data-key="${s.key}" data-label="${s.label}" disabled>
-    <span class="symbol">${s.symbol}</span>
+grid.innerHTML = ZODIAC_SIGNS.map((s, i) => `
+  <button type="button" class="zodiac-btn" style="--i:${i}" data-key="${s.key}" data-label="${s.label}" disabled>
+    <span class="symbol">${s.symbol}\uFE0E</span>
     <span class="label">${s.label}</span>
   </button>`).join("");
 
