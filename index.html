@@ -611,6 +611,11 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .porta:hover { transform: translateY(-3px); border-color: oklch(0.80 0.12 310 / 0.7); box-shadow: 0 22px 60px #0008, 0 0 34px oklch(0.70 0.16 310 / 0.35); }
 @media (min-width: 860px) { .porta { padding: 1.3rem 1.4rem; } }
 .porta-cabeca { display: flex; align-items: center; gap: 0.9rem; padding-right: 3.2rem; }
+/* 21/10/2026: com etiquetas compridas («Amostra Grátis», «Novidade») a etiqueta tapava o título —
+   agora fica numa faixa só dela, por cima, e o título usa a largura toda */
+.porta:has(> .porta-eti) { padding-top: 2.15rem; }
+.porta:has(> .porta-eti) .porta-cabeca { padding-right: 0; }
+.porta > .porta-eti { top: 0.7rem; }
 .porta-visual { flex: none; }
 .porta-txt { display: flex; flex-direction: column; gap: 0.2rem; line-height: 1.25; text-align: left; }
 .porta-txt strong { font-family: "Cinzel", var(--font-display); font-weight: 600; font-size: 1.12rem; line-height: 1.2; }
@@ -636,7 +641,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .porta-campos .porta-btn { grid-column: 1 / -1; justify-self: stretch; justify-content: center; align-self: auto;
   background: var(--m-grad-ouro); color: oklch(0.22 0.06 300); font-size: 0.95rem; padding: 0.65rem 1rem; box-shadow: 0 6px 18px #0005; }
 @media (max-width: 640px) {
-  .asc-form.porta-asc { padding: 1rem 1.1rem; gap: 0.8rem; }
+  .asc-form.porta-asc { padding: 2.15rem 1.1rem 1rem; gap: 0.8rem; }  /* em cima: a faixa da etiqueta «Grátis» */
   .porta-campos { grid-template-columns: 1fr 1fr; }
 }
 
