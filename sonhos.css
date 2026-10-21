@@ -1,0 +1,150 @@
+/* Genial Tarot — Interpretação de Sonhos (21/10/2026, pedido dele).
+   Uma folha para o índice /sonhos e para as páginas /sonho/<slug>. Cores iguais ao resto do site. */
+:root {
+  --background: oklch(0.17 0.05 285);
+  --foreground: oklch(0.96 0.02 300);
+  --card: oklch(0.22 0.06 288);
+  --muted: oklch(0.78 0.04 300);
+  --border: oklch(0.42 0.08 295 / 0.45);
+  --gold: oklch(0.84 0.13 85);
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --gradient-cosmic: radial-gradient(ellipse at top, oklch(0.30 0.12 290) 0%, oklch(0.17 0.05 285) 55%, oklch(0.11 0.04 280) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.88 0.13 88), oklch(0.72 0.15 60));
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--gradient-cosmic) fixed; background-color: var(--background); color: var(--foreground);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif; line-height: 1.6; min-height: 100vh; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+.container { width: 100%; max-width: 68rem; margin: 0 auto; padding: 0 1.1rem; }
+.estreito { max-width: 46rem; }
+.ouro { background: var(--gradient-gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* céu estrelado discreto por trás */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .55;
+  background-image: radial-gradient(1px 1px at 12% 18%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 72% 12%, #fff 50%, transparent 51%),
+  radial-gradient(1.5px 1.5px at 40% 62%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 86% 48%, #fff 50%, transparent 51%),
+  radial-gradient(1px 1px at 22% 84%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 58% 30%, #fff 50%, transparent 51%),
+  radial-gradient(1px 1px at 92% 82%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 6% 50%, #fff 50%, transparent 51%); }
+
+.voltar-barra { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: oklch(0.17 0.05 285 / .75); border-bottom: 1px solid var(--border); }
+.voltar { display: inline-flex; align-items: center; gap: .5rem; padding: .85rem 1.1rem; font-weight: 600; color: var(--gold); }
+.voltar svg { width: 1.1rem; height: 1.1rem; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- índice ---------- */
+.hero { text-align: center; padding: 2.4rem 0 1.4rem; }
+.hero h1 { font-size: clamp(2.3rem, 7vw, 3.6rem); }
+.hero p { color: var(--muted); max-width: 38rem; margin: .8rem auto 0; font-size: 1.05rem; }
+.busca { margin: 1.6rem auto 0; max-width: 34rem; position: relative; }
+.busca input { width: 100%; padding: 1rem 1.2rem 1rem 3rem; border-radius: 999px; border: 1px solid var(--border);
+  background: oklch(0.13 0.04 285 / .85); color: var(--foreground); font-size: 1.05rem; outline: none; }
+.busca input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px oklch(0.84 0.13 85 / .25); }
+.busca svg { position: absolute; left: 1.1rem; top: 50%; transform: translateY(-50%); width: 1.2rem; height: 1.2rem; stroke: var(--gold); fill: none; stroke-width: 2.2; }
+.contagem { margin-top: .7rem; font-size: .85rem; color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin: 1.3rem 0 .4rem; }
+.chip { border: 1px solid var(--border); border-radius: 999px; padding: .42rem .95rem; font-size: .88rem; cursor: pointer;
+  background: oklch(0.22 0.06 288 / .7); color: var(--foreground); }
+.chip.on { background: var(--gradient-gold); color: #241a0a; border-color: transparent; font-weight: 700; }
+
+.secao-t { font-size: 1.9rem; text-align: center; margin: 2.2rem 0 1rem; }
+.grelha { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.6rem, 1fr)); gap: .8rem; }
+@media (min-width: 720px) { .grelha { grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1.1rem; } }
+.cartao { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease; display: flex; flex-direction: column; }
+.cartao:hover { transform: translateY(-4px); box-shadow: 0 10px 40px oklch(0.55 0.2 300 / .35); }
+.cartao .img { aspect-ratio: 4 / 3; background: radial-gradient(circle at 50% 40%, oklch(0.35 0.12 295), oklch(0.15 0.05 285)); position: relative; }
+.cartao .img img { width: 100%; height: 100%; object-fit: cover; }
+.cartao .img .sem { position: absolute; inset: 0; display: grid; place-items: center; font-size: 3rem; }
+.cartao .cat { position: absolute; left: .7rem; top: .7rem; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+  background: oklch(0.12 0.04 285 / .78); border: 1px solid var(--border); border-radius: 999px; padding: .2rem .6rem; color: var(--gold); }
+.cartao .txt { padding: .9rem 1rem 1.1rem; }
+.cartao h3 { font-size: 1.2rem; color: var(--gold); }
+@media (min-width: 720px) { .cartao h3 { font-size: 1.4rem; } }
+.cartao p { font-size: .82rem; color: var(--muted); margin-top: .3rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.vazio { text-align: center; color: var(--muted); padding: 2rem 0; display: none; }
+
+.saber { background: var(--card); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.6rem 1.4rem; margin-top: 2.4rem; }
+.saber h2 { font-size: 1.8rem; margin-bottom: .6rem; }
+.saber p { color: var(--muted); margin-bottom: .7rem; }
+.colunas { display: grid; grid-template-columns: 1fr; gap: 1.2rem; margin-top: 1rem; }
+@media (min-width: 720px) { .colunas { grid-template-columns: 1fr 1fr; } }
+.colunas h3 { font-size: 1.35rem; color: var(--gold); margin-bottom: .4rem; }
+.colunas ol { padding-left: 1.2rem; color: var(--muted); }
+.colunas li { margin-bottom: .35rem; }
+.az { display: flex; flex-wrap: wrap; gap: .35rem .9rem; justify-content: center; margin-top: .6rem; font-size: .92rem; color: var(--muted); }
+.az a:hover { color: var(--gold); }
+
+/* ---------- página de um sonho ---------- */
+.sonho-topo { padding: 1.6rem 0 0; text-align: center; }
+.sonho-topo .cat { display: inline-block; font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold);
+  border: 1px solid var(--border); border-radius: 999px; padding: .25rem .8rem; }
+.sonho-topo h1 { font-size: clamp(2.2rem, 7vw, 3.3rem); margin-top: .6rem; }
+.sonho-img { margin: 1.4rem auto 0; border-radius: 1.2rem; overflow: hidden; border: 1px solid var(--border);
+  box-shadow: 0 20px 60px oklch(0.1 0.05 285 / .7), 0 0 50px oklch(0.6 0.2 300 / .25); aspect-ratio: 4 / 3;
+  background: radial-gradient(circle at 50% 40%, oklch(0.35 0.12 295), oklch(0.15 0.05 285)); }
+.sonho-img img { width: 100%; height: 100%; object-fit: cover; }
+.chaves { display: flex; flex-wrap: wrap; justify-content: center; gap: .45rem; margin: 1.2rem 0 0; }
+.chaves span { background: oklch(0.30 0.10 295 / .7); border: 1px solid var(--border); border-radius: 999px; padding: .3rem .85rem; font-size: .85rem; }
+.resumo { font-family: var(--font-display); font-size: 1.45rem; text-align: center; margin: 1.3rem 0 .4rem; color: oklch(0.93 0.05 88); }
+.corpo p { margin: 1rem 0; font-size: 1.04rem; }
+.corpo h2 { font-size: 1.8rem; margin: 2rem 0 .8rem; text-align: center; }
+.variacoes { display: grid; gap: .7rem; }
+.variacao { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: .8rem; padding: .85rem 1rem; }
+.variacao b { color: var(--gold); display: block; font-size: 1rem; }
+.variacao span { color: var(--muted); font-size: .96rem; }
+.conselho { margin-top: 1.6rem; border-radius: 1rem; padding: 1.2rem 1.3rem; text-align: center;
+  background: linear-gradient(135deg, oklch(0.32 0.11 295 / .8), oklch(0.24 0.08 285 / .8)); border: 1px solid oklch(0.84 0.13 85 / .45); }
+.conselho b { display: block; font-family: var(--font-display); font-size: 1.4rem; color: var(--gold); margin-bottom: .3rem; }
+.cta { margin: 1.8rem 0 0; text-align: center; background: var(--card); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.4rem 1.2rem; }
+.cta img { width: 5.5rem; height: 5.5rem; border-radius: 50%; object-fit: cover; margin: 0 auto .7rem; border: 2px solid var(--gold); }
+.cta h3 { font-size: 1.6rem; }
+.cta p { color: var(--muted); margin: .4rem 0 1rem; }
+.btn { display: inline-block; background: var(--gradient-gold); color: #241a0a; font-weight: 700; border-radius: 999px; padding: .85rem 1.6rem; }
+.relacionados { margin-top: 2.2rem; }
+.relacionados .grelha { grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); }
+.relacionados .cartao h3 { font-size: 1.15rem; }
+.aviso { text-align: center; color: var(--muted); font-size: .8rem; margin: 2rem 0 2.5rem; }
+
+/* sugestões da pesquisa */
+.sugestoes { position: absolute; left: 0; right: 0; top: calc(100% + .4rem); z-index: 30; list-style: none; text-align: left;
+  background: oklch(0.16 0.05 285); border: 1px solid var(--border); border-radius: 1rem; overflow: hidden;
+  box-shadow: 0 18px 50px oklch(0.05 0.03 285 / .8); }
+.sugestoes li { display: flex; justify-content: space-between; align-items: baseline; gap: .8rem; padding: .7rem 1.1rem; cursor: pointer;
+  border-bottom: 1px solid oklch(0.42 0.08 295 / .25); }
+.sugestoes li:last-child { border-bottom: 0; }
+.sugestoes li b { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--gold); }
+.sugestoes li span { font-size: .72rem; color: var(--muted); white-space: nowrap; }
+.sugestoes li.ativo, .sugestoes li[data-i]:hover { background: oklch(0.30 0.10 295 / .7); }
+.sugestoes li.nada { color: var(--muted); font-size: .9rem; cursor: default; }
+
+/* a lua com carneirinhos a contar à volta (21/10/2026, pedido dele: uma LUA, não um sol; carneirinhos maiores e mais) —
+   só transform, leve no telemóvel */
+.ceu-lua { position: relative; width: 15rem; height: 15rem; margin: -.6rem auto .7rem; display: grid; place-items: center; }
+.hero .lua { position: relative; width: 6.6rem; height: 6.6rem; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle at 36% 32%, #ffffff 0%, #e9ecf5 30%, #bfc6d8 62%, #8f97ad 100%);
+  box-shadow: 0 0 40px oklch(0.90 0.03 260 / .55), 0 0 90px oklch(0.75 0.08 270 / .35), inset -12px -10px 22px oklch(0.35 0.04 270 / .55); }
+.lua .cr { position: absolute; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #a7aec2, #c9cfdd 70%);
+  box-shadow: inset 1px 1px 3px oklch(0.4 0.03 270 / .45); }
+.lua .c1 { width: 1.4rem; height: 1.4rem; left: 22%; top: 30%; }
+.lua .c2 { width: .8rem; height: .8rem; left: 58%; top: 22%; }
+.lua .c3 { width: 1.1rem; height: 1.1rem; left: 52%; top: 58%; }
+.lua .c4 { width: .55rem; height: .55rem; left: 30%; top: 66%; }
+.orbita-carneiros { position: absolute; inset: 0; animation: carneiros-gira 22s linear infinite; }
+.carneiro { position: absolute; left: 50%; top: 50%; width: 2.6rem; height: 2.6rem; margin: -1.3rem 0 0 -1.3rem;
+  transform: rotate(var(--a)) translateY(-6.2rem); }
+.carneiro i { display: block; font-style: normal; font-size: 2.15rem; line-height: 2.6rem; text-align: center;
+  filter: drop-shadow(0 0 8px oklch(0.95 0.03 90 / .55)); animation: carneiros-direito 22s linear infinite; }
+@keyframes carneiros-gira { to { transform: rotate(360deg); } }
+@keyframes carneiros-direito { from { transform: rotate(calc(0deg - var(--a))) scaleX(-1); } to { transform: rotate(calc(-360deg - var(--a))) scaleX(-1); } }
+@media (min-width: 720px) { .ceu-lua { width: 17rem; height: 17rem; } .carneiro { transform: rotate(var(--a)) translateY(-7.2rem); } }
+@media (prefers-reduced-motion: reduce) { .orbita-carneiros, .carneiro i { animation: none; } }
+
+/* letra maior no telemóvel (21/10/2026, pedido dele: «para se ler no celular») — tudo cresce ~12 %, e o texto corrido um pouco mais */
+@media (max-width: 719px) {
+  html { font-size: 112%; }
+  .corpo p { font-size: 1.08rem; line-height: 1.7; }
+  .variacao span, .cartao p { font-size: .9rem; }
+  .grelha { grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr)); gap: .65rem; }
+}

@@ -699,7 +699,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 
 /* os atalhos: quadradinhos lilás, 3 por linha no telemóvel */
 .atalhos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; max-width: 60rem; margin: 0 auto 2rem; }
-@media (min-width: 860px) { .atalhos { grid-template-columns: repeat(9, 1fr); gap: 0.7rem; } }
+@media (min-width: 860px) { .atalhos { grid-template-columns: repeat(10, 1fr); gap: 0.7rem; } }
 .atalho { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem;
   min-height: 5.4rem; padding: 0.75rem 0.4rem 0.6rem; border-radius: 1rem; text-align: center; text-decoration: none;
   color: oklch(0.97 0.015 315); background: var(--m-cartao); border: 1px solid var(--m-borda);
@@ -713,6 +713,13 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .atalho-eti { position: absolute; top: -0.5rem; left: 50%; transform: translateX(-50%); font-size: 0.56rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
   color: white; background: var(--m-grad-lilas); border-radius: 999px; padding: 0.12rem 0.5rem; white-space: nowrap; box-shadow: 0 4px 12px #0006; }
 .atalho-eti-ouro { background: var(--m-grad-ouro); color: oklch(0.22 0.06 300); }
+/* NOVIDADE a piscar (sonhos, 21/10/2026) — só opacidade e tamanho, leve no telemóvel */
+.atalho-eti-novo { background: linear-gradient(135deg, oklch(0.75 0.19 145), oklch(0.62 0.17 160)); color: oklch(0.18 0.05 160);
+  animation: novo-pisca 1.1s ease-in-out infinite; }
+@keyframes novo-pisca { 0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); } 50% { opacity: .35; transform: translateX(-50%) scale(1.08); } }
+.atalho-sonhos { border-color: oklch(0.80 0.15 150 / 0.6); }
+.atalho-sonhos .icon { stroke: oklch(0.88 0.06 260); }
+@media (prefers-reduced-motion: reduce) { .atalho-eti-novo { animation: none; } }
 .atalho-marcar .icon { stroke: oklch(0.80 0.17 150); }
 .atalho .anel-btn { border-radius: 1.2rem; }
 
@@ -911,6 +918,12 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
           </g>
         </svg>
         <span>Árvore da Vida</span>
+      </a>
+      <!-- 🌙 21/10/2026 (pedido dele): a Interpretação de Sonhos, ao lado da Árvore da Vida, com NOVIDADE a piscar -->
+      <a href="/sonhos" class="atalho atalho-sonhos">
+        <span class="atalho-eti atalho-eti-novo">Novidade</span>
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/><path d="M17.5 3.5l.6 1.4 1.4.6-1.4.6-.6 1.4-.6-1.4-1.4-.6 1.4-.6z"/></svg>
+        <span>Interpretação de Sonhos</span>
       </a>
       <a href="horoscopo.html" class="atalho">
         <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
