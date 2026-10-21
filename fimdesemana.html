@@ -207,6 +207,11 @@ footer { position: relative; border-top: 1px solid oklch(0.70 0.10 205 / 0.15); 
 @keyframes sublinha-pisca { 0%, 100% { opacity: 0.15; } 50% { opacity: 1; } }
 .sirene { display: inline-block; animation: girar-sirene 1.6s linear infinite; }
 @keyframes girar-sirene { to { transform: rotate(360deg); } }
+/* 21/10/2026: pedido dele — «Fale com o Mestre Alberto» nítido no telemóvel: fundo dourado cheio, letra escura e grossa, sem esfumado */
+.sec-eyebrow.fale-mestre { background: linear-gradient(135deg, oklch(0.90 0.12 90), oklch(0.78 0.15 75)); border: 0; backdrop-filter: none;
+  color: oklch(0.20 0.06 300); font-weight: 800; letter-spacing: 0.12em; font-size: 0.85rem; padding: 0.5rem 1.1rem; box-shadow: 0 4px 14px #0006; }
+.sec-eyebrow.fale-mestre svg { stroke: currentColor; }
+.wa-titulo { color: #fff; text-shadow: 0 2px 6px #000a; }
 </style>
 </head>
 <body>
@@ -308,8 +313,8 @@ footer { position: relative; border-top: 1px solid oklch(0.70 0.10 205 / 0.15); 
 <section id="contacto" class="sect">
   <div class="wrap-5xl" style="text-align:center">
     <div class="sec-head animate-fade-up">
-      <div class="sec-eyebrow"><svg class="ico" style="width:0.75rem;height:0.75rem" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg> Fale com o Mestre Alberto</div>
-      <h2 class="wa-titulo text-glow">✦ Consultas · Rituais · Amuletos ✦</h2>
+      <div class="sec-eyebrow fale-mestre"><svg class="ico" style="width:0.75rem;height:0.75rem" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg> Fale com o Mestre Alberto</div>
+      <h2 class="wa-titulo">✦ Consultas · Rituais · Amuletos ✦</h2>
       <p>Contacte já para marcar a sua consulta, comprar o seu Ritual ou o seu Amuleto personalizado — resposta rápida e acolhedora no WhatsApp.</p>
     </div>
     <a class="wa-big animate-wa-pulse animate-fade-up" href="https://wa.me/351914920427?text=Ol%C3%A1%20Mestre%20Alberto%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20Consultas%2C%20Rituais%20e%20Amuletos." target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp com o Mestre Alberto">
