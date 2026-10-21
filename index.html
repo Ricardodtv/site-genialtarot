@@ -1334,23 +1334,24 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 <script>
-// 🎬 21/10/2026, pedido dele: «faz uma tour rápida no site para as pessoas verem» — no OBS a fonte abre /?tour=1
-// e a página desce sozinha devagar até ao fim, pára, volta ao topo e recomeça. Sem ?tour nada muda para os visitantes.
+// 🎬 21/10/2026, pedido dele: no OBS a fonte abre /?tour=1 e faz uma volta CURTA — mostra o topo, desce suave
+// até cerca do MEIO da página em ~10 segundos e fica aí. Sem ?tour nada muda para os visitantes.
+// (setInterval e não requestAnimationFrame: o navegador do OBS pode não animar com o rAF; salto instantâneo
+//  porque o site tem scroll-behavior: smooth, que anulava cada passo pequeno.)
 (function () {
   if (!new URLSearchParams(location.search).has("tour")) return;
-  var VEL = 70, PAUSA = 3000, y = 0, ultimo = null, parado = PAUSA;
-  // o site tem scroll-behavior: smooth, que anulava cada passo pequeno — aqui o salto é instantâneo
+  var ESPERA = 1500, DURA = 10000;
   function ir(v) { window.scrollTo({ top: v, behavior: "instant" }); }
-  function passo(t) {
-    if (ultimo === null) ultimo = t;
-    var dt = t - ultimo; ultimo = t;
-    var fim = document.documentElement.scrollHeight - window.innerHeight;
-    if (parado > 0) { parado -= dt; }
-    else if (y >= fim) { y = 0; ir(0); parado = PAUSA; }
-    else { y = Math.min(fim, y + VEL * dt / 1000); ir(y); if (y >= fim) parado = PAUSA; }
-    requestAnimationFrame(passo);
-  }
-  window.addEventListener("load", function () { setTimeout(function () { requestAnimationFrame(passo); }, 1500); });
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      var alvo = (document.documentElement.scrollHeight - window.innerHeight) * 0.5, t0 = Date.now();
+      var id = setInterval(function () {
+        var k = Math.min(1, (Date.now() - t0) / DURA);
+        ir(alvo * (0.5 - Math.cos(Math.PI * k) / 2));   // começa e acaba devagar
+        if (k >= 1) clearInterval(id);
+      }, 30);
+    }, ESPERA);
+  });
 })();
 </script>
 </body>
