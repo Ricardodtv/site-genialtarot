@@ -1416,12 +1416,12 @@ window.addEventListener("DOMContentLoaded", function () {
 </script>
 <script>
 // 🎬 21/10/2026, pedido dele: no OBS a fonte abre /?tour=1 e faz uma volta CURTA — mostra o topo, desce suave
-// até cerca do MEIO da página em ~10 segundos e fica aí. Sem ?tour nada muda para os visitantes.
+// até cerca do MEIO da página em ~20 segundos (22/10: era 10, ele pediu o dobro) e fica aí. Sem ?tour nada muda para os visitantes.
 // (setInterval e não requestAnimationFrame: o navegador do OBS pode não animar com o rAF; salto instantâneo
 //  porque o site tem scroll-behavior: smooth, que anulava cada passo pequeno.)
 (function () {
   if (!new URLSearchParams(location.search).has("tour")) return;
-  var ESPERA = 1500, DURA = 10000;
+  var ESPERA = 1500, DURA = 20000;
   function ir(v) { window.scrollTo({ top: v, behavior: "instant" }); }
   window.addEventListener("load", function () {
     setTimeout(function () {
