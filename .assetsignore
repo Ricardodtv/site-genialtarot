@@ -4,3 +4,4 @@
 worker.js
 wrangler.jsonc
 LEIA-ME.txt
+*.antes-*
