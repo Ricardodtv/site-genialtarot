@@ -65,12 +65,13 @@ h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.35rem, 3.4
 .ceu li.mom { color: var(--ouro); font-weight: 600; }
 .atalhos { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 0 0 1.4rem; }
 .atalhos a { text-decoration: none; font-size: .82rem; font-weight: 700; color: var(--texto); border: 1px solid var(--borda); background: var(--vidro); border-radius: 999px; padding: .35rem .75rem; }
-.atalhos a i { font-style: normal; color: var(--ouro); margin-right: .25rem; }
+.atalhos a { display: inline-flex; align-items: center; gap: .35rem; padding-left: .3rem; }
+.atalhos a img { width: 1.6rem; height: 1.6rem; border-radius: 50%; }
 .atalhos a:hover { border-color: var(--ouro); }
 .grelha { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
 .signo { border-radius: 1.2rem; padding: 1.1rem 1.2rem 1.2rem; background: oklch(0.20 0.06 272 / .88); border: 1px solid var(--borda); scroll-margin-top: 1rem; }
 .signo .cab { display: flex; align-items: center; gap: .7rem; }
-.signo .gli { font-size: 2rem; line-height: 1; color: var(--ouro); width: 2.6rem; height: 2.6rem; display: grid; place-items: center; border-radius: 50%; border: 1px solid oklch(0.85 0.13 88 / .5); background: oklch(0.85 0.13 88 / .08); flex: none; }
+.signo .gli { width: 4.5rem; height: 4.5rem; border-radius: 50%; flex: none; box-shadow: 0 0 18px oklch(0.85 0.13 88 / .35); }  /* as ilustrações do horóscopo diário (OBS), pedido dele 25/10 */
 .signo .nome { font-family: var(--titulo); font-size: 1.2rem; font-weight: 700; }
 .signo .ene { font-size: .8rem; color: var(--ouro); letter-spacing: .1em; }
 .signo .ene span { color: var(--suave); letter-spacing: 0; margin-left: .3rem; font-size: .72rem; text-transform: uppercase; font-weight: 700; }
@@ -184,7 +185,7 @@ window.GT = (function () {
     const rot = desvio === 0 ? "Hoje · " : desvio === 1 ? "Amanhã · " : desvio === -1 ? "Ontem · " : "";
     $("data").innerHTML = `<small>${rot}${G.SEMANA[q.dw]}</small>${q.d} de ${G.MESES[q.m]}`;
     $("ant").disabled = desvio <= -1; $("seg").disabled = desvio >= 3;
-    $("atalhos").innerHTML = G.nomes().map((n, s) => `<a href="#s${s}"><i>${G.GLIFOS[s]}</i>${n}</a>`).join("");
+    $("atalhos").innerHTML = G.nomes().map((n, s) => `<a href="#s${s}"><img src="signos/${String(s).padStart(2,"0")}.webp" alt="" width="28" height="28">${n}</a>`).join("");
     let x;
     try { x = await ler(q.iso); } catch (e) {
       $("ceu").innerHTML = ""; $("grelha").innerHTML = `<p class="aviso">O horóscopo deste dia ainda não está disponível.</p>`; return;
@@ -194,7 +195,7 @@ window.GT = (function () {
     if (x.cuidado) ceu.push(`<li class="mom">⚠️ Mais cuidado por volta das ${G.hora(x.cuidado.t)} (${ESC(x.cuidado.txt)})</li>`);
     $("ceu").innerHTML = ceu.join("");
     $("grelha").innerHTML = x.s.map((y, s) =>
-      `<article class="signo" id="s${s}"><div class="cab"><span class="gli">${G.GLIFOS[s]}</span><div><div class="nome">${G.nomes()[s]}</div>`
+      `<article class="signo" id="s${s}"><div class="cab"><img class="gli" src="signos/${String(s).padStart(2,"0")}.webp" alt="${G.nomes()[s]}" width="72" height="72" loading="lazy"><div><div class="nome">${G.nomes()[s]}</div>`
       + `<div class="ene" aria-label="Energia ${y.e} de 5">${"★".repeat(y.e)}${"☆".repeat(5 - y.e)}<span>energia</span></div></div></div>`
       + `<div class="chave">${por(y.k)}</div>${y.t.map(t => `<p>${por(t)}</p>`).join("")}`
       + `<div class="dica"><b>👉 A dica de hoje</b>${por(y.d)}</div></article>`).join("");
