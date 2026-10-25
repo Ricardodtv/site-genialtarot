@@ -422,6 +422,8 @@ const PAGINAS = new Set([
   "/arcano-15-o-diabo", "/arcano-16-a-torre", "/arcano-17-a-estrela",
   "/arcano-18-a-lua", "/arcano-19-o-sol", "/arcano-20-o-julgamento",
   "/arcano-21-o-mundo",
+  // 25/10/2026: as 5 novidades inspiradas no Astro.com
+  "/aniversarios", "/amor-do-dia", "/ceu-de-hoje", "/compatibilidade", "/noticias-do-ceu",
 ]);
 
 function contarVisita(request, url, env, ctx) {
