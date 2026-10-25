@@ -851,6 +851,20 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
         <span class="porta-btn">Ver a minha carta →</span>
       </a>
 
+      <!-- 🔮 O Horóscopo do Dia (25/10/2026, pedido dele: «como o Amor do Dia, mas o horóscopo geral») — o céu real de cada dia -->
+      <a href="/horoscopo-do-dia" class="porta porta-astral porta-brilho">
+        <span class="porta-eti porta-eti-novo">Todos os dias</span>
+        <div class="porta-cabeca">
+          <span class="porta-visual porta-ico" aria-hidden="true">🔮</span>
+          <span class="porta-txt">
+            <span class="amor-data" id="horoscopo-data" aria-live="polite">Hoje</span>
+            <strong>O Horóscopo do Dia</strong>
+            <small>Os 12 signos lidos a partir do céu verdadeiro de hoje, com uma dica nova.</small>
+          </span>
+        </div>
+        <span class="porta-btn">Ver o meu signo →</span>
+      </a>
+
       <!-- ✨ Mapa Astral (21/10/2026, pedido dele: «vistoso e animado») — roda do zodíaco a girar, Sol ao centro -->
       <a href="/mapa-astral" class="porta porta-astral porta-brilho">
         <span class="porta-eti">Amostra Grátis</span>
@@ -1478,6 +1492,6 @@ window.addEventListener("DOMContentLoaded", function () {
 })();
 </script>
 <script>/* 25/10/2026: data de hoje no cartão do Amor do Dia, no relógio de quem vê */
-(function(){var e=document.getElementById("amor-data");if(!e)return;try{var t=new Date().toLocaleDateString("pt-PT",{weekday:"long",day:"numeric",month:"long"});e.textContent="Hoje · "+t;}catch(x){}})();</script>
+(function(){try{var t=new Date().toLocaleDateString("pt-PT",{weekday:"long",day:"numeric",month:"long"});["amor-data","horoscopo-data"].forEach(function(i){var e=document.getElementById(i);if(e)e.textContent="Hoje · "+t;});}catch(x){}})();</script>
 </body>
 </html>

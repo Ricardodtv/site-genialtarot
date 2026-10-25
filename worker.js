@@ -424,6 +424,8 @@ const PAGINAS = new Set([
   "/arcano-21-o-mundo",
   // 25/10/2026: as 5 novidades inspiradas no Astro.com
   "/aniversarios", "/amor-do-dia", "/ceu-de-hoje", "/compatibilidade", "/noticias-do-ceu",
+  // 25/10/2026: o Horóscopo do Dia
+  "/horoscopo-do-dia",
 ]);
 
 function contarVisita(request, url, env, ctx) {

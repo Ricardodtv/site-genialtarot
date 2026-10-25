@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>O Horóscopo do Dia — os 12 signos com o céu de hoje · Mestre Alberto</title>
+<meta name="description" content="Todos os dias, o horóscopo de cada signo a partir do céu real do dia: a Lua, os aspetos e uma dica nova." />
+<meta name="theme-color" content="#1d2350" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="O Horóscopo do Dia — Mestre Alberto" />
+<meta property="og:description" content="Todos os dias, o horóscopo de cada signo a partir do céu real do dia: a Lua, os aspetos e uma dica nova." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/horoscopo-do-dia" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ O Horóscopo do Dia — os 12 signos com o céu real do dia — azul-noite e ouro (25/10/2026) ============ */
+:root {
+  --fundo: oklch(0.17 0.06 270); --texto: oklch(0.97 0.012 265); --suave: oklch(0.84 0.04 265);
+  --azul: oklch(0.72 0.13 255); --azul-claro: oklch(0.86 0.08 255); --lavanda: oklch(0.92 0.04 265);
+  --ouro: oklch(0.85 0.13 88); --borda: oklch(0.75 0.10 260 / 0.35); --vidro: oklch(0.30 0.08 268 / 0.55);
+  --grad-azul: linear-gradient(135deg, oklch(0.78 0.11 245), oklch(0.62 0.17 265) 55%, oklch(0.52 0.18 280));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif; --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.38 0.14 262) 0%, oklch(0.20 0.08 268) 45%, oklch(0.12 0.05 275) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden; }
+a { color: var(--azul-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(72rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2rem; }
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 270 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: var(--ouro); }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 270); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.az { background: var(--grad-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 36rem; margin: 0 auto 1rem; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.35rem, 3.4vw, 1.9rem); margin: 0 0 .4rem; text-align: center; }
+.cartao { background: linear-gradient(160deg, oklch(0.29 0.09 265), oklch(0.20 0.07 272)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; }
+.heroi { text-align: center; padding: .5rem 0 1.5rem; }
+.foto-mestre { width: 7.5rem; height: 7.5rem; border-radius: 50%; object-fit: cover; border: 3px solid var(--ouro); box-shadow: 0 0 30px oklch(0.85 0.13 88 / .4); }
+.fuso { display: inline-flex; gap: .3rem; padding: .3rem; border-radius: 999px; background: var(--vidro); border: 1px solid var(--borda); margin-top: .4rem; }
+.fuso button { border: 0; cursor: pointer; font: inherit; font-size: .85rem; font-weight: 700; color: var(--suave); background: none; border-radius: 999px; padding: .45rem 1rem; }
+.fuso button.ativo { color: white; background: var(--grad-azul); box-shadow: 0 4px 16px oklch(0.55 0.17 265 / .5); }
+.nav-dia { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 0 1.2rem; }
+.nav-dia button { border: 1px solid var(--borda); background: var(--vidro); color: var(--texto); font-size: 1.3rem; width: 2.8rem; height: 2.8rem; border-radius: 50%; cursor: pointer; flex: none; }
+.nav-dia button:disabled { opacity: .3; cursor: default; }
+.nav-dia .data { font-family: var(--titulo); font-size: clamp(1.2rem, 3.5vw, 1.6rem); font-weight: 700; text-align: center; min-width: 12rem; }
+.nav-dia .data small { display: block; font-family: Inter, sans-serif; font-size: .75rem; font-weight: 600; color: var(--suave); letter-spacing: .1em; text-transform: uppercase; }
+.ceu { list-style: none; margin: 0 auto 1rem; padding: 1rem 1.2rem; max-width: 40rem; border-radius: 1rem; background: oklch(0.16 0.05 270 / .7); border: 1px solid var(--borda); }
+.ceu li { font-size: .95rem; color: var(--lavanda); padding: .15rem 0; }
+.ceu li.mom { color: var(--ouro); font-weight: 600; }
+.atalhos { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 0 0 1.4rem; }
+.atalhos a { text-decoration: none; font-size: .82rem; font-weight: 700; color: var(--texto); border: 1px solid var(--borda); background: var(--vidro); border-radius: 999px; padding: .35rem .75rem; }
+.atalhos a i { font-style: normal; color: var(--ouro); margin-right: .25rem; }
+.atalhos a:hover { border-color: var(--ouro); }
+.grelha { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
+.signo { border-radius: 1.2rem; padding: 1.1rem 1.2rem 1.2rem; background: oklch(0.20 0.06 272 / .88); border: 1px solid var(--borda); scroll-margin-top: 1rem; }
+.signo .cab { display: flex; align-items: center; gap: .7rem; }
+.signo .gli { font-size: 2rem; line-height: 1; color: var(--ouro); width: 2.6rem; height: 2.6rem; display: grid; place-items: center; border-radius: 50%; border: 1px solid oklch(0.85 0.13 88 / .5); background: oklch(0.85 0.13 88 / .08); flex: none; }
+.signo .nome { font-family: var(--titulo); font-size: 1.2rem; font-weight: 700; }
+.signo .ene { font-size: .8rem; color: var(--ouro); letter-spacing: .1em; }
+.signo .ene span { color: var(--suave); letter-spacing: 0; margin-left: .3rem; font-size: .72rem; text-transform: uppercase; font-weight: 700; }
+.signo .chave { font-family: var(--serifa); font-style: italic; font-size: 1.25rem; font-weight: 600; color: var(--ouro); margin: .6rem 0 .4rem; line-height: 1.3; }
+.signo p { margin: 0 0 .55rem; font-family: var(--serifa); font-size: 1.08rem; line-height: 1.45; color: var(--lavanda); }
+.signo .dica { margin-top: .7rem; padding: .7rem .85rem; border-radius: .8rem; background: oklch(0.85 0.13 88 / .1); border: 1px solid oklch(0.85 0.13 88 / .35); font-size: .95rem; color: var(--texto); }
+.signo .dica b { color: var(--ouro); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: .15rem; }
+.signo.alvo { outline: 2px solid var(--ouro); box-shadow: 0 0 26px oklch(0.85 0.13 88 / .35); }
+.aviso { text-align: center; color: var(--suave); padding: 2rem 0; }
+.chamada { text-align: center; }
+.chamada p { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); max-width: 36rem; margin: 0 auto 1.2rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 800; border-radius: 999px; padding: .85rem 1.5rem; color: white; background: var(--grad-azul); box-shadow: 0 10px 30px oklch(0.55 0.17 265 / .5); }
+.btn.ouro { color: oklch(0.22 0.06 270); background: var(--grad-ouro); box-shadow: 0 10px 30px oklch(0.75 0.15 75 / .35); }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+  <section class="heroi">
+    <img class="foto-mestre" src="mestre-diario.jpg" alt="Mestre Alberto" width="120" height="120" />
+    <div><span class="selo">☀️ Os 12 signos ✦ céu real</span></div>
+    <h1>O <span class="az">Horóscopo</span> do Dia</h1>
+    <p class="sub">Todos os dias, o seu signo lido a partir do céu verdadeiro de hoje: por onde passa a Lua, o aspeto do dia e uma dica nova.</p>
+    <div class="fuso" role="group" aria-label="Fuso horário">
+        <button type="button" data-tz="America/Sao_Paulo">🇧🇷 Brasil</button>
+        <button type="button" data-tz="Europe/Lisbon">🇵🇹 Portugal</button>
+      </div>
+  </section>
+  <section class="cartao">
+    <div class="nav-dia">
+      <button type="button" id="ant" aria-label="Dia anterior">‹</button>
+      <div class="data" id="data"></div>
+      <button type="button" id="seg" aria-label="Dia seguinte">›</button>
+    </div>
+    <ul class="ceu" id="ceu"></ul>
+    <nav class="atalhos" id="atalhos" aria-label="Ir para o seu signo"></nav>
+    <div class="grelha" id="grelha"><p class="aviso">A ler o céu de hoje…</p></div>
+  </section>
+  <section class="cartao chamada">
+    <h2>Quer a sua <span class="az">resposta</span>?</h2>
+    <p>Este é o horóscopo de todo o signo. No vídeo de hoje passo signo a signo pelo trabalho, o amor, as finanças e a família, e numa consulta olho para a sua vida em particular.</p>
+    <div class="botoes"><a class="btn" href="/horoscopo">🎥 O vídeo de hoje</a><a class="btn ouro" href="loja.html#cat-consultas">🔮 Marcar uma consulta</a></div>
+  </section>
+  <p class="fonte">O céu é calculado com o Swiss Ephemeris (zodíaco tropical), para o dia de Portugal. As casas contam-se a partir do seu signo solar. Muda à meia-noite. São leituras simbólicas, para inspirar o seu dia.</p>
+</div>
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script>
+/* comum às páginas novas: o fuso (o mesmo da Lua) muda os nomes dos signos e as horas */
+window.GT = (function () {
+  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map(g => g + "︎");
+  const NOMES_BR = ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const NOMES_PT = ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  const SEMANA = ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"];
+  let tz;
+  try { tz = localStorage.getItem("lua-fuso"); } catch (e) {}
+  if (!tz) tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").startsWith("Europe") ? "Europe/Lisbon" : "America/Sao_Paulo";
+  function partes(t) {
+    const p = {};
+    new Intl.DateTimeFormat("en-GB", { timeZone: tz, year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", weekday: "short", hourCycle: "h23" })
+      .formatToParts(new Date(t)).forEach(x => p[x.type] = x.value);
+    const dw = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[p.weekday];
+    return { a: +p.year, m: +p.month, d: +p.day, h: p.hour, min: p.minute, dw };
+  }
+  const G = {
+    GLIFOS, MESES, SEMANA, partes,
+    get tz() { return tz; },
+    nomes: () => tz === "Europe/Lisbon" ? NOMES_PT : NOMES_BR,
+    hora: (t) => { const p = partes(t); return p.h + ":" + p.min; },
+    data: (t) => { const p = partes(t); return p.d + " de " + MESES[p.m - 1]; },
+    ligarFuso(redesenhar) {
+      document.querySelectorAll(".fuso button").forEach(b => {
+        b.classList.toggle("ativo", b.dataset.tz === tz);
+        b.onclick = () => { tz = b.dataset.tz; try { localStorage.setItem("lua-fuso", tz); } catch (e) {}
+          document.querySelectorAll(".fuso button").forEach(x => x.classList.toggle("ativo", x.dataset.tz === tz)); redesenhar(); };
+      });
+    }
+  };
+  return G;
+})();
+</script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const G = window.GT, cache = {};
+  const ESC = (s) => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  // os textos trazem {S:n} (o signo, com o nome do fuso escolhido) e {H:ms} (a hora, no fuso escolhido)
+  const por = (t) => ESC(t).replace(/\{S:(\d+)\}/g, (_, n) => G.nomes()[+n]).replace(/\{H:(\d+)\}/g, (_, ms) => G.hora(+ms));
+  let desvio = 0;   // 0 = hoje; o visitante pode ver de ontem a daqui a 3 dias
+  function diaISO() {
+    const p = G.partes(Date.now()), d = new Date(Date.UTC(p.a, p.m - 1, p.d + desvio));
+    return { iso: d.toISOString().slice(0, 10), dw: d.getUTCDay(), d: d.getUTCDate(), m: d.getUTCMonth() };
+  }
+  async function ler(iso) {
+    if (!cache[iso]) cache[iso] = fetch("horoscopo-dia/" + iso + ".json").then(r => { if (!r.ok) throw r.status; return r.json(); });
+    return cache[iso];
+  }
+  async function desenhar() {
+    const q = diaISO();
+    const rot = desvio === 0 ? "Hoje · " : desvio === 1 ? "Amanhã · " : desvio === -1 ? "Ontem · " : "";
+    $("data").innerHTML = `<small>${rot}${G.SEMANA[q.dw]}</small>${q.d} de ${G.MESES[q.m]}`;
+    $("ant").disabled = desvio <= -1; $("seg").disabled = desvio >= 3;
+    $("atalhos").innerHTML = G.nomes().map((n, s) => `<a href="#s${s}"><i>${G.GLIFOS[s]}</i>${n}</a>`).join("");
+    let x;
+    try { x = await ler(q.iso); } catch (e) {
+      $("ceu").innerHTML = ""; $("grelha").innerHTML = `<p class="aviso">O horóscopo deste dia ainda não está disponível.</p>`; return;
+    }
+    const ceu = x.ceu.map(l => `<li>${por(l)}</li>`);
+    if (x.melhor) ceu.push(`<li class="mom">✨ Melhor momento: por volta das ${G.hora(x.melhor.t)} (${ESC(x.melhor.txt)})</li>`);
+    if (x.cuidado) ceu.push(`<li class="mom">⚠️ Mais cuidado por volta das ${G.hora(x.cuidado.t)} (${ESC(x.cuidado.txt)})</li>`);
+    $("ceu").innerHTML = ceu.join("");
+    $("grelha").innerHTML = x.s.map((y, s) =>
+      `<article class="signo" id="s${s}"><div class="cab"><span class="gli">${G.GLIFOS[s]}</span><div><div class="nome">${G.nomes()[s]}</div>`
+      + `<div class="ene" aria-label="Energia ${y.e} de 5">${"★".repeat(y.e)}${"☆".repeat(5 - y.e)}<span>energia</span></div></div></div>`
+      + `<div class="chave">${por(y.k)}</div>${y.t.map(t => `<p>${por(t)}</p>`).join("")}`
+      + `<div class="dica"><b>👉 A dica de hoje</b>${por(y.d)}</div></article>`).join("");
+    const alvo = location.hash && document.querySelector(location.hash);
+    document.querySelectorAll(".signo").forEach(a => a.classList.toggle("alvo", a === alvo));
+  }
+  $("ant").onclick = () => { desvio--; desenhar(); };
+  $("seg").onclick = () => { desvio++; desenhar(); };
+  window.addEventListener("hashchange", desenhar);
+  G.ligarFuso(desenhar); desenhar();
+})();
+</script>
+</body>
+</html>
