@@ -177,7 +177,7 @@ window.GT = (function () {
       const nome = G.nomes()[x.s], anos = p.a - x.a;
       const band = x.p === "PT" ? "🇵🇹" : x.p === "BR" ? "🇧🇷" : "🇧🇷🇵🇹";
       return `<article class="pessoa"><div class="topo-p"><span class="nome">${x.n}</span><span class="bandeira" title="${x.p}">${band}</span></div>`
-        + `<div class="desc">${x.d}</div><div class="idade">${desvio === 0 ? "Faz hoje " + anos + " anos" : "Nasceu em " + x.a}</div>`
+        + `<div class="desc">${x.d}</div><div class="idade">Nasceu a ${p.d} de ${G.MESES[p.m - 1]} de ${x.a} · <b>${desvio === 0 ? "faz hoje" : desvio < 0 ? "fez" : "faz"} ${anos} anos</b></div>`
         + `<div class="signo">${G.GLIFOS[x.s]} <b>${nome}</b>${x.c ? " <small>(na cúspide)</small>" : ""}</div>`
         + `<a class="lig" href="horoscopo.html">Ver o horóscopo de ${nome} →</a></article>`;
     }).join("");
