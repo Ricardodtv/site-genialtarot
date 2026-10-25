@@ -695,6 +695,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .porta-lua[hidden] { display: none; }
 .porta-lua svg.lua-svg { width: 3.6rem; height: 3.6rem; }
 .porta-lua.cheia .porta-txt small { color: oklch(0.30 0.08 310); }
+@media (min-width: 860px) { .porta-lua { grid-column: 1 / -1; } }   /* 25/10: com o Amor do Dia ficam 7 portas — a da Lua (só aparece perto das lunações) ocupa a linha toda */
 .porta-lua.cheia .porta-btn { color: white; }
 
 /* os atalhos: quadradinhos lilás, 3 por linha no telemóvel */
@@ -833,6 +834,19 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
           </span>
         </div>
         <span class="porta-btn">Ver o meu mapa →</span>
+      </a>
+
+      <!-- 💕 O Amor do Dia (25/10/2026, pedido dele: «traz para o destaque» — veio das Novidades) -->
+      <a href="/amor-do-dia" class="porta porta-amor porta-brilho">
+        <span class="porta-eti porta-eti-novo">Todos os dias</span>
+        <div class="porta-cabeca">
+          <span class="porta-visual porta-ico" aria-hidden="true">💕</span>
+          <span class="porta-txt">
+            <strong>O Amor do Dia</strong>
+            <small>Uma carta do Tarot para o coração do seu signo, nova todos os dias.</small>
+          </span>
+        </div>
+        <span class="porta-btn">Ver a minha carta →</span>
       </a>
 
       <!-- ✨ Mapa Astral (21/10/2026, pedido dele: «vistoso e animado») — roda do zodíaco a girar, Sol ao centro -->
@@ -1060,7 +1074,6 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
     </div>
     <div class="nov-grelha">
       <a class="nov" href="aniversarios.html"><span class="ic">🎂</span><span><b>Fazem anos hoje</b><span>Famosos do Brasil e de Portugal e o signo de cada um</span></span></a>
-      <a class="nov" href="amor-do-dia.html"><span class="ic">💕</span><span><b>O Amor do Dia</b><span>Uma carta do Tarot para o coração de cada signo</span></span></a>
       <a class="nov" href="ceu-de-hoje.html"><span class="ic">🌙</span><span><b>O Céu de Hoje</b><span>A Lua, os planetas e os retrógrados, em linguagem simples</span></span></a>
       <a class="nov" href="compatibilidade.html"><span class="ic">💑</span><span><b>Compatibilidade</b><span>Signo + signo: o que une e o que pede cuidado</span></span></a>
       <a class="nov" href="noticias-do-ceu.html"><span class="ic">📰</span><span><b>Notícias do Céu</b><span>O que acontece no céu nas próximas semanas</span></span></a>
