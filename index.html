@@ -691,6 +691,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 @media (prefers-reduced-motion: reduce) { .porta-brilho::after, .mini-roda-anel, .mini-roda-sol, .porta-eti-novo, .orbita-2027 { animation: none; } }
 
 /* Lua de hoje dentro do cartão (as cores especiais de Cheia/Nova continuam a valer) */
+.amor-data { display: inline-block; font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: oklch(0.88 0.12 350); margin-bottom: .15rem; }   /* 25/10: a data de hoje no cartão do Amor do Dia (pedido dele) */
 .porta-lua { display: flex; flex-direction: column; align-items: stretch; width: auto; margin: 0; }
 .porta-lua[hidden] { display: none; }
 .porta-lua svg.lua-svg { width: 3.6rem; height: 3.6rem; }
@@ -842,6 +843,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
         <div class="porta-cabeca">
           <span class="porta-visual porta-ico" aria-hidden="true">💕</span>
           <span class="porta-txt">
+            <span class="amor-data" id="amor-data" aria-live="polite">Hoje</span>
             <strong>O Amor do Dia</strong>
             <small>Uma carta do Tarot para o coração do seu signo, nova todos os dias.</small>
           </span>
@@ -1475,5 +1477,7 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 })();
 </script>
+<script>/* 25/10/2026: data de hoje no cartão do Amor do Dia, no relógio de quem vê */
+(function(){var e=document.getElementById("amor-data");if(!e)return;try{var t=new Date().toLocaleDateString("pt-PT",{weekday:"long",day:"numeric",month:"long"});e.textContent="Hoje · "+t;}catch(x){}})();</script>
 </body>
 </html>
