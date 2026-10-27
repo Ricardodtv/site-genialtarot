@@ -92,7 +92,7 @@ const PRODUTOS = [
 
   /* 27/10/2026 — pedido dele: «sim publica e põe na loja nas promoções».
      Leva à /tarot-semestral (lá a pessoa tira as 13 cartas e vê a Síntese grátis). Completa 15 € · Comentada pelo Mestre 45 €
-     · PIX R$ 85 / R$ 250. Cartão: ainda sem botão no myPOS (a página pede o link pelo WhatsApp). */
+     · PIX R$ 85 / R$ 250. Cartão: myPOS BUQ28DVM5JR98 (15 €) e BBGBCIOKNQY86 (45 €), pelo pagar.html. */
   {
     nome: "🃏 Tarot Semestral – Os Seus Próximos 6 Meses em 13 Cartas",
     categoria: "Promoção",

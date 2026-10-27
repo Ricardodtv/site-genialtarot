@@ -7,7 +7,7 @@
      esboço que ele aprovou («tira o PayPal e constrói a página»). 13 cartas Rider-Waite (0 Síntese + as 12 casas);
      a carta 0 é grátis, a leitura das 12 é paga e segue em PDF por email (~/tarot-semestral-completo/gerar.py).
      Dois planos: Completa 15 € (PIX R$ 85, GTSEM1) e Comentada pelo Mestre 45 € (PIX R$ 250, GTSEM2; áudio no WhatsApp).
-     Cartão: os botões do myPOS ainda não existem — enquanto MYPOS estiver vazio, o cartão pede o link pelo WhatsApp. -->
+     Cartão: myPOS BUQ28DVM5JR98 (15 €) e BBGBCIOKNQY86 (45 €), pelo pagar.html. -->
 <meta name="robots" content="noindex" />
 <title>Tarot Semestral — os seus próximos 6 meses em 13 cartas · Genial Tarot · Mestre Alberto</title>
 <meta name="description" content="Tire as 13 cartas do seu semestre: amor, dinheiro, família, saúde e trabalho. A carta síntese é grátis. Tarot Rider-Waite do Mestre Alberto." />
@@ -316,9 +316,9 @@ footer a{color:var(--lil)}
     comentada: { nome: "Leitura Comentada pelo Mestre", euros: "45 €", pix: { valor: "R$ 250", qr: "pix/GTSEM2.png",
       codigo: "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa95204000053039865406250.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62100506GTSEM26304760F" } },
   };
-  // Os botões do myPOS (15 € e 45 €) ainda não existem: com isto vazio, o cartão pede o link pelo WhatsApp.
-  // Quando ele os criar: pôr aqui true e acrescentar "tarot-semestral" e "tarot-semestral-mestre" ao SERVICOS do pagar.html.
-  const MYPOS = { completa: false, comentada: false };
+  // 27/10/2026: os botões do myPOS estão no SERVICOS do pagar.html — tarot-semestral (BUQ28DVM5JR98, 15 €) e
+  // tarot-semestral-mestre (BBGBCIOKNQY86, 45 €). Com false, o cartão volta a pedir o link pelo WhatsApp.
+  const MYPOS = { completa: true, comentada: true };
 
   // ===== O período: a partir de agora, ou a partir do aniversário =====
   const hoje = new Date();
