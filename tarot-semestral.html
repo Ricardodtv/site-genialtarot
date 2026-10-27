@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Tarot Semestral (27/10/2026) — pedido dele: «faz uma página parecida» com o Tarot Semestral da Personare, a partir do
+     esboço que ele aprovou («tira o PayPal e constrói a página»). 13 cartas Rider-Waite (0 Síntese + as 12 casas);
+     a carta 0 é grátis, a leitura das 12 é paga e segue em PDF por email (~/tarot-semestral-completo/gerar.py).
+     Dois planos: Completa 15 € (PIX R$ 85, GTSEM1) e Comentada pelo Mestre 45 € (PIX R$ 250, GTSEM2; áudio no WhatsApp).
+     Cartão: os botões do myPOS ainda não existem — enquanto MYPOS estiver vazio, o cartão pede o link pelo WhatsApp. -->
+<meta name="robots" content="noindex" />
+<title>Tarot Semestral — os seus próximos 6 meses em 13 cartas · Genial Tarot · Mestre Alberto</title>
+<meta name="description" content="Tire as 13 cartas do seu semestre: amor, dinheiro, família, saúde e trabalho. A carta síntese é grátis. Tarot Rider-Waite do Mestre Alberto." />
+<meta name="theme-color" content="#140a26" />
+<link rel="icon" href="favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+:root{--fundo:#140a26;--roxo:#2a1450;--ouro:#e8c15a;--lil:#c9a6ff;--txt:#efe9ff;--cinza:#b7a9d6;--verde:#3fcf8e;--vermelho:#ff7a8a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at top,#2b1356 0%,var(--fundo) 60%) fixed;background-color:var(--fundo);color:var(--txt);font-family:Inter,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:Cinzel,Georgia,serif;margin:.2em 0}
+h1{font-size:2.5rem;color:var(--ouro);line-height:1.15}
+h2{font-size:1.7rem;color:var(--ouro);text-align:center;margin-top:0}
+.lil{color:var(--lil)}
+.kick{text-transform:uppercase;letter-spacing:.25em;font-size:.75rem;color:var(--lil);text-align:center;margin-bottom:.3rem}
+section{padding:2.6rem 0;border-bottom:1px solid #ffffff12}
+.topo{padding:14px 0 0}
+.backlink{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:8px 14px;background:#ffffff12;border:1px solid #c9a6ff55;color:var(--lil);font-size:13px;font-weight:600;text-decoration:none}
+.backlink svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.heroi{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:center}
+.heroi p.sub{font-size:1.1rem;color:var(--cinza)}
+.heroi ul{padding-left:1.1rem;margin:.8rem 0 1.2rem}
+.heroi li{margin:.25rem 0}
+.mestre{display:flex;gap:.8rem;align-items:center;background:#ffffff0d;border:1px solid #ffffff1f;border-radius:14px;padding:.6rem .8rem;margin-top:1rem;font-size:.9rem}
+.mestre img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid var(--ouro)}
+.btn{display:inline-block;border:0;border-radius:999px;padding:.85rem 1.5rem;font-weight:800;font-size:1rem;cursor:pointer;text-decoration:none;font-family:inherit;text-align:center}
+.btn.ouro{background:linear-gradient(135deg,#f6d77a,#d9a531);color:#2a1a00;box-shadow:0 0 22px #e8c15a66}
+.btn.contorno{background:transparent;border:1.5px solid var(--lil);color:var(--lil)}
+.btn:disabled{opacity:.55;cursor:wait}
+.botoes-heroi{display:flex;gap:.5rem;flex-wrap:wrap}
+.leque{position:relative;height:330px;max-width:390px;margin:0 auto;width:100%}
+.leque img{position:absolute;width:150px;border-radius:10px;box-shadow:0 10px 30px #0009;border:2px solid #e8c15a88}
+.selo-gratis{display:inline-block;background:var(--verde);color:#062;font-weight:800;font-size:.72rem;letter-spacing:.08em;border-radius:999px;padding:.2rem .7rem;margin-bottom:.5rem}
+.cartao{background:linear-gradient(160deg,#2f1760ee,#1d0e3dee);border:1px solid #c9a6ff40;border-radius:18px;padding:1.4rem}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.form label{font-size:.8rem;color:var(--cinza);display:block}
+.form label small{opacity:.8}
+.form input,.comprar input,.comprar textarea{display:block;width:100%;margin-top:.25rem;background:#fff;color:#1a0b33;border:0;border-radius:10px;padding:.7rem .8rem;font-size:1rem;font-family:inherit}
+.form .inteiro{grid-column:1/-1}
+.periodos{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.3rem}
+.periodos button{border:1.5px solid var(--lil);border-radius:999px;padding:.4rem .95rem;font-size:.88rem;background:transparent;color:var(--txt);cursor:pointer;font-family:inherit}
+.periodos button.on{background:var(--lil);color:#1a0b33;font-weight:800}
+.erro{display:none;margin-top:.8rem;background:#ff5a6e22;border:1px solid #ff7a8a88;color:#ffd6dc;border-radius:10px;padding:.6rem .8rem;font-size:.92rem}
+.erro.ver{display:block}
+.erro a{color:var(--ouro)}
+.nota-priv{font-size:.8rem;color:var(--cinza);margin:.8rem 0 0}
+/* a mesa */
+#mesa-sec{display:none}
+#mesa-sec.ver{display:block}
+.mesa{display:grid;grid-template-columns:repeat(7,1fr);gap:.55rem;margin-top:1rem;perspective:900px}
+.pos{text-align:center;font-size:.7rem;color:var(--cinza);opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s}
+.pos.posta{opacity:1;transform:none}
+.pos .c{aspect-ratio:3/5;border-radius:8px;background:repeating-linear-gradient(45deg,#4a2391,#4a2391 6px,#3a1c74 6px,#3a1c74 12px);border:1.5px solid #e8c15a66;display:grid;place-items:center;font-size:1.3rem;margin-bottom:.25rem;overflow:hidden}
+.pos.aberta .c{border:2px solid var(--ouro);box-shadow:0 0 18px #e8c15a99;animation:vira .7s ease}
+.pos.aberta .c img{width:100%;height:100%;object-fit:cover}
+@keyframes vira{from{transform:rotateY(90deg)}to{transform:none}}
+.pos .n{color:var(--ouro);font-weight:800}
+.amostra{display:grid;grid-template-columns:170px 1fr;gap:1.3rem;align-items:start;margin-top:1.4rem}
+.amostra img{width:170px;border-radius:10px;border:2px solid var(--ouro);background:#2a1450}
+.amostra h3{color:var(--ouro);font-size:1.5rem}
+.amostra .txt p{margin:.4rem 0}
+.fechado{margin-top:1rem;background:#00000040;border:1px dashed #c9a6ff66;border-radius:12px;padding:.8rem 1rem;color:var(--cinza);font-size:.92rem}
+.fechado b{color:var(--txt)}
+.grelha{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.4rem}
+.ben{background:#ffffff0a;border:1px solid #ffffff1a;border-radius:14px;padding:1rem}
+.ben .i{font-size:1.6rem}
+.ben h3{font-size:1rem;color:var(--lil);margin:.3rem 0}
+.ben p{font-size:.88rem;color:var(--cinza);margin:0}
+.caps{display:grid;grid-template-columns:repeat(2,1fr);gap:.55rem 1.5rem;margin-top:1.3rem}
+.cap{display:flex;gap:.7rem;align-items:baseline;border-bottom:1px solid #ffffff12;padding:.35rem 0}
+.cap .n{font-family:Cinzel,serif;color:var(--ouro);font-weight:700;width:1.8rem;flex:none}
+.cap b{color:var(--txt)} .cap span{color:var(--cinza);font-size:.86rem}
+.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.3rem}
+.passo{text-align:center;padding:1rem .6rem;background:#ffffff0a;border-radius:14px}
+.passo .i{font-size:1.8rem}
+.passo b{display:block;margin:.3rem 0;color:var(--ouro)}
+.passo span{font-size:.86rem;color:var(--cinza)}
+.precos{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.4rem}
+.plano{border-radius:18px;padding:1.4rem;border:1.5px solid #c9a6ff55;background:#ffffff0a;position:relative;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.plano.destaque{background:linear-gradient(160deg,#3b1d72,#22104a)}
+.plano.escolhido{border:2px solid var(--ouro);box-shadow:0 0 30px #e8c15a44}
+.plano .fita{position:absolute;top:-12px;right:16px;background:var(--ouro);color:#2a1a00;font-weight:800;font-size:.72rem;border-radius:999px;padding:.2rem .7rem}
+.plano h3{color:var(--lil);font-size:1.15rem}
+.plano .valor{font-family:Cinzel,serif;font-size:2.3rem;color:var(--ouro);font-weight:700;margin:.3rem 0}
+.plano .valor small{font-size:.9rem;color:var(--cinza);font-family:Inter,Arial,sans-serif}
+.plano ul{padding-left:1.1rem;font-size:.9rem;color:var(--cinza)}
+.plano .marca{display:inline-block;margin-top:.3rem;font-weight:800;font-size:.85rem;color:var(--cinza)}
+.plano.escolhido .marca{color:var(--ouro)}
+.comprar{margin-top:1.4rem}
+.comprar label{display:block;font-size:.85rem;color:var(--cinza);margin-top:.8rem}
+.comprar textarea{min-height:80px;resize:vertical}
+.comprar .so-comentada{display:none}
+.comprar.comentada .so-comentada{display:block}
+.presente{display:flex!important;gap:.5rem;align-items:center;margin-top:.9rem!important;cursor:pointer}
+.presente input{width:auto!important;margin:0!important}
+.resumo-pedido{margin-top:1rem;font-size:.95rem}
+.resumo-pedido b{color:var(--ouro)}
+.metodos{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.9rem}
+.metodos button{border-radius:12px;padding:.85rem .5rem;font-weight:800;font-size:.95rem;cursor:pointer;font-family:inherit;border:1.5px solid #ffffff33;color:#fff}
+.m-cartao{background:#4a2fa0}
+.m-mbway{background:#c8102e}
+.m-pix{background:#0d3b3b;border-color:#32BCAD!important}
+.m-info{display:none;margin-top:1rem;background:#ffffff10;border:1px solid #c9a6ff55;border-radius:14px;padding:1rem;text-align:center;font-size:.95rem}
+.m-info.ver{display:block}
+.m-info .num{font-family:Cinzel,serif;font-size:1.6rem;color:var(--ouro);margin:.3rem 0}
+.m-info a,.m-info button{display:inline-block;margin-top:.7rem;background:#1f8f4e;color:#fff;border:0;border-radius:999px;padding:.6rem 1.1rem;font-weight:800;text-decoration:none;font-size:.92rem;cursor:pointer;font-family:inherit}
+.m-info img{display:block;margin:.8rem auto;border-radius:10px;background:#fff}
+.pag{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;font-size:.8rem;color:var(--cinza)}
+.pag span{border:1px solid #ffffff2a;border-radius:8px;padding:.25rem .6rem}
+.nota-compra{font-size:.85rem;color:var(--cinza);text-align:center;margin-top:.9rem}
+.faq details{background:#ffffff0a;border-radius:12px;padding:.8rem 1rem;margin:.55rem 0}
+.faq summary{font-weight:700;cursor:pointer;color:var(--txt)}
+.faq p{color:var(--cinza);font-size:.92rem;margin:.5rem 0 0}
+footer{font-size:.78rem;color:#9b8cc0;text-align:center;padding:1.6rem 16px 2.5rem}
+footer a{color:var(--lil)}
+@media(max-width:720px){.heroi,.precos,.amostra{grid-template-columns:1fr}.grelha{grid-template-columns:1fr 1fr}.caps{grid-template-columns:1fr}.passos{grid-template-columns:1fr 1fr}.mesa{grid-template-columns:repeat(5,1fr)}h1{font-size:1.9rem}.form{grid-template-columns:1fr}.leque{height:260px}.leque img{width:120px}.metodos{grid-template-columns:1fr}.amostra img{margin:0 auto;display:block}}
+</style>
+</head>
+<body>
+<div class="wrap topo">
+  <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+</div>
+
+<section><div class="wrap heroi">
+  <div>
+    <span class="selo-gratis">PRIMEIRA CARTA GRÁTIS</span>
+    <h1>Tarot Semestral <span class="lil">do Mestre Alberto</span></h1>
+    <p class="sub">Os seus próximos 6 meses em 13 cartas: amor, dinheiro, família, saúde e trabalho, com um conselho final para o caminho.</p>
+    <ul>
+      <li>As tendências para todas as áreas da sua vida</li>
+      <li>Como orientar as suas atitudes no amor</li>
+      <li>O que esperar no trabalho e no dinheiro</li>
+      <li>Como cuidar melhor do corpo e da rotina</li>
+    </ul>
+    <div class="botoes-heroi">
+      <a class="btn ouro" href="#jogar">✨ Tirar a minha carta grátis</a>
+      <a class="btn contorno" href="#capitulos">Ver os 13 capítulos</a>
+    </div>
+    <div class="mestre"><img src="mestre-alberto.jpg" alt="Mestre Alberto" width="52" height="52" /><div><b>Mestre Alberto</b><br>18 anos a ler o Tarot Rider-Waite · 26 mil seguidores no YouTube</div></div>
+  </div>
+  <div class="leque" aria-hidden="true">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg" alt="" style="left:5%;top:40px;transform:rotate(-14deg)" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg" alt="" style="left:31%;top:10px;z-index:2" fetchpriority="high" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg" alt="" style="left:57%;top:40px;transform:rotate(14deg)" />
+  </div>
+</div></section>
+
+<section id="jogar"><div class="wrap">
+  <div class="kick">Passo 1 · Grátis</div>
+  <h2>Comece pela sua carta síntese</h2>
+  <div class="cartao">
+    <form id="form" novalidate>
+      <div class="form">
+        <label>O seu nome <small>(como gosta de ser chamado(a))</small>
+          <input type="text" id="nome" autocomplete="given-name" required maxlength="80" /></label>
+        <label>Data de nascimento <small>(dia/mês/ano)</small>
+          <input type="text" id="data" required inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" /></label>
+        <label>O seu email <small>(para receber a leitura)</small>
+          <input type="email" id="email" autocomplete="email" required maxlength="120" /></label>
+        <label>WhatsApp <small>(opcional, com o indicativo do país)</small>
+          <input type="tel" id="tel" autocomplete="tel" maxlength="25" /></label>
+        <div class="inteiro"><label>Para que período?</label>
+          <div class="periodos" id="periodos"></div></div>
+      </div>
+      <p style="font-size:.88rem;color:var(--cinza);margin:1rem 0 .6rem">Respire fundo, pense nos seus próximos seis meses e carregue no botão para baralhar.</p>
+      <button class="btn ouro" type="submit" id="baralhar">🔮 Baralhar e tirar as 13 cartas</button>
+      <div class="erro" id="erro" role="alert"></div>
+      <p class="nota-priv">🔒 As cartas são tiradas no seu telemóvel ou computador. Os seus dados não são partilhados com ninguém.</p>
+    </form>
+  </div>
+</div></section>
+
+<section id="mesa-sec" aria-live="polite"><div class="wrap">
+  <div class="kick" id="mesa-kick">A sua mesa</div>
+  <h2 id="mesa-titulo">As 13 cartas do seu semestre</h2>
+  <div class="mesa" id="mesa"></div>
+  <div class="amostra">
+    <img id="sint-img" alt="" width="170" height="283" />
+    <div class="txt">
+      <span class="selo-gratis">A SUA CARTA SÍNTESE · GRÁTIS</span>
+      <h3 id="sint-nome"></h3>
+      <p id="sint-texto"></p>
+      <div class="fechado">🔒 <b id="fechado-titulo">As outras 12 cartas já foram tiradas</b> e ficam guardadas para si: o amor (carta 7), o dinheiro (2), a carreira (10) e o conselho final (12). Desbloqueie a leitura completa para as ver.</div>
+      <div style="margin-top:1rem"><a class="btn ouro" href="#comprar">Ver as minhas 13 cartas</a></div>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kick">Porque fazer o seu</div>
+  <h2>O Tarot Semestral ajuda a entender</h2>
+  <div class="grelha">
+    <div class="ben"><div class="i">🔮</div><h3>O que esperar dos próximos 6 meses</h3><p>Uma carta para cada área da vida, com a tendência do semestre.</p></div>
+    <div class="ben"><div class="i">💗</div><h3>Como agir no amor</h3><p>O clima afetivo do semestre e o que fazer para o amor crescer.</p></div>
+    <div class="ben"><div class="i">💼</div><h3>O caminho no trabalho</h3><p>Oportunidades, avisos e onde pôr a sua energia.</p></div>
+    <div class="ben"><div class="i">🏡</div><h3>Família e amigos</h3><p>O ambiente em casa e as pessoas que o(a) apoiam.</p></div>
+    <div class="ben"><div class="i">🌿</div><h3>O corpo e a rotina</h3><p>Conselhos para o dia a dia e para o equilíbrio.</p></div>
+    <div class="ben"><div class="i">✈️</div><h3>Prazer e viagens</h3><p>Onde vai encontrar alegria e descanso.</p></div>
+  </div>
+</div></section>
+
+<section id="capitulos"><div class="wrap">
+  <div class="kick">O que recebe</div>
+  <h2>Os 13 capítulos da sua leitura</h2>
+  <div class="caps">
+    <div class="cap"><span class="n">0</span><div><b>Síntese</b> — <span>o resumo do semestre em todas as áreas</span></div></div>
+    <div class="cap"><span class="n">1</span><div><b>Identidade</b> — <span>a sua energia e as suas atitudes</span></div></div>
+    <div class="cap"><span class="n">2</span><div><b>Dinheiro e finanças</b> — <span>ganhar mais, evitar perdas</span></div></div>
+    <div class="cap"><span class="n">3</span><div><b>Comunicação e estudos</b> — <span>conversas, contratos, aprendizagens</span></div></div>
+    <div class="cap"><span class="n">4</span><div><b>Família e mundo interior</b> — <span>a casa e os sentimentos</span></div></div>
+    <div class="cap"><span class="n">5</span><div><b>Prazer e romance</b> — <span>diversão, criatividade, filhos</span></div></div>
+    <div class="cap"><span class="n">6</span><div><b>Saúde e rotina</b> — <span>o corpo e o dia a dia</span></div></div>
+    <div class="cap"><span class="n">7</span><div><b>Amor e relação</b> — <span>a vida a dois no semestre</span></div></div>
+    <div class="cap"><span class="n">8</span><div><b>Desafios</b> — <span>o que pode travar e como vencer</span></div></div>
+    <div class="cap"><span class="n">9</span><div><b>Evolução espiritual</b> — <span>fé, viagens e a sua maior virtude</span></div></div>
+    <div class="cap"><span class="n">10</span><div><b>Carreira</b> — <span>tendências e oportunidades de trabalho</span></div></div>
+    <div class="cap"><span class="n">11</span><div><b>Amizades e projetos</b> — <span>quem caminha consigo e os próximos objetivos</span></div></div>
+    <div class="cap"><span class="n">12</span><div><b>Conselho final</b> — <span>a mensagem do Mestre para o seu semestre</span></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kick">Como funciona</div>
+  <h2>Em 4 passos</h2>
+  <div class="passos">
+    <div class="passo"><div class="i">✍️</div><b>1. Os seus dados</b><span>Nome, data de nascimento e o período</span></div>
+    <div class="passo"><div class="i">🃏</div><b>2. Tira as 13 cartas</b><span>A carta síntese aparece logo, grátis</span></div>
+    <div class="passo"><div class="i">💳</div><b>3. Desbloqueia</b><span>Cartão, MB WAY ou PIX</span></div>
+    <div class="passo"><div class="i">📩</div><b>4. Recebe a leitura</b><span>As 13 cartas em PDF, no seu email</span></div>
+  </div>
+</div></section>
+
+<section id="comprar"><div class="wrap">
+  <div class="kick">Escolha a sua leitura</div>
+  <h2>Desbloqueie o seu semestre</h2>
+  <div class="precos">
+    <div class="plano escolhido" data-plano="completa" role="button" tabindex="0">
+      <h3>📜 Leitura Completa</h3>
+      <div class="valor">15 € <small>· PIX R$ 85</small></div>
+      <ul><li>As 13 cartas com o texto do Mestre Alberto</li><li>Todas as áreas: amor, dinheiro, família, saúde, carreira</li><li>Um conselho prático em cada carta</li><li>PDF no seu email</li></ul>
+      <span class="marca" data-marca>✓ Escolhida</span>
+    </div>
+    <div class="plano destaque" data-plano="comentada" role="button" tabindex="0"><span class="fita">COM O MESTRE</span>
+      <h3>🎧 Leitura Comentada pelo Mestre Alberto</h3>
+      <div class="valor">45 € <small>· PIX R$ 250</small></div>
+      <ul><li>Tudo da Leitura Completa</li><li>O Mestre Alberto olha para as SUAS 13 cartas e grava um áudio de cerca de 10 minutos no WhatsApp</li><li>1 pergunta sua respondida sobre o semestre</li><li>Entrega em até 48 horas</li></ul>
+      <span class="marca" data-marca>Escolher esta</span>
+    </div>
+  </div>
+
+  <div class="cartao comprar" id="caixa-compra">
+    <label>O seu email: é para lá que enviamos a sua leitura
+      <input type="email" id="email-pedido" autocomplete="email" maxlength="120" placeholder="o.seu@email.com" /></label>
+    <label class="so-comentada">O seu WhatsApp, para receber o áudio do Mestre <small>(com o indicativo do país)</small>
+      <input type="tel" id="tel-pedido" autocomplete="tel" maxlength="25" placeholder="+351 …  ou  +55 …" /></label>
+    <label class="so-comentada">A sua pergunta sobre o semestre
+      <textarea id="pergunta" maxlength="500" placeholder="Ex.: Vou conseguir mudar de trabalho até ao verão?"></textarea></label>
+    <label class="presente"><input type="checkbox" id="presente" /> 🎁 É para oferecer de presente</label>
+    <div class="resumo-pedido" id="resumo-pedido"></div>
+    <div class="metodos">
+      <button type="button" class="m-cartao" data-m="cartao">💳 Cartão</button>
+      <button type="button" class="m-mbway" data-m="mbway">📱 MB WAY</button>
+      <button type="button" class="m-pix" data-m="pix">🇧🇷 PIX</button>
+    </div>
+    <div class="erro" id="erro-pedido" role="alert"></div>
+    <div class="m-info" id="m-info"></div>
+    <p class="nota-compra">💌 A sua leitura chega por email depois de confirmarmos o pagamento. A Comentada chega em até 48 horas.</p>
+  </div>
+  <div class="pag"><span>💳 Cartão (myPOS)</span><span>📱 MB WAY</span><span>🇧🇷 PIX</span><span>🏦 Transferência pelo WhatsApp</span><span>🔒 Pagamento seguro</span></div>
+</div></section>
+
+<section class="faq"><div class="wrap">
+  <div class="kick">Dúvidas</div>
+  <h2>Perguntas frequentes</h2>
+  <details open><summary>O que é o Tarot Semestral?</summary><p>Uma tiragem de 13 cartas do Tarot Rider-Waite com a previsão dos próximos seis meses para todas as áreas da vida. A primeira carta, a Síntese, mostra o tom geral do semestre; as outras 12 leem cada área em separado.</p></details>
+  <details><summary>Como faço um bom jogo?</summary><p>Escolha um momento calmo, respire fundo e pense nos próximos meses antes de baralhar.</p></details>
+  <details><summary>O Tarot pela internet funciona?</summary><p>As cartas saem ao acaso, tal como na mesa. O que conta é a sua intenção no momento da tiragem.</p></details>
+  <details><summary>De quanto em quanto tempo posso repetir?</summary><p>O ideal é uma vez a cada seis meses, no início de cada novo semestre. As cartas que tirou ficam guardadas: se voltar a esta página com os mesmos dados, vê a mesma mesa.</p></details>
+  <details><summary>Quando recebo a leitura?</summary><p>A Leitura Completa chega ao seu email em PDF depois de confirmarmos o pagamento. Na Comentada, o Mestre Alberto envia-lhe também o áudio pelo WhatsApp, em até 48 horas.</p></details>
+  <details><summary>Posso oferecer a alguém?</summary><p>Pode. Tire as cartas com o nome e a data de nascimento da pessoa, marque «É para oferecer de presente» e escreva o seu email: enviamos-lhe a leitura para a oferecer.</p></details>
+</div></section>
+
+<footer>
+  Genial Tarot · Mestre Alberto · As leituras de Tarot são simbólicas e não substituem aconselhamento médico, jurídico, psicológico ou financeiro.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script src="amostra-limite.js"></script>
+<script src="pix.js"></script>
+<script src="tarot-semestral-textos.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const sem = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  const { BARALHO, SINTESE } = TextosSemestral;
+  const POSICOES = ["Síntese", "Identidade", "Dinheiro", "Comunicação", "Família", "Prazer", "Saúde", "Amor", "Desafios", "Evolução", "Carreira", "Amizades", "Conselho"];
+  const MESES_N = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
+  const PLANOS = {
+    completa: { nome: "Leitura Completa", euros: "15 €", pix: { valor: "R$ 85", qr: "pix/GTSEM1.png",
+      codigo: "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa9520400005303986540585.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62100506GTSEM163046FF8" } },
+    comentada: { nome: "Leitura Comentada pelo Mestre", euros: "45 €", pix: { valor: "R$ 250", qr: "pix/GTSEM2.png",
+      codigo: "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa95204000053039865406250.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62100506GTSEM26304760F" } },
+  };
+  // Os botões do myPOS (15 € e 45 €) ainda não existem: com isto vazio, o cartão pede o link pelo WhatsApp.
+  // Quando ele os criar: pôr aqui true e acrescentar "tarot-semestral" e "tarot-semestral-mestre" ao SERVICOS do pagar.html.
+  const MYPOS = { completa: false, comentada: false };
+
+  // ===== O período: a partir de agora, ou a partir do aniversário =====
+  const hoje = new Date();
+  const doMes = (a, m) => ({ a, m });
+  const soma = (p, n) => { const t = p.a * 12 + p.m + n; return doMes(Math.floor(t / 12), t % 12); };
+  const rotulo = (p) => { const f = soma(p, 5); return `${MESES_N[p.m]} ${p.a} → ${MESES_N[f.m]} ${f.a}`; };
+  const agora = hoje.getDate() <= 10 ? doMes(hoje.getFullYear(), hoje.getMonth()) : soma(doMes(hoje.getFullYear(), hoje.getMonth()), 1);
+  let periodo = "agora";
+  function desenhaPeriodos() {
+    $("periodos").innerHTML = `<button type="button" data-p="agora" class="${periodo === "agora" ? "on" : ""}">${rotulo(agora)}</button>` +
+      `<button type="button" data-p="aniversario" class="${periodo === "aniversario" ? "on" : ""}">A partir do meu aniversário</button>`;
+    $("periodos").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => { periodo = b.dataset.p; desenhaPeriodos(); }));
+  }
+  desenhaPeriodos();
+  function inicioPeriodo(M) {  // M = mês de nascimento, 1-12
+    if (periodo !== "aniversario") return agora;
+    let a = hoje.getFullYear();
+    if (M - 1 < hoje.getMonth()) a++;
+    return doMes(a, M - 1);
+  }
+
+  // ===== Data escrita à mão (as mesmas regras do Mapa do Amor) =====
+  const MESES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  function lerData(txt) {
+    let t = sem(txt).replace(/\bde\b/g, " ");
+    MESES.forEach((m, i) => { t = t.replace(new RegExp("\\b" + m + "[a-z]*", "g"), " " + (i + 1) + " "); });
+    let p = t.match(/\d+/g) || [];
+    if (p.length === 1 && /^\d{8}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length === 1 && /^\d{6}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length !== 3) return null;
+    let [d, m, a] = p.map(Number);
+    if (p[2].length <= 2) a += (a <= new Date().getFullYear() % 100) ? 2000 : 1900;
+    const dt = new Date(Date.UTC(a, m - 1, d));
+    if (a < 1900 || a > new Date().getFullYear() || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) return null;
+    return [a, m, d];
+  }
+  const inpData = $("data");
+  inpData.addEventListener("input", (e) => {
+    const v = inpData.value;
+    if (e.inputType && e.inputType.startsWith("delete")) return;
+    if (/^[\d\/]*$/.test(v)) {
+      const dig = v.replace(/\D/g, "").slice(0, 8);
+      inpData.value = dig.length > 4 ? dig.slice(0, 2) + "/" + dig.slice(2, 4) + "/" + dig.slice(4) : dig.length > 2 ? dig.slice(0, 2) + "/" + dig.slice(2) : dig;
+    }
+  });
+  inpData.addEventListener("blur", () => { const r = lerData(inpData.value); if (r) inpData.value = String(r[2]).padStart(2, "0") + "/" + String(r[1]).padStart(2, "0") + "/" + r[0]; });
+
+  // ===== Tirar as 13 cartas: ao acaso, e guardadas — os mesmos dados mostram sempre a mesma mesa =====
+  const guardadas = (k) => { try { return JSON.parse(localStorage.getItem("semestral:" + k)); } catch (e) { return null; } };
+  const guardar = (k, v) => { try { localStorage.setItem("semestral:" + k, JSON.stringify(v)); } catch (e) { /* sem memória: tira na mesma */ } };
+  function baralhar() {
+    const ids = BARALHO.map((c) => c.id);
+    const r = new Uint32Array(ids.length);
+    (window.crypto || {}).getRandomValues ? crypto.getRandomValues(r) : r.forEach((_, i) => { r[i] = Math.random() * 2 ** 32; });
+    for (let i = ids.length - 1; i > 0; i--) { const j = r[i] % (i + 1); [ids[i], ids[j]] = [ids[j], ids[i]]; }
+    return ids.slice(0, 13);
+  }
+  const carta = (id) => BARALHO.find((c) => c.id === id);
+
+  const comNome = (t, primeiro) => {
+    let feito = false;
+    const r = t.replace(/(Você|você)(?![A-Za-zÀ-ÿ])(\s*[.,;:!?])?/, (m, v, pont) => { feito = true; return pont ? `${v}, ${primeiro}${pont.trim()}` : `${v}, ${primeiro},`; });
+    return feito ? r : `${primeiro}, ${t.charAt(0).toLowerCase()}${t.slice(1)}`;
+  };
+
+  function mostraErro(t) { const e = $("erro"); e.textContent = t; e.classList.toggle("ver", !!t); }
+  let ultimo = null;
+  function tirar(rolar) {
+    mostraErro("");
+    const nome = $("nome").value.trim().replace(/\s+/g, " "), data = inpData.value;
+    if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return mostraErro("Escreva o seu nome, por favor.");
+    const email = $("email").value.trim().toLowerCase(), tel = $("tel").value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return mostraErro("Escreva o seu email, por favor.");
+    const dataLida = lerData(data);
+    if (!data) return mostraErro("Falta a data de nascimento.");
+    if (!dataLida) return mostraErro("Não percebi a data. Escreva assim: dia/mês/ano, por exemplo 15/03/1990.");
+    const [A, M, D] = dataLida;
+    const ini = inicioPeriodo(M), fim = soma(ini, 5), txtPeriodo = rotulo(ini);
+    const chave = `${sem(nome)}|${A}-${M}-${D}|${ini.a}-${ini.m + 1}`;
+    let cartas = guardadas(chave);
+    if (!Array.isArray(cartas) || cartas.length !== 13 || !cartas.every(carta)) {
+      // A regra dele (21/10/2026): 2 amostras no mesmo dia, depois 5 dias de espera. Rever a mesma mesa não conta.
+      const vez = AmostraLimite.usar("tarot-semestral", chave);
+      if (!vez.ok) {
+        const e = $("erro");
+        e.innerHTML = `${esc(nome.split(" ")[0])}, já tirou as suas ${AmostraLimite.POR_DIA} mesas grátis do Tarot Semestral. A próxima fica disponível a <b>${AmostraLimite.dataCurta(vez.proxima)}</b>.<br>Não quer esperar? <a href="#comprar">✨ Veja aqui a leitura completa</a>`;
+        e.classList.add("ver");
+        return;
+      }
+      cartas = baralhar();
+      guardar(chave, cartas);
+      ultimo = { nova: true };
+    } else ultimo = { nova: false };
+    const primeiro = nome.split(" ")[0];
+    const c0 = carta(cartas[0]);
+
+    // a mesa: as cartas pousam uma a uma, e a 0 vira-se no fim
+    const mesa = $("mesa");
+    mesa.innerHTML = cartas.map((id, i) => `<div class="pos" data-i="${i}"><div class="c">${i ? "🔒" : ""}</div><span class="n">${i}</span> ${POSICOES[i]}</div>`).join("");
+    const pos = [...mesa.children];
+    pos.forEach((p, i) => setTimeout(() => p.classList.add("posta"), 90 * i));
+    setTimeout(() => { pos[0].classList.add("aberta"); pos[0].querySelector(".c").innerHTML = `<img src="${c0.img}" alt="${esc(c0.nome)}" />`; }, 90 * 13 + 250);
+
+    $("mesa-kick").textContent = `${txtPeriodo}`;
+    $("mesa-titulo").textContent = `${primeiro}, as 13 cartas do seu semestre`;
+    $("sint-img").src = c0.img; $("sint-img").alt = c0.nome;
+    $("sint-nome").textContent = c0.id[0] === "m" ? `${c0.num} · ${c0.nome}` : c0.nome;
+    $("sint-texto").innerHTML = `<b>O tom dos seus próximos 6 meses:</b> ${esc(comNome(SINTESE[c0.id], primeiro))}`;
+    $("fechado-titulo").textContent = `${primeiro}, as outras 12 cartas já foram tiradas`;
+    $("mesa-sec").classList.add("ver");
+
+    ultimo = { ...ultimo, name: nome, email, phone: tel, date_of_birth: `${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`,
+      periodo: txtPeriodo, inicio: `${ini.a}-${String(ini.m + 1).padStart(2, "0")}`, cartas: cartas.join(","), sintese: c0.nome };
+    if (!$("email-pedido").value) $("email-pedido").value = email;
+    if (!$("tel-pedido").value) $("tel-pedido").value = tel;
+    actualizaResumo();
+    // cada mesa NOVA é uma captura — vai para a fila e cria/acrescenta a ficha no cofre (como os mapas)
+    if (ultimo.nova) {
+      try {
+        fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true, body: JSON.stringify({ type: "mapa-captura", data: {
+          name: nome, email, phone: tel, novidades: false, date_of_birth: ultimo.date_of_birth,
+          sign: "", birth_time: "", city: "", country: "", area: "Tarot Semestral (carta síntese grátis)",
+          verdict: `🃏 Síntese: ${c0.nome} · período ${txtPeriodo} · cartas ${cartas.map((id) => carta(id).nome).join(" | ")}` } }) });
+      } catch (e) { /* a mesa já está no ecrã */ }
+    }
+    if (rolar) $("mesa-sec").scrollIntoView({ behavior: "smooth" });
+  }
+  $("form").addEventListener("submit", (ev) => { ev.preventDefault(); tirar(true); });
+
+  // ===== A compra (o mesmo fluxo dos mapas): pedido → fila (/notify) e Telegram; ele confirma e diz «envia» =====
+  let plano = "completa";
+  function escolhePlano(p) {
+    plano = p;
+    document.querySelectorAll(".plano").forEach((el) => {
+      const on = el.dataset.plano === p;
+      el.classList.toggle("escolhido", on);
+      el.querySelector("[data-marca]").textContent = on ? "✓ Escolhida" : "Escolher esta";
+    });
+    $("caixa-compra").classList.toggle("comentada", p === "comentada");
+    $("m-info").classList.remove("ver");
+    actualizaResumo();
+  }
+  document.querySelectorAll(".plano").forEach((el) => {
+    el.addEventListener("click", () => escolhePlano(el.dataset.plano));
+    el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); escolhePlano(el.dataset.plano); } });
+  });
+  function actualizaResumo() {
+    const P = PLANOS[plano];
+    $("resumo-pedido").innerHTML = `${ultimo ? esc(ultimo.name.split(" ")[0]) + ", vai" : "Vai"} desbloquear a <b>${P.nome}</b> · <b>${P.euros}</b> (no Brasil, PIX ${P.pix.valor})`;
+    document.querySelector(".m-cartao").textContent = `💳 Cartão · ${P.euros}`;
+    document.querySelector(".m-mbway").textContent = `📱 MB WAY · ${P.euros}`;
+    document.querySelector(".m-pix").textContent = `🇧🇷 PIX · ${P.pix.valor}`;
+  }
+  actualizaResumo();
+
+  const pedidoId = () => "TS-" + Date.now().toString(36).slice(-5).toUpperCase();
+  const erroPedido = (t) => { const e = $("erro-pedido"); e.textContent = t; e.classList.toggle("ver", !!t); };
+  document.querySelectorAll(".metodos button").forEach((b) => b.addEventListener("click", () => {
+    erroPedido("");
+    const email = $("email-pedido").value.trim(), telP = $("tel-pedido").value.trim(), pergunta = $("pergunta").value.trim();
+    if (!ultimo) { erroPedido("Primeiro preencha os seus dados lá em cima e tire as suas 13 cartas."); $("jogar").scrollIntoView({ behavior: "smooth" }); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return erroPedido("Escreva o seu email, por favor: é para lá que enviamos a sua leitura.");
+    if (plano === "comentada" && telP.replace(/\D/g, "").length < 8) return erroPedido("Escreva o seu WhatsApp, por favor: é por lá que o Mestre lhe envia o áudio.");
+    const P = PLANOS[plano], m = b.dataset.m, id = pedidoId();
+    const valor = m === "pix" ? P.pix.valor : P.euros;
+    try {
+      fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
+        body: JSON.stringify({ type: "semestral-pedido", data: { name: ultimo.name, email, phone: plano === "comentada" ? telP : (telP || ultimo.phone),
+          date_of_birth: ultimo.date_of_birth, periodo: ultimo.periodo, inicio: ultimo.inicio, cartas: ultimo.cartas, sintese: ultimo.sintese,
+          plano, pergunta: plano === "comentada" ? pergunta : "", presente: $("presente").checked, metodo: m, valor, pedido: id } }) });
+    } catch (e) { /* o pagamento segue na mesma */ }
+    const info = $("m-info");
+    const msg = (como) => `Olá Mestre Alberto, paguei ${valor} por ${como} o Tarot Semestral (${P.nome}, pedido ${id}). Segue o comprovante.`;
+    if (m === "cartao") {
+      const c = plano === "comentada" ? "tarot-semestral-mestre" : "tarot-semestral";
+      if (MYPOS[plano]) {
+        info.innerHTML = `<b>Pedido ${id}</b><br>A abrir o pagamento seguro com cartão…<br><a href="/pagar.html?c=${c}" target="_blank" rel="noopener noreferrer" style="background:#4a2fa0">💳 Abrir o pagamento</a>`;
+        window.open("/pagar.html?c=" + c, "_blank", "noopener");
+      } else {
+        info.innerHTML = `<b>Pedido ${id}</b><br>Para pagar <b>${P.euros}</b> com cartão, peça-nos o link de pagamento seguro pelo WhatsApp:<br><a href="https://wa.me/351914920427?text=${encodeURIComponent(`Olá Mestre Alberto, quero pagar com cartão o Tarot Semestral (${P.nome}, ${P.euros}, pedido ${id}).`)}" target="_blank" rel="noopener noreferrer">💬 Pedir o link do cartão</a>`;
+      }
+    } else if (m === "mbway") {
+      info.innerHTML = `<b>Pedido ${id}</b><br>Envie <b>${P.euros}</b> por MB WAY para:<div class="num">914 920 427</div>Depois envie o comprovante pelo WhatsApp:<br><a href="https://wa.me/351914920427?text=${encodeURIComponent(msg("MB WAY"))}" target="_blank" rel="noopener noreferrer">💬 Enviar comprovante</a>`;
+    } else {
+      info.innerHTML = `<b>Pedido ${id}</b><br>📱 Abra a <b>app do seu banco</b> → <b>Pix</b> → <b>Ler QR Code</b>. Valor: <b>${P.pix.valor}</b>.
+        <img src="${P.pix.qr}" alt="QR Code PIX ${P.pix.valor}" width="220" height="220" />
+        <button type="button" id="copiar-pix">📋 Copiar código PIX</button><br>
+        <small>O pagamento aparece em nome de <b>${esc(typeof PIX_NOME !== "undefined" ? PIX_NOME : "Ingrid Evelyn Castro de Paula")}</b>, da equipe do Mestre Alberto.</small><br>
+        <a href="https://wa.me/351914920427?text=${encodeURIComponent(msg("PIX"))}" target="_blank" rel="noopener noreferrer">💬 Enviar comprovante</a>`;
+      $("copiar-pix").addEventListener("click", (ev) => {
+        const ok = () => { ev.target.textContent = "✅ Código copiado! Cole no banco em Pix → Copia e Cola"; };
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(P.pix.codigo).then(ok, () => prompt("Copie o código:", P.pix.codigo));
+        else prompt("Copie o código:", P.pix.codigo);
+      });
+    }
+    info.classList.add("ver");
+  }));
+
+  // ===== Vem com os dados no endereço (?nome=&data=&email=&plano=comentada) =====
+  const vem = new URLSearchParams(location.search);
+  if (vem.get("plano") === "comentada") escolhePlano("comentada");
+  if (vem.get("nome")) $("nome").value = vem.get("nome").slice(0, 80);
+  if (vem.get("email")) $("email").value = vem.get("email").slice(0, 120);
+  if (vem.get("data")) { inpData.value = vem.get("data").slice(0, 22); inpData.dispatchEvent(new Event("blur")); }
+  if (vem.get("nome") && vem.get("data") && vem.get("email")) tirar(vem.get("ver") !== "topo");
+})();
+</script>
+</body>
+</html>

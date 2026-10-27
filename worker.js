@@ -98,6 +98,26 @@ function buildMessage(type, d = {}) {
       "⏳ Confirma se o pagamento entrou e diz «envia» — só então segue o Ano 2027 completo.",
     ].join("\n");
   }
+  // 27/10/2026: pedido do Tarot Semestral (tarot-semestral.html) — o mesmo fluxo dos mapas; a Comentada leva áudio dele.
+  if (type === "semestral-pedido") {
+    const como = { cartao: "💳 Cartão (myPOS)", mbway: "📱 MB WAY", pix: "🇧🇷 PIX" }[d.metodo] || clean(d.metodo, 20);
+    const comentada = d.plano === "comentada";
+    return [
+      `🃏 PEDIDO TAROT SEMESTRAL ${clean(d.pedido, 20)} — Genialtarot`,
+      "",
+      `${comentada ? "🎧 COMENTADA PELO MESTRE" : "📜 Leitura Completa"} · ${como} · ${clean(d.valor, 40)}${d.presente ? " · 🎁 presente" : ""}`,
+      `👤 Nome: ${clean(d.name)}`,
+      `📧 Email: ${clean(d.email)}`,
+      d.phone ? `📱 WhatsApp: ${clean(d.phone, 40)}` : null,
+      `🎂 Nascimento: ${clean(d.date_of_birth)}`,
+      `📅 Período: ${clean(d.periodo, 60)}`,
+      `🃏 Síntese: ${clean(d.sintese, 60)}`,
+      comentada && d.pergunta ? `❓ Pergunta: ${clean(d.pergunta, 500)}` : null,
+      "",
+      comentada ? "⏳ Confirma o pagamento e diz «envia» — segue o PDF; o áudio de ~10 min é teu, pelo WhatsApp, em 48 h."
+                : "⏳ Confirma se o pagamento entrou e diz «envia» — só então segue a leitura completa.",
+    ].filter((l) => l !== null).join("\n");
+  }
   if (type === "rating") {
     const stars = "⭐".repeat(Math.max(1, Math.min(5, Number(d.rating) || 0)));
     return `${stars} AVALIAÇÃO — Genialtarot\n\n👤 ${clean(d.name)}\n🎯 Área: ${clean(d.area)}\n Nota: ${clean(d.rating)}/5`;
@@ -426,6 +446,8 @@ const PAGINAS = new Set([
   "/aniversarios", "/amor-do-dia", "/ceu-de-hoje", "/compatibilidade", "/noticias-do-ceu",
   // 25/10/2026: o Horóscopo do Dia
   "/horoscopo-do-dia",
+  // 27/10/2026: o Tarot Semestral
+  "/tarot-semestral",
 ]);
 
 function contarVisita(request, url, env, ctx) {
