@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- EXPERIÊNCIA 28/10/2026 — página da área Novidades; textos por aprovar pelo Mestre Alberto.
+     O Trio Astral: o Sol, a Lua e o Ascendente de quem nasce, num cartão desenhado em <canvas> para partilhar
+     (Story 1080×1920 e quadrado 1080×1080), com o primeiro nome, os três signos, uma frase para cada um e «genialtarot.com».
+     «Guardar imagem» descarrega o PNG; «Partilhar» usa o navigator.share com o ficheiro quando o navegador deixa.
+     Amostra grátis com o AmostraLimite (2 por dia, depois 5 dias). Cálculo: novidades-calc.js. -->
+<meta name="robots" content="noindex" />
+<title>O seu Trio Astral para partilhar — Genial Tarot · Mestre Alberto</title>
+<meta name="description" content="O seu Sol, a sua Lua e o seu Ascendente num cartão bonito para guardar e partilhar nas redes. Calculado ao minuto, grátis." />
+<meta name="theme-color" content="#1c1a4a" />
+<link rel="icon" href="favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Base: a mesma folha do Mapa Astral (21/10/2026), copiada a 28/10/2026 ============ */
+:root {
+  --fundo: oklch(0.17 0.06 305);
+  --fundo-2: oklch(0.23 0.08 305);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.05 310);
+  --lilas: oklch(0.74 0.14 310);
+  --lilas-claro: oklch(0.86 0.09 312);
+  --lavanda: oklch(0.92 0.05 310);
+  --ameixa: oklch(0.40 0.15 310);
+  --ouro: oklch(0.85 0.13 88);
+  --rosa: oklch(0.78 0.13 355);
+  --borda: oklch(0.75 0.12 310 / 0.35);
+  --vidro: oklch(0.30 0.09 305 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.80 0.12 320), oklch(0.66 0.18 300) 55%, oklch(0.55 0.19 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.84 0.11 355), oklch(0.70 0.17 340) 55%, oklch(0.60 0.19 315));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.40 0.16 320) 0%, oklch(0.20 0.08 305) 45%, oklch(0.12 0.05 300) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+/* 16 px de margem de cada lado no telemóvel (100% − 2rem) */
+.caixa { position: relative; z-index: 1; width: min(68rem, 100% - 2rem); margin: 0 auto; }
+
+/* topo: a pílula «‹ genialtarot.com» igual às outras páginas */
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: oklch(0.85 0.13 88); }
+
+/* herói */
+.heroi { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; text-align: center; padding: 1rem 0 2rem; }
+@media (min-width: 860px) { .heroi { grid-template-columns: 1.05fr 1fr; text-align: left; } }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; overflow-wrap: anywhere; }
+h1 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 34rem; margin: 0 auto 1rem; }
+@media (min-width: 860px) { .sub { margin-left: 0; } }
+.pontos { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: .8rem 0 1.2rem; padding: 0; list-style: none; }
+@media (min-width: 860px) { .pontos { justify-content: flex-start; } }
+.pontos li { font-size: .82rem; background: var(--vidro); border: 1px solid var(--borda); border-radius: 999px; padding: .35rem .8rem; }
+.btn-grande { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; border: 0; cursor: pointer; text-decoration: none; font-weight: 800; font-size: 1.05rem; font-family: inherit;
+  color: white; background: var(--grad-lilas); border-radius: 999px; padding: .95rem 1.7rem; box-shadow: 0 10px 30px oklch(0.55 0.19 300 / .5), inset 0 1px 0 #fff5;
+  transition: transform .2s, box-shadow .2s; text-align: center; }
+.btn-grande:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 40px oklch(0.60 0.2 305 / .65); }
+.btn-leve { display: inline-flex; align-items: center; gap: .45rem; cursor: pointer; font: inherit; font-size: .9rem; font-weight: 700; color: var(--texto);
+  background: var(--vidro); border: 1px solid var(--borda); border-radius: 999px; padding: .6rem 1.1rem; text-decoration: none; }
+.btn-leve:hover { border-color: var(--ouro); }
+
+/* a roda do zodíaco à volta da foto */
+.roda-wrap { position: relative; width: min(26rem, 88vw); aspect-ratio: 1; margin: 0 auto; }
+.roda { position: absolute; inset: 0; border-radius: 50%; animation: gira 60s linear infinite;
+  background: conic-gradient(from 0deg, oklch(0.72 0.15 345 / .35), oklch(0.55 0.18 300 / .2), oklch(0.80 0.10 320 / .35), oklch(0.55 0.18 300 / .2), oklch(0.72 0.15 345 / .35));
+  box-shadow: 0 0 60px oklch(0.72 0.16 335 / .45), inset 0 0 40px oklch(0.30 0.10 300 / .6); }
+.roda span { position: absolute; left: 50%; top: 50%; width: 2.2rem; height: 2.2rem; margin: -1.1rem 0 0 -1.1rem; display: grid; place-items: center;
+  font-size: 1.35rem; color: var(--ouro); text-shadow: 0 0 10px oklch(0.85 0.13 88 / .8); }
+@keyframes gira { to { transform: rotate(360deg); } }
+.foto-anel { position: absolute; inset: 15%; border-radius: 50%; overflow: hidden; border: 4px solid oklch(0.86 0.09 330);
+  box-shadow: 0 0 0 6px oklch(0.55 0.18 320 / .5), 0 20px 50px #0008; }
+.foto-anel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* cartões */
+.cartao { background: linear-gradient(160deg, oklch(0.32 0.10 308 / .82), oklch(0.22 0.08 300 / .9)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1.2rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; backdrop-filter: blur(6px); }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.1rem); margin: 0 0 .4rem; text-align: center; }
+h2 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cartao > p.int { text-align: center; color: var(--suave); margin: 0 auto 1.3rem; max-width: 36rem; }
+
+/* formulário (o mesmo do Mapa Astral) */
+.grelha { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 680px) { .grelha { grid-template-columns: 1fr 1fr; } .largo { grid-column: 1 / -1; } }
+label.campo { display: flex; flex-direction: column; gap: .35rem; font-size: .88rem; font-weight: 600; color: var(--lavanda); }
+label.campo small { font-weight: 400; color: var(--suave); }
+input[type=text], input[type=email], input[type=tel] {
+  width: 100%; font: inherit; font-size: 1rem; color: var(--texto); background: oklch(0.16 0.05 300 / .75); border: 1.5px solid var(--borda);
+  border-radius: .8rem; padding: .8rem .9rem; outline: none; transition: border-color .2s, box-shadow .2s; color-scheme: dark; }
+input:focus { border-color: var(--lilas); box-shadow: 0 0 0 4px oklch(0.74 0.14 310 / .25); }
+input:disabled { opacity: .45; }
+.lista-cid { position: absolute; z-index: 20; left: 0; right: 0; top: 100%; margin-top: .25rem; max-height: 15rem; overflow-y: auto;
+  background: oklch(0.24 0.08 305); border: 1px solid var(--borda); border-radius: .8rem; box-shadow: 0 14px 40px #000a; display: none; }
+.lista-cid.aberta { display: block; }
+.lista-cid button { display: block; width: 100%; text-align: left; border: 0; background: none; color: var(--texto); font: inherit; font-size: .92rem; padding: .6rem .9rem; cursor: pointer; }
+.lista-cid button:hover, .lista-cid button.ativo { background: oklch(0.40 0.14 310 / .6); }
+.lista-cid button small { color: var(--suave); }
+.rel { position: relative; }
+.marca-ok { font-size: .8rem; color: oklch(0.85 0.14 150); min-height: 1.1em; }
+.caixinha { display: flex; gap: .6rem; align-items: flex-start; font-size: .84rem; color: var(--suave); font-weight: 400; }
+.caixinha input { margin-top: .2rem; accent-color: var(--lilas); width: 1.05rem; height: 1.05rem; flex: none; }
+.erro { display: none; margin-top: .9rem; padding: .7rem .9rem; border-radius: .8rem; background: oklch(0.40 0.14 20 / .35); border: 1px solid oklch(0.65 0.18 20 / .6); font-size: .9rem; }
+.erro.ver { display: block; }
+.enviar { display: flex; justify-content: center; margin-top: 1.3rem; }
+.nota-priv { text-align: center; font-size: .76rem; color: var(--suave); margin-top: .8rem; }
+
+/* resultado */
+#resultado { display: none; scroll-margin-top: 1rem; }
+#resultado.ver { display: block; animation: surgir .7s ease-out; border-color: oklch(0.82 0.11 330 / .7); }
+@keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.res-titulo { text-align: center; margin: 0 0 .4rem; font-family: var(--titulo); line-height: 1.1; }
+.res-nome { display: block; font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 14px oklch(0.85 0.13 88 / .45)); overflow-wrap: anywhere; }
+.res-frase { display: block; font-family: var(--serifa); font-size: clamp(1.2rem, 3vw, 1.5rem); color: var(--lavanda); margin: .2rem 0; font-weight: 500; }
+.tema { margin-top: 1.3rem; border-radius: 1.1rem; padding: 1.1rem 1.2rem 1.2rem; background: oklch(0.18 0.06 300 / .6); border: 1px solid var(--borda); }
+.tema .num { font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--rosa); }
+.tema h3 { font-family: var(--titulo); font-size: 1.2rem; margin: .15rem 0 .5rem; color: var(--lilas-claro); }
+.tema p { margin: 0; font-family: var(--serifa); font-size: 1.18rem; line-height: 1.6; color: var(--lavanda); }
+.tema .chave { display: block; margin-bottom: .35rem; font-family: Inter, system-ui, sans-serif; font-size: .8rem; color: var(--suave); }
+.aviso-hora { text-align: center; font-size: .86rem; color: oklch(0.88 0.12 90); margin-top: .9rem; }
+.dados-nasc { text-align: center; font-size: .82rem; color: var(--suave); margin-top: .4rem; }
+/* 28/10/2026: o aviso vermelho quando o cálculo deixa de ser válido (regra: nada parado no tempo, nada de dados velhos) */
+.aviso-fim { display: none; margin: 1rem 0; padding: 1rem 1.1rem; border-radius: 1rem; background: #7a0f1f; border: 2px solid #ff4d5e; color: #fff; font-weight: 700; text-align: center; box-shadow: 0 0 30px #ff2d4580; }
+.aviso-fim.ver { display: block; }
+
+/* consulta */
+.consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 860px) { .consulta { grid-template-columns: 0.8fr 1.2fr; } }
+.consulta-foto { border-radius: 1.3rem; overflow: hidden; border: 3px solid oklch(0.80 0.11 312); box-shadow: 0 20px 50px #0009, 0 0 40px oklch(0.65 0.17 305 / .4); max-width: 22rem; margin: 0 auto; }
+.consulta-foto img { display: block; width: 100%; height: auto; }
+.consulta h2 { text-align: left; }
+@media (max-width: 859px) { .consulta h2, .consulta .gancho, .consulta .botoes { text-align: center; justify-content: center; } }
+.gancho { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); margin: .2rem 0 1rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
+section { margin: 0 0 2.2rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+/* ============ Azul-noite e dourado, como o Mapa Astral (21/10/2026) ============ */
+:root {
+  --fundo: oklch(0.16 0.06 270);
+  --suave: oklch(0.84 0.04 265);
+  --lilas: oklch(0.74 0.12 270);
+  --lilas-claro: oklch(0.86 0.08 265);
+  --lavanda: oklch(0.93 0.04 265);
+  --rosa: oklch(0.85 0.13 88);
+  --borda: oklch(0.75 0.10 270 / 0.35);
+  --vidro: oklch(0.28 0.08 270 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.72 0.13 260), oklch(0.58 0.17 280) 55%, oklch(0.48 0.18 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.93 0.10 92), oklch(0.80 0.14 80) 55%, oklch(0.70 0.14 60));
+}
+body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklch(0.20 0.08 270) 45%, oklch(0.11 0.04 265) 100%) fixed, var(--fundo); }
+.roda { background: conic-gradient(from 0deg, oklch(0.70 0.13 260 / .35), oklch(0.50 0.16 285 / .2), oklch(0.85 0.12 88 / .3), oklch(0.50 0.16 285 / .2), oklch(0.70 0.13 260 / .35));
+  box-shadow: 0 0 60px oklch(0.70 0.14 265 / .45), inset 0 0 40px oklch(0.25 0.08 270 / .6); }
+.foto-anel { border-color: oklch(0.88 0.12 88); box-shadow: 0 0 0 6px oklch(0.50 0.16 275 / .5), 0 20px 50px #0008; }
+.cartao { background: linear-gradient(160deg, oklch(0.30 0.09 272 / .82), oklch(0.20 0.07 268 / .9)); }
+#resultado.ver { border-color: oklch(0.85 0.11 88 / .55); }
+.tema { background: oklch(0.17 0.05 268 / .6); }
+/* resultados limpos e nítidos (pedido dele a 21/10: «nada esfumado nos resultados de qualquer mapa, tudo claro e limpo») */
+#resultado { background: linear-gradient(160deg, oklch(0.29 0.09 272), oklch(0.20 0.07 268)); backdrop-filter: none; -webkit-backdrop-filter: none; }
+#resultado p, #resultado .res-frase, #resultado .tema p { color: oklch(0.98 0.01 265); }
+#resultado .dados-nasc, #resultado .tema .chave { color: oklch(0.92 0.03 265); }
+#resultado .tema { background: oklch(0.20 0.06 268); }
+/* ============ O Trio Astral (28/10/2026): o trio ligado por um fio de estrelas, como no Mapa Astral ============ */
+.trio { display: grid; grid-template-columns: 1fr 3.6rem 1fr; align-items: center; max-width: 36rem; margin: 1.2rem auto .4rem; }
+.trio .asc { grid-column: 1 / -1; justify-self: center; width: calc(50% - 1.8rem); }
+.astro { text-align: center; border-radius: 1.1rem; padding: 1.1rem .4rem; align-self: stretch; display: flex; flex-direction: column; align-items: center;
+  background: linear-gradient(160deg, oklch(0.40 0.13 270), oklch(0.25 0.09 270)); border: 1px solid oklch(0.85 0.11 88 / .5); box-shadow: 0 0 30px oklch(0.60 0.15 270 / .35); min-width: 0; }
+.astro .qual { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: oklch(0.92 0.03 265); }
+.astro .glifo { font-size: 2.8rem; line-height: 1.1; color: var(--ouro); margin: .3rem 0; }
+/* 28/10: a letra encolhe no telemóvel para «Capricórnio» caber inteiro na caixa */
+.astro .nome-signo { font-family: var(--titulo); font-size: clamp(.85rem, 3.3vw, 1.35rem); font-weight: 700; line-height: 1.2; }
+.astro .grau { font-size: .8rem; color: oklch(0.92 0.03 265); margin-bottom: .45rem; }
+.astro .papel { margin-top: auto; padding-top: .4rem; font-family: var(--serifa); font-size: .98rem; line-height: 1.3; color: oklch(0.95 0.05 88); }
+.fio, .fio-baixo { position: relative; display: grid; place-items: center; }
+.fio { height: 3rem; }
+.fio-baixo { grid-column: 1 / -1; height: 2.2rem; }
+.fio .linha { position: absolute; left: -.4rem; right: -.4rem; top: 50%; height: 2px; margin-top: -1px; }
+.fio-baixo .linha { position: absolute; top: -1.1rem; bottom: 0; left: 50%; width: 2px; margin-left: -1px; }
+.fio .linha, .fio-baixo .linha { background: linear-gradient(90deg, #b8862b, #fff4c8, #b8862b); background-size: 200% 100%; animation: fio-brilha 2s linear infinite; box-shadow: 0 0 10px oklch(0.88 0.13 88 / .9); }
+.fio-baixo .linha { background: linear-gradient(180deg, #b8862b, #fff4c8, #b8862b); background-size: 100% 200%; }
+.brilho { position: relative; font-size: 1.3rem; color: #fff6d8; text-shadow: 0 0 10px #ffd76a, 0 0 22px #ffd76a; animation: brilha 1.8s ease-in-out infinite; }
+@keyframes fio-brilha { from { background-position: 0 0; } to { background-position: 200% 200%; } }
+@keyframes brilha { 0%, 100% { transform: scale(.85) rotate(0); opacity: .75; } 50% { transform: scale(1.25) rotate(45deg); opacity: 1; } }
+
+/* o cartão para partilhar */
+.formatos { display: flex; justify-content: center; gap: .5rem; margin: 1.6rem 0 1rem; flex-wrap: wrap; }
+.formatos button[aria-pressed="true"] { background: var(--grad-ouro); color: oklch(0.22 0.06 300); border-color: transparent; }
+.moldura { display: flex; justify-content: center; }
+.moldura canvas { display: block; width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 20px 50px #000a, 0 0 30px oklch(0.60 0.15 270 / .4); }
+.moldura canvas.story { max-width: 22rem; }
+.moldura canvas.quadrado { max-width: 30rem; }
+.acoes { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem; margin-top: 1.2rem; }
+.acoes .btn-grande { font-size: 1rem; padding: .85rem 1.4rem; }
+.nota-partilha { text-align: center; font-size: .84rem; color: var(--suave); min-height: 1.2em; margin-top: .6rem; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+
+  <section class="heroi">
+    <div>
+      <span class="selo">✦ Novidade · grátis ✦</span>
+      <h1>O seu <span class="lil">Trio Astral</span></h1>
+      <p class="sub">O Sol, a Lua e o Ascendente são as três notas principais do seu céu. Descubra os seus e leve-os num cartão bonito, pronto para o Story ou para o feed.</p>
+      <ul class="pontos">
+        <li>☉&#xFE0E; Sol</li><li>☽&#xFE0E; Lua</li><li>↑ Ascendente</li><li>📲 Cartão para partilhar</li>
+      </ul>
+      <a class="btn-grande" href="#calcular">✨ Criar o meu cartão</a>
+    </div>
+    <div class="roda-wrap" aria-hidden="true">
+      <div class="roda" id="roda"></div>
+      <div class="foto-anel"><img src="mapa-astral.jpg" alt="Mestre Alberto diante da roda do zodíaco" width="480" height="480" fetchpriority="high" /></div>
+    </div>
+  </section>
+
+  <section id="calcular" class="cartao">
+    <h2>O céu do seu <span class="lil">nascimento</span></h2>
+    <p class="int">Preencha com os dados do seu nascimento. A hora é importante: é ela que dá o Ascendente.</p>
+    <form id="form" novalidate>
+      <div class="grelha">
+        <label class="campo largo">O seu nome
+          <input type="text" id="nome" autocomplete="off" required maxlength="80" />
+        </label>
+        <label class="campo">O seu email <small>(para lhe enviarmos novidades)</small>
+          <input type="email" id="email" autocomplete="email" required maxlength="120" />
+        </label>
+        <label class="campo">WhatsApp <small>(opcional, com o indicativo do país)</small>
+          <input type="tel" id="tel" autocomplete="tel" maxlength="25" />
+        </label>
+        <label class="campo">Data de nascimento <small>(dia/mês/ano, ex.: 15/03/1990)</small>
+          <input type="text" id="data" required inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" />
+        </label>
+        <label class="campo">Hora de nascimento <small>(a que está na certidão)</small>
+          <input type="text" id="hora" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="HH:MM (ex.: 14:30)" />
+        </label>
+        <label class="campo largo">
+          <span class="caixinha"><input type="checkbox" id="semhora" /><span>Não sei a hora em que nasci</span></span>
+        </label>
+        <div class="campo largo rel">
+          <label class="campo" for="cidade">Cidade onde nasceu <small>(escreva e escolha na lista)</small></label>
+          <input type="text" id="cidade" autocomplete="off" required />
+          <div class="lista-cid" id="lista-cid" role="listbox"></div>
+          <div class="marca-ok" id="cidade-ok"></div>
+        </div>
+      </div>
+      <div class="erro" id="erro" role="alert"></div>
+      <div class="enviar"><button class="btn-grande" type="submit" id="btn-calc">✨ Revelar o meu Trio</button></div>
+      <p class="nota-priv">🔒 O cálculo e o cartão são feitos no seu telemóvel ou computador. Os seus dados não são partilhados com ninguém.</p>
+    </form>
+  </section>
+
+  <section id="resultado" class="cartao" aria-live="polite">
+    <h2 id="res-titulo" class="res-titulo">O seu Trio Astral</h2>
+    <div class="aviso-fim" id="aviso-fim" role="alert"></div>
+    <div class="trio">
+      <div class="astro"><div class="qual">☉&#xFE0E; Sol</div><div class="glifo" id="g-sol"></div><div class="nome-signo" id="n-sol"></div><div class="grau" id="d-sol"></div><span class="papel" id="f-sol"></span></div>
+      <div class="fio" aria-hidden="true"><span class="linha"></span><span class="brilho">✦</span></div>
+      <div class="astro"><div class="qual">☽&#xFE0E; Lua</div><div class="glifo" id="g-lua"></div><div class="nome-signo" id="n-lua"></div><div class="grau" id="d-lua"></div><span class="papel" id="f-lua"></span></div>
+      <div class="fio-baixo" aria-hidden="true"><span class="linha"></span><span class="brilho">✦</span></div>
+      <div class="astro asc"><div class="qual">↑ Ascendente</div><div class="glifo" id="g-asc"></div><div class="nome-signo" id="n-asc"></div><div class="grau" id="d-asc"></div><span class="papel" id="f-asc"></span></div>
+    </div>
+
+    <div class="formatos" role="group" aria-label="Formato do cartão">
+      <button type="button" class="btn-leve" id="f-story" aria-pressed="true">📱 Story</button>
+      <button type="button" class="btn-leve" id="f-quadrado" aria-pressed="false">⬛ Quadrado</button>
+    </div>
+    <div class="moldura"><canvas id="cartao-img" class="story" width="1080" height="1920" role="img" aria-label="O seu cartão do Trio Astral"></canvas></div>
+    <div class="acoes">
+      <button type="button" class="btn-grande" id="guardar">⬇️ Guardar imagem</button>
+      <button type="button" class="btn-grande" id="partilhar">📤 Partilhar</button>
+    </div>
+    <p class="nota-partilha" id="nota-partilha"></p>
+    <p class="aviso-hora" id="aviso-hora"></p>
+    <p class="dados-nasc" id="dados-nasc"></p>
+  </section>
+
+  <section id="consulta" class="cartao">
+    <div class="consulta">
+      <div class="consulta-foto"><img src="mestre-r14.jpg" alt="Mestre Alberto com as cartas do Tarot" width="800" height="800" loading="lazy" /></div>
+      <div>
+        <h2>O seu céu <span class="lil">tem mais para dizer</span></h2>
+        <p class="gancho" id="gancho">O Sol, a Lua e o Ascendente são o começo. Numa consulta online, o Mestre Alberto junta o seu Mapa Astral e as cartas do Tarot para olhar para a sua vida de agora.</p>
+        <div class="botoes">
+          <a class="btn-grande" href="loja.html">🔮 Marcar uma consulta</a>
+          <a class="btn-wa" id="wa-consulta" href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a> · Cidades: GeoNames (CC BY 4.0)
+</footer>
+
+<script src="amostra-limite.js"></script>
+<script src="ascendente-calc.js"></script>
+<script src="mapa-amor-calc.js"></script>
+<script src="revolucao-calc.js"></script>
+<script src="novidades-calc.js"></script>
+<script src="trio-astral-textos.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // O U+FE0E no fim de cada glifo pede o símbolo de texto: sem ele, os telemóveis desenham emojis
+  const T = "︎";
+  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map((g) => g + T);
+  // Nomes como o público do Brasil os conhece, com o nome de Portugal ao lado quando é diferente
+  const NOMES = ["Áries (Carneiro)","Touro","Gêmeos","Câncer (Caranguejo)","Leão","Virgem","Libra (Balança)","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const idx = (lon) => Math.floor(((lon % 360) + 360) % 360 / 30);
+  const curto = (i) => NOMES[i].split(" (")[0];
+  const norm = (x) => ((x % 360) + 360) % 360;
+  const dois = (n) => String(n).padStart(2, "0");
+
+  // A roda à volta da foto
+  const roda = $("roda");
+  GLIFOS.forEach((g, i) => {
+    const s = document.createElement("span"); s.textContent = g;
+    s.dataset.a = (i * 30 - 90) * Math.PI / 180; roda.appendChild(s);
+  });
+  function poeGlifos() {
+    const w = roda.offsetWidth;
+    roda.querySelectorAll("span").forEach((s) => { const a = +s.dataset.a; s.style.transform = `translate(${Math.cos(a) * w * 0.425}px, ${Math.sin(a) * w * 0.425}px)`; });
+  }
+  poeGlifos(); addEventListener("resize", poeGlifos);
+
+  // ===== Cidades (a mesma lista do GeoNames da calculadora de Ascendente; só serve para o fuso) =====
+  let CID = null, carregando = null;
+  const sem = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  function carregarCidades() {
+    if (CID) return Promise.resolve(CID);
+    if (!carregando) carregando = fetch("cidades.json?v=1").then((r) => r.json()).then((d) => {
+      d.cidades.forEach((c) => { c.push(sem(c[0])); });
+      CID = d; return d;
+    });
+    return carregando;
+  }
+  function rotulo(c) { return `${c[0]}${c[1] ? ", " + c[1] : ""}, ${CID.paises[c[2]] || c[2]}`; }
+  function procurar(q) {
+    const comeca = [], contem = [];
+    for (const c of CID.cidades) {
+      if (c[6].startsWith(q)) comeca.push(c); else if (q.length >= 3 && c[6].includes(q)) contem.push(c);
+      if (comeca.length >= 12) break;
+    }
+    return comeca.concat(contem).slice(0, 12);
+  }
+  // 28/10/2026: o mesmo procurar-e-escolher do mapa-astral.html, dentro de uma função para servir mais
+  // do que um campo (suf = "" ou "2"). campo.escolhida é a cidade escolhida na lista (ou null).
+  function ligarCidade(suf) {
+    const inpCid = $("cidade" + suf), lista = $("lista-cid" + suf), ok = $("cidade-ok" + suf);
+    const campo = { escolhida: null, inp: inpCid };
+    inpCid.addEventListener("focus", carregarCidades, { once: true });
+    let ativo = -1, opcoes = [];
+    inpCid.addEventListener("input", async () => {
+      campo.escolhida = null; ok.textContent = "";
+      const q = sem(inpCid.value);
+      if (q.length < 2) { lista.classList.remove("aberta"); return; }
+      await carregarCidades();
+      opcoes = procurar(q);
+      ativo = -1;
+      lista.innerHTML = opcoes.length ? opcoes.map((c, i) => `<button type="button" role="option" data-i="${i}">${esc(c[0])} <small>${esc((c[1] ? c[1] + " · " : "") + (CID.paises[c[2]] || c[2]))}</small></button>`).join("")
+        : `<button type="button" disabled>Não encontrei. Escreva a cidade grande mais próxima.</button>`;
+      lista.classList.add("aberta");
+    });
+    function escolher(i) {
+      const c = opcoes[i]; if (!c) return;
+      campo.escolhida = c; inpCid.value = rotulo(c); lista.classList.remove("aberta");
+      ok.textContent = "✓ " + rotulo(c);
+    }
+    // ?cidade= no endereço: escolhe a primeira que bate certo
+    campo.porNome = (txt) => carregarCidades().then(() => {
+      const q = sem(txt);
+      opcoes = procurar(q);
+      const i = Math.max(0, opcoes.findIndex((c) => c[6] === q));
+      if (opcoes.length) escolher(i); else inpCid.value = txt;
+    });
+    campo.limpar = () => { campo.escolhida = null; inpCid.value = ""; ok.textContent = ""; };
+    lista.addEventListener("click", (e) => { const b = e.target.closest("button[data-i]"); if (b) escolher(+b.dataset.i); });
+    inpCid.addEventListener("keydown", (e) => {
+      if (!lista.classList.contains("aberta")) return;
+      const bs = lista.querySelectorAll("button[data-i]");
+      if (e.key === "ArrowDown") { ativo = Math.min(ativo + 1, bs.length - 1); }
+      else if (e.key === "ArrowUp") { ativo = Math.max(ativo - 1, 0); }
+      else if (e.key === "Enter") { if (ativo >= 0) { e.preventDefault(); escolher(ativo); } return; }
+      else return;
+      e.preventDefault(); bs.forEach((b, i) => b.classList.toggle("ativo", i === ativo));
+    });
+    document.addEventListener("click", (e) => { if (!lista.parentElement.contains(e.target)) lista.classList.remove("aberta"); });
+    return campo;
+  }
+
+  // ===== Data e hora escritas à mão (as mesmas regras da calculadora de Ascendente) =====
+  // Aceita 15/03/1990, 15-3-1990, 15.03.90, 15 03 1990, 15031990 e «15 de março de 1990».
+  const MESES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  function lerData(txt) {
+    let t = sem(txt).replace(/\bde\b/g, " ");
+    MESES.forEach((m, i) => { t = t.replace(new RegExp("\\b" + m + "[a-z]*", "g"), " " + (i + 1) + " "); });
+    let p = t.match(/\d+/g) || [];
+    if (p.length === 1 && /^\d{8}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length === 1 && /^\d{6}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length !== 3) return null;
+    let [d, m, a] = p.map(Number);
+    if (p[2].length <= 2) a += (a <= new Date().getFullYear() % 100) ? 2000 : 1900;
+    const dt = new Date(Date.UTC(a, m - 1, d));
+    if (a < 1900 || a > new Date().getFullYear() || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) return null;
+    return [a, m, d];
+  }
+  // Aceita 14:30, 1430, 14h30, 14.30, 9, 9h.
+  function lerHora(txt) {
+    const t = sem(txt).replace(/\s+/g, "");
+    let m = t.match(/^(\d{1,2})(?:[:h.]?(\d{2}))?(?:h|min)?$/) || (/^\d{3,4}$/.test(t) && [null, t.slice(0, t.length - 2), t.slice(-2)]);
+    if (!m) return null;
+    const h = +m[1], mi = m[2] ? +m[2] : 0;
+    return (h <= 23 && mi <= 59) ? [h, mi] : null;
+  }
+  // As barras e os dois pontos postos sozinhos enquanto se escreve (28/10/2026: em função, para os dois do casal)
+  function ligarDataHora(suf) {
+    const inpHora = $("hora" + suf), inpData = $("data" + suf);
+    inpHora.addEventListener("input", (e) => {
+      if (e.inputType && e.inputType.startsWith("delete")) return;
+      const v = inpHora.value;
+      if (/^[\d:]*$/.test(v)) {
+        const dig = v.replace(/\D/g, "").slice(0, 4);
+        inpHora.value = dig.length > 2 ? dig.slice(0, 2) + ":" + dig.slice(2) : dig;
+      }
+    });
+    inpHora.addEventListener("blur", () => {
+      const r = lerHora(inpHora.value);
+      if (r) inpHora.value = dois(r[0]) + ":" + dois(r[1]);
+    });
+    inpData.addEventListener("input", (e) => {
+      const v = inpData.value;
+      if (e.inputType && e.inputType.startsWith("delete")) return;
+      if (/^[\d\/]*$/.test(v)) {
+        const dig = v.replace(/\D/g, "").slice(0, 8);
+        inpData.value = dig.length > 4 ? dig.slice(0, 2) + "/" + dig.slice(2, 4) + "/" + dig.slice(4)
+                      : dig.length > 2 ? dig.slice(0, 2) + "/" + dig.slice(2) : dig;
+      }
+    });
+    inpData.addEventListener("blur", () => {
+      const r = lerData(inpData.value);
+      if (r) inpData.value = dois(r[2]) + "/" + dois(r[1]) + "/" + r[0];
+    });
+    $("semhora" + suf).addEventListener("change", (e) => { inpHora.disabled = e.target.checked; });
+  }
+
+  // Lê e confere os dados de nascimento de uma pessoa. Devolve { erro } ou a pessoa pronta a calcular.
+  // (as mesmas mensagens e a mesma ordem do mapa-astral.html)
+  function lerPessoa(suf, campo, quem) {
+    const nome = $("nome" + suf).value.trim(), data = $("data" + suf).value, semhora = $("semhora" + suf).checked;
+    const horaLida = semhora ? [12, 0] : lerHora($("hora" + suf).value);
+    if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return { erro: `Escreva ${quem.nome}, por favor.` };
+    const dataLida = lerData(data);
+    if (!data) return { erro: `Falta a data de nascimento${quem.de}.` };
+    if (!dataLida) return { erro: `Não percebi a data${quem.de}. Escreva assim: dia/mês/ano, por exemplo 15/03/1990.` };
+    if (!semhora && !$("hora" + suf).value.trim()) return { erro: `Falta a hora de nascimento${quem.de} (ou marque «Não sei a hora»).` };
+    if (!semhora && !horaLida) return { erro: `Não percebi a hora${quem.de}. Escreva assim: 14:30.` };
+    if (!campo.escolhida) return { erro: `Escolha a cidade onde ${quem.nasceu} na lista que aparece ao escrever.` };
+    const c = campo.escolhida;
+    return { nome, primeiro: nome.split(/\s+/)[0], data: dataLida, hora: horaLida, semhora,
+      cid: c.slice(0, 6), tz: CID.fusos[c[5]] || "UTC", pais: CID.paises[c[2]] || c[2], rotulo: campo.inp.value };
+  }
+  const textoData = (p) => `${dois(p.data[2])}/${dois(p.data[1])}/${p.data[0]}`;
+  const textoHora = (p) => p.semhora ? "desconhecida" : dois(p.hora[0]) + ":" + dois(p.hora[1]);
+  const textoCidade = (p) => p.cid[0] + (p.cid[1] ? " (" + p.cid[1] + ")" : "");
+  // a assinatura da amostra: os dados de nascimento (rever a mesma pessoa não conta como amostra nova)
+  const assinatura = (p) => sem(p.nome) + "|" + p.data.join("-") + "|" + textoHora(p) + "|" + p.cid[0] + "|" + p.cid[2];
+  // A hora local passa a UTC pelo fuso da cidade (AstroAsc.localParaUTC sabe as horas de verão antigas)
+  const instante = (p) => AstroAsc.localParaUTC(p.data[0], p.data[1], p.data[2], p.hora[0], p.hora[1], p.tz);
+  // Sem a hora: a Lua mudou de signo no dia do nascimento? (o mesmo aviso do mapa-astral.html)
+  function avisoSemHora(p) {
+    if (!p.semhora) return "";
+    const [A, M, D] = p.data;
+    const ini = AstroAsc.lua(AstroAsc.diaJuliano(AstroAsc.localParaUTC(A, M, D, 0, 0, p.tz))), fim = AstroAsc.lua(AstroAsc.diaJuliano(AstroAsc.localParaUTC(A, M, D, 23, 59, p.tz)));
+    return idx(ini) !== idx(fim) ? `No dia em que ${p.primeiro} nasceu, a Lua mudou de ${curto(idx(ini))} para ${curto(idx(fim))}. Sem a hora certa, não dá para saber qual é: calculámos ao meio-dia.` : "";
+  }
+
+  // POST /notify com a captura (como no mapa-astral.html: só nas amostras novas)
+  function captura(dados) {
+    try {
+      fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true, body: JSON.stringify({ type: "mapa-captura", data: dados }) });
+    } catch (e) { /* o resultado já está no ecrã */ }
+  }
+
+  // ===== O Trio Astral (28/10/2026) =====
+  const { SOL, LUA, ASC, SEM_ASC } = TextosTrio;
+  const campo = ligarCidade("");
+  ligarDataHora("");
+  let trio = null, formato = "story";
+  function mostraErro(t) { const e = $("erro"); e.textContent = t; e.classList.toggle("ver", !!t); }
+
+  // ===== O cartão em <canvas>: Story 1080×1920 ou quadrado 1080×1080 =====
+  const FONTE_GLIFO = "'Segoe UI Symbol', 'Noto Sans Symbols 2', 'Noto Sans Symbols', 'Apple Symbols', 'DejaVu Sans', sans-serif";
+  function caixa(c, x, y, w, h, r) {
+    c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath();
+  }
+  // encolhe a letra até o texto caber na largura
+  function cabe(c, txt, max, px, molde) {
+    let t = px; c.font = molde(t);
+    while (t > 12 && c.measureText(txt).width > max) { t -= 2; c.font = molde(t); }
+    return t;
+  }
+  // parte o texto em linhas da largura dada (no máximo n linhas)
+  function linhas(c, txt, max, n) {
+    const r = []; let l = "";
+    for (const p of txt.split(/\s+/)) {
+      const t = l ? l + " " + p : p;
+      if (c.measureText(t).width > max && l) { r.push(l); l = p; } else l = t;
+    }
+    if (l) r.push(l);
+    return r.slice(0, n);
+  }
+  function ouro(c, x0, y0, x1, y1) {
+    const g = c.createLinearGradient(x0, y0, x1, y1);
+    g.addColorStop(0, "#fff1c1"); g.addColorStop(.5, "#f0c661"); g.addColorStop(1, "#c8902e"); return g;
+  }
+
+  function desenhar(cv, fmt, d) {
+    const W = 1080, H = fmt === "story" ? 1920 : 1080, st = fmt === "story";
+    cv.width = W; cv.height = H; cv.className = fmt;
+    const c = cv.getContext("2d");
+    c.textAlign = "center"; c.textBaseline = "middle";
+    // o céu de fundo
+    let g = c.createLinearGradient(0, 0, 0, H);
+    g.addColorStop(0, "#2d2670"); g.addColorStop(.55, "#171443"); g.addColorStop(1, "#0b0a26");
+    c.fillStyle = g; c.fillRect(0, 0, W, H);
+    g = c.createRadialGradient(W / 2, st ? 430 : 200, 20, W / 2, st ? 430 : 200, W * .75);
+    g.addColorStop(0, "rgba(160,130,255,.38)"); g.addColorStop(1, "rgba(160,130,255,0)");
+    c.fillStyle = g; c.fillRect(0, 0, W, H);
+    // estrelas (sempre as mesmas, para o cartão não mudar de cada vez)
+    let semente = 11;
+    const rnd = () => (semente = (semente * 16807) % 2147483647) / 2147483647;
+    c.fillStyle = "#fff";
+    for (let k = 0; k < (st ? 230 : 150); k++) { c.globalAlpha = .2 + rnd() * .6; c.beginPath(); c.arc(rnd() * W, rnd() * H, .7 + rnd() * 1.9, 0, 6.2832); c.fill(); }
+    c.globalAlpha = 1;
+    // moldura dourada dupla
+    c.strokeStyle = "rgba(232,196,106,.9)"; c.lineWidth = 3; caixa(c, 40, 40, W - 80, H - 80, 36); c.stroke();
+    c.strokeStyle = "rgba(232,196,106,.35)"; c.lineWidth = 1.5; caixa(c, 54, 54, W - 108, H - 108, 28); c.stroke();
+
+    // o topo: «O MEU TRIO ASTRAL», a roda (no Story) e o nome
+    c.fillStyle = "#e8d9ff"; c.font = `600 ${st ? 38 : 30}px Cinzel, Georgia, serif`;
+    if ("letterSpacing" in c) c.letterSpacing = "6px";
+    c.fillText("✦ O MEU TRIO ASTRAL ✦", W / 2, st ? 150 : 112);
+    if ("letterSpacing" in c) c.letterSpacing = "0px";
+    const yNome = st ? 430 : 196;
+    if (st) {
+      c.strokeStyle = "rgba(232,196,106,.55)"; c.lineWidth = 2;
+      c.beginPath(); c.arc(W / 2, yNome, 235, 0, 6.2832); c.stroke();
+      c.beginPath(); c.arc(W / 2, yNome, 180, 0, 6.2832); c.stroke();
+      c.font = `40px ${FONTE_GLIFO}`; c.fillStyle = "rgba(240,198,97,.85)";
+      GLIFOS.forEach((gl, i) => { const a = (i * 30 - 90) * Math.PI / 180; c.fillText(gl, W / 2 + Math.cos(a) * 207, yNome + Math.sin(a) * 207); });
+    }
+    const tNome = cabe(c, d.primeiro, st ? 345 : 860, st ? 96 : 84, (t) => `700 ${t}px Cinzel, Georgia, serif`);
+    c.fillStyle = ouro(c, 0, yNome - tNome / 2, 0, yNome + tNome / 2);
+    c.shadowColor = "rgba(255,215,106,.55)"; c.shadowBlur = 24;
+    c.fillText(d.primeiro, W / 2, yNome);
+    c.shadowBlur = 0;
+
+    // os três astros
+    const itens = [
+      ["☉" + T + " SOL", "a essência", d.sol],
+      ["☽" + T + " LUA", "as emoções", d.lua],
+      ["↑ ASCENDENTE", "como o mundo o(a) vê", d.asc],
+    ];
+    itens.forEach(([rot, papel, a], n) => {
+      const glifo = a.i < 0 ? "?" : GLIFOS[a.i], nome = a.i < 0 ? "Por descobrir" : curto(a.i);
+      const alt = a.i < 0 ? "" : (NOMES[a.i].match(/\((.+)\)/) || [])[1] || "";
+      if (st) {
+        // Story: três faixas, o glifo à esquerda e o texto à direita
+        const y0 = 720 + n * 340, h = 320;
+        c.fillStyle = "rgba(48,40,128,.55)"; caixa(c, 90, y0, W - 180, h, 30); c.fill();
+        c.strokeStyle = "rgba(232,196,106,.55)"; c.lineWidth = 2; c.stroke();
+        const cx = 235, cy = y0 + h / 2;
+        c.fillStyle = "rgba(20,16,60,.85)"; c.beginPath(); c.arc(cx, cy, 98, 0, 6.2832); c.fill();
+        c.strokeStyle = ouro(c, cx - 98, cy - 98, cx + 98, cy + 98); c.lineWidth = 4; c.stroke();
+        c.fillStyle = ouro(c, 0, cy - 60, 0, cy + 60); c.font = `110px ${FONTE_GLIFO}`; c.fillText(glifo, cx, cy + 4);
+        c.textAlign = "left";
+        const x = 370, larg = W - 90 - 40 - x;
+        // a frase parte-se primeiro, para o bloco de texto ficar centrado na faixa
+        c.font = `italic 500 38px "Cormorant Garamond", Georgia, serif`;
+        const ls = linhas(c, a.frase, larg, 3), yF = alt ? 200 : 168;
+        const yT = y0 + Math.max(0, (h - (yF + (ls.length - 1) * 42 + 16) - 30) / 2);
+        c.fillStyle = "#c9b8ff"; c.font = `700 28px Inter, sans-serif`;
+        if ("letterSpacing" in c) c.letterSpacing = "4px";
+        c.fillText(rot, x, yT + 50);
+        const wRot = c.measureText(rot).width;
+        if ("letterSpacing" in c) c.letterSpacing = "0px";
+        c.fillStyle = "#e9dcff"; c.font = `italic 500 34px "Cormorant Garamond", Georgia, serif`;
+        c.fillText(" · " + papel, x + wRot, yT + 50, Math.max(60, larg - wRot));
+        cabe(c, nome, larg, 60, (t) => `700 ${t}px Cinzel, Georgia, serif`);
+        c.fillStyle = "#ffffff"; c.fillText(nome, x, yT + 106);
+        if (alt) { c.fillStyle = "#e9dcff"; c.font = `500 32px "Cormorant Garamond", Georgia, serif`; c.fillText("(" + alt + ")", x, yT + 150); }
+        c.fillStyle = "#fff4d6"; c.font = `italic 500 38px "Cormorant Garamond", Georgia, serif`;
+        ls.forEach((l, k) => c.fillText(l, x, yT + yF + k * 42));
+        c.textAlign = "center";
+      } else {
+        // Quadrado: três colunas
+        const cx = 200 + n * 340, y0 = 262, w = 304, h = 570;
+        c.fillStyle = "rgba(48,40,128,.55)"; caixa(c, cx - w / 2, y0, w, h, 26); c.fill();
+        c.strokeStyle = "rgba(232,196,106,.55)"; c.lineWidth = 2; c.stroke();
+        const cy = y0 + 112;
+        c.fillStyle = "rgba(20,16,60,.85)"; c.beginPath(); c.arc(cx, cy, 80, 0, 6.2832); c.fill();
+        c.strokeStyle = ouro(c, cx - 80, cy - 80, cx + 80, cy + 80); c.lineWidth = 3.5; c.stroke();
+        c.fillStyle = ouro(c, 0, cy - 50, 0, cy + 50); c.font = `92px ${FONTE_GLIFO}`; c.fillText(glifo, cx, cy + 3);
+        c.fillStyle = "#c9b8ff"; c.font = `700 23px Inter, sans-serif`; c.fillText(rot, cx, y0 + 232, w - 30);
+        c.fillStyle = "#e9dcff"; c.font = `italic 500 28px "Cormorant Garamond", Georgia, serif`; c.fillText(papel, cx, y0 + 266, w - 30);
+        cabe(c, nome, w - 34, 48, (t) => `700 ${t}px Cinzel, Georgia, serif`);
+        c.fillStyle = "#ffffff"; c.fillText(nome, cx, y0 + 326);
+        let y = y0 + 362;
+        if (alt) { c.fillStyle = "#e9dcff"; c.font = `500 30px "Cormorant Garamond", Georgia, serif`; c.fillText("(" + alt + ")", cx, y); y += 36; }
+        c.fillStyle = "#fff4d6"; c.font = `italic 500 34px "Cormorant Garamond", Georgia, serif`;
+        linhas(c, a.frase, w - 40, 5).forEach((l, k) => c.fillText(l, cx, y + 34 + k * 41));
+      }
+    });
+
+    // o rodapé: genialtarot.com bem visível
+    const yS = st ? 1785 : 940;
+    c.fillStyle = ouro(c, 0, yS - 34, 0, yS + 34); c.font = `700 ${st ? 66 : 54}px Cinzel, Georgia, serif`;
+    c.shadowColor = "rgba(255,215,106,.5)"; c.shadowBlur = 18;
+    c.fillText("genialtarot.com", W / 2, yS);
+    c.shadowBlur = 0;
+    c.fillStyle = "#d9d2ff"; c.font = `500 ${st ? 28 : 22}px Inter, sans-serif`;
+    c.fillText("Mestre Alberto · Tarot e Astrologia", W / 2, yS + (st ? 58 : 44));
+  }
+
+  // As letras do Google têm de estar carregadas antes de desenhar (senão o cartão sai em Georgia)
+  function letrasProntas() {
+    if (!document.fonts || !document.fonts.load) return Promise.resolve();
+    const todas = Promise.all(["700 80px Cinzel", "600 30px Cinzel", "italic 500 40px 'Cormorant Garamond'", "500 30px 'Cormorant Garamond'", "700 28px Inter"].map((f) => document.fonts.load(f)));
+    return Promise.race([todas, new Promise((r) => setTimeout(r, 2500))]).catch(() => {});
+  }
+  function redesenhar() {
+    if (!trio) return;
+    $("f-story").setAttribute("aria-pressed", formato === "story");
+    $("f-quadrado").setAttribute("aria-pressed", formato === "quadrado");
+    letrasProntas().then(() => desenhar($("cartao-img"), formato, trio));
+  }
+  $("f-story").addEventListener("click", () => { formato = "story"; redesenhar(); });
+  $("f-quadrado").addEventListener("click", () => { formato = "quadrado"; redesenhar(); });
+
+  // ===== Guardar e partilhar =====
+  const nomeFicheiro = () => `trio-astral-${sem(trio.primeiro).replace(/[^a-z0-9]+/g, "-") || "genialtarot"}-${formato}.png`;
+  const emPNG = () => new Promise((r) => $("cartao-img").toBlob(r, "image/png"));
+  function descarregar(blob) {
+    const a = document.createElement("a"), url = URL.createObjectURL(blob);
+    a.href = url; a.download = nomeFicheiro(); document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    $("nota-partilha").textContent = "✓ Imagem guardada. Procure-a nas transferências do seu aparelho.";
+  }
+  $("guardar").addEventListener("click", async () => { if (!trio) return; const b = await emPNG(); if (b) descarregar(b); });
+  $("partilhar").addEventListener("click", async () => {
+    if (!trio) return;
+    const b = await emPNG(); if (!b) return;
+    const f = new File([b], nomeFicheiro(), { type: "image/png" });
+    // navigator.share com ficheiro (telemóveis); se o navegador não deixar, cai para o descarregar
+    if (navigator.canShare && navigator.canShare({ files: [f] })) {
+      try {
+        await navigator.share({ files: [f], title: "O meu Trio Astral", text: "O meu Sol, Lua e Ascendente ✨ Descubra os seus em genialtarot.com" });
+        $("nota-partilha").textContent = "";
+      } catch (e) { if (e && e.name !== "AbortError") descarregar(b); }
+    } else {
+      descarregar(b);
+      $("nota-partilha").textContent = "Este navegador não partilha imagens diretamente: guardámos o cartão para você o publicar onde quiser.";
+    }
+  });
+
+  // ===== Calcular =====
+  $("form").addEventListener("submit", (ev) => {
+    ev.preventDefault(); mostraErro("");
+    const p = lerPessoa("", campo, { nome: "o seu nome", de: "", nasceu: "nasceu" });
+    if (p.erro) return mostraErro(p.erro);
+    p.email = $("email").value.trim().toLowerCase(); p.tel = $("tel").value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(p.email)) return mostraErro("Escreva o seu email, por favor.");
+    let ms;
+    try { ms = instante(p); } catch (e) { return mostraErro("Não consegui ler a data. Confirme os dados, por favor."); }
+    // A regra dele (21/10/2026): 2 amostras no mesmo dia, depois 5 dias de espera. Rever o mesmo mapa não conta.
+    const vez = AmostraLimite.usar("trio-astral", assinatura(p));
+    if (!vez.ok) {
+      const e = $("erro");
+      e.innerHTML = `${esc(p.primeiro)}, já fez os seus ${AmostraLimite.POR_DIA} cartões grátis do Trio Astral. O próximo fica disponível a <b>${AmostraLimite.dataCurta(vez.proxima)}</b>.<br>Quer o seu céu inteiro? <a href="mapa-astral.html">✨ Veja o Mapa Astral</a>`;
+      e.classList.add("ver"); return;
+    }
+    // o motor dos planetas vale de 1800 a 2050: fora disso, aviso vermelho em vez de signos errados
+    $("aviso-fim").classList.toggle("ver", p.data[0] > AstroNov.ANO_LIMITE);
+    $("aviso-fim").textContent = p.data[0] > AstroNov.ANO_LIMITE ? `⚠️ O cálculo desta página só é válido até ${AstroNov.ANO_LIMITE}. Avise o Mestre Alberto para a página ser atualizada.` : "";
+    const nat = AstroNov.natal(ms, p.cid[3], p.cid[4], p.semhora);
+    const iS = idx(nat.sol), iL = idx(nat.lua), iA = nat.asc == null ? -1 : idx(nat.asc);
+    trio = { primeiro: p.primeiro, sol: { i: iS, frase: SOL[iS] }, lua: { i: iL, frase: LUA[iL] }, asc: { i: iA, frase: iA < 0 ? SEM_ASC : ASC[iA] } };
+
+    $("res-titulo").innerHTML = `<span class="res-nome">${esc(p.primeiro)}</span><span class="res-frase">o seu Trio Astral</span>`;
+    const poe = (k, i, lonG, frase) => {
+      $("g-" + k).textContent = i < 0 ? "?" : GLIFOS[i];
+      $("n-" + k).textContent = i < 0 ? "Precisa da hora" : NOMES[i];
+      $("d-" + k).textContent = i < 0 ? "" : AstroAsc.grau(lonG);
+      $("f-" + k).textContent = frase;
+    };
+    poe("sol", iS, nat.sol, trio.sol.frase); poe("lua", iL, nat.lua, trio.lua.frase); poe("asc", iA, nat.asc, trio.asc.frase);
+    const avisoLua = avisoSemHora(p);
+    $("aviso-hora").textContent = p.semhora ? (avisoLua ? "⚠️ " + avisoLua : "Sem a hora, calculámos ao meio-dia: o Sol e a Lua estão certos, mas o Ascendente fica por saber.") : "";
+    $("dados-nasc").textContent = `Nascimento: ${textoData(p)}${p.semhora ? ", hora desconhecida" : " às " + textoHora(p)} · ${p.rotulo}`;
+    $("nota-partilha").textContent = "";
+    $("gancho").textContent = `${p.primeiro}, com o Sol em ${curto(iS)}, a Lua em ${curto(iL)}${iA < 0 ? "" : " e o Ascendente em " + curto(iA)}, o seu céu já diz muito sobre quem você é. Numa consulta online, o Mestre Alberto junta o seu Mapa Astral e as cartas do Tarot para olhar para a sua vida de agora.`;
+    $("wa-consulta").href = "https://wa.me/351914920427?text=" + encodeURIComponent(`Olá Mestre Alberto, fiz o Trio Astral no site: Sol em ${NOMES[iS]}, Lua em ${NOMES[iL]}${iA < 0 ? "" : ", Ascendente em " + NOMES[iA]}. Gostava de marcar uma consulta.`);
+    // cada amostra NOVA é uma captura — vai para a fila e cria/acrescenta a ficha no cofre
+    if (vez.nova) captura({ name: p.nome, email: p.email, phone: p.tel, novidades: false, date_of_birth: textoData(p), birth_time: textoHora(p),
+      city: textoCidade(p), country: p.pais, sign: NOMES[iS], moon: NOMES[iL], ascendant: iA < 0 ? "" : NOMES[iA], area: "Trio Astral (amostra grátis)",
+      verdict: `☉ Sol em ${NOMES[iS]} · ☽ Lua em ${NOMES[iL]} · ↑ Ascendente ${iA < 0 ? "sem hora" : "em " + NOMES[iA]} · cartão para partilhar` });
+    $("resultado").classList.add("ver");
+    redesenhar();
+    $("resultado").scrollIntoView({ behavior: "smooth" });
+  });
+
+  // ===== Vem com os dados no endereço (?nome=&data=&hora=&cidade=): preenche o formulário =====
+  const vem = new URLSearchParams(location.search);
+  if (vem.get("nome")) $("nome").value = vem.get("nome").slice(0, 80);
+  if (vem.get("email")) $("email").value = vem.get("email").slice(0, 120);
+  if (vem.get("data")) { $("data").value = vem.get("data").slice(0, 22); $("data").dispatchEvent(new Event("blur")); }
+  if (vem.get("hora")) { $("hora").value = vem.get("hora").slice(0, 12); $("hora").dispatchEvent(new Event("blur")); }
+  if (vem.get("cidade")) campo.porNome(vem.get("cidade").slice(0, 80));
+})();
+</script>
+</body>
+</html>

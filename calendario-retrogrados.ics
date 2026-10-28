@@ -1,0 +1,2917 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Genial Tarot//O ceu no seu calendario//PT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+NAME:Retrógrados · Genial Tarot
+X-WR-CALNAME:Retrógrados · Genial Tarot
+DESCRIPTION:O início e o fim de cada planeta retrógrado\, de Mercúrio a 
+ Plutão. Mestre Alberto\, genialtarot.com
+X-WR-CALDESC:O início e o fim de cada planeta retrógrado\, de Mercúrio a
+  Plutão. Mestre Alberto\, genialtarot.com
+URL:https://genialtarot.com/calendarios
+SOURCE;VALUE=URI:https://genialtarot.com/calendario-retrogrados.ics
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+X-PUBLISHED-TTL:P1D
+COLOR:gold
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2024-05-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20240502T174649Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2024-06-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20240629T190623Z
+SUMMARY:↩ Saturno fica retrógrado em Peixes
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2024-07-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20240702T104034Z
+SUMMARY:↩ Neptuno fica retrógrado em Peixes
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2024-09-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20240901T151749Z
+SUMMARY:↩ Urano fica retrógrado em Touro
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2024-10-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20241009T070511Z
+SUMMARY:↩ Júpiter fica retrógrado em Gêmeos
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2024-10-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20241012T003215Z
+SUMMARY:▶ Plutão volta a andar para a frente em Capricórnio
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2024-11-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20241115T142116Z
+SUMMARY:▶ Saturno volta a andar para a frente em Peixes
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2024-11-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20241126T024228Z
+SUMMARY:↩ Mercúrio fica retrógrado em Sagitário
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-inicio-2024-12-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20241206T233312Z
+SUMMARY:↩ Marte fica retrógrado em Leão
+DESCRIPTION:A energia vira-se para dentro. Bom para repensar a estratégia 
+ e gastar menos força em discussões.\n\nhttps://genialtarot.com/retrograd
+ os
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2024-12-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20241207T234300Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Peixes
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2024-12-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20241215T205622Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Sagitário
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2025-01-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250130T162236Z
+SUMMARY:▶ Urano volta a andar para a frente em Touro
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2025-02-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250204T094044Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Gêmeos
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-fim-2025-02-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250224T015957Z
+SUMMARY:▶ Marte volta a andar para a frente em Câncer
+DESCRIPTION:Marte retoma o caminho: a energia volta a fluir para a ação.\
+ n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-inicio-2025-03-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250302T003601Z
+SUMMARY:↩ Vénus fica retrógrado em Áries
+DESCRIPTION:Os afetos e o dinheiro pedem revisão. Bom para perceber o que 
+ valoriza de verdade\, antes de grandes decisões no amor ou nas compras.\n
+ \nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2025-03-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250315T064610Z
+SUMMARY:↩ Mercúrio fica retrógrado em Áries
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2025-04-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250407T110740Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Peixes
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-fim-2025-04-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250413T010224Z
+SUMMARY:▶ Vénus volta a andar para a frente em Peixes
+DESCRIPTION:Vénus retoma o caminho: o coração fica mais claro sobre o qu
+ e quer.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2025-05-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250504T152654Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2025-07-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250704T213251Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2025-07-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250713T040701Z
+SUMMARY:↩ Saturno fica retrógrado em Áries
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2025-07-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250718T044504Z
+SUMMARY:↩ Mercúrio fica retrógrado em Leão
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2025-08-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250811T072956Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Leão
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2025-09-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250906T045106Z
+SUMMARY:↩ Urano fica retrógrado em Gêmeos
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2025-10-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251014T025213Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2025-11-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251109T190146Z
+SUMMARY:↩ Mercúrio fica retrógrado em Sagitário
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2025-11-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251111T164141Z
+SUMMARY:↩ Júpiter fica retrógrado em Câncer
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2025-11-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251128T035130Z
+SUMMARY:▶ Saturno volta a andar para a frente em Peixes
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2025-11-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251129T173832Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Escorpião
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2025-12-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251210T122314Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Peixes
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2026-02-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260204T023323Z
+SUMMARY:▶ Urano volta a andar para a frente em Touro
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2026-02-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260226T064813Z
+SUMMARY:↩ Mercúrio fica retrógrado em Peixes
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2026-03-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260311T033008Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Câncer
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2026-03-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260320T193254Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Peixes
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2026-05-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260506T153416Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2026-06-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260629T173559Z
+SUMMARY:↩ Mercúrio fica retrógrado em Câncer
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2026-07-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260707T105438Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2026-07-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260723T225755Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Câncer
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2026-07-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260726T195647Z
+SUMMARY:↩ Saturno fica retrógrado em Áries
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2026-09-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260910T182720Z
+SUMMARY:↩ Urano fica retrógrado em Gêmeos
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-inicio-2026-10-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261003T071550Z
+SUMMARY:↩ Vénus fica retrógrado em Escorpião
+DESCRIPTION:Os afetos e o dinheiro pedem revisão. Bom para perceber o que 
+ valoriza de verdade\, antes de grandes decisões no amor ou nas compras.\n
+ \nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2026-10-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261016T024017Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2026-10-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261024T071247Z
+SUMMARY:↩ Mercúrio fica retrógrado em Escorpião
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2026-11-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261113T155356Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Escorpião
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-fim-2026-11-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261114T002730Z
+SUMMARY:▶ Vénus volta a andar para a frente em Libra
+DESCRIPTION:Vénus retoma o caminho: o coração fica mais claro sobre o qu
+ e quer.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2026-12-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261210T233102Z
+SUMMARY:▶ Saturno volta a andar para a frente em Áries
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2026-12-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261212T221721Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2026-12-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261213T005636Z
+SUMMARY:↩ Júpiter fica retrógrado em Leão
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-inicio-2027-01-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270110T125927Z
+SUMMARY:↩ Marte fica retrógrado em Virgem
+DESCRIPTION:A energia vira-se para dentro. Bom para repensar a estratégia 
+ e gastar menos força em discussões.\n\nhttps://genialtarot.com/retrograd
+ os
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2027-02-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270208T122928Z
+SUMMARY:▶ Urano volta a andar para a frente em Gêmeos
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2027-02-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270209T173609Z
+SUMMARY:↩ Mercúrio fica retrógrado em Peixes
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2027-03-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270303T123205Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Aquário
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-fim-2027-04-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270401T140818Z
+SUMMARY:▶ Marte volta a andar para a frente em Leão
+DESCRIPTION:Marte retoma o caminho: a energia volta a fluir para a ação.\
+ n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2027-04-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270413T021115Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Leão
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2027-05-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270508T125411Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2027-06-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270610T181519Z
+SUMMARY:↩ Mercúrio fica retrógrado em Câncer
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2027-07-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270704T193927Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Gêmeos
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2027-07-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270709T224101Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2027-08-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270809T180555Z
+SUMMARY:↩ Saturno fica retrógrado em Áries
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2027-09-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270915T090933Z
+SUMMARY:↩ Urano fica retrógrado em Gêmeos
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2027-10-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271007T143708Z
+SUMMARY:↩ Mercúrio fica retrógrado em Escorpião
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2027-10-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271018T035223Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2027-10-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271028T141043Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Libra
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2027-12-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271215T090620Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2027-12-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271224T024722Z
+SUMMARY:▶ Saturno volta a andar para a frente em Áries
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2028-01-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280112T085348Z
+SUMMARY:↩ Júpiter fica retrógrado em Virgem
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2028-01-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280124T110230Z
+SUMMARY:↩ Mercúrio fica retrógrado em Aquário
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2028-02-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280212T234950Z
+SUMMARY:▶ Urano volta a andar para a frente em Gêmeos
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2028-02-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280214T123751Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Aquário
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2028-05-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280509T092947Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-inicio-2028-05-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280510T230241Z
+SUMMARY:↩ Vénus fica retrógrado em Gêmeos
+DESCRIPTION:Os afetos e o dinheiro pedem revisão. Bom para perceber o que 
+ valoriza de verdade\, antes de grandes decisões no amor ou nas compras.\n
+ \nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2028-05-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280513T200023Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Virgem
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2028-05-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280521T084305Z
+SUMMARY:↩ Mercúrio fica retrógrado em Gêmeos
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2028-06-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280614T060604Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Gêmeos
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-fim-2028-06-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280622T221238Z
+SUMMARY:▶ Vénus volta a andar para a frente em Gêmeos
+DESCRIPTION:Vénus retoma o caminho: o coração fica mais claro sobre o qu
+ e quer.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2028-07-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280711T130405Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2028-08-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280822T221639Z
+SUMMARY:↩ Saturno fica retrógrado em Touro
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2028-09-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280919T000114Z
+SUMMARY:↩ Urano fica retrógrado em Gêmeos
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2028-09-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280919T163352Z
+SUMMARY:↩ Mercúrio fica retrógrado em Libra
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2028-10-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281011T102735Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Libra
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2028-10-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281019T034547Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2028-12-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281216T204258Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2029-01-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290105T123841Z
+SUMMARY:▶ Saturno volta a andar para a frente em Touro
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2029-01-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290107T075637Z
+SUMMARY:↩ Mercúrio fica retrógrado em Aquário
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2029-01-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290127T184016Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Capricórnio
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2029-02-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290210T130713Z
+SUMMARY:↩ Júpiter fica retrógrado em Libra
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-inicio-2029-02-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290214T081630Z
+SUMMARY:↩ Marte fica retrógrado em Libra
+DESCRIPTION:A energia vira-se para dentro. Bom para repensar a estratégia 
+ e gastar menos força em discussões.\n\nhttps://genialtarot.com/retrograd
+ os
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2029-02-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290216T105146Z
+SUMMARY:▶ Urano volta a andar para a frente em Gêmeos
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2029-05-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290501T230534Z
+SUMMARY:↩ Mercúrio fica retrógrado em Touro
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-fim-2029-05-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290505T185951Z
+SUMMARY:▶ Marte volta a andar para a frente em Virgem
+DESCRIPTION:Marte retoma o caminho: a energia volta a fluir para a ação.\
+ n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2029-05-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290511T041402Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2029-05-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290525T192050Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Touro
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2029-06-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290613T210643Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Libra
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2029-07-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290714T021101Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2029-09-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290902T121808Z
+SUMMARY:↩ Mercúrio fica retrógrado em Libra
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2029-09-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290906T083456Z
+SUMMARY:↩ Saturno fica retrógrado em Touro
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2029-09-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290923T162202Z
+SUMMARY:↩ Urano fica retrógrado em Gêmeos
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2029-09-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290925T020153Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Virgem
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2029-10-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291021T035636Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-inicio-2029-12-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291216T234726Z
+SUMMARY:↩ Vénus fica retrógrado em Capricórnio
+DESCRIPTION:Os afetos e o dinheiro pedem revisão. Bom para perceber o que 
+ valoriza de verdade\, antes de grandes decisões no amor ou nas compras.\n
+ \nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2029-12-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291219T082417Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2029-12-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291222T055039Z
+SUMMARY:↩ Mercúrio fica retrógrado em Capricórnio
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2030-01-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300111T054533Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Capricórnio
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2030-01-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300119T035349Z
+SUMMARY:▶ Saturno volta a andar para a frente em Touro
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-fim-2030-01-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300126T213306Z
+SUMMARY:▶ Vénus volta a andar para a frente em Capricórnio
+DESCRIPTION:Vénus retoma o caminho: o coração fica mais claro sobre o qu
+ e quer.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2030-02-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300220T232239Z
+SUMMARY:▶ Urano volta a andar para a frente em Gêmeos
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2030-03-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300313T143318Z
+SUMMARY:↩ Júpiter fica retrógrado em Escorpião
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2030-04-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300413T023327Z
+SUMMARY:↩ Mercúrio fica retrógrado em Touro
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2030-05-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300506T201451Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Áries
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2030-05-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300512T231043Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2030-07-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300715T012619Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Escorpião
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2030-07-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300716T162907Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2030-08-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300816T012013Z
+SUMMARY:↩ Mercúrio fica retrógrado em Virgem
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2030-09-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300908T092739Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Virgem
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2030-09-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300920T212944Z
+SUMMARY:↩ Saturno fica retrógrado em Gêmeos
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2030-09-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300928T082655Z
+SUMMARY:↩ Urano fica retrógrado em Gêmeos
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2030-10-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301023T030603Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2030-12-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301206T024728Z
+SUMMARY:↩ Mercúrio fica retrógrado em Capricórnio
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2030-12-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301221T204028Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2030-12-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301225T211428Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Sagitário
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2031-02-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310202T022446Z
+SUMMARY:▶ Saturno volta a andar para a frente em Gêmeos
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2031-02-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310225T112430Z
+SUMMARY:▶ Urano volta a andar para a frente em Gêmeos
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2031-03-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310326T004343Z
+SUMMARY:↩ Mercúrio fica retrógrado em Áries
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-inicio-2031-03-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310329T003435Z
+SUMMARY:↩ Marte fica retrógrado em Escorpião
+DESCRIPTION:A energia vira-se para dentro. Bom para repensar a estratégia 
+ e gastar menos força em discussões.\n\nhttps://genialtarot.com/retrograd
+ os
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2031-04-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310415T120415Z
+SUMMARY:↩ Júpiter fica retrógrado em Sagitário
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2031-04-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310418T111545Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Áries
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2031-05-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310514T202715Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-fim-2031-06-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310613T115612Z
+SUMMARY:▶ Marte volta a andar para a frente em Escorpião
+DESCRIPTION:Marte retoma o caminho: a energia volta a fluir para a ação.\
+ n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2031-07-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310719T061151Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-inicio-2031-07-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310720T170813Z
+SUMMARY:↩ Vénus fica retrógrado em Leão
+DESCRIPTION:Os afetos e o dinheiro pedem revisão. Bom para perceber o que 
+ valoriza de verdade\, antes de grandes decisões no amor ou nas compras.\n
+ \nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2031-07-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310729T064736Z
+SUMMARY:↩ Mercúrio fica retrógrado em Leão
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2031-08-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310816T045848Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Sagitário
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2031-08-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310822T042825Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Leão
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-fim-2031-09-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310901T175700Z
+SUMMARY:▶ Vénus volta a andar para a frente em Leão
+DESCRIPTION:Vénus retoma o caminho: o coração fica mais claro sobre o qu
+ e quer.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2031-10-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311003T024238Z
+SUMMARY:↩ Urano fica retrógrado em Gêmeos
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2031-10-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311005T105015Z
+SUMMARY:↩ Saturno fica retrógrado em Gêmeos
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2031-10-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311024T231232Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2031-11-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311119T211539Z
+SUMMARY:↩ Mercúrio fica retrógrado em Sagitário
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2031-12-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311209T162329Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Escorpião
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2031-12-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311224T074049Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2032-02-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320216T065929Z
+SUMMARY:▶ Saturno volta a andar para a frente em Gêmeos
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2032-03-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320301T013420Z
+SUMMARY:▶ Urano volta a andar para a frente em Gêmeos
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2032-03-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320307T162147Z
+SUMMARY:↩ Mercúrio fica retrógrado em Áries
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2032-03-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320330T142908Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Peixes
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2032-05-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320515T155400Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2032-05-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320519T144742Z
+SUMMARY:↩ Júpiter fica retrógrado em Aquário
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2032-07-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320710T023336Z
+SUMMARY:↩ Mercúrio fica retrógrado em Leão
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2032-07-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320720T204313Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2032-08-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320803T065210Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Câncer
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2032-09-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320917T195242Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Capricórnio
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2032-10-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321006T195250Z
+SUMMARY:↩ Urano fica retrógrado em Câncer
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2032-10-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321018T222647Z
+SUMMARY:↩ Saturno fica retrógrado em Câncer
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2032-10-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321025T210844Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2032-11-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321102T115649Z
+SUMMARY:↩ Mercúrio fica retrógrado em Sagitário
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2032-11-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321122T140053Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Escorpião
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2032-12-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321225T210219Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2033-02-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330218T212011Z
+SUMMARY:↩ Mercúrio fica retrógrado em Peixes
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-inicio-2033-02-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330227T154047Z
+SUMMARY:↩ Vénus fica retrógrado em Áries
+DESCRIPTION:Os afetos e o dinheiro pedem revisão. Bom para perceber o que 
+ valoriza de verdade\, antes de grandes decisões no amor ou nas compras.\n
+ \nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2033-03-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330301T160248Z
+SUMMARY:▶ Saturno volta a andar para a frente em Câncer
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2033-03-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330305T144117Z
+SUMMARY:▶ Urano volta a andar para a frente em Gêmeos
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2033-03-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330313T025726Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Peixes
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-fim-2033-04-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330410T152722Z
+SUMMARY:▶ Vénus volta a andar para a frente em Peixes
+DESCRIPTION:Vénus retoma o caminho: o coração fica mais claro sobre o qu
+ e quer.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2033-05-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330517T125758Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-inicio-2033-05-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330526T234748Z
+SUMMARY:↩ Marte fica retrógrado em Capricórnio
+DESCRIPTION:A energia vira-se para dentro. Bom para repensar a estratégia 
+ e gastar menos força em discussões.\n\nhttps://genialtarot.com/retrograd
+ os
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2033-06-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330621T100519Z
+SUMMARY:↩ Mercúrio fica retrógrado em Câncer
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2033-06-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330625T215158Z
+SUMMARY:↩ Júpiter fica retrógrado em Peixes
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2033-07-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330715T141936Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Câncer
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2033-07-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330723T102548Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-fim-2033-08-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330801T142502Z
+SUMMARY:▶ Marte volta a andar para a frente em Sagitário
+DESCRIPTION:Marte retoma o caminho: a energia volta a fluir para a ação.\
+ n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2033-10-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331011T160419Z
+SUMMARY:↩ Urano fica retrógrado em Câncer
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2033-10-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331016T220314Z
+SUMMARY:↩ Mercúrio fica retrógrado em Escorpião
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2033-10-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331023T071854Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Aquário
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2033-10-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331027T164157Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2033-11-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331102T070345Z
+SUMMARY:↩ Saturno fica retrógrado em Câncer
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2033-11-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331106T123945Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Libra
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2033-12-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331228T073502Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2034-02-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340202T112200Z
+SUMMARY:↩ Mercúrio fica retrógrado em Aquário
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2034-02-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340223T225420Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Aquário
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2034-03-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340310T064844Z
+SUMMARY:▶ Urano volta a andar para a frente em Câncer
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2034-03-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340316T022945Z
+SUMMARY:▶ Saturno volta a andar para a frente em Câncer
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2034-05-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340519T065634Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2034-06-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340602T052337Z
+SUMMARY:↩ Mercúrio fica retrógrado em Gêmeos
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2034-06-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340626T052338Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Gêmeos
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2034-07-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340725T223036Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2034-08-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340803T034144Z
+SUMMARY:↩ Júpiter fica retrógrado em Áries
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2034-09-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340930T030000Z
+SUMMARY:↩ Mercúrio fica retrógrado em Libra
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-inicio-2034-09-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340930T193656Z
+SUMMARY:↩ Vénus fica retrógrado em Escorpião
+DESCRIPTION:Os afetos e o dinheiro pedem revisão. Bom para perceber o que 
+ valoriza de verdade\, antes de grandes decisões no amor ou nas compras.\n
+ \nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2034-10-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341016T101606Z
+SUMMARY:↩ Urano fica retrógrado em Câncer
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2034-10-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341021T102225Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Libra
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2034-10-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341029T134659Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-fim-2034-11-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341111T140147Z
+SUMMARY:▶ Vénus volta a andar para a frente em Libra
+DESCRIPTION:Vénus retoma o caminho: o coração fica mais claro sobre o qu
+ e quer.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2034-11-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341116T120030Z
+SUMMARY:↩ Saturno fica retrógrado em Leão
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2034-11-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341129T022433Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Áries
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2034-12-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341230T200818Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2035-01-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350117T064423Z
+SUMMARY:↩ Mercúrio fica retrógrado em Aquário
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2035-02-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350207T012446Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Capricórnio
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2035-03-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350314T213019Z
+SUMMARY:▶ Urano volta a andar para a frente em Câncer
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2035-03-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350330T131217Z
+SUMMARY:▶ Saturno volta a andar para a frente em Câncer
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2035-05-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350513T184027Z
+SUMMARY:↩ Mercúrio fica retrógrado em Gêmeos
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2035-05-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350520T225526Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2035-06-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350606T145244Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Touro
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2035-07-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350728T122655Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-inicio-2035-08-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350815T100155Z
+SUMMARY:↩ Marte fica retrógrado em Peixes
+DESCRIPTION:A energia vira-se para dentro. Bom para repensar a estratégia 
+ e gastar menos força em discussões.\n\nhttps://genialtarot.com/retrograd
+ os
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2035-09-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350909T141448Z
+SUMMARY:↩ Júpiter fica retrógrado em Touro
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2035-09-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350913T022818Z
+SUMMARY:↩ Mercúrio fica retrógrado em Libra
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2035-10-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351005T045310Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Virgem
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-marte-fim-2035-10-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351015T083217Z
+SUMMARY:▶ Marte volta a andar para a frente em Peixes
+DESCRIPTION:Marte retoma o caminho: a energia volta a fluir para a ação.\
+ n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2035-10-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351021T080221Z
+SUMMARY:↩ Urano fica retrógrado em Câncer
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2035-10-31@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351031T113924Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2035-11-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351130T110718Z
+SUMMARY:↩ Saturno fica retrógrado em Leão
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2036-01-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360101T042434Z
+SUMMARY:↩ Mercúrio fica retrógrado em Capricórnio
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2036-01-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360102T063217Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2036-01-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360105T035902Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Touro
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2036-01-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360121T094201Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Capricórnio
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2036-03-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360318T152942Z
+SUMMARY:▶ Urano volta a andar para a frente em Câncer
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2036-04-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360412T223707Z
+SUMMARY:▶ Saturno volta a andar para a frente em Leão
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2036-04-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360423T131801Z
+SUMMARY:↩ Mercúrio fica retrógrado em Touro
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-inicio-2036-05-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360508T155812Z
+SUMMARY:↩ Vénus fica retrógrado em Gêmeos
+DESCRIPTION:Os afetos e o dinheiro pedem revisão. Bom para perceber o que 
+ valoriza de verdade\, antes de grandes decisões no amor ou nas compras.\n
+ \nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2036-05-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360517T082919Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Touro
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-inicio-2036-05-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360521T153530Z
+SUMMARY:↩ Plutão fica retrógrado em Aquário
+DESCRIPTION:Um tempo de transformação interior\, devagar e sem pressa.\n\
+ nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-venus-fim-2036-06-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360620T141137Z
+SUMMARY:▶ Vénus volta a andar para a frente em Gêmeos
+DESCRIPTION:Vénus retoma o caminho: o coração fica mais claro sobre o qu
+ e quer.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-inicio-2036-07-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360730T001750Z
+SUMMARY:↩ Neptuno fica retrógrado em Áries
+DESCRIPTION:A intuição fica mais forte: bom para meditar\, sonhar e separ
+ ar ilusões da realidade.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2036-08-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360825T194754Z
+SUMMARY:↩ Mercúrio fica retrógrado em Virgem
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2036-09-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360917T172033Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Virgem
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-inicio-2036-10-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361014T013736Z
+SUMMARY:↩ Júpiter fica retrógrado em Gêmeos
+DESCRIPTION:O crescimento faz-se por dentro: rever crenças\, planos e prom
+ essas.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-inicio-2036-10-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361025T032255Z
+SUMMARY:↩ Urano fica retrógrado em Câncer
+DESCRIPTION:As mudanças acontecem primeiro por dentro: bom para perceber q
+ ue liberdade procura.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-plutao-fim-2036-11-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361101T075549Z
+SUMMARY:▶ Plutão volta a andar para a frente em Aquário
+DESCRIPTION:Plutão retoma o caminho: o que se transformou por dentro come
+ ça a ver-se.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-inicio-2036-12-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361213T025801Z
+SUMMARY:↩ Saturno fica retrógrado em Virgem
+DESCRIPTION:Tempo de rever compromissos e responsabilidades\, e de acabar o
+  que ficou por acabar.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-inicio-2036-12-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361215T020613Z
+SUMMARY:↩ Mercúrio fica retrógrado em Capricórnio
+DESCRIPTION:Tempo de rever\, reler e confirmar. Conversas\, papéis e apare
+ lhos pedem mais atenção\; bom para retomar o que ficou a meio.\n\nhttps:
+ //genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-neptuno-fim-2037-01-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20370103T174320Z
+SUMMARY:▶ Neptuno volta a andar para a frente em Áries
+DESCRIPTION:Neptuno retoma o caminho: os sonhos pedem agora um passo concre
+ to.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-mercurio-fim-2037-01-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20370103T225729Z
+SUMMARY:▶ Mercúrio volta a andar para a frente em Sagitário
+DESCRIPTION:Mercúrio volta a andar para a frente. As coisas destravam aos 
+ poucos: dê uns dias antes de assinar o que é importante.\n\nhttps://geni
+ altarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-jupiter-fim-2037-02-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20370209T074133Z
+SUMMARY:▶ Júpiter volta a andar para a frente em Gêmeos
+DESCRIPTION:Júpiter retoma o caminho: os planos de crescimento ganham for
+ ça.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-urano-fim-2037-03-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20370323T082614Z
+SUMMARY:▶ Urano volta a andar para a frente em Câncer
+DESCRIPTION:Urano retoma o caminho: as mudanças pensadas por dentro começ
+ am a aparecer cá fora.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:retro-saturno-fim-2037-04-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20370427T045713Z
+SUMMARY:▶ Saturno volta a andar para a frente em Leão
+DESCRIPTION:Saturno retoma o caminho: o que foi revisto pode agora ser cons
+ truído.\n\nhttps://genialtarot.com/retrogrados
+URL:https://genialtarot.com/retrogrados
+CATEGORIES:Retrógrado
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

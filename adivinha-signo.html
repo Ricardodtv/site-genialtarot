@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- EXPERIÊNCIA 28/10/2026 — página da área Novidades; textos por aprovar pelo Mestre Alberto -->
+<!-- Jogo «Adivinhe o signo do famoso» (28/10/2026): os famosos do aniversarios-dados.js (Wikidata, Brasil e Portugal), um de cada vez,
+     e 12 botões de signos. O signo calcula-se pelo Sol (AstroRS.solPreciso); quem nasceu num dia em que o Sol mudou de signo fica
+     de fora, porque sem a hora não se sabe. Os mais conhecidos saem mais vezes (adivinha-signo-fama.js: artigos da Wikipédia).
+     Sem fotos, como no aniversarios.html. Não pede dados nem faz capturas; a pontuação fica só no navegador (localStorage). -->
+<meta name="robots" content="noindex" />
+<title>Adivinhe o signo do famoso — Genial Tarot · Mestre Alberto</title>
+<meta name="description" content="Um jogo rápido: aparece um famoso do Brasil ou de Portugal e você adivinha o signo. Rondas de 10, com a sua melhor série." />
+<meta name="theme-color" content="#3a2257" />
+<link rel="icon" href="favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Base: a mesma folha do Mapa Astral (21/10/2026); as cores do jogo vêm mais abaixo ============ */
+:root {
+  --fundo: oklch(0.17 0.06 305);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.05 310);
+  --lilas: oklch(0.74 0.14 310);
+  --lilas-claro: oklch(0.86 0.09 312);
+  --lavanda: oklch(0.92 0.05 310);
+  --ouro: oklch(0.85 0.13 88);
+  --rosa: oklch(0.78 0.13 355);
+  --borda: oklch(0.75 0.12 310 / 0.35);
+  --vidro: oklch(0.30 0.09 305 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.80 0.12 320), oklch(0.66 0.18 300) 55%, oklch(0.55 0.19 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.84 0.11 355), oklch(0.70 0.17 340) 55%, oklch(0.60 0.19 315));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.40 0.16 320) 0%, oklch(0.20 0.08 305) 45%, oklch(0.12 0.05 300) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+/* 16 px de margem de cada lado no telemóvel (100% − 2rem) */
+.caixa { position: relative; z-index: 1; width: min(68rem, 100% - 2rem); margin: 0 auto; }
+
+/* topo: a pílula «‹ genialtarot.com» igual às outras páginas */
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: oklch(0.85 0.13 88); }
+
+/* herói */
+.heroi { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: center; text-align: center; padding: .5rem 0 1.6rem; }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); justify-self: center; }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .5rem 0 .3rem; }
+h1 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 34rem; margin: 0 auto; }
+.btn-grande { display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+  color: white; background: var(--grad-lilas); border-radius: 999px; padding: .95rem 1.7rem; box-shadow: 0 10px 30px oklch(0.55 0.19 300 / .5), inset 0 1px 0 #fff5;
+  transition: transform .2s, box-shadow .2s; }
+.btn-grande:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 40px oklch(0.60 0.2 305 / .65); }
+
+/* cartões */
+.cartao { background: linear-gradient(160deg, oklch(0.32 0.10 308 / .82), oklch(0.22 0.08 300 / .9)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1.2rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; backdrop-filter: blur(6px); }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.1rem); margin: 0 0 .4rem; text-align: center; }
+h2 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* consulta */
+.consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 860px) { .consulta { grid-template-columns: 0.8fr 1.2fr; } }
+.consulta-foto { border-radius: 1.3rem; overflow: hidden; border: 3px solid oklch(0.80 0.11 312); box-shadow: 0 20px 50px #0009, 0 0 40px oklch(0.65 0.17 305 / .4); max-width: 22rem; margin: 0 auto; }
+.consulta-foto img { display: block; width: 100%; height: auto; }
+.consulta h2 { text-align: left; }
+@media (max-width: 859px) { .consulta h2, .consulta .gancho, .consulta .botoes { text-align: center; justify-content: center; } }
+.gancho { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); margin: .2rem 0 1rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; border: 0; cursor: pointer; font: inherit; font-weight: 700; }
+section { margin: 0 0 2.2rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+
+/* ============ O jogo (28/10/2026) ============ */
+.placar { display: grid; grid-template-columns: repeat(4, 1fr); gap: .4rem; max-width: 32rem; margin: 0 auto 1.1rem; }
+.placar div { text-align: center; border-radius: .9rem; padding: .45rem .2rem; background: oklch(0.18 0.06 300 / .7); border: 1px solid var(--borda); }
+.placar b { display: block; font-family: var(--titulo); font-size: 1.25rem; color: var(--ouro); line-height: 1.2; }
+.placar small { font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--suave); }
+.famoso { text-align: center; max-width: 34rem; margin: 0 auto; border-radius: 1.2rem; padding: 1.2rem 1rem; background: oklch(0.20 0.07 300); border: 1.5px solid oklch(0.85 0.11 88 / .55); box-shadow: 0 0 30px oklch(0.70 0.17 330 / .25); }
+.famoso .band { font-size: 1.6rem; line-height: 1; }
+.famoso .nome { font-family: var(--titulo); font-size: clamp(1.4rem, 5vw, 2rem); font-weight: 700; line-height: 1.15; margin: .4rem 0 .2rem; overflow-wrap: anywhere; }
+.famoso .desc { font-family: var(--serifa); font-size: 1.15rem; color: var(--lavanda); }
+.famoso .perg { margin-top: .7rem; font-size: .85rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ouro); }
+.famoso.entra { animation: surgir .45s ease-out; }
+/* os 12 signos: 3 colunas no telemóvel, 4 a partir dos 560 px, 6 no ecrã largo */
+.signos { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; max-width: 40rem; margin: 1.1rem auto 0; }
+@media (min-width: 560px) { .signos { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 900px) { .signos { grid-template-columns: repeat(6, 1fr); } }
+.signos button { display: flex; flex-direction: column; align-items: center; gap: .1rem; min-width: 0; border-radius: .9rem; padding: .6rem .2rem; cursor: pointer; font: inherit; color: var(--texto);
+  background: oklch(0.26 0.09 305 / .85); border: 1.5px solid var(--borda); transition: transform .15s, background .2s; }
+.signos button:hover:not(:disabled) { transform: translateY(-2px); background: oklch(0.36 0.13 310); }
+.signos button .g { font-size: 1.6rem; line-height: 1.1; color: var(--ouro); }
+.signos button .n { font-size: .82rem; font-weight: 700; line-height: 1.15; }
+.signos button .pt { font-size: .64rem; color: var(--suave); line-height: 1.1; min-height: .7rem; }
+.signos button:disabled { cursor: default; opacity: .45; }
+.signos button.certo { opacity: 1; background: oklch(0.55 0.15 150); border-color: oklch(0.85 0.15 150); }
+.signos button.errado { opacity: 1; background: oklch(0.50 0.17 20); border-color: oklch(0.75 0.17 20); }
+.resposta { display: none; text-align: center; max-width: 34rem; margin: 1.1rem auto 0; border-radius: 1.1rem; padding: 1rem; background: oklch(0.18 0.06 300 / .8); border: 1px solid var(--borda); }
+.resposta.ver { display: block; animation: surgir .4s ease-out; }
+.resposta .veredicto { font-family: var(--titulo); font-size: 1.3rem; font-weight: 700; }
+.resposta .veredicto.sim { color: oklch(0.88 0.15 150); }
+.resposta .veredicto.nao { color: oklch(0.85 0.13 30); }
+.resposta p { margin: .35rem 0 .8rem; color: var(--lavanda); }
+.resposta p b { color: var(--ouro); }
+.fim { display: none; text-align: center; max-width: 34rem; margin: 1.1rem auto 0; border-radius: 1.2rem; padding: 1.3rem 1rem; background: linear-gradient(160deg, oklch(0.40 0.14 320 / .6), oklch(0.22 0.08 300)); border: 1.5px solid oklch(0.88 0.12 88 / .7); }
+.fim.ver { display: block; animation: surgir .5s ease-out; }
+.fim .total { font-family: var(--titulo); font-size: clamp(2.2rem, 8vw, 3rem); font-weight: 700; color: var(--ouro); line-height: 1.1; }
+.fim p { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); margin: .4rem 0 1rem; }
+.fim .botoes { justify-content: center; }
+.copiado { display: block; min-height: 1.2em; margin-top: .5rem; font-size: .82rem; color: oklch(0.85 0.14 150); }
+.nota-jogo { text-align: center; font-size: .76rem; color: var(--suave); margin: 1rem auto 0; max-width: 34rem; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+
+  <section class="heroi">
+    <span class="selo">✦ Jogo · Novidade ✦</span>
+    <h1>Adivinhe o <span class="lil">signo</span> do famoso</h1>
+    <p class="sub">Aparece um famoso do Brasil ou de Portugal. Em que signo é que ele nasceu? Rondas de 10: veja quantos acerta e até onde vai a sua série.</p>
+  </section>
+
+  <section id="jogo" class="cartao" aria-live="polite">
+    <div class="placar">
+      <div><b id="p-ronda">1/10</b><small>Pergunta</small></div>
+      <div><b id="p-acertos">0</b><small>Acertos</small></div>
+      <div><b id="p-serie">0</b><small>Série</small></div>
+      <div><b id="p-melhor">0</b><small>Melhor série</small></div>
+    </div>
+    <div class="famoso" id="famoso">
+      <div class="band" id="f-band"></div>
+      <div class="nome" id="f-nome"></div>
+      <div class="desc" id="f-desc"></div>
+      <div class="perg">Em que signo nasceu?</div>
+    </div>
+    <div class="signos" id="signos" role="group" aria-label="Os 12 signos"></div>
+    <div class="resposta" id="resposta">
+      <div class="veredicto" id="r-veredicto"></div>
+      <p id="r-texto"></p>
+      <button class="btn-grande" type="button" id="btn-seguinte">Próximo famoso →</button>
+    </div>
+    <div class="fim" id="fim">
+      <div class="total" id="fim-total"></div>
+      <p id="fim-texto"></p>
+      <div class="botoes">
+        <button class="btn-wa" type="button" id="btn-partilhar">📤 Partilhar o resultado</button>
+        <button class="btn-grande" type="button" id="btn-nova">🔄 Jogar outra ronda</button>
+      </div>
+      <span class="copiado" id="copiado"></span>
+    </div>
+    <p class="nota-jogo" id="nota-jogo"></p>
+  </section>
+
+  <section id="consulta" class="cartao">
+    <div class="consulta">
+      <div class="consulta-foto"><img src="mestre-r14.jpg" alt="Mestre Alberto com as cartas do Tarot" width="800" height="800" loading="lazy" /></div>
+      <div>
+        <h2>E o seu céu, <span class="lil">o que diz?</span></h2>
+        <p class="gancho" id="gancho">O signo é só o começo. Numa consulta online, o Mestre Alberto junta o seu Mapa Astral e as cartas do Tarot para olhar para a sua vida de agora: o que está a acontecer, o que se repete e o caminho que se abre.</p>
+        <div class="botoes">
+          <a class="btn-grande" href="loja.html">🔮 Marcar uma consulta</a>
+          <a class="btn-wa" id="wa-consulta" href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a> · Famosos: Wikidata (CC0)
+</footer>
+
+<script src="ascendente-calc.js"></script>
+<script src="revolucao-calc.js"></script>
+<script src="nascimento-calc.js"></script>
+<script src="aniversarios-dados.js"></script>
+<script src="adivinha-signo-fama.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // O U+FE0E no fim de cada glifo pede o símbolo de texto: sem ele, os telemóveis desenham emojis
+  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map((g) => g + "︎");
+  // Nomes como o público do Brasil os conhece, com o nome de Portugal ao lado quando é diferente
+  const NOMES = ["Áries (Carneiro)","Touro","Gêmeos","Câncer (Caranguejo)","Leão","Virgem","Libra (Balança)","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const curto = (i) => NOMES[i].split(" (")[0];
+  const doPT = (i) => (NOMES[i].match(/\((.*)\)/) || [])[1] || "";
+  const MESES_L = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  const RONDA = 10;
+
+  // ===== Os famosos que entram no jogo =====
+  // O campo «s» do aniversarios-dados.js é o SIGNO (0 = Áries), não a notoriedade: aqui volta-se a calcular pelo Sol,
+  // e quem nasceu num dia em que o Sol mudou de signo (em qualquer fuso da Terra) fica de fora: sem a hora não se sabe.
+  const FAMA = window.FAMA || {};
+  const TODOS = [];
+  let foraCuspide = 0;
+  for (const [md, lista] of Object.entries(window.ANIVERSARIOS || {})) {
+    const [m, d] = md.split("-").map(Number);
+    lista.forEach((x, k) => {
+      const r = AstroNasc.signoDoDia(x.a, m, d);
+      if (r.cuspide) { foraCuspide++; return; }
+      // a notoriedade: os artigos da Wikipédia; quem faltar na tabela vale pela ordem do dia (o 1.º do dia vale mais)
+      TODOS.push({ ...x, m, d, signo: r.signo, fama: FAMA[x.q] || Math.max(5, 12 - 2 * k) });
+    });
+  }
+  $("nota-jogo").textContent = `${TODOS.length} famosos em jogo. ${foraCuspide} ficaram de fora porque nasceram num dia em que o Sol mudou de signo, e sem a hora não dá para saber.`;
+
+  // ===== A memória do jogo (só neste navegador; num modo privado começa do zero) =====
+  const CHAVE = "adivinha-signo";
+  let est = { jogadas: 0, acertos: 0, serie: 0, melhor: 0, vistos: [] };
+  try { est = Object.assign(est, JSON.parse(localStorage.getItem(CHAVE)) || {}); } catch (e) { /* sem memória: joga-se na mesma */ }
+  if (!Array.isArray(est.vistos)) est.vistos = [];
+  const gravar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(est)); } catch (e) { /* sem memória: deixa passar */ } };
+
+  // ===== Escolher o próximo: os mais conhecidos saem mais (peso = artigos²), sem repetir até se verem todos =====
+  function sortear() {
+    const vistos = new Set(est.vistos);
+    let livres = TODOS.filter((x) => !vistos.has(x.q));
+    if (!livres.length) { est.vistos = []; livres = TODOS.slice(); }
+    const pesos = livres.map((x) => x.fama * x.fama), total = pesos.reduce((a, b) => a + b, 0);
+    let r = Math.random() * total;
+    for (let i = 0; i < livres.length; i++) { r -= pesos[i]; if (r <= 0) return livres[i]; }
+    return livres[livres.length - 1];
+  }
+
+  // os 12 botões
+  $("signos").innerHTML = NOMES.map((n, i) => `<button type="button" data-s="${i}"><span class="g">${GLIFOS[i]}</span><span class="n">${esc(curto(i))}</span><span class="pt">${esc(doPT(i))}</span></button>`).join("");
+  const botoes = [...$("signos").querySelectorAll("button")];
+
+  let atual = null, pergunta = 0, acertosRonda = 0, respondeu = false;
+  function placar() {
+    $("p-ronda").textContent = `${Math.min(pergunta + 1, RONDA)}/${RONDA}`;
+    $("p-acertos").textContent = acertosRonda;
+    $("p-serie").textContent = est.serie;
+    $("p-melhor").textContent = est.melhor;
+  }
+  function mostrar() {
+    atual = sortear(); respondeu = false;
+    const f = $("famoso");
+    f.classList.remove("entra"); void f.offsetWidth; f.classList.add("entra");
+    $("f-band").textContent = atual.p === "PT" ? "🇵🇹" : atual.p === "BR" ? "🇧🇷" : "🇧🇷🇵🇹";
+    $("f-nome").textContent = atual.n;
+    $("f-desc").textContent = atual.d;
+    botoes.forEach((b) => { b.disabled = false; b.classList.remove("certo", "errado"); });
+    $("resposta").classList.remove("ver");
+    placar();
+  }
+  function responder(s) {
+    if (respondeu || !atual) return;
+    respondeu = true;
+    const certo = s === atual.signo;
+    botoes.forEach((b) => { b.disabled = true; });
+    botoes[atual.signo].classList.add("certo");
+    if (!certo) botoes[s].classList.add("errado");
+    est.jogadas++; est.vistos.push(atual.q);
+    if (certo) { est.acertos++; est.serie++; acertosRonda++; est.melhor = Math.max(est.melhor, est.serie); } else est.serie = 0;
+    gravar();
+    pergunta++;
+    const v = $("r-veredicto");
+    v.textContent = certo ? "✓ Acertou!" : `✗ Era ${curto(atual.signo)}`;
+    v.className = "veredicto " + (certo ? "sim" : "nao");
+    $("r-texto").innerHTML = `${esc(atual.n)} nasceu a <b>${atual.d} de ${MESES_L[atual.m - 1]} de ${atual.a}</b>, com o Sol em ${GLIFOS[atual.signo]} <b>${esc(NOMES[atual.signo])}</b>.`;
+    $("btn-seguinte").textContent = pergunta >= RONDA ? "Ver o resultado →" : "Próximo famoso →";
+    $("resposta").classList.add("ver");
+    placar();
+  }
+  botoes.forEach((b) => b.addEventListener("click", () => responder(+b.dataset.s)));
+
+  // ===== O fim de cada ronda de 10 =====
+  const FRASES = [[10, "Perfeito! Você lê os astros como ninguém."], [8, "Muito bem! Tem um faro especial para os signos."], [5, "Nada mau: os astros estão do seu lado."],
+    [3, "Os signos escondem-se bem, não é? Experimente outra ronda."], [0, "Os astros hoje fizeram-se difíceis. A próxima ronda é sua!"]];
+  function fimDaRonda() {
+    $("famoso").style.display = "none"; $("signos").style.display = "none"; $("resposta").classList.remove("ver");
+    $("fim-total").textContent = `${acertosRonda} de ${RONDA}`;
+    $("fim-texto").textContent = `${FRASES.find(([n]) => acertosRonda >= n)[1]} A sua melhor série: ${est.melhor === 1 ? "1 acerto" : est.melhor + " acertos seguidos"}.`;
+    $("copiado").textContent = "";
+    $("fim").classList.add("ver");
+    $("wa-consulta").href = "https://wa.me/351914920427?text=" + encodeURIComponent(`Olá Mestre Alberto, acertei ${acertosRonda} de ${RONDA} no jogo «Adivinhe o signo do famoso» do site. Gostava de marcar uma consulta.`);
+  }
+  function novaRonda() {
+    pergunta = 0; acertosRonda = 0;
+    $("fim").classList.remove("ver"); $("famoso").style.display = ""; $("signos").style.display = "";
+    mostrar();
+  }
+  $("btn-seguinte").addEventListener("click", () => { if (pergunta >= RONDA) fimDaRonda(); else mostrar(); });
+  $("btn-nova").addEventListener("click", novaRonda);
+
+  // ===== Partilhar: o menu do telemóvel quando existe; senão o WhatsApp, e o texto copiado =====
+  $("btn-partilhar").addEventListener("click", async () => {
+    const url = location.origin + location.pathname;
+    const texto = `Acertei ${acertosRonda} de ${RONDA} no jogo «Adivinhe o signo do famoso» do Mestre Alberto 🔮 Consegue fazer melhor?`;
+    if (navigator.share) {
+      try { await navigator.share({ title: "Adivinhe o signo do famoso", text: texto, url }); return; } catch (e) { if (e && e.name === "AbortError") return; }
+    }
+    try { await navigator.clipboard.writeText(texto + " " + url); $("copiado").textContent = "✓ Texto copiado: é só colar onde quiser."; } catch (e) { /* sem área de transferência: fica o WhatsApp */ }
+    window.open("https://wa.me/?text=" + encodeURIComponent(texto + " " + url), "_blank", "noopener");
+  });
+
+  if (TODOS.length) mostrar();
+  else $("f-nome").textContent = "Não consegui carregar os famosos. Recarregue a página, por favor.";
+})();
+</script>
+</body>
+</html>

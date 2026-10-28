@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- EXPERIÊNCIA 28/10/2026 — página da área Novidades; textos por aprovar pelo Mestre Alberto.
+     Horóscopo Chinês: o animal e o elemento pela data de nascimento. O ano chinês começa no Ano Novo
+     Chinês, não a 1 de Janeiro: as datas vêm de horoscopo-chines-dados.js, CALCULADAS pelo
+     ~/site-genialtarot-dados/gerar-ceu.py com o Swiss Ephemeris (o 1.º mês do calendário chinês, na
+     hora da China), de 1899 a 2101. Nada sai do aparelho: o cálculo é todo feito aqui. -->
+<meta name="robots" content="noindex" />
+<title>Horóscopo Chinês — o seu Animal e o seu Elemento · Mestre Alberto</title>
+<meta name="description" content="Descubra o seu animal e o seu elemento no Horóscopo Chinês pela data de nascimento, com o Ano Novo Chinês calculado ano a ano. E veja o ano chinês em curso e o próximo." />
+<meta name="theme-color" content="#4a1418" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Horóscopo Chinês — Mestre Alberto" />
+<meta property="og:description" content="O seu animal e o seu elemento no Horóscopo Chinês, com o Ano Novo Chinês calculado." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/horoscopo-chines" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Horóscopo Chinês — vermelho-laca e dourado (28/10/2026) ============ */
+:root {
+  --fundo: oklch(0.16 0.06 20);
+  --texto: oklch(0.97 0.015 60);
+  --suave: oklch(0.86 0.04 50);
+  --lilas: oklch(0.72 0.15 30);
+  --lilas-claro: oklch(0.88 0.08 70);
+  --lavanda: oklch(0.94 0.04 70);
+  --ouro: oklch(0.86 0.13 88);
+  --borda: oklch(0.80 0.12 70 / 0.35);
+  --vidro: oklch(0.28 0.08 25 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.66 0.20 30), oklch(0.55 0.21 25) 55%, oklch(0.45 0.18 20));
+  --grad-rosa: linear-gradient(135deg, oklch(0.93 0.10 92), oklch(0.82 0.14 80) 55%, oklch(0.72 0.15 60));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.38 0.14 25) 0%, oklch(0.20 0.08 20) 45%, oklch(0.11 0.04 15) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+/* 28/10/2026: margem de 16 px de cada lado no telemóvel (100% − 2rem) e nada a passar da largura */
+.caixa { position: relative; z-index: 1; width: min(68rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2.2rem; }
+
+/* topo — a pílula «‹ genialtarot.com» igual às outras páginas */
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 20 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: oklch(0.85 0.13 88); }
+
+/* herói: os 12 animais à roda, como a roda do zodíaco do Mapa Astral */
+.heroi { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; text-align: center; padding: 1rem 0 2rem; }
+@media (min-width: 860px) { .heroi { grid-template-columns: 1.05fr 1fr; text-align: left; } }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 30); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 34rem; margin: 0 auto 1rem; }
+@media (min-width: 860px) { .sub { margin-left: 0; } }
+.btn-grande { display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+  color: white; background: var(--grad-lilas); border-radius: 999px; padding: .95rem 1.7rem; box-shadow: 0 10px 30px oklch(0.50 0.19 25 / .5), inset 0 1px 0 #fff5;
+  transition: transform .2s, box-shadow .2s; }
+.btn-grande:hover { transform: translateY(-2px) scale(1.02); }
+.roda-wrap { position: relative; width: min(24rem, 84vw); aspect-ratio: 1; margin: 0 auto; }
+.roda { position: absolute; inset: 0; border-radius: 50%; animation: gira 80s linear infinite;
+  background: conic-gradient(from 0deg, oklch(0.62 0.20 28 / .35), oklch(0.85 0.12 88 / .25), oklch(0.62 0.20 28 / .35), oklch(0.85 0.12 88 / .25), oklch(0.62 0.20 28 / .35));
+  box-shadow: 0 0 60px oklch(0.60 0.20 28 / .45), inset 0 0 40px oklch(0.25 0.08 20 / .6); }
+.roda span { position: absolute; left: 50%; top: 50%; width: 2.4rem; height: 2.4rem; margin: -1.2rem 0 0 -1.2rem; display: grid; place-items: center; font-size: 1.6rem; }
+@keyframes gira { to { transform: rotate(360deg); } }
+.centro { position: absolute; inset: 22%; border-radius: 50%; display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle, oklch(0.40 0.16 25), oklch(0.20 0.08 20)); border: 3px solid var(--ouro); box-shadow: 0 0 0 6px oklch(0.50 0.18 25 / .45), 0 20px 50px #0008; }
+.centro b { font-size: clamp(3rem, 12vw, 4.6rem); line-height: 1; color: var(--ouro); text-shadow: 0 0 22px oklch(0.85 0.13 88 / .6); font-family: serif; }
+.centro small { display: block; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--lavanda); margin-top: .3rem; }
+
+/* cartões */
+.cartao { background: linear-gradient(160deg, oklch(0.29 0.09 22), oklch(0.20 0.07 18)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1.1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.45rem, 3.6vw, 2.1rem); margin: 0 0 .4rem; text-align: center; }
+.int { text-align: center; color: var(--suave); margin: 0 auto 1.3rem; max-width: 38rem; }
+
+/* formulário (a data escrita à mão, as mesmas regras do Mapa Astral) */
+.form { max-width: 26rem; margin: 0 auto; }
+label.campo { display: flex; flex-direction: column; gap: .35rem; font-size: .88rem; font-weight: 600; color: var(--lavanda); }
+label.campo small { font-weight: 400; color: var(--suave); }
+input[type=text] { width: 100%; font: inherit; font-size: 1.1rem; text-align: center; letter-spacing: .06em; color: var(--texto); background: oklch(0.16 0.05 20 / .75); border: 1.5px solid var(--borda);
+  border-radius: .8rem; padding: .85rem .9rem; outline: none; color-scheme: dark; }
+input:focus { border-color: var(--ouro); box-shadow: 0 0 0 4px oklch(0.85 0.13 88 / .2); }
+.erro { display: none; margin-top: .9rem; padding: .7rem .9rem; border-radius: .8rem; background: oklch(0.40 0.14 20 / .35); border: 1px solid oklch(0.65 0.18 20 / .6); font-size: .9rem; }
+.erro.ver { display: block; }
+.enviar { display: flex; justify-content: center; margin-top: 1.2rem; }
+.nota-priv { text-align: center; font-size: .76rem; color: var(--suave); margin-top: .8rem; }
+
+/* resultado */
+#resultado { display: none; scroll-margin-top: 1rem; border-color: oklch(0.86 0.13 88 / .6); }
+#resultado.ver { display: block; animation: surgir .7s ease-out; }
+@keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.res-cab { text-align: center; }
+.res-cab .emo { font-size: clamp(3.4rem, 14vw, 5rem); line-height: 1.1; }
+.res-cab .han { font-size: 1.6rem; color: var(--ouro); font-family: serif; }
+.res-nome { display: block; font-family: var(--titulo); font-size: clamp(1.8rem, 6vw, 2.8rem); font-weight: 700; line-height: 1.15; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .45rem; margin: .8rem 0 0; }
+.chip { border-radius: 999px; padding: .35rem .85rem; font-size: .88rem; font-weight: 700; background: oklch(0.18 0.06 20); border: 1px solid var(--borda); }
+.res-ano { text-align: center; font-size: .92rem; color: oklch(0.93 0.03 60); margin: .9rem auto 0; max-width: 34rem; }
+.aviso-borda { max-width: 36rem; margin: 1rem auto 0; text-align: center; border-radius: 1rem; padding: .8rem 1rem; background: oklch(0.85 0.13 88 / .14); border: 1px solid oklch(0.88 0.13 88 / .6); font-size: .9rem; }
+.aviso-borda:empty { display: none; }
+.tema { margin-top: 1.2rem; border-radius: 1.1rem; padding: 1.1rem 1.2rem 1.2rem; background: oklch(0.19 0.06 20); border: 1px solid var(--borda); }
+.tema .num { font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--ouro); }
+.tema h3 { font-family: var(--titulo); font-size: 1.2rem; margin: .15rem 0 .5rem; color: var(--lilas-claro); }
+.tema p { margin: 0; font-family: var(--serifa); font-size: 1.18rem; line-height: 1.6; color: oklch(0.98 0.01 60); }
+
+/* o ano em curso e o próximo */
+.anos { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+.ano { text-align: center; border-radius: 1.2rem; padding: 1.2rem 1rem; background: oklch(0.19 0.06 20); border: 1px solid var(--borda); }
+.ano.agora { border: 2px solid var(--ouro); box-shadow: 0 0 26px oklch(0.85 0.13 88 / .3); }
+.ano .rot { font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.ano .emo { font-size: 3rem; line-height: 1.2; }
+.ano .n { font-family: var(--titulo); font-size: 1.35rem; font-weight: 700; }
+.ano .q { margin-top: .5rem; font-size: .9rem; color: oklch(0.93 0.03 60); }
+.ano .q b { color: var(--ouro); }
+.ano .q small { display: block; color: var(--suave); font-size: .78rem; margin-top: .3rem; }
+
+/* os 12 animais e os 5 elementos */
+.animais { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+.an { border-radius: 1.1rem; padding: 1rem 1.05rem; background: oklch(0.19 0.06 20 / .9); border: 1px solid var(--borda); }
+.an.seu { border: 2px solid var(--ouro); box-shadow: 0 0 22px oklch(0.85 0.13 88 / .3); }
+.an .t { display: flex; align-items: center; gap: .55rem; font-family: var(--titulo); font-weight: 700; font-size: 1.1rem; }
+.an .t .e { font-size: 1.8rem; line-height: 1; }
+.an .t .h { margin-left: auto; font-family: serif; font-size: 1.3rem; color: var(--ouro); }
+.an .anos-de { margin: .35rem 0 0; font-size: .78rem; color: var(--suave); }
+.an p { margin: .5rem 0 0; font-family: var(--serifa); font-size: 1.08rem; line-height: 1.5; color: var(--lavanda); }
+.elementos { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.el { border-radius: 1.1rem; padding: 1rem 1.05rem; background: oklch(0.19 0.06 20 / .9); border: 1px solid var(--borda); border-top: 4px solid var(--cor); }
+.el .t { font-family: var(--titulo); font-weight: 700; font-size: 1.1rem; }
+.el .t span { font-family: serif; color: var(--ouro); margin-left: .3rem; }
+.el p { margin: .4rem 0 0; font-family: var(--serifa); font-size: 1.08rem; line-height: 1.5; color: var(--lavanda); }
+.yy { max-width: 44rem; margin: 1.2rem auto 0; display: grid; gap: .6rem; grid-template-columns: 1fr; }
+@media (min-width: 680px) { .yy { grid-template-columns: 1fr 1fr; } }
+.yy div { border-radius: .9rem; padding: .75rem .95rem; background: oklch(0.19 0.06 20 / .9); border: 1px solid var(--borda); font-size: .92rem; }
+.yy b { color: var(--ouro); }
+.como { max-width: 44rem; margin: 0 auto; font-family: var(--serifa); font-size: 1.15rem; line-height: 1.6; color: var(--lavanda); }
+.como p { margin: 0 0 .8rem; }
+
+/* 28/10/2026: o aviso vermelho quando os dados chegam ao fim (regra dele: nada de dados velhos sem aviso) */
+.aviso-fim { display: none; margin: 0 0 2rem; border-radius: 1.2rem; padding: 1.2rem 1.3rem; text-align: center; font-weight: 700; font-size: 1.05rem;
+  color: white; background: oklch(0.45 0.19 25); border: 3px solid oklch(0.70 0.22 25); box-shadow: 0 0 34px oklch(0.60 0.22 25 / .6); }
+.aviso-fim.ver { display: block; }
+.aviso-fim small { display: block; margin-top: .4rem; font-weight: 500; font-size: .9rem; }
+
+/* consulta (a mesma do Mapa Astral) */
+.consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 860px) { .consulta { grid-template-columns: 0.8fr 1.2fr; } }
+.consulta-foto { border-radius: 1.3rem; overflow: hidden; border: 3px solid oklch(0.88 0.12 88); box-shadow: 0 20px 50px #0009, 0 0 40px oklch(0.55 0.18 25 / .4); max-width: 22rem; margin: 0 auto; }
+.consulta-foto img { display: block; width: 100%; height: auto; }
+.consulta h2 { text-align: left; }
+@media (max-width: 859px) { .consulta h2, .consulta .gancho, .consulta .botoes { text-align: center; justify-content: center; } }
+.gancho { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); margin: .2rem 0 1rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+
+  <div class="aviso-fim" id="aviso-fim" role="alert"></div>
+
+  <section class="heroi">
+    <div>
+      <span class="selo">✦ Grátis ✦</span>
+      <h1>Horóscopo <span class="lil">Chinês</span></h1>
+      <p class="sub">Descubra o animal e o elemento do ano em que nasceu. No calendário chinês o ano não começa a 1 de janeiro: começa numa Lua Nova, entre o fim de janeiro e meados de fevereiro, e nós calculamos essa data para cada ano.</p>
+      <a class="btn-grande" href="#calcular">🏮 Descobrir o meu animal</a>
+    </div>
+    <div class="roda-wrap" aria-hidden="true">
+      <div class="roda" id="roda"></div>
+      <div class="centro"><div><b id="centro-han">生</b><small id="centro-rot">o seu ano</small></div></div>
+    </div>
+  </section>
+
+  <section id="calcular" class="cartao">
+    <h2>A sua data de <span class="lil">nascimento</span></h2>
+    <p class="int">Só precisamos do dia, do mês e do ano. Quem nasceu em janeiro ou fevereiro pode ter um animal diferente do que pensa: depende do dia do Ano Novo Chinês.</p>
+    <form id="form" class="form" novalidate>
+      <label class="campo">Data de nascimento <small>(dia/mês/ano, ex.: 15/02/1990)</small>
+        <input type="text" id="data" required inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" />
+      </label>
+      <div class="erro" id="erro" role="alert"></div>
+      <div class="enviar"><button class="btn-grande" type="submit">🐉 Ver o meu Horóscopo Chinês</button></div>
+      <p class="nota-priv">🔒 O cálculo é feito no seu telefone ou computador. A sua data não sai daqui.</p>
+    </form>
+  </section>
+
+  <section id="resultado" class="cartao" aria-live="polite">
+    <div class="res-cab">
+      <div class="emo" id="r-emo"></div>
+      <div class="han" id="r-han"></div>
+      <span class="res-nome" id="r-nome"></span>
+      <div class="chips" id="r-chips"></div>
+      <p class="res-ano" id="r-ano"></p>
+    </div>
+    <div class="aviso-borda" id="r-borda"></div>
+    <div class="tema"><span class="num">O seu animal</span><h3 id="r-h-animal"></h3><p id="r-t-animal"></p></div>
+    <div class="tema"><span class="num">O seu elemento</span><h3 id="r-h-elem"></h3><p id="r-t-elem"></p></div>
+    <div class="tema"><span class="num">A sua energia</span><h3 id="r-h-yy"></h3><p id="r-t-yy"></p></div>
+  </section>
+
+  <section class="cartao">
+    <h2>O ano chinês <span class="lil">agora</span></h2>
+    <p class="int" id="anos-int">O ano chinês em curso e o que vem a seguir, com o dia em que cada um começa.</p>
+    <div class="anos" id="anos"></div>
+  </section>
+
+  <section class="cartao">
+    <h2>Os 12 <span class="lil">animais</span></h2>
+    <p class="int">Cada animal volta de 12 em 12 anos. Os anos ao lado de cada um são os anos chineses: quem nasceu em janeiro ou no início de fevereiro deve confirmar acima.</p>
+    <div class="animais" id="animais"></div>
+  </section>
+
+  <section class="cartao">
+    <h2>Os 5 <span class="lil">elementos</span></h2>
+    <p class="int">O elemento muda de dois em dois anos e dá o tom ao animal: um Cavalo de Fogo não é igual a um Cavalo de Água. O ciclo completo, animal e elemento, leva 60 anos.</p>
+    <div class="elementos" id="elementos"></div>
+    <div class="yy">
+      <div><b>☀ Yang</b>: a energia que vai para fora. Ativa, direta, de iniciativa. Os anos yang terminam em número par.</div>
+      <div><b>☾ Yin</b>: a energia que vai para dentro. Acolhedora, intuitiva, de reflexão. Os anos yin terminam em número ímpar.</div>
+    </div>
+  </section>
+
+  <section class="cartao">
+    <h2>Como se calcula o <span class="lil">Ano Novo Chinês</span></h2>
+    <div class="como">
+      <p>O calendário chinês segue a Lua e o Sol ao mesmo tempo. Cada mês começa numa Lua Nova, e o ano novo começa, quase sempre, na segunda Lua Nova depois do solstício de dezembro, contada na hora da China.</p>
+      <p>De vez em quando o calendário precisa de um mês a mais para não se afastar das estações, e quando esse mês extra cai no fim do ano o Ano Novo passa para a terceira Lua Nova. Por isso não usamos uma regra simples: calculamos o céu de cada ano, um a um.</p>
+    </div>
+  </section>
+
+  <section id="consulta" class="cartao">
+    <div class="consulta">
+      <div class="consulta-foto"><img src="mestre-r14.jpg" alt="Mestre Alberto com as cartas do Tarot" width="800" height="800" loading="lazy" /></div>
+      <div>
+        <h2>O seu animal é <span class="lil">só o começo</span></h2>
+        <p class="gancho" id="gancho">Numa consulta online, o Mestre Alberto junta o seu Mapa Astral e as cartas do Tarot para olhar para a sua vida de agora: o que está a acontecer, o que se repete e o caminho que se abre.</p>
+        <div class="botoes">
+          <a class="btn-grande" href="loja.html">🔮 Marcar uma consulta</a>
+          <a class="btn-wa" id="wa-consulta" href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p class="fonte" id="fonte"></p>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script src="horoscopo-chines-dados.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  // Os nomes como o público do Brasil os conhece, com o de Portugal entre parênteses (a mesma regra dos signos)
+  const ANIMAIS = ["Rato","Búfalo (Boi)","Tigre","Coelho","Dragão","Serpente","Cavalo","Cabra","Macaco","Galo","Cachorro (Cão)","Porco"];
+  const EMO = ["🐀","🐂","🐅","🐇","🐉","🐍","🐎","🐐","🐒","🐓","🐕","🐖"];
+  const HAN = ["鼠","牛","虎","兔","龍","蛇","馬","羊","猴","雞","狗","豬"];
+  const ELEM = ["Madeira","Fogo","Terra","Metal","Água"], ELEM_HAN = ["木","火","土","金","水"];
+  const COR = ["#5fcf7a", "#ff7a45", "#e8c46a", "#e9eef5", "#4fb3ff"];
+  const curto = (i) => ANIMAIS[i].split(" (")[0];
+  // o ciclo de 60: o tronco (elemento e yin/yang) e o ramo (animal) de um ano chinês
+  const tronco = (a) => ((a - 4) % 10 + 10) % 10, ramo = (a) => (a - 4 + 1200) % 12;
+  const elem = (a) => Math.floor(tronco(a) / 2), yang = (a) => tronco(a) % 2 === 0;
+  const nome = (a) => `${curto(ramo(a))} de ${ELEM[elem(a)]}`;
+  const doDa = (a) => [5, 7].includes(ramo(a)) ? "da" : "do";   // a Serpente e a Cabra: «o ano da Cabra»
+
+  // ===== Textos (por aprovar pelo Mestre Alberto) =====
+  const T_ANIMAL = [
+    "Esperto, rápido e cheio de recursos. O Rato vê oportunidades onde os outros veem problemas e sabe guardar para os dias difíceis. Cresce quando aprende a confiar mais e a não carregar sozinho todas as preocupações.",
+    "Paciente, firme e trabalhador. O Búfalo constrói devagar, mas o que constrói fica. É leal e de palavra; o seu desafio é aceitar que nem tudo depende de esforço e que mudar de ideias também é sabedoria.",
+    "Corajoso, intenso e generoso. O Tigre não suporta injustiças e avança onde os outros hesitam. A sua força cresce quando aprende a escolher as batalhas e a descansar sem culpa.",
+    "Gentil, diplomático e sensível à beleza. O Coelho cria harmonia à sua volta e tem um faro fino para as pessoas. Precisa de coragem para dizer «não» e para enfrentar os conflitos em vez de fugir deles.",
+    "Carismático, confiante e cheio de energia. O Dragão nasceu para grandes projetos e inspira quem está à volta. O seu caminho de crescimento passa por ouvir mais e por aceitar ajuda.",
+    "Intuitiva, discreta e profunda. A Serpente pensa antes de agir e raramente se engana sobre as pessoas. Ganha muito quando partilha o que sente e baixa um pouco a guarda.",
+    "Livre, alegre e cheio de movimento. O Cavalo precisa de espaço, de estrada e de novidade, e contagia os outros com o seu entusiasmo. O desafio é terminar o que começa e ter paciência com os ritmos mais lentos.",
+    "Sensível, criativa e de coração bondoso. A Cabra tem jeito para a arte, para o cuidado e para tornar a vida mais bonita. Precisa de acreditar no próprio valor e de depender menos da aprovação dos outros.",
+    "Engenhoso, divertido e curioso. O Macaco aprende depressa, resolve problemas com criatividade e faz amigos com facilidade. Cresce quando põe a esperteza ao serviço da profundidade, e não só da pressa.",
+    "Organizado, honesto e trabalhador. O Galo gosta das coisas bem-feitas e diz o que pensa. A sua lição é a gentileza: nem todas as verdades precisam de ser ditas da mesma maneira.",
+    "Fiel, justo e protetor. O Cachorro é o amigo das horas difíceis e não tolera a mentira. Precisa de aprender a confiar no futuro e a não carregar as preocupações do mundo inteiro.",
+    "Generoso, sincero e amante dos prazeres simples. O Porco gosta de partilhar, de boa mesa e de boas companhias. O seu desafio é proteger-se de quem abusa da sua bondade.",
+  ];
+  const T_ELEM = [
+    "A Madeira é o crescimento: como uma árvore, procura a luz e expande-se. Dá generosidade, criatividade e vontade de ajudar os outros a crescer. Em excesso, espalha-se por demasiados projetos ao mesmo tempo.",
+    "O Fogo é a paixão e o entusiasmo. Dá carisma, coragem e a capacidade de animar quem está à volta. Pede cuidado com a impaciência e com as decisões tomadas no calor do momento.",
+    "A Terra é a estabilidade. Dá bom senso, paciência e os pés no chão: é o elemento de quem constrói com tempo. Em excesso, pode virar teimosia ou medo de mudar.",
+    "O Metal é a determinação e a clareza. Dá firmeza, sentido de justiça e a capacidade de ir até ao fim. Pede flexibilidade: o metal mais forte é também o que sabe dobrar sem partir.",
+    "A Água é a intuição e a sabedoria. Dá sensibilidade, capacidade de adaptação e talento para comunicar. Pede atenção às emoções guardadas: a água parada pesa, a que corre renova.",
+  ];
+  const T_YY = [
+    "Yang é a energia que vai para fora: ativa, direta, de iniciativa. Você tende a agir primeiro e a pensar pelo caminho, e brilha quando tem um objetivo à frente.",
+    "Yin é a energia que vai para dentro: acolhedora, intuitiva, de reflexão. Você tende a observar antes de agir, e a sua força está na escuta e na profundidade.",
+  ];
+
+  // ===== Os dados calculados: o dia (na China) em que começa cada ano chinês =====
+  const D = window.ANO_CHINES, agora = Date.now();
+  let TZ = "UTC";
+  try { TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"; } catch (e) {}
+  // a meia-noite da China desse dia, em UTC: hora média de Pequim (UTC+7h45m40s) antes de 1929, UTC+8 depois (como o gerador)
+  const inicioUTC = (x) => { const [a, m, d] = x.d.split("-").map(Number); return Date.UTC(a, m - 1, d) - (a < 1929 ? 27940e3 : 288e5); };
+  function partes(t) {
+    const p = {};
+    new Intl.DateTimeFormat("en-GB", { timeZone: TZ, year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
+      .formatToParts(new Date(t)).forEach(x => p[x.type] = x.value);
+    return { a: +p.year, m: +p.month, d: +p.day, h: p.hour, min: p.minute };
+  }
+  const dataISO = (s) => { const [a, m, d] = s.split("-").map(Number); return `${d} de ${MESES[m - 1]} de ${a}`; };
+  const dataHora = (t) => { const p = partes(t); return `${p.d} de ${MESES[p.m - 1]} de ${p.a}, ${p.h}:${p.min}`; };
+  const vespera = (s) => { const [a, m, d] = s.split("-").map(Number); return new Date(Date.UTC(a, m - 1, d - 1)).toISOString().slice(0, 10); };
+
+  // A roda dos 12 animais à volta do centro
+  const roda = $("roda");
+  EMO.forEach((g, i) => { const s = document.createElement("span"); s.textContent = g; s.dataset.a = (i * 30 - 90) * Math.PI / 180; roda.appendChild(s); });
+  function poeAnimais() { const w = roda.offsetWidth; roda.querySelectorAll("span").forEach((s) => { const a = +s.dataset.a; s.style.transform = `translate(${Math.cos(a) * w * 0.41}px, ${Math.sin(a) * w * 0.41}px)`; }); }
+  poeAnimais(); addEventListener("resize", poeAnimais);
+
+  const ANOS = (D && D.anos) || [];
+  const ultimo = ANOS[ANOS.length - 1];
+  const emCurso = ANOS.filter(x => inicioUTC(x) <= agora).pop();
+  const seguinte = ANOS.find(x => inicioUTC(x) > agora);
+
+  // ===== Os dados acabaram (ou não chegaram): aviso vermelho em vez de um ano velho =====
+  if (!ANOS.length || !seguinte) {
+    $("aviso-fim").innerHTML = `⚠️ As datas do Ano Novo Chinês desta página chegaram ao fim.<small>Estamos a preparar as datas novas. Até lá, o ano chinês em curso não aparece aqui.</small>`;
+    $("aviso-fim").classList.add("ver");
+    console.warn("horoscopo-chines-dados.js chegou ao fim: correr ~/site-genialtarot-dados/gerar-ceu.py");
+  }
+
+  // ===== O ano em curso e o próximo =====
+  if (emCurso && seguinte) {
+    const depois = ANOS[ANOS.indexOf(seguinte) + 1];
+    const cartaoAno = (x, prox, rot, classe) => `<article class="ano${classe}"><div class="rot">${rot}</div><div class="emo">${EMO[ramo(x.a)]}</div>`
+      + `<div class="n">${nome(x.a)}</div><div class="q">${yang(x.a) ? "☀ yang" : "☾ yin"} · ${ELEM_HAN[elem(x.a)]}${HAN[ramo(x.a)]}</div>`
+      + `<div class="q">De <b>${dataISO(x.d)}</b>${prox ? ` a <b>${dataISO(vespera(prox.d))}</b>` : ""}`
+      + `<small>Datas da China. No seu fuso (${esc(TZ.replace(/_/g, " "))}) ${inicioUTC(x) <= agora ? "começou" : "começa"} a ${dataHora(inicioUTC(x))}.</small></div></article>`;
+    $("anos").innerHTML = cartaoAno(emCurso, seguinte, "Agora", " agora") + cartaoAno(seguinte, depois, "A seguir", "");
+    $("centro-han").textContent = HAN[ramo(emCurso.a)];
+    $("centro-rot").textContent = "agora: " + nome(emCurso.a);
+    const n = Math.ceil((inicioUTC(seguinte) - agora) / 864e5);
+    $("anos-int").textContent = `Estamos no ano ${doDa(emCurso.a)} ${nome(emCurso.a)}. O ano ${doDa(seguinte.a)} ${nome(seguinte.a)} começa daqui a ${n} ${n === 1 ? "dia" : "dias"}.`;
+  } else $("anos").innerHTML = "";
+
+  // ===== Os 12 animais e os 5 elementos =====
+  const anoAgora = emCurso ? emCurso.a : new Date().getFullYear();
+  function desenharAnimais(seu) {
+    $("animais").innerHTML = T_ANIMAL.map((t, i) => {
+      const anos = ANOS.map(x => x.a).filter(a => ramo(a) === i && a >= anoAgora - 72 && a <= anoAgora + 12);
+      return `<article class="an${seu === i ? " seu" : ""}"><div class="t"><span class="e">${EMO[i]}</span>${esc(ANIMAIS[i])}<span class="h">${HAN[i]}</span></div>`
+        + `<div class="anos-de">${anos.join(" · ")}</div><p>${esc(t)}</p></article>`;
+    }).join("");
+  }
+  desenharAnimais(-1);
+  $("elementos").innerHTML = T_ELEM.map((t, i) => `<article class="el" style="--cor:${COR[i]}"><div class="t">${ELEM[i]}<span>${ELEM_HAN[i]}</span></div><p>${esc(t)}</p></article>`).join("");
+
+  // ===== A data escrita à mão (as mesmas regras do Mapa Astral) =====
+  // Aceita 15/03/1990, 15-3-1990, 15.03.90, 15 03 1990, 15031990 e «15 de março de 1990».
+  const sem = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  const MES3 = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  function lerData(txt) {
+    let t = sem(txt).replace(/\bde\b/g, " ");
+    MES3.forEach((m, i) => { t = t.replace(new RegExp("\\b" + m + "[a-z]*", "g"), " " + (i + 1) + " "); });
+    let p = t.match(/\d+/g) || [];
+    if (p.length === 1 && /^\d{8}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length === 1 && /^\d{6}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length !== 3) return null;
+    let [d, m, a] = p.map(Number);
+    if (p[2].length <= 2) a += (a <= new Date().getFullYear() % 100) ? 2000 : 1900;
+    const dt = new Date(Date.UTC(a, m - 1, d));
+    if (a < 1900 || a > new Date().getFullYear() || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) return null;
+    return [a, m, d];
+  }
+  const inpData = $("data");
+  inpData.addEventListener("input", (e) => {
+    const v = inpData.value;
+    if (e.inputType && e.inputType.startsWith("delete")) return;
+    if (/^[\d\/]*$/.test(v)) {
+      const dig = v.replace(/\D/g, "").slice(0, 8);
+      inpData.value = dig.length > 4 ? dig.slice(0, 2) + "/" + dig.slice(2, 4) + "/" + dig.slice(4)
+                    : dig.length > 2 ? dig.slice(0, 2) + "/" + dig.slice(2) : dig;
+    }
+  });
+  inpData.addEventListener("blur", () => {
+    const r = lerData(inpData.value);
+    if (r) inpData.value = String(r[2]).padStart(2, "0") + "/" + String(r[1]).padStart(2, "0") + "/" + r[0];
+  });
+
+  // ===== Calcular =====
+  function mostraErro(t) { const e = $("erro"); e.textContent = t; e.classList.toggle("ver", !!t); }
+  function calcular(rolar) {
+    mostraErro("");
+    const v = inpData.value;
+    if (!v.trim()) return mostraErro("Falta a data de nascimento.");
+    const r = lerData(v);
+    if (!r) return mostraErro("Não percebi a data. Escreva assim: dia/mês/ano, por exemplo 15/02/1990.");
+    const iso = `${r[0]}-${String(r[1]).padStart(2, "0")}-${String(r[2]).padStart(2, "0")}`;
+    const x = ANOS.filter(y => y.d <= iso).pop();
+    if (!x || iso > ultimo.d.slice(0, 4) + "-12-31") return mostraErro("Esta data está fora do calendário desta página.");
+    const prox = ANOS[ANOS.indexOf(x) + 1];
+    const a = x.a, b = ramo(a), e = elem(a);
+    $("r-emo").textContent = EMO[b];
+    $("r-han").textContent = ELEM_HAN[e] + HAN[b];
+    $("r-nome").textContent = nome(a);
+    $("r-chips").innerHTML = `<span class="chip">${EMO[b]} ${esc(ANIMAIS[b])}</span><span class="chip" style="border-color:${COR[e]}">${ELEM_HAN[e]} ${ELEM[e]}</span><span class="chip">${yang(a) ? "☀ Yang" : "☾ Yin"}</span>`;
+    $("r-ano").innerHTML = `O seu ano chinês começou a <b>${dataISO(x.d)}</b>` + (prox ? ` e ${inicioUTC(prox) > agora ? "termina" : "terminou"} a <b>${dataISO(vespera(prox.d))}</b>.` : ".");
+    // Janeiro e fevereiro: o aviso de que o ano chinês não é o do calendário de parede
+    let borda = "";
+    if (a !== r[0]) borda = `Nasceu antes do Ano Novo Chinês de ${r[0]} (${dataISO(prox.d).replace(/ de \d+$/, "")}): por isso o seu animal é o de ${a}, e não o de ${r[0]}.`;
+    if (iso === x.d || (prox && iso === vespera(prox.d)))
+      borda += (borda ? " " : "") + `⚠️ Nasceu mesmo na mudança de ano. O ano chinês muda à meia-noite da China, que no Brasil e em Portugal ainda é a véspera: se nasceu no fim da tarde ou à noite, confirme com a hora de nascimento numa consulta.`;
+    $("r-borda").textContent = borda;
+    $("r-h-animal").textContent = ANIMAIS[b]; $("r-t-animal").textContent = T_ANIMAL[b];
+    $("r-h-elem").textContent = `${ELEM[e]} ${ELEM_HAN[e]}`; $("r-t-elem").textContent = T_ELEM[e];
+    $("r-h-yy").textContent = yang(a) ? "☀ Yang" : "☾ Yin"; $("r-t-yy").textContent = T_YY[yang(a) ? 0 : 1];
+    desenharAnimais(b);
+    $("gancho").textContent = `Você é do signo ${doDa(a)} ${nome(a)}. Numa consulta online, o Mestre Alberto junta o seu Mapa Astral e as cartas do Tarot para olhar para a sua vida de agora: o que está a acontecer, o que se repete e o caminho que se abre.`;
+    $("wa-consulta").href = "https://wa.me/351914920427?text=" + encodeURIComponent(`Olá Mestre Alberto, fiz o Horóscopo Chinês no site: sou do signo ${doDa(a)} ${nome(a)}. Gostava de marcar uma consulta.`);
+    $("resultado").classList.add("ver");
+    if (rolar) $("resultado").scrollIntoView({ behavior: "smooth" });
+  }
+  $("form").addEventListener("submit", (ev) => { ev.preventDefault(); calcular(true); });
+
+  // Vem com a data no endereço (?data=15/02/1990): preenche e calcula
+  const vem = new URLSearchParams(location.search);
+  if (vem.get("data")) { inpData.value = vem.get("data").slice(0, 22); inpData.dispatchEvent(new Event("blur")); calcular(false); }
+  $("wa-consulta").href = $("wa-consulta").href.includes("?") ? $("wa-consulta").href
+    : "https://wa.me/351914920427?text=" + encodeURIComponent("Olá Mestre Alberto, vi no site o Horóscopo Chinês. Gostava de marcar uma consulta.");
+  if (D) $("fonte").textContent = `Ano Novo Chinês calculado pelo ${D.motor}: o início do 1.º mês do calendário chinês, na hora da China · de ${ANOS[1].a} a ${ultimo.a}.`;
+})();
+</script>
+</body>
+</html>

@@ -448,6 +448,8 @@ const PAGINAS = new Set([
   "/horoscopo-do-dia",
   // 27/10/2026: o Tarot Semestral
   "/tarot-semestral",
+  // 28/10/2026: as Novidades (10 páginas em experiência, ideias do astro-seek.com) e a montra delas
+  "/novidades", "/revolucao-solar", "/horoscopo-pessoal", "/carta-de-tarot", "/retrogrados", "/trio-astral", "/calendarios", "/horoscopo-chines", "/fase-lua-nascimento", "/adivinha-signo", "/mapa-do-casal",
 ]);
 
 function contarVisita(request, url, env, ctx) {

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Calendário Lunar 2026 — Fases da Lua, Lua em cada Signo · Mestre Alberto</title>
+<title>Calendário Lunar — Fases da Lua, Lua em cada Signo · Mestre Alberto</title>
 <meta name="description" content="Calendário Lunar com as fases da Lua, a Lua em cada signo dia a dia, eclipses e superluas. Calculado ao minuto pelo Swiss Ephemeris, na hora de Brasília ou de Portugal." />
 <meta name="theme-color" content="#3a2257" />
 <link rel="icon" href="favicon.ico" />
@@ -356,6 +356,8 @@ footer a { color: inherit; }
   const agora = Date.now();
   const pHoje = partes(agora);
   const A0 = L.anos[0], A1 = L.anos[1];
+  // 28/10/2026 (ordem dele: nada parado no tempo): o ano do título é o de hoje, não um número escrito à mão
+  document.title = `Calendário Lunar ${pHoje.a} — Fases da Lua, Lua em cada Signo · Mestre Alberto`;
   let ano = Math.min(Math.max(pHoje.a, A0), A1), mes = pHoje.a < A0 ? 1 : pHoje.a > A1 ? 12 : pHoje.m;
 
   function desenharHoje() {

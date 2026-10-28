@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- EXPERIÊNCIA 28/10/2026 — página da área Novidades; textos por aprovar pelo Mestre Alberto.
+     Planetas retrógrados, Mercúrio primeiro. As datas vêm de retrogrados-dados.js, escrito por
+     ~/site-genialtarot-dados/gerar-ceu.py (Swiss Ephemeris); a página escolhe sozinha, pela data de hoje,
+     o que está em curso e o que vem a seguir. Sem anos escritos à mão (ordem dele: nada parado no tempo). -->
+<meta name="robots" content="noindex" />
+<title>Planetas Retrógrados — Mercúrio Retrógrado e os outros · Mestre Alberto</title>
+<meta name="description" content="Mercúrio está retrógrado agora? Até quando? Os próximos períodos retrógrados de Mercúrio, com as sombras, e os de Vénus, Marte, Júpiter, Saturno, Urano, Neptuno e Plutão, calculados ao minuto." />
+<meta name="theme-color" content="#1c1a4a" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Planetas Retrógrados — Mestre Alberto" />
+<meta property="og:description" content="Mercúrio está retrógrado agora? Até quando? Os próximos retrógrados, calculados ao minuto." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/retrogrados" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Retrógrados — o azul-noite e dourado do Mapa Astral (28/10/2026) ============ */
+:root {
+  --fundo: oklch(0.16 0.06 270);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.04 265);
+  --lilas: oklch(0.74 0.12 270);
+  --lilas-claro: oklch(0.86 0.08 265);
+  --lavanda: oklch(0.93 0.04 265);
+  --ouro: oklch(0.85 0.13 88);
+  --borda: oklch(0.75 0.10 270 / 0.35);
+  --vidro: oklch(0.28 0.08 270 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.72 0.13 260), oklch(0.58 0.17 280) 55%, oklch(0.48 0.18 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.93 0.10 92), oklch(0.80 0.14 80) 55%, oklch(0.70 0.14 60));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklch(0.20 0.08 270) 45%, oklch(0.11 0.04 265) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+/* 28/10/2026: margem de 16 px de cada lado no telemóvel (100% − 2rem) e nada a passar da largura */
+.caixa { position: relative; z-index: 1; width: min(68rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2.2rem; }
+
+/* topo — a pílula «‹ genialtarot.com» igual às outras páginas */
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: oklch(0.85 0.13 88); }
+
+/* herói */
+.heroi { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; text-align: center; padding: 1rem 0 2rem; }
+@media (min-width: 860px) { .heroi { grid-template-columns: 1fr 1fr; text-align: left; } }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 34rem; margin: 0 auto 1rem; }
+@media (min-width: 860px) { .sub { margin-left: 0; } }
+.nota-fuso { font-size: .8rem; color: var(--suave); }
+.btn-grande { display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+  color: white; background: var(--grad-lilas); border-radius: 999px; padding: .95rem 1.7rem; box-shadow: 0 10px 30px oklch(0.55 0.19 300 / .5), inset 0 1px 0 #fff5;
+  transition: transform .2s, box-shadow .2s; }
+.btn-grande:hover { transform: translateY(-2px) scale(1.02); }
+
+/* cartões */
+.cartao { background: linear-gradient(160deg, oklch(0.29 0.09 272), oklch(0.20 0.07 268)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1.1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.45rem, 3.6vw, 2.1rem); margin: 0 0 .4rem; text-align: center; }
+.int { text-align: center; color: var(--suave); margin: 0 auto 1.3rem; max-width: 38rem; }
+
+/* Mercúrio agora: o cartão grande ao lado do título */
+.agora { text-align: center; border-color: oklch(0.85 0.11 88 / .55); }
+.agora .glifo { font-size: 3.6rem; line-height: 1; color: var(--ouro); text-shadow: 0 0 18px oklch(0.85 0.13 88 / .7); }
+.agora .rot { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); margin-top: .4rem; }
+.agora .estado { font-family: var(--titulo); font-size: clamp(1.35rem, 4.4vw, 1.9rem); font-weight: 700; line-height: 1.2; margin: .3rem 0 .5rem; }
+.agora .estado.r { color: oklch(0.88 0.13 40); }
+.agora .det { font-size: 1rem; color: var(--lavanda); }
+.agora .det b { color: var(--ouro); }
+.agora .conta { display: inline-block; margin-top: .7rem; font-size: .82rem; font-weight: 700; border-radius: 999px; padding: .3rem .85rem; background: oklch(0.16 0.05 268 / .8); border: 1px solid var(--borda); }
+
+/* a lista dos períodos de Mercúrio, cada um com a sua linha do tempo (sombra · retrógrado · sombra) */
+.periodos { display: grid; gap: 1rem; }
+.per { border-radius: 1.1rem; padding: 1rem 1.1rem 1.1rem; background: oklch(0.17 0.05 268 / .85); border: 1px solid var(--borda); }
+.per.agora-sim { border: 2px solid var(--ouro); box-shadow: 0 0 26px oklch(0.85 0.13 88 / .3); }
+.per .cab { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .3rem .8rem; }
+.per h3 { margin: 0; font-family: var(--titulo); font-size: clamp(1.05rem, 3.4vw, 1.25rem); color: var(--lilas-claro); }
+.per .sig { font-size: .9rem; color: var(--ouro); font-weight: 700; }
+.per .marca { font-size: .66rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; border-radius: 999px; padding: .15rem .55rem; color: oklch(0.22 0.06 300); background: var(--grad-ouro); }
+.linha-t { display: flex; height: .75rem; border-radius: 999px; overflow: hidden; margin: .8rem 0 .55rem; position: relative; background: oklch(0.14 0.04 268); }
+.linha-t i { display: block; height: 100%; }
+.linha-t .s1, .linha-t .s2 { background: repeating-linear-gradient(135deg, oklch(0.55 0.08 270), oklch(0.55 0.08 270) 4px, oklch(0.40 0.07 270) 4px, oklch(0.40 0.07 270) 8px); }
+.linha-t .rr { background: linear-gradient(90deg, oklch(0.75 0.16 40), oklch(0.70 0.18 20)); }
+.linha-t .hoje { position: absolute; top: -3px; bottom: -3px; width: 3px; margin-left: -1.5px; background: oklch(0.85 0.20 145); box-shadow: 0 0 8px oklch(0.85 0.20 145); }
+.datas { display: grid; gap: .35rem .8rem; grid-template-columns: 1fr; font-size: .86rem; }
+@media (min-width: 680px) { .datas { grid-template-columns: repeat(4, 1fr); } }
+.datas div { color: oklch(0.92 0.03 265); }
+.datas small { display: block; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--suave); }
+.datas .forte { color: white; font-weight: 700; }
+.legenda { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.2rem; margin: 1rem 0 0; font-size: .78rem; color: var(--suave); }
+.legenda i { display: inline-block; width: 1.4rem; height: .6rem; vertical-align: middle; margin-right: .3rem; border-radius: 999px; }
+.l-sombra { background: repeating-linear-gradient(135deg, oklch(0.55 0.08 270), oklch(0.55 0.08 270) 3px, oklch(0.40 0.07 270) 3px, oklch(0.40 0.07 270) 6px); }
+.l-retro { background: oklch(0.72 0.17 30); }
+.l-hoje { background: oklch(0.85 0.20 145); width: .25rem !important; }
+.mais { display: flex; justify-content: center; margin-top: 1.1rem; }
+.btn-mais { border: 1px solid var(--borda); background: var(--vidro); color: var(--texto); font: inherit; font-weight: 700; font-size: .9rem; border-radius: 999px; padding: .6rem 1.2rem; cursor: pointer; }
+
+/* o que é a retrogradação */
+.explica p { font-family: var(--serifa); font-size: 1.18rem; line-height: 1.6; color: var(--lavanda); max-width: 44rem; margin: 0 auto .9rem; }
+.conselhos { list-style: none; margin: 1.2rem auto 0; padding: 0; display: grid; gap: .6rem; grid-template-columns: 1fr; max-width: 48rem; }
+@media (min-width: 680px) { .conselhos { grid-template-columns: 1fr 1fr; } }
+.conselhos li { display: flex; gap: .7rem; align-items: flex-start; border-radius: .9rem; padding: .75rem .9rem; background: oklch(0.17 0.05 268 / .8); border: 1px solid var(--borda); font-size: .93rem; }
+.conselhos .ico { flex: none; font-size: 1.3rem; line-height: 1.2; }
+.calma { max-width: 44rem; margin: 1.3rem auto 0; text-align: center; border-radius: 1.1rem; padding: 1rem 1.1rem; background: oklch(0.85 0.13 88 / .12); border: 1px solid oklch(0.88 0.13 88 / .55); font-family: var(--serifa); font-size: 1.15rem; color: var(--lavanda); }
+
+/* os 12 signos */
+.signos { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+.sg { border-radius: 1.1rem; padding: 1rem 1.05rem; background: oklch(0.17 0.05 268 / .85); border: 1px solid var(--borda); }
+.sg.toca { border: 2px solid var(--ouro); box-shadow: 0 0 22px oklch(0.85 0.13 88 / .3); }
+.sg .t { display: flex; align-items: center; gap: .55rem; font-family: var(--titulo); font-weight: 700; font-size: 1.05rem; }
+.sg .t .g { font-size: 1.6rem; color: var(--ouro); line-height: 1; }
+.sg p { margin: .5rem 0 0; font-family: var(--serifa); font-size: 1.1rem; line-height: 1.5; color: var(--lavanda); }
+.sg .aviso { display: inline-block; margin-top: .5rem; font-size: .68rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: .15rem .55rem; color: oklch(0.22 0.06 300); background: var(--grad-ouro); }
+
+/* os outros planetas */
+.outros { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+.pl { border-radius: 1.1rem; padding: 1rem 1.1rem; background: oklch(0.17 0.05 268 / .85); border: 1px solid var(--borda); }
+.pl.r { border-color: oklch(0.75 0.16 35 / .8); box-shadow: 0 0 20px oklch(0.70 0.17 30 / .25); }
+.pl .t { display: flex; align-items: center; gap: .6rem; }
+.pl .g { font-size: 2rem; color: var(--ouro); line-height: 1; }
+.pl h3 { margin: 0; font-family: var(--titulo); font-size: 1.2rem; }
+.pl .est { font-size: .8rem; font-weight: 700; color: var(--suave); }
+.pl .est.r { color: oklch(0.85 0.14 40); }
+.pl .quando { margin: .6rem 0 .4rem; font-size: .9rem; color: white; }
+.pl .quando b { color: var(--ouro); }
+.pl p { margin: .3rem 0 0; font-family: var(--serifa); font-size: 1.08rem; line-height: 1.5; color: var(--lavanda); }
+
+/* 28/10/2026: o aviso vermelho quando os dados chegam ao fim (regra dele: nada de dados velhos sem aviso) */
+.aviso-fim { display: none; margin: 0 0 2rem; border-radius: 1.2rem; padding: 1.2rem 1.3rem; text-align: center; font-weight: 700; font-size: 1.05rem;
+  color: white; background: oklch(0.45 0.19 25); border: 3px solid oklch(0.70 0.22 25); box-shadow: 0 0 34px oklch(0.60 0.22 25 / .6); }
+.aviso-fim.ver { display: block; }
+.aviso-fim small { display: block; margin-top: .4rem; font-weight: 500; font-size: .9rem; }
+
+/* consulta (a mesma do Mapa Astral) */
+.consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 860px) { .consulta { grid-template-columns: 0.8fr 1.2fr; } }
+.consulta-foto { border-radius: 1.3rem; overflow: hidden; border: 3px solid oklch(0.88 0.12 88); box-shadow: 0 20px 50px #0009, 0 0 40px oklch(0.60 0.15 270 / .4); max-width: 22rem; margin: 0 auto; }
+.consulta-foto img { display: block; width: 100%; height: auto; }
+.consulta h2 { text-align: left; }
+@media (max-width: 859px) { .consulta h2, .consulta .gancho, .consulta .botoes { text-align: center; justify-content: center; } }
+.gancho { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); margin: .2rem 0 1rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+
+  <div class="aviso-fim" id="aviso-fim" role="alert"></div>
+
+  <section class="heroi">
+    <div>
+      <span class="selo">✦ Calculado ao minuto ✦</span>
+      <h1>Planetas <span class="lil">Retrógrados</span></h1>
+      <p class="sub">Mercúrio está retrógrado agora? Até quando? Veja os próximos períodos, as sombras de entrada e de saída, e o que cada planeta pede quando parece andar para trás.</p>
+      <p class="nota-fuso" id="nota-fuso"></p>
+      <a class="btn-grande" href="#mercurio">☿&#xFE0E; Os próximos de Mercúrio</a>
+    </div>
+    <div class="cartao agora" id="agora" aria-live="polite"></div>
+  </section>
+
+  <div id="dados">
+  <section id="mercurio" class="cartao">
+    <h2>Mercúrio <span class="lil">retrógrado</span></h2>
+    <p class="int">Cada período tem três partes: a sombra de entrada, o retrógrado propriamente dito e a sombra de saída. As horas estão no seu fuso.</p>
+    <div class="periodos" id="lista-mercurio"></div>
+    <div class="legenda"><span><i class="l-sombra"></i>sombra</span><span><i class="l-retro"></i>retrógrado</span><span><i class="l-hoje"></i>hoje</span></div>
+    <div class="mais"><button type="button" class="btn-mais" id="mais-mercurio">Ver mais períodos</button></div>
+  </section>
+  </div>
+
+  <section class="cartao explica">
+    <h2>O que é um planeta <span class="lil">retrógrado</span>?</h2>
+    <p>Retrógrado quer dizer «a andar para trás». Visto da Terra, de tempos a tempos um planeta parece parar no céu, recuar alguns graus e depois voltar a avançar. Nenhum planeta anda mesmo para trás: é um efeito de perspectiva, como quando um carro ultrapassa outro na estrada e o mais lento parece recuar.</p>
+    <p>Na astrologia, é um tempo de «re»: rever, repensar, reorganizar, reencontrar. Mercúrio fala das conversas, das mensagens, dos papéis, das viagens curtas e dos aparelhos. Quando ele recua, estes assuntos pedem mais atenção e mais calma.</p>
+    <p>Antes e depois de cada retrógrado há a <b>sombra</b>: o planeta passa pelos mesmos graus três vezes. Na sombra de entrada os temas começam a aparecer; no retrógrado são revistos; na sombra de saída ficam arrumados.</p>
+    <ul class="conselhos">
+      <li><span class="ico">💾</span><span>Faça cópias de segurança do telefone e do computador, e guarde as fotos importantes.</span></li>
+      <li><span class="ico">📄</span><span>Leia os contratos duas vezes. Se puder esperar, assine depois; se não puder, assine com atenção.</span></li>
+      <li><span class="ico">🕐</span><span>Confirme horários, moradas e reservas. Saia de casa com um pouco mais de tempo.</span></li>
+      <li><span class="ico">💬</span><span>Fale devagar e ouça mais. Uma mensagem relida antes de enviar evita muito mal-entendido.</span></li>
+      <li><span class="ico">🔁</span><span>Retome o que ficou a meio: projetos parados, conversas adiadas, pessoas de quem tem saudades.</span></li>
+      <li><span class="ico">🧘</span><span>Dê-se tempo para pensar. Decisões grandes ganham com mais uns dias de reflexão.</span></li>
+    </ul>
+    <p class="calma">Sem medo: a vida não para. Pode assinar, viajar e começar coisas novas, só com mais atenção. Mercúrio fica retrógrado cerca de três vezes por ano, umas três semanas de cada vez: faz parte do ritmo natural do céu.</p>
+  </section>
+
+  <section id="signos" class="cartao">
+    <h2>O que cada signo deve <span class="lil">cuidar</span></h2>
+    <p class="int">Quando Mercúrio está retrógrado, cada signo sente-o à sua maneira. Leia o do seu signo solar (e, se souber, o do seu Ascendente). Os signos marcados a dourado são os que o próximo Mercúrio retrógrado atravessa.</p>
+    <div class="signos" id="signos-lista"></div>
+  </section>
+
+  <section id="outros" class="cartao">
+    <h2>Os outros <span class="lil">planetas</span></h2>
+    <p class="int">Vénus e Marte ficam retrógrados de vez em quando; de Júpiter a Plutão, todos os anos, durante vários meses. Os que estão retrógrados agora têm a moldura cor de fogo.</p>
+    <div class="outros" id="outros-lista"></div>
+  </section>
+
+  <section id="consulta" class="cartao">
+    <div class="consulta">
+      <div class="consulta-foto"><img src="mestre-r14.jpg" alt="Mestre Alberto com as cartas do Tarot" width="800" height="800" loading="lazy" /></div>
+      <div>
+        <h2>O céu toca no seu mapa <span class="lil">de forma única</span></h2>
+        <p class="gancho" id="gancho">Um retrógrado sente-se de maneira diferente em cada pessoa: depende da casa do seu mapa por onde ele passa. Numa consulta online, o Mestre Alberto junta o seu Mapa Astral e as cartas do Tarot para olhar para a sua vida de agora.</p>
+        <div class="botoes">
+          <a class="btn-grande" href="loja.html">🔮 Marcar uma consulta</a>
+          <a class="btn-wa" id="wa-consulta" href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p class="fonte" id="fonte"></p>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script src="retrogrados-dados.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // O U+FE0E no fim de cada glifo pede o símbolo de texto: sem ele, os telemóveis desenham emojis
+  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map((g) => g + "︎");
+  // Nomes como o público do Brasil os conhece, com o nome de Portugal ao lado quando é diferente
+  const NOMES = ["Áries (Carneiro)","Touro","Gêmeos","Câncer (Caranguejo)","Leão","Virgem","Libra (Balança)","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const curto = (i) => NOMES[i].split(" (")[0];
+  const T = "︎";
+  const MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  const PL = { mercurio: ["☿", "Mercúrio"], venus: ["♀", "Vénus"], marte: ["♂", "Marte"], jupiter: ["♃", "Júpiter"], saturno: ["♄", "Saturno"],
+               urano: ["♅", "Urano"], neptuno: ["♆", "Neptuno"], plutao: ["♇", "Plutão"] };
+
+  // ===== As horas: guardadas em UTC, mostradas no fuso de quem vê (28/10/2026) =====
+  let TZ = "UTC";
+  try { TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"; } catch (e) {}
+  function partes(t) {
+    const p = {};
+    new Intl.DateTimeFormat("en-GB", { timeZone: TZ, year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
+      .formatToParts(new Date(t)).forEach(x => p[x.type] = x.value);
+    return { a: +p.year, m: +p.month, d: +p.day, h: p.hour, min: p.minute };
+  }
+  function desvio(t) {   // «GMT-3», «GMT+1»… como o navegador o diz; sem isto, só o nome do fuso
+    try { return new Intl.DateTimeFormat("en-US", { timeZone: TZ, timeZoneName: "shortOffset" }).formatToParts(new Date(t)).find(x => x.type === "timeZoneName").value; }
+    catch (e) { return ""; }
+  }
+  const dataLonga = (t) => { const p = partes(t); return `${p.d} de ${MESES[p.m - 1]} de ${p.a}`; };
+  const dataHora = (t) => { const p = partes(t); return `${p.d} de ${MESES[p.m - 1]} de ${p.a}, ${p.h}:${p.min}`; };
+  const dataCurta = (t) => { const p = partes(t); return `${p.d} ${MESES[p.m - 1].slice(0, 3)} ${p.a}`; };
+  const dias = (t) => Math.max(0, Math.ceil((t - Date.now()) / 864e5));
+  const daqui = (t) => { const n = dias(t); return n === 0 ? "hoje" : n === 1 ? "amanhã" : `daqui a ${n} dias`; };
+  const signos = (s) => s.map(curto).join(" → ");
+
+  const R = window.RETRO, agora = Date.now();
+  $("nota-fuso").textContent = `🕐 As horas desta página estão no seu fuso: ${TZ.replace(/_/g, " ")}${desvio(agora) ? " (" + desvio(agora) + ")" : ""}.`;
+
+  // ===== Os dados acabaram (ou não chegaram): aviso vermelho em vez de datas velhas =====
+  if (!R || !R.periodos || agora > R.ate_t) {
+    $("aviso-fim").innerHTML = `⚠️ O calendário dos retrógrados desta página terminou${R && R.ate ? " a " + esc(R.ate.split("-").reverse().join("/")) : ""}.<small>Estamos a preparar as datas novas. Até lá, as datas desta página não estão actualizadas: não as use.</small>`;
+    $("aviso-fim").classList.add("ver");
+    $("dados").style.display = "none"; $("agora").style.display = "none";
+    $("outros-lista").innerHTML = ""; $("fonte").textContent = "";
+    console.warn("retrogrados-dados.js chegou ao fim: correr ~/site-genialtarot-dados/gerar-ceu.py");
+    return;
+  }
+
+  const merc = R.periodos.filter(x => x.p === "mercurio" && (x.pos || x.d) > agora);
+  const atual = merc.find(x => (x.pre || x.r) <= agora);   // o que está a decorrer (sombra incluída), se houver
+  const proximoR = merc.find(x => x.r > agora);              // o próximo a começar a recuar
+
+  // ===== Mercúrio agora =====
+  (function () {
+    let estado, det, conta = "", cls = "";
+    const x = atual;
+    if (x && agora >= x.r && agora < x.d) {
+      cls = " r"; estado = "Mercúrio está retrógrado agora";
+      det = `em <b>${x.s.map(i => GLIFOS[i]).join(" ")} ${esc(signos(x.s))}</b>, até <b>${dataHora(x.d)}</b>.` + (x.pos ? `<br>Depois fica na sombra de saída até ${dataLonga(x.pos)}.` : "");
+      conta = `Volta a andar para a frente ${daqui(x.d)}`;
+    } else if (x && agora < x.r) {
+      estado = "Mercúrio está na sombra de entrada";
+      det = `Ainda anda para a frente, mas já pisa os graus que vai rever. Fica retrógrado a <b>${dataHora(x.r)}</b>, em ${GLIFOS[x.s[0]]} ${esc(curto(x.s[0]))}.`;
+      conta = `Fica retrógrado ${daqui(x.r)}`;
+    } else if (x && agora >= x.d) {
+      estado = "Mercúrio já anda para a frente";
+      det = `Ainda está na sombra de saída, a voltar aos graus onde recuou, até <b>${dataHora(x.pos)}</b>. As coisas vão destravando aos poucos.`;
+      conta = proximoR ? `Próximo retrógrado ${daqui(proximoR.r)}` : "";
+    } else {
+      estado = "Mercúrio anda para a frente";
+      det = proximoR ? `O próximo retrógrado começa a <b>${dataHora(proximoR.r)}</b>, em ${GLIFOS[proximoR.s[0]]} ${esc(curto(proximoR.s[0]))}, e dura até ${dataLonga(proximoR.d)}.` : "";
+      conta = proximoR ? `Começa ${daqui(proximoR.r)}` : "";
+    }
+    $("agora").innerHTML = `<div class="glifo">☿${T}</div><div class="rot">Mercúrio hoje · ${dataLonga(agora).replace(/ de \d+$/, "")}</div>`
+      + `<div class="estado${cls}">${estado}</div><div class="det">${det}</div>` + (conta ? `<span class="conta">⏳ ${conta}</span>` : "");
+  })();
+
+  // ===== A lista dos períodos de Mercúrio =====
+  let quantos = 6;
+  function cartaoPeriodo(x) {
+    const ini = x.pre || x.r, fim = x.pos || x.d, tot = fim - ini;
+    const w = (a, b) => ((b - a) / tot * 100).toFixed(2) + "%";
+    const dentro = agora >= ini && agora < fim;
+    const hoje = dentro ? `<span class="hoje" style="left:${((agora - ini) / tot * 100).toFixed(2)}%"></span>` : "";
+    const r = agora >= x.r && agora < x.d;
+    return `<article class="per${dentro ? " agora-sim" : ""}"><div class="cab"><h3>${dataCurta(x.r)} → ${dataCurta(x.d)}</h3>`
+      + `<span class="sig">${x.s.map(i => GLIFOS[i]).join(" ")} ${esc(signos(x.s))}</span>`
+      + (r ? `<span class="marca">A decorrer</span>` : dentro ? `<span class="marca">Na sombra</span>` : "") + `</div>`
+      + `<div class="linha-t" aria-hidden="true">${x.pre ? `<i class="s1" style="width:${w(x.pre, x.r)}"></i>` : ""}<i class="rr" style="width:${w(x.r, x.d)}"></i>${x.pos ? `<i class="s2" style="width:${w(x.d, x.pos)}"></i>` : ""}${hoje}</div>`
+      + `<div class="datas">`
+      + (x.pre ? `<div><small>Sombra de entrada</small>${dataLonga(x.pre)}</div>` : "")
+      + `<div class="forte"><small>Fica retrógrado</small>${dataHora(x.r)}<br>${Math.floor(x.lr % 30)}° de ${esc(curto(x.s[0]))}</div>`
+      + `<div class="forte"><small>Volta a andar</small>${dataHora(x.d)}<br>${Math.floor(x.ld % 30)}° de ${esc(curto(x.s[x.s.length - 1]))}</div>`
+      + (x.pos ? `<div><small>Fim da sombra</small>${dataLonga(x.pos)}</div>` : "")
+      + `</div></article>`;
+  }
+  function desenharMercurio() {
+    $("lista-mercurio").innerHTML = merc.slice(0, quantos).map(cartaoPeriodo).join("") || `<p class="int">Sem períodos por mostrar.</p>`;
+    $("mais-mercurio").style.display = merc.length > quantos ? "" : "none";
+  }
+  $("mais-mercurio").addEventListener("click", () => { quantos += 9; desenharMercurio(); });
+  desenharMercurio();
+
+  // ===== Os 12 signos (textos por aprovar pelo Mestre Alberto) =====
+  const CUIDAR = [
+    "A pressa é a sua maior armadilha nestas semanas. Releia antes de responder, sobretudo quando estiver de cabeça quente. Projetos parados podem ganhar vida nova se tiver paciência para os rever.",
+    "Atenção a contas, compras grandes e contratos que mexem com dinheiro: confirme valores e datas duas vezes. É um bom momento para rever o orçamento e descobrir onde está a gastar sem dar por isso.",
+    "Mercúrio é o seu regente, por isso você sente-o mais do que ninguém. Mensagens trocadas e agendas que mudam pedem calma: escreva tudo, confirme horários e aproveite para pôr em dia o que ficou para trás.",
+    "Memórias antigas e assuntos de família podem voltar à conversa. Escute antes de reagir e escolha bem as palavras com quem ama. Bom tempo para arrumar a casa e as gavetas, as de dentro também.",
+    "Cuidado com promessas feitas no calor do momento e com o que publica. Antes de mostrar uma ideia ao mundo, reveja-a com carinho. Um projeto criativo antigo pode voltar com mais força.",
+    "Mercúrio também é o seu regente: o trabalho e a rotina são os mais tocados. Faça cópias de segurança, reveja prazos e não se cobre perfeição. Bom para afinar métodos e marcar aqueles exames adiados.",
+    "Acordos e parcerias pedem clareza. Evite assinar à pressa e desfaça mal-entendidos com uma conversa franca. Pessoas do passado podem reaparecer: veja com calma o que faz sentido hoje.",
+    "O silêncio e a desconfiança crescem quando não fala do que sente. Reveja com atenção dinheiro partilhado, dívidas e papéis de família. É um tempo forte para olhar para dentro e soltar o que pesa.",
+    "Viagens, estudos e documentos pedem verificação: confirme reservas, voos e prazos. Antes de defender uma opinião com unhas e dentes, ouça o outro lado. Retomar um curso ou uma leitura antiga pode render muito.",
+    "No trabalho, as decisões importantes ganham com mais uns dias de reflexão. Reveja planos e metas sem se culpar pelos atrasos. Pessoas com quem já trabalhou podem trazer boas notícias.",
+    "Ideias brilhantes podem surgir, mas precisam de amadurecer antes de sair para o mundo. Atenção a grupos, redes sociais e aparelhos: guarde cópias. Amizades antigas podem voltar a bater à porta.",
+    "A intuição fica mais forte, e a distração também. Anote sonhos, ideias e compromissos para não se perder. Dê-se tempo para descansar: o silêncio vai trazer respostas.",
+  ];
+  const marcados = new Set((atual && agora < atual.d ? atual : proximoR || { s: [] }).s);
+  const quem = atual && agora < atual.d ? atual : proximoR;
+  $("signos-lista").innerHTML = CUIDAR.map((t, i) => `<article class="sg${marcados.has(i) ? " toca" : ""}"><div class="t"><span class="g">${GLIFOS[i]}</span>${esc(NOMES[i])}</div><p>${esc(t)}</p>`
+    + (marcados.has(i) && quem ? `<span class="aviso">☿${T} retrógrado neste signo ${agora >= quem.r ? "agora" : "a partir de " + dataCurta(quem.r)}</span>` : "") + `</article>`).join("");
+
+  // ===== Os outros planetas (textos por aprovar pelo Mestre Alberto) =====
+  const OUTROS = {
+    venus: "Vénus fala de amor, beleza e dinheiro. Retrógrada, convida a rever relações e gastos, e a perceber o que tem valor de verdade. Bom para reatar laços com cuidado; menos bom para mudanças radicais no visual ou compras por impulso.",
+    marte: "Marte é a energia e a coragem. Retrógrado, a força vira-se para dentro: bom para rever estratégias, cuidar do corpo sem exageros e escolher melhor as batalhas.",
+    jupiter: "Júpiter é o crescimento e a fé. Retrógrado, o crescimento faz-se por dentro: rever crenças, estudos e planos de expansão antes de dar o salto.",
+    saturno: "Saturno é o tempo e a responsabilidade. Retrógrado, pede para rever compromissos e regras, e para terminar o que ficou a meio.",
+    urano: "Urano é a mudança e a liberdade. Retrógrado, as mudanças acontecem primeiro por dentro: tempo de perceber que liberdade você procura.",
+    neptuno: "Neptuno é o sonho e a intuição. Retrógrado, a sensibilidade aumenta: bom para meditar, sonhar e separar a ilusão da realidade.",
+    plutao: "Plutão é a transformação profunda. Retrógrado, é um tempo de mudança lenta por dentro, de soltar o que já não serve, sem pressa.",
+  };
+  $("outros-lista").innerHTML = Object.keys(OUTROS).map(p => {
+    const lista = R.periodos.filter(x => x.p === p && x.d > agora);
+    const ag = lista.find(x => x.r <= agora), prox = lista.find(x => x.r > agora);
+    let quando = "";
+    if (ag) quando = `Retrógrado agora em ${ag.s.map(i => GLIFOS[i]).join(" ")} ${esc(signos(ag.s))}, até <b>${dataLonga(ag.d)}</b> (${daqui(ag.d)}).`;
+    if (prox) quando += (quando ? "<br>" : "") + `${ag ? "Depois: de" : "Próximo: de"} <b>${dataLonga(prox.r)}</b> a <b>${dataLonga(prox.d)}</b>, em ${prox.s.map(i => GLIFOS[i]).join(" ")} ${esc(signos(prox.s))} · ${Math.round((prox.d - prox.r) / 864e5)} dias.`;
+    if (!quando) quando = "Sem retrógrado até ao fim do calendário desta página.";
+    return `<article class="pl${ag ? " r" : ""}"><div class="t"><span class="g">${PL[p][0]}${T}</span><div><h3>${PL[p][1]}</h3><span class="est${ag ? " r" : ""}">${ag ? "↩ retrógrado agora" : "▶ anda para a frente"}</span></div></div>`
+      + `<div class="quando">${quando}</div><p>${esc(OUTROS[p])}</p></article>`;
+  }).join("");
+
+  // ===== A consulta: a mensagem do WhatsApp já vai preenchida =====
+  const msg = atual && agora >= atual.r && agora < atual.d
+    ? `Olá Mestre Alberto, vi no site que Mercúrio está retrógrado em ${NOMES[atual.s[atual.s.length - 1]]}. Gostava de marcar uma consulta para saber como isto toca no meu mapa.`
+    : `Olá Mestre Alberto, vi no site a página dos planetas retrógrados. Gostava de marcar uma consulta para saber como o céu toca no meu mapa.`;
+  $("wa-consulta").href = "https://wa.me/351914920427?text=" + encodeURIComponent(msg);
+  $("fonte").textContent = `Calculado pelo ${R.motor}: o instante exacto em que a velocidade do planeta muda de sinal · dados até ${R.ate.split("-").reverse().join("/")}.`;
+})();
+</script>
+</body>
+</html>

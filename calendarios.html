@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- EXPERIÊNCIA 28/10/2026 — página da área Novidades; textos por aprovar pelo Mestre Alberto.
+     O céu no calendário do telemóvel: quatro calendários .ics para assinar (Google, iPhone, Outlook).
+     Os .ics e o calendarios-dados.js (os próximos eventos que esta página mostra) saem do
+     ~/site-genialtarot-dados/gerar-ceu.py (Swiss Ephemeris). Cada evento é um instante em UTC:
+     o calendário de quem assina mostra-o na hora local dele. -->
+<meta name="robots" content="noindex" />
+<title>O Céu no seu Calendário — Luas, Eclipses e Retrógrados · Mestre Alberto</title>
+<meta name="description" content="Assine no Google Agenda, no iPhone ou no Outlook as Luas Cheias e Novas, os eclipses, os planetas retrógrados e as entradas do Sol em cada signo. Atualiza sozinho." />
+<meta name="theme-color" content="#3a2257" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="O Céu no seu Calendário — Mestre Alberto" />
+<meta property="og:description" content="Luas, eclipses, retrógrados e o Sol nos signos, direto no calendário do seu telefone." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/calendarios" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Calendários — os lilases da Lua e do Ascendente (28/10/2026) ============ */
+:root {
+  --fundo: oklch(0.17 0.06 305);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.05 310);
+  --lilas: oklch(0.74 0.14 310);
+  --lilas-claro: oklch(0.86 0.09 312);
+  --lavanda: oklch(0.92 0.05 310);
+  --ouro: oklch(0.85 0.13 88);
+  --borda: oklch(0.75 0.12 310 / 0.35);
+  --vidro: oklch(0.30 0.09 305 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.80 0.12 320), oklch(0.66 0.18 300) 55%, oklch(0.55 0.19 290));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.40 0.16 310) 0%, oklch(0.20 0.08 305) 45%, oklch(0.12 0.05 300) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+/* 28/10/2026: margem de 16 px de cada lado no telemóvel (100% − 2rem) e nada a passar da largura */
+.caixa { position: relative; z-index: 1; width: min(68rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2.2rem; }
+
+/* topo — a pílula «‹ genialtarot.com» igual às outras páginas */
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: oklch(0.85 0.13 88); }
+
+/* herói */
+.heroi { text-align: center; padding: 1rem 0 2rem; }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.lil { background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 38rem; margin: 0 auto 1rem; }
+.pontos { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: .8rem 0 0; padding: 0; list-style: none; }
+.pontos li { font-size: .82rem; background: var(--vidro); border: 1px solid var(--borda); border-radius: 999px; padding: .35rem .8rem; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.45rem, 3.6vw, 2.1rem); margin: 0 0 .4rem; text-align: center; }
+.int { text-align: center; color: var(--suave); margin: 0 auto 1.3rem; max-width: 38rem; }
+.cartao { background: linear-gradient(160deg, oklch(0.30 0.10 308), oklch(0.21 0.08 300)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1.1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; }
+.btn-grande { display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+  color: white; background: var(--grad-lilas); border-radius: 999px; padding: .95rem 1.7rem; box-shadow: 0 10px 30px oklch(0.55 0.19 300 / .5), inset 0 1px 0 #fff5; }
+
+/* os quatro calendários */
+.cals { display: grid; gap: 1.1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.cal { display: flex; flex-direction: column; gap: .7rem; }
+.cal .t { display: flex; align-items: center; gap: .7rem; }
+.cal .ico { font-size: 2.2rem; line-height: 1; }
+.cal h3 { margin: 0; font-family: var(--titulo); font-size: 1.25rem; }
+.cal .desc { margin: 0; font-family: var(--serifa); font-size: 1.1rem; color: var(--lavanda); }
+.proximos { margin: 0; padding: 0; list-style: none; font-size: .86rem; border-radius: .9rem; background: oklch(0.18 0.06 300 / .8); border: 1px solid var(--borda); }
+.proximos li { padding: .5rem .8rem; border-bottom: 1px solid oklch(0.75 0.12 310 / .15); }
+.proximos li:last-child { border-bottom: 0; }
+.proximos small { display: block; color: oklch(0.90 0.03 310); font-size: .78rem; }
+.proximos .rot { font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--ouro); }
+.assinar { display: grid; gap: .5rem; grid-template-columns: 1fr; }
+@media (min-width: 480px) { .assinar { grid-template-columns: 1fr 1fr 1fr; } }
+.assinar a { display: flex; align-items: center; justify-content: center; gap: .35rem; text-align: center; text-decoration: none; font-weight: 800; font-size: .88rem; border-radius: .8rem; padding: .7rem .5rem; color: white; }
+.a-google { background: linear-gradient(135deg, #4285f4, #2f6ad9); }
+.a-iphone { background: linear-gradient(135deg, #3a3a3c, #1c1c1e); border: 1px solid #fff4; }
+.a-outlook { background: linear-gradient(135deg, #0f6cbd, #0b4f8a); }
+/* os links para copiar à mão */
+.copiar { display: grid; gap: .45rem; }
+.copiar label { font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--suave); }
+.linha-c { display: flex; gap: .4rem; min-width: 0; }
+.linha-c input { flex: 1; min-width: 0; font: inherit; font-size: .8rem; color: var(--texto); background: oklch(0.16 0.05 300 / .85); border: 1px solid var(--borda); border-radius: .6rem; padding: .5rem .6rem; color-scheme: dark; }
+.linha-c button { flex: none; border: 0; cursor: pointer; font: inherit; font-size: .8rem; font-weight: 800; border-radius: .6rem; padding: .5rem .8rem; color: oklch(0.22 0.06 300); background: var(--grad-ouro); }
+.linha-c button.ok { background: oklch(0.80 0.17 150); }
+
+/* passo a passo */
+.passos { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+.passo { border-radius: 1.1rem; padding: 1rem 1.1rem; background: oklch(0.18 0.06 300 / .8); border: 1px solid var(--borda); }
+.passo h3 { margin: 0 0 .5rem; font-family: var(--titulo); font-size: 1.15rem; display: flex; align-items: center; gap: .5rem; }
+.passo ol { margin: 0; padding-left: 1.2rem; display: grid; gap: .45rem; font-size: .93rem; }
+.passo ol b { color: var(--ouro); font-weight: 700; }
+.passo .nota { margin: .7rem 0 0; font-size: .82rem; color: var(--suave); }
+.perguntas { display: grid; gap: .6rem; max-width: 46rem; margin: 0 auto; }
+.perguntas details { border-radius: .9rem; padding: .75rem 1rem; background: oklch(0.18 0.06 300 / .8); border: 1px solid var(--borda); }
+.perguntas summary { cursor: pointer; font-weight: 700; }
+.perguntas p { margin: .5rem 0 0; font-size: .92rem; color: oklch(0.92 0.03 310); }
+
+/* 28/10/2026: o aviso vermelho quando os dados chegam ao fim (regra dele: nada de dados velhos sem aviso) */
+.aviso-fim { display: none; margin: 0 0 2rem; border-radius: 1.2rem; padding: 1.2rem 1.3rem; text-align: center; font-weight: 700; font-size: 1.05rem;
+  color: white; background: oklch(0.45 0.19 25); border: 3px solid oklch(0.70 0.22 25); box-shadow: 0 0 34px oklch(0.60 0.22 25 / .6); }
+.aviso-fim.ver { display: block; }
+.aviso-fim small { display: block; margin-top: .4rem; font-weight: 500; font-size: .9rem; }
+
+/* consulta (a mesma do Mapa Astral) */
+.consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 860px) { .consulta { grid-template-columns: 0.8fr 1.2fr; } }
+.consulta-foto { border-radius: 1.3rem; overflow: hidden; border: 3px solid oklch(0.80 0.11 312); box-shadow: 0 20px 50px #0009, 0 0 40px oklch(0.65 0.17 305 / .4); max-width: 22rem; margin: 0 auto; }
+.consulta-foto img { display: block; width: 100%; height: auto; }
+.consulta h2 { text-align: left; }
+@media (max-width: 859px) { .consulta h2, .consulta .gancho, .consulta .botoes { text-align: center; justify-content: center; } }
+.gancho { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); margin: .2rem 0 1rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+
+  <div class="aviso-fim" id="aviso-fim" role="alert"></div>
+
+  <section class="heroi">
+    <span class="selo">✦ Atualiza sozinho ✦</span>
+    <h1>O céu no seu <span class="lil">calendário</span></h1>
+    <p class="sub">As Luas, os eclipses, os retrógrados e as entradas do Sol em cada signo, direto no calendário do seu telefone. Assina uma vez e as datas novas aparecem sozinhas.</p>
+    <ul class="pontos"><li>📅 Google Agenda e Android</li><li>🍎 iPhone e iPad</li><li>📧 Outlook</li><li>🕐 Na sua hora local</li></ul>
+  </section>
+
+  <section class="cartao">
+    <h2>Escolha o seu <span class="lil">calendário</span></h2>
+    <p class="int">Pode assinar um, dois ou os quatro. Em cada evento há um texto curto e a ligação para a página certa do site. <span id="nota-fuso"></span></p>
+    <div class="cals" id="cals"></div>
+  </section>
+
+  <section class="cartao" id="como">
+    <h2>Passo a <span class="lil">passo</span></h2>
+    <p class="int">Se o botão não funcionar no seu aparelho, faça à mão: é só copiar o link do calendário que quer e seguir estes passos.</p>
+    <div class="passos">
+      <article class="passo">
+        <h3>📅 Android e Google Agenda</h3>
+        <ol>
+          <li>Copie o link que começa por <b>https://</b> (botão «Copiar» no calendário que escolheu).</li>
+          <li>Num computador, abra <b>calendar.google.com</b> com a mesma conta Google do telefone. A aplicação do telefone não deixa juntar calendários por link; só a página da internet.</li>
+          <li>À esquerda, ao lado de <b>Outros calendários</b>, carregue no <b>+</b> e escolha a opção <b>do URL</b>.</li>
+          <li>Cole o link e carregue em <b>Adicionar calendário</b>.</li>
+          <li>No telefone, abra o Google Agenda: o calendário aparece sozinho. Se não aparecer, vá às definições da aplicação, toque no nome do calendário e ligue <b>Sincronizar</b>.</li>
+        </ol>
+        <p class="nota">O botão azul «Google» faz os passos 2 a 4 por si, se tiver a sessão Google aberta no navegador.</p>
+      </article>
+      <article class="passo">
+        <h3>🍎 iPhone e iPad</h3>
+        <ol>
+          <li>Toque no botão <b>iPhone</b> do calendário que escolheu. Ele abre o link <b>webcal://</b>.</li>
+          <li>O iPhone pergunta se quer assinar: toque em <b>Assinar</b> e depois em <b>Adicionar</b>.</li>
+          <li>Pronto: os eventos aparecem na aplicação Calendário.</li>
+        </ol>
+        <p class="nota">À mão: copie o link <b>webcal://</b> e vá a Ajustes (em Portugal, Definições) → Calendário → Contas → Adicionar conta → Outra → <b>Adicionar calendário assinado</b>. Cole o link e toque em Seguinte. Nas versões mais recentes, o Calendário está dentro de «Apps».</p>
+      </article>
+      <article class="passo">
+        <h3>📧 Outlook</h3>
+        <ol>
+          <li>Copie o link que começa por <b>https://</b>.</li>
+          <li>No <b>outlook.com</b>, abra o Calendário e carregue em <b>Adicionar calendário</b>.</li>
+          <li>Escolha <b>Subscrever a partir da Web</b> (no Brasil, «Assinar da Web»), cole o link, dê-lhe um nome e carregue em <b>Importar</b>.</li>
+        </ol>
+        <p class="nota">No Outlook do computador (Windows): Calendário → Adicionar calendário → <b>Da Internet</b> → cole o link → OK.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="cartao">
+    <h2>Perguntas <span class="lil">frequentes</span></h2>
+    <div class="perguntas">
+      <details><summary>Em que hora aparecem os eventos?</summary><p>Na hora do seu telefone. Uma Lua Cheia é um instante igual no mundo inteiro: no Brasil aparece umas horas mais cedo do que em Portugal, e às vezes até no dia anterior. O calendário faz a conta por si.</p></details>
+      <details><summary>Preciso de voltar aqui para ter as datas novas?</summary><p>Não. O calendário vai buscar as atualizações sozinho. O iPhone e o Outlook costumam fazê-lo uma vez por dia; o Google decide ele próprio quando, e às vezes demora mais.</p></details>
+      <details><summary>Ocupa a minha agenda?</summary><p>Não. Os eventos ficam marcados como «livre», não tocam alarmes e não bloqueiam horas. São só lembretes do céu.</p></details>
+      <details><summary>Como tiro o calendário?</summary><p>No Google Agenda (no computador), passe o rato pelo nome do calendário e escolha «Anular subscrição» ou «Remover». No iPhone, em Ajustes → Calendário → Contas, toque no calendário assinado e em «Apagar conta». No Outlook, clique com o botão direito no calendário e escolha «Remover».</p></details>
+      <details><summary>Os dados são meus? Alguém fica a saber que assinei?</summary><p>O calendário é um ficheiro público, igual para todos: não pede nome, email nem conta. O seu telefone só o vai buscar ao site.</p></details>
+    </div>
+  </section>
+
+  <section id="consulta" class="cartao">
+    <div class="consulta">
+      <div class="consulta-foto"><img src="mestre-r14.jpg" alt="Mestre Alberto com as cartas do Tarot" width="800" height="800" loading="lazy" /></div>
+      <div>
+        <h2>E o que o céu diz <span class="lil">para si</span>?</h2>
+        <p class="gancho">O calendário mostra quando. Numa consulta online, o Mestre Alberto mostra como: junta o seu Mapa Astral e as cartas do Tarot para olhar para o que estas Luas e estes retrógrados trazem à sua vida.</p>
+        <div class="botoes">
+          <a class="btn-grande" href="loja.html">🔮 Marcar uma consulta</a>
+          <a class="btn-wa" id="wa-consulta" href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p class="fonte" id="fonte"></p>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script src="calendarios-dados.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // O U+FE0E no fim de cada glifo pede o símbolo de texto: sem ele, os telemóveis desenham emojis
+  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map((g) => g + "︎");
+  // Nomes como o público do Brasil os conhece, com o nome de Portugal ao lado quando é diferente
+  const NOMES = ["Áries (Carneiro)","Touro","Gêmeos","Câncer (Caranguejo)","Leão","Virgem","Libra (Balança)","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const curto = (i) => NOMES[i].split(" (")[0];
+  const MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  const PL = { mercurio: "Mercúrio", venus: "Vénus", marte: "Marte", jupiter: "Júpiter", saturno: "Saturno", urano: "Urano", neptuno: "Neptuno", plutao: "Plutão" };
+
+  // ===== As horas: guardadas em UTC, mostradas no fuso de quem vê (28/10/2026) =====
+  let TZ = "UTC";
+  try { TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"; } catch (e) {}
+  function partes(t) {
+    const p = {};
+    new Intl.DateTimeFormat("en-GB", { timeZone: TZ, year: "numeric", month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
+      .formatToParts(new Date(t)).forEach(x => p[x.type] = x.value);
+    return { a: +p.year, m: +p.month, d: +p.day, h: p.hour, min: p.minute };
+  }
+  function desvio(t) {
+    try { return new Intl.DateTimeFormat("en-US", { timeZone: TZ, timeZoneName: "shortOffset" }).formatToParts(new Date(t)).find(x => x.type === "timeZoneName").value; }
+    catch (e) { return ""; }
+  }
+  const dataHora = (t) => { const p = partes(t); return `${p.d} de ${MESES[p.m - 1]} de ${p.a}, ${p.h}:${p.min}`; };
+
+  const C = window.CALENDARIOS, agora = Date.now();
+  $("nota-fuso").textContent = `As horas abaixo estão no seu fuso (${TZ.replace(/_/g, " ")}${desvio(agora) ? ", " + desvio(agora) : ""}).`;
+
+  // ===== Os quatro calendários: ficheiro, nome e os próximos eventos de cada um =====
+  const SITE = "genialtarot.com";
+  const CAL = [
+    { f: "calendario-luas.ics", ico: "🌕", n: "Luas Cheias e Luas Novas", d: "Cada Lua Nova e cada Lua Cheia, com o signo onde acontece e uma frase para o momento.",
+      ev: () => (C ? C.luas : []).map(x => ({ t: x.t, n: `${x.f === 0 ? "🌑 Lua Nova" : "🌕 Lua Cheia"} em ${GLIFOS[x.s]} ${NOMES[x.s]}` })) },
+    { f: "calendario-eclipses.ics", ico: "🌘", n: "Eclipses", d: "Os eclipses do Sol e da Lua, com o tipo e o signo. A hora é a do ponto alto do eclipse.",
+      ev: () => (C ? C.eclipses : []).map(x => ({ t: x.t, n: `Eclipse ${x.tipo} ${x.sol ? "do Sol" : "da Lua"} em ${GLIFOS[x.s]} ${curto(x.s)}` })) },
+    { f: "calendario-retrogrados.ics", ico: "↩️", n: "Planetas retrógrados", d: "O início e o fim de cada retrógrado, de Mercúrio a Plutão, com o signo.",
+      ev: () => (C ? C.retro : []).flatMap(x => [{ t: x.r, n: `↩ ${PL[x.p]} fica retrógrado em ${GLIFOS[x.s[0]]} ${curto(x.s[0])}` },
+                                                 { t: x.d, n: `▶ ${PL[x.p]} volta a andar em ${GLIFOS[x.s[x.s.length - 1]]} ${curto(x.s[x.s.length - 1])}` }]) },
+    { f: "calendario-sol-nos-signos.ics", ico: "☀️", n: "O Sol em cada signo", d: "O dia e a hora em que começa a temporada de cada signo, com o tom do mês que entra.",
+      ev: () => (C ? C.sol : []).map(x => ({ t: x.t, n: `☉︎ O Sol entra em ${GLIFOS[x.s]} ${NOMES[x.s]}` })) },
+  ];
+  const fim = !C || agora > C.ate_t;
+  $("cals").innerHTML = CAL.map((c, i) => {
+    const https = `https://${SITE}/${c.f}`, webcal = `webcal://${SITE}/${c.f}`;
+    const prox = fim ? [] : c.ev().filter(e => e.t > agora).sort((a, b) => a.t - b.t).slice(0, 3);
+    return `<article class="cartao cal"><div class="t"><span class="ico">${c.ico}</span><h3>${esc(c.n)}</h3></div><p class="desc">${esc(c.d)}</p>`
+      + (prox.length ? `<ul class="proximos">${prox.map((e, k) => `<li>${k === 0 ? `<span class="rot">A seguir</span><br>` : ""}${esc(e.n)}<small>${dataHora(e.t)}</small></li>`).join("")}</ul>` : "")
+      + `<div class="assinar">`
+      + `<a class="a-google" href="https://calendar.google.com/calendar/render?cid=${encodeURIComponent(webcal)}" target="_blank" rel="noopener noreferrer">📅 Google</a>`
+      + `<a class="a-iphone" href="${webcal}">🍎 iPhone</a>`
+      + `<a class="a-outlook" href="https://outlook.live.com/calendar/0/addfromweb?url=${encodeURIComponent(https)}&name=${encodeURIComponent(c.n + " · Genial Tarot")}" target="_blank" rel="noopener noreferrer">📧 Outlook</a>`
+      + `</div><div class="copiar">`
+      + `<label for="h${i}">Link https (Google e Outlook)</label><div class="linha-c"><input id="h${i}" type="text" readonly value="${https}" /><button type="button" data-copia="h${i}">Copiar</button></div>`
+      + `<label for="w${i}">Link webcal (iPhone)</label><div class="linha-c"><input id="w${i}" type="text" readonly value="${webcal}" /><button type="button" data-copia="w${i}">Copiar</button></div>`
+      + `</div></article>`;
+  }).join("");
+
+  // ===== Copiar: a área de transferência do navegador, e à moda antiga se ela não deixar =====
+  document.addEventListener("click", async (e) => {
+    const b = e.target.closest("button[data-copia]"); if (!b) return;
+    const inp = $(b.dataset.copia);
+    let ok = false;
+    try { await navigator.clipboard.writeText(inp.value); ok = true; } catch (er) {
+      try { inp.focus(); inp.select(); ok = document.execCommand("copy"); } catch (er2) {}
+    }
+    b.textContent = ok ? "✓ Copiado" : "Selecione e copie";
+    b.classList.toggle("ok", ok);
+    if (!ok) { inp.focus(); inp.select(); }
+    setTimeout(() => { b.textContent = "Copiar"; b.classList.remove("ok"); }, 2200);
+  });
+
+  // ===== Os dados acabaram: aviso vermelho (os .ics também deixaram de ter datas novas) =====
+  if (fim) {
+    $("aviso-fim").innerHTML = `⚠️ Os calendários do céu chegaram ao fim${C && C.ate ? " (" + esc(C.ate.split("-").reverse().join("/")) + ")" : ""}.<small>Estamos a preparar as datas novas. Quem já assinou recebe-as sozinho assim que estiverem prontas.</small>`;
+    $("aviso-fim").classList.add("ver");
+    console.warn("calendarios-dados.js chegou ao fim: correr ~/site-genialtarot-dados/gerar-ceu.py");
+  }
+  $("wa-consulta").href = "https://wa.me/351914920427?text=" + encodeURIComponent("Olá Mestre Alberto, vi no site os calendários do céu (Luas, eclipses e retrógrados). Gostava de marcar uma consulta.");
+  if (C) $("fonte").textContent = `Calculado pelo ${C.motor} · datas até ${C.ate.split("-").reverse().join("/")} · atualizado a ${C.gerado.slice(0, 10).split("-").reverse().join("/")}.`;
+})();
+</script>
+</body>
+</html>

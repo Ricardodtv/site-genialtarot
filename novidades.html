@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Novidades (28/10/2026) — a montra das 10 páginas em experiência (ideias tiradas do astro-seek.com, feitas à nossa maneira).
+     Mesma folha do mapa-astral.html. Para tirar uma página daqui, apaga-se o cartão dela em NOVIDADES (no fim). -->
+<meta name="robots" content="noindex" />
+<title>Novidades — experimente as páginas novas · Genial Tarot · Mestre Alberto</title>
+<meta name="description" content="As páginas novas do Genial Tarot: Revolução Solar, horóscopo pessoal, a sua carta de Tarot, retrógrados, horóscopo chinês e muito mais. Grátis." />
+<meta name="theme-color" content="#1c1a4a" />
+<link rel="icon" href="favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Base: a mesma folha do Mapa do Amor (21/10/2026); as cores do Mapa Astral vêm mais abaixo ============ */
+:root {
+  --fundo: oklch(0.17 0.06 305);
+  --fundo-2: oklch(0.23 0.08 305);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.05 310);
+  --lilas: oklch(0.74 0.14 310);
+  --lilas-claro: oklch(0.86 0.09 312);
+  --lavanda: oklch(0.92 0.05 310);
+  --ameixa: oklch(0.40 0.15 310);
+  --ouro: oklch(0.85 0.13 88);
+  --rosa: oklch(0.78 0.13 355);
+  --borda: oklch(0.75 0.12 310 / 0.35);
+  --vidro: oklch(0.30 0.09 305 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.80 0.12 320), oklch(0.66 0.18 300) 55%, oklch(0.55 0.19 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.84 0.11 355), oklch(0.70 0.17 340) 55%, oklch(0.60 0.19 315));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.40 0.16 320) 0%, oklch(0.20 0.08 305) 45%, oklch(0.12 0.05 300) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(68rem, 100% - 2rem); margin: 0 auto; }
+
+/* topo */
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+/* 21/10/2026: a pílula «‹ genialtarot.com» igual às outras páginas (pedido dele) */
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: oklch(0.85 0.13 88); }
+.marca { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--texto); }
+.marca b { font-family: var(--titulo); font-size: 1.15rem; letter-spacing: .04em; background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.marca small { display: block; font-size: .72rem; color: var(--suave); letter-spacing: .12em; text-transform: uppercase; }
+.voltar { font-size: .85rem; color: var(--suave); text-decoration: none; border: 1px solid var(--borda); border-radius: 999px; padding: .4rem .9rem; }
+
+/* herói */
+.heroi { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; text-align: center; padding: 1rem 0 2rem; }
+@media (min-width: 860px) { .heroi { grid-template-columns: 1.05fr 1fr; text-align: left; } }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+h1 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 34rem; margin: 0 auto 1rem; }
+@media (min-width: 860px) { .sub { margin-left: 0; } }
+.pontos { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: .8rem 0 1.2rem; padding: 0; list-style: none; }
+@media (min-width: 860px) { .pontos { justify-content: flex-start; } }
+.pontos li { font-size: .82rem; background: var(--vidro); border: 1px solid var(--borda); border-radius: 999px; padding: .35rem .8rem; }
+.btn-grande { display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+  color: white; background: var(--grad-lilas); border-radius: 999px; padding: .95rem 1.7rem; box-shadow: 0 10px 30px oklch(0.55 0.19 300 / .5), inset 0 1px 0 #fff5;
+  transition: transform .2s, box-shadow .2s; }
+.btn-grande:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 40px oklch(0.60 0.2 305 / .65); }
+
+/* a roda do zodíaco à volta da foto */
+.roda-wrap { position: relative; width: min(26rem, 88vw); aspect-ratio: 1; margin: 0 auto; }
+.roda { position: absolute; inset: 0; border-radius: 50%; animation: gira 60s linear infinite;
+  background: conic-gradient(from 0deg, oklch(0.72 0.15 345 / .35), oklch(0.55 0.18 300 / .2), oklch(0.80 0.10 320 / .35), oklch(0.55 0.18 300 / .2), oklch(0.72 0.15 345 / .35));
+  box-shadow: 0 0 60px oklch(0.72 0.16 335 / .45), inset 0 0 40px oklch(0.30 0.10 300 / .6); }
+.roda span { position: absolute; left: 50%; top: 50%; width: 2.2rem; height: 2.2rem; margin: -1.1rem 0 0 -1.1rem; display: grid; place-items: center;
+  font-size: 1.35rem; color: var(--ouro); text-shadow: 0 0 10px oklch(0.85 0.13 88 / .8); }
+@keyframes gira { to { transform: rotate(360deg); } }
+.foto-anel { position: absolute; inset: 15%; border-radius: 50%; overflow: hidden; border: 4px solid oklch(0.86 0.09 330);
+  box-shadow: 0 0 0 6px oklch(0.55 0.18 320 / .5), 0 20px 50px #0008; }
+.foto-anel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* cartões */
+.cartao { background: linear-gradient(160deg, oklch(0.32 0.10 308 / .82), oklch(0.22 0.08 300 / .9)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1.2rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; backdrop-filter: blur(6px); }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.1rem); margin: 0 0 .4rem; text-align: center; }
+h2 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cartao > p.int { text-align: center; color: var(--suave); margin: 0 auto 1.3rem; max-width: 36rem; }
+
+/* formulário (o mesmo da calculadora de Ascendente, sem email: aqui nada sai do aparelho) */
+.grelha { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 680px) { .grelha { grid-template-columns: 1fr 1fr; } .largo { grid-column: 1 / -1; } }
+label.campo { display: flex; flex-direction: column; gap: .35rem; font-size: .88rem; font-weight: 600; color: var(--lavanda); }
+label.campo small { font-weight: 400; color: var(--suave); }
+input[type=text], input[type=email], input[type=tel] {
+  width: 100%; font: inherit; font-size: 1rem; color: var(--texto); background: oklch(0.16 0.05 300 / .75); border: 1.5px solid var(--borda);
+  border-radius: .8rem; padding: .8rem .9rem; outline: none; transition: border-color .2s, box-shadow .2s; color-scheme: dark; }
+input:focus { border-color: var(--lilas); box-shadow: 0 0 0 4px oklch(0.74 0.14 310 / .25); }
+input:disabled { opacity: .45; }
+.lista-cid { position: absolute; z-index: 20; left: 0; right: 0; top: 100%; margin-top: .25rem; max-height: 15rem; overflow-y: auto;
+  background: oklch(0.24 0.08 305); border: 1px solid var(--borda); border-radius: .8rem; box-shadow: 0 14px 40px #000a; display: none; }
+.lista-cid.aberta { display: block; }
+.lista-cid button { display: block; width: 100%; text-align: left; border: 0; background: none; color: var(--texto); font: inherit; font-size: .92rem; padding: .6rem .9rem; cursor: pointer; }
+.lista-cid button:hover, .lista-cid button.ativo { background: oklch(0.40 0.14 310 / .6); }
+.lista-cid button small { color: var(--suave); }
+.rel { position: relative; }
+.marca-ok { font-size: .8rem; color: oklch(0.85 0.14 150); min-height: 1.1em; }
+.caixinha { display: flex; gap: .6rem; align-items: flex-start; font-size: .84rem; color: var(--suave); font-weight: 400; }
+.caixinha input { margin-top: .2rem; accent-color: var(--lilas); width: 1.05rem; height: 1.05rem; flex: none; }
+.erro { display: none; margin-top: .9rem; padding: .7rem .9rem; border-radius: .8rem; background: oklch(0.40 0.14 20 / .35); border: 1px solid oklch(0.65 0.18 20 / .6); font-size: .9rem; }
+.erro.ver { display: block; }
+.enviar { display: flex; justify-content: center; margin-top: 1.3rem; }
+.nota-priv { text-align: center; font-size: .76rem; color: var(--suave); margin-top: .8rem; }
+
+/* resultado */
+#resultado { display: none; scroll-margin-top: 1rem; }
+#resultado.ver { display: block; animation: surgir .7s ease-out; border-color: oklch(0.82 0.11 330 / .7); }
+@keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.res-titulo { text-align: center; margin: 0 0 .4rem; font-family: var(--titulo); line-height: 1.1; }
+.res-nome { display: block; font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 14px oklch(0.85 0.13 88 / .45)); }
+.res-frase { display: block; font-family: var(--serifa); font-size: clamp(1.2rem, 3vw, 1.5rem); color: var(--lavanda); margin: .2rem 0; font-weight: 500; }
+.duo { display: grid; gap: 0; grid-template-columns: 1fr 4.2rem 1fr; align-items: center; margin: 1.2rem auto; max-width: 36rem; }
+.duo .astro { align-self: stretch; }
+/* 21/10/2026: a corrente dourada a cintilar entre Vénus e Marte (pedido dele) */
+.corrente { position: relative; height: 3.6rem; margin: 0 -.5rem; display: grid; place-items: center; }
+.corrente svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 6px oklch(0.85 0.13 88 / .8)); }
+.corrente .coracao { position: absolute; font-size: 1.4rem; animation: bate 1.4s ease-in-out infinite; filter: drop-shadow(0 0 8px #ff4d8d); }
+.corrente .faisca { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: white; box-shadow: 0 0 8px 2px oklch(0.92 0.12 88); opacity: 0; animation: faisca 2.4s ease-in-out infinite; }
+@keyframes bate { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.3); } 30% { transform: scale(1); } 45% { transform: scale(1.18); } }
+@keyframes faisca { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: 1; transform: scale(1.4); } }
+.astro .papel { margin-top: .5rem; font-size: .74rem; line-height: 1.35; color: oklch(0.90 0.06 340); }
+.encaixe { max-width: 36rem; margin: .4rem auto 1.4rem; text-align: center; border-radius: 1.1rem; padding: 1.1rem 1rem; background: oklch(0.22 0.08 350 / .55); border: 1px solid oklch(0.80 0.14 355 / .55); box-shadow: 0 0 26px oklch(0.62 0.2 0 / .3); }
+.encaixe h3 { margin: 0 0 .35rem; font-family: var(--titulo); font-size: clamp(1.05rem, 3.4vw, 1.3rem); color: oklch(0.88 0.1 350); }
+.encaixe p { margin: .2rem 0 .7rem; font-size: .85rem; color: var(--suave); }
+.encaixe .rotulo { display: block; margin: .6rem 0 .35rem; font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--ouro); }
+.encaixe .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .45rem; }
+.encaixe .chip { border-radius: 999px; padding: .35rem .8rem; font-size: .9rem; font-weight: 700; background: linear-gradient(135deg, oklch(0.60 0.2 0 / .55), oklch(0.45 0.16 330 / .7)); border: 1px solid oklch(0.85 0.12 350 / .7); }
+.encaixe .chip.leve { background: oklch(0.25 0.07 310 / .7); border-color: var(--borda); font-weight: 600; }
+.astro { text-align: center; border-radius: 1.1rem; padding: 1.1rem .6rem; background: linear-gradient(160deg, oklch(0.50 0.17 335 / .45), oklch(0.28 0.11 300 / .8));
+  border: 1px solid oklch(0.85 0.10 330 / .6); box-shadow: 0 0 34px oklch(0.70 0.17 330 / .35); display: flex; flex-direction: column; align-items: center; }
+.astro .elem { margin-top: auto !important; }
+.astro .grau { margin-bottom: .45rem; }
+.astro .qual { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.astro .glifo { font-size: 2.8rem; line-height: 1.1; color: var(--ouro); text-shadow: 0 0 18px oklch(0.85 0.13 88 / .7); margin: .3rem 0; }
+.astro .nome-signo { font-family: var(--titulo); font-size: clamp(1.05rem, 3.6vw, 1.35rem); font-weight: 700; line-height: 1.2; }
+.astro .grau { font-size: .8rem; color: var(--suave); }
+.astro .elem { display: inline-block; margin-top: .45rem; font-size: .74rem; font-weight: 700; border-radius: 999px; padding: .2rem .65rem; background: oklch(0.18 0.06 300 / .7); border: 1px solid var(--borda); }
+.tema { margin-top: 1.3rem; border-radius: 1.1rem; padding: 1.1rem 1.2rem 1.2rem; background: oklch(0.18 0.06 300 / .6); border: 1px solid var(--borda); }
+.tema .num { font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--rosa); }
+.tema h3 { font-family: var(--titulo); font-size: 1.2rem; margin: .15rem 0 .5rem; color: var(--lilas-claro); }
+.tema p { margin: 0; font-family: var(--serifa); font-size: 1.18rem; line-height: 1.6; color: var(--lavanda); }
+.tema .chave { display: block; margin-bottom: .35rem; font-family: Inter, system-ui, sans-serif; font-size: .8rem; color: var(--suave); }
+.aviso-hora { text-align: center; font-size: .86rem; color: oklch(0.88 0.12 90); margin-top: .9rem; }
+.dados-nasc { text-align: center; font-size: .82rem; color: var(--suave); margin-top: .4rem; }
+
+/* a versão completa, fechada */
+.completo { position: relative; overflow: hidden; }
+.completo .selo { display: table; margin: 0 auto .8rem; }
+.capitulos { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; grid-template-columns: 1fr; }
+@media (min-width: 680px) { .capitulos { grid-template-columns: 1fr 1fr; } }
+.capitulos li { display: flex; align-items: center; gap: .7rem; border-radius: .9rem; padding: .7rem .9rem; background: oklch(0.18 0.06 300 / .6); border: 1px solid var(--borda); }
+.capitulos .n { flex: none; width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 50%; font-weight: 800; font-size: .85rem;
+  background: var(--grad-lilas); color: white; }
+.capitulos .t { flex: 1; font-weight: 600; font-size: .92rem; }
+.capitulos .t small { display: block; font-weight: 400; color: var(--suave); font-size: .78rem; }
+.capitulos .cad { flex: none; font-size: .95rem; opacity: .8; }
+.em-breve { display: block; text-align: center; margin-top: 1.1rem; font-family: var(--serifa); font-size: 1.15rem; color: var(--lavanda); }
+
+/* 21/10/2026: a compra (10 € cartão/MB WAY · R$ 49,90 PIX). Aberta a todos desde 21/10 (pedido dele) */
+.comprar { margin-top: 1.3rem; border-radius: 1.1rem; padding: 1.2rem; background: oklch(0.20 0.07 300 / .75); border: 1.5px solid oklch(0.88 0.12 88 / .6); text-align: center; }
+.comprar[hidden] { display: none; }
+.comprar .preco { font-family: var(--titulo); font-size: 2.4rem; font-weight: 800; color: var(--ouro); line-height: 1.1; }
+.comprar .preco small { display: block; font-family: Inter, system-ui, sans-serif; font-size: .85rem; font-weight: 600; color: var(--lavanda); }
+.comprar label { display: block; max-width: 26rem; margin: 1rem auto 0; text-align: left; font-size: .85rem; color: var(--suave); }
+.comprar input { width: 100%; margin-top: .3rem; border-radius: .7rem; border: 1px solid var(--borda); background: oklch(0.14 0.05 300); color: white; font-size: 1rem; padding: .65rem .8rem; }
+.metodos { display: grid; gap: .6rem; grid-template-columns: 1fr; max-width: 26rem; margin: 1rem auto 0; }
+.metodos button { display: flex; align-items: center; justify-content: center; gap: .5rem; border-radius: .8rem; border: 0; font-weight: 800; font-size: 1rem; padding: .8rem; cursor: pointer; transition: transform .2s; }
+.metodos button:hover { transform: scale(1.03); }
+.m-cartao { background: linear-gradient(135deg, oklch(0.93 0.10 92), oklch(0.78 0.15 75)); color: oklch(0.22 0.07 300); }
+.m-mbway { background: #d4002a; color: white; }
+.m-pix { background: oklch(0.24 0.05 200); color: white; border: 1.5px solid #32BCAD !important; }
+.m-info { max-width: 26rem; margin: 1rem auto 0; border-radius: .9rem; background: #fff; color: #1d1d2b; padding: 1rem; display: none; }
+.m-info.ver { display: block; animation: surgir .3s ease-out; }
+.m-info .num { font-size: 1.7rem; font-weight: 800; letter-spacing: .04em; color: #d4002a; }
+.m-info img { display: block; margin: .6rem auto; width: 220px; height: 220px; }
+.m-info a, .m-info button { display: inline-block; margin-top: .6rem; border-radius: 999px; border: 0; padding: .6rem 1.1rem; font-weight: 700; text-decoration: none; cursor: pointer; }
+.m-info a { background: #25D366; color: white; }
+.m-info button { background: #e6f7f5; color: #0f766e; }
+.comprar .nota { margin: .9rem 0 0; font-size: .84rem; color: var(--lavanda); }
+
+/* consulta */
+.consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 860px) { .consulta { grid-template-columns: 0.8fr 1.2fr; } }
+.consulta-foto { border-radius: 1.3rem; overflow: hidden; border: 3px solid oklch(0.80 0.11 312); box-shadow: 0 20px 50px #0009, 0 0 40px oklch(0.65 0.17 305 / .4); max-width: 22rem; margin: 0 auto; }
+.consulta-foto img { display: block; width: 100%; height: auto; }
+.consulta h2 { text-align: left; }
+@media (max-width: 859px) { .consulta h2, .consulta .gancho, .consulta .botoes { text-align: center; justify-content: center; } }
+.gancho { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); margin: .2rem 0 1rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
+section { margin: 0 0 2.2rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+/* ============ Mapa Astral — azul-noite e dourado (21/10/2026) ============ */
+:root {
+  --fundo: oklch(0.16 0.06 270);
+  --suave: oklch(0.84 0.04 265);
+  --lilas: oklch(0.74 0.12 270);
+  --lilas-claro: oklch(0.86 0.08 265);
+  --lavanda: oklch(0.93 0.04 265);
+  --rosa: oklch(0.85 0.13 88);
+  --borda: oklch(0.75 0.10 270 / 0.35);
+  --vidro: oklch(0.28 0.08 270 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.72 0.13 260), oklch(0.58 0.17 280) 55%, oklch(0.48 0.18 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.93 0.10 92), oklch(0.80 0.14 80) 55%, oklch(0.70 0.14 60));
+}
+body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklch(0.20 0.08 270) 45%, oklch(0.11 0.04 265) 100%) fixed, var(--fundo); }
+.roda { background: conic-gradient(from 0deg, oklch(0.70 0.13 260 / .35), oklch(0.50 0.16 285 / .2), oklch(0.85 0.12 88 / .3), oklch(0.50 0.16 285 / .2), oklch(0.70 0.13 260 / .35));
+  box-shadow: 0 0 60px oklch(0.70 0.14 265 / .45), inset 0 0 40px oklch(0.25 0.08 270 / .6); }
+.foto-anel { border-color: oklch(0.88 0.12 88); box-shadow: 0 0 0 6px oklch(0.50 0.16 275 / .5), 0 20px 50px #0008; }
+.cartao { background: linear-gradient(160deg, oklch(0.30 0.09 272 / .82), oklch(0.20 0.07 268 / .9)); }
+#resultado.ver { border-color: oklch(0.85 0.11 88 / .55); }
+.tema, .capitulos li { background: oklch(0.17 0.05 268 / .6); }
+
+/* o trio Sol · Lua · Ascendente ligado por um fio de estrelas */
+.trio { display: grid; grid-template-columns: 1fr 3.6rem 1fr; align-items: center; max-width: 36rem; margin: 1.2rem auto .4rem; }
+.trio .asc { grid-column: 1 / -1; justify-self: center; width: calc(50% - 1.8rem); }
+.astro { text-align: center; border-radius: 1.1rem; padding: 1.1rem .6rem; align-self: stretch; display: flex; flex-direction: column; align-items: center;
+  background: linear-gradient(160deg, oklch(0.45 0.14 270 / .5), oklch(0.24 0.09 270 / .85)); border: 1px solid oklch(0.85 0.11 88 / .5); box-shadow: 0 0 30px oklch(0.60 0.15 270 / .35); }
+.astro .qual { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.astro .glifo { font-size: 2.8rem; line-height: 1.1; color: var(--ouro); text-shadow: 0 0 18px oklch(0.85 0.13 88 / .7); margin: .3rem 0; }
+.astro .nome-signo { font-family: var(--titulo); font-size: clamp(1.05rem, 3.6vw, 1.35rem); font-weight: 700; line-height: 1.2; }
+.astro .grau { font-size: .8rem; color: var(--suave); margin-bottom: .45rem; }
+.astro .elem { display: inline-block; margin-top: auto; font-size: .74rem; font-weight: 700; border-radius: 999px; padding: .2rem .65rem; background: oklch(0.16 0.05 268 / .7); border: 1px solid var(--borda); }
+.astro .papel { margin-top: .5rem; font-size: .74rem; line-height: 1.35; color: oklch(0.90 0.06 88); }
+.fio, .fio-baixo { position: relative; display: grid; place-items: center; }
+.fio { height: 3rem; }
+.fio-baixo { grid-column: 1 / -1; height: 2.2rem; }
+.fio .linha { position: absolute; left: -.4rem; right: -.4rem; top: 50%; height: 2px; margin-top: -1px; }
+.fio-baixo .linha { position: absolute; top: -1.1rem; bottom: 0; left: 50%; width: 2px; margin-left: -1px; }
+.fio .linha, .fio-baixo .linha { background: linear-gradient(90deg, #b8862b, #fff4c8, #b8862b); background-size: 200% 100%; animation: fio-brilha 2s linear infinite; box-shadow: 0 0 10px oklch(0.88 0.13 88 / .9); }
+.fio-baixo .linha { background: linear-gradient(180deg, #b8862b, #fff4c8, #b8862b); background-size: 100% 200%; }
+.brilho { position: relative; font-size: 1.3rem; color: #fff6d8; text-shadow: 0 0 10px #ffd76a, 0 0 22px #ffd76a; animation: brilha 1.8s ease-in-out infinite; }
+@keyframes fio-brilha { from { background-position: 0 0; } to { background-position: 200% 200%; } }
+@keyframes brilha { 0%, 100% { transform: scale(.85) rotate(0); opacity: .75; } 50% { transform: scale(1.25) rotate(45deg); opacity: 1; } }
+
+/* a Mandala */
+.mandala { display: block; width: 100%; height: auto; }
+.mandala-fecho { position: relative; max-width: 30rem; margin: 1.6rem auto .6rem; border-radius: 1.4rem; overflow: hidden; border: 1px solid oklch(0.85 0.11 88 / .55); box-shadow: 0 0 40px oklch(0.60 0.15 270 / .45); }
+.mandala-vidro { filter: blur(4px) saturate(1.3) brightness(1.25); transform: scale(1.04); }
+.cadeado { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; text-align: center; padding: 1.2rem;
+  background: radial-gradient(circle, oklch(0.16 0.06 270 / .55) 30%, oklch(0.14 0.05 268 / .25) 75%); }
+.cadeado .ico { font-size: 2.6rem; filter: drop-shadow(0 0 12px #ffd76a); animation: brilha 2.4s ease-in-out infinite; }
+.cadeado b { font-family: var(--titulo); font-size: clamp(1.1rem, 4vw, 1.45rem); line-height: 1.25; color: var(--ouro); }
+.cadeado small { max-width: 22rem; color: var(--lavanda); font-size: .86rem; }
+.cadeado .btn-grande { margin-top: .4rem; font-size: .98rem; padding: .8rem 1.4rem; }
+.previa { display: none; }
+.previa.ver { display: block; }
+.previa .selo { display: table; margin: 0 auto .8rem; }
+.mandala.grande { max-width: 36rem; margin: .4rem auto 0; filter: drop-shadow(0 0 30px oklch(0.55 0.15 270 / .55)); }
+.mandala .desenha { stroke-dasharray: 1200; animation: desenha 2.6s ease-out backwards; }
+@keyframes desenha { from { stroke-dashoffset: 1200; } to { stroke-dashoffset: 0; } }
+.mandala .planeta { animation: surge-p .8s ease-out both; }
+@keyframes surge-p { from { opacity: 0; } to { opacity: 1; } }
+.legenda { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.2rem; margin: .8rem 0 0; font-size: .78rem; color: var(--suave); }
+.legenda i { display: inline-block; width: 1.4rem; height: 3px; vertical-align: middle; margin-right: .3rem; border-radius: 2px; }
+.l-har { background: #5ec8ff; } .l-ten { background: #ff6b8b; }
+.sub-previa { font-family: var(--titulo); text-align: center; font-size: 1.15rem; color: var(--ouro); margin: 1.6rem 0 .7rem; }
+.elementos { display: grid; gap: .55rem; max-width: 30rem; margin: 0 auto; }
+.elementos .el { display: grid; grid-template-columns: 5.5rem 1fr 2.6rem; align-items: center; gap: .6rem; font-size: .86rem; }
+.elementos .barra { height: .7rem; border-radius: 999px; background: oklch(0.16 0.05 268 / .8); overflow: hidden; border: 1px solid var(--borda); }
+.elementos .barra i { display: block; height: 100%; border-radius: 999px; }
+.elementos .pct { text-align: right; font-weight: 700; color: var(--lavanda); }
+.elementos .resumo { text-align: center; font-family: var(--serifa); font-size: 1.12rem; color: var(--lavanda); margin: .4rem 0 0; }
+.planetas { width: 100%; max-width: 30rem; margin: 0 auto; border-collapse: collapse; font-size: .9rem; }
+.planetas td { padding: .5rem .4rem; border-bottom: 1px solid var(--borda); }
+.planetas td:first-child { color: var(--ouro); font-weight: 700; white-space: nowrap; }
+.planetas td.casa { text-align: right; color: var(--suave); font-size: .8rem; white-space: nowrap; }
+.planetas .g { font-size: 1.15rem; margin-right: .3rem; }
+.bonus { display: flex; align-items: center; gap: .8rem; margin: 0 0 .8rem; border-radius: .9rem; padding: .8rem 1rem;
+  background: linear-gradient(135deg, oklch(0.85 0.13 88 / .25), oklch(0.45 0.14 270 / .4)); border: 1.5px solid oklch(0.88 0.13 88 / .8); box-shadow: 0 0 24px oklch(0.85 0.13 88 / .3); }
+.bonus .ico { font-size: 1.8rem; }
+.bonus .t { font-weight: 800; color: var(--ouro); }
+.bonus .t small { display: block; font-weight: 400; color: var(--lavanda); font-size: .8rem; }
+
+/* 21/10: resultados limpos e nítidos (pedido dele: «nada esfumado nos resultados de qualquer mapa, tudo claro e limpo») */
+#resultado, .previa { background: linear-gradient(160deg, oklch(0.29 0.09 272), oklch(0.20 0.07 268)); backdrop-filter: none; -webkit-backdrop-filter: none; }
+#resultado .astro .glifo { text-shadow: none; }
+#resultado p, #resultado .res-frase, #resultado .tema p, .previa p { color: oklch(0.98 0.01 265); }
+#resultado .astro .qual, #resultado .astro .grau, #resultado .dados-nasc, #resultado .tema .chave { color: oklch(0.92 0.03 265); }
+#resultado .astro { background: linear-gradient(160deg, oklch(0.40 0.13 270), oklch(0.25 0.09 270)); }
+#resultado .astro .elem { background: oklch(0.18 0.06 268); }
+#resultado .tema { background: oklch(0.20 0.06 268); }
+/* ===== Novidades (28/10/2026): os cartões das páginas novas ===== */
+html, body { overflow-x: clip; }
+.novas { display: grid; grid-template-columns: 1fr; gap: .9rem; margin-top: 1.2rem; }
+@media (min-width: 700px) { .novas { grid-template-columns: 1fr 1fr; } }
+.nova { position: relative; display: flex; gap: .9rem; align-items: flex-start; padding: 1.1rem 1.1rem 1.1rem 1rem; border-radius: 1.1rem; text-decoration: none; color: var(--texto);
+  background: linear-gradient(160deg, oklch(0.29 0.09 300 / .85), oklch(0.20 0.07 300 / .85)); border: 1px solid var(--borda); transition: transform .2s, border-color .2s; }
+.nova:hover { transform: translateY(-2px); border-color: oklch(0.85 0.13 88 / .6); }
+.nova .ico { font-size: 1.9rem; line-height: 1; flex: none; }
+.nova b { display: block; font-family: var(--titulo); font-size: 1.15rem; color: var(--ouro); margin-bottom: .2rem; }
+.nova small { color: var(--lavanda); font-size: .9rem; line-height: 1.45; }
+.nova .eti { position: absolute; top: -.55rem; right: .9rem; font-size: .62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 999px;
+  background: linear-gradient(135deg, oklch(0.75 0.19 145), oklch(0.62 0.17 160)); color: oklch(0.18 0.05 160); }
+</style>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+
+  <section class="cartao">
+    <span class="selo">✦ Novidades · grátis ✦</span>
+    <h1>Experimente as <span class="lil">novidades</span></h1>
+    <p class="int">Páginas novas, todas grátis, feitas com o céu calculado ao minuto. Estão em experiência: experimente e diga-nos o que achou pelo WhatsApp.</p>
+    <nav class="novas" aria-label="Páginas novas">
+      <a class="nova" href="/revolucao-solar"><span class="eti">Novo</span><span class="ico">🎂</span><span><b>Revolução Solar</b><small>O minuto do seu aniversário astrológico e o que o céu desse instante diz sobre o seu novo ano.</small></span></a>
+      <a class="nova" href="/horoscopo-pessoal"><span class="eti">Novo</span><span class="ico">🌅</span><span><b>O seu Horóscopo Pessoal do Dia</b><small>Não é o do signo: é o céu de hoje a tocar no SEU mapa. Muda todos os dias.</small></span></a>
+      <a class="nova" href="/carta-de-tarot"><span class="eti">Novo</span><span class="ico">🃏</span><span><b>A sua Carta de Tarot</b><small>O Arcano que o(a) acompanha desde que nasceu, e o Arcano do seu signo.</small></span></a>
+      <a class="nova" href="/retrogrados"><span class="eti">Novo</span><span class="ico">☿</span><span><b>Mercúrio Retrógrado</b><small>Está retrógrado agora? Até quando? As datas dos próximos e o que cada signo deve cuidar.</small></span></a>
+      <a class="nova" href="/trio-astral"><span class="eti">Novo</span><span class="ico">✨</span><span><b>O seu Sol, Lua e Ascendente em imagem</b><small>Um cartão bonito com os seus três signos, pronto para partilhar no Instagram e no WhatsApp.</small></span></a>
+      <a class="nova" href="/calendarios"><span class="eti">Novo</span><span class="ico">📅</span><span><b>O céu no seu calendário</b><small>Luas Cheias, Luas Novas, eclipses e retrógrados no calendário do seu telemóvel, sempre actualizados.</small></span></a>
+      <a class="nova" href="/horoscopo-chines"><span class="eti">Novo</span><span class="ico">🐉</span><span><b>Horóscopo Chinês</b><small>O seu animal e o seu elemento, e o que traz o ano chinês em curso.</small></span></a>
+      <a class="nova" href="/fase-lua-nascimento"><span class="eti">Novo</span><span class="ico">🌙</span><span><b>A Lua em que você nasceu</b><small>Em que fase estava a Lua no dia do seu nascimento, e o que isso diz de si.</small></span></a>
+      <a class="nova" href="/adivinha-signo"><span class="eti">Novo</span><span class="ico">🎯</span><span><b>Jogo: adivinhe o signo</b><small>Famosos do Brasil e de Portugal: consegue acertar o signo de cada um?</small></span></a>
+      <a class="nova" href="/mapa-do-casal"><span class="eti">Novo</span><span class="ico">💞</span><span><b>O Mapa do Casal</b><small>Os vossos dois céus lado a lado: onde se completam e onde se desafiam.</small></span></a>
+    </nav>
+  </section>
+
+  <section id="consulta" class="cartao">
+    <div class="consulta">
+      <div class="consulta-foto"><img src="mestre-r14.jpg" alt="Mestre Alberto com as cartas do Tarot" width="800" height="800" loading="lazy" /></div>
+      <div>
+        <h2>Gostou? <span class="lil">Diga-nos</span></h2>
+        <p class="gancho">A sua opinião ajuda a decidir que páginas ficam. E se quiser ir mais fundo, o Mestre Alberto junta o seu céu e as cartas do Tarot numa consulta online.</p>
+        <div class="botoes">
+          <a class="btn-grande" href="loja.html">🔮 Marcar uma consulta</a>
+          <a class="btn-wa" href="https://wa.me/351914920427?text=Olá%20Mestre%20Alberto,%20experimentei%20as%20novidades%20do%20site%20e%20queria%20dizer%20o%20seguinte:" target="_blank" rel="noopener noreferrer">💬 Dar a minha opinião</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+</body>
+</html>

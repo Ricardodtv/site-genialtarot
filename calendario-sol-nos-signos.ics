@@ -1,0 +1,1877 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Genial Tarot//O ceu no seu calendario//PT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+NAME:O Sol nos signos · Genial Tarot
+X-WR-CALNAME:O Sol nos signos · Genial Tarot
+DESCRIPTION:O dia e a hora em que o Sol entra em cada signo. Mestre Alberto
+ \, genialtarot.com
+X-WR-CALDESC:O dia e a hora em que o Sol entra em cada signo. Mestre Albert
+ o\, genialtarot.com
+URL:https://genialtarot.com/calendarios
+SOURCE;VALUE=URI:https://genialtarot.com/calendario-sol-nos-signos.ics
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+X-PUBLISHED-TTL:P1D
+COLOR:gold
+BEGIN:VEVENT
+UID:sol-entra-10-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250119T200008Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250218T100634Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250320T090129Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250419T195600Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250520T185438Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250621T024216Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250722T132928Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250822T203352Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250922T181920Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251023T035055Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251122T013534Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2025@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251221T150305Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260120T014455Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260218T155155Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260320T144558Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260420T013907Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260521T003644Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260621T082430Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260722T191305Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260823T021848Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260923T000513Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261023T093756Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261122T072321Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2026@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261221T205014Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270120T072951Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270218T213329Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270320T202442Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270420T071738Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270521T061814Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270621T141050Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270723T010440Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270823T081419Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270923T060142Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271023T153252Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271122T131613Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2027@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271222T024209Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280120T132155Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280219T032601Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280320T021709Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280419T130930Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280520T120949Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280620T200201Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280722T065359Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280822T140056Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280922T114519Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281022T211322Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281121T185423Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2028@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281221T081940Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290119T190053Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290218T090755Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290320T080159Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290419T185542Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290520T175552Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290621T014818Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290722T124206Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290822T195137Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290922T173830Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291023T030807Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291122T004923Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2029@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291221T141407Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300120T005423Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300218T145956Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300320T135206Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300420T004335Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300520T234105Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300621T073119Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300722T182454Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300823T013624Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300922T232653Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301023T090033Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301122T064435Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2030@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301221T200937Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310120T064757Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310218T205054Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310320T194058Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310420T063114Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310521T052756Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310621T131708Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310723T001027Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310823T072318Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310923T051519Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311023T144927Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311122T123236Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2031@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311222T015533Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320120T123117Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320219T023212Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320320T012153Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320419T121408Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320520T111500Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320620T190846Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320722T060445Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320822T131819Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320922T111051Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321022T204613Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321121T183111Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2032@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321221T075556Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330119T183247Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330218T083347Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330320T072242Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330419T181306Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330520T171058Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330621T010108Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330722T115249Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330822T190151Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330922T165140Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331023T022736Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331122T001609Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2033@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331221T134559Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340120T002716Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340218T143010Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340320T131728Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340420T000342Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340520T225653Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340621T064412Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340722T173621Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340823T004745Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340922T223933Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341023T081627Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341122T060457Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2034@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341221T193359Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350120T061415Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350218T201609Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350320T190243Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350420T054858Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350521T044326Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350621T123308Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350722T232841Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350823T064410Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350923T043856Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351023T141610Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351122T120313Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2035@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351222T013052Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-10-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360120T121101Z
+SUMMARY:☉ O Sol entra em Aquário
+DESCRIPTION:Começa a temporada de Aquário. Ideias novas e amizades em des
+ taque: tempo de pensar no futuro e no coletivo.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-11-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360219T021416Z
+SUMMARY:☉ O Sol entra em Peixes
+DESCRIPTION:Começa a temporada de Peixes. Um ciclo sensível e intuitivo: 
+ descansar\, sonhar e fechar o ano astrológico com gratidão.\n\nhttps://g
+ enialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-00-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360320T010250Z
+SUMMARY:☉ O Sol entra em Áries (Carneiro)
+DESCRIPTION:Começa a temporada de Áries. Começa um ciclo de iniciativa: 
+ bom momento para dar o primeiro passo naquilo que anda a adiar.\n\nhttps:/
+ /genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-01-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360419T115029Z
+SUMMARY:☉ O Sol entra em Touro
+DESCRIPTION:Começa a temporada de Touro. O ritmo abranda e pede presença:
+  cuidar do corpo\, das finanças e daquilo que dá segurança.\n\nhttps://
+ genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-02-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360520T104452Z
+SUMMARY:☉ O Sol entra em Gêmeos
+DESCRIPTION:Começa a temporada de Gêmeos. A mente acelera: tempo de apren
+ der\, conversar\, trocar ideias e fazer contactos.\n\nhttps://genialtarot.
+ com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-03-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360620T183214Z
+SUMMARY:☉ O Sol entra em Câncer (Caranguejo)
+DESCRIPTION:Começa a temporada de Câncer. O coração volta-se para casa:
+  família\, raízes e o cuidado com quem está perto.\n\nhttps://genialtar
+ ot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-04-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360722T052240Z
+SUMMARY:☉ O Sol entra em Leão
+DESCRIPTION:Começa a temporada de Leão. Tempo de brilhar sem pedir licen
+ ça: criatividade\, alegria e generosidade.\n\nhttps://genialtarot.com/hor
+ oscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-05-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360822T123223Z
+SUMMARY:☉ O Sol entra em Virgem
+DESCRIPTION:Começa a temporada de Virgem. Hora de arrumar a vida: rotinas\
+ , saúde e pequenos ajustes que fazem diferença.\n\nhttps://genialtarot.c
+ om/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-06-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360922T102318Z
+SUMMARY:☉ O Sol entra em Libra (Balança)
+DESCRIPTION:Começa a temporada de Libra. As relações ganham destaque: di
+ álogo\, acordos e a procura de equilíbrio.\n\nhttps://genialtarot.com/ho
+ roscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-07-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361022T195850Z
+SUMMARY:☉ O Sol entra em Escorpião
+DESCRIPTION:Começa a temporada de Escorpião. Tempo de ir ao fundo das coi
+ sas: soltar o que já não serve e renovar-se.\n\nhttps://genialtarot.com/
+ horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-08-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361121T174517Z
+SUMMARY:☉ O Sol entra em Sagitário
+DESCRIPTION:Começa a temporada de Sagitário. O olhar vai longe: viagens\,
+  estudos\, fé e vontade de crescer.\n\nhttps://genialtarot.com/horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:sol-entra-09-2036@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361221T071252Z
+SUMMARY:☉ O Sol entra em Capricórnio
+DESCRIPTION:Começa a temporada de Capricórnio. Tempo de construir com pac
+ iência: metas claras\, trabalho e compromisso.\n\nhttps://genialtarot.com
+ /horoscopo
+URL:https://genialtarot.com/horoscopo
+CATEGORIES:Sol
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

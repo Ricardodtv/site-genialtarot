@@ -1,0 +1,3865 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Genial Tarot//O ceu no seu calendario//PT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+NAME:Luas · Genial Tarot
+X-WR-CALNAME:Luas · Genial Tarot
+DESCRIPTION:Luas Cheias e Luas Novas\, com o signo\, calculadas pelo Swiss 
+ Ephemeris. Mestre Alberto\, genialtarot.com
+X-WR-CALDESC:Luas Cheias e Luas Novas\, com o signo\, calculadas pelo Swiss
+  Ephemeris. Mestre Alberto\, genialtarot.com
+URL:https://genialtarot.com/calendarios
+SOURCE;VALUE=URI:https://genialtarot.com/calendario-luas.ics
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+X-PUBLISHED-TTL:P1D
+COLOR:gold
+BEGIN:VEVENT
+UID:lua-cheia-2025-01-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250113T222655Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-01-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250129T123600Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-02-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250212T135325Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-02-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250228T004448Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-03-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250314T065440Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-03-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250329T105751Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-04-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250413T002214Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-04-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250427T193112Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-05-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250512T165554Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-05-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250527T030223Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-06-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250611T074350Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-06-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250625T103137Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-07-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250710T203648Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-07-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250724T191111Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-08-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250809T075504Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-08-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250823T060634Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-09-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250907T180852Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-09-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250921T195409Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-10-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251007T034736Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-10-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251021T122510Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-11-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251105T131920Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-11-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251120T064715Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2025-12-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251204T231406Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2025-12-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20251220T014322Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-01-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260103T100254Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-01-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260118T195201Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-02-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260201T220914Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-02-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260217T120110Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-03-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260303T113755Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-03-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260319T012329Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-04-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260402T021200Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-04-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260417T115148Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-05-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260501T172310Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-05-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260516T200103Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-05-31@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260531T084511Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-06-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260615T025411Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-06-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260629T235642Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-07-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260714T094336Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-07-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260729T143545Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-08-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260812T173643Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-08-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260828T041832Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-09-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260911T032701Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-09-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260926T164901Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-10-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261010T155006Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-10-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261026T041147Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-11-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261109T070207Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-11-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261124T145336Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2026-12-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261209T005151Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2026-12-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20261224T012816Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-01-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270107T202425Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-01-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270122T121721Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-02-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270206T155609Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-02-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270220T232338Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-03-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270308T092929Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-03-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270322T104348Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-04-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270406T235108Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-04-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270420T222711Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-05-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270506T105837Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-05-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270520T105901Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-06-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270604T194021Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-06-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270619T004420Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-07-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270704T030204Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-07-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270718T154456Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-08-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270802T100513Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-08-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270817T072842Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-08-31@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270831T174111Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-09-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270915T230332Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-09-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270930T023605Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-10-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271015T134658Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-10-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271029T133634Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-11-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271114T032554Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-11-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271128T032426Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2027-12-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271213T160849Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2027-12-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20271227T201219Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-01-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280112T040306Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-01-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280126T151231Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-02-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280210T150345Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-02-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280225T103725Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-03-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280311T010603Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-03-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280326T043120Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-04-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280409T102638Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-04-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280424T194654Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-05-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280508T194858Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-05-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280524T081617Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-06-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280607T060849Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-06-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280622T182734Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-07-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280706T181047Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-07-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280722T030143Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-08-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280805T080948Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-08-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280820T104351Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-09-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280903T234736Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-09-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280918T182347Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-10-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281003T162500Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-10-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281018T025651Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-11-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281102T091719Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-11-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281116T131803Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-12-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281202T014012Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2028-12-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281216T020618Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2028-12-31@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281231T164832Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-01-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290114T172430Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-01-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290130T060338Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-02-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290213T103131Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-02-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290228T171015Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-03-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290315T041915Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-03-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290330T022624Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-04-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290413T214010Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-04-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290428T103650Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-05-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290513T134207Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-05-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290527T183732Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-06-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290612T035032Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-06-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290626T032220Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-07-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290711T155105Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-07-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290725T133546Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-08-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290810T015548Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-08-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290824T015115Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-09-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290908T104422Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-09-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290922T162920Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-10-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291007T191435Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-10-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291022T092734Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-11-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291106T042410Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-11-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291121T040257Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2029-12-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291205T145209Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2029-12-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291220T224630Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-01-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300104T024933Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-01-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300119T155422Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-02-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300202T160729Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-02-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300218T061950Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-03-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300304T063441Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-03-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300319T175631Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-04-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300402T220233Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-04-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300418T032002Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-05-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300502T141210Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-05-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300517T111910Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-06-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300601T062120Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-06-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300615T184101Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-06-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300630T213428Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-07-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300715T021158Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-07-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300730T111100Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-08-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300813T104423Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-08-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300828T230722Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-09-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300911T211757Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-09-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300927T095440Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-10-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301011T104651Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-10-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301026T201659Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-11-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301110T033016Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-11-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301125T064630Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2030-12-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301209T224026Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2030-12-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301224T173214Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-01-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310108T182551Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-01-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310123T043058Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-02-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310207T124615Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-02-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310221T154851Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-03-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310309T042940Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-03-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310323T034907Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-04-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310407T172119Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-04-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310421T165707Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-05-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310507T033953Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-05-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310521T071713Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-06-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310605T115834Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-06-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310619T222441Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-07-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310704T190122Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-07-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310719T134015Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-08-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310803T014537Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-08-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310818T043218Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-09-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310901T092033Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-09-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310916T184652Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-09-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310930T185754Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-10-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311016T082044Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-10-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311030T073243Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-11-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311114T210939Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-11-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311128T231826Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2031-12-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311214T090550Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2031-12-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311228T173300Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-01-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320112T200641Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-01-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320127T125231Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-02-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320211T062412Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-02-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320226T074316Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-03-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320311T162440Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-03-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320327T004618Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-04-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320410T023932Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-04-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320425T150939Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-05-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320509T133544Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-05-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320525T023714Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-06-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320608T013205Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-06-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320623T113233Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-07-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320707T144131Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-07-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320722T185135Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-08-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320806T051135Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-08-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320821T014653Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-09-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320904T205639Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-09-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320919T093018Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-10-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321004T132621Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-10-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321018T185810Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-11-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321103T054456Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-11-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321117T064203Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2032-12-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321202T205253Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2032-12-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321216T204859Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-01-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330101T101703Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-01-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330115T130707Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-01-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330130T215952Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-02-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330214T070413Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-03-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330301T082330Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-03-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330316T013726Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-03-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330330T175139Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-04-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330414T191722Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-04-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330429T024614Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-05-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330514T104243Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-05-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330528T113632Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-06-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330612T231913Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-06-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330626T210701Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-07-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330712T092837Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-07-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330726T081235Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-08-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330810T180744Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-08-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330824T213950Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-09-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330909T022034Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-09-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330923T133947Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-10-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331008T105809Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-10-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331023T072823Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-11-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331106T203207Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-11-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331122T013906Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2033-12-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331206T072204Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2033-12-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331221T184629Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-01-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340104T194707Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-01-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340120T100136Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-02-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340203T100435Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-02-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340218T231017Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-03-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340305T021011Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-03-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340320T101435Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-04-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340403T191853Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-04-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340418T192556Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-05-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340503T121540Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-05-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340518T031236Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-06-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340602T035400Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-06-16@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340616T102556Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-07-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340701T174434Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-07-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340715T181515Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-07-31@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340731T055431Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-08-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340814T035304Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-08-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340829T164918Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-09-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340912T161350Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-09-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340928T025649Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-10-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341012T073239Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-10-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341027T124231Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-11-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341111T011613Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-11-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341125T223212Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2034-12-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341210T201424Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2034-12-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20341225T085430Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-01-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350109T150307Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-01-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350123T201636Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-02-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350208T082209Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-02-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350222T085357Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-03-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350309T230928Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-03-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350323T224210Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-04-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350408T105748Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-04-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350422T132045Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-05-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350507T200353Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-05-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350522T042546Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-06-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350606T032043Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-06-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350620T193728Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-07-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350705T095920Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-07-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350720T103653Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-08-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350803T171148Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-08-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350819T010019Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-09-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350902T015933Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-09-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350917T142332Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-10-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351001T130651Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-10-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351017T023533Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-10-31@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351031T025842Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-11-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351115T134855Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-11-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351129T193734Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2035-12-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351215T003315Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2035-12-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20351229T143057Z
+SUMMARY:🌑 Lua Nova em Capricórnio
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de objetivos\, trabalho e responsabilidade.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-01-13@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360113T111608Z
+SUMMARY:🌕 Lua Cheia em Câncer (Caranguejo)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de casa\, família e o cuidado com as emo
+ ções.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-01-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360128T101714Z
+SUMMARY:🌑 Lua Nova em Aquário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de amizades\, liberdade e ideias novas.\n\nhttps://genialtaro
+ t.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-02-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360211T220842Z
+SUMMARY:🌕 Lua Cheia em Leão
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coração aberto\, alegria e criativida
+ de.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-02-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360227T045918Z
+SUMMARY:🌑 Lua Nova em Peixes
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de sensibilidade\, intuição e compaixão.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-03-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360312T090931Z
+SUMMARY:🌕 Lua Cheia em Virgem
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de organização\, saúde e atenção aos 
+ pormenores.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-03-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360327T205645Z
+SUMMARY:🌑 Lua Nova em Áries (Carneiro)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coragem para começar e vontade de agir.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-04-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360410T202236Z
+SUMMARY:🌕 Lua Cheia em Libra (Balança)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de parcerias\, equilíbrio e beleza.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-04-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360426T093314Z
+SUMMARY:🌑 Lua Nova em Touro
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de calma\, conforto e o valor das coisas simples.\n\nhttps://
+ genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-05-10@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360510T080934Z
+SUMMARY:🌕 Lua Cheia em Escorpião
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de profundidade\, verdade e transformaçã
+ o.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-05-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360525T191700Z
+SUMMARY:🌑 Lua Nova em Gêmeos
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de conversas\, ideias e curiosidade.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-06-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360608T210158Z
+SUMMARY:🌕 Lua Cheia em Sagitário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de fé\, estudo e horizontes largos.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-06-24@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360624T030939Z
+SUMMARY:🌑 Lua Nova em Câncer (Caranguejo)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de casa\, família e o cuidado com as emoções.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-07-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360708T111918Z
+SUMMARY:🌕 Lua Cheia em Capricórnio
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de objetivos\, trabalho e responsabilidade
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-07-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360723T101701Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-08-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360807T024857Z
+SUMMARY:🌕 Lua Cheia em Aquário
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de amizades\, liberdade e ideias novas.\n\
+ nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-08-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360821T173523Z
+SUMMARY:🌑 Lua Nova em Leão
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de coração aberto\, alegria e criatividade.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-09-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360905T184535Z
+SUMMARY:🌕 Lua Cheia em Peixes
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de sensibilidade\, intuição e compaixão
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-09-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360920T015138Z
+SUMMARY:🌑 Lua Nova em Virgem
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de organização\, saúde e atenção aos pormenores.\n\nhttp
+ s://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-10-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361005T101509Z
+SUMMARY:🌕 Lua Cheia em Áries (Carneiro)
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de coragem para começar e vontade de agir
+ .\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-10-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361019T115002Z
+SUMMARY:🌑 Lua Nova em Libra (Balança)
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de parcerias\, equilíbrio e beleza.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-11-04@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361104T004416Z
+SUMMARY:🌕 Lua Cheia em Touro
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de calma\, conforto e o valor das coisas s
+ imples.\n\nhttps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-11-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361118T001430Z
+SUMMARY:🌑 Lua Nova em Escorpião
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de profundidade\, verdade e transformação.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-cheia-2036-12-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361203T140834Z
+SUMMARY:🌕 Lua Cheia em Gêmeos
+DESCRIPTION:Lua Cheia: tudo se ilumina. Bom momento para ver com clareza\, 
+ colher e agradecer\, com um tom de conversas\, ideias e curiosidade.\n\nht
+ tps://genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:lua-nova-2036-12-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20361217T153426Z
+SUMMARY:🌑 Lua Nova em Sagitário
+DESCRIPTION:Lua Nova: tempo de plantar intenções e começar em silêncio\
+ , com um tom de fé\, estudo e horizontes largos.\n\nhttps://genialtarot.c
+ om/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Lua
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

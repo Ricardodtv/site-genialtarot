@@ -1,0 +1,773 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Genial Tarot//O ceu no seu calendario//PT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+NAME:Eclipses · Genial Tarot
+X-WR-CALNAME:Eclipses · Genial Tarot
+DESCRIPTION:Os eclipses do Sol e da Lua\, com o signo. Mestre Alberto\, gen
+ ialtarot.com
+X-WR-CALDESC:Os eclipses do Sol e da Lua\, com o signo. Mestre Alberto\, ge
+ nialtarot.com
+URL:https://genialtarot.com/calendarios
+SOURCE;VALUE=URI:https://genialtarot.com/calendario-eclipses.ics
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+X-PUBLISHED-TTL:P1D
+COLOR:gold
+BEGIN:VEVENT
+UID:eclipse-lua-2025-03-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250314T065847Z
+SUMMARY:🌘 Eclipse da Lua (total) em Virgem
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2025-03-29@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250329T104726Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Áries (Carneiro)
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2025-09-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250907T181148Z
+SUMMARY:🌘 Eclipse da Lua (total) em Peixes
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2025-09-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20250921T194200Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Virgem
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2026-02-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260217T121153Z
+SUMMARY:🌘 Eclipse do Sol (anular) em Aquário
+DESCRIPTION:Eclipse anular do Sol: um momento forte de recomeço. Mais para
+  observar e sentir do que para decidir à pressa. A hora é a do máximo d
+ o eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2026-03-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260303T113342Z
+SUMMARY:🌘 Eclipse da Lua (total) em Virgem
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2026-08-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260812T174557Z
+SUMMARY:🌘 Eclipse do Sol (total) em Leão
+DESCRIPTION:Eclipse total do Sol: um momento forte de recomeço. Mais para 
+ observar e sentir do que para decidir à pressa. A hora é a do máximo do
+  eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genialt
+ arot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2026-08-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20260828T041258Z
+SUMMARY:🌘 Eclipse da Lua (parcial) em Peixes
+DESCRIPTION:Eclipse parcial da Lua: um momento forte de fecho de ciclo. Bom
+  para soltar e perceber o que já cumpriu o seu papel. A hora é a do máx
+ imo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2027-02-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270206T155940Z
+SUMMARY:🌘 Eclipse do Sol (anular) em Aquário
+DESCRIPTION:Eclipse anular do Sol: um momento forte de recomeço. Mais para
+  observar e sentir do que para decidir à pressa. A hora é a do máximo d
+ o eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2027-02-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270220T231251Z
+SUMMARY:🌘 Eclipse da Lua (penumbral) em Virgem
+DESCRIPTION:Eclipse penumbral da Lua: um momento forte de fecho de ciclo. B
+ om para soltar e perceber o que já cumpriu o seu papel. A hora é a do m
+ áximo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps:
+ //genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2027-07-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270718T160300Z
+SUMMARY:🌘 Eclipse da Lua (penumbral) em Capricórnio
+DESCRIPTION:Eclipse penumbral da Lua: um momento forte de fecho de ciclo. B
+ om para soltar e perceber o que já cumpriu o seu papel. A hora é a do m
+ áximo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps:
+ //genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2027-08-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270802T100639Z
+SUMMARY:🌘 Eclipse do Sol (total) em Leão
+DESCRIPTION:Eclipse total do Sol: um momento forte de recomeço. Mais para 
+ observar e sentir do que para decidir à pressa. A hora é a do máximo do
+  eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genialt
+ arot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2027-08-17@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20270817T071351Z
+SUMMARY:🌘 Eclipse da Lua (penumbral) em Aquário
+DESCRIPTION:Eclipse penumbral da Lua: um momento forte de fecho de ciclo. B
+ om para soltar e perceber o que já cumpriu o seu papel. A hora é a do m
+ áximo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps:
+ //genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2028-01-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280112T041308Z
+SUMMARY:🌘 Eclipse da Lua (parcial) em Câncer (Caranguejo)
+DESCRIPTION:Eclipse parcial da Lua: um momento forte de fecho de ciclo. Bom
+  para soltar e perceber o que já cumpriu o seu papel. A hora é a do máx
+ imo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2028-01-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280126T150750Z
+SUMMARY:🌘 Eclipse do Sol (anular) em Aquário
+DESCRIPTION:Eclipse anular do Sol: um momento forte de recomeço. Mais para
+  observar e sentir do que para decidir à pressa. A hora é a do máximo d
+ o eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2028-07-06@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280706T181942Z
+SUMMARY:🌘 Eclipse da Lua (parcial) em Capricórnio
+DESCRIPTION:Eclipse parcial da Lua: um momento forte de fecho de ciclo. Bom
+  para soltar e perceber o que já cumpriu o seu papel. A hora é a do máx
+ imo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2028-07-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20280722T025530Z
+SUMMARY:🌘 Eclipse do Sol (total) em Câncer (Caranguejo)
+DESCRIPTION:Eclipse total do Sol: um momento forte de recomeço. Mais para 
+ observar e sentir do que para decidir à pressa. A hora é a do máximo do
+  eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genialt
+ arot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2028-12-31@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20281231T165207Z
+SUMMARY:🌘 Eclipse da Lua (total) em Câncer (Caranguejo)
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2029-01-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290114T171241Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Capricórnio
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2029-06-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290612T040456Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Gêmeos
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2029-06-26@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290626T032211Z
+SUMMARY:🌘 Eclipse da Lua (total) em Capricórnio
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2029-07-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20290711T153602Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Câncer (Caranguejo)
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2029-12-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291205T150251Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Sagitário
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2029-12-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20291220T224203Z
+SUMMARY:🌘 Eclipse da Lua (total) em Gêmeos
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2030-06-01@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300601T062802Z
+SUMMARY:🌘 Eclipse do Sol (anular) em Gêmeos
+DESCRIPTION:Eclipse anular do Sol: um momento forte de recomeço. Mais para
+  observar e sentir do que para decidir à pressa. A hora é a do máximo d
+ o eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2030-06-15@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20300615T183322Z
+SUMMARY:🌘 Eclipse da Lua (parcial) em Sagitário
+DESCRIPTION:Eclipse parcial da Lua: um momento forte de fecho de ciclo. Bom
+  para soltar e perceber o que já cumpriu o seu papel. A hora é a do máx
+ imo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2030-11-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301125T065028Z
+SUMMARY:🌘 Eclipse do Sol (total) em Sagitário
+DESCRIPTION:Eclipse total do Sol: um momento forte de recomeço. Mais para 
+ observar e sentir do que para decidir à pressa. A hora é a do máximo do
+  eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genialt
+ arot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2030-12-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20301209T222739Z
+SUMMARY:🌘 Eclipse da Lua (penumbral) em Gêmeos
+DESCRIPTION:Eclipse penumbral da Lua: um momento forte de fecho de ciclo. B
+ om para soltar e perceber o que já cumpriu o seu papel. A hora é a do m
+ áximo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps:
+ //genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2031-05-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310507T035056Z
+SUMMARY:🌘 Eclipse da Lua (penumbral) em Escorpião
+DESCRIPTION:Eclipse penumbral da Lua: um momento forte de fecho de ciclo. B
+ om para soltar e perceber o que já cumpriu o seu papel. A hora é a do m
+ áximo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps:
+ //genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2031-05-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310521T071454Z
+SUMMARY:🌘 Eclipse do Sol (anular) em Gêmeos
+DESCRIPTION:Eclipse anular do Sol: um momento forte de recomeço. Mais para
+  observar e sentir do que para decidir à pressa. A hora é a do máximo d
+ o eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2031-06-05@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20310605T114412Z
+SUMMARY:🌘 Eclipse da Lua (penumbral) em Sagitário
+DESCRIPTION:Eclipse penumbral da Lua: um momento forte de fecho de ciclo. B
+ om para soltar e perceber o que já cumpriu o seu papel. A hora é a do m
+ áximo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps:
+ //genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2031-10-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311030T074528Z
+SUMMARY:🌘 Eclipse da Lua (penumbral) em Touro
+DESCRIPTION:Eclipse penumbral da Lua: um momento forte de fecho de ciclo. B
+ om para soltar e perceber o que já cumpriu o seu papel. A hora é a do m
+ áximo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps:
+ //genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2031-11-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20311114T210622Z
+SUMMARY:🌘 Eclipse do Sol (híbrido) em Escorpião
+DESCRIPTION:Eclipse híbrido do Sol: um momento forte de recomeço. Mais pa
+ ra observar e sentir do que para decidir à pressa. A hora é a do máximo
+  do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://geni
+ altarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2032-04-25@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320425T151340Z
+SUMMARY:🌘 Eclipse da Lua (total) em Escorpião
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2032-05-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20320509T132535Z
+SUMMARY:🌘 Eclipse do Sol (anular) em Touro
+DESCRIPTION:Eclipse anular do Sol: um momento forte de recomeço. Mais para
+  observar e sentir do que para decidir à pressa. A hora é a do máximo d
+ o eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2032-10-18@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321018T190230Z
+SUMMARY:🌘 Eclipse da Lua (total) em Áries (Carneiro)
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2032-11-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20321103T053257Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Escorpião
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2033-03-30@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330330T180126Z
+SUMMARY:🌘 Eclipse do Sol (total) em Áries (Carneiro)
+DESCRIPTION:Eclipse total do Sol: um momento forte de recomeço. Mais para 
+ observar e sentir do que para decidir à pressa. A hora é a do máximo do
+  eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genialt
+ arot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2033-04-14@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330414T191241Z
+SUMMARY:🌘 Eclipse da Lua (total) em Libra (Balança)
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2033-09-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20330923T135322Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Libra (Balança)
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2033-10-08@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20331008T105513Z
+SUMMARY:🌘 Eclipse da Lua (total) em Áries (Carneiro)
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2034-03-20@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340320T101735Z
+SUMMARY:🌘 Eclipse do Sol (total) em Peixes
+DESCRIPTION:Eclipse total do Sol: um momento forte de recomeço. Mais para 
+ observar e sentir do que para decidir à pressa. A hora é a do máximo do
+  eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genialt
+ arot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2034-04-03@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340403T190546Z
+SUMMARY:🌘 Eclipse da Lua (penumbral) em Libra (Balança)
+DESCRIPTION:Eclipse penumbral da Lua: um momento forte de fecho de ciclo. B
+ om para soltar e perceber o que já cumpriu o seu papel. A hora é a do m
+ áximo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps:
+ //genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2034-09-12@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340912T161818Z
+SUMMARY:🌘 Eclipse do Sol (anular) em Virgem
+DESCRIPTION:Eclipse anular do Sol: um momento forte de recomeço. Mais para
+  observar e sentir do que para decidir à pressa. A hora é a do máximo d
+ o eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2034-09-28@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20340928T024630Z
+SUMMARY:🌘 Eclipse da Lua (parcial) em Áries (Carneiro)
+DESCRIPTION:Eclipse parcial da Lua: um momento forte de fecho de ciclo. Bom
+  para soltar e perceber o que já cumpriu o seu papel. A hora é a do máx
+ imo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2035-02-22@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350222T090456Z
+SUMMARY:🌘 Eclipse da Lua (penumbral) em Virgem
+DESCRIPTION:Eclipse penumbral da Lua: um momento forte de fecho de ciclo. B
+ om para soltar e perceber o que já cumpriu o seu papel. A hora é a do m
+ áximo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps:
+ //genialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2035-03-09@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350309T230442Z
+SUMMARY:🌘 Eclipse do Sol (anular) em Peixes
+DESCRIPTION:Eclipse anular do Sol: um momento forte de recomeço. Mais para
+  observar e sentir do que para decidir à pressa. A hora é a do máximo d
+ o eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genial
+ tarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2035-08-19@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350819T011109Z
+SUMMARY:🌘 Eclipse da Lua (parcial) em Aquário
+DESCRIPTION:Eclipse parcial da Lua: um momento forte de fecho de ciclo. Bom
+  para soltar e perceber o que já cumpriu o seu papel. A hora é a do máx
+ imo do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://g
+ enialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2035-09-02@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20350902T015536Z
+SUMMARY:🌘 Eclipse do Sol (total) em Virgem
+DESCRIPTION:Eclipse total do Sol: um momento forte de recomeço. Mais para 
+ observar e sentir do que para decidir à pressa. A hora é a do máximo do
+  eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genialt
+ arot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2036-02-11@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360211T221154Z
+SUMMARY:🌘 Eclipse da Lua (total) em Leão
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2036-02-27@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360227T044535Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Peixes
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2036-07-23@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360723T103053Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Leão
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-lua-2036-08-07@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360807T025121Z
+SUMMARY:🌘 Eclipse da Lua (total) em Aquário
+DESCRIPTION:Eclipse total da Lua: um momento forte de fecho de ciclo. Bom p
+ ara soltar e perceber o que já cumpriu o seu papel. A hora é a do máxim
+ o do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://gen
+ ialtarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:eclipse-sol-2036-08-21@genialtarot.com
+DTSTAMP:20261028T090811Z
+DTSTART:20360821T172436Z
+SUMMARY:🌘 Eclipse do Sol (parcial) em Leão
+DESCRIPTION:Eclipse parcial do Sol: um momento forte de recomeço. Mais par
+ a observar e sentir do que para decidir à pressa. A hora é a do máximo 
+ do eclipse\; se ele se vê no seu país depende do lugar.\n\nhttps://genia
+ ltarot.com/lua
+URL:https://genialtarot.com/lua
+CATEGORIES:Eclipse
+CLASS:PUBLIC
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
