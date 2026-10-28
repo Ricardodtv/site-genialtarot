@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- EXPERIÊNCIA 28/10/2026 — página da área Novidades; textos por aprovar pelo Mestre Alberto -->
-<!-- O Oráculo das Cores (28/10/2026, pedido dele): a mecânica do «Oráculo das Cores» do astro.com (Johannes Schneider) —
-     25 cores, escolhem-se alternadamente a mais e a menos agradável até 6 de cada — com textos ORIGINAIS do Genial Tarot
+<!-- O Oráculo das Cores (28/10/2026, pedido dele): a ideia do «Oráculo das Cores» do astro.com (Johannes Schneider) —
+     25 cores; primeiro as 6 que mais agradam, por ordem, depois as 6 que menos agradam (28/10: ele preferiu assim a alternar, «menos confuso») — com textos ORIGINAIS do Genial Tarot
      (oraculo-cores-textos.js). Escolha por toque (no telemóvel arrastar é difícil). Não pede dados nem faz capturas. -->
 <meta name="robots" content="noindex" />
 <title>O Oráculo das Cores — Genial Tarot · Mestre Alberto</title>
@@ -159,7 +159,7 @@ footer a { color: var(--suave); }
     <div class="acoes">
       <button class="btn-leve" id="recomecar">↻ Recomeçar</button>
     </div>
-    <p class="nota">Toque numa cor para a escolher. São 12 escolhas: em cada vez, a mais agradável e depois a menos agradável das que restam. Enganou-se? Toque em «Voltar à cor anterior» ou na última cor que colocou.</p>
+    <p class="nota">Toque numa cor para a escolher. Primeiro as 6 cores que mais lhe agradam, por ordem; depois as 6 que menos lhe agradam. Enganou-se? Toque em «Voltar à cor anterior» ou na última cor que colocou.</p>
   </section>
 
   <section id="resultado" class="cartao" aria-live="polite">
@@ -210,7 +210,7 @@ footer a { color: var(--suave); }
     for (const [id, par] of [["fila-mais", 0], ["fila-menos", 1]]) {
       const f = $(id); f.querySelectorAll(".vaga").forEach(v => v.remove());
       for (let k = 0; k < 6; k++) {
-        const pos = k * 2 + par, v = document.createElement("div"), c = escolhas[pos];
+        const pos = par * 6 + k, v = document.createElement("div"), c = escolhas[pos];
         v.className = "vaga" + (c !== undefined ? " cheia" : "") + (pos === escolhas.length ? " proxima" : "");
         v.textContent = k + 1; if (c !== undefined) { v.style.background = fundo(CORES[c]); v.title = CORES[c].nome; }
         if (c !== undefined && pos === escolhas.length - 1) { v.classList.add("ultima"); v.title = "Tocar para voltar atrás"; v.onclick = volta; }
@@ -219,8 +219,8 @@ footer a { color: var(--suave); }
     }
     const n = escolhas.length;
     $("passo").innerHTML = n >= 12 ? "Pronto! A sua leitura está aqui em baixo ✨"
-      : n % 2 === 0 ? `Escolha ${n / 2 + 1} de 6: toque na cor <b>mais agradável</b>`
-      : `Escolha ${(n + 1) / 2} de 6: agora a <span class="neg"><b>menos agradável</b></span>`;
+      : n < 6 ? `${n + 1}.ª de 6: toque na cor que <b>mais lhe agrada</b>${n ? " das que restam" : ""}`
+      : `${n - 5}.ª de 6: agora a cor que <span class="neg"><b>menos lhe agrada</b></span>${n > 6 ? " das que restam" : ""}`;
     $("voltar").disabled = n === 0;
   }
   function escolhe(i) {
@@ -233,7 +233,7 @@ footer a { color: var(--suave); }
     return Object.entries(conta).sort((a, b) => b[1] - a[1])[0][0];
   }
   function mostra() {
-    const mais = escolhas.filter((_, k) => k % 2 === 0), menos = escolhas.filter((_, k) => k % 2 === 1);
+    const mais = escolhas.slice(0, 6), menos = escolhas.slice(6, 12);
     $("res-paleta").innerHTML = mais.concat(menos).map(c => `<i style="background:${fundo(CORES[c])}"></i>`).join("");
     const fm = familiaDominante(mais), fn = familiaDominante(menos);
     $("geral").innerHTML = `${FAMILIA[fm].atrai} ${fm === fn ? FAMILIA[fn].mesma : FAMILIA[fn].afasta}`;
@@ -266,7 +266,7 @@ footer a { color: var(--suave); }
   const recomeca = () => { escolhas = []; baralha(); $("resultado").style.display = "none"; desenhaPaleta(); desenhaFilas(); $("oraculo").scrollIntoView({ behavior: "smooth" }); };
   $("recomecar").onclick = recomeca; $("denovo").onclick = recomeca;
   $("partilhar").onclick = () => {
-    const mais = escolhas.filter((_, k) => k % 2 === 0).slice(0, 3).map(c => CORES[c].nome).join(", ");
+    const mais = escolhas.slice(0, 3).map(c => CORES[c].nome).join(", ");
     window.open("https://wa.me/?text=" + encodeURIComponent(`Fiz o Oráculo das Cores do Mestre Alberto 🎨 As minhas cores de hoje: ${mais}. Experimente: https://www.genialtarot.com/oraculo-cores`), "_blank", "noopener");
   };
   baralha(); desenhaPaleta(); desenhaFilas();

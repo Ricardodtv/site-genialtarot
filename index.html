@@ -726,6 +726,46 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .atalho .anel-btn { border-radius: 1.2rem; }
 
 @media (prefers-reduced-motion: reduce) { .carta-gira-in, .porta-ico { animation: none; } }
+
+/* ===== ♈ Qual é o meu signo? (28/10/2026) ===== */
+.qs-cartao { position: relative; margin: 1rem auto 0; padding: clamp(1.3rem, 3.5vw, 2.4rem); border-radius: 1.6rem; text-align: center;
+  background: linear-gradient(160deg, oklch(0.34 0.12 305 / .92), oklch(0.20 0.08 295 / .95)); border: 1.5px solid oklch(0.82 0.14 85 / .75);
+  box-shadow: 0 0 0 6px oklch(0.82 0.14 85 / .08), 0 0 60px -10px oklch(0.82 0.14 85 / .45), var(--shadow-mystic); }
+.qs-selo { display: inline-block; font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: oklch(0.22 0.06 300);
+  background: var(--gradient-gold); border-radius: 999px; padding: .35rem .95rem; box-shadow: 0 0 22px oklch(0.82 0.14 85 / .5); }
+.qs-tit { font-family: var(--font-display); font-size: clamp(2.1rem, 6vw, 3.2rem); line-height: 1.05; margin: .7rem 0 .4rem; }
+.qs-tit span { background: var(--gradient-gold); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.qs-sub { font-family: var(--font-serif); font-size: clamp(1.1rem, 2.5vw, 1.35rem); color: oklch(0.90 0.05 310); max-width: 36rem; margin: 0 auto 1.4rem; }
+.qs-grelha { display: grid; gap: 1.4rem; align-items: start; }
+@media (min-width: 900px) { .qs-grelha { grid-template-columns: minmax(0, 22rem) 1fr; text-align: left; } }
+.qs-form { display: grid; gap: .8rem; }
+.qs-form label { display: grid; gap: .3rem; font-size: .85rem; font-weight: 700; color: oklch(0.88 0.06 310); text-align: left; }
+.qs-form input, .qs-form select { font: inherit; font-size: 1.15rem; padding: .8rem 1rem; border-radius: .9rem; border: 1px solid oklch(0.82 0.14 85 / .45);
+  background: oklch(0.16 0.05 295 / .8); color: var(--foreground); width: 100%; }
+.qs-btn { border: 0; cursor: pointer; font: inherit; font-weight: 800; font-size: 1.05rem; color: oklch(0.20 0.06 300); background: var(--gradient-gold);
+  border-radius: 999px; padding: .9rem 1.4rem; box-shadow: 0 10px 28px -8px oklch(0.82 0.14 85 / .7); transition: transform .2s; }
+.qs-btn:hover { transform: translateY(-2px) scale(1.02); }
+.qs-erro { color: oklch(0.78 0.16 25); font-size: .95rem; min-height: 1.2em; }
+.qs-cuspide { background: oklch(0.82 0.14 85 / .12); border: 1px dashed oklch(0.82 0.14 85 / .6); border-radius: 1rem; padding: .8rem .9rem; text-align: left; }
+.qs-cuspide p { font-size: .95rem; margin-bottom: .6rem; color: oklch(0.92 0.06 90); }
+.qs-cuspide-campos { display: grid; grid-template-columns: 1fr 1.4fr; gap: .6rem; }
+.qs-res { border-radius: 1.2rem; padding: 1.1rem; text-align: center; background: oklch(0.82 0.14 85 / .12); border: 1px solid oklch(0.82 0.14 85 / .55); animation: qsSurge .5s ease both; }
+@keyframes qsSurge { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.qs-res .gl { font-size: 4rem; line-height: 1; color: var(--gold); text-shadow: 0 0 24px oklch(0.82 0.14 85 / .6); font-family: "DejaVu Sans", "Segoe UI Symbol", sans-serif; }
+.qs-res b { display: block; font-family: var(--font-display); font-size: 2.2rem; margin-top: .3rem; }
+.qs-res small { display: block; color: oklch(0.88 0.05 310); font-size: 1rem; margin-top: .2rem; }
+.qs-res a { display: inline-block; margin-top: .8rem; color: var(--gold-soft); font-weight: 700; }
+.qs-lista { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: .55rem; }
+@media (min-width: 640px) { .qs-lista { grid-template-columns: repeat(3, 1fr); } }
+.qs-lista li { display: grid; grid-template-columns: 2.4rem 1fr; align-items: center; gap: .55rem; padding: .55rem .7rem; border-radius: .9rem; text-align: left;
+  background: oklch(0.16 0.05 295 / .55); border: 1px solid oklch(0.55 0.10 305 / .35); transition: transform .3s, background .3s, box-shadow .3s; }
+.qs-lista .g { font-size: 1.7rem; color: var(--gold); text-align: center; font-family: "DejaVu Sans", "Segoe UI Symbol", sans-serif; }
+.qs-lista b { display: block; font-size: 1rem; line-height: 1.15; }
+.qs-lista b em { font-style: normal; font-weight: 500; font-size: .8rem; color: oklch(0.82 0.06 310); }
+.qs-lista small { display: block; font-size: .82rem; color: oklch(0.85 0.05 310); }
+.qs-lista li.sim { background: oklch(0.82 0.14 85 / .25); border-color: var(--gold); transform: scale(1.04); box-shadow: 0 0 24px oklch(0.82 0.14 85 / .45); }
+@media (max-width: 639px) { .qs-lista li { grid-template-columns: 1.7rem 1fr; gap: .4rem; padding: .5rem .55rem; } .qs-lista .g { font-size: 1.35rem; } .qs-lista b { font-size: .92rem; } .qs-lista small { font-size: .74rem; white-space: nowrap; } .qs-lista b em { display: block; } .qs-cuspide-campos { grid-template-columns: 1fr 1fr; } }
+.qs-nota { font-size: .82rem; color: oklch(0.80 0.05 310); margin-top: 1.1rem; }
 </style>
 </head>
 <body>
@@ -1044,6 +1084,37 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <span class="linha dir"></span>
     </div>
 
+  </div>
+</section>
+
+<!-- ===== ♈ Qual é o meu signo? (28/10/2026, pedido dele: «um cartão em destaque para a pessoa saber a qual signo pertence,
+     com a lista e as datas dos signos, e para colocar a sua data e descobrir»). O signo calcula-se com a posição REAL do Sol
+     (AstroRS.solPreciso) no dia da pessoa, não pela tabela: a tabela é só a montra. Se o Sol mudou de signo nesse dia
+     (de Portugal ao Brasil), pede a hora e o país, que decidem. Não guarda nem envia nada. ===== -->
+<section class="section qs" id="qual-signo">
+  <div class="container">
+    <div class="qs-cartao">
+      <span class="qs-selo">✦ Descubra o seu signo ✦</span>
+      <h2 class="qs-tit">Qual é o <span>meu signo</span>?</h2>
+      <p class="qs-sub">Escreva a sua data de nascimento: o signo é calculado pela posição real do Sol no dia em que nasceu.</p>
+      <div class="qs-grelha">
+        <form class="qs-form" id="qs-form" novalidate>
+          <label><span>Data de nascimento</span><input type="text" id="qs-data" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="DD/MM/AAAA" /></label>
+          <div class="qs-cuspide" id="qs-cuspide" hidden>
+            <p>Nesse dia o Sol mudou de signo! A hora e o país em que nasceu decidem qual é o seu.</p>
+            <div class="qs-cuspide-campos">
+              <label><span>Hora</span><input type="time" id="qs-hora" value="12:00" /></label>
+              <label><span>País</span><select id="qs-pais"><option value="Europe/Lisbon">Portugal</option><option value="America/Sao_Paulo">Brasil</option><option value="America/Manaus">Manaus</option><option value="Atlantic/Azores">Açores</option></select></label>
+            </div>
+          </div>
+          <button type="submit" class="qs-btn">🔮 Descobrir o meu signo</button>
+          <p class="qs-erro" id="qs-erro" aria-live="polite"></p>
+          <div class="qs-res" id="qs-res" aria-live="polite" hidden></div>
+        </form>
+        <ul class="qs-lista" id="qs-lista" aria-label="Os doze signos e as suas datas"></ul>
+      </div>
+      <p class="qs-nota">As datas da lista mudam um dia de ano para ano, porque o Sol não entra em cada signo sempre à mesma hora.</p>
+    </div>
   </div>
 </section>
 
@@ -1487,5 +1558,55 @@ window.addEventListener("DOMContentLoaded", function () {
 </script>
 <script>/* 25/10/2026: data de hoje no cartão do Amor do Dia, no relógio de quem vê */
 (function(){try{var t=new Date().toLocaleDateString("pt-PT",{weekday:"long",day:"numeric",month:"long"});["amor-data","horoscopo-data"].forEach(function(i){var e=document.getElementById(i);if(e)e.textContent="Hoje · "+t;});}catch(x){}})();</script>
+
+<!-- ♈ Qual é o meu signo? (28/10/2026) — usa a posição real do Sol (AstroRS.solPreciso) -->
+<script src="ascendente-calc.js" defer></script>
+<script src="revolucao-calc.js" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var NOMES = ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  var BR = { 2: "Gêmeos", 3: "Câncer", 6: "Libra" };
+  var GL = "♈♉♊♋♌♍♎♏♐♑♒♓";
+  var DATAS = ["21 mar – 19 abr","20 abr – 20 mai","21 mai – 20 jun","21 jun – 22 jul","23 jul – 22 ago","23 ago – 22 set","23 set – 22 out","23 out – 21 nov","22 nov – 21 dez","22 dez – 19 jan","20 jan – 18 fev","19 fev – 20 mar"];
+  var ELEM = ["Fogo","Terra","Ar","Água"];
+  var $ = function (id) { return document.getElementById(id); };
+  var lista = $("qs-lista"); if (!lista) return;
+  lista.innerHTML = NOMES.map(function (n, i) {
+    return '<li id="qs-s' + i + '"><span class="g">' + GL[i] + '\uFE0E</span><span><b>' + n + (BR[i] ? ' <em>(' + BR[i] + ')</em>' : '') + '</b><small>' + DATAS[i] + '</small></span></li>';
+  }).join("");
+  var data = $("qs-data");
+  data.addEventListener("input", function () {           // DD/MM/AAAA com as barras automáticas
+    var d = data.value.replace(/\D/g, "").slice(0, 8);
+    data.value = d.length > 4 ? d.slice(0, 2) + "/" + d.slice(2, 4) + "/" + d.slice(4) : d.length > 2 ? d.slice(0, 2) + "/" + d.slice(2) : d;
+    $("qs-cuspide").hidden = true;
+  });
+  function signoEm(ms) { return Math.floor(AstroRS.solPreciso(AstroAsc.diaJuliano(ms)) / 30) % 12; }
+  $("qs-form").addEventListener("submit", function (e) {
+    e.preventDefault(); $("qs-erro").textContent = ""; $("qs-res").hidden = true;
+    for (var j = 0; j < 12; j++) $("qs-s" + j).classList.remove("sim");
+    var m = data.value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (!m) { $("qs-erro").textContent = "Escreva a data assim: 25/12/1980."; return; }
+    var d = +m[1], mes = +m[2], ano = +m[3];
+    var t = new Date(Date.UTC(ano, mes - 1, d));
+    if (t.getUTCDate() !== d || t.getUTCMonth() !== mes - 1 || ano < 1900 || ano > new Date().getFullYear()) { $("qs-erro").textContent = "Essa data não existe — confirme o dia, o mês e o ano."; return; }
+    if (!window.AstroRS || !window.AstroAsc) { $("qs-erro").textContent = "Um momento… a carregar o cálculo. Tente outra vez."; return; }
+    // o dia inteiro, de Portugal (UTC+1) ao Brasil (até UTC-5): se o Sol mudou de signo, a hora decide
+    var cedo = signoEm(Date.UTC(ano, mes - 1, d, 0, 0) - 3600000), tarde = signoEm(Date.UTC(ano, mes - 1, d, 23, 59) + 5 * 3600000);
+    var s = cedo;
+    if (cedo !== tarde) {
+      var cx = $("qs-cuspide");
+      if (cx.hidden) { cx.hidden = false; $("qs-res").hidden = true; $("qs-erro").textContent = ""; return; }
+      var h = ($("qs-hora").value || "12:00").split(":");
+      s = signoEm(AstroAsc.localParaUTC(ano, mes, d, +h[0], +h[1], $("qs-pais").value));
+    }
+    for (var i = 0; i < 12; i++) $("qs-s" + i).classList.toggle("sim", i === s);
+    var r = $("qs-res"); r.hidden = false;
+    r.innerHTML = '<div class="gl">' + GL[s] + '\uFE0E</div><b>' + NOMES[s] + (BR[s] ? ' <small style="display:inline;font-size:1.1rem">(' + BR[s] + ')</small>' : '') + '</b>' +
+      '<small>Signo de ' + ELEM[s % 4] + (cedo !== tarde ? ' · calculado pela hora que indicou' : '') + '</small>' +
+      '<a href="/horoscopo-do-dia">✨ Ver o horóscopo de hoje</a><br><a href="ascendente.html">🔮 E o seu Ascendente? Descubra grátis</a>';
+    if (window.innerWidth < 900) r.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+});
+</script>
 </body>
 </html>
