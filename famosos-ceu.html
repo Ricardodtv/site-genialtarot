@@ -108,6 +108,7 @@ h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.35rem, 3.6
 .lista .info { font-size: .8rem; color: var(--suave); margin: .1rem 0 .35rem; }
 .lista .chips { display: flex; flex-wrap: wrap; gap: .3rem; }
 .lista .chip { font-size: .74rem; padding: .15rem .5rem; }
+.lista .idade { float: right; margin-right: .35rem; font-size: .72rem; font-weight: 700; border-radius: 999px; padding: .1rem .5rem; color: var(--lavanda); background: oklch(0.30 0.08 270); border: 1px solid var(--borda); }
 .lista .pts { float: right; font-size: .72rem; font-weight: 800; border-radius: 999px; padding: .1rem .5rem; color: oklch(0.22 0.06 300); background: var(--grad-ouro); }
 .mais { display: flex; justify-content: center; margin-top: 1rem; }
 .vazio { text-align: center; color: var(--suave); font-style: italic; }
@@ -238,7 +239,9 @@ footer a { color: inherit; }
   const link = p => `https://www.wikidata.org/wiki/Special:GoToLinkedPage/ptwiki/${p.q}`;
   function cartaoPessoa(p, iguais, pts) {
     const mostrar = [0, 1, 2, 3, 4];
-    return `<li>${pts != null ? `<span class="pts">${pts} pts</span>` : ""}<a class="n" href="${link(p)}" target="_blank" rel="noopener">${esc(p.n)}</a>
+    // a idade de hoje, antes dos pontos (pedido dele, 28/10/2026)
+    const h = new Date(), idade = h.getFullYear() - p.a - ((h.getMonth() + 1 < p.m || (h.getMonth() + 1 === p.m && h.getDate() < p.d)) ? 1 : 0);
+    return `<li>${pts != null ? `<span class="pts">${pts} pts</span>` : ""}<span class="idade">${idade} anos</span><a class="n" href="${link(p)}" target="_blank" rel="noopener">${esc(p.n)}</a>
       <div class="info">${bandeira(p)} ${pad(p.d)}/${pad(p.m)}/${p.a} · ${esc(p.desc)}</div>
       <div class="chips">${mostrar.map(i => chipSig(p, i, iguais && iguais.has(i))).join("")}</div></li>`;
   }
