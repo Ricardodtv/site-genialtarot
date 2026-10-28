@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- EXPERIÊNCIA 28/10/2026 — página da área Novidades; textos por aprovar pelo Mestre Alberto -->
+<!-- O Oráculo das Cores (28/10/2026, pedido dele): a mecânica do «Oráculo das Cores» do astro.com (Johannes Schneider) —
+     25 cores, escolhem-se alternadamente a mais e a menos agradável até 6 de cada — com textos ORIGINAIS do Genial Tarot
+     (oraculo-cores-textos.js). Escolha por toque (no telemóvel arrastar é difícil). Não pede dados nem faz capturas. -->
+<meta name="robots" content="noindex" />
+<title>O Oráculo das Cores — Genial Tarot · Mestre Alberto</title>
+<meta name="description" content="Escolha as cores que hoje o(a) atraem e as que o(a) incomodam, e leia o que dizem sobre o momento que está a viver." />
+<meta name="theme-color" content="#3a2257" />
+<link rel="icon" href="favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Base: a mesma folha do Mapa Astral (21/10/2026) ============ */
+:root {
+  --fundo: oklch(0.17 0.06 305);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.05 310);
+  --lilas: oklch(0.74 0.14 310);
+  --lilas-claro: oklch(0.86 0.09 312);
+  --lavanda: oklch(0.92 0.05 310);
+  --ouro: oklch(0.85 0.13 88);
+  --rosa: oklch(0.78 0.13 355);
+  --borda: oklch(0.75 0.12 310 / 0.35);
+  --vidro: oklch(0.30 0.09 305 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.80 0.12 320), oklch(0.66 0.18 300) 55%, oklch(0.55 0.19 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.84 0.11 355), oklch(0.70 0.17 340) 55%, oklch(0.60 0.19 315));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.40 0.16 320) 0%, oklch(0.20 0.08 305) 45%, oklch(0.12 0.05 300) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+/* 16 px de margem de cada lado no telemóvel (100% − 2rem) */
+.caixa { position: relative; z-index: 1; width: min(68rem, 100% - 2rem); margin: 0 auto; }
+
+/* topo: a pílula «‹ genialtarot.com» igual às outras páginas */
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: oklch(0.85 0.13 88); }
+
+/* herói */
+.heroi { display: grid; grid-template-columns: 1fr; gap: 1rem; align-items: center; text-align: center; padding: .5rem 0 1.6rem; }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); justify-self: center; }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .5rem 0 .3rem; }
+h1 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 34rem; margin: 0 auto; }
+.btn-grande { display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+  color: white; background: var(--grad-lilas); border-radius: 999px; padding: .95rem 1.7rem; box-shadow: 0 10px 30px oklch(0.55 0.19 300 / .5), inset 0 1px 0 #fff5;
+  transition: transform .2s, box-shadow .2s; }
+.btn-grande:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 40px oklch(0.60 0.2 305 / .65); }
+
+/* cartões */
+.cartao { background: linear-gradient(160deg, oklch(0.32 0.10 308 / .82), oklch(0.22 0.08 300 / .9)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1.2rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; backdrop-filter: blur(6px); }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.1rem); margin: 0 0 .4rem; text-align: center; }
+h2 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+@keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* ============ Oráculo das Cores ============ */
+.passo { text-align: center; font-family: var(--serifa); font-size: clamp(1.2rem, 3vw, 1.5rem); margin: .2rem 0 1rem; min-height: 2.2em; }
+.passo b { color: var(--ouro); }
+.passo .neg, .passo .neg b { color: var(--rosa); }
+.paleta { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(.45rem, 1.6vw, .8rem); max-width: 34rem; margin: 0 auto; }
+.cor { aspect-ratio: 1; border-radius: 1rem; border: 2px solid #ffffff22; cursor: pointer; box-shadow: 0 6px 18px #0006, inset 0 1px 0 #ffffff30;
+  transition: transform .15s, opacity .3s, box-shadow .15s; position: relative; }
+.cor:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 26px #0008; }
+.cor:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; }
+.cor.usada { opacity: .08; pointer-events: none; transform: scale(.85); }
+.filas { display: grid; gap: .9rem; margin: 1.6rem auto 0; max-width: 40rem; }
+.fila { display: grid; grid-template-columns: 7.5rem repeat(6, 1fr); gap: .45rem; align-items: center; }
+.fila > span { font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--suave); }
+.fila > span.mais { color: var(--ouro); } .fila > span.menos { color: var(--rosa); }
+.vaga { aspect-ratio: 1; border-radius: .7rem; border: 2px dashed #ffffff30; display: grid; place-items: center; font-size: .8rem; color: #ffffff55; }
+.vaga.cheia { border: 2px solid #ffffff40; color: transparent; box-shadow: 0 4px 12px #0006; animation: surgir .3s ease; }
+.vaga.proxima { border-color: var(--ouro); color: var(--ouro); box-shadow: 0 0 14px oklch(0.85 0.13 88 / .5); }
+@media (max-width: 520px) { .fila { grid-template-columns: 1fr repeat(6, 1fr); } .fila > span { grid-column: 1 / -1; } }
+.acoes { display: flex; gap: .7rem; justify-content: center; flex-wrap: wrap; margin-top: 1.4rem; }
+.btn-leve { border: 1px solid var(--borda); background: oklch(0.28 0.08 300 / .7); color: var(--texto); border-radius: 999px; padding: .65rem 1.2rem; font-weight: 700; cursor: pointer; font-size: .95rem; }
+.btn-leve:disabled { opacity: .35; cursor: default; }
+#resultado { display: none; margin-top: 1.4rem; }
+.res-paleta { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; border-radius: .8rem; overflow: hidden; margin: .6rem 0 1.4rem; height: 2.4rem; }
+.res-paleta i { display: block; }
+.bloco { margin: 1.3rem 0; }
+.bloco h3 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.2rem, 3vw, 1.5rem); margin: 0 0 .6rem; color: var(--ouro); }
+.bloco h3.neg { color: var(--rosa); }
+.leitura { display: grid; grid-template-columns: 3rem 1fr; gap: .9rem; padding: 1rem 0; border-top: 1px solid #ffffff14; animation: surgir .5s ease both; }
+.leitura .amostra { width: 3rem; height: 3rem; border-radius: .8rem; box-shadow: 0 4px 12px #0007, inset 0 1px 0 #ffffff30; }
+.leitura .liga { font-family: var(--serifa); font-style: italic; color: var(--suave); font-size: 1.05rem; }
+.leitura h4 { font-family: var(--serifa); font-size: 1.45rem; margin: .05rem 0 .35rem; color: var(--lavanda); }
+.leitura p { margin: 0; }
+.leitura .pergunta { margin-top: .6rem; padding: .65rem .9rem; border-left: 3px solid var(--ouro); background: #ffffff0a; border-radius: 0 .6rem .6rem 0; font-family: var(--serifa); font-size: 1.12rem; }
+.geral { font-family: var(--serifa); font-size: clamp(1.2rem, 2.8vw, 1.45rem); line-height: 1.5; text-align: center; color: var(--lavanda); }
+.nota { font-size: .85rem; color: var(--suave); text-align: center; margin-top: 1rem; }
+.consulta { text-align: center; }
+.consulta p { font-family: var(--serifa); font-size: 1.25rem; color: var(--lavanda); max-width: 36rem; margin: .2rem auto 1rem; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 800; color: white; border-radius: 999px; padding: .85rem 1.5rem;
+  background: linear-gradient(135deg, #2bd46a, #128c4a); box-shadow: 0 10px 26px #12a05055; }
+section + section { margin-top: 1.4rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .78rem; color: var(--suave); padding: 2.4rem 1rem 2rem; }
+footer a { color: var(--suave); }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/novidades"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>Novidades · genialtarot.com</a>
+  </header>
+
+  <section class="heroi">
+    <span class="selo">✦ Oráculo · Novidade ✦</span>
+    <h1>O <span class="lil">Oráculo</span> das Cores</h1>
+    <p class="sub">As cores que hoje o(a) atraem — e as que hoje o(a) incomodam — dizem muito sobre o momento que está a viver. Escolha sem pensar demasiado: é o seu sentir que fala.</p>
+  </section>
+
+  <section id="oraculo" class="cartao">
+    <p class="passo" id="passo" aria-live="polite"></p>
+    <div class="paleta" id="paleta" role="list"></div>
+    <div class="filas">
+      <div class="fila" id="fila-mais"><span class="mais">♥ Agradam-me</span></div>
+      <div class="fila" id="fila-menos"><span class="menos">✕ Incomodam-me</span></div>
+    </div>
+    <div class="acoes">
+      <button class="btn-leve" id="desfazer" disabled>↶ Desfazer</button>
+      <button class="btn-leve" id="recomecar">↻ Recomeçar</button>
+    </div>
+    <p class="nota">Toque numa cor para a escolher. São 12 escolhas: em cada vez, a mais agradável e depois a menos agradável das que restam.</p>
+  </section>
+
+  <section id="resultado" class="cartao" aria-live="polite">
+    <h2>A leitura das suas <span class="lil">cores</span></h2>
+    <div class="res-paleta" id="res-paleta" aria-hidden="true"></div>
+    <div class="bloco"><h3>✦ A sua energia neste momento</h3><p class="geral" id="geral"></p></div>
+    <div class="bloco"><h3>♥ As cores que o(a) atraem</h3><div id="lista-mais"></div></div>
+    <div class="bloco"><h3 class="neg">✕ As cores que o(a) incomodam</h3><div id="lista-menos"></div></div>
+    <p class="nota">As cores escolhem-se com o coração e mudam com o momento. Não repita o oráculo muitas vezes seguidas: volte daqui a uns dias e compare.</p>
+    <div class="acoes">
+      <button class="btn-grande" id="partilhar">📤 Partilhar no WhatsApp</button>
+      <button class="btn-leve" id="denovo">↻ Fazer de novo</button>
+    </div>
+  </section>
+
+  <section class="cartao consulta">
+    <h2>Quer ir mais <span class="lil">fundo</span>?</h2>
+    <p>As cores mostram o que sente; as cartas mostram o caminho. Fale comigo e conte-me o que as suas cores lhe disseram.</p>
+    <a class="btn-wa" id="wa-consulta" href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+  </section>
+</div>
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+<script src="oraculo-cores-textos.js"></script>
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const { CORES, FAMILIA, LIGA_MAIS, LIGA_MENOS } = window.OraculoCores;
+  let escolhas = [];          // índices em CORES, pela ordem: mais, menos, mais, menos…
+  let ordem = [];
+
+  function baralha() { ordem = CORES.map((_, i) => i); for (let i = ordem.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [ordem[i], ordem[j]] = [ordem[j], ordem[i]]; } }
+  function fundo(c) { return c.fundo || c.hex; }
+
+  function desenhaPaleta() {
+    const p = $("paleta"); p.innerHTML = "";
+    for (const i of ordem) {
+      const b = document.createElement("button");
+      b.className = "cor" + (escolhas.includes(i) ? " usada" : ""); b.style.background = fundo(CORES[i]);
+      b.setAttribute("aria-label", CORES[i].nome); b.title = CORES[i].nome; b.setAttribute("role", "listitem");
+      b.onclick = () => escolhe(i); p.appendChild(b);
+    }
+  }
+  function desenhaFilas() {
+    for (const [id, par] of [["fila-mais", 0], ["fila-menos", 1]]) {
+      const f = $(id); f.querySelectorAll(".vaga").forEach(v => v.remove());
+      for (let k = 0; k < 6; k++) {
+        const pos = k * 2 + par, v = document.createElement("div"), c = escolhas[pos];
+        v.className = "vaga" + (c !== undefined ? " cheia" : "") + (pos === escolhas.length ? " proxima" : "");
+        v.textContent = k + 1; if (c !== undefined) { v.style.background = fundo(CORES[c]); v.title = CORES[c].nome; }
+        f.appendChild(v);
+      }
+    }
+    const n = escolhas.length;
+    $("passo").innerHTML = n >= 12 ? "Pronto! A sua leitura está aqui em baixo ✨"
+      : n % 2 === 0 ? `Escolha ${n / 2 + 1} de 6: toque na cor <b>mais agradável</b>`
+      : `Escolha ${(n + 1) / 2} de 6: agora a <span class="neg"><b>menos agradável</b></span>`;
+    $("desfazer").disabled = n === 0;
+  }
+  function escolhe(i) {
+    if (escolhas.length >= 12 || escolhas.includes(i)) return;
+    escolhas.push(i); desenhaPaleta(); desenhaFilas();
+    if (escolhas.length === 12) mostra();
+  }
+  function familiaDominante(lista) {
+    const conta = {}; lista.forEach((c, k) => { const f = CORES[c].fam; conta[f] = (conta[f] || 0) + (6 - k); });
+    return Object.entries(conta).sort((a, b) => b[1] - a[1])[0][0];
+  }
+  function mostra() {
+    const mais = escolhas.filter((_, k) => k % 2 === 0), menos = escolhas.filter((_, k) => k % 2 === 1);
+    $("res-paleta").innerHTML = mais.concat(menos).map(c => `<i style="background:${fundo(CORES[c])}"></i>`).join("");
+    const fm = familiaDominante(mais), fn = familiaDominante(menos);
+    $("geral").innerHTML = `${FAMILIA[fm].atrai} ${fm === fn ? FAMILIA[fn].mesma : FAMILIA[fn].afasta}`;
+    const bloco = (lista, chave, ligas) => lista.map((c, k) => {
+      const C = CORES[c], t = C[chave];
+      return `<div class="leitura" style="animation-delay:${k * .08}s"><div class="amostra" style="background:${fundo(C)}" title="${C.nome}"></div><div>
+        <div class="liga">${ligas[k]}</div><h4>${t.tema}</h4><p>${t.texto}</p>${t.pergunta ? `<div class="pergunta">💭 ${t.pergunta}</div>` : ""}</div></div>`;
+    }).join("");
+    $("lista-mais").innerHTML = bloco(mais, "agrada", LIGA_MAIS);
+    $("lista-menos").innerHTML = bloco(menos, "incomoda", LIGA_MENOS);
+    const r = $("resultado"); r.style.display = "block"; setTimeout(() => r.scrollIntoView({ behavior: "smooth", block: "start" }), 250);
+    const temas = mais.slice(0, 3).map(c => CORES[c].agrada.tema).join(", ");
+    $("wa-consulta").href = "https://wa.me/351914920427?text=" + encodeURIComponent(`Olá Mestre Alberto, fiz o Oráculo das Cores no site. As minhas cores falaram de: ${temas}. Gostava de falar consigo.`);
+  }
+  $("desfazer").onclick = () => { escolhas.pop(); $("resultado").style.display = "none"; desenhaPaleta(); desenhaFilas(); };
+  const recomeca = () => { escolhas = []; baralha(); $("resultado").style.display = "none"; desenhaPaleta(); desenhaFilas(); $("oraculo").scrollIntoView({ behavior: "smooth" }); };
+  $("recomecar").onclick = recomeca; $("denovo").onclick = recomeca;
+  $("partilhar").onclick = () => {
+    const mais = escolhas.filter((_, k) => k % 2 === 0).slice(0, 3).map(c => CORES[c].nome).join(", ");
+    window.open("https://wa.me/?text=" + encodeURIComponent(`Fiz o Oráculo das Cores do Mestre Alberto 🎨 As minhas cores de hoje: ${mais}. Experimente: https://www.genialtarot.com/oraculo-cores`), "_blank", "noopener");
+  };
+  baralha(); desenhaPaleta(); desenhaFilas();
+})();
+</script>
+</body>
+</html>
