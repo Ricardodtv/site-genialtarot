@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- EXPERIÊNCIA 28/10/2026 — página da área Novidades; textos por aprovar pelo Mestre Alberto.
+     Pedido dele: «as efemérides todas que tem o astro.com, para quem quiser consultar».
+     Os PDFs do astro.com NÃO se copiam (a página deles exige autorização escrita para distribuir).
+     Estas são CALCULADAS por nós com o mesmo motor (Swiss Ephemeris), um ficheiro por ano em
+     efemerides/AAAA.json (1600–2499), escrito por ~/site-genialtarot-dados/gerar-efemerides.py.
+     Conferido a 28/10/2026 contra as posições do astro.com: Sol 5°28'45" ♏, Lua 12°36'01", ao segundo.
+     A tabela de casas (Placidus), os pontos médios, o sideral e o módulo 22°30 fazem-se aqui no navegador. -->
+<meta name="robots" content="noindex" />
+<title>Efemérides 1600–2499 — tabelas dos planetas dia a dia · Mestre Alberto</title>
+<meta name="description" content="Efemérides grátis de 1600 a 2499: Sol, Lua, planetas, Nodo, Quíron e Lilith dia a dia, tropical e sideral, heliocêntrica, declinações, ingressos, estações, fases da Lua, eclipses, aspectos, pontos médios e tabela de casas Placidus." />
+<meta name="theme-color" content="#1c1a4a" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Efemérides 1600–2499 — Mestre Alberto" />
+<meta property="og:description" content="Os planetas dia a dia, durante 900 anos, calculados com o Swiss Ephemeris." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/efemerides" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Efemérides — o azul-noite e dourado do Mapa Astral (28/10/2026) ============ */
+:root {
+  --fundo: oklch(0.16 0.06 270);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.04 265);
+  --lilas-claro: oklch(0.86 0.08 265);
+  --lavanda: oklch(0.93 0.04 265);
+  --ouro: oklch(0.85 0.13 88);
+  --fogo: oklch(0.80 0.14 40);
+  --borda: oklch(0.75 0.10 270 / 0.35);
+  --vidro: oklch(0.28 0.08 270 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.72 0.13 260), oklch(0.58 0.17 280) 55%, oklch(0.48 0.18 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.93 0.10 92), oklch(0.80 0.14 80) 55%, oklch(0.70 0.14 60));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  --glifos: "DejaVu Sans", "Segoe UI Symbol", "Noto Sans Symbols 2", "Noto Sans Symbols", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklch(0.20 0.08 270) 45%, oklch(0.11 0.04 265) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+/* margem de 16 px de cada lado no telemóvel; as tabelas largas deslizam DENTRO da caixa, a página não */
+.caixa { position: relative; z-index: 1; width: min(76rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2.2rem; }
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--lavanda); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.heroi { text-align: center; padding: .5rem 0 1.6rem; }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 46rem; margin: 0 auto; }
+
+.cartao { background: linear-gradient(160deg, oklch(0.29 0.09 272), oklch(0.20 0.07 268)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.35rem, 3.6vw, 2rem); margin: 0 0 .4rem; text-align: center; }
+.int { text-align: center; color: var(--suave); margin: 0 auto 1.2rem; max-width: 46rem; font-size: .93rem; }
+
+/* separadores */
+.abas { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin: 0 0 1.4rem; }
+.aba { border: 1px solid var(--borda); background: var(--vidro); color: var(--texto); font: inherit; font-weight: 700; font-size: .88rem; border-radius: 999px; padding: .6rem 1.1rem; cursor: pointer; }
+.aba[aria-selected="true"] { background: var(--grad-ouro); color: oklch(0.22 0.06 300); border-color: transparent; box-shadow: 0 0 20px oklch(0.85 0.13 88 / .35); }
+.painel[hidden] { display: none; }
+
+/* controlos */
+.ctl { display: flex; flex-wrap: wrap; justify-content: center; align-items: end; gap: .7rem 1rem; margin: 0 0 1.1rem; }
+.ctl label { display: grid; gap: .25rem; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--suave); }
+.ctl select, .ctl input { font: inherit; font-size: .95rem; color: var(--texto); background: oklch(0.17 0.05 268); border: 1px solid var(--borda); border-radius: .7rem; padding: .5rem .7rem; min-width: 0; }
+.ctl input[type=number] { width: 6.5rem; }
+.btn { border: 1px solid var(--borda); background: var(--vidro); color: var(--texto); font: inherit; font-weight: 700; font-size: .88rem; border-radius: 999px; padding: .55rem 1rem; cursor: pointer; }
+.btn.ouro { background: var(--grad-ouro); color: oklch(0.22 0.06 300); border-color: transparent; }
+.filtros { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem .9rem; margin: -.3rem 0 1rem; font-size: .85rem; }
+.filtros label { display: inline-flex; gap: .35rem; align-items: center; cursor: pointer; }
+
+/* as tabelas */
+.rolo { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 1rem; border: 1px solid var(--borda); background: oklch(0.15 0.045 268 / .9); }
+table.ef { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: .82rem; white-space: nowrap; }
+.ef caption { caption-side: top; text-align: left; padding: .7rem .9rem; font-family: var(--titulo); font-size: 1.1rem; color: var(--ouro); }
+.ef th, .ef td { padding: .28rem .5rem; text-align: right; border-bottom: 1px solid oklch(0.75 0.10 270 / .14); }
+.ef thead th { position: sticky; top: 0; background: oklch(0.22 0.07 270); color: var(--ouro); font-weight: 700; text-align: center; }
+.ef thead th .gl { font-family: var(--glifos); font-size: 1.15rem; display: block; line-height: 1.1; }
+.ef thead th small { display: block; font-size: .62rem; font-weight: 600; color: var(--suave); }
+.ef td.d, .ef th.d { position: sticky; left: 0; text-align: left; background: oklch(0.19 0.06 270); color: var(--lavanda); font-weight: 700; z-index: 1; }
+.ef thead th.d { z-index: 2; }
+.ef td .s { font-family: var(--glifos); color: var(--ouro); margin: 0 .1rem; }
+.ef td.ing { background: oklch(0.85 0.13 88 / .16); box-shadow: inset 0 0 0 1px oklch(0.85 0.13 88 / .5); }
+.ef td.re { color: var(--fogo); }
+.ef td .m { display: inline-block; font-size: .62rem; font-weight: 800; border-radius: .3rem; padding: 0 .25rem; margin-left: .2rem; color: oklch(0.2 0.05 270); background: var(--fogo); }
+.ef td .m.dir { background: oklch(0.82 0.15 150); }
+.ef tr.dom td { background-color: oklch(0.85 0.13 88 / .05); }
+.ef tr.hoje td { outline: 2px solid oklch(0.85 0.20 145); outline-offset: -2px; }
+.ef td.st { color: var(--suave); }
+.legenda { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem 1.2rem; margin: .9rem 0 0; font-size: .78rem; color: var(--suave); }
+.legenda b { color: var(--ouro); }
+
+/* lista dos acontecimentos */
+.evs { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+.evs li { display: grid; grid-template-columns: 7.2rem 1fr; gap: .7rem; align-items: baseline; border-radius: .8rem; padding: .55rem .8rem; background: oklch(0.17 0.05 268 / .85); border: 1px solid var(--borda); font-size: .92rem; }
+.evs li .q { font-variant-numeric: tabular-nums; color: var(--suave); font-size: .82rem; }
+.evs li .q b { color: var(--lavanda); display: block; font-size: .9rem; }
+.evs li .gl { font-family: var(--glifos); color: var(--ouro); }
+.evs li.ecl { border-color: oklch(0.85 0.13 88 / .8); box-shadow: 0 0 18px oklch(0.85 0.13 88 / .25); }
+.evs li.est { border-color: oklch(0.75 0.16 35 / .7); }
+.evs li small { color: var(--suave); }
+.vazio { text-align: center; color: var(--suave); font-style: italic; }
+
+/* explicações */
+.explica { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+.explica div { border-radius: 1rem; padding: .9rem 1rem; background: oklch(0.17 0.05 268 / .8); border: 1px solid var(--borda); font-size: .9rem; color: var(--lavanda); }
+.explica h3 { margin: 0 0 .3rem; font-family: var(--titulo); font-size: 1rem; color: var(--ouro); }
+.aviso-fim { display: none; margin: 0 0 1.4rem; border-radius: 1.2rem; padding: 1rem 1.2rem; text-align: center; font-weight: 700;
+  color: white; background: oklch(0.45 0.19 25); border: 3px solid oklch(0.70 0.22 25); }
+.aviso-fim.ver { display: block; }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+
+/* impressão: papel branco, só as tabelas */
+@media print {
+  body { background: #fff; color: #000; }
+  .estrelas, .topo, .heroi, .abas, .ctl, .filtros, .so-ecra, footer, #opiniao { display: none !important; }
+  .caixa { width: 100%; }
+  .cartao { background: none; border: 0; box-shadow: none; padding: 0; }
+  .rolo { overflow: visible; border: 0; background: none; }
+  table.ef { font-size: 7.5pt; color: #000; page-break-inside: auto; }
+  .ef caption, .ef thead th, .ef td .s, .ef td.re { color: #000; }
+  .ef thead th, .ef td.d, .ef th.d { background: #eee !important; position: static; color: #000; }
+  .ef td.ing { background: #e6e6e6 !important; box-shadow: none; }
+  .ef th, .ef td { border-bottom: 1px solid #ccc; padding: 1px 3px; }
+  .ef tr.hoje td { outline: 0; }
+  .mes-imp { page-break-after: always; }
+  .evs li { background: none; border: 0; border-bottom: 1px solid #ccc; color: #000; border-radius: 0; padding: 2px 0; }
+  h2, .int { color: #000; }
+}
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/novidades"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>Novidades</a>
+    <a class="backlink" href="/">genialtarot.com</a>
+  </header>
+
+  <div class="aviso-fim" id="aviso-fim" role="alert"></div>
+
+  <section class="heroi">
+    <span class="selo">✦ 900 anos · calculado ao segundo ✦</span>
+    <h1>As <span class="lil">Efemérides</span></h1>
+    <p class="sub">A posição do Sol, da Lua e de todos os planetas, dia a dia, de 1600 a 2499. Com os ingressos, os retrógrados, as fases da Lua, os eclipses, os aspectos, os pontos médios e a tabela de casas. Para consultar, estudar e imprimir.</p>
+  </section>
+
+  <nav class="abas" role="tablist" aria-label="Tipo de efeméride">
+    <button class="aba" role="tab" data-aba="tabela" aria-selected="true">📜 Tabela diária</button>
+    <button class="aba" role="tab" data-aba="eventos" aria-selected="false">✨ Acontecimentos</button>
+    <button class="aba" role="tab" data-aba="medios" aria-selected="false">⚖️ Pontos médios</button>
+    <button class="aba" role="tab" data-aba="casas" aria-selected="false">🏠 Tabela de casas</button>
+  </nav>
+
+  <!-- ============ 1. A tabela diária ============ -->
+  <section class="cartao painel" id="p-tabela">
+    <h2>Os planetas <span class="lil">dia a dia</span></h2>
+    <p class="int">As posições à meia-noite do Tempo Universal (00:00 UT, a hora de Greenwich). Em Portugal é a mesma hora no inverno e a 01:00 no verão. No Brasil (Brasília) é a véspera às 21:00.</p>
+    <div class="ctl">
+      <label>Ano <input type="number" id="t-ano" min="1600" max="2499" step="1" /></label>
+      <label>Mês <select id="t-mes"></select></label>
+      <label>Sistema
+        <select id="t-modo">
+          <option value="trop">Tropical (o habitual)</option>
+          <option value="lah">Sideral · Lahiri (védica)</option>
+          <option value="fb">Sideral · Fagan/Bradley</option>
+          <option value="hel">Heliocêntrica (vista do Sol)</option>
+          <option value="dec">Declinações</option>
+          <option value="m16">Módulo 22°30 (sistema de 16)</option>
+        </select>
+      </label>
+      <button class="btn" id="t-ant" type="button" aria-label="Mês anterior">‹</button>
+      <button class="btn" id="t-seg" type="button" aria-label="Mês seguinte">›</button>
+      <button class="btn" id="t-hoje" type="button">Hoje</button>
+      <button class="btn ouro" id="t-imp" type="button">🖨️ Imprimir o ano</button>
+    </div>
+    <div id="t-saida"></div>
+    <div class="legenda so-ecra">
+      <span><b>moldura dourada</b> = entrou num signo novo nesse dia</span>
+      <span><b style="color:var(--fogo)">cor de fogo</b> = retrógrado</span>
+      <span><b>R</b> / <b>D</b> = fica retrógrado / volta a direto</span>
+      <span><b>TS</b> = tempo sideral em Greenwich</span>
+    </div>
+  </section>
+
+  <!-- ============ 2. Os acontecimentos ============ -->
+  <section class="cartao painel" id="p-eventos" hidden>
+    <h2>O que acontece <span class="lil">no céu</span></h2>
+    <p class="int">Cada acontecimento ao minuto: entradas nos signos, estações (quando um planeta fica retrógrado ou volta a direto), fases da Lua, eclipses, aspectos exactos entre os planetas e os pormenores da Lua.</p>
+    <div class="ctl">
+      <label>Ano <input type="number" id="e-ano" min="1600" max="2499" step="1" /></label>
+      <label>Mês <select id="e-mes"><option value="-1">O ano inteiro</option></select></label>
+      <label>Hora de
+        <select id="e-fuso">
+          <option value="UTC">Tempo Universal (UT)</option>
+          <option value="Europe/Lisbon">Portugal (Lisboa)</option>
+          <option value="Atlantic/Azores">Açores</option>
+          <option value="America/Sao_Paulo">Brasil (Brasília)</option>
+          <option value="">Do meu aparelho</option>
+        </select>
+      </label>
+      <button class="btn ouro" id="e-imp" type="button">🖨️ Imprimir</button>
+    </div>
+    <div class="filtros" id="e-filtros">
+      <label><input type="checkbox" value="i" checked> Ingressos</label>
+      <label><input type="checkbox" value="s" checked> Estações</label>
+      <label><input type="checkbox" value="f" checked> Fases da Lua</label>
+      <label><input type="checkbox" value="e" checked> Eclipses</label>
+      <label><input type="checkbox" value="a" checked> Aspectos</label>
+      <label><input type="checkbox" value="L"> A Lua muda de signo</label>
+      <label><input type="checkbox" value="P"> Pormenores da Lua</label>
+    </div>
+    <ul class="evs" id="e-lista"></ul>
+  </section>
+
+  <!-- ============ 3. Pontos médios ============ -->
+  <section class="cartao painel" id="p-medios" hidden>
+    <h2>Pontos <span class="lil">médios</span></h2>
+    <p class="int">O ponto médio de dois planetas é o grau a meio caminho entre eles, pelo lado mais curto. Escolha o dia e a hora em Tempo Universal. Para a hora de Portugal no verão tire 1 hora; para a de Brasília some 3.</p>
+    <div class="ctl">
+      <label>Data <input type="date" id="m-data" min="1600-01-01" max="2499-12-31" /></label>
+      <label>Hora (UT) <input type="time" id="m-hora" value="12:00" /></label>
+    </div>
+    <div id="m-saida"></div>
+  </section>
+
+  <!-- ============ 4. Tabela de casas ============ -->
+  <section class="cartao painel" id="p-casas" hidden>
+    <h2>Tabela de <span class="lil">casas</span></h2>
+    <p class="int">As cúspides das casas no sistema Placidus para uma latitude, por tempo sideral local. Escolha a cidade ou escreva a latitude (positiva a norte, negativa a sul).</p>
+    <div class="ctl">
+      <label>Cidade
+        <select id="c-cid">
+          <option value="38.7167">Lisboa</option><option value="41.15">Porto</option><option value="40.2">Coimbra</option>
+          <option value="37.0167">Faro</option><option value="32.65">Funchal</option><option value="37.7333">Ponta Delgada</option>
+          <option value="-23.55">São Paulo</option><option value="-22.9">Rio de Janeiro</option><option value="-15.7833">Brasília</option>
+          <option value="-19.9167">Belo Horizonte</option><option value="-12.9667">Salvador</option><option value="-8.05">Recife</option>
+          <option value="-3.7167">Fortaleza</option><option value="-30.0333">Porto Alegre</option><option value="-1.45">Belém</option>
+          <option value="-8.8333">Luanda</option><option value="-25.9667">Maputo</option><option value="">Outra latitude…</option>
+        </select>
+      </label>
+      <label>Latitude <input type="number" id="c-lat" min="-66" max="66" step="0.01" /></label>
+      <label>Passo
+        <select id="c-passo"><option value="4">4 minutos</option><option value="20">20 minutos</option><option value="60">1 hora</option></select>
+      </label>
+      <button class="btn ouro" id="c-imp" type="button">🖨️ Imprimir</button>
+    </div>
+    <div id="c-saida"></div>
+  </section>
+
+  <section class="cartao so-ecra">
+    <h2>Como se <span class="lil">lê</span></h2>
+    <div class="explica">
+      <div><h3>15♏&#xFE0E;28'</h3>15 graus e 28 minutos de Escorpião. Cada signo tem 30 graus, e cada grau 60 minutos. O Sol e a Lua levam também os segundos.</div>
+      <div><h3>Tropical ou sideral?</h3>A astrologia ocidental usa o zodíaco tropical, que começa no equinócio de março. O sideral (Lahiri, na astrologia védica; Fagan/Bradley, no Ocidente) segue as estrelas e está hoje uns 24 graus atrás.</div>
+      <div><h3>Heliocêntrica</h3>O céu visto do Sol e não da Terra. Aqui nenhum planeta fica retrógrado, e em vez do Sol aparece a Terra (⊕).</div>
+      <div><h3>Declinação</h3>A distância ao equador celeste, a norte (N) ou a sul (S). Serve para os paralelos e para ver os planetas «fora dos limites» (além de 23°26').</div>
+      <div><h3>Módulo 22°30</h3>A posição dentro de cada fatia de 22°30 (1/16 do círculo). Planetas com o mesmo número estão em aspecto de 22°30, 45°, 90°, 135° ou 180°. É o sistema da escola de Hamburgo e da astrologia uraniana.</div>
+      <div><h3>Lilith e o Nodo</h3>Lilith (⚸) é a Lua Negra média, o ponto mais longe da órbita da Lua. O Nodo Norte (☊) é o verdadeiro, onde a Lua cruza a eclíptica a subir. O Nodo Sul fica sempre do lado oposto.</div>
+    </div>
+  </section>
+
+  <section class="cartao so-ecra" id="opiniao">
+    <h2>Está em <span class="lil">experiência</span></h2>
+    <p class="int">Encontrou um valor estranho, ou falta-lhe alguma tabela? Diga-nos pelo WhatsApp.</p>
+    <div class="botoes">
+      <a class="btn-wa" href="https://wa.me/351914920427?text=Olá%20Mestre%20Alberto,%20vi%20as%20efemérides%20do%20site%20e%20queria%20dizer%20o%20seguinte:" target="_blank" rel="noopener noreferrer">💬 Dar a minha opinião</a>
+    </div>
+    <p class="fonte">Calculado com o Swiss Ephemeris (Astrodienst AG, Zurique): planetas pelo método de Moshier, Quíron pelos ficheiros oficiais. Diferença medida para as posições do astro.com: menos de um segundo de arco no Sol e na Lua.</p>
+  </section>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const T = "︎";                       // pede o glifo de texto: sem ele os telemóveis desenham emojis
+  const ANO_MIN = 1600, ANO_MAX = 2499;
+  const SG = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map(g => g + T);
+  const SN = ["Áries (Carneiro)","Touro","Gêmeos","Câncer (Caranguejo)","Leão","Virgem","Libra (Balança)","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const CORPOS = [["☉","Sol"],["☽","Lua"],["☿","Mercúrio"],["♀","Vénus"],["♂","Marte"],["♃","Júpiter"],["♄","Saturno"],["♅","Urano"],["♆","Neptuno"],["♇","Plutão"],["☊","Nodo Norte"],["⚷","Quíron"],["⚸","Lilith"]].map(([g, n]) => [g + T, n]);
+  const HELIO = [["⊕","Terra"],["☿","Mercúrio"],["♀","Vénus"],["♂","Marte"],["♃","Júpiter"],["♄","Saturno"],["♅","Urano"],["♆","Neptuno"],["♇","Plutão"]].map(([g, n]) => [g + T, n]);
+  const MESES = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+  const DSEM = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+  const ASP = { 0: ["☌", "conjunção"], 60: ["⚹", "sextil"], 90: ["□", "quadratura"], 120: ["△", "trígono"], 180: ["☍", "oposição"] };
+  const FASES = [["🌑", "Lua Nova"], ["🌓", "Quarto Crescente"], ["🌕", "Lua Cheia"], ["🌗", "Quarto Minguante"]];
+  const pad = (n, w = 2) => String(n).padStart(w, "0");
+  const w180 = x => ((x + 180) % 360 + 360) % 360 - 180;
+
+  // ===== os dados de cada ano: diferenças dia a dia, somadas aqui =====
+  const cache = {};
+  function soma(arr, mod) {
+    const o = new Array(arr.length); let v = 0;
+    for (let k = 0; k < arr.length; k++) { v = k ? v + arr[k] : arr[0]; if (mod) v = ((v % mod) + mod) % mod; o[k] = v; }
+    return o;
+  }
+  async function ano(Y) {
+    if (cache[Y]) return cache[Y];
+    const r = await fetch(`efemerides/${Y}.json`);
+    if (!r.ok) throw new Error("sem dados");
+    const D = await r.json();
+    D.g = D.g.map(a => soma(a, 1296000));      // segundos de arco
+    D.d = D.d.map(a => soma(a));               // minutos de arco
+    D.h = D.h.map(a => soma(a, 21600));        // minutos de arco
+    return (cache[Y] = D);
+  }
+  function falhou(msg) { const a = $("aviso-fim"); a.textContent = msg; a.classList.add("ver"); }
+  function limpo() { $("aviso-fim").classList.remove("ver"); }
+
+  // ===== formatos =====
+  function lon(seg, comSeg) {                   // segundos de arco → 15♏28'45"
+    seg = Math.round(seg); seg = ((seg % 1296000) + 1296000) % 1296000;
+    const s = Math.floor(seg / 108000), r = seg % 108000;
+    const g = Math.floor(r / 3600), m = Math.floor((r % 3600) / 60), ss = r % 60;
+    return `${pad(g)}<span class="s">${SG[s]}</span>${pad(m)}'${comSeg ? pad(ss) + '"' : ""}`;
+  }
+  function lonTxt(seg) {
+    seg = ((Math.round(seg) % 1296000) + 1296000) % 1296000;
+    const s = Math.floor(seg / 108000), r = seg % 108000;
+    return `${Math.floor(r / 3600)}°${pad(Math.floor((r % 3600) / 60))}' ${SG[s]}`;
+  }
+  const minArc = (m) => { m = ((Math.round(m) % 21600) + 21600) % 21600; const s = Math.floor(m / 1800), r = m % 1800; return `${pad(Math.floor(r / 60))}<span class="s">${SG[s]}</span>${pad(r % 60)}'`; };
+  const decl = (m) => { const a = Math.abs(Math.round(m)); return `${pad(Math.floor(a / 60))}${m < 0 ? "S" : "N"}${pad(a % 60)}`; };
+  const mod16 = (seg) => { seg = ((Math.round(seg) % 81000) + 81000) % 81000; return `${pad(Math.floor(seg / 3600))}°${pad(Math.floor((seg % 3600) / 60))}'`; };
+  function jd0(Y, M, D) {                        // dia juliano às 00:00 UT (calendário gregoriano)
+    if (M <= 2) { Y -= 1; M += 12; }
+    const A = Math.floor(Y / 100), B = 2 - A + Math.floor(A / 4);
+    return Math.floor(365.25 * (Y + 4716)) + Math.floor(30.6001 * (M + 1)) + D + B - 1524.5;
+  }
+  function tsGreenwich(jd) {                     // tempo sideral médio às 00:00 UT, em horas
+    const t = (jd - 2451545.0) / 36525;
+    let g = 100.46061837 + 36000.770053608 * t + 0.000387933 * t * t - t * t * t / 38710000;
+    return (((g % 360) + 360) % 360) / 15;
+  }
+  const hms = h => { const s = Math.round(h * 3600) % 86400; return `${Math.floor(s / 3600)}:${pad(Math.floor(s / 60) % 60)}:${pad(s % 60)}`; };
+  const diaDoAno = (Y, M, D) => Math.round((Date.UTC(Y, M, D) - Date.UTC(Y, 0, 1)) / 864e5);
+  const diasMes = (Y, M) => new Date(Date.UTC(Y, M + 1, 0)).getUTCDate();
+  const ehRetro = (D, k, i) => (D.r[k] >> i) & 1;
+
+  // ===== 1. a tabela diária =====
+  const sel = (id, opts) => { $(id).innerHTML += opts.map((t, i) => `<option value="${i}">${t}</option>`).join(""); };
+  sel("t-mes", MESES); sel("e-mes", MESES);
+  const hoje = new Date();
+  const estado = { ano: hoje.getUTCFullYear(), mes: hoje.getUTCMonth(), modo: "trop" };
+  // o endereço guarda o que se está a ver: genialtarot.com/efemerides#2026-10-lah
+  const h = location.hash.match(/^#(\d{4})-(\d{1,2})(?:-(\w+))?/);
+  if (h) { estado.ano = +h[1]; estado.mes = Math.min(11, Math.max(0, +h[2] - 1)); if (h[3]) estado.modo = h[3]; }
+  estado.ano = Math.min(ANO_MAX, Math.max(ANO_MIN, estado.ano));
+
+  function tabelaMes(D, Y, M, modo) {
+    const nd = diasMes(Y, M), k0 = diaDoAno(Y, M, 1);
+    const hel = modo === "hel", dec = modo === "dec";
+    const lista = hel ? HELIO : CORPOS;
+    const ay = (k) => modo === "lah" ? D.ay[0] + (D.ay[1] - D.ay[0]) * k / D.dias : modo === "fb" ? D.ay[2] + (D.ay[3] - D.ay[2]) * k / D.dias : 0;
+    const nomeModo = { trop: "Tropical", lah: "Sideral Lahiri", fb: "Sideral Fagan/Bradley", hel: "Heliocêntrica", dec: "Declinações", m16: "Módulo 22°30" }[modo];
+    const ehHoje = (k) => Y === hoje.getUTCFullYear() && k === diaDoAno(Y, hoje.getUTCMonth(), hoje.getUTCDate());
+    let x = `<div class="rolo"><table class="ef"><caption>${MESES[M]} ${Y} · ${nomeModo} · 00:00 UT</caption><thead><tr><th class="d">Dia</th>${hel || dec || modo === "m16" ? "" : '<th><span class="gl">TS</span><small>sideral</small></th>'}`;
+    x += lista.map(([g, n]) => `<th><span class="gl">${g}</span><small>${n}</small></th>`).join("") + "</tr></thead><tbody>";
+    for (let d = 1; d <= nd; d++) {
+      const k = k0 + d - 1, dow = new Date(Date.UTC(Y, M, d)).getUTCDay();
+      x += `<tr class="${dow === 0 ? "dom" : ""}${ehHoje(k) ? " hoje" : ""}"><td class="d">${pad(d)} ${DSEM[dow]}</td>`;
+      if (!(hel || dec || modo === "m16")) x += `<td class="st">${hms(tsGreenwich(jd0(Y, M + 1, d)))}</td>`;
+      for (let i = 0; i < lista.length; i++) {
+        let txt, cls = "";
+        if (hel) {
+          const v = D.h[i][k]; txt = minArc(v);
+          if (k > 0 && Math.floor(D.h[i][k - 1] / 1800) !== Math.floor(v / 1800)) cls = "ing";
+        } else if (dec) {
+          txt = decl(D.d[i][k]);
+          if (Math.abs(D.d[i][k]) > 1406 && i !== 10 && i !== 12) cls = "re";   // fora dos limites (> 23°26')
+        } else {
+          const v = D.g[i][k] - ay(k);
+          txt = modo === "m16" ? mod16(v) : lon(v, i < 2);
+          if (modo !== "m16" && k > 0 && Math.floor((((D.g[i][k - 1] - ay(k - 1)) % 1296000 + 1296000) % 1296000) / 108000) !== Math.floor((((v % 1296000) + 1296000) % 1296000) / 108000)) cls = "ing";
+          if (i !== 10 && i !== 12) {
+            const r = ehRetro(D, k, i), rAnt = k > 0 ? ehRetro(D, k - 1, i) : r;
+            if (r) cls += " re";
+            if (r && !rAnt) txt += '<span class="m">R</span>';
+            if (!r && rAnt) txt += '<span class="m dir">D</span>';
+          }
+        }
+        x += `<td class="${cls}">${txt}</td>`;
+      }
+      x += "</tr>";
+    }
+    return x + "</tbody></table></div>";
+  }
+  async function desenhaTabela() {
+    estado.ano = Math.min(ANO_MAX, Math.max(ANO_MIN, parseInt($("t-ano").value, 10) || estado.ano));
+    estado.mes = +$("t-mes").value; estado.modo = $("t-modo").value;
+    $("t-ano").value = estado.ano;
+    history.replaceState(null, "", `#${estado.ano}-${pad(estado.mes + 1)}-${estado.modo}`);
+    try { const D = await ano(estado.ano); limpo(); $("t-saida").innerHTML = tabelaMes(D, estado.ano, estado.mes, estado.modo); }
+    catch (e) { falhou(`Não foi possível carregar as efemérides de ${estado.ano}. Verifique a ligação e tente outra vez.`); }
+  }
+  $("t-ano").value = estado.ano; $("t-mes").value = estado.mes; $("t-modo").value = estado.modo;
+  ["t-ano", "t-mes", "t-modo"].forEach(id => $(id).addEventListener("change", desenhaTabela));
+  const anda = (n) => { let m = estado.mes + n, a = estado.ano; if (m < 0) { m = 11; a--; } if (m > 11) { m = 0; a++; } if (a < ANO_MIN || a > ANO_MAX) return; $("t-ano").value = a; $("t-mes").value = m; desenhaTabela(); };
+  $("t-ant").onclick = () => anda(-1); $("t-seg").onclick = () => anda(1);
+  $("t-hoje").onclick = () => { $("t-ano").value = hoje.getUTCFullYear(); $("t-mes").value = hoje.getUTCMonth(); desenhaTabela(); };
+  $("t-imp").onclick = async () => {               // o ano inteiro, um mês por página
+    const D = await ano(estado.ano), guarda = $("t-saida").innerHTML;
+    $("t-saida").innerHTML = MESES.map((_, m) => `<div class="mes-imp">${tabelaMes(D, estado.ano, m, estado.modo)}</div>`).join("");
+    const volta = () => { $("t-saida").innerHTML = guarda; window.removeEventListener("afterprint", volta); };
+    window.addEventListener("afterprint", volta); window.print();
+  };
+
+  // ===== 2. os acontecimentos =====
+  function posNo(D, i, minuto) {                 // posição a meio do dia, por interpolação
+    const k = Math.min(D.dias - 1, Math.floor(minuto / 1440)), f = minuto / 1440 - k;
+    const a = D.g[i][k], b = D.g[i][Math.min(D.dias - 1, k + 1)];
+    return a + w180((b - a) / 3600) * 3600 * f;
+  }
+  function quando(Y, minuto, fuso) {
+    const t = new Date(Date.UTC(Y, 0, 1) + minuto * 60000);
+    const o = { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23", weekday: "short" };
+    if (fuso) o.timeZone = fuso;
+    const p = Object.fromEntries(new Intl.DateTimeFormat("pt-PT", o).formatToParts(t).map(x => [x.type, x.value]));
+    return `<b>${p.day}/${p.month} ${p.weekday.replace(".", "")}</b>${p.hour}:${p.minute}`;
+  }
+  function textoEv(D, e) {
+    const C = (i) => `<span class="gl">${CORPOS[i][0]}</span> ${CORPOS[i][1]}`;
+    switch (e[0]) {
+      case "i": return [e[2] === 1 ? "L" : "i", `${C(e[2])} entra em <span class="gl">${SG[e[3]]}</span> ${SN[e[3]]}`];
+      case "s": return ["s", `${C(e[2])} ${e[3] === "R" ? "fica <b style=\"color:var(--fogo)\">retrógrado</b>" : "volta a <b>direto</b>"} a ${lonTxt(posNo(D, e[2], e[1]))}`];
+      case "f": return ["f", `${FASES[e[2]][0]} <b>${FASES[e[2]][1]}</b> a ${lonTxt(posNo(D, 1, e[1]))}`];
+      case "a": return ["a", `${C(e[2])} <span class="gl">${ASP[e[4]][0]}</span> ${ASP[e[4]][1]} ${C(e[3])}`];
+      case "es": return ["e", `🌑 <b>Eclipse do Sol ${{ T: "total", A: "anular", H: "híbrido", P: "parcial" }[e[2]]}</b> a ${lonTxt(posNo(D, 0, e[1]))} <small>(máximo)</small>`];
+      case "el": return ["e", `🌕 <b>Eclipse da Lua ${{ T: "total", P: "parcial", N: "penumbral" }[e[2]]}</b> a ${lonTxt(posNo(D, 1, e[1]))} <small>(máximo)</small>`];
+      case "dm": { const a = Math.abs(e[2]); return ["P", `☽${T} Lua no máximo de declinação: <b>${Math.floor(a / 3600)}°${pad(Math.floor(a % 3600 / 60))}' ${e[2] < 0 ? "Sul" : "Norte"}</b>`]; }
+      case "nl": return ["P", `☽${T} Lua cruza o ${e[2] === "N" ? "Nodo Norte (a subir)" : "Nodo Sul (a descer)"}`];
+      case "ap": return ["P", `☽${T} Lua no <b>${e[2] === "P" ? "perigeu" : "apogeu"}</b> (${e[2] === "P" ? "mais perto" : "mais longe"} da Terra): ${e[3].toLocaleString("pt-PT")} km`];
+    }
+    return ["", ""];
+  }
+  async function desenhaEventos() {
+    const Y = Math.min(ANO_MAX, Math.max(ANO_MIN, parseInt($("e-ano").value, 10) || estado.ano));
+    $("e-ano").value = Y;
+    const M = +$("e-mes").value, fuso = $("e-fuso").value;
+    const quer = new Set([...$("e-filtros").querySelectorAll("input:checked")].map(i => i.value));
+    let D; try { D = await ano(Y); limpo(); } catch (e) { falhou(`Não foi possível carregar o ano ${Y}.`); return; }
+    const de = M < 0 ? 0 : diaDoAno(Y, M, 1) * 1440, ate = M < 0 ? D.dias * 1440 : (diaDoAno(Y, M, 1) + diasMes(Y, M)) * 1440;
+    const linhas = [];
+    for (const e of D.ev) {
+      if (e[1] < de || e[1] >= ate) continue;
+      const [tipo, txt] = textoEv(D, e);
+      if (!quer.has(tipo)) continue;
+      const cls = tipo === "e" ? "ecl" : tipo === "s" ? "est" : "";
+      linhas.push(`<li class="${cls}"><span class="q">${quando(Y, e[1], fuso)}</span><span>${txt}</span></li>`);
+    }
+    $("e-lista").innerHTML = linhas.join("") || '<li class="vazio">Nada com estes filtros neste período.</li>';
+  }
+  $("e-ano").value = estado.ano; $("e-mes").value = estado.mes;
+  ["e-ano", "e-mes", "e-fuso"].forEach(id => $(id).addEventListener("change", desenhaEventos));
+  $("e-filtros").addEventListener("change", desenhaEventos);
+  $("e-imp").onclick = () => window.print();
+
+  // ===== 3. pontos médios =====
+  const MED = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];           // Sol … Plutão, Nodo, Quíron
+  async function desenhaMedios() {
+    const [Y, M, Dd] = ($("m-data").value || "").split("-").map(Number);
+    if (!Y || Y < ANO_MIN || Y > ANO_MAX) return;
+    const [hh, mm] = ($("m-hora").value || "12:00").split(":").map(Number);
+    let D; try { D = await ano(Y); limpo(); } catch (e) { falhou(`Não foi possível carregar o ano ${Y}.`); return; }
+    const minuto = diaDoAno(Y, M - 1, Dd) * 1440 + hh * 60 + mm;
+    const P = MED.map(i => posNo(D, i, minuto));
+    let x = `<div class="rolo"><table class="ef"><caption>${pad(Dd)}/${pad(M)}/${Y} às ${pad(hh)}:${pad(mm)} UT</caption><thead><tr><th class="d"></th>`;
+    x += MED.map(i => `<th><span class="gl">${CORPOS[i][0]}</span><small>${CORPOS[i][1]}</small></th>`).join("") + "</tr></thead><tbody>";
+    MED.forEach((i, a) => {
+      x += `<tr><td class="d"><span class="s">${CORPOS[i][0]}</span> ${CORPOS[i][1]}</td>`;
+      MED.forEach((j, b) => {
+        if (a === b) x += `<td style="color:var(--ouro);font-weight:700">${lon(P[a], false)}</td>`;
+        else if (b < a) x += "<td></td>";
+        else x += `<td>${lon(P[a] + w180((P[b] - P[a]) / 3600) * 1800, false)}</td>`;
+      });
+      x += "</tr>";
+    });
+    $("m-saida").innerHTML = x + `</tbody></table></div><p class="fonte">Na diagonal, a dourado, a posição de cada um; nas outras casas, o ponto médio do par (linha × coluna).</p>`;
+  }
+  $("m-data").value = `${hoje.getUTCFullYear()}-${pad(hoje.getUTCMonth() + 1)}-${pad(hoje.getUTCDate())}`;
+  ["m-data", "m-hora"].forEach(id => $(id).addEventListener("change", desenhaMedios));
+
+  // ===== 4. tabela de casas (Placidus) =====
+  const RAD = Math.PI / 180;
+  const n360 = x => ((x % 360) + 360) % 360;
+  function casas(ramc, lat, eps) {
+    const e = eps * RAD, f = lat * RAD;
+    const mc = n360(Math.atan2(Math.sin(ramc * RAD), Math.cos(ramc * RAD) * Math.cos(e)) / RAD);
+    const asc = n360(Math.atan2(Math.cos(ramc * RAD), -(Math.sin(ramc * RAD) * Math.cos(e) + Math.tan(f) * Math.sin(e))) / RAD);
+    const daAR = ra => n360(Math.atan2(Math.sin(ra * RAD), Math.cos(ra * RAD) * Math.cos(e)) / RAD);
+    function cusp(fr, abaixo) {
+      let l = daAR(ramc + (abaixo ? 180 - 90 * fr : 90 * fr));
+      for (let n = 0; n < 40; n++) {
+        const dl = Math.asin(Math.sin(e) * Math.sin(l * RAD));
+        const x = -Math.tan(f) * Math.tan(dl);
+        if (x < -1 || x > 1) return NaN;
+        const D = Math.acos(x) / RAD, N = 180 - D;
+        const ra = abaixo ? ramc + 180 - fr * N : ramc + fr * D;
+        const l2 = daAR(ra);
+        if (Math.abs(w180(l2 - l)) < 1e-7) { l = l2; break; }
+        l = l2;
+      }
+      return l;
+    }
+    return [mc, cusp(1 / 3, false), cusp(2 / 3, false), asc, cusp(2 / 3, true), cusp(1 / 3, true)];
+  }
+  function desenhaCasas() {
+    const lat = parseFloat($("c-lat").value);
+    if (isNaN(lat) || Math.abs(lat) > 66) { $("c-saida").innerHTML = '<p class="vazio">Escolha uma latitude entre 66° Sul e 66° Norte. Acima dos círculos polares o sistema Placidus não tem solução.</p>'; return; }
+    const passo = +$("c-passo").value;
+    const t = (jd0(hoje.getUTCFullYear(), 1, 1) - 2451545) / 36525, eps = 23.439291 - 0.0130042 * t;
+    const latTxt = `${Math.floor(Math.abs(lat))}°${pad(Math.round((Math.abs(lat) % 1) * 60))}' ${lat < 0 ? "Sul" : "Norte"}`;
+    let x = `<div class="rolo"><table class="ef"><caption>Placidus · latitude ${latTxt}</caption><thead><tr><th class="d">Tempo sideral</th>`;
+    x += ["10 (Meio do Céu)", "11", "12", "1 (Ascendente)", "2", "3"].map(c => `<th><span class="gl">${c.split(" ")[0]}</span><small>${c.includes("(") ? c.replace(/^\d+ \(|\)$/g, "") : "casa"}</small></th>`).join("") + "</tr></thead><tbody>";
+    for (let m = 0; m < 1440; m += passo) {
+      const cs = casas(m / 4, lat, eps);
+      x += `<tr><td class="d">${Math.floor(m / 60)}:${pad(m % 60)}</td>` + cs.map(v => `<td>${isNaN(v) ? "—" : lon(v * 3600, false)}</td>`).join("") + "</tr>";
+    }
+    $("c-saida").innerHTML = x + `</tbody></table></div><p class="fonte">As casas 4 a 9 são as opostas: a 4 é o oposto da 10, a 5 da 11, a 6 da 12, a 7 do Ascendente, a 8 da 2 e a 9 da 3. Tempo sideral LOCAL: o de Greenwich (na tabela diária) mais a longitude em horas (a leste soma, a oeste tira) e mais 3m57s por cada 24 h depois da meia-noite UT.</p>`;
+  }
+  $("c-lat").value = $("c-cid").value;
+  $("c-cid").addEventListener("change", () => { if ($("c-cid").value) $("c-lat").value = $("c-cid").value; desenhaCasas(); });
+  ["c-lat", "c-passo"].forEach(id => $(id).addEventListener("change", desenhaCasas));
+  $("c-imp").onclick = () => window.print();
+
+  // ===== os separadores =====
+  const feito = {};
+  const DESENHA = { tabela: desenhaTabela, eventos: desenhaEventos, medios: desenhaMedios, casas: desenhaCasas };
+  document.querySelectorAll(".aba").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".aba").forEach(o => o.setAttribute("aria-selected", o === b ? "true" : "false"));
+    document.querySelectorAll(".painel").forEach(p => p.hidden = p.id !== "p-" + b.dataset.aba);
+    if (!feito[b.dataset.aba]) { feito[b.dataset.aba] = 1; DESENHA[b.dataset.aba](); }
+  }));
+  feito.tabela = 1; desenhaTabela();
+})();
+</script>
+</body>
+</html>
