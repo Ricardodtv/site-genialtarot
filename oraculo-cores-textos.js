@@ -112,11 +112,20 @@
          mesma: "Está entre o observar e o agir, à espera do momento certo." },
   };
 
+  // ⚖️ o VEREDITO FINAL (pedido dele, 28/10): o conselho pela família das cores preferidas
+  const CONSELHO = {
+    q: "O seu fogo está aceso: use-o num objetivo concreto e escolha bem as batalhas. Nem tudo merece a sua energia; o que merece, merece-a toda.",
+    a: "A sua luz está a pedir espaço: dê-lhe um projeto, uma viagem, uma conversa nova. Abra uma janela por dia e veja o que entra.",
+    v: "As suas raízes pedem tempo: construa devagar, proteja o seu espaço e confie que o que é seu está a crescer, mesmo quando não se vê.",
+    z: "A sua alma pede silêncio: reserve um momento só seu, sem ruído, para ouvir o que já sabe. As respostas que procura estão mais perto do que pensa.",
+    n: "Está a observar antes de decidir: dê-se esse tempo, mas marque uma data para escolher. A pausa só é sábia enquanto não se torna espera.",
+  };
+
   // a frase que liga cada posição (1.ª a 6.ª) — preferidas e rejeitadas
   const LIGA_MAIS = ["O que mais o(a) move agora…", "O que procura de forma consciente…", "Aquilo de que mais precisa…",
                      "Como quer viver este momento…", "O que lhe dá força…", "Para onde está a caminhar…"];
   const LIGA_MENOS = ["O que mais o(a) inquieta…", "O que está a pôr de lado…", "O que lhe pesa…",
                       "O que prefere evitar…", "O que já não quer…", "O que pode transformar…"];
 
-  raiz.OraculoCores = { CORES, FAMILIA, LIGA_MAIS, LIGA_MENOS };
+  raiz.OraculoCores = { CORES, FAMILIA, LIGA_MAIS, LIGA_MENOS, CONSELHO };
 })(typeof window !== "undefined" ? window : globalThis);

@@ -117,6 +117,20 @@ h2 .lil { background: var(--grad-rosa); -webkit-background-clip: text; backgroun
 .btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 800; color: white; border-radius: 999px; padding: .85rem 1.5rem;
   background: linear-gradient(135deg, #2bd46a, #128c4a); box-shadow: 0 10px 26px #12a05055; }
 section + section { margin-top: 1.4rem; }
+.voltar { display: flex; justify-content: center; margin: -.3rem 0 1rem; }
+.vaga.ultima { cursor: pointer; }
+.vaga.ultima::after { content: "↶"; position: absolute; font-size: 1rem; color: #fff; text-shadow: 0 1px 3px #000; }
+.vaga { position: relative; }
+.veredito { margin-top: 1.6rem; padding: 1.4rem 1.3rem; border-radius: 1.2rem; border: 1px solid oklch(0.85 0.13 88 / .55);
+  background: linear-gradient(160deg, oklch(0.36 0.11 300 / .9), oklch(0.24 0.08 300 / .95)); box-shadow: 0 0 30px oklch(0.85 0.13 88 / .18); }
+.veredito h3 { font-family: var(--titulo); color: var(--ouro); text-align: center; font-size: clamp(1.3rem, 3.4vw, 1.7rem); margin: 0 0 1rem; }
+.veredito p { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.35rem); line-height: 1.5; margin: 0 0 .8rem; }
+.veredito .eixo { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin: .4rem 0 1rem; }
+.veredito .eixo div { background: #ffffff0d; border-radius: .9rem; padding: .7rem .8rem; text-align: center; }
+.veredito .eixo b { display: block; font-family: var(--titulo); color: var(--lavanda); font-size: 1.05rem; }
+.veredito .eixo small { color: var(--suave); font-size: .85rem; }
+.veredito .fecho { text-align: center; font-style: italic; color: var(--ouro); }
+@media (max-width: 520px) { .veredito .eixo { grid-template-columns: 1fr; } }
 footer { position: relative; z-index: 1; text-align: center; font-size: .78rem; color: var(--suave); padding: 2.4rem 1rem 2rem; }
 footer a { color: var(--suave); }
 </style>
@@ -136,16 +150,16 @@ footer a { color: var(--suave); }
 
   <section id="oraculo" class="cartao">
     <p class="passo" id="passo" aria-live="polite"></p>
+    <div class="voltar"><button class="btn-leve" id="voltar" disabled>↶ Voltar à cor anterior</button></div>
     <div class="paleta" id="paleta" role="list"></div>
     <div class="filas">
       <div class="fila" id="fila-mais"><span class="mais">♥ Agradam-me</span></div>
       <div class="fila" id="fila-menos"><span class="menos">✕ Incomodam-me</span></div>
     </div>
     <div class="acoes">
-      <button class="btn-leve" id="desfazer" disabled>↶ Desfazer</button>
       <button class="btn-leve" id="recomecar">↻ Recomeçar</button>
     </div>
-    <p class="nota">Toque numa cor para a escolher. São 12 escolhas: em cada vez, a mais agradável e depois a menos agradável das que restam.</p>
+    <p class="nota">Toque numa cor para a escolher. São 12 escolhas: em cada vez, a mais agradável e depois a menos agradável das que restam. Enganou-se? Toque em «Voltar à cor anterior» ou na última cor que colocou.</p>
   </section>
 
   <section id="resultado" class="cartao" aria-live="polite">
@@ -154,6 +168,7 @@ footer a { color: var(--suave); }
     <div class="bloco"><h3>✦ A sua energia neste momento</h3><p class="geral" id="geral"></p></div>
     <div class="bloco"><h3>♥ As cores que o(a) atraem</h3><div id="lista-mais"></div></div>
     <div class="bloco"><h3 class="neg">✕ As cores que o(a) incomodam</h3><div id="lista-menos"></div></div>
+    <div class="veredito" id="veredito"></div>
     <p class="nota">As cores escolhem-se com o coração e mudam com o momento. Não repita o oráculo muitas vezes seguidas: volte daqui a uns dias e compare.</p>
     <div class="acoes">
       <button class="btn-grande" id="partilhar">📤 Partilhar no WhatsApp</button>
@@ -175,7 +190,7 @@ footer a { color: var(--suave); }
 <script>
 (function () {
   const $ = id => document.getElementById(id);
-  const { CORES, FAMILIA, LIGA_MAIS, LIGA_MENOS } = window.OraculoCores;
+  const { CORES, FAMILIA, LIGA_MAIS, LIGA_MENOS, CONSELHO } = window.OraculoCores;
   let escolhas = [];          // índices em CORES, pela ordem: mais, menos, mais, menos…
   let ordem = [];
 
@@ -198,6 +213,7 @@ footer a { color: var(--suave); }
         const pos = k * 2 + par, v = document.createElement("div"), c = escolhas[pos];
         v.className = "vaga" + (c !== undefined ? " cheia" : "") + (pos === escolhas.length ? " proxima" : "");
         v.textContent = k + 1; if (c !== undefined) { v.style.background = fundo(CORES[c]); v.title = CORES[c].nome; }
+        if (c !== undefined && pos === escolhas.length - 1) { v.classList.add("ultima"); v.title = "Tocar para voltar atrás"; v.onclick = volta; }
         f.appendChild(v);
       }
     }
@@ -205,7 +221,7 @@ footer a { color: var(--suave); }
     $("passo").innerHTML = n >= 12 ? "Pronto! A sua leitura está aqui em baixo ✨"
       : n % 2 === 0 ? `Escolha ${n / 2 + 1} de 6: toque na cor <b>mais agradável</b>`
       : `Escolha ${(n + 1) / 2} de 6: agora a <span class="neg"><b>menos agradável</b></span>`;
-    $("desfazer").disabled = n === 0;
+    $("voltar").disabled = n === 0;
   }
   function escolhe(i) {
     if (escolhas.length >= 12 || escolhas.includes(i)) return;
@@ -228,11 +244,25 @@ footer a { color: var(--suave); }
     }).join("");
     $("lista-mais").innerHTML = bloco(mais, "agrada", LIGA_MAIS);
     $("lista-menos").innerHTML = bloco(menos, "incomoda", LIGA_MENOS);
+    // ⚖️ veredito final (pedido dele, 28/10): cor-guia, o que pede atenção, luz × recolhimento, ação × reflexão, conselho
+    const luz = c => { const h = CORES[c].hex.slice(1); const [r, g, b] = [0, 2, 4].map(i => parseInt(h.substr(i, 2), 16) / 255); return .2126 * r + .7152 * g + .0722 * b; };
+    const med = l => l.reduce((s, c, k) => s + luz(c) * (6 - k), 0) / 21;
+    const quentes = mais.filter(c => "qa".includes(CORES[c].fam)).length, frias = mais.filter(c => "vz".includes(CORES[c].fam)).length;
+    const g = CORES[mais[0]], a = CORES[menos[0]];
+    const eixo1 = med(mais) > med(menos) + .05 ? ["Abertura", "procura luz e novidade"] : med(mais) < med(menos) - .05 ? ["Recolhimento", "procura abrigo e silêncio"] : ["Equilíbrio", "entre a luz e a sombra"];
+    const eixo2 = quentes >= 4 ? ["Ação", "o momento pede movimento"] : frias >= 4 ? ["Reflexão", "o momento pede pausa"] : ["Meio-termo", "agir com calma"];
+    $("veredito").innerHTML = `<h3>⚖️ O veredito das suas cores</h3>
+      <p>A sua <b>cor-guia</b> — <b>${g.nome}</b> — fala de <i>${g.agrada.tema.toLowerCase()}</i>: é por aí que a sua energia quer ir.
+      A cor que mais <b>pede atenção</b> — <b>${a.nome}</b> — fala de <i>${a.incomoda.tema.toLowerCase()}</i>.</p>
+      <div class="eixo"><div><b>${eixo1[0]}</b><small>${eixo1[1]}</small></div><div><b>${eixo2[0]}</b><small>${eixo2[1]}</small></div></div>
+      <p>${CONSELHO[fm]}</p>
+      <p class="fecho">As cores de hoje não são as de amanhã: mostram o caminho, e o caminho escolhe-se. Eu estou sempre por aqui!</p>`;
     const r = $("resultado"); r.style.display = "block"; setTimeout(() => r.scrollIntoView({ behavior: "smooth", block: "start" }), 250);
     const temas = mais.slice(0, 3).map(c => CORES[c].agrada.tema).join(", ");
     $("wa-consulta").href = "https://wa.me/351914920427?text=" + encodeURIComponent(`Olá Mestre Alberto, fiz o Oráculo das Cores no site. As minhas cores falaram de: ${temas}. Gostava de falar consigo.`);
   }
-  $("desfazer").onclick = () => { escolhas.pop(); $("resultado").style.display = "none"; desenhaPaleta(); desenhaFilas(); };
+  function volta() { if (!escolhas.length) return; escolhas.pop(); $("resultado").style.display = "none"; desenhaPaleta(); desenhaFilas(); }
+  $("voltar").onclick = volta;
   const recomeca = () => { escolhas = []; baralha(); $("resultado").style.display = "none"; desenhaPaleta(); desenhaFilas(); $("oraculo").scrollIntoView({ behavior: "smooth" }); };
   $("recomecar").onclick = recomeca; $("denovo").onclick = recomeca;
   $("partilhar").onclick = () => {
