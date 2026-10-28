@@ -451,7 +451,7 @@ const PAGINAS = new Set([
   // 28/10/2026: as Novidades (10 páginas em experiência, ideias do astro-seek.com) e a montra delas
   "/novidades", "/revolucao-solar", "/horoscopo-pessoal", "/carta-de-tarot", "/retrogrados", "/trio-astral", "/calendarios", "/horoscopo-chines", "/fase-lua-nascimento", "/adivinha-signo", "/mapa-do-casal",
   // 28/10/2026: o Oráculo das Cores (ideia do astro.com, textos originais)
-  "/oraculo-cores", "/efemerides",
+  "/oraculo-cores", "/efemerides", "/famosos-ceu",
 ]);
 
 function contarVisita(request, url, env, ctx) {

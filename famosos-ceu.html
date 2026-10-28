@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- EXPERIÊNCIA 28/10/2026 — página da área Novidades; textos por aprovar pelo Mestre Alberto.
+     Pedido dele a partir da Astro-Databank do astro.com (aq.cgi/adb-search): pesquisar famosos por padrões
+     astrológicos. A ADB é paga e os dados são da Astrodienst; aqui os famosos vêm do Wikidata (CC0), escritos
+     em famosos-ceu-dados.js por ~/site-genialtarot-dados/gerar-famosos.py (Swiss Ephemeris, meio-dia do país).
+     O céu de quem visita sai das Efemérides do site (efemerides/AAAA.json). Sem hora: sem Ascendente. -->
+<meta name="robots" content="noindex" />
+<title>Famosos com o seu céu — o mesmo Sol, a mesma Lua · Mestre Alberto</title>
+<meta name="description" content="Que famosos do Brasil e de Portugal nasceram com o mesmo Sol, a mesma Lua e os mesmos planetas que você? E uma pesquisa astrológica em 11 800 famosos." />
+<meta name="theme-color" content="#1c1a4a" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Famosos com o seu céu — Mestre Alberto" />
+<meta property="og:description" content="Descubra os famosos que nasceram com o mesmo Sol e a mesma Lua que você." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/famosos-ceu" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Famosos com o seu céu — o azul-noite e dourado das Efemérides (28/10/2026) ============ */
+:root {
+  --fundo: oklch(0.16 0.06 270);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.04 265);
+  --lilas-claro: oklch(0.86 0.08 265);
+  --lavanda: oklch(0.93 0.04 265);
+  --ouro: oklch(0.85 0.13 88);
+  --fogo: oklch(0.80 0.14 40);
+  --borda: oklch(0.75 0.10 270 / 0.35);
+  --vidro: oklch(0.28 0.08 270 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.72 0.13 260), oklch(0.58 0.17 280) 55%, oklch(0.48 0.18 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.93 0.10 92), oklch(0.80 0.14 80) 55%, oklch(0.70 0.14 60));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+  --glifos: "DejaVu Sans", "Segoe UI Symbol", "Noto Sans Symbols 2", "Noto Sans Symbols", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklch(0.20 0.08 270) 45%, oklch(0.11 0.04 265) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+/* margem de 16 px de cada lado no telemóvel; as tabelas largas deslizam DENTRO da caixa, a página não */
+.caixa { position: relative; z-index: 1; width: min(76rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2.2rem; }
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--lavanda); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.heroi { text-align: center; padding: .5rem 0 1.6rem; }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 46rem; margin: 0 auto; }
+
+.cartao { background: linear-gradient(160deg, oklch(0.29 0.09 272), oklch(0.20 0.07 268)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.35rem, 3.6vw, 2rem); margin: 0 0 .4rem; text-align: center; }
+.int { text-align: center; color: var(--suave); margin: 0 auto 1.2rem; max-width: 46rem; font-size: .93rem; }
+
+/* separadores e controlos (iguais aos das Efemérides) */
+.abas { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin: 0 0 1.4rem; }
+.aba { border: 1px solid var(--borda); background: var(--vidro); color: var(--texto); font: inherit; font-weight: 700; font-size: .88rem; border-radius: 999px; padding: .6rem 1.1rem; cursor: pointer; }
+.aba[aria-selected="true"] { background: var(--grad-ouro); color: oklch(0.22 0.06 300); border-color: transparent; box-shadow: 0 0 20px oklch(0.85 0.13 88 / .35); }
+.painel[hidden] { display: none; }
+.ctl { display: flex; flex-wrap: wrap; justify-content: center; align-items: end; gap: .7rem 1rem; margin: 0 0 1.1rem; }
+.ctl label { display: grid; gap: .25rem; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--suave); }
+.ctl select, .ctl input { font: inherit; font-size: .95rem; color: var(--texto); background: oklch(0.17 0.05 268); border: 1px solid var(--borda); border-radius: .7rem; padding: .5rem .7rem; min-width: 0; max-width: 100%; }
+.btn { border: 1px solid var(--borda); background: var(--vidro); color: var(--texto); font: inherit; font-weight: 700; font-size: .9rem; border-radius: 999px; padding: .6rem 1.1rem; cursor: pointer; }
+.btn.ouro { background: var(--grad-ouro); color: oklch(0.22 0.06 300); border-color: transparent; }
+.gl { font-family: var(--glifos); }
+
+/* o seu céu */
+.meu { display: flex; flex-wrap: wrap; justify-content: center; gap: .45rem; margin: 0 0 1.2rem; }
+.chip { display: inline-flex; align-items: center; gap: .3rem; border-radius: 999px; padding: .3rem .7rem; font-size: .82rem; background: oklch(0.17 0.05 268 / .9); border: 1px solid var(--borda); }
+.chip .gl { color: var(--ouro); }
+.chip.igual { background: oklch(0.85 0.13 88 / .2); border-color: oklch(0.85 0.13 88 / .7); }
+.chip.r { color: var(--fogo); }
+.aviso-lua { text-align: center; font-size: .85rem; color: var(--suave); margin: -.6rem 0 1rem; }
+
+/* filtros da pesquisa */
+.cartoes-f { display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); margin: 0 0 1rem; }
+.fc { border-radius: 1rem; padding: .8rem .9rem; background: oklch(0.17 0.05 268 / .85); border: 1px solid var(--borda); display: grid; gap: .45rem; }
+.fc b { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ouro); }
+.fc select { font: inherit; font-size: .92rem; color: var(--texto); background: oklch(0.14 0.04 268); border: 1px solid var(--borda); border-radius: .6rem; padding: .45rem .6rem; width: 100%; }
+.certo { display: flex; justify-content: center; gap: .4rem; font-size: .85rem; color: var(--suave); margin: 0 0 1rem; }
+
+/* resultados */
+.conta { text-align: center; font-family: var(--titulo); font-size: 1.25rem; color: var(--ouro); margin: .4rem 0 1rem; }
+.lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr)); }
+.lista li { border-radius: .9rem; padding: .65rem .8rem; background: oklch(0.17 0.05 268 / .85); border: 1px solid var(--borda); }
+.lista .n { font-weight: 700; color: white; text-decoration: none; }
+.lista .n:hover { color: var(--ouro); }
+.lista .info { font-size: .8rem; color: var(--suave); margin: .1rem 0 .35rem; }
+.lista .chips { display: flex; flex-wrap: wrap; gap: .3rem; }
+.lista .chip { font-size: .74rem; padding: .15rem .5rem; }
+.lista .pts { float: right; font-size: .72rem; font-weight: 800; border-radius: 999px; padding: .1rem .5rem; color: oklch(0.22 0.06 300); background: var(--grad-ouro); }
+.mais { display: flex; justify-content: center; margin-top: 1rem; }
+.vazio { text-align: center; color: var(--suave); font-style: italic; }
+
+/* distribuição (como a estatística da Astro-Databank) */
+.dist { display: grid; gap: .35rem; margin: 1rem 0 1.4rem; }
+.barra { display: grid; grid-template-columns: 7.5rem 1fr 4.2rem; gap: .6rem; align-items: center; font-size: .82rem; }
+.barra .t { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.barra .fundo { position: relative; height: .9rem; border-radius: 999px; background: oklch(0.14 0.04 268); }
+.barra .ench { position: absolute; inset: 0 auto 0 0; border-radius: 999px; background: var(--grad-lilas); }
+.barra .ench.alto { background: var(--grad-ouro); }
+.barra .esp { position: absolute; top: -3px; bottom: -3px; width: 2px; background: oklch(0.85 0.20 145); }
+.barra .v { text-align: right; font-variant-numeric: tabular-nums; color: var(--lavanda); }
+.nota-dist { text-align: center; font-size: .78rem; color: var(--suave); }
+
+.explica { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+.explica div { border-radius: 1rem; padding: .9rem 1rem; background: oklch(0.17 0.05 268 / .8); border: 1px solid var(--borda); font-size: .9rem; color: var(--lavanda); }
+.explica h3 { margin: 0 0 .3rem; font-family: var(--titulo); font-size: 1rem; color: var(--ouro); }
+.aviso-fim { display: none; margin: 0 0 1.4rem; border-radius: 1.2rem; padding: 1rem 1.2rem; text-align: center; font-weight: 700; color: white; background: oklch(0.45 0.19 25); border: 3px solid oklch(0.70 0.22 25); }
+.aviso-fim.ver { display: block; }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/novidades"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>Novidades</a>
+    <a class="backlink" href="/">genialtarot.com</a>
+  </header>
+
+  <div class="aviso-fim" id="aviso-fim" role="alert"></div>
+
+  <section class="heroi">
+    <span class="selo">✦ 11 800 famosos do Brasil e de Portugal ✦</span>
+    <h1>Famosos com o <span class="lil">seu céu</span></h1>
+    <p class="sub">Descubra que famosos nasceram com o mesmo Sol, a mesma Lua e os mesmos planetas que você. Ou pesquise como um astrólogo: quem tem Vénus em Touro, Marte retrógrado ou a Lua num signo de Fogo.</p>
+  </section>
+
+  <nav class="abas" role="tablist">
+    <button class="aba" role="tab" data-aba="meu" aria-selected="true">🌟 O meu céu</button>
+    <button class="aba" role="tab" data-aba="pesq" aria-selected="false">🔭 Pesquisa astrológica</button>
+  </nav>
+
+  <!-- ============ 1. o meu céu ============ -->
+  <section class="cartao painel" id="p-meu">
+    <h2>Quem nasceu com o <span class="lil">seu céu</span>?</h2>
+    <p class="int">Escreva a sua data de nascimento. Calculamos o seu Sol, a sua Lua e os seus planetas, e procuramos os famosos que têm os mesmos signos. Quanto mais pontos em comum, mais alto aparecem.</p>
+    <form class="ctl" id="f-meu">
+      <label>Data de nascimento <input type="date" id="m-data" min="1600-01-01" max="2499-12-31" required /></label>
+      <label>Nasceu em
+        <select id="m-pais"><option value="-3">Brasil</option><option value="0">Portugal</option><option value="1">Angola</option><option value="2">Moçambique</option></select>
+      </label>
+      <label>Mostrar
+        <select id="m-grupo"></select>
+      </label>
+      <button class="btn ouro" type="submit">✨ Procurar</button>
+    </form>
+    <div id="m-saida"></div>
+  </section>
+
+  <!-- ============ 2. a pesquisa ============ -->
+  <section class="cartao painel" id="p-pesq" hidden>
+    <h2>Pesquisa <span class="lil">astrológica</span></h2>
+    <p class="int">Junte até três condições. Por exemplo: Sol em Leão + Lua num signo de Água + Vénus retrógrada. Escolha também a profissão, o país e o sexo. Em baixo aparece quantos são e como se distribuem pelos signos.</p>
+    <div class="cartoes-f" id="filtros"></div>
+    <div class="ctl">
+      <label>Profissão <select id="p-grupo"></select></label>
+      <label>País <select id="p-pais"><option value="">Brasil e Portugal</option><option value="BR">Brasil</option><option value="PT">Portugal</option></select></label>
+      <label>Sexo <select id="p-sexo"><option value="">Todos</option><option value="f">Mulheres</option><option value="m">Homens</option></select></label>
+      <label>Distribuição de <select id="p-dist"></select></label>
+    </div>
+    <label class="certo"><input type="checkbox" id="p-certo" /> Só quem tem a Lua (e os outros corpos escolhidos) num único signo nesse dia</label>
+    <div id="p-saida"></div>
+  </section>
+
+  <section class="cartao">
+    <h2>Como <span class="lil">funciona</span></h2>
+    <div class="explica">
+      <div><h3>De onde vêm os famosos</h3>Do Wikidata, a base de dados livre da Wikipédia: pessoas vivas com nacionalidade brasileira ou portuguesa e a data de nascimento certa. Aparecem primeiro as mais conhecidas.</div>
+      <div><h3>Porque não há Ascendente</h3>O Ascendente e as casas precisam da hora exacta do nascimento, e essa hora quase nunca é pública. Por isso aqui só entram o Sol, a Lua e os planetas, calculados ao meio-dia do país.</div>
+      <div><h3>A Lua com dois signos</h3>A Lua muda de signo a cada dois dias e meio. Quando muda no próprio dia do nascimento, só a hora diz qual é a certa: mostramos os dois, por exemplo «♋/♌», e contamos os dois na comparação.</div>
+      <div><h3>Os pontos em comum</h3>Mesmo Sol ou mesma Lua valem 3 pontos; Mercúrio, Vénus ou Marte valem 2; Júpiter e Saturno valem 1. Urano, Neptuno e Plutão ficam de fora, porque passam anos no mesmo signo e são iguais para uma geração inteira.</div>
+    </div>
+  </section>
+
+  <section class="cartao" id="opiniao">
+    <h2>Quer ir mais <span class="lil">fundo</span>?</h2>
+    <p class="int">Com a sua hora de nascimento, o Mestre Alberto vê o seu Ascendente, as suas casas e o que o céu de agora toca no seu mapa. Esta página está em experiência: diga-nos o que achou.</p>
+    <div class="botoes">
+      <a class="btn ouro" href="/mapa-astral">🗺️ O meu Mapa Astral</a>
+      <a class="btn-wa" href="https://wa.me/351914920427?text=Olá%20Mestre%20Alberto,%20experimentei%20a%20página%20dos%20Famosos%20com%20o%20seu%20céu%20e%20queria%20dizer%20o%20seguinte:" target="_blank" rel="noopener noreferrer">💬 Dar a minha opinião</a>
+    </div>
+    <p class="fonte">Dados dos famosos: Wikidata (domínio público), 25/10/2026. Posições: Swiss Ephemeris. É uma curiosidade astrológica, não prova nada sobre ninguém.</p>
+  </section>
+</div>
+
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script src="famosos-ceu-dados.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const T = "︎";
+  const SG = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map(g => g + T);
+  const SN = ["Áries (Carneiro)","Touro","Gêmeos","Câncer (Caranguejo)","Leão","Virgem","Libra (Balança)","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const CP = [["☉","Sol"],["☽","Lua"],["☿","Mercúrio"],["♀","Vénus"],["♂","Marte"],["♃","Júpiter"],["♄","Saturno"],["♅","Urano"],["♆","Neptuno"],["♇","Plutão"]].map(([g, n]) => [g + T, n]);
+  const PESO = [3, 3, 2, 2, 2, 1, 1, 0, 0, 0];
+  const ELEM = [["Fogo", [0, 4, 8]], ["Terra", [1, 5, 9]], ["Ar", [2, 6, 10]], ["Água", [3, 7, 11]]];
+  const GRUPOS = { "": "Todas as profissões", futebol: "⚽ Futebol", desporto: "🏅 Outros desportos", musica: "🎤 Música", tv: "🎬 Ator, TV e cinema", politica: "🏛️ Política", cultura: "📚 Cultura e negócios", outros: "✨ Outros" };
+  const F = (window.FAMOSOS || []).map(p => ({ n: p[0], a: p[1], m: p[2], d: p[3], desc: p[4], pais: p[5], sexo: p[6], g: p[7],
+    s: [...p[8]].map(c => c.charCodeAt(0) - 97), alt: [...p[9]].map(c => c === "." ? -1 : c.charCodeAt(0) - 97), r: p[10], q: p[11] }));
+  const pad = n => String(n).padStart(2, "0");
+  const opts = (o) => Object.entries(o).map(([v, t]) => `<option value="${v}">${t}</option>`).join("");
+  $("m-grupo").innerHTML = opts(GRUPOS); $("p-grupo").innerHTML = opts(GRUPOS);
+  $("p-dist").innerHTML = CP.map(([g, n], i) => `<option value="${i}">${n}</option>`).join("");
+  const signosDe = (p, i) => p.alt[i] < 0 ? [p.s[i]] : [p.s[i], p.alt[i]];
+  const chipSig = (p, i, igual) => `<span class="chip${igual ? " igual" : ""}${(p.r >> i) & 1 ? " r" : ""}"><span class="gl">${CP[i][0]}</span>${signosDe(p, i).map(s => `<span class="gl">${SG[s]}</span>`).join("/")}${(p.r >> i) & 1 ? " ℞" : ""}</span>`;
+  const bandeira = p => p.pais === "BR" ? "🇧🇷" : "🇵🇹";
+  const link = p => `https://www.wikidata.org/wiki/Special:GoToLinkedPage/ptwiki/${p.q}`;
+  function cartaoPessoa(p, iguais, pts) {
+    const mostrar = [0, 1, 2, 3, 4];
+    return `<li>${pts != null ? `<span class="pts">${pts} pts</span>` : ""}<a class="n" href="${link(p)}" target="_blank" rel="noopener">${esc(p.n)}</a>
+      <div class="info">${bandeira(p)} ${pad(p.d)}/${pad(p.m)}/${p.a} · ${esc(p.desc)}</div>
+      <div class="chips">${mostrar.map(i => chipSig(p, i, iguais && iguais.has(i))).join("")}</div></li>`;
+  }
+  function falhou(msg) { const a = $("aviso-fim"); a.textContent = msg; a.classList.add("ver"); }
+  if (!F.length) falhou("Não foi possível carregar a lista de famosos. Recarregue a página.");
+
+  // ===== o céu de quem visita: vem das Efemérides do site (efemerides/AAAA.json) =====
+  const cache = {};
+  async function ano(Y) {
+    if (cache[Y]) return cache[Y];
+    const r = await fetch(`efemerides/${Y}.json`); if (!r.ok) throw new Error("sem dados");
+    const D = await r.json();
+    D.g = D.g.map(a => { const o = []; let v = 0; a.forEach((x, k) => { v = k ? v + x : x; o.push(((v % 1296000) + 1296000) % 1296000); }); return o; });
+    return (cache[Y] = D);
+  }
+  async function posicao(Y, M, D, horasUT) {      // as 10 posições num instante (dias inteiros + horas UT)
+    const base = new Date(Date.UTC(Y, M - 1, D) + horasUT * 3600e3);
+    const y = base.getUTCFullYear(), k = Math.round((Date.UTC(y, base.getUTCMonth(), base.getUTCDate()) - Date.UTC(y, 0, 1)) / 864e5);
+    const f = base.getUTCHours() / 24 + base.getUTCMinutes() / 1440;
+    const A = await ano(y);
+    let B = A, k2 = k + 1;
+    if (k2 >= A.dias) { B = await ano(y + 1); k2 = 0; }
+    return { lon: Array.from({ length: 10 }, (_, i) => { const a = A.g[i][k], b = B.g[i][k2]; let d = b - a; if (d > 648000) d -= 1296000; if (d < -648000) d += 1296000; return ((a + d * f) % 1296000 + 1296000) % 1296000 / 3600; }),
+             r: A.r[k] };
+  }
+  $("f-meu").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const v = $("m-data").value; if (!v) return;
+    const [Y, M, D] = v.split("-").map(Number);
+    if (Y < 1600 || Y > 2499) { $("m-saida").innerHTML = '<p class="vazio">Escolha uma data entre 1600 e 2499.</p>'; return; }
+    const fuso = +$("m-pais").value;
+    let ini, meio, fim;
+    try { [ini, meio, fim] = await Promise.all([posicao(Y, M, D, -fuso), posicao(Y, M, D, 12 - fuso), posicao(Y, M, D, 24 - fuso - 1 / 60)]); }
+    catch (e) { falhou("Não foi possível calcular o seu céu. Verifique a ligação e tente outra vez."); return; }
+    const eu = { s: meio.lon.map(l => Math.floor(l / 30)), alt: [], r: 0 };
+    for (let i = 0; i < 10; i++) { const a = Math.floor(ini.lon[i] / 30), b = Math.floor(fim.lon[i] / 30); eu.alt[i] = a === b ? -1 : (a !== eu.s[i] ? a : b); }
+    for (let i = 2; i < 10; i++) if ((meio.r >> i) & 1) eu.r |= 1 << i;
+    const meus = (i) => signosDe(eu, i);
+    let x = `<div class="meu">${CP.map((_, i) => chipSig(eu, i, false)).join("")}</div>`;
+    if (eu.alt[1] >= 0) {                        // a Lua anda sempre para a frente: do signo da manhã para o da noite
+      const [de, para] = eu.alt[1] === (eu.s[1] + 1) % 12 ? [eu.s[1], eu.alt[1]] : [eu.alt[1], eu.s[1]];
+      x += `<p class="aviso-lua">No dia em que nasceu, a Lua passou de ${SN[de]} para ${SN[para]}. Só a hora diz qual é a sua; contamos as duas.</p>`;
+    }
+    const grupo = $("m-grupo").value;
+    const res = [];
+    F.forEach((p, idx) => {
+      if (grupo && p.g !== grupo) return;
+      let pts = 0; const iguais = new Set();
+      for (let i = 0; i < 7; i++) { const a = meus(i), b = signosDe(p, i); if (a.some(s => b.includes(s))) { pts += PESO[i]; iguais.add(i); } }
+      if (iguais.has(0) || iguais.has(1)) res.push({ p, pts, iguais, idx });
+    });
+    res.sort((a, b) => b.pts - a.pts || a.idx - b.idx);
+    const sl = res.filter(r => r.iguais.has(0) && r.iguais.has(1)).length;
+    x += `<p class="conta">${sl.toLocaleString("pt-PT")} famosos com o mesmo Sol e a mesma Lua que você</p>`;
+    x += `<ul class="lista" id="m-lista"></ul><div class="mais"><button class="btn" id="m-mais" type="button">Ver mais</button></div>`;
+    $("m-saida").innerHTML = x;
+    let n = 0;
+    const mais = () => { $("m-lista").insertAdjacentHTML("beforeend", res.slice(n, n + 30).map(r => cartaoPessoa(r.p, r.iguais, r.pts)).join("")); n += 30; $("m-mais").hidden = n >= res.length; };
+    $("m-mais").onclick = mais; mais();
+    if (!res.length) $("m-lista").innerHTML = '<li class="vazio">Nenhum famoso desta profissão com o mesmo Sol ou a mesma Lua.</li>';
+  });
+
+  // ===== a pesquisa (como os cartões de filtro da Astro-Databank) =====
+  const CONDS = [["", "— sem condição —"], ...SN.map((n, i) => ["s" + i, `em ${SG[i]} ${n}`]), ...ELEM.map(([n], i) => ["e" + i, `num signo de ${n}`]), ["r", "retrógrado"], ["d", "direto"]];
+  $("filtros").innerHTML = [0, 1, 2].map(k => `<div class="fc"><b>Condição ${k + 1}</b>
+    <select id="f${k}c">${CP.map(([g, n], i) => `<option value="${i}"${i === k ? " selected" : ""}>${n}</option>`).join("")}</select>
+    <select id="f${k}v">${CONDS.map(([v, t]) => `<option value="${v}">${t}</option>`).join("")}</select></div>`).join("");
+  function passa(p, c, v, certo) {
+    if (!v) return true;
+    const ss = signosDe(p, c);
+    if (certo && ss.length > 1) return false;
+    if (v === "r") return ((p.r >> c) & 1) === 1;
+    if (v === "d") return ((p.r >> c) & 1) === 0;
+    if (v[0] === "s") return ss.includes(+v.slice(1));
+    if (v[0] === "e") return ss.some(s => ELEM[+v.slice(1)][1].includes(s));
+    return true;
+  }
+  function pesquisa() {
+    const fs = [0, 1, 2].map(k => [+$(`f${k}c`).value, $(`f${k}v`).value]).filter(f => f[1]);
+    const g = $("p-grupo").value, pais = $("p-pais").value, sexo = $("p-sexo").value, certo = $("p-certo").checked, dc = +$("p-dist").value;
+    const base = F.filter(p => (!g || p.g === g) && (!pais || p.pais === pais) && (!sexo || p.sexo === sexo));
+    const res = base.filter(p => fs.every(([c, v]) => passa(p, c, v, certo)));
+    // distribuição do corpo escolhido nos resultados, contra a da base (a risca verde = o esperado)
+    const conta = (lista) => { const n = new Array(12).fill(0); lista.forEach(p => { const ss = signosDe(p, dc); ss.forEach(s => n[s] += 1 / ss.length); }); return n; };
+    const nr = conta(res), nb = conta(base), tr = res.length || 1, tb = base.length || 1;
+    const max = Math.max(...nr.map(v => v / tr), ...nb.map(v => v / tb), 0.01);
+    let x = `<p class="conta">${res.length.toLocaleString("pt-PT")} famosos${fs.length ? ` em ${base.length.toLocaleString("pt-PT")}` : ""}</p>`;
+    if (res.length) {
+      x += `<div class="dist">` + SN.map((n, s) => { const pr = nr[s] / tr, pb = nb[s] / tb, alto = res.length >= 30 && pr > pb * 1.25;
+        return `<div class="barra"><span class="t"><span class="gl">${SG[s]}</span> ${n.split(" ")[0]}</span><span class="fundo"><span class="ench${alto ? " alto" : ""}" style="width:${(pr / max * 100).toFixed(1)}%"></span><span class="esp" style="left:${(pb / max * 100).toFixed(1)}%"></span></span><span class="v">${(pr * 100).toFixed(1)}%</span></div>`; }).join("") + "</div>";
+      x += `<p class="nota-dist">${CP[dc][1]} nos resultados, signo a signo. A risca verde é a percentagem em todos os famosos escolhidos (profissão, país e sexo), sem as condições; a dourado, os signos que ficam mais de 25% acima. Com poucos nomes, as diferenças são quase sempre acaso.</p>`;
+    }
+    x += `<ul class="lista" id="p-lista"></ul><div class="mais"><button class="btn" id="p-mais" type="button">Ver mais</button></div>`;
+    $("p-saida").innerHTML = x;
+    let n = 0;
+    const mais = () => { $("p-lista").insertAdjacentHTML("beforeend", res.slice(n, n + 30).map(p => cartaoPessoa(p, new Set(fs.map(f => f[0])), null)).join("")); n += 30; $("p-mais").hidden = n >= res.length; };
+    $("p-mais").onclick = mais; mais();
+    if (!res.length) $("p-lista").innerHTML = '<li class="vazio">Ninguém com estas condições. Tire uma condição ou mude a profissão.</li>';
+  }
+  document.querySelectorAll("#p-pesq select, #p-certo").forEach(e => e.addEventListener("change", pesquisa));
+
+  // ===== separadores =====
+  let feito = false;
+  document.querySelectorAll(".aba").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".aba").forEach(o => o.setAttribute("aria-selected", o === b ? "true" : "false"));
+    document.querySelectorAll(".painel").forEach(p => p.hidden = p.id !== "p-" + b.dataset.aba);
+    if (b.dataset.aba === "pesq" && !feito) { feito = true; $("f0v").value = "s4"; pesquisa(); }
+  }));
+})();
+</script>
+</body>
+</html>
