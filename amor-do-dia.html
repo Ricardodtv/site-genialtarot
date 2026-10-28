@@ -248,11 +248,16 @@ function setAmbientUI(on) {
 }
 const ambRetoma = ambEstado && ambEstado.on ? 1200 : 3500;
 if (!ambEstado || ambEstado.on) ambient.play().then(() => { setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb(); }).catch(() => {
-  const unlock = async () => {
-    try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb(); } catch { setAmbientUI(false); }
+  // 28/10/2026: no telemóvel só o dedo a LEVANTAR (touchend/pointerup/click) conta como toque para o som — touchstart e
+  // scroll não. E a escuta só sai depois de a música tocar mesmo (antes, a 1.ª tentativa falhada desligava-a).
+  const EVS = ["pointerup", "touchend", "click", "keydown", "mousedown"];
+  const unlock = async (ev) => {
+    if (ev && ev.target && ev.target.closest && ev.target.closest("#audio-fab")) return;   // o botão trata de si
+    if (!ambient.paused) return;
+    try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb();
+          EVS.forEach(e => window.removeEventListener(e, unlock, true)); } catch { setAmbientUI(false); }
   };
-  ["pointerdown", "keydown", "touchstart", "scroll"].forEach(ev =>
-    window.addEventListener(ev, unlock, { once: true, passive: true }));
+  EVS.forEach(e => window.addEventListener(e, unlock, true));
   setAmbientUI(false);
 });
 document.getElementById("audio-fab").addEventListener("click", async (e) => {
