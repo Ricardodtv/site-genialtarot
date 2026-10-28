@@ -166,6 +166,9 @@ footer a { color: inherit; }
       <label>Nasceu em
         <select id="m-pais"><option value="-3">Brasil</option><option value="0">Portugal</option><option value="1">Angola</option><option value="2">Moçambique</option></select>
       </label>
+      <label>Famosos de
+        <select id="m-fam"><option value="BR">Brasil</option><option value="PT">Portugal</option><option value="">Brasil e Portugal</option></select>
+      </label>
       <label>Mostrar
         <select id="m-grupo"></select>
       </label>
@@ -267,6 +270,9 @@ footer a { color: inherit; }
     return { lon: Array.from({ length: 10 }, (_, i) => { const a = A.g[i][k], b = B.g[i][k2]; let d = b - a; if (d > 648000) d -= 1296000; if (d < -648000) d += 1296000; return ((a + d * f) % 1296000 + 1296000) % 1296000 / 3600; }),
              r: A.r[k] };
   }
+  // o país dos famosos acompanha o país de nascimento (Angola/Moçambique → os dois); depois pode mudar-se à mão
+  $("m-pais").addEventListener("change", () => { $("m-fam").value = { "-3": "BR", "0": "PT" }[$("m-pais").value] ?? ""; });
+  ["m-fam", "m-grupo"].forEach(id => $(id).addEventListener("change", () => { if ($("m-data").value) $("f-meu").requestSubmit(); }));
   $("f-meu").addEventListener("submit", async (ev) => {
     ev.preventDefault();
     const v = $("m-data").value; if (!v) return;
@@ -285,10 +291,11 @@ footer a { color: inherit; }
       const [de, para] = eu.alt[1] === (eu.s[1] + 1) % 12 ? [eu.s[1], eu.alt[1]] : [eu.alt[1], eu.s[1]];
       x += `<p class="aviso-lua">No dia em que nasceu, a Lua passou de ${SN[de]} para ${SN[para]}. Só a hora diz qual é a sua; contamos as duas.</p>`;
     }
-    const grupo = $("m-grupo").value;
+    const grupo = $("m-grupo").value, fam = $("m-fam").value;
     const res = [];
     F.forEach((p, idx) => {
       if (grupo && p.g !== grupo) return;
+      if (fam && p.pais !== fam) return;               // 28/10: filtro do país (pedido dele: «está a misturar tudo»)
       let pts = 0; const iguais = new Set();
       for (let i = 0; i < 7; i++) { const a = meus(i), b = signosDe(p, i); if (a.some(s => b.includes(s))) { pts += PESO[i]; iguais.add(i); } }
       if (iguais.has(0) || iguais.has(1)) res.push({ p, pts, iguais, idx });
