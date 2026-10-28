@@ -1554,7 +1554,9 @@ function ambFadeIn(dur) {
 // ===== Continuidade do som (mesma sessão) =====
 const AMB_KEY = "mus_ambient";
 let ambEstado = null;
-try { ambEstado = JSON.parse(sessionStorage.getItem(AMB_KEY) || "null"); } catch {}
+// 28/10/2026, pedido dele: continuidade em TODAS as páginas com esta música (também noutros separadores) — no
+// localStorage deste navegador; quem nunca cá esteve (outra pessoa, outro IP) começa do início; ao fim de 2 h também.
+try { ambEstado = JSON.parse(localStorage.getItem(AMB_KEY) || "null"); if (ambEstado && !(Date.now() - (ambEstado.t || 0) < 7200000)) ambEstado = null; } catch {}
 const tentaRestauroAmb = () => {
   if (!(ambEstado && ambEstado.pos > 0) || !isFinite(ambient.duration) || ambient.duration <= 0) return;
   if (ambEstado.pos >= ambient.duration - 1) { ambEstado.pos = 0; return; }
@@ -1568,9 +1570,17 @@ const tentaRestauroAmb = () => {
   }
 };
 ["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.addEventListener(ev, tentaRestauroAmb));
-window.addEventListener("pagehide", () => {
-  try { sessionStorage.setItem(AMB_KEY, JSON.stringify({ on: !ambient.paused, pos: ambient.currentTime || 0 })); } catch {}
+const AMB_ID = Math.random().toString(36).slice(2);           // cada página aberta tem o seu id
+let ambDono = true;                                            // falso quando outra página tomou conta da música
+const guardaAmb = () => { if (!ambDono) return; try { localStorage.setItem(AMB_KEY, JSON.stringify({ on: !ambient.paused, pos: ambient.currentTime || 0, t: Date.now(), id: AMB_ID })); } catch {} };
+// Uma música só: quando outra página (outro separador) começa a tocar, esta cala-se; se a pessoa desliga noutra, desliga aqui.
+window.addEventListener("storage", (ev) => {
+  if (ev.key !== AMB_KEY || !ev.newValue) return;
+  try { const o = JSON.parse(ev.newValue); if (o.id !== AMB_ID) { ambDono = false; if (!ambient.paused) { ambient.pause(); setAmbientUI(false); } } } catch {}
 });
+window.addEventListener("pagehide", guardaAmb);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") guardaAmb(); });
+setInterval(() => { if (!ambient.paused) guardaAmb(); }, 2000);     // no telemóvel o «pagehide» nem sempre chega
 const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off"), fabLabel = document.getElementById("afab-label");
 let ambientOn = false;
 function setAmbientUI(on) {
@@ -1581,9 +1591,9 @@ function setAmbientUI(on) {
   b.classList.toggle("som-chama", !on);
 }
 const ambRetoma = ambEstado && ambEstado.on ? 1200 : 3500;
-if (!ambEstado || ambEstado.on) ambient.play().then(() => { setAmbientUI(true); ambFadeIn(ambRetoma); }).catch(() => {
+if (!ambEstado || ambEstado.on) ambient.play().then(() => { setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb(); }).catch(() => {
   const unlock = async () => {
-    try { await ambient.play(); setAmbientUI(true); ambFadeIn(ambRetoma); } catch { setAmbientUI(false); }
+    try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb(); } catch { setAmbientUI(false); }
   };
   ["pointerdown", "keydown", "touchstart", "scroll"].forEach(ev =>
     window.addEventListener(ev, unlock, { once: true, passive: true }));
@@ -1591,8 +1601,8 @@ if (!ambEstado || ambEstado.on) ambient.play().then(() => { setAmbientUI(true); 
 });
 document.getElementById("audio-fab").addEventListener("click", async (e) => {
   e.stopPropagation();
-  if (ambientOn && !ambient.paused) { ambient.pause(); setAmbientUI(false); return; }
-  try { await ambient.play(); setAmbientUI(true); ambFadeIn(); } catch { setAmbientUI(false); }
+  if (ambientOn && !ambient.paused) { ambient.pause(); setAmbientUI(false); guardaAmb(); return; }
+  try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(); guardaAmb(); } catch { setAmbientUI(false); }
 });
 </script>
 <script>

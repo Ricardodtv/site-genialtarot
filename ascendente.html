@@ -230,9 +230,30 @@ footer a { color: inherit; }
 #resultado .astro .qual, #resultado .astro .grau, #resultado .dados-nasc, #resultado .tema .chave, #resultado .encaixe p, #resultado .partilha p { color: oklch(0.92 0.03 310); }
 #resultado .astro { background: oklch(0.25 0.08 302); }
 #resultado .astro.asc { background: linear-gradient(160deg, oklch(0.48 0.17 305), oklch(0.31 0.12 298)); }
+
+/* 🎵 28/10/2026, pedido dele: a MESMA música do Tarot Grátis (ambient.mp3), com o mesmo botão e a continuidade entre páginas */
+@keyframes pulso-som {
+  0% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0.75); }
+  70% { box-shadow: 0 0 0 13px oklch(0.82 0.13 85 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0); }
+}
+.som-chama { animation: pulso-som 1.1s ease-out infinite; border-radius: 9999px; }
+
+/* Botão de som unificado — canto superior direito, igual em todas as páginas */
+.som-fix { position: fixed; top: 1rem; right: 1rem; z-index: 90; display: grid; place-items: center; height: 3rem; width: 3rem; padding: 0; border-radius: 9999px; border: 1.5px solid oklch(0.82 0.11 85); background: oklch(0.22 0.05 265 / 0.92); color: oklch(0.82 0.11 85); font-size: 1.2rem; box-shadow: 0 6px 22px rgba(0,0,0,0.5); cursor: pointer; transition: transform .25s; }
+.som-fix:hover { transform: scale(1.08); }
+.som-fix.ligado { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); animation: brilho-som 2.6s ease-in-out infinite; }
+.som-fix::before { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2px solid oklch(0.87 0.16 95 / 0.9); animation: anel-pisca-som 1.1s ease-in-out infinite; pointer-events: none; }
+@keyframes anel-pisca-som { 0%, 100% { opacity: 0.15; transform: scale(1); } 50% { opacity: 1; transform: scale(1.14); } }
+@keyframes brilho-som { 0%, 100% { box-shadow: 0 0 22px oklch(0.82 0.11 85 / 0.35); } 50% { box-shadow: 0 0 45px oklch(0.82 0.11 85 / 0.65); } }
+.som-ico { width: 1.35rem; height: 1.35rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; grid-area: 1 / 1; }
+.som-ico-on { display: none; }
+.ligado .som-ico-on { display: block; }
+.ligado .som-ico-off { display: none; }
 </style>
 </head>
 <body>
+<button id="audio-fab" class="som-fix" aria-label="Ligar ou desligar o som"><svg class="som-ico som-ico-on" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><svg class="som-ico som-ico-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg></button>
 <div class="estrelas" aria-hidden="true"></div>
 <div class="caixa">
   <header class="topo">
@@ -623,6 +644,77 @@ footer a { color: inherit; }
     if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(ok2, () => prompt("Copie o código:", txt));
     else prompt("Copie o código:", txt);
   });
+})();
+</script>
+<script>
+/* 🎵 28/10/2026, pedido dele: a mesma música do Tarot Grátis e a continuar entre as páginas que a usam
+   (sessionStorage «mus_ambient»: se estava a tocar, retoma no mesmo segundo). Os navegadores não deixam tocar
+   com som antes do primeiro toque na página: aí arranca ao primeiro toque, clique ou deslizar. Cópia do tarot-gratis.html. */
+(function () {
+/* ============ Som ambiente ============ */
+const ambient = new Audio("ambient.mp3");
+ambient.loop = false; ambient.volume = 0.02; ambient.preload = "auto";
+const AMB_VOL = 0.02;
+let ambFade = null;
+function ambFadeIn(dur) {
+  dur = dur || 3500;
+  clearInterval(ambFade); ambient.volume = 0; let i = 0;
+  ambFade = setInterval(() => { i++; ambient.volume = Math.min(AMB_VOL, AMB_VOL * i / 35); if (i >= 35) clearInterval(ambFade); }, dur / 35);
+}
+
+// ===== Continuidade do som (mesma sessão) =====
+const AMB_KEY = "mus_ambient";
+let ambEstado = null;
+// 28/10/2026, pedido dele: continuidade em TODAS as páginas com esta música (também noutros separadores) — no
+// localStorage deste navegador; quem nunca cá esteve (outra pessoa, outro IP) começa do início; ao fim de 2 h também.
+try { ambEstado = JSON.parse(localStorage.getItem(AMB_KEY) || "null"); if (ambEstado && !(Date.now() - (ambEstado.t || 0) < 7200000)) ambEstado = null; } catch {}
+const tentaRestauroAmb = () => {
+  if (!(ambEstado && ambEstado.pos > 0) || !isFinite(ambient.duration) || ambient.duration <= 0) return;
+  if (ambEstado.pos >= ambient.duration - 1) { ambEstado.pos = 0; return; }
+  const alvo = ambEstado.pos;
+  for (let i = 0; i < ambient.seekable.length; i++) {
+    if (ambient.seekable.start(i) <= alvo && ambient.seekable.end(i) >= alvo) {
+      ambient.currentTime = alvo; ambEstado.pos = 0;
+      ["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.removeEventListener(ev, tentaRestauroAmb));
+      return;
+    }
+  }
+};
+["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.addEventListener(ev, tentaRestauroAmb));
+const AMB_ID = Math.random().toString(36).slice(2);           // cada página aberta tem o seu id
+let ambDono = true;                                            // falso quando outra página tomou conta da música
+const guardaAmb = () => { if (!ambDono) return; try { localStorage.setItem(AMB_KEY, JSON.stringify({ on: !ambient.paused, pos: ambient.currentTime || 0, t: Date.now(), id: AMB_ID })); } catch {} };
+// Uma música só: quando outra página (outro separador) começa a tocar, esta cala-se; se a pessoa desliga noutra, desliga aqui.
+window.addEventListener("storage", (ev) => {
+  if (ev.key !== AMB_KEY || !ev.newValue) return;
+  try { const o = JSON.parse(ev.newValue); if (o.id !== AMB_ID) { ambDono = false; if (!ambient.paused) { ambient.pause(); setAmbientUI(false); } } } catch {}
+});
+window.addEventListener("pagehide", guardaAmb);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") guardaAmb(); });
+setInterval(() => { if (!ambient.paused) guardaAmb(); }, 2000);     // no telemóvel o «pagehide» nem sempre chega
+const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off"), fabLabel = document.getElementById("afab-label");
+let ambientOn = false;
+function setAmbientUI(on) {
+  ambientOn = on;
+  const b = document.getElementById("audio-fab");
+  b.classList.toggle("ligado", on);
+  b.classList.toggle("desligado", !on);
+  b.classList.toggle("som-chama", !on);
+}
+const ambRetoma = ambEstado && ambEstado.on ? 1200 : 3500;
+if (!ambEstado || ambEstado.on) ambient.play().then(() => { setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb(); }).catch(() => {
+  const unlock = async () => {
+    try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb(); } catch { setAmbientUI(false); }
+  };
+  ["pointerdown", "keydown", "touchstart", "scroll"].forEach(ev =>
+    window.addEventListener(ev, unlock, { once: true, passive: true }));
+  setAmbientUI(false);
+});
+document.getElementById("audio-fab").addEventListener("click", async (e) => {
+  e.stopPropagation();
+  if (ambientOn && !ambient.paused) { ambient.pause(); setAmbientUI(false); guardaAmb(); return; }
+  try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(); guardaAmb(); } catch { setAmbientUI(false); }
+});
 })();
 </script>
 </body>
