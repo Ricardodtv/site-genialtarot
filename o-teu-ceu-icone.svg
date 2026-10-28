@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="ceu" cx="50%" cy="38%" r="75%">
+      <stop offset="0" stop-color="#4a2470"/>
+      <stop offset="0.55" stop-color="#2a1245"/>
+      <stop offset="1" stop-color="#140826"/>
+    </radialGradient>
+    <linearGradient id="ouro" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff1c4"/>
+      <stop offset="0.45" stop-color="#f2c96b"/>
+      <stop offset="1" stop-color="#c98f2e"/>
+    </linearGradient>
+    <radialGradient id="brilho" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffe9a8" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="crescente">
+      <rect width="512" height="512" fill="#000"/>
+      <circle cx="240" cy="262" r="132" fill="#fff"/>
+      <circle cx="292" cy="226" r="118" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="512" height="512" fill="url(#ceu)"/>
+  <!-- estrelas pequenas -->
+  <g fill="#fff6dc">
+    <circle cx="118" cy="120" r="2.6" opacity=".8"/><circle cx="402" cy="104" r="2" opacity=".7"/>
+    <circle cx="430" cy="300" r="2.4" opacity=".6"/><circle cx="92" cy="350" r="1.8" opacity=".6"/>
+    <circle cx="170" cy="72" r="1.6" opacity=".5"/><circle cx="360" cy="420" r="2" opacity=".55"/>
+    <circle cx="140" cy="440" r="1.6" opacity=".45"/><circle cx="458" cy="190" r="1.5" opacity=".5"/>
+  </g>
+  <!-- órbita -->
+  <circle cx="256" cy="256" r="196" fill="none" stroke="#f2c96b" stroke-opacity=".28" stroke-width="2.5"/>
+  <circle cx="256" cy="60" r="5" fill="#f2c96b" opacity=".85"/>
+  <!-- lua crescente -->
+  <rect width="512" height="512" fill="url(#ouro)" mask="url(#crescente)"/>
+  <!-- a estrela-guia -->
+  <circle cx="306" cy="228" r="70" fill="url(#brilho)"/>
+  <path d="M306 168 C311 210 322 221 364 228 C322 235 311 246 306 288 C301 246 290 235 248 228 C290 221 301 210 306 168 Z" fill="url(#ouro)"/>
+  <!-- o caminho: os passos até à estrela -->
+  <g fill="#f2c96b">
+    <circle cx="420" cy="438" r="4" opacity=".45"/>
+    <circle cx="404" cy="406" r="5" opacity=".6"/>
+    <circle cx="386" cy="374" r="6" opacity=".78"/>
+  </g>
+  <path d="M362 312 C364 328 368 332 384 334 C368 336 364 340 362 356 C360 340 356 336 340 334 C356 332 360 328 362 312 Z" fill="#ffe9a8"/>
+</svg>

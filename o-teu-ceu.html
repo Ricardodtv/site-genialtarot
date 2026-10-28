@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>O Teu Céu — com o Mestre Alberto</title>
+<meta name="description" content="O seu céu de cada dia, a carta do dia e o acompanhamento das suas metas, com o Mestre Alberto." />
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#2a1245" />
+<link rel="manifest" href="o-teu-ceu.webmanifest" />
+<link rel="icon" href="o-teu-ceu-icone-32.png" />
+<link rel="apple-touch-icon" href="o-teu-ceu-icone-180.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="O Teu Céu" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+/* ============ O Teu Céu — 1.ª versão para testar no telemóvel (28/10/2026) ============
+   Tudo o que a pessoa escreve fica SÓ no telemóvel dela (localStorage «teuceu»), nada vai para o servidor. */
+:root {
+  --fundo: #140826; --fundo-2: #2a1245; --vidro: rgba(74, 36, 112, .38); --borda: rgba(242, 201, 107, .22);
+  --texto: #f7f0fb; --suave: #d9c8e8; --apagado: #a893bd; --ouro: #f2c96b; --ouro-claro: #fff1c4;
+  --grad-ouro: linear-gradient(135deg, #fff1c4, #f2c96b 45%, #c98f2e);
+  --serifa: "Cormorant Garamond", Georgia, serif; --titulo: "Cinzel", Georgia, serif;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; }
+body {
+  min-height: 100vh; color: var(--texto); font: 16px/1.55 Inter, system-ui, sans-serif;
+  background: radial-gradient(circle at 50% -10%, #4a2470, #2a1245 45%, var(--fundo) 85%) fixed, var(--fundo);
+  padding-bottom: calc(84px + env(safe-area-inset-bottom));
+}
+body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .5;
+  background-image: radial-gradient(1.4px 1.4px at 12% 18%, #fff6dc, transparent), radial-gradient(1px 1px at 78% 12%, #fff6dc, transparent),
+    radial-gradient(1.2px 1.2px at 88% 46%, #fff6dc, transparent), radial-gradient(1px 1px at 22% 64%, #fff6dc, transparent),
+    radial-gradient(1.3px 1.3px at 62% 82%, #fff6dc, transparent), radial-gradient(1px 1px at 40% 34%, #fff6dc, transparent); }
+main { max-width: 560px; margin: 0 auto; padding: calc(18px + env(safe-area-inset-top)) 16px 24px; position: relative; }
+h1, h2, h3 { font-family: var(--titulo); font-weight: 700; margin: 0; }
+.ouro { background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cartao { background: var(--vidro); border: 1px solid var(--borda); border-radius: 22px; padding: 18px; margin: 14px 0;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.cartao h2 { font-size: 17px; letter-spacing: 1px; margin-bottom: 10px; }
+.rot { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--apagado); font-weight: 600; }
+.serifa { font-family: var(--serifa); font-size: 21px; line-height: 1.35; }
+p { margin: 8px 0; color: var(--suave); }
+button { font: inherit; cursor: pointer; }
+.btn { display: block; width: 100%; border: 0; border-radius: 16px; padding: 15px; font-weight: 700; font-size: 16px;
+  color: #2a1245; background: var(--grad-ouro); box-shadow: 0 8px 24px rgba(242, 201, 107, .25); }
+.btn:disabled { opacity: .4; }
+.btn-2 { display: block; width: 100%; border: 1px solid var(--borda); border-radius: 16px; padding: 13px; background: transparent; color: var(--ouro); font-weight: 600; }
+.ligacao { background: none; border: 0; color: var(--apagado); text-decoration: underline; padding: 8px; }
+input, textarea { width: 100%; font: inherit; color: var(--texto); background: rgba(20, 8, 38, .6); border: 1px solid var(--borda);
+  border-radius: 14px; padding: 13px 14px; outline: none; }
+input:focus, textarea:focus { border-color: var(--ouro); }
+textarea { min-height: 90px; resize: vertical; }
+label { display: block; margin: 14px 0 6px; font-weight: 600; font-size: 14px; color: var(--suave); }
+.rel { position: relative; }
+.lista-cid { display: none; position: absolute; left: 0; right: 0; top: 100%; z-index: 5; background: #2a1245; border: 1px solid var(--borda);
+  border-radius: 14px; overflow: hidden; margin-top: 4px; max-height: 260px; overflow-y: auto; }
+.lista-cid.aberta { display: block; }
+.lista-cid button { display: block; width: 100%; text-align: left; background: none; border: 0; color: var(--texto); padding: 11px 14px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.lista-cid button small { color: var(--apagado); }
+.ok { color: var(--ouro); font-size: 13px; margin-top: 6px; min-height: 18px; }
+.erro { color: #ffb4b4; font-size: 14px; min-height: 20px; }
+.check { display: flex; gap: 8px; align-items: center; margin-top: 8px; font-size: 14px; color: var(--suave); font-weight: 500; }
+.check input { width: auto; }
+
+/* ===== acolhimento ===== */
+.passo { display: none; animation: entra .45s ease; }
+.passo.ativo { display: block; }
+@keyframes entra { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.logo { width: 132px; height: 132px; border-radius: 30px; display: block; margin: 26px auto 18px; box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+.titulo-app { text-align: center; font-size: 34px; letter-spacing: 2px; }
+.sub-app { text-align: center; font-family: var(--serifa); font-style: italic; font-size: 20px; color: var(--suave); margin-top: 4px; }
+.pontos { display: flex; gap: 6px; justify-content: center; margin: 4px 0 12px; }
+.pontos i { width: 7px; height: 7px; border-radius: 50%; background: rgba(242,201,107,.25); }
+.pontos i.on { background: var(--ouro); }
+.metas { display: grid; gap: 10px; margin-top: 12px; }
+.meta { display: flex; gap: 12px; align-items: center; text-align: left; padding: 14px; border-radius: 16px; border: 1px solid var(--borda);
+  background: rgba(20, 8, 38, .45); color: var(--texto); }
+.meta b { display: block; }
+.meta small { color: var(--apagado); }
+.meta .em { font-size: 26px; }
+.meta.esc { border-color: var(--ouro); background: rgba(242, 201, 107, .12); }
+.humor { display: flex; justify-content: space-between; gap: 6px; margin-top: 10px; }
+.humor button { flex: 1; font-size: 28px; padding: 10px 0; border-radius: 14px; border: 1px solid var(--borda); background: rgba(20,8,38,.4); }
+.humor button.esc { border-color: var(--ouro); background: rgba(242, 201, 107, .16); transform: scale(1.06); }
+
+/* ===== hoje ===== */
+.ola { margin: 6px 0 2px; font-size: 25px; }
+.data { color: var(--apagado); font-size: 14px; }
+.mapa-mini { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.mapa-mini span { font-size: 13px; padding: 5px 10px; border-radius: 99px; border: 1px solid var(--borda); color: var(--suave); }
+.chave { font-family: var(--serifa); font-size: 23px; line-height: 1.3; color: var(--ouro-claro); margin: 4px 0 8px; }
+.estrelas { color: var(--ouro); letter-spacing: 2px; font-size: 14px; }
+.ceu-lista { list-style: none; padding: 0; margin: 6px 0 0; }
+.ceu-lista li { padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,.06); color: var(--suave); font-size: 14.5px; }
+.ceu-lista li:last-child { border: 0; }
+.trocar { display: flex; gap: 6px; margin: 4px 0 10px; }
+.trocar button { flex: 1; border: 1px solid var(--borda); background: transparent; color: var(--suave); border-radius: 99px; padding: 7px; font-size: 13px; }
+.trocar button.ativo { background: rgba(242,201,107,.16); color: var(--ouro); border-color: var(--ouro); }
+.carta-zona { display: flex; gap: 16px; align-items: center; }
+.carta { width: 112px; flex: none; aspect-ratio: 300 / 527; perspective: 900px; }
+.carta-in { position: relative; width: 100%; height: 100%; transition: transform .9s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
+.carta.virada .carta-in { transform: rotateY(180deg); }
+.carta .face { position: absolute; inset: 0; border-radius: 10px; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; box-shadow: 0 10px 26px rgba(0,0,0,.4); }
+.carta .costas { background: url(o-teu-ceu-icone.svg) center/100% auto no-repeat, radial-gradient(circle at 50% 45%, #4a2470, #2a1245 60%, #140826); border: 2px solid var(--ouro); }
+.carta .frente { transform: rotateY(180deg); background: #fff; }
+.carta .frente img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.passo-hoje { border-left: 3px solid var(--ouro); padding: 6px 0 6px 12px; margin-top: 10px; color: var(--texto); }
+.noite { display: flex; gap: 8px; margin-top: 10px; }
+.noite button { flex: 1; padding: 12px 4px; border-radius: 14px; border: 1px solid var(--borda); background: rgba(20,8,38,.4); color: var(--texto); font-size: 14px; }
+.noite button.esc { border-color: var(--ouro); background: rgba(242,201,107,.16); color: var(--ouro); }
+.breve { font-size: 13px; color: var(--apagado); font-style: italic; }
+.guardado { color: var(--ouro); font-size: 13px; min-height: 18px; margin-top: 6px; }
+
+/* ===== caminho ===== */
+.grande { font-family: var(--titulo); font-size: 54px; line-height: 1; }
+.fila { display: grid; grid-template-columns: repeat(14, 1fr); gap: 4px; margin-top: 12px; }
+.fila div { aspect-ratio: 1; border-radius: 6px; background: rgba(255,255,255,.06); display: grid; place-items: center; font-size: 13px; }
+.fila div.cumpriu { box-shadow: inset 0 0 0 2px var(--ouro); }
+.entrada { border-top: 1px solid rgba(255,255,255,.07); padding: 10px 0; }
+.entrada:first-child { border: 0; }
+.entrada .quando { font-size: 12px; color: var(--apagado); }
+
+/* ===== barra de baixo ===== */
+nav.abas { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; justify-content: center;
+  background: rgba(20, 8, 38, .92); border-top: 1px solid var(--borda); padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+nav.abas button { flex: 1; max-width: 180px; background: none; border: 0; color: var(--apagado); font-size: 12px; font-weight: 600; padding: 4px; }
+nav.abas button span { display: block; font-size: 22px; filter: grayscale(1) opacity(.6); }
+nav.abas button.ativo { color: var(--ouro); }
+nav.abas button.ativo span { filter: none; }
+.aba { display: none; }
+.aba.ativa { display: block; animation: entra .35s ease; }
+.instalar { display: none; }
+.instalar.mostra { display: block; }
+.aviso-legal { font-size: 12px; color: var(--apagado); text-align: center; margin: 18px 8px 0; }
+
+/* ===== 28/10 23:20 — ele: «quero uma coisa bem mais bonita» ===== */
+nav.abas[hidden], section[hidden] { display: none !important; }
+#estrelas { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+body::before { display: none; }
+body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%, #140826 78%) fixed, #140826; }
+.cartao { background: linear-gradient(160deg, rgba(90, 44, 134, .42), rgba(30, 12, 54, .55)); border: 1px solid rgba(242, 201, 107, .18);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .06); border-radius: 26px; padding: 20px; }
+/* acolhimento: ecrã inteiro, uma pergunta de cada vez, sem caixas */
+#acolhe .passo { min-height: calc(100vh - 40px); display: none; flex-direction: column; justify-content: center; padding-bottom: 20px; }
+#acolhe .passo.ativo { display: flex; }
+#acolhe .cartao { background: none; border: 0; box-shadow: none; padding: 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
+#acolhe .pontos { position: absolute; top: calc(14px + env(safe-area-inset-top)); left: 16px; right: 16px; gap: 6px; }
+#acolhe .pontos i { flex: 1; height: 3px; border-radius: 3px; width: auto; }
+#voltar { position: absolute; top: calc(26px + env(safe-area-inset-top)); left: 8px; background: none; border: 0; color: var(--ouro); font-size: 26px; padding: 6px 10px; z-index: 3; }
+.pergunta { font-family: var(--serifa); font-weight: 500; font-size: 34px; line-height: 1.15; text-align: center; margin: 0 0 8px; color: var(--texto); }
+.pergunta em { font-style: italic; background: var(--grad-ouro); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.dica-p { text-align: center; color: var(--apagado); margin: 0 0 22px; }
+#acolhe input { background: transparent; border: 0; border-bottom: 1.5px solid rgba(242, 201, 107, .45); border-radius: 0; font-size: 22px;
+  text-align: center; padding: 10px 4px; font-family: var(--serifa); }
+#acolhe input:focus { border-bottom-color: var(--ouro); }
+#acolhe input[type=time] { color-scheme: dark; }
+#acolhe label { text-align: center; color: var(--apagado); font-weight: 500; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-top: 22px; }
+#acolhe .check { justify-content: center; text-transform: none; letter-spacing: 0; }
+#acolhe .btn { margin-top: 28px; }
+.logo { width: 150px; height: 150px; border-radius: 36px; animation: respira 5s ease-in-out infinite; }
+@keyframes respira { 0%,100% { box-shadow: 0 20px 50px rgba(0,0,0,.45), 0 0 40px rgba(242,201,107,.15); transform: translateY(0); }
+  50% { box-shadow: 0 26px 60px rgba(0,0,0,.45), 0 0 70px rgba(242,201,107,.35); transform: translateY(-6px); } }
+.titulo-app { font-size: 40px; }
+.boas { font-family: var(--serifa); font-size: 25px; line-height: 1.35; text-align: center; color: var(--texto); margin: 26px 6px 6px; }
+.boas2 { text-align: center; color: var(--suave); margin: 0 10px; }
+.assina { text-align: center; font-family: var(--serifa); font-style: italic; color: var(--ouro); font-size: 19px; margin-top: 14px; }
+.humor button { font-size: 30px; padding: 12px 0 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; transition: transform .2s; }
+.humor button small { font-size: 10px; color: var(--apagado); letter-spacing: .5px; }
+/* a revelação do mapa */
+.tres { display: flex; justify-content: center; gap: 14px; margin: 18px 0 8px; }
+.astro { width: 96px; text-align: center; opacity: 0; transform: scale(.6); animation: aparece .9s cubic-bezier(.2,.9,.3,1.3) forwards; }
+.astro:nth-child(2) { animation-delay: .5s; } .astro:nth-child(3) { animation-delay: 1s; }
+@keyframes aparece { to { opacity: 1; transform: none; } }
+.astro .bola { width: 80px; height: 80px; margin: 0 auto 8px; border-radius: 50%; display: grid; place-items: center; font-size: 34px; color: #2a1245;
+  background: radial-gradient(circle at 35% 30%, #fff6dc, #f2c96b 55%, #c98f2e); box-shadow: 0 0 30px rgba(242,201,107,.5); }
+.astro.lua .bola { background: radial-gradient(circle at 35% 30%, #ffffff, #d9c8e8 55%, #8f78b0); box-shadow: 0 0 30px rgba(217,200,232,.5); }
+.astro.asc .bola { background: radial-gradient(circle at 35% 30%, #f3d9ff, #b07ad8 55%, #6b3a9a); color: #fff; box-shadow: 0 0 30px rgba(176,122,216,.55); }
+.astro .rot { font-size: 10px; } .astro b { display: block; font-family: var(--serifa); font-size: 19px; font-weight: 600; }
+/* hoje: cabeçalho com a Lua */
+.topo { display: flex; align-items: center; gap: 14px; margin: 4px 0 6px; }
+.topo canvas { flex: none; width: 64px; height: 64px; filter: drop-shadow(0 0 14px rgba(255, 241, 196, .45)); }
+.ola { font-family: var(--serifa); font-weight: 600; font-size: 30px; line-height: 1.1; }
+.lua-txt { font-size: 13px; color: var(--suave); }
+.chave { font-size: 26px; }
+.mais { background: none; border: 0; color: var(--ouro); font-weight: 600; padding: 6px 0; font-size: 14px; }
+.fechado { display: none; }
+.carta-zona { flex-direction: column; text-align: center; }
+.carta { width: 168px; margin: 6px auto 4px; }
+.carta::before { content: ""; position: absolute; inset: -30px; border-radius: 50%; z-index: -1;
+  background: radial-gradient(circle, rgba(242, 201, 107, .35), transparent 65%); animation: halo 4s ease-in-out infinite; }
+.carta { position: relative; }
+@keyframes halo { 0%,100% { opacity: .5; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.05); } }
+.carta:not(.virada) .carta-in { animation: chama 2.6s ease-in-out infinite; }
+@keyframes chama { 0%,100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.5deg) translateY(-4px); } }
+.afirma { font-family: var(--serifa); font-style: italic; font-size: 25px; line-height: 1.3; color: var(--ouro-claro); text-align: center; margin: 6px 4px 14px; }
+</style>
+</head>
+<body>
+<canvas id="estrelas"></canvas>
+<main>
+
+<!-- ================= ACOLHIMENTO ================= -->
+<section id="acolhe" hidden>
+  <button id="voltar" aria-label="Voltar" hidden>←</button>
+  <div class="passo ativo" data-p="0">
+    <img class="logo" src="o-teu-ceu-icone.svg" alt="O Teu Céu" width="132" height="132" />
+    <h1 class="titulo-app ouro">O Teu Céu</h1>
+    <div class="sub-app">com o Mestre Alberto</div>
+    <p class="boas">Seja bem-vinda ao seu cantinho de cada dia.</p>
+    <p class="boas2">Todas as manhãs, o seu céu, a sua carta e o passo de hoje para aquilo que mais deseja. À noite, um minuto para ver como correu. E eu acompanho-a no caminho.</p>
+    <div class="assina">— Mestre Alberto</div>
+    <button class="btn" data-ir="1">Começar</button>
+  </div>
+
+  <div class="passo" data-p="1">
+    <div class="pontos"><i class="on"></i><i></i><i></i><i></i></div>
+    <h2 class="pergunta">Antes de mais,<br><em>como se chama?</em></h2>
+    <div class="cartao">
+      <label for="nome">ou como gosta que a tratem</label>
+      <input id="nome" autocomplete="given-name" maxlength="40" placeholder="Por exemplo: Ana" />
+    </div>
+    <button class="btn" id="ok-nome" disabled>Continuar</button>
+  </div>
+
+  <div class="passo" data-p="2">
+    <div class="pontos"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+    <h2 class="pergunta">Quando chegou<br><em>a este mundo?</em></h2>
+    <p class="dica-p">É daqui que nasce o seu céu: o seu signo, a sua Lua e o seu Ascendente.</p>
+    <div class="cartao">
+      <label for="data">Data de nascimento</label>
+      <input id="data" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="22" />
+      <label for="hora">Hora de nascimento</label>
+      <input id="hora" type="time" value="12:00" />
+      <label class="check"><input type="checkbox" id="semhora" /> Não sei a hora</label>
+      <label for="cidade">Cidade onde nasceu</label>
+      <div class="rel">
+        <input id="cidade" autocomplete="off" placeholder="Comece a escrever…" />
+        <div class="lista-cid" id="lista-cid" role="listbox"></div>
+      </div>
+      <div class="ok" id="cidade-ok"></div>
+      <div class="erro" id="erro-nasc"></div>
+    </div>
+    <button class="btn" id="ok-nasc">Continuar</button>
+  </div>
+
+  <div class="passo" data-p="3">
+    <div class="pontos"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+    <h2 class="pergunta">O que o seu coração<br><em>mais deseja agora?</em></h2>
+    <p class="dica-p">Escolha um caminho. Pode mudar quando quiser.</p>
+    <div class="metas" id="metas"></div>
+    <div style="height:14px"></div>
+    <button class="btn" id="ok-meta" disabled>Continuar</button>
+  </div>
+
+  <div class="passo" data-p="4">
+    <div class="pontos"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+    <h2 class="pergunta">E hoje,<br><em>como se sente?</em></h2>
+    <div class="cartao">
+      <div class="humor" id="humor-1"></div>
+    </div>
+    <div class="cartao" id="revela" hidden></div>
+    <button class="btn" id="ok-fim" hidden>Entrar no meu céu ✨</button>
+  </div>
+</section>
+
+<!-- ================= A APP ================= -->
+<section id="app" hidden>
+
+  <div class="aba ativa" id="aba-hoje">
+    <div class="topo"><canvas id="lua-hoje" width="128" height="128"></canvas>
+      <div><div class="data" id="hoje-data"></div><h1 class="ola" id="ola"></h1><div class="lua-txt" id="lua-txt"></div></div></div>
+
+    <div class="cartao">
+      <div class="rot">Como se sente hoje?</div>
+      <div class="humor" id="humor"></div>
+    </div>
+
+    <div class="cartao">
+      <h2 class="ouro">🌙 O seu céu hoje</h2>
+      <div class="trocar" id="trocar"></div>
+      <div id="horo"><p class="breve">A ler o céu…</p></div>
+    </div>
+
+    <div class="cartao">
+      <h2 class="ouro">🃏 A sua carta do dia</h2>
+      <div class="carta-zona">
+        <div class="carta" id="carta" role="button" aria-label="Virar a carta"><div class="carta-in"><div class="face costas"></div><div class="face frente"><img id="carta-img" alt="" /></div></div></div>
+        <div id="carta-txt"><p class="serifa" style="color:var(--texto)">Respire fundo, pense no seu dia… e toque na carta para a virar.</p></div>
+      </div>
+    </div>
+
+    <div class="cartao">
+      <h2 class="ouro" id="meta-tit"></h2>
+      <p class="afirma" id="afirmacao"></p>
+      <div class="rot" style="margin-top:12px">O passo de hoje</div>
+      <div class="passo-hoje" id="passo-hoje"></div>
+      <p class="breve" style="margin-top:12px">O plano completo do Mestre Alberto para este caminho chega em breve.</p>
+    </div>
+
+    <div class="cartao">
+      <h2 class="ouro">🌙 À noite</h2>
+      <div class="rot">Deu o passo de hoje?</div>
+      <div class="noite" id="noite">
+        <button data-v="sim">✅ Sim</button><button data-v="parte">🌗 Em parte</button><button data-v="nao">🌑 Ainda não</button>
+      </div>
+      <label for="diario">Como correu o seu dia? (só você vê isto)</label>
+      <textarea id="diario" placeholder="Escreva à vontade…"></textarea>
+      <div class="guardado" id="guardado"></div>
+    </div>
+  </div>
+
+  <div class="aba" id="aba-caminho">
+    <h1 class="ouro" style="font-size:26px;margin:8px 0">O seu caminho</h1>
+    <div class="cartao" style="text-align:center">
+      <div class="grande ouro" id="seguidos">0</div>
+      <div class="rot" id="seguidos-rot">dias seguidos</div>
+      <p id="seguidos-frase"></p>
+    </div>
+    <div class="cartao">
+      <h2 class="ouro">Os últimos 14 dias</h2>
+      <div class="fila" id="fila"></div>
+      <p class="breve">O rosto é como se sentiu; o contorno dourado é o dia em que deu o passo.</p>
+    </div>
+    <div class="cartao">
+      <h2 class="ouro">O seu diário</h2>
+      <div id="entradas"></div>
+    </div>
+  </div>
+
+  <div class="aba" id="aba-eu">
+    <h1 class="ouro" style="font-size:26px;margin:8px 0" id="eu-nome"></h1>
+    <div class="cartao">
+      <h2 class="ouro">✨ O seu mapa</h2>
+      <div id="eu-mapa"></div>
+    </div>
+    <div class="cartao">
+      <h2 class="ouro">🎯 O seu caminho</h2>
+      <div class="metas" id="metas-eu"></div>
+    </div>
+    <div class="cartao instalar" id="instalar">
+      <h2 class="ouro">📲 Pôr no ecrã do telemóvel</h2>
+      <div id="instalar-txt"></div>
+    </div>
+    <div class="cartao">
+      <h2 class="ouro">🔒 Os seus dados</h2>
+      <p>Tudo o que escreve fica só neste telemóvel. Não vai para nenhum servidor.</p>
+      <button class="btn-2" id="refazer">Mudar os meus dados de nascimento</button>
+      <div style="height:8px"></div>
+      <button class="ligacao" id="apagar">Apagar tudo e começar de novo</button>
+    </div>
+    <div class="cartao" style="text-align:center">
+      <p>Precisa de mais? Fale comigo.</p>
+      <a class="btn" style="text-decoration:none" href="/loja">Consultas com o Mestre Alberto</a>
+    </div>
+    <p class="aviso-legal">O Teu Céu é orientação e motivação. Não substitui um médico, um psicólogo nem um advogado. Versão de teste · 28/10/2026</p>
+  </div>
+
+</section>
+</main>
+
+<nav class="abas" id="abas" hidden>
+  <button class="ativo" data-aba="hoje"><span>🌅</span>Hoje</button>
+  <button data-aba="caminho"><span>🌟</span>Caminho</button>
+  <button data-aba="eu"><span>🌙</span>Eu</button>
+</nav>
+
+<script src="ascendente-calc.js"></script>
+<script src="carta-de-tarot-textos.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const ESC = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const sem = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+
+  // ===== o que fica guardado (só neste telemóvel) =====
+  let E = {};
+  try { E = JSON.parse(localStorage.getItem("teuceu") || "{}"); } catch (e) {}
+  const gravar = () => { try { localStorage.setItem("teuceu", JSON.stringify(E)); } catch (e) {} };
+  E.dias = E.dias || {};
+
+  // ===== nomes dos signos: Portugal ou Brasil, pelo fuso do telemóvel (como no resto do site) =====
+  const PT = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").startsWith("Europe");
+  const NOMES = PT ? ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"]
+                   : ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map((g) => g + "︎");
+  const MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+  const SEMANA = ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"];
+  const idx = (lon) => Math.floor((((lon % 360) + 360) % 360) / 30);
+  const hojeISO = (desvio = 0) => { const d = new Date(); d.setDate(d.getDate() + desvio);
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+
+  // ===== os caminhos (metas). RASCUNHO 28/10: os planos e as frases finais são do Mestre Alberto =====
+  const METAS = {
+    amor:     { em: "💕", nome: "Atrair o amor", sub: "encontrar ou reconquistar" },
+    prosp:    { em: "💰", nome: "Abrir os caminhos da prosperidade", sub: "dinheiro, trabalho, estabilidade" },
+    autoest:  { em: "🌸", nome: "Autoestima e amor-próprio", sub: "gostar mais de si" },
+    rumo:     { em: "🧭", nome: "Pôr a vida em ordem", sub: "encontrar o rumo" },
+    superar:  { em: "🕊️", nome: "Superar uma separação ou perda", sub: "sarar e seguir em frente" }
+  };
+  const AFIRMA = {
+    amor: ["Eu mereço um amor que me escolhe todos os dias.", "Abro o meu coração sem perder a minha paz.", "O amor certo encontra o caminho até mim.",
+           "Quanto mais me respeito, mais amor verdadeiro atraio.", "Deixo ir o que me fere e acolho o que me faz bem.", "Sou inteira, e quem vier soma.", "Hoje irradio a luz que quero receber."],
+    prosp: ["O dinheiro chega a mim por caminhos certos.", "Cada passo de hoje abre uma porta amanhã.", "Sou digna de abundância e cuido bem do que recebo.",
+            "As minhas mãos constroem a minha prosperidade.", "Agradeço o que tenho e abro espaço para mais.", "Confio no meu valor e cobro-o sem medo.", "Os caminhos abrem-se à minha frente."],
+    autoest: ["Eu sou suficiente, tal como sou hoje.", "Trato-me com o carinho que dou aos outros.", "A minha voz importa.",
+              "Cada dia gosto um pouco mais de mim.", "Não preciso de autorização para brilhar.", "O meu corpo é a minha casa e cuido dele.", "Perdoo-me e sigo em frente, mais leve."],
+    rumo: ["Um passo de cada vez, a minha vida ganha forma.", "Sei o que quero e caminho para lá.", "Hoje escolho o que é importante.",
+           "A ordem à minha volta traz paz cá dentro.", "Termino o que começo.", "Confio no meu caminho, mesmo quando não vejo o fim.", "Eu decido, eu faço, eu consigo."],
+    superar: ["A dor ensina, mas não me define.", "Cada dia dói um pouco menos.", "Solto o passado com amor e fico com a lição.",
+              "Mereço recomeçar.", "O meu coração está a sarar, ao seu tempo.", "Sou mais forte do que aquilo que me aconteceu.", "Abro espaço para o novo entrar."]
+  };
+  // A mensagem de cada arcano como carta do dia. RASCUNHO 28/10, por aprovar pelo Mestre Alberto.
+  const DIA_CARTA = [
+    "Dia de começar sem medo. Dê o primeiro passo, mesmo sem ver o caminho todo.",
+    "Tem nas mãos tudo o que precisa. Use os seus talentos e faça acontecer.",
+    "Escute a sua intuição. Hoje a resposta vem de dentro, no silêncio.",
+    "Dia fértil: cuide de si, do que ama e do que está a nascer.",
+    "Ponha ordem e firmeza. Uma decisão clara vale mais do que mil dúvidas.",
+    "Procure um bom conselho e respeite os seus valores.",
+    "Uma escolha do coração pede-lhe verdade. Escolha o que é seu.",
+    "Avance com determinação. A vitória está do lado de quem segue em frente.",
+    "A sua força está na calma. Com doçura domina o que parecia difícil.",
+    "Recolha-se um pouco. A luz que procura está dentro de si.",
+    "A roda gira a seu favor. Esteja atenta às oportunidades.",
+    "Seja justa consigo e com os outros. O equilíbrio traz a resposta.",
+    "Olhe por outro ângulo. Às vezes parar também é avançar.",
+    "Deixe ir o que já acabou. Algo novo quer nascer.",
+    "Paciência e medida. Misture as coisas com calma e tudo se compõe.",
+    "Repare no que a prende. Hoje pode soltar um peso antigo.",
+    "Uma mudança abre espaço. O que cai não era firme.",
+    "Esperança renovada. Confie: está no caminho certo.",
+    "Nem tudo é o que parece. Siga a intuição, mas confirme os factos.",
+    "Dia de alegria e clareza. Brilhe e partilhe a sua luz.",
+    "Um chamamento para despertar. Dê-se uma segunda oportunidade.",
+    "Um ciclo completa-se. Celebre o que já conseguiu."
+  ];
+  const HUMOR = ["😞", "😕", "😐", "🙂", "😊"], HUMOR_TXT = ["em baixo", "assim-assim", "normal", "bem", "radiante"];
+
+  // um número estável por pessoa e por dia (a carta do dia não muda se abrir a app várias vezes)
+  function semente(txt) { let h = 2166136261; for (const c of txt) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
+
+  // ================= ACOLHIMENTO =================
+  let passoAtual = 0;
+  function irPasso(n) {
+    passoAtual = n;
+    document.querySelectorAll(".passo").forEach((p) => p.classList.toggle("ativo", +p.dataset.p === n));
+    $("voltar").hidden = n < 2;
+    scrollTo(0, 0);
+  }
+  $("voltar").onclick = () => irPasso(Math.max(0, passoAtual - 1));
+  document.querySelectorAll("[data-ir]").forEach((b) => b.onclick = () => irPasso(+b.dataset.ir));
+  $("nome").addEventListener("input", () => { $("ok-nome").disabled = $("nome").value.trim().length < 2; });
+  $("ok-nome").onclick = () => { E.nome = $("nome").value.trim(); gravar(); irPasso(2); };
+
+  // ----- cidades (a mesma lista e a mesma busca da calculadora de Ascendente) -----
+  let CID = null, carregando = null, escolhida = null, opcoes = [];
+  function carregarCidades() {
+    if (CID) return Promise.resolve(CID);
+    if (!carregando) carregando = fetch("cidades.json?v=1").then((r) => r.json()).then((d) => { d.cidades.forEach((c) => c.push(sem(c[0]))); CID = d; return d; });
+    return carregando;
+  }
+  const rotulo = (c) => `${c[0]}${c[1] ? ", " + c[1] : ""}, ${CID.paises[c[2]] || c[2]}`;
+  $("cidade").addEventListener("focus", carregarCidades, { once: true });
+  $("cidade").addEventListener("input", async () => {
+    escolhida = null; $("cidade-ok").textContent = "";
+    const q = sem($("cidade").value), lista = $("lista-cid");
+    if (q.length < 2) { lista.classList.remove("aberta"); return; }
+    await carregarCidades();
+    const comeca = [], contem = [];
+    for (const c of CID.cidades) {
+      if (c[6].startsWith(q)) comeca.push(c); else if (q.length >= 3 && c[6].includes(q)) contem.push(c);
+      if (comeca.length >= 12) break;
+    }
+    opcoes = comeca.concat(contem).slice(0, 12);
+    lista.innerHTML = opcoes.length ? opcoes.map((c, i) => `<button type="button" data-i="${i}">${ESC(c[0])} <small>${ESC((c[1] ? c[1] + " · " : "") + (CID.paises[c[2]] || c[2]))}</small></button>`).join("")
+      : `<button type="button" disabled>Não encontrei. Escreva a cidade grande mais próxima.</button>`;
+    lista.classList.add("aberta");
+  });
+  $("lista-cid").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-i]"); if (!b) return;
+    escolhida = opcoes[+b.dataset.i]; $("cidade").value = rotulo(escolhida);
+    $("lista-cid").classList.remove("aberta"); $("cidade-ok").textContent = "✓ " + rotulo(escolhida);
+  });
+  document.addEventListener("click", (e) => { if (!e.target.closest(".rel")) $("lista-cid").classList.remove("aberta"); });
+  $("semhora").addEventListener("change", (e) => { $("hora").disabled = e.target.checked; });
+
+  // data escrita à mão: 15/03/1990, 15-3-1990, 15031990, «15 de março de 1990»
+  const MES3 = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  function lerData(txt) {
+    let t = sem(txt).replace(/\bde\b/g, " ");
+    MES3.forEach((m, i) => { t = t.replace(new RegExp("\\b" + m + "[a-z]*", "g"), " " + (i + 1) + " "); });
+    let p = t.split(/[^0-9]+/).filter(Boolean);
+    if (p.length === 1 && p[0].length === 8) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length !== 3) return null;
+    let [d, m, a] = p.map(Number);
+    if (a < 100) a += a > (new Date().getFullYear() % 100) ? 1900 : 2000;
+    const dt = new Date(Date.UTC(a, m - 1, d));
+    if (dt.getUTCDate() !== d || dt.getUTCMonth() !== m - 1 || a < 1900 || dt > new Date()) return null;
+    return [a, m, d];
+  }
+  $("data").addEventListener("input", (e) => {
+    const v = e.target.value;
+    if (/^[0-9/]*$/.test(v) && e.inputType !== "deleteContentBackward") {
+      const n = v.replace(/\D/g, "").slice(0, 8);
+      e.target.value = n.length > 4 ? n.slice(0, 2) + "/" + n.slice(2, 4) + "/" + n.slice(4) : n.length > 2 ? n.slice(0, 2) + "/" + n.slice(2) : n;
+    }
+  });
+  $("ok-nasc").onclick = () => {
+    const d = lerData($("data").value);
+    if (!d) { $("erro-nasc").textContent = "Escreva a data assim: 15/03/1990."; return; }
+    if (!escolhida) { $("erro-nasc").textContent = "Escolha a cidade na lista que aparece ao escrever."; return; }
+    const semHora = $("semhora").checked;
+    const [h, mi] = semHora ? [12, 0] : ($("hora").value || "12:00").split(":").map(Number);
+    const tz = CID.fusos[escolhida[5]];
+    let ms;
+    try { ms = AstroAsc.localParaUTC(d[0], d[1], d[2], h, mi, tz); } catch (e) { $("erro-nasc").textContent = "Não consegui ler a data. Confirme, por favor."; return; }
+    const r = AstroAsc.mapa(ms, escolhida[3], escolhida[4]);
+    E.nasc = { data: d, hora: semHora ? null : [h, mi], cidade: rotulo(escolhida), lat: escolhida[3], lon: escolhida[4], tz };
+    E.mapa = { sol: idx(r.sol.lon), lua: idx(r.lua.lon), asc: semHora ? null : idx(r.asc.lon), solG: r.sol.grau, luaG: r.lua.grau, ascG: r.asc.grau };
+    gravar(); $("erro-nasc").textContent = "";
+    if (E.meta && E.inicio) { mostrarApp(); return; }   // veio de «mudar os dados»
+    irPasso(3);
+  };
+
+  function desenharMetas(alvo, aoEscolher) {
+    alvo.innerHTML = Object.entries(METAS).map(([k, m]) =>
+      `<button class="meta${E.meta === k ? " esc" : ""}" data-k="${k}"><span class="em">${m.em}</span><span><b>${m.nome}</b><small>${m.sub}</small></span></button>`).join("");
+    alvo.onclick = (e) => { const b = e.target.closest(".meta"); if (!b) return; E.meta = b.dataset.k; gravar();
+      alvo.querySelectorAll(".meta").forEach((x) => x.classList.toggle("esc", x === b)); aoEscolher && aoEscolher(); };
+  }
+  desenharMetas($("metas"), () => { $("ok-meta").disabled = false; });
+  $("ok-meta").onclick = () => irPasso(4);
+
+  function desenharHumor(alvo, aoEscolher) {
+    const dia = E.dias[hojeISO()] || {};
+    alvo.innerHTML = HUMOR.map((h, i) => `<button data-v="${i}" class="${dia.humor === i ? "esc" : ""}" aria-label="${HUMOR_TXT[i]}">${h}<small>${HUMOR_TXT[i]}</small></button>`).join("");
+    alvo.onclick = (e) => { const b = e.target.closest("button"); if (!b) return;
+      const d = E.dias[hojeISO()] = E.dias[hojeISO()] || {}; d.humor = +b.dataset.v; gravar();
+      alvo.querySelectorAll("button").forEach((x) => x.classList.toggle("esc", x === b)); aoEscolher && aoEscolher(+b.dataset.v); };
+  }
+  desenharHumor($("humor-1"), () => {
+    const m = E.mapa;
+    $("revela").hidden = false;
+    $("revela").innerHTML = `<div class="rot" style="text-align:center">O céu do dia em que nasceu</div>
+      <div class="tres"><div class="astro"><div class="bola">${GLIFOS[m.sol]}</div><span class="rot">Sol</span><b>${NOMES[m.sol]}</b></div>
+        <div class="astro lua"><div class="bola">☽︎</div><span class="rot">Lua</span><b>${NOMES[m.lua]}</b></div>
+        ${m.asc != null ? `<div class="astro asc"><div class="bola">${GLIFOS[m.asc]}</div><span class="rot">Ascendente</span><b>${NOMES[m.asc]}</b></div>` : ""}</div>
+      <p class="boas2" style="margin-top:14px">${ESC(E.nome)}, a partir de hoje caminhamos juntos: <b style="color:var(--ouro)">${METAS[E.meta].nome.toLowerCase()}</b>.</p>`;
+    $("ok-fim").hidden = false; $("ok-fim").disabled = false;
+  });
+  $("ok-fim").onclick = () => { E.inicio = E.inicio || hojeISO(); gravar(); mostrarApp(); };
+
+  // ===== a Lua de hoje, desenhada pela fase (Lua Nova de referência: 6/1/2000 18:14 UTC; mês sinódico médio) =====
+  function desenharLua() {
+    const c = $("lua-hoje"), g = c.getContext("2d"), R = 56, cx = 64, cy = 64;
+    const f = (((Date.now() - 947182440000) / 86400000 / 29.530588853) % 1 + 1) % 1;   // 0 nova · 0,5 cheia
+    g.clearRect(0, 0, 128, 128);
+    g.fillStyle = "rgba(40, 20, 70, .9)"; g.beginPath(); g.arc(cx, cy, R, 0, 2 * Math.PI); g.fill();
+    const k = Math.cos(f * 2 * Math.PI);            // 1 nova → -1 cheia
+    const grad = g.createRadialGradient(cx - 16, cy - 16, 6, cx, cy, R); grad.addColorStop(0, "#fffbe9"); grad.addColorStop(1, "#f2d690");
+    g.fillStyle = grad; g.beginPath();
+    const crescente = f < 0.5;                       // a crescer: iluminada à direita (hemisfério norte)
+    g.arc(cx, cy, R, -Math.PI / 2, Math.PI / 2, !crescente);
+    g.ellipse(cx, cy, Math.abs(k) * R, R, 0, Math.PI / 2, -Math.PI / 2, (k > 0) === crescente);
+    g.fill();
+  }
+
+  // ===== o céu estrelado, a cintilar devagar (e uma estrela cadente de vez em quando) =====
+  (function ceu() {
+    const c = $("estrelas"), g = c.getContext("2d"); let W, H, est = [], cad = null;
+    const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function medir() { const d = Math.min(devicePixelRatio || 1, 2); W = c.width = innerWidth * d; H = c.height = innerHeight * d;
+      c.style.width = innerWidth + "px"; c.style.height = innerHeight + "px";
+      est = Array.from({ length: Math.round(innerWidth * innerHeight / 3500) }, () => ({ x: Math.random() * W, y: Math.random() * H,
+        r: (Math.random() * 1.2 + .3) * d, f: Math.random() * 6.28, v: Math.random() * .8 + .3, ouro: Math.random() < .18 })); }
+    medir(); addEventListener("resize", medir);
+    function passo(t) {
+      g.clearRect(0, 0, W, H);
+      for (const e of est) { const a = .35 + .65 * Math.abs(Math.sin(e.f + t / 1000 * e.v));
+        g.globalAlpha = a; g.fillStyle = e.ouro ? "#f7d98c" : "#fff6dc"; g.beginPath(); g.arc(e.x, e.y, e.r, 0, 6.283); g.fill(); }
+      if (!cad && Math.random() < .003) cad = { x: Math.random() * W * .7 + W * .3, y: Math.random() * H * .35, t: 0 };
+      if (cad) { cad.t += 1; const L = 120 * (devicePixelRatio || 1), x = cad.x - cad.t * 9, y = cad.y + cad.t * 4;
+        const gr = g.createLinearGradient(x, y, x + L, y - L * .45); gr.addColorStop(0, "rgba(255,246,220,.9)"); gr.addColorStop(1, "rgba(255,246,220,0)");
+        g.globalAlpha = Math.max(0, 1 - cad.t / 45); g.strokeStyle = gr; g.lineWidth = 1.6; g.beginPath(); g.moveTo(x, y); g.lineTo(x + L, y - L * .45); g.stroke();
+        if (cad.t > 45) cad = null; }
+      g.globalAlpha = 1;
+      if (!reduz) requestAnimationFrame(passo);
+    }
+    requestAnimationFrame(passo);
+  })();
+
+  // ================= A APP =================
+  let quem = "sol";   // ler o horóscopo pelo Sol ou pelo Ascendente
+  const cacheHoro = {};
+  const lerHoro = (iso) => cacheHoro[iso] || (cacheHoro[iso] = fetch("horoscopo-dia/" + iso + ".json").then((r) => { if (!r.ok) throw r.status; return r.json(); }));
+  const hora = (ms) => new Date(ms).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" });
+  const por = (t) => ESC(t).replace(/\{S:(\d+)\}/g, (_, n) => NOMES[+n]).replace(/\{H:(\d+)\}/g, (_, ms) => hora(+ms));
+
+  async function desenharHoje() {
+    const agora = new Date(), h = agora.getHours();
+    $("hoje-data").textContent = `${SEMANA[agora.getDay()]}, ${agora.getDate()} de ${MESES[agora.getMonth()]}`;
+    $("ola").innerHTML = `<span class="ouro">${h < 12 ? "Bom dia" : h < 20 ? "Boa tarde" : "Boa noite"}, ${ESC(E.nome)}</span>`;
+    desenharHumor($("humor"));
+
+    // o céu: Sol ou Ascendente
+    const m = E.mapa;
+    $("trocar").innerHTML = m.asc != null
+      ? `<button data-q="sol" class="${quem === "sol" ? "ativo" : ""}">${GLIFOS[m.sol]} Pelo Sol · ${NOMES[m.sol]}</button><button data-q="asc" class="${quem === "asc" ? "ativo" : ""}">↑ Pelo Ascendente · ${NOMES[m.asc]}</button>`
+      : "";
+    $("trocar").onclick = (e) => { const b = e.target.closest("button"); if (b) { quem = b.dataset.q; desenharHoje(); } };
+    const s = quem === "asc" && m.asc != null ? m.asc : m.sol;
+    let x = null;
+    try { x = await lerHoro(hojeISO()); } catch (e) {}
+    if (x) {
+      const y = x.s[s];
+      $("horo").innerHTML = `<div class="estrelas">${"★".repeat(y.e)}${"☆".repeat(5 - y.e)} <span class="rot">energia</span></div>
+        <div class="chave">${por(y.k)}</div><p>${por(y.t[0])}</p>
+        <div class="fechado" id="horo-mais">${y.t.slice(1).map((t) => `<p>${por(t)}</p>`).join("")}
+          <div class="rot" style="margin-top:12px">O céu de hoje para todos</div>
+          <ul class="ceu-lista">${x.ceu.map((l) => `<li>${por(l)}</li>`).join("")}</ul></div>
+        <button class="mais" id="horo-btn">Ler o seu céu completo ↓</button>`;
+      $("horo-btn").onclick = () => { const f = $("horo-mais").classList.toggle("fechado"); $("horo-btn").textContent = f ? "Ler o seu céu completo ↓" : "Fechar ↑"; };
+      $("lua-txt").innerHTML = x.ceu[0] ? por(x.ceu[0]).replace(/^☽\s*/, "") : "";
+      $("passo-hoje").innerHTML = por(y.d);
+    } else {
+      $("horo").innerHTML = `<p class="breve">Sem ligação: o céu de hoje aparece assim que houver rede.</p>`;
+      $("passo-hoje").textContent = "Escolha uma pequena coisa que a aproxime do seu caminho e faça-a hoje.";
+    }
+
+    // a carta do dia
+    const n = semente(E.nome + E.nasc.data.join("-") + hojeISO()) % 22;
+    const A = TextosCarta.ARCANOS[n];
+    $("carta-img").src = `https://www.trustedtarot.com/img/cards/${A[2]}.png`;
+    $("carta-img").alt = A[0];
+    const dia = E.dias[hojeISO()] || {};
+    const mostrarCarta = () => {
+      $("carta").classList.add("virada");
+      $("carta-txt").innerHTML = `<div class="rot">${A[1]} · arcano maior</div><h3 class="ouro" style="font-size:20px;margin:4px 0">${A[0]}</h3>
+        <p class="serifa" style="color:var(--texto);font-size:19px">${DIA_CARTA[n]}</p><a href="/${A[3].replace(".html", "")}" style="color:var(--ouro);font-size:14px">Saber mais sobre ${A[0]} →</a>`;
+    };
+    $("carta").classList.remove("virada");
+    desenharLua();
+    if (dia.carta) mostrarCarta();
+    else $("carta").onclick = () => { const d = E.dias[hojeISO()] = E.dias[hojeISO()] || {}; d.carta = n; gravar(); mostrarCarta(); };
+
+    // a meta e a afirmação do dia
+    const meta = METAS[E.meta], af = AFIRMA[E.meta];
+    $("meta-tit").textContent = meta.em + " " + meta.nome;
+    $("afirmacao").textContent = "« " + af[semente(hojeISO()) % af.length] + " »";
+
+    // a noite
+    $("noite").querySelectorAll("button").forEach((b) => b.classList.toggle("esc", dia.passo === b.dataset.v));
+    $("noite").onclick = (e) => { const b = e.target.closest("button"); if (!b) return;
+      const d = E.dias[hojeISO()] = E.dias[hojeISO()] || {}; d.passo = b.dataset.v; gravar();
+      $("noite").querySelectorAll("button").forEach((z) => z.classList.toggle("esc", z === b));
+      $("guardado").textContent = b.dataset.v === "nao" ? "Está tudo bem. Amanhã é um novo dia. 🌙" : "Guardado. Estou orgulhoso de si. ✨"; };
+    $("diario").value = dia.diario || "";
+  }
+  let tDiario;
+  $("diario").addEventListener("input", () => {
+    clearTimeout(tDiario);
+    tDiario = setTimeout(() => { const d = E.dias[hojeISO()] = E.dias[hojeISO()] || {}; d.diario = $("diario").value.slice(0, 4000); gravar();
+      $("guardado").textContent = "Guardado no seu telemóvel ✓"; }, 600);
+  });
+
+  function desenharCaminho() {
+    // dias seguidos: conta para trás a partir de hoje (ou de ontem, se hoje ainda não abriu o dia)
+    const ativo = (iso) => { const d = E.dias[iso]; return d && (d.humor != null || d.carta != null || d.passo); };
+    let k = ativo(hojeISO()) ? 0 : -1, n = 0;
+    while (ativo(hojeISO(k))) { n++; k--; }
+    $("seguidos").textContent = n;
+    $("seguidos-rot").textContent = n === 1 ? "dia seguido" : "dias seguidos";
+    $("seguidos-frase").textContent = n === 0 ? "O caminho começa com o primeiro dia. Abra o seu céu amanhã também." :
+      n < 7 ? "Está a criar um hábito bonito. Continue." : n < 30 ? "Que constância! O céu recompensa quem persiste." : "Um mês inteiro consigo mesma. Que orgulho.";
+    const fila = [];
+    for (let i = 13; i >= 0; i--) {
+      const iso = hojeISO(-i), d = E.dias[iso] || {};
+      fila.push(`<div class="${d.passo === "sim" ? "cumpriu" : ""}" title="${iso}">${d.humor != null ? HUMOR[d.humor] : ""}</div>`);
+    }
+    $("fila").innerHTML = fila.join("");
+    const ents = Object.entries(E.dias).filter(([, d]) => d.diario).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 30);
+    $("entradas").innerHTML = ents.length ? ents.map(([iso, d]) => {
+      const [a, m, dd] = iso.split("-").map(Number);
+      return `<div class="entrada"><div class="quando">${dd} de ${MESES[m - 1]} ${d.humor != null ? HUMOR[d.humor] : ""}</div><div>${ESC(d.diario).replace(/\n/g, "<br>")}</div></div>`;
+    }).join("") : `<p class="breve">Ainda não escreveu nada. À noite, no separador Hoje, conte como correu o seu dia.</p>`;
+  }
+
+  function desenharEu() {
+    const m = E.mapa, nz = E.nasc;
+    $("eu-nome").textContent = E.nome;
+    $("eu-mapa").innerHTML = `<p class="serifa" style="color:var(--texto)">${GLIFOS[m.sol]} Sol em <b>${NOMES[m.sol]}</b> <small>${m.solG}</small><br>${GLIFOS[m.lua]} Lua em <b>${NOMES[m.lua]}</b> <small>${m.luaG}</small>${m.asc != null ? `<br>↑ Ascendente em <b>${NOMES[m.asc]}</b> <small>${m.ascG}</small>` : ""}</p>
+      <p class="breve">Nasceu a ${nz.data[2]} de ${MESES[nz.data[1] - 1]} de ${nz.data[0]}${nz.hora ? ", às " + String(nz.hora[0]).padStart(2, "0") + ":" + String(nz.hora[1]).padStart(2, "0") : " (hora desconhecida: sem Ascendente)"}, em ${ESC(nz.cidade)}.</p>
+      <a href="/mapa-astral" style="color:var(--ouro);font-size:14px">O seu mapa astral completo →</a>`;
+    desenharMetas($("metas-eu"), () => desenharHoje());
+  }
+
+  function mostrarApp() {
+    $("acolhe").hidden = true; $("app").hidden = false; $("abas").hidden = false;
+    desenharHoje(); desenharCaminho(); desenharEu();
+  }
+  document.querySelectorAll("#abas button").forEach((b) => b.onclick = () => {
+    document.querySelectorAll("#abas button").forEach((x) => x.classList.toggle("ativo", x === b));
+    document.querySelectorAll(".aba").forEach((a) => a.classList.toggle("ativa", a.id === "aba-" + b.dataset.aba));
+    if (b.dataset.aba === "caminho") desenharCaminho();
+    if (b.dataset.aba === "eu") desenharEu();
+    scrollTo(0, 0);
+  });
+  $("refazer").onclick = () => { $("app").hidden = true; $("abas").hidden = true; $("acolhe").hidden = false; irPasso(2); };
+  $("apagar").onclick = () => {
+    if (!confirm("Apagar tudo o que está guardado neste telemóvel (dados, diário e caminho)?")) return;
+    try { localStorage.removeItem("teuceu"); } catch (e) {} location.reload();
+  };
+
+  // ===== instalar no ecrã =====
+  let pedidoInstalar = null;
+  const instalada = matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault(); pedidoInstalar = e;
+    $("instalar").classList.add("mostra");
+    $("instalar-txt").innerHTML = `<p>Tenha o seu céu à distância de um toque, como uma app.</p><button class="btn" id="btn-instalar">Instalar O Teu Céu</button>`;
+    $("btn-instalar").onclick = async () => { pedidoInstalar.prompt(); await pedidoInstalar.userChoice; $("instalar").classList.remove("mostra"); };
+  });
+  if (!instalada && ios) {
+    $("instalar").classList.add("mostra");
+    $("instalar-txt").innerHTML = `<p>No iPhone: toque em <b>Partilhar</b> (o quadrado com a seta para cima) e depois em <b>Adicionar ao ecrã principal</b>.</p>`;
+  }
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("/o-teu-ceu-sw.js", { scope: "/o-teu-ceu" }).catch(() => {});
+
+  // ===== arranque =====
+  if (E.nome && E.mapa && E.meta && E.inicio) mostrarApp();
+  else {
+    $("acolhe").hidden = false;
+    if (E.nome) $("nome").value = E.nome;
+    irPasso(0);
+  }
+})();
+</script>
+</body>
+</html>
