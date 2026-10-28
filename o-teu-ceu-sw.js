@@ -1,10 +1,10 @@
 /* O Teu Céu — o service worker (28/10/2026)
    Guarda a casca da app para abrir sem rede. O horóscopo do dia vai primeiro à rede
    e só usa a cópia guardada se não houver ligação. Subir VERSAO a cada mudança. */
-const VERSAO = "teuceu-v1";
+const VERSAO = "teuceu-v2";
 const CASCA = [
   "/o-teu-ceu", "/o-teu-ceu.webmanifest", "/o-teu-ceu-icone-192.png", "/o-teu-ceu-icone-512.png",
-  "/o-teu-ceu-icone.svg", "/ascendente-calc.js", "/carta-de-tarot-textos.js"
+  "/o-teu-ceu-icone.svg", "/ascendente-calc.js", "/carta-de-tarot-textos.js", "/o-teu-ceu-linguas.js"
 ];
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(VERSAO).then((c) => c.addAll(CASCA)).then(() => self.skipWaiting()));

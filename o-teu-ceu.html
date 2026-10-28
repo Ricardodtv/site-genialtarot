@@ -209,63 +209,64 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
 <section id="acolhe" hidden>
   <button id="voltar" aria-label="Voltar" hidden>←</button>
   <div class="passo ativo" data-p="0">
+    <div class="trocar" id="linguas-0" style="flex-wrap:wrap;justify-content:center;margin-top:18px"></div>
     <img class="logo" src="o-teu-ceu-icone.svg" alt="O Teu Céu" width="132" height="132" />
     <h1 class="titulo-app ouro">O Teu Céu</h1>
-    <div class="sub-app">com o Mestre Alberto</div>
-    <p class="boas">Seja bem-vinda ao seu cantinho de cada dia.</p>
-    <p class="boas2">Todas as manhãs, o seu céu, a sua carta e o passo de hoje para aquilo que mais deseja. À noite, um minuto para ver como correu. E eu acompanho-a no caminho.</p>
+    <div class="sub-app" data-t="sub_app">com o Mestre Alberto</div>
+    <p class="boas" data-t="bem_tit">Seja bem-vinda ao seu cantinho de cada dia.</p>
+    <p class="boas2" data-t="bem_txt">Todas as manhãs, o seu céu, a sua carta e o passo de hoje para aquilo que mais deseja. À noite, um minuto para ver como correu. E eu acompanho-a no caminho.</p>
     <div class="assina">— Mestre Alberto</div>
-    <button class="btn" data-ir="1">Começar</button>
+    <button class="btn" data-ir="1" data-t="comecar">Começar</button>
   </div>
 
   <div class="passo" data-p="1">
     <div class="pontos"><i class="on"></i><i></i><i></i><i></i></div>
-    <h2 class="pergunta">Antes de mais,<br><em>como se chama?</em></h2>
+    <h2 class="pergunta" data-t="p_nome">Antes de mais,<br><em>como se chama?</em></h2>
     <div class="cartao">
-      <label for="nome">ou como gosta que a tratem</label>
-      <input id="nome" autocomplete="given-name" maxlength="40" placeholder="Por exemplo: Ana" />
+      <label for="nome" data-t="nome_lbl">ou como gosta que a tratem</label>
+      <input id="nome" autocomplete="given-name" maxlength="40" placeholder="Por exemplo: Ana" data-tp="nome_ph" />
     </div>
-    <button class="btn" id="ok-nome" disabled>Continuar</button>
+    <button class="btn" id="ok-nome" disabled data-t="continuar">Continuar</button>
   </div>
 
   <div class="passo" data-p="2">
     <div class="pontos"><i class="on"></i><i class="on"></i><i></i><i></i></div>
-    <h2 class="pergunta">Quando chegou<br><em>a este mundo?</em></h2>
-    <p class="dica-p">É daqui que nasce o seu céu: o seu signo, a sua Lua e o seu Ascendente.</p>
+    <h2 class="pergunta" data-t="p_nasc">Quando chegou<br><em>a este mundo?</em></h2>
+    <p class="dica-p" data-t="nasc_dica">É daqui que nasce o seu céu: o seu signo, a sua Lua e o seu Ascendente.</p>
     <div class="cartao">
-      <label for="data">Data de nascimento</label>
-      <input id="data" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="22" />
-      <label for="hora">Hora de nascimento</label>
+      <label for="data" data-t="data_lbl">Data de nascimento</label>
+      <input id="data" inputmode="numeric" placeholder="dd/mm/aaaa" data-tp="data_ph" maxlength="22" />
+      <label for="hora" data-t="hora_lbl">Hora de nascimento</label>
       <input id="hora" type="time" value="12:00" />
-      <label class="check"><input type="checkbox" id="semhora" /> Não sei a hora</label>
-      <label for="cidade">Cidade onde nasceu</label>
+      <label class="check"><input type="checkbox" id="semhora" /> <span data-t="semhora" data-t="semhora">Não sei a hora</span></label>
+      <label for="cidade" data-t="cidade_lbl">Cidade onde nasceu</label>
       <div class="rel">
-        <input id="cidade" autocomplete="off" placeholder="Comece a escrever…" />
+        <input id="cidade" autocomplete="off" placeholder="Comece a escrever…" data-tp="cidade_ph" />
         <div class="lista-cid" id="lista-cid" role="listbox"></div>
       </div>
       <div class="ok" id="cidade-ok"></div>
       <div class="erro" id="erro-nasc"></div>
     </div>
-    <button class="btn" id="ok-nasc">Continuar</button>
+    <button class="btn" id="ok-nasc" data-t="continuar">Continuar</button>
   </div>
 
   <div class="passo" data-p="3">
     <div class="pontos"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
-    <h2 class="pergunta">O que o seu coração<br><em>mais deseja agora?</em></h2>
-    <p class="dica-p">Escolha um caminho. Pode mudar quando quiser.</p>
+    <h2 class="pergunta" data-t="p_meta">O que o seu coração<br><em>mais deseja agora?</em></h2>
+    <p class="dica-p" data-t="meta_dica">Escolha um caminho. Pode mudar quando quiser.</p>
     <div class="metas" id="metas"></div>
     <div style="height:14px"></div>
-    <button class="btn" id="ok-meta" disabled>Continuar</button>
+    <button class="btn" id="ok-meta" disabled data-t="continuar">Continuar</button>
   </div>
 
   <div class="passo" data-p="4">
     <div class="pontos"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
-    <h2 class="pergunta">E hoje,<br><em>como se sente?</em></h2>
+    <h2 class="pergunta" data-t="p_humor">E hoje,<br><em>como se sente?</em></h2>
     <div class="cartao">
       <div class="humor" id="humor-1"></div>
     </div>
     <div class="cartao" id="revela" hidden></div>
-    <button class="btn" id="ok-fim" hidden>Entrar no meu céu ✨</button>
+    <button class="btn" id="ok-fim" hidden data-t="entrar">Entrar no meu céu ✨</button>
   </div>
 </section>
 
@@ -277,58 +278,58 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
       <div><div class="data" id="hoje-data"></div><h1 class="ola" id="ola"></h1><div class="lua-txt" id="lua-txt"></div></div></div>
 
     <div class="cartao">
-      <div class="rot">Como se sente hoje?</div>
+      <div class="rot" data-t="como_hoje">Como se sente hoje?</div>
       <div class="humor" id="humor"></div>
     </div>
 
     <div class="cartao">
-      <h2 class="ouro">🌙 O seu céu hoje</h2>
+      <h2 class="ouro" data-t="ceu_hoje">🌙 O seu céu hoje</h2>
       <div class="trocar" id="trocar"></div>
-      <div id="horo"><p class="breve">A ler o céu…</p></div>
+      <div id="horo"><p class="breve" data-t="a_ler">A ler o céu…</p></div>
     </div>
 
     <div class="cartao">
-      <h2 class="ouro">🃏 A sua carta do dia</h2>
+      <h2 class="ouro" data-t="carta_tit">🃏 A sua carta do dia</h2>
       <div class="carta-zona">
         <div class="carta" id="carta" role="button" aria-label="Virar a carta"><div class="carta-in"><div class="face costas"></div><div class="face frente"><img id="carta-img" alt="" /></div></div></div>
-        <div id="carta-txt"><p class="serifa" style="color:var(--texto)">Respire fundo, pense no seu dia… e toque na carta para a virar.</p></div>
+        <div id="carta-txt"><p class="serifa" style="color:var(--texto)" data-t="carta_conv">Respire fundo, pense no seu dia… e toque na carta para a virar.</p></div>
       </div>
     </div>
 
     <div class="cartao">
       <h2 class="ouro" id="meta-tit"></h2>
       <p class="afirma" id="afirmacao"></p>
-      <div class="rot" style="margin-top:12px">O passo de hoje</div>
+      <div class="rot" style="margin-top:12px" data-t="passo_tit">O passo de hoje</div>
       <div class="passo-hoje" id="passo-hoje"></div>
-      <p class="breve" style="margin-top:12px">O plano completo do Mestre Alberto para este caminho chega em breve.</p>
+      <p class="breve" style="margin-top:12px" data-t="plano_breve">O plano completo do Mestre Alberto para este caminho chega em breve.</p>
     </div>
 
     <div class="cartao">
-      <h2 class="ouro">🌙 À noite</h2>
-      <div class="rot">Deu o passo de hoje?</div>
+      <h2 class="ouro" data-t="noite_tit">🌙 À noite</h2>
+      <div class="rot" data-t="deu_passo">Deu o passo de hoje?</div>
       <div class="noite" id="noite">
-        <button data-v="sim">✅ Sim</button><button data-v="parte">🌗 Em parte</button><button data-v="nao">🌑 Ainda não</button>
+        <button data-v="sim" data-t="sim">✅ Sim</button><button data-v="parte" data-t="parte">🌗 Em parte</button><button data-v="nao" data-t="nao">🌑 Ainda não</button>
       </div>
-      <label for="diario">Como correu o seu dia? (só você vê isto)</label>
-      <textarea id="diario" placeholder="Escreva à vontade…"></textarea>
+      <label for="diario" data-t="diario_lbl">Como correu o seu dia? (só você vê isto)</label>
+      <textarea id="diario" placeholder="Escreva à vontade…" data-tp="diario_ph"></textarea>
       <div class="guardado" id="guardado"></div>
     </div>
   </div>
 
   <div class="aba" id="aba-caminho">
-    <h1 class="ouro" style="font-size:26px;margin:8px 0">O seu caminho</h1>
+    <h1 class="ouro" style="font-size:26px;margin:8px 0" data-t="cam_tit">O seu caminho</h1>
     <div class="cartao" style="text-align:center">
       <div class="grande ouro" id="seguidos">0</div>
-      <div class="rot" id="seguidos-rot">dias seguidos</div>
+      <div class="rot" id="seguidos-rot" data-t="dias_seguidos">dias seguidos</div>
       <p id="seguidos-frase"></p>
     </div>
     <div class="cartao">
-      <h2 class="ouro">Os últimos 14 dias</h2>
+      <h2 class="ouro" data-t="ult14">Os últimos 14 dias</h2>
       <div class="fila" id="fila"></div>
-      <p class="breve">O rosto é como se sentiu; o contorno dourado é o dia em que deu o passo.</p>
+      <p class="breve" data-t="ult14_nota">O rosto é como se sentiu; o contorno dourado é o dia em que deu o passo.</p>
     </div>
     <div class="cartao">
-      <h2 class="ouro">O seu diário</h2>
+      <h2 class="ouro" data-t="diario_tit">O seu diário</h2>
       <div id="entradas"></div>
     </div>
   </div>
@@ -336,42 +337,47 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
   <div class="aba" id="aba-eu">
     <h1 class="ouro" style="font-size:26px;margin:8px 0" id="eu-nome"></h1>
     <div class="cartao">
-      <h2 class="ouro">✨ O seu mapa</h2>
+      <h2 class="ouro" data-t="mapa_tit">✨ O seu mapa</h2>
       <div id="eu-mapa"></div>
     </div>
     <div class="cartao">
-      <h2 class="ouro">🎯 O seu caminho</h2>
+      <h2 class="ouro" data-t="cam_eu">🎯 O seu caminho</h2>
       <div class="metas" id="metas-eu"></div>
     </div>
+    <div class="cartao">
+      <h2 class="ouro" data-t="lingua_tit">🌍 Língua</h2>
+      <div class="trocar" id="linguas" style="flex-wrap:wrap"></div>
+    </div>
     <div class="cartao instalar" id="instalar">
-      <h2 class="ouro">📲 Pôr no ecrã do telemóvel</h2>
+      <h2 class="ouro" data-t="instalar_tit">📲 Pôr no ecrã do telemóvel</h2>
       <div id="instalar-txt"></div>
     </div>
     <div class="cartao">
-      <h2 class="ouro">🔒 Os seus dados</h2>
-      <p>Tudo o que escreve fica só neste telemóvel. Não vai para nenhum servidor.</p>
-      <button class="btn-2" id="refazer">Mudar os meus dados de nascimento</button>
+      <h2 class="ouro" data-t="dados_tit">🔒 Os seus dados</h2>
+      <p data-t="dados_txt">Tudo o que escreve fica só neste telemóvel. Não vai para nenhum servidor.</p>
+      <button class="btn-2" id="refazer" data-t="refazer">Mudar os meus dados de nascimento</button>
       <div style="height:8px"></div>
-      <button class="ligacao" id="apagar">Apagar tudo e começar de novo</button>
+      <button class="ligacao" id="apagar" data-t="apagar">Apagar tudo e começar de novo</button>
     </div>
     <div class="cartao" style="text-align:center">
-      <p>Precisa de mais? Fale comigo.</p>
-      <a class="btn" style="text-decoration:none" href="/loja">Consultas com o Mestre Alberto</a>
+      <p data-t="precisa">Precisa de mais? Fale comigo.</p>
+      <a class="btn" style="text-decoration:none" href="/loja" data-t="consultas">Consultas com o Mestre Alberto</a>
     </div>
-    <p class="aviso-legal">O Teu Céu é orientação e motivação. Não substitui um médico, um psicólogo nem um advogado. Versão de teste · 28/10/2026</p>
+    <p class="aviso-legal"><span data-t="aviso">O Teu Céu é orientação e motivação. Não substitui um médico, um psicólogo nem um advogado. Versão de teste</span> · 28/10/2026</p>
   </div>
 
 </section>
 </main>
 
 <nav class="abas" id="abas" hidden>
-  <button class="ativo" data-aba="hoje"><span>🌅</span>Hoje</button>
-  <button data-aba="caminho"><span>🌟</span>Caminho</button>
-  <button data-aba="eu"><span>🌙</span>Eu</button>
+  <button class="ativo" data-aba="hoje"><span>🌅</span><i data-t="aba_hoje" style="font-style:normal" data-t="aba_hoje">Hoje</i></button>
+  <button data-aba="caminho"><span>🌟</span><i data-t="aba_caminho" style="font-style:normal" data-t="aba_caminho">Caminho</i></button>
+  <button data-aba="eu"><span>🌙</span><i data-t="aba_eu" style="font-style:normal" data-t="aba_eu">Eu</i></button>
 </nav>
 
 <script src="ascendente-calc.js"></script>
 <script src="carta-de-tarot-textos.js"></script>
+<script src="o-teu-ceu-linguas.js"></script>
 <script>
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -384,63 +390,30 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
   const gravar = () => { try { localStorage.setItem("teuceu", JSON.stringify(E)); } catch (e) {} };
   E.dias = E.dias || {};
 
-  // ===== nomes dos signos: Portugal ou Brasil, pelo fuso do telemóvel (como no resto do site) =====
+  // ===== a língua (28/10: PT, ES, EN, FR, IT — o-teu-ceu-linguas.js). Por omissão, a do telemóvel =====
+  const LS = window.LinguasTeuCeu;
+  if (!E.lingua) { const n = (navigator.language || "pt").slice(0, 2).toLowerCase(); E.lingua = LS[n] ? n : "pt"; }
+  let LG, T, NOMES, METAS, AFIRMA, DIA_CARTA, HUMOR_TXT, ARC;
+  // nomes dos signos em português: Portugal ou Brasil, pelo fuso do telemóvel (como no resto do site)
   const PT = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").startsWith("Europe");
-  const NOMES = PT ? ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"]
-                   : ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const EMOJI_META = { amor: "💕", prosp: "💰", autoest: "🌸", rumo: "🧭", superar: "🕊️" };
+  function poeLingua(l) {
+    LG = LS[l] || LS.pt; T = LG.t;
+    NOMES = l === "pt" && PT ? LG.signos_pt : LG.signos;
+    METAS = {}; for (const k in EMOJI_META) METAS[k] = { em: EMOJI_META[k], nome: LG.metas[k][0], sub: LG.metas[k][1] };
+    AFIRMA = LG.afirma; DIA_CARTA = LG.carta_dia; HUMOR_TXT = LG.humor; ARC = LG.arcanos;
+    document.documentElement.lang = l;
+    document.querySelectorAll("[data-t]").forEach((el) => { el.innerHTML = T[el.dataset.t]; });
+    document.querySelectorAll("[data-tp]").forEach((el) => { el.placeholder = T[el.dataset.tp]; });
+  }
+  poeLingua(E.lingua);
+  const tr = (k, v) => T[k].replace(/\{(\w+)\}/g, (_, n) => v[n]);
   const GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"].map((g) => g + "︎");
-  const MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
-  const SEMANA = ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"];
   const idx = (lon) => Math.floor((((lon % 360) + 360) % 360) / 30);
   const hojeISO = (desvio = 0) => { const d = new Date(); d.setDate(d.getDate() + desvio);
     return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
-
-  // ===== os caminhos (metas). RASCUNHO 28/10: os planos e as frases finais são do Mestre Alberto =====
-  const METAS = {
-    amor:     { em: "💕", nome: "Atrair o amor", sub: "encontrar ou reconquistar" },
-    prosp:    { em: "💰", nome: "Abrir os caminhos da prosperidade", sub: "dinheiro, trabalho, estabilidade" },
-    autoest:  { em: "🌸", nome: "Autoestima e amor-próprio", sub: "gostar mais de si" },
-    rumo:     { em: "🧭", nome: "Pôr a vida em ordem", sub: "encontrar o rumo" },
-    superar:  { em: "🕊️", nome: "Superar uma separação ou perda", sub: "sarar e seguir em frente" }
-  };
-  const AFIRMA = {
-    amor: ["Eu mereço um amor que me escolhe todos os dias.", "Abro o meu coração sem perder a minha paz.", "O amor certo encontra o caminho até mim.",
-           "Quanto mais me respeito, mais amor verdadeiro atraio.", "Deixo ir o que me fere e acolho o que me faz bem.", "Sou inteira, e quem vier soma.", "Hoje irradio a luz que quero receber."],
-    prosp: ["O dinheiro chega a mim por caminhos certos.", "Cada passo de hoje abre uma porta amanhã.", "Sou digna de abundância e cuido bem do que recebo.",
-            "As minhas mãos constroem a minha prosperidade.", "Agradeço o que tenho e abro espaço para mais.", "Confio no meu valor e cobro-o sem medo.", "Os caminhos abrem-se à minha frente."],
-    autoest: ["Eu sou suficiente, tal como sou hoje.", "Trato-me com o carinho que dou aos outros.", "A minha voz importa.",
-              "Cada dia gosto um pouco mais de mim.", "Não preciso de autorização para brilhar.", "O meu corpo é a minha casa e cuido dele.", "Perdoo-me e sigo em frente, mais leve."],
-    rumo: ["Um passo de cada vez, a minha vida ganha forma.", "Sei o que quero e caminho para lá.", "Hoje escolho o que é importante.",
-           "A ordem à minha volta traz paz cá dentro.", "Termino o que começo.", "Confio no meu caminho, mesmo quando não vejo o fim.", "Eu decido, eu faço, eu consigo."],
-    superar: ["A dor ensina, mas não me define.", "Cada dia dói um pouco menos.", "Solto o passado com amor e fico com a lição.",
-              "Mereço recomeçar.", "O meu coração está a sarar, ao seu tempo.", "Sou mais forte do que aquilo que me aconteceu.", "Abro espaço para o novo entrar."]
-  };
-  // A mensagem de cada arcano como carta do dia. RASCUNHO 28/10, por aprovar pelo Mestre Alberto.
-  const DIA_CARTA = [
-    "Dia de começar sem medo. Dê o primeiro passo, mesmo sem ver o caminho todo.",
-    "Tem nas mãos tudo o que precisa. Use os seus talentos e faça acontecer.",
-    "Escute a sua intuição. Hoje a resposta vem de dentro, no silêncio.",
-    "Dia fértil: cuide de si, do que ama e do que está a nascer.",
-    "Ponha ordem e firmeza. Uma decisão clara vale mais do que mil dúvidas.",
-    "Procure um bom conselho e respeite os seus valores.",
-    "Uma escolha do coração pede-lhe verdade. Escolha o que é seu.",
-    "Avance com determinação. A vitória está do lado de quem segue em frente.",
-    "A sua força está na calma. Com doçura domina o que parecia difícil.",
-    "Recolha-se um pouco. A luz que procura está dentro de si.",
-    "A roda gira a seu favor. Esteja atenta às oportunidades.",
-    "Seja justa consigo e com os outros. O equilíbrio traz a resposta.",
-    "Olhe por outro ângulo. Às vezes parar também é avançar.",
-    "Deixe ir o que já acabou. Algo novo quer nascer.",
-    "Paciência e medida. Misture as coisas com calma e tudo se compõe.",
-    "Repare no que a prende. Hoje pode soltar um peso antigo.",
-    "Uma mudança abre espaço. O que cai não era firme.",
-    "Esperança renovada. Confie: está no caminho certo.",
-    "Nem tudo é o que parece. Siga a intuição, mas confirme os factos.",
-    "Dia de alegria e clareza. Brilhe e partilhe a sua luz.",
-    "Um chamamento para despertar. Dê-se uma segunda oportunidade.",
-    "Um ciclo completa-se. Celebre o que já conseguiu."
-  ];
-  const HUMOR = ["😞", "😕", "😐", "🙂", "😊"], HUMOR_TXT = ["em baixo", "assim-assim", "normal", "bem", "radiante"];
+  const fmtData = (d, o) => new Intl.DateTimeFormat(LG.locale, o).format(d);
+  const HUMOR = ["😞", "😕", "😐", "🙂", "😊"];
 
   // um número estável por pessoa e por dia (a carta do dia não muda se abrir a app várias vezes)
   function semente(txt) { let h = 2166136261; for (const c of txt) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }
@@ -479,7 +452,7 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
     }
     opcoes = comeca.concat(contem).slice(0, 12);
     lista.innerHTML = opcoes.length ? opcoes.map((c, i) => `<button type="button" data-i="${i}">${ESC(c[0])} <small>${ESC((c[1] ? c[1] + " · " : "") + (CID.paises[c[2]] || c[2]))}</small></button>`).join("")
-      : `<button type="button" disabled>Não encontrei. Escreva a cidade grande mais próxima.</button>`;
+      : `<button type="button" disabled>${T.nao_encontrei}</button>`;
     lista.classList.add("aberta");
   });
   $("lista-cid").addEventListener("click", (e) => {
@@ -513,13 +486,13 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
   });
   $("ok-nasc").onclick = () => {
     const d = lerData($("data").value);
-    if (!d) { $("erro-nasc").textContent = "Escreva a data assim: 15/03/1990."; return; }
-    if (!escolhida) { $("erro-nasc").textContent = "Escolha a cidade na lista que aparece ao escrever."; return; }
+    if (!d) { $("erro-nasc").textContent = T.erro_data; return; }
+    if (!escolhida) { $("erro-nasc").textContent = T.erro_cidade; return; }
     const semHora = $("semhora").checked;
     const [h, mi] = semHora ? [12, 0] : ($("hora").value || "12:00").split(":").map(Number);
     const tz = CID.fusos[escolhida[5]];
     let ms;
-    try { ms = AstroAsc.localParaUTC(d[0], d[1], d[2], h, mi, tz); } catch (e) { $("erro-nasc").textContent = "Não consegui ler a data. Confirme, por favor."; return; }
+    try { ms = AstroAsc.localParaUTC(d[0], d[1], d[2], h, mi, tz); } catch (e) { $("erro-nasc").textContent = T.erro_ler; return; }
     const r = AstroAsc.mapa(ms, escolhida[3], escolhida[4]);
     E.nasc = { data: d, hora: semHora ? null : [h, mi], cidade: rotulo(escolhida), lat: escolhida[3], lon: escolhida[4], tz };
     E.mapa = { sol: idx(r.sol.lon), lua: idx(r.lua.lon), asc: semHora ? null : idx(r.asc.lon), solG: r.sol.grau, luaG: r.lua.grau, ascG: r.asc.grau };
@@ -547,11 +520,11 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
   desenharHumor($("humor-1"), () => {
     const m = E.mapa;
     $("revela").hidden = false;
-    $("revela").innerHTML = `<div class="rot" style="text-align:center">O céu do dia em que nasceu</div>
-      <div class="tres"><div class="astro"><div class="bola">${GLIFOS[m.sol]}</div><span class="rot">Sol</span><b>${NOMES[m.sol]}</b></div>
-        <div class="astro lua"><div class="bola">☽︎</div><span class="rot">Lua</span><b>${NOMES[m.lua]}</b></div>
-        ${m.asc != null ? `<div class="astro asc"><div class="bola">${GLIFOS[m.asc]}</div><span class="rot">Ascendente</span><b>${NOMES[m.asc]}</b></div>` : ""}</div>
-      <p class="boas2" style="margin-top:14px">${ESC(E.nome)}, a partir de hoje caminhamos juntos: <b style="color:var(--ouro)">${METAS[E.meta].nome.toLowerCase()}</b>.</p>`;
+    $("revela").innerHTML = `<div class="rot" style="text-align:center">${T.ceu_nasc}</div>
+      <div class="tres"><div class="astro"><div class="bola">${GLIFOS[m.sol]}</div><span class="rot">${T.sol}</span><b>${NOMES[m.sol]}</b></div>
+        <div class="astro lua"><div class="bola">☽︎</div><span class="rot">${T.lua}</span><b>${NOMES[m.lua]}</b></div>
+        ${m.asc != null ? `<div class="astro asc"><div class="bola">${GLIFOS[m.asc]}</div><span class="rot">${T.asc}</span><b>${NOMES[m.asc]}</b></div>` : ""}</div>
+      <p class="boas2" style="margin-top:14px">${tr("caminhamos", { nome: ESC(E.nome), meta: METAS[E.meta].nome.toLowerCase() }).replace("<b>", '<b style="color:var(--ouro)">')}</p>`;
     $("ok-fim").hidden = false; $("ok-fim").disabled = false;
   });
   $("ok-fim").onclick = () => { E.inicio = E.inicio || hojeISO(); gravar(); mostrarApp(); };
@@ -598,20 +571,24 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
   // ================= A APP =================
   let quem = "sol";   // ler o horóscopo pelo Sol ou pelo Ascendente
   const cacheHoro = {};
-  const lerHoro = (iso) => cacheHoro[iso] || (cacheHoro[iso] = fetch("horoscopo-dia/" + iso + ".json").then((r) => { if (!r.ok) throw r.status; return r.json(); }));
-  const hora = (ms) => new Date(ms).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" });
+  const busca = (u) => fetch(u).then((r) => { if (!r.ok) throw r.status; return r.json(); });
+  let emPT = false;
+  const lerHoro = (iso) => { const l = E.lingua, ch = l + iso;
+    return cacheHoro[ch] || (cacheHoro[ch] = l === "pt" ? busca("horoscopo-dia/" + iso + ".json").then((x) => (emPT = false, x))
+      : busca(`horoscopo-dia/${l}/${iso}.json`).then((x) => (emPT = false, x)).catch(() => busca("horoscopo-dia/" + iso + ".json").then((x) => (emPT = true, x)))); };
+  const hora = (ms) => new Date(ms).toLocaleTimeString(LG.locale, { hour: "2-digit", minute: "2-digit" });
   const por = (t) => ESC(t).replace(/\{S:(\d+)\}/g, (_, n) => NOMES[+n]).replace(/\{H:(\d+)\}/g, (_, ms) => hora(+ms));
 
   async function desenharHoje() {
     const agora = new Date(), h = agora.getHours();
-    $("hoje-data").textContent = `${SEMANA[agora.getDay()]}, ${agora.getDate()} de ${MESES[agora.getMonth()]}`;
-    $("ola").innerHTML = `<span class="ouro">${h < 12 ? "Bom dia" : h < 20 ? "Boa tarde" : "Boa noite"}, ${ESC(E.nome)}</span>`;
+    $("hoje-data").textContent = fmtData(agora, { weekday: "long", day: "numeric", month: "long" });
+    $("ola").innerHTML = `<span class="ouro">${h < 12 ? T.bom_dia : h < 20 ? T.boa_tarde : T.boa_noite}, ${ESC(E.nome)}</span>`;
     desenharHumor($("humor"));
 
     // o céu: Sol ou Ascendente
     const m = E.mapa;
     $("trocar").innerHTML = m.asc != null
-      ? `<button data-q="sol" class="${quem === "sol" ? "ativo" : ""}">${GLIFOS[m.sol]} Pelo Sol · ${NOMES[m.sol]}</button><button data-q="asc" class="${quem === "asc" ? "ativo" : ""}">↑ Pelo Ascendente · ${NOMES[m.asc]}</button>`
+      ? `<button data-q="sol" class="${quem === "sol" ? "ativo" : ""}">${GLIFOS[m.sol]} ${T.pelo_sol} · ${NOMES[m.sol]}</button><button data-q="asc" class="${quem === "asc" ? "ativo" : ""}">↑ ${T.pelo_asc} · ${NOMES[m.asc]}</button>`
       : "";
     $("trocar").onclick = (e) => { const b = e.target.closest("button"); if (b) { quem = b.dataset.q; desenharHoje(); } };
     const s = quem === "asc" && m.asc != null ? m.asc : m.sol;
@@ -619,30 +596,30 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
     try { x = await lerHoro(hojeISO()); } catch (e) {}
     if (x) {
       const y = x.s[s];
-      $("horo").innerHTML = `<div class="estrelas">${"★".repeat(y.e)}${"☆".repeat(5 - y.e)} <span class="rot">energia</span></div>
+      $("horo").innerHTML = `<div class="estrelas">${"★".repeat(y.e)}${"☆".repeat(5 - y.e)} <span class="rot">${T.energia}</span></div>
         <div class="chave">${por(y.k)}</div><p>${por(y.t[0])}</p>
         <div class="fechado" id="horo-mais">${y.t.slice(1).map((t) => `<p>${por(t)}</p>`).join("")}
-          <div class="rot" style="margin-top:12px">O céu de hoje para todos</div>
+          <div class="rot" style="margin-top:12px">${T.ceu_todos}</div>
           <ul class="ceu-lista">${x.ceu.map((l) => `<li>${por(l)}</li>`).join("")}</ul></div>
-        <button class="mais" id="horo-btn">Ler o seu céu completo ↓</button>`;
-      $("horo-btn").onclick = () => { const f = $("horo-mais").classList.toggle("fechado"); $("horo-btn").textContent = f ? "Ler o seu céu completo ↓" : "Fechar ↑"; };
+        <button class="mais" id="horo-btn">${T.ler_tudo}</button>${emPT ? `<p class="breve">${T.so_pt}</p>` : ""}`;
+      $("horo-btn").onclick = () => { const f = $("horo-mais").classList.toggle("fechado"); $("horo-btn").textContent = f ? T.ler_tudo : T.fechar; };
       $("lua-txt").innerHTML = x.ceu[0] ? por(x.ceu[0]).replace(/^☽\s*/, "") : "";
       $("passo-hoje").innerHTML = por(y.d);
     } else {
-      $("horo").innerHTML = `<p class="breve">Sem ligação: o céu de hoje aparece assim que houver rede.</p>`;
-      $("passo-hoje").textContent = "Escolha uma pequena coisa que a aproxime do seu caminho e faça-a hoje.";
+      $("horo").innerHTML = `<p class="breve">${T.sem_rede}</p>`;
+      $("passo-hoje").textContent = T.passo_sem;
     }
 
     // a carta do dia
     const n = semente(E.nome + E.nasc.data.join("-") + hojeISO()) % 22;
     const A = TextosCarta.ARCANOS[n];
     $("carta-img").src = `https://www.trustedtarot.com/img/cards/${A[2]}.png`;
-    $("carta-img").alt = A[0];
+    $("carta-img").alt = ARC[n];
     const dia = E.dias[hojeISO()] || {};
     const mostrarCarta = () => {
       $("carta").classList.add("virada");
-      $("carta-txt").innerHTML = `<div class="rot">${A[1]} · arcano maior</div><h3 class="ouro" style="font-size:20px;margin:4px 0">${A[0]}</h3>
-        <p class="serifa" style="color:var(--texto);font-size:19px">${DIA_CARTA[n]}</p><a href="/${A[3].replace(".html", "")}" style="color:var(--ouro);font-size:14px">Saber mais sobre ${A[0]} →</a>`;
+      $("carta-txt").innerHTML = `<div class="rot">${A[1]} · ${T.arcano_maior}</div><h3 class="ouro" style="font-size:20px;margin:4px 0">${ARC[n]}</h3>
+        <p class="serifa" style="color:var(--texto);font-size:19px">${DIA_CARTA[n]}</p><a href="/${A[3].replace(".html", "")}" style="color:var(--ouro);font-size:14px">${tr("saber_mais", { carta: ARC[n] })}</a>`;
     };
     $("carta").classList.remove("virada");
     desenharLua();
@@ -659,14 +636,14 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
     $("noite").onclick = (e) => { const b = e.target.closest("button"); if (!b) return;
       const d = E.dias[hojeISO()] = E.dias[hojeISO()] || {}; d.passo = b.dataset.v; gravar();
       $("noite").querySelectorAll("button").forEach((z) => z.classList.toggle("esc", z === b));
-      $("guardado").textContent = b.dataset.v === "nao" ? "Está tudo bem. Amanhã é um novo dia. 🌙" : "Guardado. Estou orgulhoso de si. ✨"; };
+      $("guardado").textContent = b.dataset.v === "nao" ? T.guard_nao : T.guard_sim; };
     $("diario").value = dia.diario || "";
   }
   let tDiario;
   $("diario").addEventListener("input", () => {
     clearTimeout(tDiario);
     tDiario = setTimeout(() => { const d = E.dias[hojeISO()] = E.dias[hojeISO()] || {}; d.diario = $("diario").value.slice(0, 4000); gravar();
-      $("guardado").textContent = "Guardado no seu telemóvel ✓"; }, 600);
+      $("guardado").textContent = T.guard_diario; }, 600);
   });
 
   function desenharCaminho() {
@@ -675,9 +652,8 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
     let k = ativo(hojeISO()) ? 0 : -1, n = 0;
     while (ativo(hojeISO(k))) { n++; k--; }
     $("seguidos").textContent = n;
-    $("seguidos-rot").textContent = n === 1 ? "dia seguido" : "dias seguidos";
-    $("seguidos-frase").textContent = n === 0 ? "O caminho começa com o primeiro dia. Abra o seu céu amanhã também." :
-      n < 7 ? "Está a criar um hábito bonito. Continue." : n < 30 ? "Que constância! O céu recompensa quem persiste." : "Um mês inteiro consigo mesma. Que orgulho.";
+    $("seguidos-rot").textContent = n === 1 ? T.dia_seguido : T.dias_seguidos;
+    $("seguidos-frase").textContent = T[n === 0 ? "frase0" : n < 7 ? "frase1" : n < 30 ? "frase2" : "frase3"];
     const fila = [];
     for (let i = 13; i >= 0; i--) {
       const iso = hojeISO(-i), d = E.dias[iso] || {};
@@ -687,18 +663,31 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
     const ents = Object.entries(E.dias).filter(([, d]) => d.diario).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 30);
     $("entradas").innerHTML = ents.length ? ents.map(([iso, d]) => {
       const [a, m, dd] = iso.split("-").map(Number);
-      return `<div class="entrada"><div class="quando">${dd} de ${MESES[m - 1]} ${d.humor != null ? HUMOR[d.humor] : ""}</div><div>${ESC(d.diario).replace(/\n/g, "<br>")}</div></div>`;
-    }).join("") : `<p class="breve">Ainda não escreveu nada. À noite, no separador Hoje, conte como correu o seu dia.</p>`;
+      return `<div class="entrada"><div class="quando">${fmtData(new Date(a, m - 1, dd), { day: "numeric", month: "long" })} ${d.humor != null ? HUMOR[d.humor] : ""}</div><div>${ESC(d.diario).replace(/\n/g, "<br>")}</div></div>`;
+    }).join("") : `<p class="breve">${T.diario_vazio}</p>`;
   }
 
   function desenharEu() {
     const m = E.mapa, nz = E.nasc;
     $("eu-nome").textContent = E.nome;
     $("eu-mapa").innerHTML = `<p class="serifa" style="color:var(--texto)">${GLIFOS[m.sol]} Sol em <b>${NOMES[m.sol]}</b> <small>${m.solG}</small><br>${GLIFOS[m.lua]} Lua em <b>${NOMES[m.lua]}</b> <small>${m.luaG}</small>${m.asc != null ? `<br>↑ Ascendente em <b>${NOMES[m.asc]}</b> <small>${m.ascG}</small>` : ""}</p>
-      <p class="breve">Nasceu a ${nz.data[2]} de ${MESES[nz.data[1] - 1]} de ${nz.data[0]}${nz.hora ? ", às " + String(nz.hora[0]).padStart(2, "0") + ":" + String(nz.hora[1]).padStart(2, "0") : " (hora desconhecida: sem Ascendente)"}, em ${ESC(nz.cidade)}.</p>
-      <a href="/mapa-astral" style="color:var(--ouro);font-size:14px">O seu mapa astral completo →</a>`;
+      <p class="breve">${tr("nasceu", { data: fmtData(new Date(nz.data[0], nz.data[1] - 1, nz.data[2]), { day: "numeric", month: "long", year: "numeric" }),
+        hora: nz.hora ? tr("as_horas", { h: String(nz.hora[0]).padStart(2, "0") + ":" + String(nz.hora[1]).padStart(2, "0") }) : T.hora_desc, cidade: ESC(nz.cidade) })}</p>
+      <a href="/mapa-astral" style="color:var(--ouro);font-size:14px">${T.mapa_completo}</a>`;
     desenharMetas($("metas-eu"), () => desenharHoje());
   }
+
+  function desenharLinguas() {
+    for (const id of ["linguas", "linguas-0"]) {
+      const el = $(id);
+      el.innerHTML = Object.entries(LS).map(([k, v]) => `<button data-l="${k}" class="${E.lingua === k ? "ativo" : ""}" style="flex:0 1 auto;padding:7px 12px">${v.bandeira} ${v.nome_lingua}</button>`).join("");
+      el.onclick = (e) => { const b = e.target.closest("button[data-l]"); if (!b) return;
+        E.lingua = b.dataset.l; gravar(); poeLingua(E.lingua); desenharLinguas();
+        desenharMetas($("metas"), () => { $("ok-meta").disabled = false; });
+        if (!$("app").hidden) { desenharHoje(); desenharCaminho(); desenharEu(); } };
+    }
+  }
+  desenharLinguas();
 
   function mostrarApp() {
     $("acolhe").hidden = true; $("app").hidden = false; $("abas").hidden = false;
@@ -713,7 +702,7 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
   });
   $("refazer").onclick = () => { $("app").hidden = true; $("abas").hidden = true; $("acolhe").hidden = false; irPasso(2); };
   $("apagar").onclick = () => {
-    if (!confirm("Apagar tudo o que está guardado neste telemóvel (dados, diário e caminho)?")) return;
+    if (!confirm(T.confirmar_apagar)) return;
     try { localStorage.removeItem("teuceu"); } catch (e) {} location.reload();
   };
 
@@ -724,12 +713,12 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
   addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault(); pedidoInstalar = e;
     $("instalar").classList.add("mostra");
-    $("instalar-txt").innerHTML = `<p>Tenha o seu céu à distância de um toque, como uma app.</p><button class="btn" id="btn-instalar">Instalar O Teu Céu</button>`;
+    $("instalar-txt").innerHTML = `<p>${T.instalar_txt}</p><button class="btn" id="btn-instalar">${T.instalar_btn}</button>`;
     $("btn-instalar").onclick = async () => { pedidoInstalar.prompt(); await pedidoInstalar.userChoice; $("instalar").classList.remove("mostra"); };
   });
   if (!instalada && ios) {
     $("instalar").classList.add("mostra");
-    $("instalar-txt").innerHTML = `<p>No iPhone: toque em <b>Partilhar</b> (o quadrado com a seta para cima) e depois em <b>Adicionar ao ecrã principal</b>.</p>`;
+    $("instalar-txt").innerHTML = `<p>${T.ios_txt}</p>`;
   }
   if ("serviceWorker" in navigator) navigator.serviceWorker.register("/o-teu-ceu-sw.js", { scope: "/o-teu-ceu" }).catch(() => {});
 
