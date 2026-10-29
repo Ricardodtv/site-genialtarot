@@ -3,7 +3,7 @@
    (localStorage «vip-entrou»); o × esconde-a só até fechar o separador. */
 (function () {
   try {
-    if (/^\/vip(\.html)?$/.test(location.pathname)) return;
+    if (/^\/(vip|o-teu-ceu)(\.html)?$/.test(location.pathname)) return;   // nem na página VIP nem na app «O Teu Céu»
     // 29/10/2026: quem chega por um email da lista (os links levam «vip=1») já é VIP — nunca mais vê a faixa
     if (new URLSearchParams(location.search).get("vip") === "1") { localStorage.setItem("vip-entrou", "1"); return; }
     if (localStorage.getItem("vip-entrou")) return;
