@@ -49,6 +49,7 @@ function buildMessage(type, d = {}) {
       `🎂 Nascimento: ${clean(d.date_of_birth)} às ${clean(d.birth_time, 20)}`,
       `📍 ${clean(d.city)}, ${clean(d.country)}`,
       `♀ ${clean(d.venus, 60)} · ♂ ${clean(d.marte, 60)}`,
+      ...(d.promo === "halloween" ? ["", "🎃 HALLOWEEN: leva também o MAPA ASTRAL completo de OFERTA"] : []),
       "",
       "⏳ Confirma se o pagamento entrou e diz «envia» — só então segue o mapa completo.",
     ].join("\n");
