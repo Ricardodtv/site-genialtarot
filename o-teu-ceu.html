@@ -400,7 +400,7 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
 
 <script src="ascendente-calc.js"></script>
 <script src="carta-de-tarot-textos.js"></script>
-<script src="o-teu-ceu-linguas.js"></script>
+<script src="o-teu-ceu-linguas.js?v=20261029"></script>
 <script>
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -426,7 +426,7 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
     METAS = {}; for (const k in EMOJI_META) METAS[k] = { em: EMOJI_META[k], nome: LG.metas[k][0], sub: LG.metas[k][1] };
     AFIRMA = LG.afirma; DIA_CARTA = LG.carta_dia; HUMOR_TXT = LG.humor; ARC = LG.arcanos;
     document.documentElement.lang = l;
-    document.querySelectorAll("[data-t]").forEach((el) => { el.innerHTML = T[el.dataset.t]; });
+    document.querySelectorAll("[data-t]").forEach((el) => { if (T[el.dataset.t] != null) el.innerHTML = T[el.dataset.t]; });   // sem tradução: fica o português escrito na página
     document.querySelectorAll("[data-tp]").forEach((el) => { el.placeholder = T[el.dataset.tp]; });
   }
   poeLingua(E.lingua);
@@ -553,18 +553,25 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
   $("ok-fim").onclick = () => { E.inicio = E.inicio || hojeISO(); gravar(); mostrarApp(); };
 
   // ===== a Lua de hoje, desenhada pela fase (Lua Nova de referência: 6/1/2000 18:14 UTC; mês sinódico médio) =====
+  // 29/10/2026 (pedido dele): a Lua do dia é a FOTOGRAFIA da lua cheia que ele mandou, com a sombra da fase por cima
+  const FOTO_LUA = new Image(); FOTO_LUA.src = "/lua-cheia-240.png";
   function desenharLua() {
     const c = $("lua-hoje"), g = c.getContext("2d"), R = 56, cx = 64, cy = 64;
+    if (!FOTO_LUA.complete) { FOTO_LUA.onload = desenharLua; }
     const f = (((Date.now() - 947182440000) / 86400000 / 29.530588853) % 1 + 1) % 1;   // 0 nova · 0,5 cheia
     g.clearRect(0, 0, 128, 128);
-    g.fillStyle = "rgba(40, 20, 70, .9)"; g.beginPath(); g.arc(cx, cy, R, 0, 2 * Math.PI); g.fill();
+    g.save(); g.beginPath(); g.arc(cx, cy, R, 0, 2 * Math.PI); g.clip();
+    if (FOTO_LUA.complete && FOTO_LUA.naturalWidth) g.drawImage(FOTO_LUA, cx - R, cy - R, 2 * R, 2 * R);
+    else { g.fillStyle = "#f2d690"; g.fillRect(cx - R, cy - R, 2 * R, 2 * R); }
+    // a sombra = o disco menos a parte iluminada (par-ímpar)
     const k = Math.cos(f * 2 * Math.PI);            // 1 nova → -1 cheia
-    const grad = g.createRadialGradient(cx - 16, cy - 16, 6, cx, cy, R); grad.addColorStop(0, "#fffbe9"); grad.addColorStop(1, "#f2d690");
-    g.fillStyle = grad; g.beginPath();
     const crescente = f < 0.5;                       // a crescer: iluminada à direita (hemisfério norte)
+    g.beginPath(); g.arc(cx, cy, R + 1, 0, 2 * Math.PI);
+    g.moveTo(cx, cy - R);
     g.arc(cx, cy, R, -Math.PI / 2, Math.PI / 2, !crescente);
     g.ellipse(cx, cy, Math.abs(k) * R, R, 0, Math.PI / 2, -Math.PI / 2, (k > 0) === crescente);
-    g.fill();
+    g.fillStyle = "rgba(14, 6, 30, .86)"; g.fill("evenodd");
+    g.restore();
   }
 
   // ===== o céu estrelado, a cintilar devagar (e uma estrela cadente de vez em quando) =====

@@ -292,8 +292,8 @@ body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklc
     const lit = (e < 2 || e > 358) ? "" :
       (Math.abs(e - 180) < 2) ? `<circle cx="${c}" cy="${c}" r="${r}" fill="url(#${id})"/>` :
       `<path d="M${c} ${c - r} A${r} ${r} 0 0 ${fora} ${c} ${c + r} A${rx.toFixed(2)} ${r} 0 0 ${term} ${c} ${c - r}Z" fill="url(#${id})"/>`;
-    return `<svg viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="${id}" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#fffaf0"/><stop offset=".7" stop-color="#efe3c4"/><stop offset="1" stop-color="#cbb98f"/></radialGradient></defs>`
-      + `<circle cx="${c}" cy="${c}" r="${r}" fill="#2a1f3d" stroke="#b9a6d6" stroke-opacity=".35" stroke-width="1.2"/>${lit}</svg>`;
+    return `<svg viewBox="0 0 100 100" aria-hidden="true"><defs><pattern id="${id}" patternUnits="userSpaceOnUse" width="100" height="100"><image href="/lua-cheia-240.png" x="2" y="2" width="96" height="96"/></pattern></defs>`
+      + `<circle cx="${c}" cy="${c}" r="${r}" fill="#2a1f3d" stroke="#b9a6d6" stroke-opacity=".35" stroke-width="1.2"/><image href="/lua-cheia-240.png" x="2" y="2" width="96" height="96" opacity=".14"/>${lit}</svg>`;
   }
   // a Lua do herói é a de agora
   const agora = Date.now(), luaHoje = AstroNasc.fase(agora);

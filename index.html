@@ -1517,7 +1517,7 @@ window.addEventListener("DOMContentLoaded", function () {
     var r = 48, c = 50, rx = Math.abs(Math.cos(e * Math.PI / 180)) * r, cresce = e < 180;
     var fora = cresce ? 1 : 0, term = cresce ? (e < 90 ? 0 : 1) : (e > 270 ? 1 : 0);
     var luz = (e < 2 || e > 358) ? "" : '<path d="M' + c + ' ' + (c - r) + ' A' + r + ' ' + r + ' 0 0 ' + fora + ' ' + c + ' ' + (c + r) + ' A' + rx.toFixed(2) + ' ' + r + ' 0 0 ' + term + ' ' + c + ' ' + (c - r) + 'Z" fill="url(#fl-g)"/>';
-    document.getElementById("faixa-lua-svg").outerHTML = '<svg class="lua-svg" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="fl-g" cx="40%" cy="38%" r="70%"><stop offset="0" stop-color="#fffaf0"/><stop offset=".7" stop-color="#efe3c4"/><stop offset="1" stop-color="#cbb98f"/></radialGradient></defs><circle cx="50" cy="50" r="48" fill="#2a1f3d" stroke="#b9a6d6" stroke-opacity=".4" stroke-width="1.2"/>' + luz + '</svg>';
+    document.getElementById("faixa-lua-svg").outerHTML = '<svg class="lua-svg" viewBox="0 0 100 100" aria-hidden="true"><defs><pattern id="fl-g" patternUnits="userSpaceOnUse" width="100" height="100"><image href="/lua-cheia-240.png" x="2" y="2" width="96" height="96"/></pattern></defs><circle cx="50" cy="50" r="48" fill="#2a1f3d" stroke="#b9a6d6" stroke-opacity=".4" stroke-width="1.2"/><image href="/lua-cheia-240.png" x="2" y="2" width="96" height="96" opacity=".14"/>' + luz + '</svg>';
     var ilum = Math.round((1 - Math.cos(e * Math.PI / 180)) / 2 * 100);
     var q = document.getElementById("faixa-lua-quando"), fs = document.getElementById("faixa-lua-fase"), m = document.getElementById("faixa-lua-mais");
     if (grande) {
