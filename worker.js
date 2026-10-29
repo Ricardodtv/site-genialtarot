@@ -549,7 +549,7 @@ export default {
     // Contar a visita antes de tudo. So paginas: fora as APIs, o /cdn-cgi/ da
     // Cloudflare e a pagina privada das estatisticas (que sou eu a olhar).
     if (!url.pathname.startsWith("/api/") && !url.pathname.startsWith("/cdn-cgi/") &&
-        url.pathname !== "/Estataomp8" && url.pathname !== "/geo" && url.pathname !== "/notify" && url.pathname !== "/sair") {
+        url.pathname !== "/Estataomp8" && url.pathname !== "/geo" && url.pathname !== "/notify" && url.pathname !== "/sair" && url.pathname !== "/quero") {
       contarVisita(request, url, env, ctx);
     }
 
@@ -698,6 +698,22 @@ export default {
         return pagina("<h1>Feito ✔</h1><p>Não voltará a receber os emails de novidades do Mestre Alberto.</p>");
       }
       return pagina(`<h1>Deixar de receber os emails?</h1><p>Deixa de receber as novidades e promoções do Mestre Alberto por email.</p><form method="post"><button type="submit">Sim, não quero receber mais</button></form>`);
+    }
+
+    // ── «SIM, QUERO RECEBER NOVIDADES» (29/10/2026) ─────────────────────
+    // O botão do email-convite às capturas antigas: /quero?t=<token>. O GET só
+    // pergunta (os antivírus do correio abrem links sozinhos e não podem dar
+    // o «sim» por ninguém); o POST do botão grava «quero-<token>» na fila.
+    if (url.pathname === "/quero") {
+      const t = (url.searchParams.get("t") || "").toLowerCase();
+      const pagina = (msg) => new Response(`<!doctype html><html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Novidades do Mestre Alberto — Genial Tarot</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#1b1230;color:#efe8ff;font:17px/1.5 system-ui,sans-serif;padding:16px}main{max-width:460px;text-align:center}h1{font-size:1.3em;color:oklch(0.85 0.13 88)}button,.botao{display:inline-block;font:inherit;background:oklch(0.85 0.13 88);color:#1b1230;border:0;border-radius:999px;padding:.7em 1.6em;cursor:pointer;font-weight:600;text-decoration:none}a{color:#cbb8ff}</style></head><body><main>${msg}</main></body></html>`, { headers: { "Content-Type": "text/html; charset=utf-8" } });
+      if (!/^[0-9a-f]{24}$/.test(t)) return pagina(`<h1>Link incompleto</h1><p>Este link não está completo. Se quer receber as novidades, responda ao email com a palavra SIM.</p><p><a href="/">genialtarot.com</a></p>`);
+      if (request.method === "POST") {
+        try { await env.CAPTURAS.put("quero-" + t, JSON.stringify({ quando: new Date().toISOString() })); }
+        catch (e) { return pagina(`<h1>Não consegui registar</h1><p>Tente outra vez daqui a pouco, ou responda ao email com a palavra SIM.</p>`); }
+        return pagina(`<h1>Obrigado ✨</h1><p>A partir de agora recebe de vez em quando os horóscopos, as novidades e as promoções do Mestre Alberto. Pode deixar de receber quando quiser, com o link no fim de cada email.</p><p><a class="botao" href="/novidades">Ver as novidades do site</a></p>`);
+      }
+      return pagina(`<h1>Quer receber as novidades?</h1><p>Horóscopos, novidades e promoções do Mestre Alberto, de vez em quando, por email. Pode deixar de receber quando quiser.</p><form method="post"><button type="submit">Sim, quero receber novidades</button></form><p><a href="/">genialtarot.com</a></p>`);
     }
 
     if (url.pathname === "/notify") {
