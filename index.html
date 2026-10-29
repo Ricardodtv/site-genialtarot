@@ -650,8 +650,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .carta-gira-in { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; animation: carta-vira 6s ease-in-out infinite; }
 .carta-face { position: absolute; inset: 0; border-radius: 0.4rem; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden;
   border: 1.5px solid oklch(0.85 0.13 88 / 0.9); box-shadow: 0 6px 18px #0007, 0 0 16px oklch(0.70 0.18 305 / 0.5); }
-.carta-verso { display: grid; place-items: center; color: var(--m-ouro); font-size: 1.4rem;
-  background: repeating-linear-gradient(45deg, oklch(0.34 0.13 300) 0 5px, oklch(0.28 0.11 295) 5px 10px); }
+.carta-verso { background: url(/cartas/verso-gt.webp) center/cover no-repeat, oklch(0.22 0.08 300); }   /* o verso oficial GT do baralho do Mestre Alberto */
 .carta-verso i { font-style: normal; width: 2rem; height: 2rem; display: grid; place-items: center; border-radius: 50%;
   border: 1px solid oklch(0.85 0.13 88 / 0.7); background: oklch(0.22 0.08 300); }
 .carta-frente { transform: rotateY(180deg); background: oklch(0.95 0.03 90); }
@@ -937,8 +936,8 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
         <div class="porta-cabeca">
           <span class="porta-visual carta-gira" aria-hidden="true">
             <span class="carta-gira-in">
-              <span class="carta-face carta-verso"><i>✦</i></span>
-              <span class="carta-face carta-frente"><img src="https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg" alt="" loading="lazy" decoding="async" /></span>
+              <span class="carta-face carta-verso"></span>
+              <span class="carta-face carta-frente"><img src="/cartas/17-a-estrela.webp" alt="" loading="lazy" decoding="async" /></span>
             </span>
           </span>
           <span class="porta-txt">
@@ -1260,28 +1259,28 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 // ===== 22 Arcanos Maiores (edita cada `link` para apontar para uma página individual) =====
 const ARCANA = [
-  { roman: "0", name: "The Fool", pt: "O Louco", img: "https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg", link: "arcano-00-o-louco.html" },
-  { roman: "I", name: "The Magician", pt: "O Mago", img: "https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg", link: "arcano-01-o-mago.html" },
-  { roman: "II", name: "The High Priestess", pt: "A Sacerdotisa", img: "https://upload.wikimedia.org/wikipedia/commons/8/88/RWS_Tarot_02_High_Priestess.jpg", link: "arcano-02-a-sacerdotisa.html" },
-  { roman: "III", name: "The Empress", pt: "A Imperatriz", img: "https://upload.wikimedia.org/wikipedia/commons/d/d2/RWS_Tarot_03_Empress.jpg", link: "arcano-03-a-imperatriz.html" },
-  { roman: "IV", name: "The Emperor", pt: "O Imperador", img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/RWS_Tarot_04_Emperor.jpg", link: "arcano-04-o-imperador.html" },
-  { roman: "V", name: "The Hierophant", pt: "O Hierofante", img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/RWS_Tarot_05_Hierophant.jpg", link: "arcano-05-o-hierofante.html" },
-  { roman: "VI", name: "The Lovers", pt: "Os Enamorados", img: "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg", link: "arcano-06-os-enamorados.html" },
-  { roman: "VII", name: "The Chariot", pt: "O Carro", img: "https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg", link: "arcano-07-o-carro.html" },
-  { roman: "VIII", name: "Strength", pt: "A Força", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg", link: "arcano-08-a-forca.html" },
-  { roman: "IX", name: "The Hermit", pt: "O Eremita", img: "https://upload.wikimedia.org/wikipedia/commons/4/4d/RWS_Tarot_09_Hermit.jpg", link: "arcano-09-o-eremita.html" },
-  { roman: "X", name: "Wheel of Fortune", pt: "A Roda da Fortuna", img: "https://upload.wikimedia.org/wikipedia/commons/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg", link: "arcano-10-a-roda-da-fortuna.html" },
-  { roman: "XI", name: "Justice", pt: "A Justiça", img: "https://upload.wikimedia.org/wikipedia/commons/e/e0/RWS_Tarot_11_Justice.jpg", link: "arcano-11-a-justica.html" },
-  { roman: "XII", name: "The Hanged Man", pt: "O Enforcado", img: "https://upload.wikimedia.org/wikipedia/commons/2/2b/RWS_Tarot_12_Hanged_Man.jpg", link: "arcano-12-o-enforcado.html" },
-  { roman: "XIII", name: "Death", pt: "A Morte", img: "https://upload.wikimedia.org/wikipedia/commons/d/d7/RWS_Tarot_13_Death.jpg", link: "arcano-13-a-morte.html" },
-  { roman: "XIV", name: "Temperance", pt: "A Temperança", img: "https://upload.wikimedia.org/wikipedia/commons/f/f8/RWS_Tarot_14_Temperance.jpg", link: "arcano-14-a-temperanca.html" },
-  { roman: "XV", name: "The Devil", pt: "O Diabo", img: "https://upload.wikimedia.org/wikipedia/commons/5/55/RWS_Tarot_15_Devil.jpg", link: "arcano-15-o-diabo.html" },
-  { roman: "XVI", name: "The Tower", pt: "A Torre", img: "https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg", link: "arcano-16-a-torre.html" },
-  { roman: "XVII", name: "The Star", pt: "A Estrela", img: "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg", link: "arcano-17-a-estrela.html" },
-  { roman: "XVIII", name: "The Moon", pt: "A Lua", img: "https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg", link: "arcano-18-a-lua.html" },
-  { roman: "XIX", name: "The Sun", pt: "O Sol", img: "https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg", link: "arcano-19-o-sol.html" },
-  { roman: "XX", name: "Judgement", pt: "O Julgamento", img: "https://upload.wikimedia.org/wikipedia/commons/d/dd/RWS_Tarot_20_Judgement.jpg", link: "arcano-20-o-julgamento.html" },
-  { roman: "XXI", name: "The World", pt: "O Mundo", img: "https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg", link: "arcano-21-o-mundo.html" },
+  { roman: "0", name: "The Fool", pt: "O Louco", img: "/cartas/00-o-louco.webp", link: "arcano-00-o-louco.html" },
+  { roman: "I", name: "The Magician", pt: "O Mago", img: "/cartas/01-o-mago.webp", link: "arcano-01-o-mago.html" },
+  { roman: "II", name: "The High Priestess", pt: "A Sacerdotisa", img: "/cartas/02-a-sacerdotisa.webp", link: "arcano-02-a-sacerdotisa.html" },
+  { roman: "III", name: "The Empress", pt: "A Imperatriz", img: "/cartas/03-a-imperatriz.webp", link: "arcano-03-a-imperatriz.html" },
+  { roman: "IV", name: "The Emperor", pt: "O Imperador", img: "/cartas/04-o-imperador.webp", link: "arcano-04-o-imperador.html" },
+  { roman: "V", name: "The Hierophant", pt: "O Hierofante", img: "/cartas/05-o-hierofante.webp", link: "arcano-05-o-hierofante.html" },
+  { roman: "VI", name: "The Lovers", pt: "Os Enamorados", img: "/cartas/06-os-enamorados.webp", link: "arcano-06-os-enamorados.html" },
+  { roman: "VII", name: "The Chariot", pt: "O Carro", img: "/cartas/07-o-carro.webp", link: "arcano-07-o-carro.html" },
+  { roman: "VIII", name: "Strength", pt: "A Força", img: "/cartas/08-a-forca.webp", link: "arcano-08-a-forca.html" },
+  { roman: "IX", name: "The Hermit", pt: "O Eremita", img: "/cartas/09-o-eremita.webp", link: "arcano-09-o-eremita.html" },
+  { roman: "X", name: "Wheel of Fortune", pt: "A Roda da Fortuna", img: "/cartas/10-a-roda-da-fortuna.webp", link: "arcano-10-a-roda-da-fortuna.html" },
+  { roman: "XI", name: "Justice", pt: "A Justiça", img: "/cartas/11-a-justica.webp", link: "arcano-11-a-justica.html" },
+  { roman: "XII", name: "The Hanged Man", pt: "O Enforcado", img: "/cartas/12-o-enforcado.webp", link: "arcano-12-o-enforcado.html" },
+  { roman: "XIII", name: "Death", pt: "A Morte", img: "/cartas/13-a-morte.webp", link: "arcano-13-a-morte.html" },
+  { roman: "XIV", name: "Temperance", pt: "A Temperança", img: "/cartas/14-a-temperanca.webp", link: "arcano-14-a-temperanca.html" },
+  { roman: "XV", name: "The Devil", pt: "O Diabo", img: "/cartas/15-o-diabo.webp", link: "arcano-15-o-diabo.html" },
+  { roman: "XVI", name: "The Tower", pt: "A Torre", img: "/cartas/16-a-torre.webp", link: "arcano-16-a-torre.html" },
+  { roman: "XVII", name: "The Star", pt: "A Estrela", img: "/cartas/17-a-estrela.webp", link: "arcano-17-a-estrela.html" },
+  { roman: "XVIII", name: "The Moon", pt: "A Lua", img: "/cartas/18-a-lua.webp", link: "arcano-18-a-lua.html" },
+  { roman: "XIX", name: "The Sun", pt: "O Sol", img: "/cartas/19-o-sol.webp", link: "arcano-19-o-sol.html" },
+  { roman: "XX", name: "Judgement", pt: "O Julgamento", img: "/cartas/20-o-julgamento.webp", link: "arcano-20-o-julgamento.html" },
+  { roman: "XXI", name: "The World", pt: "O Mundo", img: "/cartas/21-o-mundo.webp", link: "arcano-21-o-mundo.html" },
 ];
 
 const track = document.getElementById("carousel-track");

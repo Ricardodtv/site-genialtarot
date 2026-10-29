@@ -47,8 +47,13 @@
 | imagens/áudio | Fotos redondas das páginas: `mestre-principal.jpg` (index), `mestre-diario.jpg` (horóscopo), `mestre-anual.jpg` (anual), `mestre-fds.jpg` (fim de semana), `mestre-arvore.jpg` (árvore), `profile.png` (loja), `mestre-horoscopo.jpg` (antiga, ainda no repo), `mestre-alberto.jpg` (tarot). Fotos de produtos: 21 .jpg (pergunta-escrita, consulta-*, previsao-anual, terapia-casais, parecer-cartas, quiromancia, prosperidade-financeira, protecao-limpeza, vela-guia, ritual-lua-cheia, incenso-oracao, abertura-caminhos, atracao-amor, ritual-prosperidade, consulta-emergencia, amuleto-*, mapa-astral, analise-signo, curso-tarot) + `mbway.png`. Áudio: `mystic-ambient.mp3`, `ambient.mp3`. Outros: `tudo-aqui.png`, `favicon.ico`, `og-image.png` |
 
 O deck de tarot (78 cartas + textos do veredito) está EMBUTIDO dentro de
-`tarot-gratis.html`. As cartas do carrossel vêm de imagens da Wikimedia; as do
-jogo de trustedtarot.com.
+`tarot-gratis.html`. **Desde 29/10/2026 os 22 Arcanos Maiores são o BARALHO OFICIAL
+do Mestre Alberto**, em `cartas/NN-slug.webp` (480×804, cantos arredondados, nome em
+PT na carta) + o verso `cartas/verso-gt.webp` (selo GT em cima e, rodado, em baixo).
+Usados no carrossel, arcanos, carta de tarot, tarot grátis, árvore, semestral, amor do
+dia, compatibilidade e na app (carta do dia + costas). Os 56 menores continuam no
+trustedtarot.com. Originais no cofre: `CentralS/Baralho Mestre Alberto`; guiões em
+`~/baralho/` no cerebro.
 
 ## worker.js — rotas da ponte
 

@@ -176,7 +176,7 @@ label.campo .rot { display: block; font-size: 0.68rem; text-transform: uppercase
 .face.frente { background: oklch(0.95 0.02 85); }
 .face.frente img { width: 100%; height: 100%; object-fit: cover; }
 .face.frente img.invertida { transform: rotate(180deg); }
-.face.verso { transform: rotateY(180deg); background: linear-gradient(150deg, oklch(0.3 0.09 280), oklch(0.2 0.06 265)); display: grid; place-items: center; color: var(--ouro); font-size: 1.3rem; }
+.face.verso { transform: rotateY(180deg); background: url(/cartas/verso-gt.webp) center/cover no-repeat, oklch(0.2 0.06 265); }   /* o verso oficial GT */
 .no.revelado .ranhura { animation: brilho 1.6s ease-out 1; }
 .no .resultado { margin-top: 0.45rem; display: none; }
 .no.revelado .resultado { display: block; animation: surgir 0.7s ease-out 0.75s both; }
@@ -370,7 +370,8 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
 document.getElementById("ano").textContent = new Date().getFullYear();
 
 /* ===== Arcanos Maiores ===== */
-const IMG = s => `https://www.trustedtarot.com/img/cards/${s}.png`;
+const GT_MAIORES = {"the-fool":"/cartas/00-o-louco.webp","the-magician":"/cartas/01-o-mago.webp","the-high-priestess":"/cartas/02-a-sacerdotisa.webp","the-empress":"/cartas/03-a-imperatriz.webp","the-emperor":"/cartas/04-o-imperador.webp","the-heirophant":"/cartas/05-o-hierofante.webp","the-lovers":"/cartas/06-os-enamorados.webp","the-chariot":"/cartas/07-o-carro.webp","strength":"/cartas/08-a-forca.webp","the-hermit":"/cartas/09-o-eremita.webp","wheel-of-fortune":"/cartas/10-a-roda-da-fortuna.webp","justice":"/cartas/11-a-justica.webp","the-hanged-man":"/cartas/12-o-enforcado.webp","death":"/cartas/13-a-morte.webp","temperance":"/cartas/14-a-temperanca.webp","the-devil":"/cartas/15-o-diabo.webp","the-tower":"/cartas/16-a-torre.webp","the-star":"/cartas/17-a-estrela.webp","the-moon":"/cartas/18-a-lua.webp","the-sun":"/cartas/19-o-sol.webp","judgement":"/cartas/20-o-julgamento.webp","the-world":"/cartas/21-o-mundo.webp"}; // o baralho oficial do Mestre Alberto (/cartas); os menores continuam no trustedtarot
+const IMG = (slug) => GT_MAIORES[slug] || `https://www.trustedtarot.com/img/cards/${slug}.png`;
 const ARCANOS = [
   { r:"0", nome:"O Louco", img:IMG("the-fool"), up:"a força é o salto de fé — começar de novo, sem garantias", inv:"impulsividade sem rede — o risco pede um plano antes do salto" },
   { r:"I", nome:"O Mago", img:IMG("the-magician"), up:"tem à mão todos os recursos para agir agora", inv:"talento disperso — falta foco, não capacidade" },
@@ -456,7 +457,7 @@ SEFIROT.forEach(s => {
       <div class="vazio">coloque aqui<br>a carta</div>
       <div class="carta3d">
         <div class="face frente"><img alt="" /></div>
-        <div class="face verso">✦</div>
+        <div class="face verso"></div>
       </div>
     </div>
     <div class="resultado">

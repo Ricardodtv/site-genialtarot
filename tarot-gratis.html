@@ -428,7 +428,8 @@ footer { padding: 2.5rem 1rem; text-align: center; font-size: 0.75rem; color: va
 <script type="module">
 /* ===== tarot-deck (embutido) ===== */
 // src/lib/tarot-deck.ts
-var IMG = (slug) => `https://www.trustedtarot.com/img/cards/${slug}.png`;
+var GT_MAIORES = {"the-fool":"/cartas/00-o-louco.webp","the-magician":"/cartas/01-o-mago.webp","the-high-priestess":"/cartas/02-a-sacerdotisa.webp","the-empress":"/cartas/03-a-imperatriz.webp","the-emperor":"/cartas/04-o-imperador.webp","the-heirophant":"/cartas/05-o-hierofante.webp","the-lovers":"/cartas/06-os-enamorados.webp","the-chariot":"/cartas/07-o-carro.webp","strength":"/cartas/08-a-forca.webp","the-hermit":"/cartas/09-o-eremita.webp","wheel-of-fortune":"/cartas/10-a-roda-da-fortuna.webp","justice":"/cartas/11-a-justica.webp","the-hanged-man":"/cartas/12-o-enforcado.webp","death":"/cartas/13-a-morte.webp","temperance":"/cartas/14-a-temperanca.webp","the-devil":"/cartas/15-o-diabo.webp","the-tower":"/cartas/16-a-torre.webp","the-star":"/cartas/17-a-estrela.webp","the-moon":"/cartas/18-a-lua.webp","the-sun":"/cartas/19-o-sol.webp","judgement":"/cartas/20-o-julgamento.webp","the-world":"/cartas/21-o-mundo.webp"}; // o baralho oficial do Mestre Alberto (/cartas); os menores continuam no trustedtarot
+var IMG = (slug) => GT_MAIORES[slug] || `https://www.trustedtarot.com/img/cards/${slug}.png`;
 var major = [
   { id: "m0", name: "O Louco", arcana: "maior", keywords: ["novos começos", "liberdade", "espontaneidade", "salto de fé"], image: IMG("the-fool") },
   { id: "m1", name: "O Mago", arcana: "maior", keywords: ["manifestação", "ação", "habilidade", "vontade"], image: IMG("the-magician") },
@@ -1279,16 +1280,7 @@ function renderMesa() {
   document.getElementById("mesa-grid").innerHTML = cards.map((c, i) => `
     <div class="tcard card-flip animate-float" style="animation-delay:${i * 0.15}s" id="tc-${i}" role="img" aria-label="Carta ${i + 1} virada para baixo">
       <div class="card-flip-inner">
-        <div class="card-face bg-gradient-mystic shadow-mystic" style="border:1px solid oklch(0.82 0.13 85 / 0.4)">
-          <div class="starfield" style="position:absolute;inset:0;opacity:0.6"></div>
-          <div style="position:absolute;inset:0.5rem;border-radius:0.375rem;border:1px solid oklch(0.82 0.13 85 / 0.3);display:flex;align-items:center;justify-content:center">
-            <div style="position:relative">
-              <svg class="ico text-gold" style="width:2.5rem;height:2.5rem;filter:drop-shadow(0 0 12px oklch(0.82 0.13 85 / 0.7))" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
-              <div style="position:absolute;inset:-0.75rem;border-radius:9999px;border:1px solid oklch(0.82 0.13 85 / 0.3)"></div>
-              <div style="position:absolute;inset:-1.5rem;border-radius:9999px;border:1px solid oklch(0.82 0.13 85 / 0.2)"></div>
-            </div>
-          </div>
-        </div>
+        <div class="card-face shadow-mystic" style="background:url(/cartas/verso-gt.webp) center/cover no-repeat, oklch(0.2 0.06 265)"></div>
         <div class="card-face card-face-back shadow-gold" style="background:var(--card);border:1px solid oklch(0.82 0.13 85 / 0.5);display:flex;flex-direction:column">
           <div class="imgwrap"><img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.style.display='none'" /></div>
           <div class="name-strip">

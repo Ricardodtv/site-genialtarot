@@ -102,11 +102,11 @@ label { display: block; margin: 14px 0 6px; font-weight: 600; font-size: 14px; c
 .trocar button { flex: 1; border: 1px solid var(--borda); background: transparent; color: var(--suave); border-radius: 99px; padding: 7px; font-size: 13px; }
 .trocar button.ativo { background: rgba(242,201,107,.16); color: var(--ouro); border-color: var(--ouro); }
 .carta-zona { display: flex; gap: 16px; align-items: center; }
-.carta { width: 112px; flex: none; aspect-ratio: 300 / 527; perspective: 900px; }
+.carta { width: 112px; flex: none; aspect-ratio: 969 / 1624; perspective: 900px; }
 .carta-in { position: relative; width: 100%; height: 100%; transition: transform .9s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
 .carta.virada .carta-in { transform: rotateY(180deg); }
 .carta .face { position: absolute; inset: 0; border-radius: 10px; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; box-shadow: 0 10px 26px rgba(0,0,0,.4); }
-.carta .costas { background: url(o-teu-ceu-icone.svg) center/100% auto no-repeat, radial-gradient(circle at 50% 45%, #4a2470, #2a1245 60%, #140826); border: 2px solid var(--ouro); }
+.carta .costas { background: url(/cartas/verso-gt.webp) center/cover no-repeat, #2a1245; }   /* o verso oficial GT do baralho do Mestre Alberto */
 .carta .frente { transform: rotateY(180deg); background: #fff; }
 .carta .frente img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .passo-hoje { border-left: 3px solid var(--ouro); padding: 6px 0 6px 12px; margin-top: 10px; color: var(--texto); }
@@ -643,7 +643,7 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
     // a carta do dia
     const n = semente(E.nome + E.nasc.data.join("-") + hojeISO()) % 22;
     const A = TextosCarta.ARCANOS[n];
-    $("carta-img").src = `https://www.trustedtarot.com/img/cards/${A[2]}.png`;
+    $("carta-img").src = "/cartas/" + A[3].slice(7, -5) + ".webp";   // o baralho oficial do Mestre Alberto
     $("carta-img").alt = ARC[n];
     const dia = E.dias[hojeISO()] || {};
     const mostrarCarta = () => {

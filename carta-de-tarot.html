@@ -192,9 +192,9 @@ footer a { color: inherit; }
       <a class="btn-grande" href="#calcular">✨ Descobrir a minha carta</a>
     </div>
     <div class="leque" aria-hidden="true">
-      <img src="https://www.trustedtarot.com/img/cards/the-star.png" alt="" width="140" height="240" />
-      <img src="https://www.trustedtarot.com/img/cards/the-sun.png" alt="" width="140" height="240" fetchpriority="high" />
-      <img src="https://www.trustedtarot.com/img/cards/the-moon.png" alt="" width="140" height="240" />
+      <img src="/cartas/17-a-estrela.webp" alt="" width="140" height="240" />
+      <img src="/cartas/19-o-sol.webp" alt="" width="140" height="240" fetchpriority="high" />
+      <img src="/cartas/18-a-lua.webp" alt="" width="140" height="240" />
     </div>
   </section>
 
@@ -288,7 +288,8 @@ footer a { color: inherit; }
   const NOMES = ["Áries (Carneiro)","Touro","Gêmeos","Câncer (Caranguejo)","Leão","Virgem","Libra (Balança)","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
   const curto = (i) => NOMES[i].split(" (")[0];
   const { ARCANOS, NASC, SIGNO } = TextosCarta;
-  const IMG = (slug) => `https://www.trustedtarot.com/img/cards/${slug}.png`;   // as mesmas imagens do tarot-gratis.html
+  const GT_MAIORES = {"the-fool":"/cartas/00-o-louco.webp","the-magician":"/cartas/01-o-mago.webp","the-high-priestess":"/cartas/02-a-sacerdotisa.webp","the-empress":"/cartas/03-a-imperatriz.webp","the-emperor":"/cartas/04-o-imperador.webp","the-heirophant":"/cartas/05-o-hierofante.webp","the-lovers":"/cartas/06-os-enamorados.webp","the-chariot":"/cartas/07-o-carro.webp","strength":"/cartas/08-a-forca.webp","the-hermit":"/cartas/09-o-eremita.webp","wheel-of-fortune":"/cartas/10-a-roda-da-fortuna.webp","justice":"/cartas/11-a-justica.webp","the-hanged-man":"/cartas/12-o-enforcado.webp","death":"/cartas/13-a-morte.webp","temperance":"/cartas/14-a-temperanca.webp","the-devil":"/cartas/15-o-diabo.webp","the-tower":"/cartas/16-a-torre.webp","the-star":"/cartas/17-a-estrela.webp","the-moon":"/cartas/18-a-lua.webp","the-sun":"/cartas/19-o-sol.webp","judgement":"/cartas/20-o-julgamento.webp","the-world":"/cartas/21-o-mundo.webp"}; // o baralho oficial do Mestre Alberto (/cartas); os menores continuam no trustedtarot
+  const IMG = (slug) => GT_MAIORES[slug] || `https://www.trustedtarot.com/img/cards/${slug}.png`;   // as mesmas imagens do tarot-gratis.html
 
   // ===== Cidades (a mesma lista do GeoNames do Mapa Astral; só serve para o fuso) =====
   let CID = null, carregando = null, escolhida = null;
