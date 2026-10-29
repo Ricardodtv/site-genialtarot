@@ -287,6 +287,7 @@ footer a { color: inherit; }
         <label class="campo">O seu email <small>(enviamos-lhe o resultado)</small>
           <input type="email" id="email" autocomplete="off" required maxlength="120" />
         </label>
+        <label class="caixa-novidades" style="display:flex;gap:.6em;align-items:flex-start;grid-column:1/-1;font-size:.92em;line-height:1.4;margin:.3em 0;cursor:pointer;text-align:left"><input type="checkbox" id="novidades" style="width:1.15em;height:1.15em;min-width:0;padding:0;margin:.15em 0 0;flex:none;accent-color:oklch(0.85 0.13 88)" /><span>Quero receber novidades do Mestre Alberto por email (horóscopos, mapas e promoções). Pode cancelar quando quiser.</span></label>
         <label class="campo">WhatsApp <small>(opcional, com o indicativo do país)</small>
           <input type="tel" id="tel" autocomplete="off" maxlength="25" />
         </label>
@@ -581,7 +582,7 @@ footer a { color: inherit; }
       (semhora ? " (hora desconhecida: Ascendente aproximado)" : "");
     try {
       await fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ type: "ascendente", data: {
-        name: nome, email, phone: tel, date_of_birth: `${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`,
+        name: nome, email, novidades: !!(document.getElementById("novidades") || {}).checked, phone: tel, date_of_birth: `${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`,
         birth_time: semhora ? "desconhecida" : hora, city: escolhida ? escolhida[0] + (escolhida[1] ? " (" + escolhida[1] + ")" : "") : "teste",
         country: escolhida ? (CID.paises[escolhida[2]] || escolhida[2]) : "", area: "Calculadora de Ascendente",
         sign: NOMES[iS], ascendant: NOMES[iA], moon: NOMES[iL], verdict: veredito } }) });

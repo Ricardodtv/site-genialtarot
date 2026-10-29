@@ -549,7 +549,7 @@ export default {
     // Contar a visita antes de tudo. So paginas: fora as APIs, o /cdn-cgi/ da
     // Cloudflare e a pagina privada das estatisticas (que sou eu a olhar).
     if (!url.pathname.startsWith("/api/") && !url.pathname.startsWith("/cdn-cgi/") &&
-        url.pathname !== "/Estataomp8" && url.pathname !== "/geo" && url.pathname !== "/notify") {
+        url.pathname !== "/Estataomp8" && url.pathname !== "/geo" && url.pathname !== "/notify" && url.pathname !== "/sair") {
       contarVisita(request, url, env, ctx);
     }
 
@@ -681,6 +681,23 @@ export default {
         country: g.country || null,
         city: g.city || null,
       }), { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
+    }
+
+    // ── SAIR DA LISTA DE NOVIDADES (29/10/2026) ─────────────────────────
+    // Cada email de novidades traz /sair?t=<token> (24 hex, um por pessoa).
+    // GET mostra a confirmação; POST (o botão, ou o «cancelar subscrição» do
+    // Gmail, RFC 8058) grava «sair-<token>» na fila sem prazo. O cerebro lê
+    // estas chaves e tira a pessoa da lista; o fila-capturas.py não lhes toca.
+    if (url.pathname === "/sair") {
+      const t = (url.searchParams.get("t") || "").toLowerCase();
+      const pagina = (msg) => new Response(`<!doctype html><html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Deixar de receber — Genial Tarot</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#1b1230;color:#efe8ff;font:17px/1.5 system-ui,sans-serif;padding:16px}main{max-width:440px;text-align:center}h1{font-size:1.3em;color:oklch(0.85 0.13 88)}button{font:inherit;background:oklch(0.85 0.13 88);color:#1b1230;border:0;border-radius:999px;padding:.7em 1.6em;cursor:pointer;font-weight:600}a{color:#cbb8ff}</style></head><body><main>${msg}<p><a href="/">genialtarot.com</a></p></main></body></html>`, { headers: { "Content-Type": "text/html; charset=utf-8" } });
+      if (!/^[0-9a-f]{24}$/.test(t)) return pagina("<h1>Link incompleto</h1><p>Este link não está completo. Se quer deixar de receber os emails, responda a um deles com a palavra SAIR.</p>");
+      if (request.method === "POST") {
+        try { await env.CAPTURAS.put("sair-" + t, JSON.stringify({ quando: new Date().toISOString() })); }
+        catch (e) { return pagina("<h1>Não consegui registar</h1><p>Tente outra vez daqui a pouco, ou responda a um dos emails com a palavra SAIR.</p>"); }
+        return pagina("<h1>Feito ✔</h1><p>Não voltará a receber os emails de novidades do Mestre Alberto.</p>");
+      }
+      return pagina(`<h1>Deixar de receber os emails?</h1><p>Deixa de receber as novidades e promoções do Mestre Alberto por email.</p><form method="post"><button type="submit">Sim, não quero receber mais</button></form>`);
     }
 
     if (url.pathname === "/notify") {

@@ -286,6 +286,7 @@ footer { padding: 2.5rem 1rem; text-align: center; font-size: 0.75rem; color: va
         <label class="fld"><span class="lbl">Cidade</span><input id="f-city" class="input" /></label>
         <label class="fld"><span class="lbl">País</span><input id="f-country" class="input" /></label>
         <label class="fld span2"><span class="lbl">Email</span><input id="f-email" type="email" class="input" /></label>
+        <label class="caixa-novidades" style="display:flex;gap:.6em;align-items:flex-start;grid-column:1/-1;font-size:.92em;line-height:1.4;margin:.3em 0;cursor:pointer;text-align:left"><input type="checkbox" id="novidades" style="width:1.15em;height:1.15em;min-width:0;padding:0;margin:.15em 0 0;flex:none;accent-color:oklch(0.85 0.13 88)" /><span>Quero receber novidades do Mestre Alberto por email (horóscopos, mapas e promoções). Pode cancelar quando quiser.</span></label>
       </div>
       <div style="margin-top:1.5rem">
         <div class="muted" style="font-size:0.875rem;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:0.75rem">Escolha a área da sua vida</div>
@@ -1395,6 +1396,7 @@ function finishReading() {
     }
   });
   notifyTelegram("reading", {
+    novidades: !!(document.getElementById("novidades") || {}).checked,
     name, email, city, country,
     date_of_birth: dob, area: selectedArea,
     verdict: result.verdict,

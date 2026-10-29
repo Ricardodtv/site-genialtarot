@@ -171,6 +171,7 @@ footer a{color:var(--lil)}
           <input type="text" id="data" required inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" /></label>
         <label>O seu email <small>(para receber a leitura)</small>
           <input type="email" id="email" autocomplete="email" required maxlength="120" /></label>
+        <label class="caixa-novidades" style="display:flex;gap:.6em;align-items:flex-start;grid-column:1/-1;font-size:.92em;line-height:1.4;margin:.3em 0;cursor:pointer;text-align:left"><input type="checkbox" id="novidades" style="width:1.15em;height:1.15em;min-width:0;padding:0;margin:.15em 0 0;flex:none;accent-color:oklch(0.85 0.13 88)" /><span>Quero receber novidades do Mestre Alberto por email (horóscopos, mapas e promoções). Pode cancelar quando quiser.</span></label>
         <label>WhatsApp <small>(opcional, com o indicativo do país)</small>
           <input type="tel" id="tel" autocomplete="tel" maxlength="25" /></label>
         <div class="inteiro"><label>Para que período?</label>
@@ -439,7 +440,7 @@ footer a{color:var(--lil)}
     if (ultimo.nova) {
       try {
         fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true, body: JSON.stringify({ type: "mapa-captura", data: {
-          name: nome, email, phone: tel, novidades: false, date_of_birth: ultimo.date_of_birth,
+          name: nome, email, phone: tel, novidades: !!(document.getElementById("novidades") || {}).checked, date_of_birth: ultimo.date_of_birth,
           sign: "", birth_time: "", city: "", country: "", area: "Tarot Semestral (carta síntese grátis)",
           verdict: `🃏 Síntese: ${c0.nome} · período ${txtPeriodo} · cartas ${cartas.map((id) => carta(id).nome).join(" | ")}` } }) });
       } catch (e) { /* a mesa já está no ecrã */ }

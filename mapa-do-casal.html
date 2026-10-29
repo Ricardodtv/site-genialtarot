@@ -227,9 +227,10 @@ footer a { color: inherit; }
         <label class="campo largo">O seu nome
           <input type="text" id="nome" autocomplete="off" required maxlength="80" />
         </label>
-        <label class="campo">O seu email <small>(para lhe enviarmos novidades)</small>
+        <label class="campo">O seu email <small>(para lhe enviarmos o resultado)</small>
           <input type="email" id="email" autocomplete="email" required maxlength="120" />
         </label>
+        <label class="caixa-novidades" style="display:flex;gap:.6em;align-items:flex-start;grid-column:1/-1;font-size:.92em;line-height:1.4;margin:.3em 0;cursor:pointer;text-align:left"><input type="checkbox" id="novidades" style="width:1.15em;height:1.15em;min-width:0;padding:0;margin:.15em 0 0;flex:none;accent-color:oklch(0.85 0.13 88)" /><span>Quero receber novidades do Mestre Alberto por email (horóscopos, mapas e promoções). Pode cancelar quando quiser.</span></label>
         <label class="campo">WhatsApp <small>(opcional, com o indicativo do país)</small>
           <input type="tel" id="tel" autocomplete="tel" maxlength="25" />
         </label>
@@ -587,7 +588,7 @@ footer a { color: inherit; }
     // cada amostra NOVA é uma captura; a outra pessoa vai no resumo (verdict), sem email nem telefone
     if (vez.nova) {
       const iS = idx(A.sol), iL = idx(A.lua);
-      captura({ name: a.nome, email: a.email, phone: a.tel, novidades: false, date_of_birth: textoData(a), birth_time: textoHora(a),
+      captura({ name: a.nome, email: a.email, phone: a.tel, novidades: !!(document.getElementById("novidades") || {}).checked, date_of_birth: textoData(a), birth_time: textoHora(a),
         city: textoCidade(a), country: a.pais, sign: NOMES[iS], moon: NOMES[iL], ascendant: A.asc == null ? "" : NOMES[idx(A.asc)],
         area: "Mapa do Casal (amostra grátis)",
         verdict: `💞 Afinidade ${r.nota}/100 com ${b.nome} (${textoData(b)}, ${textoHora(b)}, ${textoCidade(b)}) · ${resumo || "poucos aspectos"}` });

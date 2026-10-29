@@ -291,6 +291,7 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
       <label class="campo"><span class="rot">Cidade</span><input id="f-city" class="entrada" /></label>
       <label class="campo"><span class="rot">País</span><input id="f-country" class="entrada" /></label>
       <label class="campo campo-2"><span class="rot">Email</span><input id="f-email" type="email" class="entrada" /></label>
+        <label class="caixa-novidades" style="display:flex;gap:.6em;align-items:flex-start;grid-column:1/-1;font-size:.92em;line-height:1.4;margin:.3em 0;cursor:pointer;text-align:left"><input type="checkbox" id="novidades" style="width:1.15em;height:1.15em;min-width:0;padding:0;margin:.15em 0 0;flex:none;accent-color:oklch(0.85 0.13 88)" /><span>Quero receber novidades do Mestre Alberto por email (horóscopos, mapas e promoções). Pode cancelar quando quiser.</span></label>
     </div>
     <p class="nota-priv">Os seus dados ficam registados junto com a sua tiragem, para o Mestre Alberto poder acompanhá-lo.</p>
   </div>
@@ -712,7 +713,7 @@ async function registarTiragem(cartas, sintese) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ type: "reading", data: {
-        name: visitante.nome, email: visitante.email, city: visitante.cidade,
+        name: visitante.nome, email: visitante.email, novidades: !!(document.getElementById("novidades") || {}).checked, city: visitante.cidade,
         country: visitante.pais, date_of_birth: visitante.nasc, area: "🌳 Árvore da Vida",
         verdict: resumo + "\n\nSÍNTESE: " + sintese,
       } }),
