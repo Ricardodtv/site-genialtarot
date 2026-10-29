@@ -70,6 +70,16 @@ function buildMessage(type, d = {}) {
       "⏳ Confirma se o pagamento entrou e diz «envia» — só então segue o mapa completo.",
     ].join("\n");
   }
+  // 29/10/2026: entrada na Lista VIP (vip.html) — é uma CAPTURA com «Novidades: sim»
+  if (type === "vip") {
+    return [
+      "👑 NOVO MEMBRO DA LISTA VIP — Genialtarot",
+      "",
+      `👤 Nome: ${clean(d.name)}`,
+      `📧 Email: ${clean(d.email)} · 📬 aceita novidades`,
+      `🎂 Nascimento: ${clean(d.date_of_birth)}`,
+    ].join("\n");
+  }
   // 21/10/2026: amostra grátis de um mapa (Mapa do Amor, Mapa Astral, Ano 2027) — é uma CAPTURA (cria/acrescenta ficha)
   if (type === "mapa-captura") {
     return [

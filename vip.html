@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 29/10/2026: a página da Lista VIP (pedido dele). Quem entra fica na lista de Promoções com «Novidades: sim». -->
+<title>Lista VIP do Mestre Alberto — Genial Tarot</title>
+<meta name="description" content="Entre grátis na Lista VIP do Mestre Alberto: promoções exclusivas, as noites mágicas do céu e um presente no seu aniversário, no seu email." />
+<meta name="theme-color" content="#2a0f45" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="👑 Lista VIP do Mestre Alberto — grátis" />
+<meta property="og:description" content="Promoções exclusivas, as noites mágicas do céu e um presente no seu aniversário." />
+<meta property="og:image" content="https://genialtarot.com/email/as-cartas-falam.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --fundo:#12061f; --cartao:#1f0d33; --borda:#6b3f8f; --ouro:#f2c96b; --ouro2:#ffe49a; --texto:#f6efff; --suave:#cdb8e6;
+  --serifa:"Cormorant Garamond",Georgia,serif; --titulo:"Cinzel",Georgia,serif; --sans:Inter,system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:radial-gradient(90% 60% at 50% 0%,#4a1670 0%,#1d0830 55%,var(--fundo) 100%) fixed,var(--fundo);
+  color:var(--texto);font:17px/1.6 var(--serifa);min-height:100vh}
+.estrelas{position:fixed;inset:0;pointer-events:none;opacity:.7;
+  background-image:radial-gradient(1px 1px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 30% 70%,#fff,transparent),
+  radial-gradient(1.5px 1.5px at 55% 15%,#ffe9b0,transparent),radial-gradient(1px 1px at 80% 40%,#fff,transparent),
+  radial-gradient(1.5px 1.5px at 90% 85%,#fff,transparent),radial-gradient(1px 1px at 20% 90%,#ffe9b0,transparent),
+  radial-gradient(1px 1px at 65% 55%,#fff,transparent),radial-gradient(1px 1px at 45% 35%,#fff,transparent);
+  background-size:420px 420px;animation:cintila 6s ease-in-out infinite alternate}
+@keyframes cintila{to{opacity:.35}}
+.caixa{position:relative;max-width:980px;margin:0 auto;padding:16px 16px 60px}
+.voltar{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border:1px solid var(--borda);border-radius:999px;
+  color:var(--texto);text-decoration:none;font:500 14px var(--sans);background:rgba(255,255,255,.04)}
+.heroi{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;margin-top:1.6rem}
+.coroa{font-size:3rem;line-height:1;animation:flutua 3s ease-in-out infinite;display:inline-block}
+@keyframes flutua{50%{transform:translateY(-6px) rotate(4deg)}}
+.selo{display:inline-block;margin:.6rem 0 0;padding:.35rem .9rem;border-radius:999px;background:linear-gradient(135deg,var(--ouro2),#e9a93a);
+  color:#2a1300;font:800 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase}
+h1{margin:.7rem 0 .4rem;font:700 clamp(2rem,6vw,3.3rem)/1.08 var(--titulo);
+  background:linear-gradient(120deg,#fff 0%,var(--ouro2) 40%,var(--ouro) 60%,#fff 100%);background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:ouro 5s linear infinite}
+@keyframes ouro{to{background-position:-200% center}}
+.sub{font-size:1.25rem;color:var(--suave);margin:0 0 1.2rem}
+.foto{position:relative;justify-self:center;width:min(360px,80vw);aspect-ratio:1;border-radius:50%;padding:6px;
+  background:conic-gradient(from 0deg,var(--ouro),#a0307a,var(--ouro2),#6d1f8f,var(--ouro));animation:gira 10s linear infinite}
+.foto img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;border-radius:50%;display:block;border:4px solid var(--fundo);animation:gira 10s linear infinite reverse}
+@keyframes gira{to{transform:rotate(360deg)}}
+.beneficios{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem;margin:2.2rem 0}
+.ben{padding:1.1rem 1.1rem 1rem;border-radius:16px;background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--borda)}
+.ben .i{font-size:1.7rem}
+.ben h3{margin:.3rem 0 .2rem;font:700 1.05rem/1.25 var(--titulo);color:var(--ouro2)}
+.ben p{margin:0;color:var(--suave);font-size:1.05rem;line-height:1.45}
+.form{max-width:560px;margin:0 auto;padding:1.6rem 1.4rem;border-radius:22px;background:linear-gradient(160deg,#2c1248,#1a0a2c);
+  border:2px solid var(--ouro);box-shadow:0 0 0 6px rgba(242,201,107,.08),0 30px 70px -25px rgba(242,201,107,.45)}
+.form h2{margin:0 0 .2rem;text-align:center;font:700 1.6rem/1.2 var(--titulo);color:#fff}
+.form .vagas{text-align:center;margin:0 0 1.1rem;color:var(--suave)}
+label{display:block;margin:.8rem 0 .3rem;font:600 14px var(--sans);color:var(--suave)}
+input{width:100%;padding:.8rem .9rem;border-radius:12px;border:1.5px solid var(--borda);background:#12061f;color:#fff;font:16px var(--sans)}
+input:focus{outline:none;border-color:var(--ouro);box-shadow:0 0 0 3px rgba(242,201,107,.25)}
+.btn{display:block;width:100%;margin-top:1.3rem;padding:1rem;border:0;border-radius:999px;cursor:pointer;
+  background:linear-gradient(135deg,var(--ouro2),#e9a93a);color:#2a1300;font:800 1.1rem/1.2 var(--sans);
+  animation:pulsa 1.9s ease-out infinite}
+@keyframes pulsa{0%{box-shadow:0 0 0 0 rgba(255,215,120,.7)}80%,100%{box-shadow:0 0 0 16px rgba(255,215,120,0)}}
+.btn:disabled{opacity:.6;animation:none;cursor:wait}
+.legal{margin:.9rem 0 0;font:13px/1.5 var(--sans);color:#a993c4;text-align:center}
+.legal a{color:var(--ouro)}
+.erro{display:none;margin-top:.8rem;padding:.6rem .8rem;border-radius:10px;background:rgba(255,80,80,.15);color:#ffb3b3;font:14px var(--sans)}
+.erro.ver{display:block}
+.feito{display:none;text-align:center}
+.feito .grande{font-size:3.2rem}
+.feito h2{color:var(--ouro2)}
+.feito a{display:inline-block;margin-top:1rem;padding:.8rem 1.4rem;border-radius:999px;background:var(--ouro);color:#2a1300;text-decoration:none;font:800 1rem var(--sans)}
+@media (max-width:760px){.heroi{grid-template-columns:1fr;text-align:center}.foto{grid-row:1;width:min(240px,64vw)}.beneficios{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <a class="voltar" href="/">‹ genialtarot.com</a>
+
+  <section class="heroi">
+    <div>
+      <span class="coroa" aria-hidden="true">👑</span><br>
+      <span class="selo">Grátis · só para membros</span>
+      <h1>A Lista VIP do Mestre Alberto</h1>
+      <p class="sub">As promoções que não aparecem no site, as noites mágicas do céu e uma mensagem de parabéns só para si no dia do seu aniversário — directamente no seu email.</p>
+    </div>
+    <div class="foto"><img src="mestre-principal.jpg" alt="Mestre Alberto" /></div>
+  </section>
+
+  <section class="beneficios">
+    <div class="ben"><div class="i">🎁</div><h3>Promoções exclusivas</h3><p>Ofertas só para a Lista VIP — como 2 mapas pelo preço de 1.</p></div>
+    <div class="ben"><div class="i">🌕</div><h3>As noites mágicas</h3><p>Luas Cheias, eclipses e retrógrados: saiba antes, e o que fazer em cada um.</p></div>
+    <div class="ben"><div class="i">🎂</div><h3>Parabéns só para si</h3><p>No dia do seu aniversário recebe no seu email uma mensagem de parabéns do Mestre Alberto, escrita só para si — com um presente.</p></div>
+    <div class="ben"><div class="i">🔮</div><h3>Primeiro a saber</h3><p>Novos mapas, leituras e ferramentas grátis chegam primeiro aos membros VIP.</p></div>
+  </section>
+
+  <section class="form" id="entrar">
+    <form id="f" novalidate>
+      <h2>👑 Entrar na Lista VIP</h2>
+      <p class="vagas">É grátis e leva 20 segundos.</p>
+      <label for="nome">O seu nome</label>
+      <input id="nome" autocomplete="given-name" maxlength="80" placeholder="Como gosta de ser tratado(a)" />
+      <label for="email">O seu email</label>
+      <input id="email" type="email" autocomplete="email" maxlength="120" placeholder="o.seu@email.com" />
+      <label for="nasc">A sua data de nascimento</label>
+      <input id="nasc" type="date" min="1920-01-01" max="2012-12-31" />
+      <button class="btn" type="submit">✨ Quero entrar na Lista VIP</button>
+      <div class="erro" id="erro" role="alert"></div>
+      <p class="legal">Ao entrar, aceita receber os emails da Lista VIP do Mestre Alberto (novidades, promoções e o presente de aniversário). Pode sair quando quiser, com um clique no fim de cada email. <a href="/privacidade">Privacidade</a></p>
+    </form>
+    <div class="feito" id="feito" aria-live="polite">
+      <div class="grande">👑✨</div>
+      <h2 id="feito-t">Bem-vindo(a) à Lista VIP!</h2>
+      <p>A partir de agora as promoções e os presentes chegam primeiro ao seu email. Se não vir o nosso email, espreite a pasta Promoções ou Spam.</p>
+      <a href="/novidades">Ver as ferramentas grátis do site</a>
+    </div>
+  </section>
+</div>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const erro = (t) => { $("erro").textContent = t; $("erro").classList.toggle("ver", !!t); };
+  $("f").addEventListener("submit", async (ev) => {
+    ev.preventDefault(); erro("");
+    const nome = $("nome").value.trim(), email = $("email").value.trim().toLowerCase(), nasc = $("nasc").value;
+    if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return erro("Escreva o seu nome, por favor.");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return erro("Escreva um email válido: é para lá que enviamos as promoções.");
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(nasc)) return erro("Escolha a sua data de nascimento (é para o presente de aniversário).");
+    const [a, m, d] = nasc.split("-");
+    const b = $("f").querySelector("button"); b.disabled = true; b.textContent = "A entrar…";
+    try {
+      const r = await fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "vip", data: { name: nome, email, date_of_birth: `${d}/${m}/${a}`, area: "👑 Lista VIP", novidades: true } }) });
+      if (!r.ok) throw new Error(r.status);
+    } catch (e) {
+      b.disabled = false; b.textContent = "✨ Quero entrar na Lista VIP";
+      return erro("Não consegui registar agora. Tente outra vez daqui a um minuto.");
+    }
+    try { localStorage.setItem("vip-entrou", "1"); } catch (e) {}
+    $("feito-t").textContent = `Bem-vindo(a) à Lista VIP, ${nome.split(/\s+/)[0]}!`;
+    $("f").style.display = "none"; $("feito").style.display = "block";
+  });
+})();
+</script>
+</body>
+</html>
