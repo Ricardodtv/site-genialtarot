@@ -4,6 +4,8 @@
 (function () {
   try {
     if (/^\/vip(\.html)?$/.test(location.pathname)) return;
+    // 29/10/2026: quem chega por um email da lista (os links levam «vip=1») já é VIP — nunca mais vê a faixa
+    if (new URLSearchParams(location.search).get("vip") === "1") { localStorage.setItem("vip-entrou", "1"); return; }
     if (localStorage.getItem("vip-entrou")) return;
     if (sessionStorage.getItem("vip-fechada")) return;
   } catch (e) { /* sem armazenamento: mostra na mesma */ }
