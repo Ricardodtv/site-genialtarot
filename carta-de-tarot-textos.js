@@ -4,7 +4,7 @@
    pelo método de Greer nunca é a carta principal). SIGNO: uma frase para o arcano de cada signo
    (Golden Dawn), de Áries a Peixes. Escritos de raiz, por «você», para servir ao Brasil e a Portugal. */
 (function (raiz) {
-  // [nome, número romano, imagem no trustedtarot.com (a mesma do tarot-gratis.html), página do arcano no site]
+  // [nome, número romano, imagem (o baralho oficial, a mesma do tarot-gratis.html), página do arcano no site]
   const ARCANOS = [
     ["O Louco", "0", "the-fool", "arcano-00-o-louco.html"],
     ["O Mago", "I", "the-magician", "arcano-01-o-mago.html"],

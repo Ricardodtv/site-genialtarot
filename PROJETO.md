@@ -51,8 +51,10 @@ O deck de tarot (78 cartas + textos do veredito) está EMBUTIDO dentro de
 do Mestre Alberto**, em `cartas/NN-slug.webp` (480×804, cantos arredondados, nome em
 PT na carta) + o verso `cartas/verso-gt.webp` (selo GT em cima e, rodado, em baixo).
 Usados no carrossel, arcanos, carta de tarot, tarot grátis, árvore, semestral, amor do
-dia, compatibilidade e na app (carta do dia + costas). Os 56 menores continuam no
-trustedtarot.com. Originais no cofre: `CentralS/Baralho Mestre Alberto`; guiões em
+dia, compatibilidade e na app (carta do dia + costas). **Os 56 Menores também, desde
+29/10/2026 à noite** (baralho 78/78): `cartas/menores/<slug-inglês>.webp` (ex.
+`ten-of-cups.webp`, `page-of-wands.webp`), o mesmo slug que as páginas já usavam — o
+`IMG()` cai neles e já nada vem do trustedtarot.com. Originais no cofre: `CentralS/Baralho Mestre Alberto`; guiões em
 `~/baralho/` no cerebro.
 
 ## worker.js — rotas da ponte
