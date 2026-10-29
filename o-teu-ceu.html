@@ -115,6 +115,18 @@ label { display: block; margin: 14px 0 6px; font-weight: 600; font-size: 14px; c
 .noite button.esc { border-color: var(--ouro); background: rgba(242,201,107,.16); color: var(--ouro); }
 .breve { font-size: 13px; color: var(--apagado); font-style: italic; }
 .guardado { color: var(--ouro); font-size: 13px; min-height: 18px; margin-top: 6px; }
+/* 29/10/2026: «Fechar o meu dia» — o fim bonito da noite (ele escreveu o diário e a app «não avançava») */
+.fechar-dia { display: block; width: 100%; margin-top: 12px; padding: 14px; border-radius: 999px; border: 0; cursor: pointer;
+  background: linear-gradient(135deg, #ffe49a, #e9a93a); color: #2a1300; font-weight: 800; font-size: 16px; box-shadow: 0 8px 24px -10px rgba(242,201,107,.8); }
+.fecho { text-align: center; padding: 6px 4px 2px; animation: entra .5s ease; }
+.fecho-lua { font-size: 46px; animation: fechoBrilho 3s ease-in-out infinite; }
+@keyframes fechoBrilho { 50% { filter: drop-shadow(0 0 14px rgba(242,201,107,.9)); transform: translateY(-3px); } }
+.fecho h3 { margin: 6px 0 8px; font-size: 22px; }
+.fecho p { margin: 0 0 10px; line-height: 1.5; }
+.fecho-seg { color: var(--ouro); font-weight: 700; }
+.fecho-bts { display: flex; gap: 8px; margin-top: 12px; }
+.fecho-bts button { flex: 1; padding: 12px 6px; border-radius: 14px; border: 1px solid var(--ouro); background: rgba(242,201,107,.14); color: var(--ouro); font-weight: 700; font-size: 14px; }
+.fecho-bts button.sec { border-color: var(--borda); background: rgba(20,8,38,.4); color: var(--texto); font-weight: 600; }
 
 /* ===== caminho ===== */
 .grande { font-family: var(--titulo); font-size: 54px; line-height: 1; }
@@ -306,6 +318,7 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
 
     <div class="cartao">
       <h2 class="ouro" data-t="noite_tit">🌙 À noite</h2>
+      <div id="noite-form">
       <div class="rot" data-t="deu_passo">Deu o passo de hoje?</div>
       <div class="noite" id="noite">
         <button data-v="sim" data-t="sim">✅ Sim</button><button data-v="parte" data-t="parte">🌗 Em parte</button><button data-v="nao" data-t="nao">🌑 Ainda não</button>
@@ -313,6 +326,16 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
       <label for="diario" data-t="diario_lbl">Como correu o seu dia? (só você vê isto)</label>
       <textarea id="diario" placeholder="Escreva à vontade…" data-tp="diario_ph"></textarea>
       <div class="guardado" id="guardado"></div>
+      <button type="button" class="fechar-dia" id="fechar-dia" data-t="fechar_dia">🌙 Fechar o meu dia</button>
+      </div>
+      <div class="fecho" id="fecho" hidden>
+        <div class="fecho-lua" aria-hidden="true">🌙✨</div>
+        <h3 class="ouro" id="fecho-tit"></h3>
+        <p id="fecho-txt"></p>
+        <p class="fecho-seg" id="fecho-seg"></p>
+        <p class="breve" data-t="fecho_amanha">Amanhã de manhã: um céu novo, uma carta nova e o passo seguinte.</p>
+        <div class="fecho-bts"><button type="button" id="fecho-cam" data-t="fecho_ver">Ver o meu caminho</button><button type="button" class="sec" id="fecho-editar" data-t="fecho_editar">Editar o dia</button></div>
+      </div>
     </div>
   </div>
 
@@ -638,7 +661,31 @@ body { background: radial-gradient(120% 70% at 50% -5%, #5a2c86 0%, #2a1245 42%,
       $("noite").querySelectorAll("button").forEach((z) => z.classList.toggle("esc", z === b));
       $("guardado").textContent = b.dataset.v === "nao" ? T.guard_nao : T.guard_sim; };
     $("diario").value = dia.diario || "";
+    mostrarFecho(!!dia.fechado);
   }
+  // 29/10/2026: fechar o dia — mensagem de boa-noite conforme o passo, os dias seguidos e o que vem amanhã
+  function seguidos() {
+    const ativo = (iso) => { const d = E.dias[iso]; return d && (d.humor != null || d.carta != null || d.passo); };
+    let k = ativo(hojeISO()) ? 0 : -1, n = 0;
+    while (ativo(hojeISO(k))) { n++; k--; }
+    return n;
+  }
+  function mostrarFecho(sim) {
+    $("noite-form").hidden = sim; $("fecho").hidden = !sim;
+    if (!sim) return;
+    const d = E.dias[hojeISO()] || {}, n = seguidos();
+    $("fecho-tit").textContent = tr("fecho_tit", { nome: E.nome || "" }).replace(/,\s*🌙/, " 🌙");
+    $("fecho-txt").textContent = T[d.passo === "sim" ? "fecho_sim" : d.passo === "parte" ? "fecho_parte" : "fecho_nao"] + (d.diario ? " " + T.fecho_diario : "");
+    $("fecho-seg").textContent = n <= 1 ? T.fecho_seg1 : tr("fecho_seg", { n });
+  }
+  $("fechar-dia").onclick = () => {
+    clearTimeout(tDiario);
+    const d = E.dias[hojeISO()] = E.dias[hojeISO()] || {};
+    d.diario = $("diario").value.slice(0, 4000); d.fechado = true; gravar();
+    mostrarFecho(true); $("fecho").scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+  $("fecho-editar").onclick = () => { const d = E.dias[hojeISO()] || {}; d.fechado = false; gravar(); mostrarFecho(false); };
+  $("fecho-cam").onclick = () => document.querySelector('#abas button[data-aba="caminho"]').click();
   let tDiario;
   $("diario").addEventListener("input", () => {
     clearTimeout(tDiario);
