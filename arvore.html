@@ -299,7 +299,7 @@ footer .assin { font-family: var(--font-display); font-size: 1rem; color: var(--
   <button id="btn-lancar" class="btn-lancar surgir">✦ Lançar as Cartas ✦<span class="tag-gratis">Grátis</span></button>
 </section>
 
-<button id="btn-som" class="btn-som ligado" aria-label="Ligar ou desligar o som de fundo" title="Som de fundo"><svg class="som-ico som-ico-on" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><svg class="som-ico som-ico-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg></button>
+<button id="btn-som" class="btn-som desligado" aria-label="Ligar ou desligar o som de fundo" title="Som de fundo"><svg class="som-ico som-ico-on" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><svg class="som-ico som-ico-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg></button>
 <div id="guia-sintese" class="guia-sintese" hidden role="button" aria-label="Ir para a Síntese">
   <span class="guia-texto"><span class="guia-nome" id="guia-nome"></span> <span class="guia-imp">IMPORTANTE</span> — depois veja a <b>SÍNTESE</b></span>
   <span class="guia-seta">⬇</span>
@@ -803,10 +803,9 @@ function desligarSom() {
 }
 btnSom.addEventListener("click", (e) => { e.stopPropagation(); somLigado ? desligarSom() : ligarSom(); });
 
-// Som ligado POR DEFEITO ao abrir a página: tenta arrancar já; se o navegador
-// travar o autoplay, arranca ao primeiro gesto (toque, clique, tecla ou scroll).
-somLigado = true;
-btnSom.classList.add("ligado");
+// 30/10/2026, pedido dele: o som começa DESLIGADO. Só toca quando a pessoa carrega no botão
+// (o botão pulsa para convidar). Antes ligava-se sozinho ao primeiro toque ou scroll.
+somLigado = false;
 function tentarArranque() {
   if (!somLigado) return;
   if (!somCtx) criarSom();
@@ -816,9 +815,7 @@ function tentarArranque() {
     subirVolume();
   }
 }
-tentarArranque();
-["pointerdown", "touchend", "click", "keydown", "scroll"].forEach(ev =>
-  document.addEventListener(ev, tentarArranque, { passive: true }));
+
 </script>
 <script>
 // Preenche o país a partir de onde a pessoa está, em vez de assumir Portugal.
