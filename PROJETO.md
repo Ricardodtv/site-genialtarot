@@ -120,3 +120,8 @@ dia, compatibilidade e na app (carta do dia + costas). **Os 56 Menores também, 
 - Futuro desejado: email profissional contacto@genialtarot.com via Cloudflare Email
   Routing → Gmail (chequesegredo@gmail.com).
 - História: o site nasceu de 3 projetos Lovable convertidos para estático em jul/2026.
+
+## Fotografias reais (30/10/2026)
+- `planetas/<nome>.webp` (sol, mercurio, venus, marte, jupiter, saturno, urano, neptuno, plutao): fotografias da NASA, domínio público (Wikimedia Commons), recortadas com fundo transparente. Usadas no Céu de Hoje (lista dos planetas) e nos Planetas Retrógrados (Mercúrio grande + os outros). Crédito no rodapé.
+- `planetas/ceu-estrelado.webp`: a Via Láctea, Bruno Gilli/ESO, **CC BY 4.0 — o crédito é obrigatório** (está no rodapé das Efemérides, Famosos com o seu Céu e O Céu no seu Calendário, classe `.heroi.estrelado`).
+- «Rider-Waite» trocado por «baralho do Mestre Alberto» no texto visível; nas descrições para o Google ficou «(tradição Rider-Waite)», por ser termo de pesquisa.

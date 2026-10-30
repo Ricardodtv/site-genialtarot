@@ -134,6 +134,12 @@ h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.35rem, 3.6
 .btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
 footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
 footer a { color: inherit; }
+
+/* 30/10/2026 (ele): céu estrelado verdadeiro no topo — a Via Láctea, foto de Bruno Gilli/ESO (CC BY 4.0) */
+.heroi.estrelado { position: relative; border-radius: 1.4rem; overflow: hidden; padding-left: 1rem; padding-right: 1rem; margin-top: .4rem;
+  background: linear-gradient(180deg, rgba(18,6,31,.02) 0%, rgba(18,6,31,.35) 50%, rgba(18,6,31,.88) 100%), url(/planetas/ceu-estrelado.webp) center 30% / cover no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(242,201,107,.25); }
+.heroi.estrelado h1, .heroi.estrelado .sub { text-shadow: 0 2px 12px rgba(0,0,0,.85); }
 </style>
 </head>
 <body>
@@ -146,7 +152,7 @@ footer a { color: inherit; }
 
   <div class="aviso-fim" id="aviso-fim" role="alert"></div>
 
-  <section class="heroi">
+  <section class="heroi estrelado">
     <span class="selo">✦ 11 800 famosos do Brasil e de Portugal ✦</span>
     <h1>Famosos com o <span class="lil">seu céu</span></h1>
     <p class="sub">Descubra que famosos nasceram com o mesmo Sol, a mesma Lua e os mesmos planetas que você. Ou pesquise como um astrólogo: quem tem Vénus em Touro, Marte retrógrado ou a Lua num signo de Fogo.</p>
@@ -216,6 +222,7 @@ footer a { color: inherit; }
 <footer>
   Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
   <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+<br><small style="opacity:.7">Foto do céu: Bruno Gilli/ESO (CC BY 4.0).</small>
 </footer>
 
 <script src="famosos-ceu-dados.js"></script>

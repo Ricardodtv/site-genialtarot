@@ -152,6 +152,12 @@ footer a { color: inherit; }
   .evs li { background: none; border: 0; border-bottom: 1px solid #ccc; color: #000; border-radius: 0; padding: 2px 0; }
   h2, .int { color: #000; }
 }
+
+/* 30/10/2026 (ele): céu estrelado verdadeiro no topo — a Via Láctea, foto de Bruno Gilli/ESO (CC BY 4.0) */
+.heroi.estrelado { position: relative; border-radius: 1.4rem; overflow: hidden; padding-left: 1rem; padding-right: 1rem; margin-top: .4rem;
+  background: linear-gradient(180deg, rgba(18,6,31,.02) 0%, rgba(18,6,31,.35) 50%, rgba(18,6,31,.88) 100%), url(/planetas/ceu-estrelado.webp) center 30% / cover no-repeat;
+  box-shadow: inset 0 0 0 1px rgba(242,201,107,.25); }
+.heroi.estrelado h1, .heroi.estrelado .sub { text-shadow: 0 2px 12px rgba(0,0,0,.85); }
 </style>
 </head>
 <body>
@@ -164,7 +170,7 @@ footer a { color: inherit; }
 
   <div class="aviso-fim" id="aviso-fim" role="alert"></div>
 
-  <section class="heroi">
+  <section class="heroi estrelado">
     <span class="selo">✦ 900 anos · calculado ao segundo ✦</span>
     <h1>As <span class="lil">Efemérides</span></h1>
     <p class="sub">A posição do Sol, da Lua e de todos os planetas, dia a dia, de 1600 a 2499. Com os ingressos, os retrógrados, as fases da Lua, os eclipses, os aspectos, os pontos médios e a tabela de casas. Para consultar, estudar e imprimir.</p>
@@ -298,6 +304,7 @@ footer a { color: inherit; }
 <footer>
   Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
   <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+<br><small style="opacity:.7">Foto do céu: Bruno Gilli/ESO (CC BY 4.0).</small>
 </footer>
 
 <script>

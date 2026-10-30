@@ -77,8 +77,10 @@ footer a { color: inherit; }
 .hoje .em b { color: var(--ouro); }
 .hoje .txt { font-family: var(--serifa); font-size: 1.12rem; color: var(--lavanda); margin-top: .5rem; }
 .planetas { display: grid; gap: .7rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
-.pl { border-radius: 1rem; padding: .8rem 1rem; background: oklch(0.20 0.07 300 / .85); border: 1px solid var(--borda); display: grid; grid-template-columns: 2.2rem 1fr; gap: .7rem; align-items: center; }
-.pl .g { font-size: 1.7rem; text-align: center; color: var(--ouro); }
+.pl { border-radius: 1rem; padding: .8rem 1rem; background: oklch(0.20 0.07 300 / .85); border: 1px solid var(--borda); display: grid; grid-template-columns: 2.8rem 1fr; gap: .8rem; align-items: center; }
+.pl .g { position: relative; width: 2.8rem; height: 2.8rem; text-align: center; color: var(--ouro); }
+.pl .g img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 6px rgba(255,220,150,.25)); }
+.pl .g i { position: absolute; right: -.35rem; bottom: -.35rem; font-style: normal; font-size: .95rem; line-height: 1; padding: .12rem .22rem; border-radius: 999px; background: oklch(0.20 0.07 300); border: 1px solid var(--borda); }
 .pl b { font-family: var(--titulo); }
 .pl span { display: block; font-size: .86rem; color: var(--lavanda); }
 .pl.r { border-color: oklch(0.80 0.15 40 / .7); }
@@ -128,6 +130,7 @@ footer a { color: inherit; }
 <footer>
   Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
   <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+<br><small style="opacity:.7">Fotografias dos planetas e do Sol: NASA (domínio público).</small>
 </footer>
 <script src="lua-dados.js"></script>
 <script src="ceu-dados.js"></script>
@@ -230,7 +233,7 @@ window.GT = (function () {
     const est = estadoEm(agora), retro = ORDEM.filter(k => est[k].r);
     $("resumo").textContent = retro.length ? `Hoje há ${retro.length} ${retro.length === 1 ? "planeta retrógrado" : "planetas retrógrados"}: ${retro.map(k => PL[k][1]).join(", ")}. Retrógrado não é perigo — é tempo de rever com calma.`
       : "Hoje nenhum planeta está retrógrado: o céu anda todo para a frente.";
-    $("planetas").innerHTML = ORDEM.map(k => `<div class="pl${est[k].r ? " r" : ""}"><div class="g">${PL[k][0]}</div><div><b>${PL[k][1]}</b> em ${G.GLIFOS[est[k].s]} ${N[est[k].s]}${est[k].r ? '<span class="etq">retrógrado</span>' : ""}`
+    $("planetas").innerHTML = ORDEM.map(k => `<div class="pl${est[k].r ? " r" : ""}"><div class="g"><img src="/planetas/${k}.webp" alt="" loading="lazy"><i>${PL[k][0]}</i></div><div><b>${PL[k][1]}</b> em ${G.GLIFOS[est[k].s]} ${N[est[k].s]}${est[k].r ? '<span class="etq">retrógrado</span>' : ""}`
       + `<span>${est[k].r ? (RETRO[k] || "") : "Rege " + PL[k][2] + "."}</span></div></div>`).join("");
     const ev = eventos(agora, agora + 21 * 864e5).slice(0, 8);
     $("prox").innerHTML = ev.length ? ev.map(x => `<div class="ev"><div class="i">${ICONE[x.tipo]}</div><div><b>${titulo(x)}</b><small>${G.data(x.t)} às ${G.hora(x.t)}</small></div></div>`).join("")

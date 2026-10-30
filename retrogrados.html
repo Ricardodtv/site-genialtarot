@@ -168,6 +168,12 @@ h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.45rem, 3.6
 .fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
 footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
 footer a { color: inherit; }
+/* 30/10/2026: fotografias reais dos planetas (NASA, domínio público) */
+.agora .foto-pl { width: 7.5rem; height: 7.5rem; object-fit: contain; filter: drop-shadow(0 0 22px rgba(255,220,150,.35)); animation: roda-pl 60s linear infinite; }
+@keyframes roda-pl { to { transform: rotate(360deg); } }
+.pl .mini-pl { width: 3.4rem; height: 3.4rem; object-fit: contain; flex: none; filter: drop-shadow(0 0 8px rgba(255,220,150,.25)); }
+.pl h3 .g { font-size: 1.1rem; margin-left: .2rem; }
+@media (prefers-reduced-motion: reduce) { .agora .foto-pl { animation: none; } }
 </style>
 </head>
 <body>
@@ -247,6 +253,7 @@ footer a { color: inherit; }
 <footer>
   Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
   <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+<br><small style="opacity:.7">Fotografias dos planetas e do Sol: NASA (domínio público).</small>
 </footer>
 
 <script src="retrogrados-dados.js"></script>
@@ -322,7 +329,7 @@ footer a { color: inherit; }
       det = proximoR ? `O próximo retrógrado começa a <b>${dataHora(proximoR.r)}</b>, em ${GLIFOS[proximoR.s[0]]} ${esc(curto(proximoR.s[0]))}, e dura até ${dataLonga(proximoR.d)}.` : "";
       conta = proximoR ? `Começa ${daqui(proximoR.r)}` : "";
     }
-    $("agora").innerHTML = `<div class="glifo">☿${T}</div><div class="rot">Mercúrio hoje · ${dataLonga(agora).replace(/ de \d+$/, "")}</div>`
+    $("agora").innerHTML = `<div class="glifo"><img class="foto-pl" src="/planetas/mercurio.webp" alt="Mercúrio fotografado pela sonda MESSENGER (NASA)"></div><div class="rot">☿${T} Mercúrio hoje · ${dataLonga(agora).replace(/ de \d+$/, "")}</div>`
       + `<div class="estado${cls}">${estado}</div><div class="det">${det}</div>` + (conta ? `<span class="conta">⏳ ${conta}</span>` : "");
   })();
 
@@ -389,7 +396,7 @@ footer a { color: inherit; }
     if (ag) quando = `Retrógrado agora em ${ag.s.map(i => GLIFOS[i]).join(" ")} ${esc(signos(ag.s))}, até <b>${dataLonga(ag.d)}</b> (${daqui(ag.d)}).`;
     if (prox) quando += (quando ? "<br>" : "") + `${ag ? "Depois: de" : "Próximo: de"} <b>${dataLonga(prox.r)}</b> a <b>${dataLonga(prox.d)}</b>, em ${prox.s.map(i => GLIFOS[i]).join(" ")} ${esc(signos(prox.s))} · ${Math.round((prox.d - prox.r) / 864e5)} dias.`;
     if (!quando) quando = "Sem retrógrado até ao fim do calendário desta página.";
-    return `<article class="pl${ag ? " r" : ""}"><div class="t"><span class="g">${PL[p][0]}${T}</span><div><h3>${PL[p][1]}</h3><span class="est${ag ? " r" : ""}">${ag ? "↩ retrógrado agora" : "▶ anda para a frente"}</span></div></div>`
+    return `<article class="pl${ag ? " r" : ""}"><div class="t"><img class="mini-pl" src="/planetas/${p}.webp" alt="" loading="lazy"><div><h3>${PL[p][1]} <span class="g">${PL[p][0]}${T}</span></h3><span class="est${ag ? " r" : ""}">${ag ? "↩ retrógrado agora" : "▶ anda para a frente"}</span></div></div>`
       + `<div class="quando">${quando}</div><p>${esc(OUTROS[p])}</p></article>`;
   }).join("");
 

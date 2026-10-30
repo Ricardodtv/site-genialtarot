@@ -98,7 +98,7 @@ const PRODUTOS = [
     categoria: "Promoção",
     preco: "15 €",
     foto: "tarot-semestral-loja.jpg",
-    descricao: "Treze cartas do Tarot Rider-Waite para os seus próximos seis meses: o amor, o dinheiro, a família, a saúde, a carreira e um conselho final. A carta síntese é grátis; a leitura completa chega ao seu email. Com o Mestre (45 €), recebe também um áudio dele no WhatsApp sobre as suas cartas.",
+    descricao: "Treze cartas do baralho do Mestre Alberto para os seus próximos seis meses: o amor, o dinheiro, a família, a saúde, a carreira e um conselho final. A carta síntese é grátis; a leitura completa chega ao seu email. Com o Mestre (45 €), recebe também um áudio dele no WhatsApp sobre as suas cartas.",
     link: "",
     pagina: "/tarot-semestral",
     pagamentos: "💳 Cartão · 📱 MB WAY · 🇧🇷 PIX R$ 85",
