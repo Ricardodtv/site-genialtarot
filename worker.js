@@ -776,6 +776,12 @@ export default {
           }
         } catch (e) { /* nunca estragar o pedido do visitante por causa da fila */ }
 
+        // 30/10/2026: «resultado» é o texto da leitura para o email da pessoa — só vai para a fila
+        // (o cerebro manda o email); não é aviso para o Telegram.
+        if (type === "resultado") {
+          return new Response(JSON.stringify({ ok: true }), { headers: { "Content-Type": "application/json" } });
+        }
+
         let text = buildMessage(type, data);
         if (!text) throw new Error("tipo inválido");
         // Localização REAL detetada pela Cloudflare (cidade/país do visitante) + IP

@@ -96,4 +96,36 @@
       janela(() => b.click());
     }, true);
   });
+  // ── 30/10/2026 (pedido dele): o resultado vai também para o email da pessoa ──
+  // Quando a página manda a captura para a ponte, espera que o resultado apareça, tira-lhe o texto
+  // (sem botões nem a parte paga) e manda-o à fila como «resultado». O cerebro envia o email.
+  const CAPTURAS = ["reading", "ascendente", "mapa-captura"];
+  const textoDe = (el) => {
+    const c = el.cloneNode(true);
+    c.querySelectorAll("button,input,select,textarea,form,script,style,svg,canvas,audio,video,iframe,[aria-hidden=true],.btn,.cta,.lock,.bloqueado,[class*=desbloq],[class*=compra],[class*=partilh],[class*=paga]").forEach((x) => x.remove());
+    c.querySelectorAll("a").forEach((a) => { if (/→|comprar|desbloquear|partilhar|saber mais|significado/i.test(a.textContent)) a.remove(); });
+    c.querySelectorAll("h1,h2,h3,h4,h5,p,li,section,article,blockquote,[class*=tema],[class*=bloco],[class*=cartao]").forEach((x) => x.insertAdjacentHTML("beforebegin", "<br><br>"));
+    c.style.cssText = "position:absolute;left:-99999px;top:0;width:600px"; document.body.appendChild(c);
+    const t = (c.innerText || "").split("\n").map((l) => l.replace(/\s+/g, " ").trim()).filter((l) => !l || /[\p{L}\d]/u.test(l)).join("\n");
+    c.remove();
+    return t.replace(/\n{3,}/g, "\n\n").slice(0, 12000);
+  };
+  const enviarResultado = (d) => {
+    const el = document.getElementById("resultado") || document.getElementById("leitura");
+    const texto = el && el.offsetParent !== null ? textoDe(el) : "";
+    const tit = (document.getElementById("res-titulo") || {}).textContent || "";
+    fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
+      body: JSON.stringify({ type: "resultado", data: { name: d.name, email: d.email, city: d.city || "", area: d.area || "",
+        titulo: tit.trim().slice(0, 200), texto, verdict: d.verdict || "", pagina: location.pathname, novidades: !!caixa.checked } }) }).catch(() => {});
+  };
+  const fOrig = window.fetch;
+  window.fetch = function (url, opt) {
+    try {
+      if (String(url).endsWith("/notify") && opt && opt.body) {
+        const b = JSON.parse(opt.body);
+        if (b && CAPTURAS.includes(b.type) && b.data && b.data.email) setTimeout(() => enviarResultado(b.data), 3500);
+      }
+    } catch (e) {}
+    return fOrig.apply(this, arguments);
+  };
 })();
