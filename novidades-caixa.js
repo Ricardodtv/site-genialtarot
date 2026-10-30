@@ -103,20 +103,54 @@
   const textoDe = (el) => {
     const c = el.cloneNode(true);
     c.querySelectorAll("button,input,select,textarea,form,script,style,svg,canvas,audio,video,iframe,[aria-hidden=true],.btn,.cta,.lock,.bloqueado,[class*=desbloq],[class*=compra],[class*=partilh],[class*=paga]").forEach((x) => x.remove());
-    c.querySelectorAll("a").forEach((a) => { if (/→|comprar|desbloquear|partilhar|saber mais|significado/i.test(a.textContent)) a.remove(); });
+    c.querySelectorAll("a").forEach((a) => { if (/→|comprar|desbloquear|partilhar|saber mais|significado|ler tudo/i.test(a.textContent)) a.remove(); });
     c.querySelectorAll("h1,h2,h3,h4,h5,p,li,section,article,blockquote,[class*=tema],[class*=bloco],[class*=cartao]").forEach((x) => x.insertAdjacentHTML("beforebegin", "<br><br>"));
     c.style.cssText = "position:absolute;left:-99999px;top:0;width:600px"; document.body.appendChild(c);
     const t = (c.innerText || "").split("\n").map((l) => l.replace(/\s+/g, " ").trim()).filter((l) => !l || /[\p{L}\d]/u.test(l)).join("\n");
     c.remove();
     return t.replace(/\n{3,}/g, "\n\n").slice(0, 12000);
   };
+  // 30/10 (ele: «o texto podia estar mais organizado»): além do texto, a ESTRUTURA do resultado — títulos,
+  // etiquetas, parágrafos, listas e grelhas (os meses, os números) — para o email ser desenhado como a página.
+  const LIXO = "button,input,select,textarea,form,script,style,svg,canvas,audio,video,iframe,[aria-hidden=true],.btn,.cta,.lock,.bloqueado,[class*=desbloq],[class*=compra],[class*=partilh],[class*=paga]";
+  const blocos = (el) => {
+    const out = [], visto = new Set();
+    const cs = (x) => getComputedStyle(x);
+    const txt = (x) => (x.innerText || "").replace(/\s+/g, " ").trim();
+    const bloco = (x) => /^(block|flex|grid|list-item|table|inline-flex|inline-grid)$/.test(cs(x).display);
+    const anda = (x) => {
+      if (visto.has(x) || x.matches(LIXO) || cs(x).display === "none" || cs(x).visibility === "hidden") return;
+      if (x.tagName === "A" && /→|comprar|desbloquear|partilhar|saber mais|significado|ler tudo/i.test(x.textContent)) return;
+      const filhos = [...x.children].filter((c) => !c.matches(LIXO) && cs(c).display !== "none" && txt(c));
+      const st = cs(x);
+      // grelha: muitos filhos curtos lado a lado (os 12 meses, os números do cálculo)
+      if (/(grid|flex)/.test(st.display) && filhos.length >= 3 && filhos.every((c) => txt(c).length <= 40) && st.flexDirection !== "column") {
+        out.push({ k: "grade", i: filhos.map((c) => (c.innerText || "").split("\n").map((l) => l.trim()).filter(Boolean).join(" · ")) }); return;
+      }
+      const temBlocos = filhos.some(bloco);
+      if (!temBlocos) {
+        const t = txt(x); if (!t || !/[\p{L}\d]/u.test(t)) return;
+        const tag = x.tagName, peso = parseInt(st.fontWeight) || 400, tam = parseFloat(st.fontSize) || 16;
+        const k = /^H[1-4]$/.test(tag) || (peso >= 600 && tam >= 18 && t.length < 120) ? "h"
+          : tag === "LI" ? "li"
+          : (st.textTransform === "uppercase" || t === t.toUpperCase()) && t.length <= 40 ? "e"
+          : "p";
+        out.push({ k, t: t.slice(0, 2000) }); return;
+      }
+      [...x.children].forEach(anda);
+    };
+    anda(el);
+    return out.slice(0, 250);
+  };
   const enviarResultado = (d) => {
     const el = document.getElementById("resultado") || document.getElementById("leitura");
     const texto = el && el.offsetParent !== null ? textoDe(el) : "";
+    let estrutura = [];
+    try { estrutura = el && el.offsetParent !== null ? blocos(el) : []; } catch (e) {}
     const tit = (document.getElementById("res-titulo") || {}).textContent || "";
     fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
       body: JSON.stringify({ type: "resultado", data: { name: d.name, email: d.email, city: d.city || "", area: d.area || "",
-        titulo: tit.trim().slice(0, 200), texto, verdict: d.verdict || "", pagina: location.pathname, novidades: !!caixa.checked } }) }).catch(() => {});
+        titulo: tit.trim().slice(0, 200), texto, estrutura, verdict: d.verdict || "", pagina: location.pathname, novidades: !!caixa.checked } }) }).catch(() => {});
   };
   const fOrig = window.fetch;
   window.fetch = function (url, opt) {
