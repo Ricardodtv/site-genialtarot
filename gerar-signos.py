@@ -302,3 +302,50 @@ corpo = f"""  <section class="heroi">
 """
 open("rezas-e-oracoes.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
 print(len(REZAS), "rezas + a montra /rezas-e-oracoes")
+
+# ── Parábolas e Histórias (31/10/2026, pedido dele). Primeiro quis só amostra; depois decidiu: «coloca no site a parábola
+#    completa». A fonte (recontada por palavras nossas) vive no cofre (Obsidian); a página leva a história, a lição e a
+#    reflexão. Se o cofre estiver fechado, as páginas já feitas ficam como estão. Montra /parabolas.
+PAR_F = "/media/veracrypt23/ObsidianS/CentralS/Central Tarot/📖 Parábolas recontadas (conteúdo pago)/parabolas-textos.py"
+if os.path.exists(PAR_F):
+    PAR = {}; exec(open(PAR_F, encoding="utf-8").read(), PAR); PAR = PAR["PARABOLAS"]
+    TEMA_TXT = lambda p: " · ".join(p.get("temas", []))
+    for k, p in enumerate(PAR):
+        url = f"{SITE}/{p['slug']}"
+        ld = {"@context": "https://schema.org", "@graph": [
+            {"@type": "Article", "headline": p["titulo"], "description": p["desc"], "image": SITE + "/og-image.jpg", "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url, "keywords": ", ".join(["parábola"] + p.get("temas", []))},
+            {"@type": "BreadcrumbList", "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
+                {"@type": "ListItem", "position": 2, "name": "Parábolas", "item": SITE + "/parabolas"},
+                {"@type": "ListItem", "position": 3, "name": p["titulo_curto"], "item": url}]}]}
+        viz = [PAR[(k + d) % len(PAR)] for d in (1, 2, 3, -1)]
+        corpo = f"""  <section class="heroi">
+    <h1><span class="az">{E(p['titulo_curto'])}</span></h1>
+    <p class="sub">Uma parábola contada pelo Mestre Alberto{(" · " + E(TEMA_TXT(p))) if p.get("temas") else ""}</p>
+  </section>
+  <section class="cartao texto">{"".join(f"<p>{E(x)}</p>" for x in p["historia"])}
+    <h2>A lição</h2><blockquote style="font-family:var(--serifa);font-size:1.3rem;font-style:italic;color:var(--ouro);border-left:3px solid var(--ouro);margin:0;padding:.3rem 0 .3rem 1rem">{E(p['moral'])}</blockquote>
+    <h2>Para a sua vida</h2><p>{E(p['reflexao'])}</p>
+    <div style="text-align:center;margin-top:1rem"><a class="cta" href="{WA}">Falar com o Mestre Alberto</a></div>
+  </section>
+  <section class="cartao" style="text-align:center">
+    <h2>Outras parábolas</h2><div class="ligas">{"".join(f'<a href="/{v["slug"]}">{E(v["titulo_curto"])}</a>' for v in viz)}<a href="/parabolas">📖 Todas as parábolas</a></div>
+    <p>Experimente também o <a href="/tarot-gratis">Tarot Grátis</a> ou veja as <a href="/rezas-e-oracoes">Rezas e Orações</a>.</p>
+  </section>
+"""
+        open(f"{p['slug']}.html", "w", encoding="utf-8").write(cabeca(p["titulo"], p["desc"], url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+    url = SITE + "/parabolas"; titulo = "Parábolas e Histórias com Lição de Vida | Mestre Alberto"
+    desc = "Parábolas e histórias com lição de vida sobre escolhas, amor, persistência, gratidão e coragem, contadas pelo Mestre Alberto. Pequenas histórias para pensar."
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
+        {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Parábolas", "item": url}]}]}
+    grelha = "".join(f'<a href="/{p["slug"]}"><span><b>📖 {E(p["titulo_curto"])}</b><small>{E(TEMA_TXT(p))}</small></span></a>' for p in PAR)
+    corpo = f"""  <section class="heroi">
+    <h1><span class="az">Parábolas e Histórias</span></h1>
+    <p class="sub">Pequenas histórias com grandes lições, para pensar sobre as escolhas, o amor e o caminho de cada um.</p>
+  </section>
+  <section><div class="doze">{grelha}</div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a><a href="/tarot-por-tema">🃏 Tarot por tema</a><a href="/signos-do-zodiaco">♈︎ Os 12 Signos</a></div></section>
+"""
+    open("parabolas.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+    print(len(PAR), "parábolas + a montra /parabolas")
