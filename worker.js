@@ -574,6 +574,23 @@ export default {
     // 31/10/2026: quem está no site agora + o chat dele com essa pessoa (ver a classe Sala, no fim)
     if (url.pathname === "/api/vivo" || url.pathname.startsWith("/api/vivo/")) {
       if (!env.SALA) return new Response("{}", { status: 503 });
+      // 01/11/2026: as ~500 páginas novas do SEO são servidas sem passar pelo worker, por isso o contarVisita não as vê.
+      // O vivo.js manda «novo: true» no primeiro sinal de cada página aberta: conta-se aqui, no mesmo formato,
+      // só para as páginas que NÃO estão na lista PAGINAS (essas já contam à entrada — não contar duas vezes).
+      if (url.pathname === "/api/vivo" && request.method === "POST" && env.VISITAS) {
+        const copia = request.clone();
+        ctx.waitUntil((async () => {
+          try {
+            const d = await copia.json(); const p = String(d.pagina || "").replace(/\.html$/, "");
+            const ref = request.headers.get("origin") || request.headers.get("referer") || "";
+            if (!d.novo || !/^\/[a-z0-9-]+(\/[a-z0-9-]+)?$/.test(p) || PAGINAS.has(p) || !/genialtarot\.com/.test(ref)) return;
+            const ua = request.headers.get("user-agent") || "";
+            env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120),
+              origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com").slice(0, 120),
+              (request.cf && request.cf.country) || "?", aparelhoDe(ua), ROBOS.test(ua) ? "robo" : "pessoa"] });
+          } catch (e) { /* contar nunca pode estragar o sinal */ }
+        })());
+      }
       return env.SALA.get(env.SALA.idFromName("sala")).fetch(request);
     }
 

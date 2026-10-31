@@ -14,7 +14,9 @@
   function ola() {
     if (document.visibilityState !== "visible") return;
     var o = ""; try { o = document.referrer ? new URL(document.referrer).hostname : ""; } catch (e) {}
-    post("", { sid: sid, pagina: location.pathname, titulo: document.title, origem: o }).then(function (r) { return r.json(); })
+    // 01/11/2026: «novo» no primeiro sinal desta página aberta — o worker conta-o como visita (as páginas novas do SEO não passam pelo contador)
+    var novo = !ola.feito; ola.feito = true;
+    post("", { sid: sid, pagina: location.pathname, titulo: document.title, origem: o, novo: novo }).then(function (r) { return r.json(); })
       .then(function (r) { if (r && r.aberto && !aberto) verChat(); }).catch(function () {});
   }
   // os sons (baixinhos, nunca alto): abrir = sino a subir; fechar = duas notas a descer; mensagem = «plim» curto
