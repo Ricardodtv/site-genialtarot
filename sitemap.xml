@@ -6,6 +6,7 @@
   <url><loc>https://genialtarot.com/amuletos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/aniversarios</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/anual</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/aquario-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/arcano-00-o-louco</loc><lastmod>2026-10-31</lastmod><priority>0.6</priority></url>
   <url><loc>https://genialtarot.com/arcano-01-o-mago</loc><lastmod>2026-10-31</lastmod><priority>0.6</priority></url>
   <url><loc>https://genialtarot.com/arcano-02-a-sacerdotisa</loc><lastmod>2026-10-31</lastmod><priority>0.6</priority></url>
@@ -44,8 +45,12 @@
   <url><loc>https://genialtarot.com/ascendente-em-touro</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/ascendente-em-virgem</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/ascendente</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/balanca-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/benzimentos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/calendarios</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/capricornio-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/caranguejo-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/carneiro-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/carta-as-de-copas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/carta-as-de-espadas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/carta-as-de-ouros</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -103,21 +108,152 @@
   <url><loc>https://genialtarot.com/carta-valete-de-espadas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/carta-valete-de-ouros</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/carta-valete-de-paus</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/cartas-do-tarot-amor</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/cartas-do-tarot-dinheiro</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/cartas-do-tarot-mudanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/cartas-do-tarot-reconciliacao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/cartas-do-tarot-sim-ou-nao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/cartas-do-tarot-trabalho</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/cartomancia</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-1</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-10</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-11</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-12</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-2</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-3</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-4</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-5</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-6</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-7</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-8</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/casa-9</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/ceu-de-hoje</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-aquario-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-aquario-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-balanca-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-balanca-e-balanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-balanca-e-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-balanca-e-escorpiao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-balanca-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-balanca-e-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-capricornio-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-capricornio-e-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-capricornio-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-caranguejo-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-caranguejo-e-balanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-caranguejo-e-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-caranguejo-e-caranguejo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-caranguejo-e-escorpiao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-caranguejo-e-leao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-caranguejo-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-caranguejo-e-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-caranguejo-e-virgem</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-balanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-caranguejo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-carneiro</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-escorpiao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-gemeos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-leao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-touro</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-carneiro-e-virgem</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-entre-signos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-escorpiao-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-escorpiao-e-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-escorpiao-e-escorpiao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-escorpiao-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-escorpiao-e-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-gemeos-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-gemeos-e-balanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-gemeos-e-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-gemeos-e-caranguejo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-gemeos-e-escorpiao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-gemeos-e-gemeos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-gemeos-e-leao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-gemeos-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-gemeos-e-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-gemeos-e-virgem</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-leao-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-leao-e-balanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-leao-e-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-leao-e-escorpiao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-leao-e-leao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-leao-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-leao-e-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-leao-e-virgem</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-peixes-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-sagitario-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-sagitario-e-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-sagitario-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-sagitario-e-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-balanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-caranguejo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-escorpiao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-gemeos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-leao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-touro</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-touro-e-virgem</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-virgem-e-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-virgem-e-balanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-virgem-e-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-virgem-e-escorpiao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-virgem-e-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-virgem-e-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/compatibilidade-virgem-e-virgem</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/compatibilidade</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/consultas-a-distancia</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/desbloqueios</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/efemerides</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/elemento-agua</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/elemento-ar</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/elemento-fogo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/elemento-terra</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/escorpiao-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/famosos-ceu</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/fase-lua-nascimento</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/fimdesemana</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/gemeos-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/historia-aparicoes-de-fatima</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/historia-o-velho-rico-e-a-moca-nova</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/historia-promessa-a-sao-bentinho</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/historias-e-lendas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-boi</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-cabra</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-cao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-cavalo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-coelho</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-dragao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-galo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-macaco</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-porco</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-rato</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-serpente</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/horoscopo-chines-tigre</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/horoscopo-chines</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/horoscopo-do-dia</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/horoscopo-pessoal</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/horoscopo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/</loc><lastmod>2026-10-31</lastmod><priority>1.0</priority></url>
+  <url><loc>https://genialtarot.com/leao-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/leitura-de-cartas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-amendoeiras-em-flor</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-galo-de-barcelos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-justica-de-fafe</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-milagre-das-rosas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-moura-encantada</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-nazare-fuas-roupinho</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-padeira-de-aljubarrota</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-pedro-sem</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-ponte-da-misarela</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-sao-martinho</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/lenda-sete-cidades</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/loja</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/lua-em-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/lua-em-balanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -135,6 +271,18 @@
   <url><loc>https://genialtarot.com/mapa-amor</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/mapa-astral</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/mapa-do-casal</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-balanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-caranguejo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-carneiro</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-escorpiao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-gemeos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-leao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-touro</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/marte-em-virgem</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/medos-e-receios</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/noticias-do-ceu</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/novidades</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -201,19 +349,45 @@
   <url><loc>https://genialtarot.com/parabolas-sobre-sabedoria</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/parabolas-sobre-trabalho</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/parabolas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/peixes-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/planeta-jupiter</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/planeta-lua</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/planeta-marte</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/planeta-mercurio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/planeta-neptuno</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/planeta-plutao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/planeta-saturno</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/planeta-sol</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/planeta-urano</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/planeta-venus</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/quiromancia</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/responso-limpar-a-casa</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/responso-santo-antonio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/retrogrados</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/revolucao-solar</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-afastar-as-bruxas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-ar-de-defunto</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/reza-assombramento</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-cortar-o-cobrao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-coser-a-carne-quebrada</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-coser-o-pe-aberto</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-credo-da-quaresma</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/reza-dor-ciatica</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-dor-de-cabeca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-erisipela-e-coxo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/reza-espinhela-caida</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-herpes-e-peconha</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/reza-mal-de-inveja</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/reza-mau-olhado</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-para-a-crianca-falar</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-santa-barbara-trovoadas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-talhar-a-triz</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/reza-talhar-aftas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/reza-talhar-as-bichas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-talhar-as-espinhas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/reza-talhar-o-sol</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-tirar-a-lua-as-criancas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/reza-tirar-o-entrepaco</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/reza-tirar-o-quebranto</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/reza-ventre-caido</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/rezas-de-protecao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -221,7 +395,11 @@
   <url><loc>https://genialtarot.com/rezas-para-criancas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/rezas-para-dores</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/rituais</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/sagitario-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/signos-cardinais</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/signos-do-zodiaco</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/signos-fixos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/signos-mutaveis</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/sobre</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/sonho/pesadelos</loc><lastmod>2026-10-31</lastmod><priority>0.6</priority></url>
   <url><loc>https://genialtarot.com/sonho/sonhar-com-a-propria-morte</loc><lastmod>2026-10-31</lastmod><priority>0.6</priority></url>
@@ -335,6 +513,26 @@
   <url><loc>https://genialtarot.com/tarot-por-tema</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/tarot-semestral</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/tarot-trabalho</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tiragem-carta-do-dia</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tiragem-cruz-celta</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tiragem-do-amor</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tiragem-ferradura</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tiragem-sim-ou-nao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tiragem-tres-cartas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/touro-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/trio-astral</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-aquario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-balanca</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-capricornio</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-caranguejo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-carneiro</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-escorpiao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-gemeos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-leao</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-peixes</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-sagitario</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-touro</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/venus-em-virgem</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/vip</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/virgem-no-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 </urlset>

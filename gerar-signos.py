@@ -536,3 +536,211 @@ if os.path.exists("ascendente-lua-textos.py"):
             x = x.replace('<div class="ligas"><a href="/horoscopo-do-dia#s', f'<div class="ligas"><a href="/ascendente-em-{s0["slug"]}">Ascendente em {E(s0["pt"])}</a><a href="/lua-em-{s0["slug"]}">Lua em {E(s0["pt"])}</a><a href="/horoscopo-do-dia#s', 1)
             open(f, "w", encoding="utf-8").write(x)
     print("24 páginas de Ascendente e Lua")
+
+# ── Ronda 4 (31/10/2026, «mais variantes para os signos e o tarot»): compatibilidades (78 pares), Vénus e Marte (24),
+#    horóscopo chinês (12, com os anos REAIS do horoscopo-chines-dados.js), signo no Tarot (12), tiragens (6).
+nm = lambda x: x["pt"] if x["pt"] == x["br"] else f"{x['pt']} ({x['br']})"
+ARC_SLUG = {}   # nome do arcano maior → slug da página dele
+import glob as _g
+for f in sorted(_g.glob("arcano-*.html")):
+    m = re.search(r"<h1[^>]*>(.*?)</h1>", open(f, encoding="utf-8").read(), re.S)
+    if m: ARC_SLUG[re.sub(r"<[^>]+>", "", m.group(1)).strip()] = f[:-5]
+def pagina(slug, titulo, desc, img, migalhas, corpo):
+    url = f"{SITE}/{slug}"
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Article", "headline": titulo, "description": desc, "image": img, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url},
+        {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + u} for i, (n, u) in enumerate([("Início", "/")] + migalhas + [(titulo.split(":")[0], "/" + slug)])]}]}
+    open(f"{slug}.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, img, ld, APROVADO) + corpo + RODAPE)
+
+if os.path.exists("compat-textos-a.py") and os.path.exists("compat-textos-b.py"):
+    CA = {}; exec(open("compat-textos-a.py", encoding="utf-8").read(), CA); CB = {}; exec(open("compat-textos-b.py", encoding="utf-8").read(), CB)
+    COMP = {(c["i"], c["j"]): c for c in CA["COMPAT_A"] + CB["COMPAT_B"]}
+    cslug = lambda i, j: f"compatibilidade-{S[min(i,j)]['slug']}-e-{S[max(i,j)]['slug']}"
+    for (i, j), c in COMP.items():
+        a, b = S[i], S[j]; nome = f"{a['pt']} e {b['pt']}"
+        corpo = f"""  <section class="heroi">
+    <div style="display:flex;gap:.8rem;justify-content:center"><img class="foto-mestre" src="/signos/{i:02d}.webp" alt="{E(a['pt'])}" width="100" height="100" /><img class="foto-mestre" src="/signos/{j:02d}.webp" alt="{E(b['pt'])}" width="100" height="100" /></div>
+    <h1><span class="az">{E(nome)}</span></h1>
+    <p class="sub">Compatibilidade no amor e na amizade · afinidade <span style="color:var(--ouro)">{"♥" * c['nota']}{"♡" * (5 - c['nota'])}</span></p>
+  </section>
+  <section class="cartao texto"><p>{E(c['resumo'])}</p>
+    <h2>No amor</h2><p>{E(c['amor'])}</p><h2>Na amizade</h2><p>{E(c['amizade'])}</p>
+    <h2>Os desafios</h2><p>{E(c['desafios'])}</p><h2>O conselho</h2><p>{E(c['conselho'])}</p>
+    <p style="color:var(--suave);font-size:.95rem">O signo solar é só uma parte do mapa. Para ver a relação a sério, compare os dois mapas no <a href="/mapa-do-casal">Mapa do Casal</a> ou na <a href="/compatibilidade">Compatibilidade</a> com as datas de nascimento.</p>
+  </section>
+  <section class="cartao" style="text-align:center">
+    <h2>{E(a['pt'])} com os outros signos</h2><div class="ligas">{"".join(f'<a href="/{cslug(i, k)}">{GLIFO[k]}︎ {E(S[k]["pt"])}</a>' for k in range(12) if k != j)}</div>
+    {"" if i == j else f'<h2>{E(b["pt"])} com os outros signos</h2><div class="ligas">' + "".join(f'<a href="/{cslug(j, k)}">{GLIFO[k]}︎ {E(S[k]["pt"])}</a>' for k in range(12) if k != i) + "</div>"}
+    <p>Tem dúvidas sobre a sua relação? <a href="/tarot-do-amor">Tarot do Amor</a> · <a href="{WA}">Falar com o Mestre Alberto</a></p>
+  </section>
+"""
+        pagina(cslug(i, j), c["titulo"], c["desc"], f"{SITE}/signos/{i:02d}.webp", [("Compatibilidade entre signos", "/compatibilidade-entre-signos")], corpo)
+    grelha = "".join(f'<section class="cartao" style="margin-bottom:1rem"><h2>{GLIFO[i]}︎ {E(nm(S[i]))}</h2><div class="ligas">' + "".join(f'<a href="/{cslug(i, k)}">{E(S[i]["pt"])} e {E(S[k]["pt"])}</a>' for k in range(12)) + "</div></section>" for i in range(12))
+    corpo = f"""  <section class="heroi"><h1><span class="az">Compatibilidade entre Signos</span></h1>
+    <p class="sub">Os 78 pares do zodíaco: como se dão no amor e na amizade, os desafios e o conselho para cada casal.</p></section>
+  {grelha}
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/compatibilidade">Calcular com as datas de nascimento</a><a href="/mapa-do-casal">Mapa do Casal</a><a href="/signos-do-zodiaco">Os 12 Signos</a></div></section>
+"""
+    pagina("compatibilidade-entre-signos", "Compatibilidade entre Signos: os 78 pares no amor", "A compatibilidade entre os 12 signos do zodíaco no amor e na amizade: os 78 pares, os desafios e o conselho do Mestre Alberto para cada casal.", SITE + "/og-image.jpg", [], corpo)
+    for i, s0 in enumerate(S):
+        f = f"signo/{s0['slug']}.html"; x = open(f, encoding="utf-8").read()
+        if "compatibilidade-" + s0["slug"] not in x and "-e-" + s0["slug"] not in x:
+            bloco = f'<h2>Compatibilidade de {E(s0["pt"])} com cada signo</h2><div class="ligas">' + "".join(f'<a href="/{cslug(i, k)}">{GLIFO[k]}︎ {E(S[k]["pt"])}</a>' for k in range(12)) + "</div>\n"
+            x = x.replace("  <section class=\"cartao\" style=\"text-align:center\">\n    <h2>Quer saber o que as cartas dizem para si?</h2>", "  <section class=\"cartao\" style=\"text-align:center\">" + bloco + "  </section>\n  <section class=\"cartao\" style=\"text-align:center\">\n    <h2>Quer saber o que as cartas dizem para si?</h2>", 1)
+            open(f, "w", encoding="utf-8").write(x)
+    print(len(COMP), "compatibilidades + /compatibilidade-entre-signos")
+
+if os.path.exists("venus-marte-textos.py"):
+    VM = {}; exec(open("venus-marte-textos.py", encoding="utf-8").read(), VM)
+    for tipo, lista, campos, nome_t in (("venus-em", VM["VENUS"], [("Como ama", "ama"), ("O que a atrai", "atrai"), ("A sedução", "seduz"), ("O desafio", "desafio")], "Vénus"),
+                                        ("marte-em", VM["MARTE"], [("A energia", "energia"), ("O desejo", "desejo"), ("Trabalho e ambição", "trabalho"), ("O desafio", "desafio")], "Marte")):
+        for i, t in enumerate(lista):
+            s0 = S[i]; outro = "marte-em" if tipo == "venus-em" else "venus-em"
+            corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{i:02d}.webp" alt="" width="120" height="120" />
+    <h1><span class="az">{E(nome_t)} em {E(nm(s0))}</span></h1></section>
+  <section class="cartao texto"><p>{E(t['intro'])}</p>{"".join(f"<h2>{E(h)}</h2><p>{E(t[c])}</p>" for h, c in campos)}</section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/mapa-amor">Descobrir a sua Vénus e o seu Marte</a><a href="/{outro}-{s0['slug']}">{'Marte' if tipo == 'venus-em' else 'Vénus'} em {E(s0['pt'])}</a><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a></div>
+    <h2>{nome_t} nos outros signos</h2><div class="ligas">{"".join(f'<a href="/{tipo}-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div></section>
+"""
+            pagina(f"{tipo}-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{i:02d}.webp", [("Os 12 Signos", "/signos-do-zodiaco")], corpo)
+    print("24 páginas de Vénus e Marte")
+
+if os.path.exists("chines-tarot-textos.py"):
+    CT = {}; exec(open("chines-tarot-textos.py", encoding="utf-8").read(), CT)
+    dados = json.loads(re.search(r"window\.ANO_CHINES = (\{.*\});?", open("horoscopo-chines-dados.js", encoding="utf-8").read(), re.S).group(1))
+    anos = dados["anos"]; ELEM_C = ["Madeira", "Madeira", "Fogo", "Fogo", "Terra", "Terra", "Metal", "Metal", "Água", "Água"]
+    MESES_C = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
+    fmt = lambda d: f"{int(d[8:10])} {MESES_C[int(d[5:7]) - 1]} {d[:4]}"
+    for k, t in enumerate(CT["CHINES"]):
+        linhas = []
+        for n, y in enumerate(anos[:-1]):
+            if (y["a"] - 4) % 12 == k and 1924 <= y["a"] <= 2031:
+                import datetime as _dt
+                fim = (_dt.date.fromisoformat(anos[n + 1]["d"]) - _dt.timedelta(days=1)).isoformat()
+                linhas.append(f'<li><b>{y["a"]}</b> · {ELEM_C[(y["a"] - 4) % 10]} — de {fmt(y["d"])} a {fmt(fim)}</li>')
+        corpo = f"""  <section class="heroi"><h1><span class="az">{E(t['nome'])}</span></h1>
+    <p class="sub">Horóscopo Chinês · elemento fixo: {E(t['elemento_fixo'])}</p></section>
+  <section class="cartao texto"><h2>A personalidade</h2><p>{E(t['personalidade'])}</p><h2>No amor</h2><p>{E(t['amor'])}</p>
+    <h2>No trabalho</h2><p>{E(t['trabalho'])}</p><h2>Afinidades</h2><p>{E(t['afinidades'])}</p><h2>O conselho</h2><p>{E(t['conselho'])}</p>
+    <h2>Os anos do {E(t['nome'])}</h2><p style="color:var(--suave);font-size:.95rem">O ano chinês começa na Lua Nova de fim de janeiro ou de fevereiro: quem nasceu antes dessa data pertence ao animal do ano anterior. Datas calculadas com o Swiss Ephemeris.</p><ul>{"".join(linhas)}</ul></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/horoscopo-chines">Descobrir o seu animal</a>{"".join(f'<a href="/horoscopo-chines-{x["slug"]}">{E(x["nome"])}</a>' for x in CT["CHINES"] if x is not t)}</div></section>
+"""
+        pagina(f"horoscopo-chines-{t['slug']}", t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Horóscopo Chinês", "/horoscopo-chines")], corpo)
+    for i, t in enumerate(CT["SIGNO_TAROT"]):
+        s0 = S[i]; arc = ARC_SLUG.get(t["arcano"]); img = f"{SITE}/cartas/partilha/" + (arc[7:] + ".jpg" if arc else "") if arc else SITE + "/og-image.jpg"
+        corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{i:02d}.webp" alt="" width="110" height="110" />
+    <h1><span class="az">{E(nm(s0))} no Tarot</span></h1><p class="sub">A carta do signo: <b>{E(t['arcano'])}</b></p></section>
+  <section class="cartao texto"><h2>Porque é a carta de {E(s0['pt'])}</h2><p>{E(t['ligacao'])}</p><h2>A lição da carta</h2><p>{E(t['licao'])}</p><h2>O conselho</h2><p>{E(t['conselho'])}</p></section>
+  <section class="cartao" style="text-align:center"><div class="ligas">{f'<a href="/{arc}">O significado de {E(t["arcano"])}</a>' if arc else ""}<a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a><a href="/carta-de-tarot">A sua carta de nascimento</a></div>
+    <h2>Os outros signos no Tarot</h2><div class="ligas">{"".join(f'<a href="/{x["slug"]}-no-tarot">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div></section>
+"""
+        pagina(f"{s0['slug']}-no-tarot", t["titulo"], t["desc"], img, [("Os 12 Signos", "/signos-do-zodiaco")], corpo)
+    for t in CT["TIRAGENS"]:
+        pos = "".join(f"<li><b>{E(a)}</b> — {E(b)}</li>" for a, b in t["posicoes"])
+        corpo = f"""  <section class="heroi"><h1><span class="az">{E(t['nome'])}</span></h1></section>
+  <section class="cartao texto"><p>{E(t['intro'])}</p><h2>As posições</h2><ul>{pos}</ul><h2>Como se faz</h2><p>{E(t['como'])}</p>
+    <h2>Quando usar</h2><p>{E(t['quando'])}</p><h2>Um exemplo</h2><p>{E(t['exemplo'])}</p></section>
+  <section class="cartao" style="text-align:center"><a class="cta" href="/tarot-gratis">Fazer uma tiragem grátis</a>
+    <h2 style="margin-top:1.2rem">Outras tiragens</h2><div class="ligas">{"".join(f'<a href="/{x["slug"]}">{E(x["nome"])}</a>' for x in CT["TIRAGENS"] if x is not t)}<a href="/arcanos">Os Arcanos Maiores</a><a href="/arcanos-menores">Os Arcanos Menores</a></div></section>
+"""
+        pagina(t["slug"], t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Tarot por tema", "/tarot-por-tema")], corpo)
+    print("12 animais chineses + 12 signos no Tarot +", len(CT["TIRAGENS"]), "tiragens")
+
+# ── Rezas, lote 3 (das transcrições dos vídeos dele) — rezas-textos-3.py, mesmo molde.
+if os.path.exists("rezas-textos-3.py"):
+    R3 = {}; exec(open("rezas-textos-3.py", encoding="utf-8").read(), R3); REZAS3 = R3["REZAS3"]
+    tudo = REZAS + (REZAS2 if os.path.exists("rezas-textos-2.py") else []) + REZAS3
+    for r in REZAS3:
+        secs = "".join(f"<h2>{E(h)}</h2><p>{p}</p>" for h, p in r["seccoes"]) + (EXCERTO(r["reza"]) if r.get("reza") else "")
+        aviso = f'<p style="font-size:.9rem;color:var(--suave)">⚠️ {E(r.get("aviso") or REZ["CUIDADO"])}</p>'
+        outras = "".join(f'<a href="/{x["slug"]}">{E(x["menu"])}</a>' for x in REZAS3 if x is not r) + '<a href="/rezas-e-oracoes">🙏 Todas as rezas</a><a href="/benzimentos">✝️ Benzimentos</a>'
+        corpo = f"""  <section class="heroi">
+    <img class="foto-mestre" src="/mestre-r13.jpg" alt="Mestre Alberto" width="120" height="120" />
+    <h1><span class="az">{E(r['h1'])}</span></h1>
+    <p class="sub">{E(r['sub'])}</p>
+    <a class="cta" href="{WA}">Pedir esta reza ao Mestre Alberto</a>
+  </section>
+  <section class="cartao texto">{secs}{aviso}</section>
+  <section class="cartao" style="text-align:center">
+    <h2>O Mestre Alberto faz esta reza</h2>
+    <p>No <a href="/tarologo-fafe">consultório em Fafe</a> ou à distância, para Portugal, Brasil e todo o mundo.</p>
+    <a class="cta" href="{WA}">Marcar pelo WhatsApp</a>
+    <h2 style="margin-top:1.4rem">Outras rezas</h2><div class="ligas">{outras}</div>
+  </section>
+"""
+        pagina(r["slug"], r["titulo"], r["desc"], SITE + "/og-image.jpg", [("Rezas e Orações", "/rezas-e-oracoes")], corpo)
+    s = open("rezas-e-oracoes.html", encoding="utf-8").read()
+    if REZAS3[0]["slug"] not in s:
+        extra = "".join(f'<a href="/{r["slug"]}"><span><b>🙏 {E(r["h1"])}</b><small>{E(r["sub"])}</small></span></a>' for r in REZAS3)
+        s = s.replace("</div></section>\n  <section class=\"cartao texto\">", extra + "</div></section>\n  <section class=\"cartao texto\">", 1); open("rezas-e-oracoes.html", "w", encoding="utf-8").write(s)
+    print(len(REZAS3), "rezas (lote 3)")
+
+# ── Histórias e Lendas — historias-textos.py (Fátima, São Bentinho, lendas portuguesas, a Justiça de Fafe). Montra /historias-e-lendas.
+if os.path.exists("historias-textos.py"):
+    HI = {}; exec(open("historias-textos.py", encoding="utf-8").read(), HI); HIS = HI["HISTORIAS"]
+    for k, p in enumerate(HIS):
+        viz = [HIS[(k + d) % len(HIS)] for d in (1, 2, -1)]
+        corpo = f"""  <section class="heroi">
+    <h1><span class="az">{E(p['titulo_curto'])}</span></h1>
+    <p class="sub">{E(p['tipo'])} · contada pelo Mestre Alberto</p>
+  </section>
+  <section class="cartao texto">{"".join(f"<p>{E(x)}</p>" for x in p["historia"])}
+    <h2>O que nos ensina</h2><blockquote style="font-family:var(--serifa);font-size:1.3rem;font-style:italic;color:var(--ouro);border-left:3px solid var(--ouro);margin:0;padding:.3rem 0 .3rem 1rem">{E(p['moral'])}</blockquote>
+    <h2>Para a sua vida</h2><p>{E(p['reflexao'])}</p>
+  </section>
+  <section class="cartao" style="text-align:center">
+    <h2>Outras histórias</h2><div class="ligas">{"".join(f'<a href="/{v["slug"]}">{E(v["titulo_curto"])}</a>' for v in viz)}<a href="/historias-e-lendas">📜 Histórias e Lendas</a><a href="/parabolas">📖 Parábolas</a></div>
+    <a class="cta" href="{WA}">Falar com o Mestre Alberto</a>
+  </section>
+"""
+        pagina(p["slug"], p["titulo"], p["desc"], SITE + "/og-image.jpg", [("Histórias e Lendas", "/historias-e-lendas")], corpo)
+    grelha = "".join(f'<a href="/{p["slug"]}"><span><b>📜 {E(p["titulo_curto"])}</b><small>{E(p["tipo"])} · {E(p["moral"][:100])}</small></span></a>' for p in HIS)
+    corpo = f"""  <section class="heroi"><h1><span class="az">Histórias e Lendas</span></h1>
+    <p class="sub">As lendas de Portugal e as histórias de fé que passam de geração em geração, contadas pelo Mestre Alberto.</p></section>
+  <section><div class="doze">{grelha}</div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/parabolas">📖 Parábolas</a><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a><a href="/tarologo-fafe">📍 Fafe</a></div></section>
+"""
+    pagina("historias-e-lendas", "Histórias e Lendas de Portugal: fé, tradição e sabedoria", "Lendas portuguesas e histórias de fé — a Justiça de Fafe, o Galo de Barcelos, o Milagre das Rosas, Fátima — contadas pelo Mestre Alberto.", SITE + "/og-image.jpg", [], corpo)
+    s = open("parabolas.html", encoding="utf-8").read()
+    if "historias-e-lendas" not in s:
+        s = s.replace('<a href="/rezas-e-oracoes">🙏 Rezas e Orações</a>', '<a href="/historias-e-lendas">📜 Histórias e Lendas</a><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a>', 1); open("parabolas.html", "w", encoding="utf-8").write(s)
+    print(len(HIS), "histórias e lendas + /historias-e-lendas")
+
+# ── Casas, planetas, elementos, modalidades e «cartas do Tarot para…» — astro-tarot-extra-textos.py.
+if os.path.exists("astro-tarot-extra-textos.py"):
+    AX = {}; exec(open("astro-tarot-extra-textos.py", encoding="utf-8").read(), AX)
+    PT2SLUG = {s0["pt"]: s0["slug"] for s0 in S}
+    sig_lig = lambda nomes: "".join(f'<a href="/signo/{PT2SLUG[n]}">{E(n)}</a>' for n in nomes if n in PT2SLUG)
+    def grupo(lista, campos, migalha, extra=lambda t: ""):
+        for t in lista:
+            corpo = f"""  <section class="heroi"><h1><span class="az">{E(t['nome'])}</span></h1>{f'<p class="sub">{E(t["tema"])}</p>' if t.get("tema") else ""}</section>
+  <section class="cartao texto">{"".join(f"<h2>{E(h)}</h2><p>{E(t[c])}</p>" for h, c in campos)}{extra(t)}</section>
+  <section class="cartao" style="text-align:center"><div class="ligas">{"".join(f'<a href="/{x["slug"]}">{E(x["nome"])}</a>' for x in lista if x is not t)}<a href="/mapa-astral">O seu Mapa Astral</a><a href="/signos-do-zodiaco">Os 12 Signos</a></div></section>
+"""
+            pagina(t["slug"], t["titulo"], t["desc"], SITE + "/og-image.jpg", migalha, corpo)
+    grupo(AX["CASAS"], [("O significado", "significado"), ("Na sua vida", "na_vida"), ("Planetas nesta casa", "planetas"), ("O signo natural", "signo_natural")], [("Mapa Astral", "/mapa-astral")])
+    grupo(AX["PLANETAS"], [("O que representa", "simbolo"), ("No mapa natal", "no_mapa"), ("O que rege", "rege"), ("O ciclo", "ciclo")], [("Mapa Astral", "/mapa-astral")])
+    grupo(AX["ELEMENTOS"], [("A natureza", "natureza"), ("No amor", "amor"), ("Excesso e falta", "equilibrio")], [("Os 12 Signos", "/signos-do-zodiaco")], lambda t: '<h2>Os signos</h2><div class="ligas">' + sig_lig(t["signos"]) + "</div>")
+    grupo(AX["MODALIDADES"], [("A natureza", "natureza"), ("Na sua vida", "na_vida")], [("Os 12 Signos", "/signos-do-zodiaco")], lambda t: '<h2>Os signos</h2><div class="ligas">' + sig_lig(t["signos"]) + "</div>")
+    TODAS_C = {**ARC_SLUG}
+    if os.path.exists("arcanos-menores-textos.py"): TODAS_C.update({c["nome"]: c["slug"] for c in MEN})
+    for t in AX["CARTAS_TEMA"]:
+        itens = "".join(f'<li><b>{f"<a href=\"/{TODAS_C[n]}\">{E(n)}</a>" if n in TODAS_C else E(n)}</b> — {E(d)}</li>' for n, d in t["cartas"])
+        corpo = f"""  <section class="heroi"><h1><span class="az">{E(t['nome'])}</span></h1></section>
+  <section class="cartao texto"><p>{E(t['intro'])}</p><ul>{itens}</ul><p style="color:var(--suave)">{E(t['nota'])}</p></section>
+  <section class="cartao" style="text-align:center"><a class="cta" href="/tarot-gratis">Tirar as suas cartas grátis</a>
+    <div class="ligas">{"".join(f'<a href="/{x["slug"]}">{E(x["nome"])}</a>' for x in AX["CARTAS_TEMA"] if x is not t)}<a href="/arcanos">Arcanos Maiores</a><a href="/arcanos-menores">Arcanos Menores</a></div></section>
+"""
+        pagina(t["slug"], t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Tarot por tema", "/tarot-por-tema")], corpo)
+    print("casas, planetas, elementos, modalidades e cartas por tema:", sum(len(AX[k]) for k in ("CASAS", "PLANETAS", "ELEMENTOS", "MODALIDADES", "CARTAS_TEMA")))
+
+# ── As montras ganham as ligações às variantes novas (para nenhuma página ficar órfã).
+def junta(f, marca, bloco):
+    s = open(f, encoding="utf-8").read()
+    if marca not in s:
+        s = s.replace("</div>\n<script src=\"/vip-faixa.js\"", "", 0)
+        s = s.replace("<footer>", bloco + "\n<footer>", 1); open(f, "w", encoding="utf-8").write(s)
+L = lambda pares: "".join(f'<a href="/{a}">{E(b)}</a>' for a, b in pares if os.path.exists(a + ".html"))
+junta("signos-do-zodiaco.html", "compatibilidade-entre-signos", '<section class="cartao" style="text-align:center"><h2>Mais astrologia</h2><div class="ligas">' + L([("compatibilidade-entre-signos", "Compatibilidade entre signos"), ("horoscopo-chines", "Horóscopo Chinês"), ("elemento-fogo", "Os 4 elementos"), ("signos-cardinais", "Cardinais, fixos e mutáveis"), ("casa-1", "As 12 casas"), ("planeta-sol", "Os planetas")]) + "".join(f'<a href="/{x}-no-tarot">{GLIFO[j]}︎ {E(S[j]["pt"])} no Tarot</a>' for j, x in enumerate(s0["slug"] for s0 in S) if os.path.exists(f"{x}-no-tarot.html")) + "</div></section>")
+junta("tarot-por-tema.html", "tiragem-", '<section class="cartao" style="text-align:center"><h2>Mais Tarot</h2><div class="ligas">' + L([("arcanos", "Os 22 Arcanos Maiores"), ("arcanos-menores", "Os 56 Arcanos Menores"), ("tiragem-tres-cartas", "Tiragem de 3 cartas"), ("cartas-do-tarot-amor", "As cartas do amor"), ("cartas-do-tarot-sim-ou-nao", "Sim ou não"), ("historias-e-lendas", "Histórias e Lendas"), ("parabolas", "Parábolas")]) + "</div></section>")
+print("montras ligadas")
