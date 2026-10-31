@@ -199,3 +199,54 @@ corpo = f"""  <section class="heroi">
 """
 open("tarologo-fafe.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
 print("tarologo-fafe", "(aprovada)" if APROVADO else "(noindex: por aprovar)")
+
+# ── Tarot por tema (31/10/2026, pedido dele): Amor, Dinheiro, Trabalho, Família, Heranças, Negócios, Medos e Receios,
+#    Rituais, Amuletos, Cura do Medo / Talhar o Medo, Talhar o Ar, Cartomancia, Leitura de Cartas. Textos em temas-textos.py;
+#    os produtos (nome e preço) lêem-se do produtos.js, para nunca ficarem desactualizados.
+TEMAS = {}; exec(open("temas-textos.py", encoding="utf-8").read(), TEMAS); TEMAS = TEMAS["TEMAS"]
+PROD = [(re.sub(r"\s+", " ", m.group(1)).strip(), m.group(2)) for m in re.finditer(r'nome\s*:\s*"([^"]+)"[\s\S]*?preco\s*:\s*"([^"]*)"', open("produtos.js", encoding="utf-8").read())]
+WA = "https://wa.me/351914920427"
+menu = lambda atual: "".join(f'<a href="/{t["slug"]}">{E(t["menu"])}</a>' for t in TEMAS if t["slug"] != atual)
+for t in TEMAS:
+    url = f"{SITE}/{t['slug']}"
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Article", "headline": t["titulo"], "description": t["desc"], "image": SITE + "/og-image.jpg", "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Tarot por tema", "item": SITE + "/tarot-por-tema"},
+            {"@type": "ListItem", "position": 3, "name": t["h1"], "item": url}]}]}
+    secs = "".join(f"<h2>{E(h)}</h2><p>{p}</p>" for h, p in t["seccoes"])   # os parágrafos podem levar <a> (escritos por mim)
+    perg = ("<h2>Perguntas que pode fazer às cartas</h2><ul>" + "".join(f"<li>{E(q)}</li>" for q in t["perguntas"]) + "</ul>") if t["perguntas"] else ""
+    prods = [(n, pr) for q in t["produtos"] for n, pr in PROD if q.lower() in n.lower()]
+    vistos = []; [vistos.append(x) for x in prods if x not in vistos]
+    lista = ("<h2>Serviços do Mestre Alberto para este tema</h2><div class=\"ligas\">" + "".join(f'<a href="/loja">{E(n)}{" · " + E(pr) if pr else ""}</a>' for n, pr in vistos) + "</div>") if vistos else ""
+    aviso = f'<p style="font-size:.9rem;color:var(--suave)">⚠️ {E(t["aviso"])}</p>' if t.get("aviso") else ""
+    corpo = f"""  <section class="heroi">
+    <img class="foto-mestre" src="/mestre-r13.jpg" alt="Mestre Alberto" width="120" height="120" />
+    <h1><span class="az">{E(t['h1'])}</span></h1>
+    <p class="sub">{E(t['sub'])}</p>
+    <a class="cta" href="{WA}">Falar com o Mestre Alberto</a>
+  </section>
+  <section class="cartao texto">{secs}{perg}{aviso}</section>
+  <section class="cartao texto" style="text-align:center">{lista}
+    <p>Pode fazer a consulta no <a href="/tarologo-fafe">consultório em Fafe</a> ou à distância, a partir de Portugal, do Brasil ou de qualquer país.</p>
+    <a class="cta" href="{WA}">Marcar pelo WhatsApp</a>
+  </section>
+  <section class="cartao" style="text-align:center"><h2>Outros temas</h2><div class="ligas">{menu(t['slug'])}<a href="/signos-do-zodiaco">♈︎ Os 12 Signos</a><a href="/tarot-gratis">🃏 Tarot Grátis</a></div></section>
+"""
+    open(f"{t['slug']}.html", "w", encoding="utf-8").write(cabeca(t["titulo"], t["desc"], url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+url = SITE + "/tarot-por-tema"; titulo = "Tarot por tema: amor, dinheiro, trabalho, família e mais"
+desc = "Escolha o tema da sua pergunta: amor, dinheiro, trabalho, família, heranças, negócios, medos, rituais, amuletos e tradições portuguesas, com o Mestre Alberto."
+ld = {"@context": "https://schema.org", "@graph": [
+    {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
+    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Tarot por tema", "item": url}]}]}
+grelha = "".join(f'<a href="/{t["slug"]}"><span><b>{E(t["menu"])}</b><small>{E(t["sub"])}</small></span></a>' for t in TEMAS)
+corpo = f"""  <section class="heroi">
+    <h1><span class="az">Tarot por tema</span></h1>
+    <p class="sub">Escolha o tema da sua pergunta e veja como as cartas e o Mestre Alberto o podem ajudar.</p>
+  </section>
+  <section><div class="doze">{grelha}</div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/signos-do-zodiaco">♈︎ Os 12 Signos</a><a href="/tarot-gratis">🃏 Tarot Grátis</a><a href="/tarologo-fafe">📍 Consultório em Fafe</a><a href="/loja">🛍️ Loja</a></div></section>
+"""
+open("tarot-por-tema.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+print(len(TEMAS), "temas + a montra /tarot-por-tema")

@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://genialtarot.com/adivinha-signo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/amor-do-dia</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/amuletos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/aniversarios</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/anual</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/arcano-00-o-louco</loc><lastmod>2026-10-31</lastmod><priority>0.6</priority></url>
@@ -31,6 +32,7 @@
   <url><loc>https://genialtarot.com/ascendente</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/calendarios</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/carta-de-tarot</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/cartomancia</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/ceu-de-hoje</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/compatibilidade</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/efemerides</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
@@ -42,17 +44,20 @@
   <url><loc>https://genialtarot.com/horoscopo-pessoal</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/horoscopo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/</loc><lastmod>2026-10-31</lastmod><priority>1.0</priority></url>
+  <url><loc>https://genialtarot.com/leitura-de-cartas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/loja</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/lua</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/mapa-amor</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/mapa-astral</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/mapa-do-casal</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/medos-e-receios</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/noticias-do-ceu</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/novidades</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/numerologia-2027</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/oraculo-cores</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/retrogrados</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/revolucao-solar</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/rituais</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/signos-do-zodiaco</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/sobre</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/sonho/pesadelos</loc><lastmod>2026-10-31</lastmod><priority>0.6</priority></url>
@@ -155,9 +160,18 @@
   <url><loc>https://genialtarot.com/sonho/sonhar-que-voa</loc><lastmod>2026-10-31</lastmod><priority>0.6</priority></url>
   <url><loc>https://genialtarot.com/sonho/sonhos-repetidos</loc><lastmod>2026-10-31</lastmod><priority>0.6</priority></url>
   <url><loc>https://genialtarot.com/sonhos</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/talhar-o-ar</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/talhar-o-medo</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/tarologo-fafe</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tarot-dinheiro</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tarot-do-amor</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tarot-familia</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/tarot-gratis</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tarot-herancas</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tarot-negocios</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tarot-por-tema</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/tarot-semestral</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tarot-trabalho</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/trio-astral</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/vip</loc><lastmod>2026-10-31</lastmod><priority>0.8</priority></url>
 </urlset>
