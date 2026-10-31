@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """As páginas dos 12 signos (/signo/<nome>) e a montra /signos-do-zodiaco — 31/10/2026, pedido dele (SEO: «Signos»,
 «Horóscopo», variantes por signo, com o nome de Portugal E do Brasil). Textos em signos-textos.json (POR APROVAR por ele:
-enquanto APROVADO = False, as páginas saem com noindex e ficam fora do sitemap). O horóscopo de hoje de cada signo vem do
+enquanto APROVADO = True   # 31/10/2026: ele mandou abrir todas as variantes ao Google, as páginas saem com noindex e ficam fora do sitemap). O horóscopo de hoje de cada signo vem do
 mesmo horoscopo-dia/AAAA-MM-DD.json da página Horóscopo do Dia. Correr: python3 gerar-signos.py"""
 import json, os, re, html
-APROVADO = False
+APROVADO = True   # 31/10/2026: ele mandou abrir todas as variantes ao Google
 AQUI = os.path.dirname(os.path.abspath(__file__)); os.chdir(AQUI)
 SITE = "https://genialtarot.com"
 S = json.load(open("signos-textos.json", encoding="utf-8"))
@@ -26,6 +26,8 @@ estilo = estilo.replace("</style>", """
 .doze a { display: flex; gap: .8rem; align-items: center; text-decoration: none; color: var(--texto); background: oklch(0.20 0.06 272 / .88); border: 1px solid var(--borda); border-radius: 1.2rem; padding: .8rem 1rem; }
 .doze a:hover { border-color: var(--ouro); } .doze img { width: 3.6rem; height: 3.6rem; border-radius: 50%; }
 .doze small { display: block; color: var(--suave); }
+.gmaps-btn{display:inline-flex;align-items:center;gap:.8rem;padding:.7rem 1.3rem .7rem 1rem;border-radius:999px;background:#fff;color:#202124;text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.35);text-align:left}
+.gmaps-btn b{display:block;font-size:1.02rem} .gmaps-btn small{display:block;color:#5f6368;font-size:.8rem}
 </style>""")
 def cabeca(titulo, desc, url, img, ld, indexar):
     return f"""<!doctype html>
@@ -186,6 +188,7 @@ corpo = f"""  <section class="heroi">
     <p>Se não está perto de Fafe, pode fazer a consulta à distância, a partir de qualquer ponto de Portugal, do Brasil ou do mundo. A marcação é sempre pelo WhatsApp.</p>
     <h2>Onde fica o consultório</h2>
     <div class="perfil"><div><b>Morada</b>Rua da Barreira, 92<br>4820-474 Golães, Fafe</div><div><b>Marcações</b><a href="https://wa.me/351914920427">WhatsApp +351 914 920 427</a></div><div><b>Mapa</b><a href="{MAPS}">Abrir no Google Maps</a></div></div>
+    <p style="text-align:center"><a class="gmaps-btn" href="{MAPS}" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 34" width="26" height="36" aria-hidden="true"><defs><linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4285F4"/><stop offset=".35" stop-color="#4285F4"/><stop offset=".35" stop-color="#EA4335"/><stop offset=".6" stop-color="#EA4335"/><stop offset=".6" stop-color="#FBBC04"/><stop offset=".78" stop-color="#FBBC04"/><stop offset=".78" stop-color="#34A853"/></linearGradient></defs><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 34 12 34s12-13.2 12-22.1C24 5.3 18.6 0 12 0z" fill="url(#gm)"/><circle cx="12" cy="12" r="4.6" fill="#fff"/></svg><span><b>Encontre-nos no Google Maps</b><small>Rua da Barreira, 92 · Golães, Fafe</small></span></a></p>
     <p>Atende quem vem de Fafe, Guimarães, Felgueiras, Cabeceiras de Basto, Póvoa de Lanhoso, Braga e de todo o Norte do país.</p>
   </section>
   <section class="cartao" style="text-align:center">

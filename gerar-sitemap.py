@@ -2,7 +2,7 @@
 """Gera o sitemap.xml do genialtarot.com (31/10/2026, pedido dele: o robots.txt anunciava um sitemap que não existia — 404).
 Entra toda a página .html (raiz e sonho/) que NÃO tenha <meta name="robots" content="noindex">, menos as da lista FORA.
 Endereços sem «.html» (o Cloudflare manda o .html para lá com 307). lastmod = a data do último commit do ficheiro.
-Correr à mão depois de publicar página nova (ou que deixa de ser noindex): python3 gerar-sitemap.py"""
+Corre sozinho no pre-commit (.git/hooks/pre-commit, ligado por ele a 31/10 com ~/ligar-sitemap-auto.sh) sempre que o commit leva .html."""
 import glob, os, re, subprocess, html
 AQUI = os.path.dirname(os.path.abspath(__file__)); os.chdir(AQUI)
 SITE = "https://genialtarot.com"
