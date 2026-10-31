@@ -558,6 +558,12 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    // 31/10/2026 (ele, SEO): o www servia o site inteiro em duplicado. As páginas (as que passam pelo worker)
+    // vão com 301 para o endereço oficial sem www. O http:// já vai para https pelo «Always Use HTTPS» da zona.
+    if (url.hostname === "www.genialtarot.com" && (request.method === "GET" || request.method === "HEAD")) {
+      return Response.redirect("https://genialtarot.com" + url.pathname + url.search, 301);
+    }
+
     // Contar a visita antes de tudo. So paginas: fora as APIs, o /cdn-cgi/ da
     // Cloudflare e a pagina privada das estatisticas (que sou eu a olhar).
     if (!url.pathname.startsWith("/api/") && !url.pathname.startsWith("/cdn-cgi/") &&
