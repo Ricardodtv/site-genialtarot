@@ -349,3 +349,190 @@ if os.path.exists(PAR_F):
 """
     open("parabolas.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
     print(len(PAR), "parábolas + a montra /parabolas")
+
+# ── Variantes (31/10/2026, pedido dele: «cria variantes baseadas nas rezas e nas parábolas»): parábolas por tema
+#    (/parabolas-sobre-<tema>, só temas com 3 ou mais). Usa a lista PAR de cima (do cofre).
+SLUG_T = lambda t: t.replace("ç", "c").replace("ã", "a").replace("õ", "o").replace("é", "e").replace("í", "i").replace("ú", "u").replace("á", "a").replace("ó", "o").replace("ê", "e").replace(" ", "-")
+FRASE_T = {"trabalho": "o trabalho e o esforço", "coragem": "a coragem", "sabedoria": "a sabedoria", "escolhas": "as escolhas", "família": "a família",
+           "emoções": "as emoções", "mudança": "a mudança", "humildade": "a humildade", "persistência": "a persistência", "gratidão": "a gratidão",
+           "amor": "o amor", "paciência": "a paciência", "honestidade": "a honestidade", "dinheiro": "o dinheiro"}
+if os.path.exists(PAR_F):
+    import collections
+    por = collections.defaultdict(list)
+    for p in PAR:
+        for t in p.get("temas", []): por[t].append(p)
+    temas_ok = [t for t, ps in sorted(por.items(), key=lambda x: -len(x[1])) if len(ps) >= 3]
+    for t in temas_ok:
+        ps = por[t]; slug = "parabolas-sobre-" + SLUG_T(t); url = f"{SITE}/{slug}"; fr = FRASE_T.get(t, t)
+        titulo = f"Parábolas sobre {fr}: {len(ps)} histórias com lição de vida"
+        desc = f"Parábolas e histórias curtas sobre {fr}, com a lição de cada uma, contadas pelo Mestre Alberto: {', '.join(x['titulo_curto'] for x in ps[:3])} e outras."
+        ld = {"@context": "https://schema.org", "@graph": [
+            {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
+            {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
+                {"@type": "ListItem", "position": 2, "name": "Parábolas", "item": SITE + "/parabolas"}, {"@type": "ListItem", "position": 3, "name": "Sobre " + fr, "item": url}]}]}
+        itens = "".join(f'<a href="/{p["slug"]}"><span><b>📖 {E(p["titulo_curto"])}</b><small>{E(p["moral"])}</small></span></a>' for p in ps)
+        outros = "".join(f'<a href="/parabolas-sobre-{SLUG_T(x)}">{E(FRASE_T.get(x, x).capitalize())}</a>' for x in temas_ok if x != t)
+        corpo = f"""  <section class="heroi">
+    <h1><span class="az">Parábolas sobre {E(fr)}</span></h1>
+    <p class="sub">{len(ps)} histórias com lição de vida sobre {E(fr)}, contadas pelo Mestre Alberto.</p>
+  </section>
+  <section><div class="doze">{itens}</div></section>
+  <section class="cartao" style="text-align:center"><h2>Outros temas</h2><div class="ligas">{outros}<a href="/parabolas">📖 Todas as parábolas</a></div>
+    <p>Quer conversar sobre o seu momento? <a href="{WA}">Fale com o Mestre Alberto</a>.</p></section>
+"""
+        open(f"{slug}.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+    # a montra das parábolas ganha os temas
+    s = open("parabolas.html", encoding="utf-8").read()
+    if "parabolas-sobre-" not in s:
+        bloco = '<section class="cartao" style="text-align:center"><h2>Parábolas por tema</h2><div class="ligas">' + "".join(f'<a href="/parabolas-sobre-{SLUG_T(x)}">{E(FRASE_T.get(x, x).capitalize())} ({len(por[x])})</a>' for x in temas_ok) + "</div></section>\n"
+        s = s.replace('  <section><div class="doze">', bloco + '  <section><div class="doze">', 1); open("parabolas.html", "w", encoding="utf-8").write(s)
+    print(len(temas_ok), "páginas de parábolas por tema")
+
+# ── Rezas, lote 2 (orações de proteção, prosperidade, coragem…) — rezas-textos-2.py, mesmo molde do lote 1.
+if os.path.exists("rezas-textos-2.py"):
+    R2 = {}; exec(open("rezas-textos-2.py", encoding="utf-8").read(), R2); REZAS2 = R2["REZAS2"]
+    todas2 = [(r["slug"], r["menu"]) for r in REZAS + REZAS2] + ligadas
+    for r in REZAS2:
+        url = f"{SITE}/{r['slug']}"
+        ld = {"@context": "https://schema.org", "@graph": [
+            {"@type": "Article", "headline": r["titulo"], "description": r["desc"], "image": SITE + "/og-image.jpg", "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url},
+            {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
+                {"@type": "ListItem", "position": 2, "name": "Rezas e Orações", "item": SITE + "/rezas-e-oracoes"}, {"@type": "ListItem", "position": 3, "name": r["h1"], "item": url}]}]}
+        secs = "".join(f"<h2>{E(h)}</h2><p>{p}</p>" for h, p in r["seccoes"]) + (EXCERTO(r["reza"]) if r.get("reza") else "")
+        aviso = f'<p style="font-size:.9rem;color:var(--suave)">⚠️ {E(r["aviso"])}</p>' if r.get("aviso") else ""
+        outras = "".join(f'<a href="/{s}">{E(m)}</a>' for s, m in todas2 if s != r["slug"])
+        corpo = f"""  <section class="heroi">
+    <img class="foto-mestre" src="/mestre-r13.jpg" alt="Mestre Alberto" width="120" height="120" />
+    <h1><span class="az">{E(r['h1'])}</span></h1>
+    <p class="sub">{E(r['sub'])}</p>
+    <a class="cta" href="{WA}">Pedir esta oração ao Mestre Alberto</a>
+  </section>
+  <section class="cartao texto">{secs}{aviso}</section>
+  <section class="cartao" style="text-align:center">
+    <h2>O Mestre Alberto faz esta oração</h2>
+    <p>No <a href="/tarologo-fafe">consultório em Fafe</a> ou à distância, para Portugal, Brasil e todo o mundo.</p>
+    <a class="cta" href="{WA}">Marcar pelo WhatsApp</a>
+    <h2 style="margin-top:1.4rem">Outras rezas e orações</h2><div class="ligas">{outras}</div>
+  </section>
+"""
+        open(f"{r['slug']}.html", "w", encoding="utf-8").write(cabeca(r["titulo"], r["desc"], url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+    s = open("rezas-e-oracoes.html", encoding="utf-8").read()
+    if REZAS2[0]["slug"] not in s:
+        extra = "".join(f'<a href="/{r["slug"]}"><span><b>✨ {E(r["h1"])}</b><small>{E(r["sub"])}</small></span></a>' for r in REZAS2)
+        s = s.replace("</div></section>\n  <section class=\"cartao texto\">", extra + "</div></section>\n  <section class=\"cartao texto\">", 1); open("rezas-e-oracoes.html", "w", encoding="utf-8").write(s)
+    print(len(REZAS2), "orações (lote 2)")
+
+# ── Rezas por intenção (colecções): para as crianças, de proteção, para dores. Só junta páginas que já existem.
+COLS = [("rezas-para-criancas", "Rezas para Crianças", "As rezas tradicionais que as avós portuguesas faziam aos mais pequenos: quebranto, ventre caído, bichas e o susto.",
+         ["reza-tirar-o-quebranto", "reza-ventre-caido", "reza-talhar-as-bichas", "talhar-o-medo", "reza-mau-olhado"]),
+        ("rezas-de-protecao", "Rezas e Orações de Proteção", "Contra o mau olhado, a inveja e o assombramento, para proteger a pessoa e a casa.",
+         ["reza-mau-olhado", "reza-mal-de-inveja", "reza-assombramento", "responso-limpar-a-casa", "talhar-o-ar"]),
+        ("rezas-para-dores", "Rezas Tradicionais para Dores e Maleitas", "As benzeduras antigas para a ciática, a espinhela caída, o sol, as aftas e outras maleitas.",
+         ["reza-dor-ciatica", "reza-espinhela-caida", "reza-talhar-o-sol", "reza-talhar-aftas", "talhar-o-ar"])]
+if os.path.exists("rezas-textos-2.py"):
+    for r in REZAS2:
+        k = (r["slug"] + " " + r["h1"]).lower()
+        if "consulta" not in k and any(w in k for w in ("prote", "energia", "cruz")): COLS[1][3].append(r["slug"])
+NOMEP = {r["slug"]: (r["h1"], r["sub"]) for r in REZAS + (REZAS2 if os.path.exists("rezas-textos-2.py") else [])}
+NOMEP.update({"talhar-o-ar": ("Talhar o Ar", "Para quem «apanhou um ar»."), "talhar-o-medo": ("Cura do Medo · Talhar o Medo", "Para quem se assustou.")})
+for slug, h1, sub, lista in COLS:
+    url = f"{SITE}/{slug}"; titulo = f"{h1}: a tradição portuguesa"; desc = sub + " Com o Mestre Alberto, em Fafe e à distância."
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
+        {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Rezas e Orações", "item": SITE + "/rezas-e-oracoes"}, {"@type": "ListItem", "position": 3, "name": h1, "item": url}]}]}
+    itens = "".join(f'<a href="/{s}"><span><b>🙏 {E(NOMEP[s][0])}</b><small>{E(NOMEP[s][1])}</small></span></a>' for s in dict.fromkeys(lista) if s in NOMEP)
+    corpo = f"""  <section class="heroi">
+    <h1><span class="az">{E(h1)}</span></h1>
+    <p class="sub">{E(sub)}</p>
+    <a class="cta" href="{WA}">Falar com o Mestre Alberto</a>
+  </section>
+  <section><div class="doze">{itens}</div></section>
+  <section class="cartao texto"><p style="font-size:.9rem;color:var(--suave)">⚠️ {E(REZ["CUIDADO"])} Perante qualquer sintoma, sobretudo em crianças, procure sempre um profissional de saúde.</p>
+  <div class="ligas">{"".join(f'<a href="/{c[0]}">{E(c[1])}</a>' for c in COLS if c[0] != slug)}<a href="/rezas-e-oracoes">🙏 Todas as rezas</a><a href="/benzimentos">✝️ Benzimentos</a></div></section>
+"""
+    open(f"{slug}.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+s = open("rezas-e-oracoes.html", encoding="utf-8").read()
+if "rezas-para-criancas" not in s:
+    s = s.replace('  <section><div class="doze">', '<section class="cartao" style="text-align:center"><div class="ligas">' + "".join(f'<a href="/{c[0]}">{E(c[1])}</a>' for c in COLS) + "</div></section>\n  <section><div class=\"doze\">", 1)
+    open("rezas-e-oracoes.html", "w", encoding="utf-8").write(s)
+print(len(COLS), "colecções de rezas")
+
+# ── Arcanos Menores (56) — arcanos-menores-textos.py; montra /arcanos-menores. Imagens do baralho dele em cartas/menores/.
+if os.path.exists("arcanos-menores-textos.py"):
+    AM = {}; exec(open("arcanos-menores-textos.py", encoding="utf-8").read(), AM); MEN = AM["MENORES"]; NAI = AM["NAIPES"]
+    NOME_N = {"paus": "Paus", "copas": "Copas", "espadas": "Espadas", "ouros": "Ouros"}
+    for k, c in enumerate(MEN):
+        url = f"{SITE}/{c['slug']}"; img = f"{SITE}/cartas/menores/{c['img']}"
+        ld = {"@context": "https://schema.org", "@graph": [
+            {"@type": "Article", "headline": c["titulo"], "description": c["desc"], "image": img, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url},
+            {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
+                {"@type": "ListItem", "position": 2, "name": "Arcanos Menores", "item": SITE + "/arcanos-menores"}, {"@type": "ListItem", "position": 3, "name": c["nome"], "item": url}]}]}
+        mesmo = [x for x in MEN if x["naipe"] == c["naipe"] and x["slug"] != c["slug"]]
+        corpo = f"""  <section class="heroi">
+    <img src="/cartas/menores/{c['img']}" alt="Carta {E(c['nome'])} do baralho do Mestre Alberto" width="200" style="border-radius:.8rem;box-shadow:0 10px 40px #0008" />
+    <h1><span class="az">{E(c['nome'])}</span></h1>
+    <p class="sub">Arcano Menor · naipe de {NOME_N[c['naipe']]} · {E(", ".join(c['palavras']))}</p>
+  </section>
+  <section class="cartao texto">
+    <h2>O significado do {E(c['nome'])}</h2><p>{E(c['geral'])}</p>
+    <h2>No amor</h2><p>{E(c['amor'])}</p>
+    <h2>No trabalho e no dinheiro</h2><p>{E(c['trabalho'])}</p>
+    <h2>Invertida</h2><p>{E(c['invertida'])}</p>
+    <h2>O conselho da carta</h2><p>{E(c['conselho'])}</p>
+    <p style="color:var(--suave)">{E(NAI[c['naipe']])}</p>
+  </section>
+  <section class="cartao" style="text-align:center">
+    <h2>Tire as suas cartas</h2><p>Faça uma tiragem no <a href="/tarot-gratis">Tarot Grátis</a> ou peça uma leitura ao Mestre Alberto.</p>
+    <a class="cta" href="{WA}">Falar com o Mestre Alberto</a>
+    <h2 style="margin-top:1.4rem">Outras cartas de {NOME_N[c['naipe']]}</h2><div class="ligas">{"".join(f'<a href="/{x["slug"]}">{E(x["nome"])}</a>' for x in mesmo)}<a href="/arcanos-menores">Todos os Arcanos Menores</a><a href="/arcanos">Os 22 Arcanos Maiores</a></div>
+  </section>
+"""
+        open(f"{c['slug']}.html", "w", encoding="utf-8").write(cabeca(c["titulo"], c["desc"], url, img, ld, APROVADO) + corpo + RODAPE)
+    url = SITE + "/arcanos-menores"; titulo = "Os 56 Arcanos Menores do Tarot: significado de cada carta"
+    desc = "O significado das 56 cartas dos Arcanos Menores do Tarot — Paus, Copas, Espadas e Ouros — no amor, no trabalho e invertidas, com o baralho do Mestre Alberto."
+    ld = {"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
+        {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Arcanos Menores", "item": url}]}]}
+    blocos = "".join(f'<section class="cartao" style="margin-bottom:1rem"><h2>{NOME_N[n]}</h2><p style="text-align:center;color:var(--suave)">{E(NAI[n])}</p><div class="doze">'
+                     + "".join(f'<a href="/{x["slug"]}"><img src="/cartas/menores/{x["img"]}" alt="" width="46" style="width:2.9rem;height:auto;border-radius:.3rem" loading="lazy"><span><b>{E(x["nome"])}</b><small>{E(", ".join(x["palavras"][:3]))}</small></span></a>' for x in MEN if x["naipe"] == n)
+                     + "</div></section>" for n in ("paus", "copas", "espadas", "ouros"))
+    corpo = f"""  <section class="heroi"><h1><span class="az">Os 56 Arcanos Menores</span></h1>
+    <p class="sub">As cartas do dia a dia: os quatro naipes do Tarot e o que cada carta diz no amor, no trabalho e invertida.</p></section>
+  {blocos}
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/arcanos">Os 22 Arcanos Maiores</a><a href="/tarot-gratis">🃏 Tarot Grátis</a><a href="/tarot-por-tema">Tarot por tema</a></div></section>
+"""
+    open("arcanos-menores.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+    print(len(MEN), "arcanos menores + /arcanos-menores")
+
+# ── Ascendente e Lua em cada signo (24) — ascendente-lua-textos.py: /ascendente-em-<signo>, /lua-em-<signo>.
+if os.path.exists("ascendente-lua-textos.py"):
+    AL = {}; exec(open("ascendente-lua-textos.py", encoding="utf-8").read(), AL)
+    nm = lambda x: x["pt"] if x["pt"] == x["br"] else f"{x['pt']} ({x['br']})"
+    for tipo, lista, campos, liga, nome_t in (
+            ("ascendente-em", AL["ASCENDENTE"], [("A primeira impressão", "aparencia"), ("A personalidade", "personalidade"), ("No amor", "amor"), ("O caminho", "caminho")], ("/ascendente", "Calcular o seu Ascendente"), "Ascendente"),
+            ("lua-em", AL["LUA"], [("Como sente", "emocoes"), ("No amor", "amor"), ("O que a acalma", "acalma"), ("O desafio", "desafio")], ("/mapa-astral", "Ver o seu Mapa Astral"), "Lua")):
+        for i, t in enumerate(lista):
+            s0 = S[i]; slug = f"{tipo}-{s0['slug']}"; url = f"{SITE}/{slug}"; h1 = f"{nome_t} em {nm(s0)}"
+            ld = {"@context": "https://schema.org", "@graph": [
+                {"@type": "Article", "headline": t["titulo"], "description": t["desc"], "image": f"{SITE}/signos/{i:02d}.webp", "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url},
+                {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
+                    {"@type": "ListItem", "position": 2, "name": "Os 12 Signos", "item": SITE + "/signos-do-zodiaco"}, {"@type": "ListItem", "position": 3, "name": h1, "item": url}]}]}
+            secs = "".join(f"<h2>{E(h)}</h2><p>{E(t[c])}</p>" for h, c in campos)
+            corpo = f"""  <section class="heroi">
+    <img class="foto-mestre" src="/signos/{i:02d}.webp" alt="{E(h1)}" width="120" height="120" />
+    <h1><span class="az">{GLIFO[i]}︎ {E(h1)}</span></h1>
+  </section>
+  <section class="cartao texto"><p>{E(t['intro'])}</p>{secs}</section>
+  <section class="cartao" style="text-align:center">
+    <div class="ligas"><a href="{liga[0]}">{liga[1]}</a><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a><a href="/{'lua-em' if tipo == 'ascendente-em' else 'ascendente-em'}-{s0['slug']}">{'Lua' if tipo == 'ascendente-em' else 'Ascendente'} em {E(s0['pt'])}</a></div>
+    <h2>{nome_t} nos outros signos</h2><div class="ligas">{"".join(f'<a href="/{tipo}-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div>
+  </section>
+"""
+            open(f"{slug}.html", "w", encoding="utf-8").write(cabeca(t["titulo"], t["desc"], url, f"{SITE}/signos/{i:02d}.webp", ld, APROVADO) + corpo + RODAPE)
+    # as páginas dos signos ganham as ligações ao Ascendente e à Lua
+    for i, s0 in enumerate(S):
+        f = f"signo/{s0['slug']}.html"; x = open(f, encoding="utf-8").read()
+        if "ascendente-em-" not in x:
+            x = x.replace('<div class="ligas"><a href="/horoscopo-do-dia#s', f'<div class="ligas"><a href="/ascendente-em-{s0["slug"]}">Ascendente em {E(s0["pt"])}</a><a href="/lua-em-{s0["slug"]}">Lua em {E(s0["pt"])}</a><a href="/horoscopo-do-dia#s', 1)
+            open(f, "w", encoding="utf-8").write(x)
+    print("24 páginas de Ascendente e Lua")
