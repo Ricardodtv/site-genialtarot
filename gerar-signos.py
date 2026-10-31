@@ -203,6 +203,8 @@ print("tarologo-fafe", "(aprovada)" if APROVADO else "(noindex: por aprovar)")
 # ── Tarot por tema (31/10/2026, pedido dele): Amor, Dinheiro, Trabalho, Família, Heranças, Negócios, Medos e Receios,
 #    Rituais, Amuletos, Cura do Medo / Talhar o Medo, Talhar o Ar, Cartomancia, Leitura de Cartas. Textos em temas-textos.py;
 #    os produtos (nome e preço) lêem-se do produtos.js, para nunca ficarem desactualizados.
+EXCERTO = lambda linhas: ('<h2>Um excerto da reza</h2><blockquote style="font-family:var(--serifa);font-size:1.25rem;font-style:italic;color:var(--lavanda);border-left:3px solid var(--ouro);margin:0;padding:.3rem 0 .3rem 1rem">'
+    + "<br>".join(E(l) for l in linhas) + '</blockquote><p style="font-size:.9rem;color:var(--suave)">A reza completa é feita pelo Mestre Alberto, no consultório em Fafe ou à distância.</p>')
 TEMAS = {}; exec(open("temas-textos.py", encoding="utf-8").read(), TEMAS); TEMAS = TEMAS["TEMAS"]
 PROD = [(re.sub(r"\s+", " ", m.group(1)).strip(), m.group(2)) for m in re.finditer(r'nome\s*:\s*"([^"]+)"[\s\S]*?preco\s*:\s*"([^"]*)"', open("produtos.js", encoding="utf-8").read())]
 WA = "https://wa.me/351914920427"
@@ -221,6 +223,7 @@ for t in TEMAS:
     vistos = []; [vistos.append(x) for x in prods if x not in vistos]
     lista = ("<h2>Serviços do Mestre Alberto para este tema</h2><div class=\"ligas\">" + "".join(f'<a href="/loja">{E(n)}{" · " + E(pr) if pr else ""}</a>' for n, pr in vistos) + "</div>") if vistos else ""
     aviso = f'<p style="font-size:.9rem;color:var(--suave)">⚠️ {E(t["aviso"])}</p>' if t.get("aviso") else ""
+    if t.get("reza"): secs += EXCERTO(t["reza"])
     corpo = f"""  <section class="heroi">
     <img class="foto-mestre" src="/mestre-r13.jpg" alt="Mestre Alberto" width="120" height="120" />
     <h1><span class="az">{E(t['h1'])}</span></h1>
@@ -250,3 +253,52 @@ corpo = f"""  <section class="heroi">
 """
 open("tarot-por-tema.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
 print(len(TEMAS), "temas + a montra /tarot-por-tema")
+
+# ── Rezas e Orações (31/10/2026, pedido dele): a tradição explicada + só um EXCERTO da reza (nunca a reza inteira).
+#    Textos em rezas-textos.py (fonte: o Obsidian dele). Montra /rezas-e-oracoes.
+REZ = {}; exec(open("rezas-textos.py", encoding="utf-8").read(), REZ); REZAS = REZ["REZAS"]
+ligadas = [("talhar-o-ar", "Talhar o Ar"), ("talhar-o-medo", "Cura do Medo · Talhar o Medo")]
+todas = [(r["slug"], r["menu"]) for r in REZAS] + ligadas
+for r in REZAS:
+    url = f"{SITE}/{r['slug']}"
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Article", "headline": r["titulo"], "description": r["desc"], "image": SITE + "/og-image.jpg", "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Rezas e Orações", "item": SITE + "/rezas-e-oracoes"},
+            {"@type": "ListItem", "position": 3, "name": r["h1"], "item": url}]}]}
+    secs = "".join(f"<h2>{E(h)}</h2><p>{p}</p>" for h, p in r["seccoes"]) + (EXCERTO(r["reza"]) if r["reza"] else "")
+    aviso = f'<p style="font-size:.9rem;color:var(--suave)">⚠️ {E(r.get("aviso") or REZ["CUIDADO"])}</p>'
+    outras = "".join(f'<a href="/{s}">{E(m)}</a>' for s, m in todas if s != r["slug"])
+    corpo = f"""  <section class="heroi">
+    <img class="foto-mestre" src="/mestre-r13.jpg" alt="Mestre Alberto" width="120" height="120" />
+    <h1><span class="az">{E(r['h1'])}</span></h1>
+    <p class="sub">{E(r['sub'])}</p>
+    <a class="cta" href="{WA}">Pedir esta reza ao Mestre Alberto</a>
+  </section>
+  <section class="cartao texto">{secs}{aviso}</section>
+  <section class="cartao" style="text-align:center">
+    <h2>O Mestre Alberto faz esta reza</h2>
+    <p>No <a href="/tarologo-fafe">consultório em Fafe</a> ou à distância, para Portugal, Brasil e todo o mundo. Fale com ele pelo WhatsApp.</p>
+    <a class="cta" href="{WA}">Marcar pelo WhatsApp</a>
+    <h2 style="margin-top:1.4rem">Outras rezas e benzeduras</h2><div class="ligas">{outras}<a href="/benzimentos">✝️ Benzimentos</a></div>
+  </section>
+"""
+    open(f"{r['slug']}.html", "w", encoding="utf-8").write(cabeca(r["titulo"], r["desc"], url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+url = SITE + "/rezas-e-oracoes"; titulo = "Rezas e Orações tradicionais portuguesas: quebranto, mau olhado, talhar o ar"
+desc = "As rezas e benzeduras da tradição portuguesa: tirar o quebranto, mau olhado, mal de inveja, talhar o ar, o sol e o medo, espinhela caída, responsos a Santo António. Com o Mestre Alberto."
+ld = {"@context": "https://schema.org", "@graph": [
+    {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
+    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Rezas e Orações", "item": url}]}]}
+grelha = "".join(f'<a href="/{r["slug"]}"><span><b>🙏 {E(r["h1"])}</b><small>{E(r["sub"])}</small></span></a>' for r in REZAS) + "".join(f'<a href="/{s}"><span><b>🙏 {E(m)}</b></span></a>' for s, m in ligadas)
+corpo = f"""  <section class="heroi">
+    <h1><span class="az">Rezas e Orações</span></h1>
+    <p class="sub">As rezas e benzeduras que as nossas avós guardaram, explicadas pelo Mestre Alberto, que as faz no consultório em Fafe e à distância.</p>
+    <a class="cta" href="{WA}">Falar com o Mestre Alberto</a>
+  </section>
+  <section><div class="doze">{grelha}</div></section>
+  <section class="cartao texto"><p style="font-size:.9rem;color:var(--suave)">⚠️ {E(REZ["CUIDADO"])} Perante qualquer sintoma físico, procure sempre um profissional de saúde.</p>
+  <div class="ligas"><a href="/benzimentos">✝️ Benzimentos</a><a href="/rituais">🕯️ Rituais</a><a href="/tarot-por-tema">🃏 Tarot por tema</a><a href="/tarologo-fafe">📍 Consultório em Fafe</a></div></section>
+"""
+open("rezas-e-oracoes.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+print(len(REZAS), "rezas + a montra /rezas-e-oracoes")
