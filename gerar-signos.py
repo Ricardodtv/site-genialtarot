@@ -817,3 +817,77 @@ if os.path.exists("santos-textos.py"):
         s = s.replace('<a href="/benzimentos">✝️ Benzimentos</a><a href="/rituais">', '<a href="/santos-populares">🕯️ Santos populares</a><a href="/glossario-benzeduras">📚 Glossário</a><a href="/benzimentos">✝️ Benzimentos</a><a href="/rituais">', 1)
         open("rezas-e-oracoes.html", "w", encoding="utf-8").write(s)
     print(len(SA["SANTOS"]), "santos + glossário com", len(G["termos"]), "termos")
+
+# ── Horóscopo 2027 por signo (céu calculado com o Swiss Ephemeris — ceu2027.py) + decanatos + páginas de 2027.
+if os.path.exists("horoscopo-2027-textos.py"):
+    H7 = {}; exec(open("horoscopo-2027-textos.py", encoding="utf-8").read(), H7); H7 = H7["H2027"]
+    for i, t in enumerate(H7):
+        s0 = S[i]
+        datas = "".join(f"<li><b>{E(a)}</b> — {E(b)}</li>" for a, b in t["datas"])
+        corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{i:02d}.webp" alt="" width="120" height="120" />
+    <h1><span class="az">Horóscopo 2027 · {E(nm(s0))}</span></h1><p class="sub">{E(t['resumo'])}</p></section>
+  <section class="cartao texto"><h2>Amor</h2><p>{E(t['amor'])}</p><h2>Dinheiro</h2><p>{E(t['dinheiro'])}</p><h2>Trabalho</h2><p>{E(t['trabalho'])}</p>
+    <h2>Bem-estar</h2><p>{E(t['saude_bemestar'])}</p><h2>As datas que contam em 2027</h2><ul>{datas}</ul><h2>O conselho do ano</h2><p>{E(t['conselho'])}</p>
+    <p style="color:var(--suave);font-size:.9rem">O céu de 2027 foi calculado com o Swiss Ephemeris. As casas contam-se a partir do signo solar; para uma leitura feita ao seu mapa, peça a Previsão Anual ou o Mapa Astral.</p></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/loja">Previsão Anual personalizada</a><a href="/numerologia-2027">Numerologia 2027</a><a href="/eclipses-2027">Eclipses de 2027</a><a href="/mercurio-retrogrado-2027">Mercúrio retrógrado 2027</a></div>
+    <h2>2027 nos outros signos</h2><div class="ligas">{"".join(f'<a href="/horoscopo-2027-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div>
+    <a class="cta" href="{WA}">Falar com o Mestre Alberto</a></section>
+"""
+        pagina(f"horoscopo-2027-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{i:02d}.webp", [("Horóscopo 2027", "/horoscopo-2027")], corpo)
+    grelha = "".join(f'<a href="/horoscopo-2027-{x["slug"]}"><img src="/signos/{j:02d}.webp" alt="" width="58" height="58" loading="lazy"><span><b>{GLIFO[j]}︎ {E(nm(x))}</b><small>{E(H7[j]["resumo"][:90])}</small></span></a>' for j, x in enumerate(S))
+    pagina("horoscopo-2027", "Horóscopo 2027: as previsões para os 12 signos", "O horóscopo de 2027 para os 12 signos — amor, dinheiro e trabalho — com o céu real do ano: Júpiter em Virgem, Saturno em Carneiro e o grande eclipse de agosto.", SITE + "/og-image.jpg", [],
+           f"""  <section class="heroi"><h1><span class="az">Horóscopo 2027</span></h1><p class="sub">O ano de cada signo, com o céu real de 2027: Júpiter de Leão para Virgem, Saturno em Carneiro e o eclipse total do Sol de 2 de agosto.</p></section>
+  <section><div class="doze">{grelha}</div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/eclipses-2027">Eclipses de 2027</a><a href="/mercurio-retrogrado-2027">Mercúrio retrógrado 2027</a><a href="/retrogrados-2027">Retrógrados 2027</a><a href="/numerologia-2027">Numerologia 2027</a></div></section>
+""")
+    for s0 in S:
+        f = f"signo/{s0['slug']}.html"; x = open(f, encoding="utf-8").read()
+        if "horoscopo-2027-" not in x:
+            x = x.replace('<div class="ligas"><a href="/ascendente-em-', f'<div class="ligas"><a href="/horoscopo-2027-{s0["slug"]}">Horóscopo 2027</a><a href="/ascendente-em-', 1); open(f, "w", encoding="utf-8").write(x)
+    print("12 horóscopos 2027 + /horoscopo-2027")
+if os.path.exists("decanatos-2027-textos.py"):
+    D7 = {}; exec(open("decanatos-2027-textos.py", encoding="utf-8").read(), D7)
+    for i, t in enumerate(D7["DECANATOS"]):
+        s0 = S[i]
+        decs = "".join(f"<h2>{E(a)} · {E(b)}</h2><p><b>{E(c)}</b></p><p>{E(d)}</p>" for a, b, c, d in t["decs"])
+        corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{i:02d}.webp" alt="" width="120" height="120" />
+    <h1><span class="az">Decanatos de {E(nm(s0))}</span></h1></section>
+  <section class="cartao texto"><p>{E(t['intro'])}</p>{decs}</section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a>{"".join(f'<a href="/decanatos-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div></section>
+"""
+        pagina(f"decanatos-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{i:02d}.webp", [("Os 12 Signos", "/signos-do-zodiaco")], corpo)
+    for t in D7["PAGINAS_2027"]:
+        per = "".join(f"<h2>{E(a)}</h2><p><b>{E(b)}</b></p><p>{E(c)}</p>" for a, b, c in t["periodos"])
+        cons = "".join(f"<li>{E(c)}</li>" for c in t.get("conselhos", []))
+        corpo = f"""  <section class="heroi"><h1><span class="az">{E(t['titulo'].split(':')[0])}</span></h1></section>
+  <section class="cartao texto"><p>{E(t['intro'])}</p>{per}{f"<h2>Conselhos</h2><ul>{cons}</ul>" if cons else ""}<p style="color:var(--suave);font-size:.9rem">Datas calculadas com o Swiss Ephemeris (hora de Portugal pode mudar o dia em eventos perto da meia-noite).</p></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/horoscopo-2027">Horóscopo 2027</a>{"".join(f'<a href="/{x["slug"]}">{E(x["titulo"].split(":")[0])}</a>' for x in D7["PAGINAS_2027"] if x is not t)}<a href="/retrogrados">Os retrógrados agora</a></div></section>
+"""
+        pagina(t["slug"], t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Horóscopo 2027", "/horoscopo-2027")], corpo)
+    print("12 decanatos + 3 páginas de 2027")
+
+# ── /mapa-do-site (01/11/2026, ele: «onde vejo todas essas páginas?»): todas as páginas públicas, por secção, com o título.
+def _tit(f):
+    m = re.search(r"<title>(.*?)</title>", open(f, encoding="utf-8").read(), re.S)
+    return html.unescape(m.group(1)).split(" | ")[0].strip() if m else f
+GRUPOS = [("✨ Principais", lambda f: "/" not in f and not any(f.startswith(x) for x in ("arcano-", "carta-", "compatibilidade-", "venus-em-", "marte-em-", "ascendente-em-", "lua-em-", "horoscopo-2027", "horoscopo-chines-", "decanatos-", "casa-", "planeta-", "elemento-", "signos-", "tiragem-", "cartas-do-tarot-", "reza-", "oracao-", "responso-", "talhar-", "rezas-", "parabola", "historia-", "lenda-", "fabula-", "conto-", "santo-", "santa-", "sao-", "nossa-")) and not f.endswith("-no-tarot.html")),
+          ("♈ Os signos", lambda f: f.startswith("signo/") or f.startswith(("signos-", "ascendente-em-", "lua-em-", "venus-em-", "marte-em-", "decanatos-", "elemento-", "casa-", "planeta-")) or f.endswith("-no-tarot.html")),
+          ("📅 2027", lambda f: f.startswith("horoscopo-2027") or "-2027" in f),
+          ("💞 Compatibilidade", lambda f: f.startswith("compatibilidade-")),
+          ("🐉 Horóscopo Chinês", lambda f: f.startswith("horoscopo-chines-")),
+          ("🃏 Tarot", lambda f: f.startswith(("arcano-", "carta-", "tiragem-", "cartas-do-tarot-"))),
+          ("🙏 Rezas, orações e santos", lambda f: f.startswith(("reza-", "oracao-", "responso-", "talhar-", "rezas-", "santo-", "santa-", "sao-", "nossa-", "glossario"))),
+          ("📖 Parábolas, histórias, fábulas e contos", lambda f: f.startswith(("parabola", "historia-", "lenda-", "fabula-", "conto-", "contos-", "historias-"))),
+          ("🌙 Sonhos", lambda f: f.startswith("sonho/"))]
+sm = open("sitemap.xml", encoding="utf-8").read() if os.path.exists("sitemap.xml") else ""
+fich = sorted(set(("index.html" if u == "/" else u.lstrip("/") + ".html") for u in re.findall(r"<loc>https://genialtarot\.com(/[^<]*)</loc>", sm)))
+fich = [f for f in fich if os.path.exists(f) and f != "mapa-do-site.html"]
+usados, blocos = set(), []
+for nome, teste in GRUPOS[1:] + GRUPOS[:1]:
+    fs = [f for f in fich if f not in usados and teste(f)]; usados.update(fs)
+    if fs: blocos.append((nome, fs))
+blocos.sort(key=lambda b: [g[0] for g in GRUPOS].index(b[0]))
+corpo = '  <section class="heroi"><h1><span class="az">Mapa do site</span></h1><p class="sub">Todas as páginas do Genial Tarot, por secção (' + str(len(fich)) + ' páginas).</p></section>\n' + "".join(
+    f'  <section class="cartao" style="margin-bottom:1rem"><h2>{nome} ({len(fs)})</h2><div class="ligas">' + "".join(f'<a href="/{"" if f == "index.html" else f[:-5]}">{E(_tit(f))}</a>' for f in fs) + "</div></section>\n" for nome, fs in blocos)
+pagina("mapa-do-site", "Mapa do site: todas as páginas do Genial Tarot", "Todas as páginas do Genial Tarot numa só página: signos, horóscopo, compatibilidade, Tarot, rezas, parábolas, histórias e sonhos.", SITE + "/og-image.jpg", [], corpo)
+print("mapa do site:", len(fich), "páginas em", len(blocos), "secções")
