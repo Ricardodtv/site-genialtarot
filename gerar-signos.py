@@ -744,3 +744,76 @@ L = lambda pares: "".join(f'<a href="/{a}">{E(b)}</a>' for a, b in pares if os.p
 junta("signos-do-zodiaco.html", "compatibilidade-entre-signos", '<section class="cartao" style="text-align:center"><h2>Mais astrologia</h2><div class="ligas">' + L([("compatibilidade-entre-signos", "Compatibilidade entre signos"), ("horoscopo-chines", "Horóscopo Chinês"), ("elemento-fogo", "Os 4 elementos"), ("signos-cardinais", "Cardinais, fixos e mutáveis"), ("casa-1", "As 12 casas"), ("planeta-sol", "Os planetas")]) + "".join(f'<a href="/{x}-no-tarot">{GLIFO[j]}︎ {E(S[j]["pt"])} no Tarot</a>' for j, x in enumerate(s0["slug"] for s0 in S) if os.path.exists(f"{x}-no-tarot.html")) + "</div></section>")
 junta("tarot-por-tema.html", "tiragem-", '<section class="cartao" style="text-align:center"><h2>Mais Tarot</h2><div class="ligas">' + L([("arcanos", "Os 22 Arcanos Maiores"), ("arcanos-menores", "Os 56 Arcanos Menores"), ("tiragem-tres-cartas", "Tiragem de 3 cartas"), ("cartas-do-tarot-amor", "As cartas do amor"), ("cartas-do-tarot-sim-ou-nao", "Sim ou não"), ("historias-e-lendas", "Histórias e Lendas"), ("parabolas", "Parábolas")]) + "</div></section>")
 print("montras ligadas")
+
+# ── Ronda 5 (31/10/2026): Parábolas de Jesus, Fábulas de Esopo, Contos tradicionais (mesmo molde das histórias)
+#    e Santos populares + Glossário das benzeduras.
+def historias_grupo(lista, hub_slug, hub_nome, hub_titulo, hub_desc, hub_sub, icone):
+    for k, p in enumerate(lista):
+        viz = [lista[(k + d) % len(lista)] for d in (1, 2, -1)]
+        corpo = f"""  <section class="heroi">
+    <h1><span class="az">{E(p['titulo_curto'])}</span></h1>
+    <p class="sub">{E(p['tipo'])} · contada pelo Mestre Alberto</p>
+  </section>
+  <section class="cartao texto">{"".join(f"<p>{E(x)}</p>" for x in p["historia"])}
+    <h2>O que nos ensina</h2><blockquote style="font-family:var(--serifa);font-size:1.3rem;font-style:italic;color:var(--ouro);border-left:3px solid var(--ouro);margin:0;padding:.3rem 0 .3rem 1rem">{E(p['moral'])}</blockquote>
+    <h2>Para a sua vida</h2><p>{E(p['reflexao'])}</p>
+  </section>
+  <section class="cartao" style="text-align:center">
+    <h2>Outras</h2><div class="ligas">{"".join(f'<a href="/{v["slug"]}">{E(v["titulo_curto"])}</a>' for v in viz)}<a href="/{hub_slug}">{icone} {E(hub_nome)}</a><a href="/parabolas">📖 Parábolas</a><a href="/historias-e-lendas">📜 Histórias e Lendas</a></div>
+    <a class="cta" href="{WA}">Falar com o Mestre Alberto</a>
+  </section>
+"""
+        pagina(p["slug"], p["titulo"], p["desc"], SITE + "/og-image.jpg", [(hub_nome, "/" + hub_slug)], corpo)
+    grelha = "".join(f'<a href="/{p["slug"]}"><span><b>{icone} {E(p["titulo_curto"])}</b><small>{E(p["moral"][:110])}</small></span></a>' for p in lista)
+    corpo = f"""  <section class="heroi"><h1><span class="az">{E(hub_nome)}</span></h1><p class="sub">{E(hub_sub)}</p></section>
+  <section><div class="doze">{grelha}</div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/parabolas">📖 Parábolas</a><a href="/historias-e-lendas">📜 Histórias e Lendas</a><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a></div></section>
+"""
+    pagina(hub_slug, hub_titulo, hub_desc, SITE + "/og-image.jpg", [], corpo)
+    for f in ("parabolas.html", "historias-e-lendas.html"):
+        if os.path.exists(f):
+            s = open(f, encoding="utf-8").read()
+            if f'href="/{hub_slug}"' not in s:
+                s = s.replace('<a href="/rezas-e-oracoes">🙏 Rezas e Orações</a>', f'<a href="/{hub_slug}">{icone} {E(hub_nome)}</a><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a>', 1); open(f, "w", encoding="utf-8").write(s)
+    return len(lista)
+if os.path.exists("parabolas-classicas-textos.py"):
+    PC = {}; exec(open("parabolas-classicas-textos.py", encoding="utf-8").read(), PC); PC = PC["CLASSICAS"]
+    j = [p for p in PC if "Jesus" in p["tipo"]]; f_ = [p for p in PC if "Esopo" in p["tipo"]]
+    print(historias_grupo(j, "parabolas-de-jesus", "Parábolas de Jesus", "Parábolas de Jesus: o significado e a lição de cada uma", "As parábolas de Jesus contadas de forma simples — o Filho Pródigo, o Bom Samaritano, o Semeador, os Talentos — e a lição de cada uma para a sua vida.", "As histórias do Evangelho que atravessam os séculos, contadas de forma simples.", "✝️"), "parábolas de Jesus",
+          historias_grupo(f_, "fabulas-de-esopo", "Fábulas de Esopo", "Fábulas de Esopo: as histórias e a moral de cada uma", "As fábulas de Esopo recontadas — a Cigarra e a Formiga, a Lebre e a Tartaruga, o Leão e o Rato — e a moral de cada uma, para miúdos e graúdos.", "Animais que falam e lições que ficam para a vida.", "🦊"), "fábulas")
+if os.path.exists("contos-textos.py"):
+    CO = {}; exec(open("contos-textos.py", encoding="utf-8").read(), CO)
+    print(historias_grupo(CO["CONTOS"], "contos-tradicionais", "Contos Tradicionais Portugueses", "Contos Tradicionais Portugueses: a Sopa de Pedra e outros", "Os contos tradicionais portugueses contados à lareira — a Sopa de Pedra e outros — com a lição de cada um, pelo Mestre Alberto.", "As histórias que os nossos avós contavam à lareira.", "🔥"), "contos tradicionais")
+if os.path.exists("santos-textos.py"):
+    SA = {}; exec(open("santos-textos.py", encoding="utf-8").read(), SA)
+    NOMEREZA = {}
+    for f in _g.glob("reza-*.html") + _g.glob("oracao-*.html") + _g.glob("responso-*.html") + _g.glob("talhar-*.html"):
+        m = re.search(r"<h1[^>]*>(.*?)</h1>", open(f, encoding="utf-8").read(), re.S)
+        if m: NOMEREZA[f[:-5]] = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+    for t in SA["SANTOS"]:
+        rz = "".join(f'<a href="/{x}">{E(NOMEREZA.get(x, x))}</a>' for x in t.get("rezas", []) if os.path.exists(x + ".html"))
+        corpo = f"""  <section class="heroi"><h1><span class="az">{E(t['nome'])}</span></h1><p class="sub">Santos populares de Portugal</p></section>
+  <section class="cartao texto"><h2>Quem foi</h2><p>{E(t['vida'])}</p><h2>O que o povo lhe pede</h2><p>{E(t['devocao'])}</p><h2>A festa</h2><p>{E(t['festa'])}</p>
+    {f'<h2>Rezas relacionadas</h2><div class="ligas">{rz}</div>' if rz else ""}</section>
+  <section class="cartao" style="text-align:center"><div class="ligas">{"".join(f'<a href="/{x["slug"]}">{E(x["nome"])}</a>' for x in SA["SANTOS"] if x is not t)}<a href="/rezas-e-oracoes">🙏 Rezas e Orações</a></div>
+    <a class="cta" href="{WA}">Falar com o Mestre Alberto</a></section>
+"""
+        pagina(t["slug"], t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Santos populares", "/santos-populares")], corpo)
+    grelha = "".join(f'<a href="/{t["slug"]}"><span><b>🕯️ {E(t["nome"])}</b><small>{E(t["desc"][:100])}</small></span></a>' for t in SA["SANTOS"])
+    pagina("santos-populares", "Santos Populares: a que santo rezar para cada aflição", "A que santo se reza para quê na tradição portuguesa: Santo António, São Brás, Santa Luzia, Santa Bárbara, São Bento e outros, com o Mestre Alberto.", SITE + "/og-image.jpg", [],
+           f"""  <section class="heroi"><h1><span class="az">Santos Populares</span></h1><p class="sub">A que santo se reza para cada aflição, segundo a tradição portuguesa.</p></section>
+  <section><div class="doze">{grelha}</div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a><a href="/glossario-benzeduras">📚 Glossário das benzeduras</a><a href="/benzimentos">✝️ Benzimentos</a></div></section>
+""")
+    G = SA["GLOSSARIO"]
+    termos = "".join(f'<li id="{SLUG_T(a.lower())}"><b>{f"<a href=\"/{c}\">{E(a)}</a>" if c and os.path.exists(c + ".html") else E(a)}</b> — {E(b)}</li>' for a, b, c in sorted(G["termos"], key=lambda x: x[0].lower()))
+    pagina("glossario-benzeduras", G["titulo"], G["desc"], SITE + "/og-image.jpg", [("Rezas e Orações", "/rezas-e-oracoes")],
+           f"""  <section class="heroi"><h1><span class="az">Glossário das Benzeduras</span></h1></section>
+  <section class="cartao texto"><p>{E(G['intro'])}</p><ul>{termos}</ul><p style="font-size:.9rem;color:var(--suave)">⚠️ {E(REZ["CUIDADO"])}</p></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a><a href="/santos-populares">🕯️ Santos populares</a><a href="/benzimentos">✝️ Benzimentos</a></div></section>
+""")
+    s = open("rezas-e-oracoes.html", encoding="utf-8").read()
+    if "santos-populares" not in s:
+        s = s.replace('<a href="/benzimentos">✝️ Benzimentos</a><a href="/rituais">', '<a href="/santos-populares">🕯️ Santos populares</a><a href="/glossario-benzeduras">📚 Glossário</a><a href="/benzimentos">✝️ Benzimentos</a><a href="/rituais">', 1)
+        open("rezas-e-oracoes.html", "w", encoding="utf-8").write(s)
+    print(len(SA["SANTOS"]), "santos + glossário com", len(G["termos"]), "termos")

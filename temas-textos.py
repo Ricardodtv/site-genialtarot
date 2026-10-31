@@ -218,4 +218,17 @@ TEMAS = [
  "perguntas": ["Porque é que nada avança na minha vida?", "Tenho algum bloqueio no amor ou no dinheiro?", "Que ritual me ajuda a abrir caminho?"],
  "produtos": ["Ritual de Abertura de Caminhos", "Ritual de Prosperidade para Empresas", "Ritual de Proteção e Limpeza", "Consulta de Tarot Online"],
  "aviso": "Os rituais são práticas espirituais e simbólicas e não garantem resultados."},
+{"slug": "tacas-tibetanas", "menu": "🎶 Taças tibetanas", "h1": "Taças Tibetanas: relaxamento com som",
+ "titulo": "Taças Tibetanas: relaxamento e meditação com som",
+ "desc": "O que são as taças tibetanas, como funciona a massagem de som e o que se sabe sobre os seus efeitos no relaxamento e na ansiedade. Com o Mestre Alberto.",
+ "sub": "Um som longo e profundo que ajuda a mente a abrandar.",
+ "seccoes": [
+  ("O que são as taças tibetanas", "São taças de metal, tradicionalmente de bronze, que se tocam com uma baqueta: batendo ou esfregando a borda. O som é longo e cheio de vibrações que se sobrepõem, e pode sentir-se no corpo quando a taça está perto ou pousada sobre ele. Apesar do nome, a forma de as usar para relaxamento é sobretudo uma prática moderna, nascida na Europa nos anos 80."),
+  ("Como é uma sessão", "A pessoa fica deitada, de olhos fechados, e o terapeuta toca as taças à volta e sobre o corpo. A sessão costuma durar entre 30 e 60 minutos. Muitas pessoas descrevem uma sensação de calma profunda, como depois de uma boa meditação."),
+  ("O que se sabe", "Há estudos pequenos que mostram que uma sessão com taças ajuda a baixar a tensão e a ansiedade e a melhorar a sensação de bem-estar, de forma parecida a outras formas de relaxamento guiado. Para outros efeitos que por vezes se anunciam, como reforçar o sistema imunitário, não há provas. Por isso o Mestre Alberto apresenta as taças pelo que são: um caminho para relaxar, meditar e preparar a mente."),
+  ("Taças, rezas e meditação", "O som das taças combina bem com os momentos de recolhimento: a meditação, a oração, o início e o fim de uma consulta, ou os rituais de limpeza da casa. Veja também os <a href=\"/rituais\">Rituais</a> e as <a href=\"/rezas-e-oracoes\">Rezas e Orações</a>."),
+ ],
+ "perguntas": [],
+ "produtos": [],
+ "aviso": "As sessões com taças tibetanas são uma prática de relaxamento e não substituem tratamento médico ou psicológico."},
 ]
