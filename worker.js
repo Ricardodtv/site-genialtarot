@@ -1,3 +1,4 @@
+import { DurableObject } from "cloudflare:workers";
 // Genial Tarot — Cloudflare Pages worker
 // Serve o site estático e expõe /notify, que envia avisos para o Telegram.
 // O token do bot fica guardado em segredo na Cloudflare (nunca aparece no site).
@@ -562,6 +563,12 @@ export default {
     if (!url.pathname.startsWith("/api/") && !url.pathname.startsWith("/cdn-cgi/") &&
         url.pathname !== "/Estataomp8" && url.pathname !== "/geo" && url.pathname !== "/notify" && url.pathname !== "/sair" && url.pathname !== "/quero") {
       contarVisita(request, url, env, ctx);
+    }
+
+    // 31/10/2026: quem está no site agora + o chat dele com essa pessoa (ver a classe Sala, no fim)
+    if (url.pathname === "/api/vivo" || url.pathname.startsWith("/api/vivo/")) {
+      if (!env.SALA) return new Response("{}", { status: 503 });
+      return env.SALA.get(env.SALA.idFromName("sala")).fetch(request);
     }
 
     // Vídeo diário mais recente + minutos de cada signo (com cache de 15 min)
@@ -1511,3 +1518,102 @@ if (localStorage.getItem("stats_chave")) { document.getElementById("chave").valu
 </script>
 </body>
 </html>`;
+
+// =====================================================================
+// 31/10/2026, pedido dele: «quem está no site AGORA — IP, país — e um chat
+// para escrever directamente a essa pessoa, como no chat da aplicação».
+//
+// Tudo numa sala só (Durable Object «Sala», com SQLite). O /vivo.js de cada
+// página diz «estou aqui» de 20 em 20 s; o painel dele (no cerebro, pelo HA)
+// lê com a chave das estatísticas (STATS_KEY). Os IPs só se guardam 24 h; as conversas 30 dias.
+// =====================================================================
+export class Sala extends DurableObject {
+  constructor(ctx, env) {
+    super(ctx, env);
+    this.sql = ctx.storage.sql;
+    this.escreve = new Map();   // "sid|quem" -> quando escreveu a última tecla (para os «…»)
+    this.sql.exec(`CREATE TABLE IF NOT EXISTS vis (sid TEXT PRIMARY KEY, ip TEXT, pais TEXT, cidade TEXT, regiao TEXT,
+      aparelho TEXT, ua TEXT, pagina TEXT, titulo TEXT, origem TEXT, primeiro INTEGER, visto INTEGER, n INTEGER, paginas TEXT)`);
+    this.sql.exec(`CREATE TABLE IF NOT EXISTS chat (id INTEGER PRIMARY KEY AUTOINCREMENT, sid TEXT, quando INTEGER, de TEXT, texto TEXT)`);
+    this.sql.exec(`CREATE TABLE IF NOT EXISTS aberto (sid TEXT PRIMARY KEY, aberto INTEGER)`);
+  }
+  linhas(q, ...a) { return [...this.sql.exec(q, ...a)]; }
+  limpar(agora) {
+    if (this.ultimaLimpeza && agora - this.ultimaLimpeza < 600000) return;
+    this.ultimaLimpeza = agora;
+    this.sql.exec("DELETE FROM vis WHERE visto < ?", agora - 864e5);
+    this.sql.exec("DELETE FROM chat WHERE quando < ?", agora - 30 * 864e5);
+  }
+  async fetch(request) {
+    const url = new URL(request.url), p = url.pathname, agora = Date.now();
+    const J = (o, s) => new Response(JSON.stringify(o), { status: s || 200, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
+    const d = request.method === "POST" ? await request.json().catch(() => ({})) : {};
+    const sid = String(d.sid || url.searchParams.get("sid") || "");
+    const sidOk = /^[a-z0-9]{12,40}$/.test(sid);
+    this.limpar(agora);
+    // ---------- do lado de quem visita ----------
+    if (p === "/api/vivo") {
+      if (!sidOk) return J({ ok: false }, 400);
+      const cf = request.cf || {}, ua = request.headers.get("user-agent") || "";
+      const pagina = String(d.pagina || "/").slice(0, 120), titulo = String(d.titulo || "").slice(0, 120);
+      const r = this.linhas("SELECT paginas, n, pagina FROM vis WHERE sid=?", sid)[0];
+      if (r) {
+        let ps = []; try { ps = JSON.parse(r.paginas || "[]"); } catch (e) {}
+        if (r.pagina !== pagina) { ps.push([agora, pagina]); ps = ps.slice(-30); }
+        this.sql.exec("UPDATE vis SET ip=?, pais=?, cidade=?, regiao=?, pagina=?, titulo=?, visto=?, n=?, paginas=? WHERE sid=?",
+          request.headers.get("CF-Connecting-IP") || "?", cf.country || "?", cf.city || "", cf.region || "", pagina, titulo, agora,
+          (r.n || 0) + (r.pagina !== pagina ? 1 : 0), JSON.stringify(ps), sid);
+      } else {
+        if (this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c > 5000) return J({ ok: false }, 429);
+        this.sql.exec("INSERT INTO vis VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", sid, request.headers.get("CF-Connecting-IP") || "?",
+          cf.country || "?", cf.city || "", cf.region || "", aparelhoDe(ua), ua.slice(0, 160), pagina, titulo,
+          String(d.origem || "").slice(0, 80), agora, agora, 1, JSON.stringify([[agora, pagina]]));
+      }
+      const ab = this.linhas("SELECT aberto FROM aberto WHERE sid=?", sid)[0];
+      return J({ ok: true, aberto: !!(ab && ab.aberto) });
+    }
+    if (p === "/api/vivo/chat" && request.method === "GET") {
+      if (!sidOk) return J({ ok: false }, 400);
+      const ab = this.linhas("SELECT aberto FROM aberto WHERE sid=?", sid)[0];
+      const msgs = this.linhas("SELECT id, quando, de, texto FROM chat WHERE sid=? AND id>? ORDER BY id", sid, Number(url.searchParams.get("desde")) || 0);
+      return J({ aberto: !!(ab && ab.aberto), msgs, escreve: agora - (this.escreve.get(sid + "|mestre") || 0) < 4000 });
+    }
+    if (p === "/api/vivo/chat" && request.method === "POST") {
+      const t = String(d.texto || "").trim().slice(0, 1000);
+      const ab = sidOk && this.linhas("SELECT aberto FROM aberto WHERE sid=?", sid)[0];
+      if (!ab || !ab.aberto || !t) return J({ ok: false }, 400);   // só se responde a uma conversa que ELE abriu
+      this.sql.exec("INSERT INTO chat (sid, quando, de, texto) VALUES (?,?,?,?)", sid, agora, "pessoa", t);
+      return J({ ok: true });
+    }
+    if (p === "/api/vivo/escreve") { if (sidOk) this.escreve.set(sid + "|pessoa", agora); return J({ ok: true }); }
+    if (p === "/api/vivo/fechar") {
+      if (sidOk) this.sql.exec("INSERT OR REPLACE INTO aberto VALUES (?,0)", sid);
+      if (sidOk) this.sql.exec("INSERT INTO chat (sid, quando, de, texto) VALUES (?,?,?,?)", sid, agora, "sistema", "fechou o chat ✕");
+      return J({ ok: true });
+    }
+    // ---------- do lado dele (o painel) ----------
+    if (!this.env.STATS_KEY || request.headers.get("X-Chave") !== this.env.STATS_KEY) return J({ ok: false, erro: "chave" }, 403);
+    if (p === "/api/vivo/painel") {
+      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, pagina, titulo, origem, primeiro, visto, n FROM vis ORDER BY visto DESC LIMIT 300");
+      const abertos = new Set(this.linhas("SELECT sid FROM aberto WHERE aberto=1").map((r) => r.sid));
+      const ult = {}; for (const r of this.linhas("SELECT sid, MAX(id) AS id, MAX(quando) AS q FROM chat WHERE de='pessoa' GROUP BY sid")) ult[r.sid] = r.q;
+      return J({ agora, vis: vis.map((v) => ({ ...v, online: agora - v.visto < 45000, chat: abertos.has(v.sid), respondeu: ult[v.sid] || 0 })) });
+    }
+    if (p === "/api/vivo/pessoa") {
+      const v = this.linhas("SELECT * FROM vis WHERE sid=?", sid)[0] || null;
+      const ab = this.linhas("SELECT aberto FROM aberto WHERE sid=?", sid)[0];
+      return J({ v, aberto: !!(ab && ab.aberto), chat: this.linhas("SELECT id, quando, de, texto FROM chat WHERE sid=? ORDER BY id", sid),
+        escreve: agora - (this.escreve.get(sid + "|pessoa") || 0) < 4000 });
+    }
+    if (p === "/api/vivo/mestre") {
+      if (!sidOk) return J({ ok: false }, 400);
+      this.sql.exec("INSERT OR REPLACE INTO aberto VALUES (?,1)", sid);
+      const t = String(d.texto || "").trim().slice(0, 1000);
+      if (t) this.sql.exec("INSERT INTO chat (sid, quando, de, texto) VALUES (?,?,?,?)", sid, agora, "mestre", t);
+      return J({ ok: true });
+    }
+    if (p === "/api/vivo/mfechar") { if (sidOk) this.sql.exec("INSERT OR REPLACE INTO aberto VALUES (?,0)", sid); return J({ ok: true }); }
+    if (p === "/api/vivo/mescreve") { if (sidOk) this.escreve.set(sid + "|mestre", agora); return J({ ok: true }); }
+    return J({ ok: false }, 404);
+  }
+}
