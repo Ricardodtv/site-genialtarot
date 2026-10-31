@@ -1,0 +1,198 @@
+#!/usr/bin/env python3
+"""As páginas dos 12 signos (/signo/<nome>) e a montra /signos-do-zodiaco — 31/10/2026, pedido dele (SEO: «Signos»,
+«Horóscopo», variantes por signo, com o nome de Portugal E do Brasil). Textos em signos-textos.json (POR APROVAR por ele:
+enquanto APROVADO = False, as páginas saem com noindex e ficam fora do sitemap). O horóscopo de hoje de cada signo vem do
+mesmo horoscopo-dia/AAAA-MM-DD.json da página Horóscopo do Dia. Correr: python3 gerar-signos.py"""
+import json, os, re, html
+APROVADO = False
+AQUI = os.path.dirname(os.path.abspath(__file__)); os.chdir(AQUI)
+SITE = "https://genialtarot.com"
+S = json.load(open("signos-textos.json", encoding="utf-8"))
+ELEM = ["Fogo", "Terra", "Ar", "Água"]; MOD = ["cardinal", "fixo", "mutável"]
+GLIFO = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"]
+E = lambda t: html.escape(t, quote=True)
+estilo = re.search(r"<style>.*?</style>", open("horoscopo-do-dia.html", encoding="utf-8").read(), re.S).group(0)
+estilo = estilo.replace("</style>", """
+.perfil { display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); margin: 1rem 0 0; }
+.perfil div { background: var(--vidro); border: 1px solid var(--borda); border-radius: 1rem; padding: .6rem .8rem; text-align: center; }
+.perfil b { display: block; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--suave); }
+.texto h2 { text-align: left; margin-top: 1.4rem; } .texto p { font-size: 1.05rem; }
+.ligas { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: 1rem 0; }
+.ligas a { text-decoration: none; font-weight: 700; color: var(--texto); border: 1px solid var(--borda); background: var(--vidro); border-radius: 999px; padding: .5rem 1rem; }
+.ligas a:hover { border-color: var(--ouro); }
+.hoje .chave { font-family: var(--serifa); font-size: 1.3rem; color: var(--ouro); margin: .4rem 0; }
+.cta { display: inline-block; margin-top: .8rem; text-decoration: none; font-weight: 800; color: oklch(0.22 0.06 270); background: var(--grad-ouro); border-radius: 999px; padding: .75rem 1.4rem; }
+.doze { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.doze a { display: flex; gap: .8rem; align-items: center; text-decoration: none; color: var(--texto); background: oklch(0.20 0.06 272 / .88); border: 1px solid var(--borda); border-radius: 1.2rem; padding: .8rem 1rem; }
+.doze a:hover { border-color: var(--ouro); } .doze img { width: 3.6rem; height: 3.6rem; border-radius: 50%; }
+.doze small { display: block; color: var(--suave); }
+</style>""")
+def cabeca(titulo, desc, url, img, ld, indexar):
+    return f"""<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{E(titulo)}</title>
+<meta name="description" content="{E(desc)}" />
+{'' if indexar else '<meta name="robots" content="noindex" />'}
+<meta name="theme-color" content="#1d2350" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="canonical" href="{url}" />
+<meta property="og:title" content="{E(titulo)}" />
+<meta property="og:description" content="{E(desc)}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="{url}" />
+<meta property="og:image" content="{img}" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{json.dumps(ld, ensure_ascii=False)}
+</script>
+{estilo}
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+"""
+RODAPE = """<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="/privacidade">Política de Privacidade</a> · <a href="/termos">Termos de Serviço</a>
+</footer>
+</div>
+<script src="/vip-faixa.js" defer></script>
+<script src="/vivo.js" defer></script>
+</body>
+</html>
+"""
+AUTOR = {"@type": "Person", "name": "Mestre Alberto", "url": SITE + "/sobre"}
+EDITOR = {"@type": "Organization", "name": "Genial Tarot", "url": SITE + "/", "logo": {"@type": "ImageObject", "url": SITE + "/og-image.jpg"}}
+os.makedirs("signo", exist_ok=True)
+for i, s in enumerate(S):
+    url = f"{SITE}/signo/{s['slug']}"; img = f"{SITE}/signos/{i:02d}.webp"
+    nome = s["pt"] if s["pt"] == s["br"] else f"{s['pt']} ({s['br']})"
+    titulo = f"Signo {nome}: características, amor e horóscopo de hoje"
+    desc = f"O signo {nome} ({s['datas']}): personalidade, amor, trabalho e dinheiro, compatibilidades e o horóscopo de hoje, pelo Mestre Alberto."
+    el = ELEM[i % 4]; md = MOD[i % 3]; op = S[(i + 6) % 12]
+    afins = [S[j] for j in range(12) if j != i and (j % 4 == i % 4 or (i % 4 in (0, 2) and j % 4 in (0, 2)) or (i % 4 in (1, 3) and j % 4 in (1, 3)))]
+    nm = lambda x: x["pt"] if x["pt"] == x["br"] else f"{x['pt']} ({x['br']})"
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Article", "headline": titulo, "description": desc, "image": img, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Os 12 Signos", "item": SITE + "/signos-do-zodiaco"},
+            {"@type": "ListItem", "position": 3, "name": nome, "item": url}]}]}
+    corpo = f"""  <section class="heroi">
+    <img class="foto-mestre" src="/signos/{i:02d}.webp" alt="Signo {E(nome)}" width="120" height="120" />
+    <h1><span class="az">{GLIFO[i]}︎ Signo {E(nome)}</span></h1>
+    <p class="sub">{E(s['datas'])} · signo de {el} · regido por {E(s['regente'])}</p>
+  </section>
+  <section class="cartao hoje">
+    <h2>✨ Horóscopo de hoje para {E(s['pt'])}</h2>
+    <div id="hoje"><p class="aviso">A carregar o céu de hoje…</p></div>
+    <div class="ligas"><a href="/horoscopo-do-dia#s{i}">Ver os 12 signos de hoje</a><a href="/fimdesemana">Fim de semana</a><a href="/anual">Previsão anual</a></div>
+  </section>
+  <section class="cartao texto">
+    <div class="perfil">
+      <div><b>Datas</b>{E(s['datas'])}</div><div><b>Elemento</b>{el}</div><div><b>Modalidade</b>{md}</div><div><b>Regente</b>{E(s['regente'])}</div><div><b>Signo oposto</b><a href="/signo/{op['slug']}">{E(nm(op))}</a></div>
+    </div>
+    <h2>A personalidade de {E(s['pt'])}</h2><p>{E(s['essencia'])}</p>
+    <h2>{E(s['pt'])} no amor</h2><p>{E(s['amor'])}</p>
+    <h2>Trabalho e dinheiro</h2><p>{E(s['trabalho'])}</p>
+    <h2>O desafio de {E(s['pt'])}</h2><p>{E(s['desafio'])}</p>
+    <h2>Com que signos combina {E(s['pt'])}?</h2>
+    <p>Pela tradição dos elementos, {E(s['pt'])} entende-se naturalmente com {", ".join(f'<a href="/signo/{x["slug"]}">{E(nm(x))}</a>' for x in afins)}. Mas um casal é muito mais do que o signo solar: para ver a ligação a sério, use a <a href="/compatibilidade">Compatibilidade</a> ou o <a href="/mapa-do-casal">Mapa do Casal</a>.</p>
+    <p>Nasceu perto do início ou do fim destas datas? O dia exato da mudança de signo varia de ano para ano. E o seu <a href="/ascendente">Ascendente</a> diz tanto sobre si como o signo solar.</p>
+  </section>
+  <section class="cartao" style="text-align:center">
+    <h2>Quer saber o que as cartas dizem para si?</h2>
+    <p>Faça uma tiragem no <a href="/tarot-gratis">Tarot Grátis</a> ou marque uma consulta com o Mestre Alberto.</p>
+    <a class="cta" href="/loja">Marcar consulta</a>
+    <div class="ligas">{"".join(f'<a href="/signo/{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div>
+  </section>
+"""
+    js = f"""<script>
+(function () {{
+  var i = {i}, tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").indexOf("Europe") === 0 ? "Europe/Lisbon" : "America/Sao_Paulo";
+  try {{ tz = localStorage.getItem("lua-fuso") || tz; }} catch (e) {{}}
+  var PT = ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"],
+      BR = ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"], N = tz === "Europe/Lisbon" ? PT : BR;
+  var ESC = function (s) {{ return String(s).replace(/[&<>"]/g, function (c) {{ return {{ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }}[c]; }}); }};
+  var hora = function (ms) {{ return new Intl.DateTimeFormat("pt-PT", {{ timeZone: tz, hour: "2-digit", minute: "2-digit" }}).format(new Date(ms)); }};
+  var por = function (t) {{ return ESC(t).replace(/\\{{S:(\\d+)\\}}/g, function (_, n) {{ return N[+n]; }}).replace(/\\{{H:(\\d+)\\}}/g, function (_, ms) {{ return hora(+ms); }}); }};
+  var iso = new Intl.DateTimeFormat("en-CA", {{ timeZone: tz }}).format(new Date());
+  fetch("/horoscopo-dia/" + iso + ".json").then(function (r) {{ if (!r.ok) throw 0; return r.json(); }}).then(function (x) {{
+    var y = x.s[i];
+    document.getElementById("hoje").innerHTML = '<div class="ene">' + "★".repeat(y.e) + "☆".repeat(5 - y.e) + ' energia</div><div class="chave">' + por(y.k) + "</div>"
+      + y.t.map(function (t) {{ return "<p>" + por(t) + "</p>"; }}).join("") + '<div class="dica"><b>👉 A dica de hoje</b> ' + por(y.d) + "</div>";
+  }}).catch(function () {{ document.getElementById("hoje").innerHTML = '<p><a href="/horoscopo-do-dia#s{i}">Ver o horóscopo de hoje</a></p>'; }});
+}})();
+</script>
+"""
+    open(f"signo/{s['slug']}.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, img, ld, APROVADO) + corpo + js + RODAPE)
+# a montra dos 12
+url = SITE + "/signos-do-zodiaco"
+titulo = "Os 12 Signos do Zodiaco: datas, características e horóscopo".replace("Zodiaco", "Zodíaco")
+desc = "Descubra o seu signo: as datas dos 12 signos do zodíaco, a personalidade, o amor e o horóscopo de hoje de cada um, pelo Mestre Alberto."
+ld = {"@context": "https://schema.org", "@graph": [
+    {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
+    {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Os 12 Signos", "item": url}]}]}
+grelha = "".join(f'<a href="/signo/{x["slug"]}"><img src="/signos/{j:02d}.webp" alt="" width="58" height="58" loading="lazy"><span><b>{GLIFO[j]}︎ {E(x["pt"] if x["pt"] == x["br"] else x["pt"] + " (" + x["br"] + ")")}</b><small>{E(x["datas"])} · {ELEM[j % 4]}</small></span></a>' for j, x in enumerate(S))
+corpo = f"""  <section class="heroi">
+    <h1><span class="az">Os 12 Signos do Zodíaco</span></h1>
+    <p class="sub">Escolha o seu signo para ver a personalidade, o amor, o trabalho e o horóscopo de hoje.</p>
+  </section>
+  <section><div class="doze">{grelha}</div></section>
+  <section class="cartao texto">
+    <h2>Os quatro elementos</h2>
+    <p>Os signos dividem-se em quatro elementos. <b>Fogo</b> (Carneiro, Leão, Sagitário): entusiasmo e ação. <b>Terra</b> (Touro, Virgem, Capricórnio): estabilidade e sentido prático. <b>Ar</b> (Gémeos, Balança, Aquário): ideias e comunicação. <b>Água</b> (Caranguejo, Escorpião, Peixes): emoção e intuição.</p>
+    <p>No Brasil, alguns signos têm outro nome: Carneiro é Áries, Gémeos é Gêmeos, Caranguejo é Câncer e Balança é Libra.</p>
+    <div class="ligas"><a href="/horoscopo-do-dia">Horóscopo de hoje</a><a href="/ascendente">Calcular o Ascendente</a><a href="/compatibilidade">Compatibilidade</a><a href="/lua">A Lua de hoje</a></div>
+  </section>
+"""
+open("signos-do-zodiaco.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+print("13 páginas", "(aprovadas)" if APROVADO else "(noindex: por aprovar)")
+
+# ── A página local: Tarólogo em Fafe (31/10/2026: ele atende no consultório de Fafe; ficha no Google Maps
+#    «Genialtarot - Mestre Alberto»). Nome, morada e telefone IGUAIS aos do Maps (o Google cruza-os).
+MAPS = "https://maps.google.com/?cid=17405932589735170894"
+url = SITE + "/tarologo-fafe"
+titulo = "Tarólogo em Fafe: consultas de Tarot com o Mestre Alberto"
+desc = "Consultas de Tarot e astrologia no consultório do Mestre Alberto em Fafe (Golães) ou à distância, para Portugal e Brasil. 18 anos de prática. Marcações por WhatsApp."
+NEGOCIO = {"@type": "ProfessionalService", "@id": SITE + "/#consultorio", "name": "Genialtarot - Mestre Alberto", "url": SITE + "/",
+           "image": SITE + "/mestre-r13.jpg", "telephone": "+351914920427", "hasMap": MAPS,
+           "address": {"@type": "PostalAddress", "streetAddress": "Rua da Barreira, 92", "addressLocality": "Fafe", "postalCode": "4820-474", "addressRegion": "Braga", "addressCountry": "PT"},
+           "geo": {"@type": "GeoCoordinates", "latitude": 41.4682778, "longitude": -8.1984452},
+           "founder": AUTOR, "areaServed": ["Fafe", "Guimarães", "Braga", "Portugal", "Brasil"],
+           "sameAs": ["https://www.youtube.com/@Genialtarot", "https://www.facebook.com/genial.tarot", "https://www.instagram.com/genialtarot/", "https://www.tiktok.com/@genialtarot"]}
+ld = {"@context": "https://schema.org", "@graph": [NEGOCIO,
+      {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Tarólogo em Fafe", "item": url}]}]}
+corpo = f"""  <section class="heroi">
+    <img class="foto-mestre" src="/mestre-r13.jpg" alt="Mestre Alberto, tarólogo em Fafe" width="120" height="120" />
+    <h1><span class="az">Tarólogo em Fafe</span></h1>
+    <p class="sub">Consultas de Tarot com o Mestre Alberto, no consultório em Fafe ou à distância.</p>
+    <a class="cta" href="https://wa.me/351914920427">Marcar pelo WhatsApp</a>
+  </section>
+  <section class="cartao texto">
+    <h2>Consultas de Tarot em Fafe</h2>
+    <p>O Mestre Alberto lê as cartas há 18 anos e atende no seu consultório em Fafe, em Golães. Cada consulta é feita por ele, com o seu próprio baralho: não é uma plataforma com vários tarólogos, é uma pessoa que o ouve, lê as cartas e lhe responde com sinceridade.</p>
+    <p>As consultas ajudam a ganhar clareza no amor, no trabalho, na família e nas decisões importantes da vida. O Tarot não substitui um médico, um advogado ou um psicólogo, mas pode ajudar a ver o seu momento com outros olhos.</p>
+    <h2>Também à distância</h2>
+    <p>Se não está perto de Fafe, pode fazer a consulta à distância, a partir de qualquer ponto de Portugal, do Brasil ou do mundo. A marcação é sempre pelo WhatsApp.</p>
+    <h2>Onde fica o consultório</h2>
+    <div class="perfil"><div><b>Morada</b>Rua da Barreira, 92<br>4820-474 Golães, Fafe</div><div><b>Marcações</b><a href="https://wa.me/351914920427">WhatsApp +351 914 920 427</a></div><div><b>Mapa</b><a href="{MAPS}">Abrir no Google Maps</a></div></div>
+    <p>Atende quem vem de Fafe, Guimarães, Felgueiras, Cabeceiras de Basto, Póvoa de Lanhoso, Braga e de todo o Norte do país.</p>
+  </section>
+  <section class="cartao" style="text-align:center">
+    <h2>Antes de marcar</h2>
+    <p>Conheça o <a href="/sobre">Mestre Alberto</a>, veja os <a href="/loja">tipos de consulta</a>, ou experimente o <a href="/tarot-gratis">Tarot Grátis</a> e o <a href="/horoscopo-do-dia">Horóscopo do Dia</a>.</p>
+    <a class="cta" href="https://wa.me/351914920427">Marcar consulta</a>
+  </section>
+"""
+open("tarologo-fafe.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+print("tarologo-fafe", "(aprovada)" if APROVADO else "(noindex: por aprovar)")
