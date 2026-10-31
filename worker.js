@@ -536,13 +536,15 @@ async function estatisticasVisitas(env, dias) {
   // DAS PAGINAS QUE EXISTEM. Assim os dias ja gravados ficam limpos tambem --
   // senao os /aws-credentials e /login de ontem continuavam a contar como
   // pessoas na pagina, mesmo depois de o contador deixar de os gravar.
-  const limpo = " AND blob1 IN (" +
-    Array.from(PAGINAS).map(p => "'" + p + "'").join(",") + ")";
+  // 01/11/2026: mais as páginas novas do SEO, que entram pelo sinal do vivo.js (blob6 = 'vivo'; o worker só as grava
+  // se tiverem feitio de página deste site e vierem de genialtarot.com).
+  const limpo = " AND (blob1 IN (" +
+    Array.from(PAGINAS).map(p => "'" + p + "'").join(",") + ") OR blob6 = 'vivo')";
   const so = " AND blob5 = 'pessoa'" + limpo;
   const consultas = {
     dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " GROUP BY dia, quem ORDER BY dia ASC",
     origens:  "SELECT blob2 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
-    paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
+    paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 40",
     paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
     aparelhos:"SELECT blob4 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 5",
   };
@@ -587,7 +589,7 @@ export default {
             const ua = request.headers.get("user-agent") || "";
             env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120),
               origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com").slice(0, 120),
-              (request.cf && request.cf.country) || "?", aparelhoDe(ua), ROBOS.test(ua) ? "robo" : "pessoa"] });
+              (request.cf && request.cf.country) || "?", aparelhoDe(ua), ROBOS.test(ua) ? "robo" : "pessoa", "vivo"] });   // blob6 = «vivo»: veio pelo sinal do vivo.js
           } catch (e) { /* contar nunca pode estragar o sinal */ }
         })());
       }
