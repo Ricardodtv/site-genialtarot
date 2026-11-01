@@ -538,7 +538,8 @@ async function estatisticasVisitas(env, dias) {
   // pessoas na pagina, mesmo depois de o contador deixar de os gravar.
   // 01/11/2026: mais as páginas novas do SEO, que entram pelo sinal do vivo.js (blob6 = 'vivo'; o worker só as grava
   // se tiverem feitio de página deste site e vierem de genialtarot.com).
-  const limpo = " AND (blob1 IN (" +
+  // 01/11/2026 (ele): blob6 = 'js' é a CONFIRMAÇÃO do vivo.js de uma página da lista — não é visita nova, fica fora destas contas.
+  const limpo = " AND blob6 != 'js' AND (blob1 IN (" +
     Array.from(PAGINAS).map(p => "'" + p + "'").join(",") + ") OR blob6 = 'vivo')";
   const so = " AND blob5 = 'pessoa'" + limpo;
   const consultas = {
@@ -546,6 +547,7 @@ async function estatisticasVisitas(env, dias) {
     origens:  "SELECT blob2 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
     paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 40",
     paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
+    confirmadas: "SELECT toDate(timestamp) AS dia, blob6 AS tipo, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND blob5 = 'pessoa' AND blob6 IN ('js','vivo') GROUP BY dia, tipo ORDER BY dia ASC",
     aparelhos:"SELECT blob4 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 5",
   };
   const nomes = Object.keys(consultas);
@@ -585,8 +587,11 @@ export default {
           try {
             const d = await copia.json(); const p = String(d.pagina || "").replace(/\.html$/, "");
             const ref = request.headers.get("origin") || request.headers.get("referer") || "";
-            if (!d.novo || !/^\/[a-z0-9-]+(\/[a-z0-9-]+)?$/.test(p) || PAGINAS.has(p) || !/genialtarot\.com/.test(ref)) return;
+            if (!d.novo || !/^\/[a-z0-9-]+(\/[a-z0-9-]+)?$/.test(p) || !/genialtarot\.com/.test(ref)) return;
             const ua = request.headers.get("user-agent") || "";
+            // 01/11/2026 (ele: «separa os suspeitos»): numa página da lista, o worker já contou a entrada; este sinal só CONFIRMA
+            // que era um navegador a sério (correu o vivo.js). Entradas «pessoa» sem confirmação = suspeitos (robôs disfarçados).
+            if (PAGINAS.has(p)) { env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120), "", (request.cf && request.cf.country) || "?", aparelhoDe(ua), ROBOS.test(ua) ? "robo" : "pessoa", "js"] }); return; }
             env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120),
               origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com").slice(0, 120),
               (request.cf && request.cf.country) || "?", aparelhoDe(ua), ROBOS.test(ua) ? "robo" : "pessoa", "vivo"] });   // blob6 = «vivo»: veio pelo sinal do vivo.js
@@ -1381,9 +1386,15 @@ function carregar() {
         var porDia = {}, totPessoas = 0, totRobos = 0;
         (Array.isArray(V.dias) ? V.dias : []).forEach(function (r) {
           if (!r || !r.dia) return;
-          var alvo = porDia[r.dia] || (porDia[r.dia] = { pessoa: 0, robo: 0 });
+          var alvo = porDia[r.dia] || (porDia[r.dia] = { pessoa: 0, robo: 0, conf: 0 });
           var n = Number(r.n) || 0;
           if (r.quem === "robo") { alvo.robo += n; totRobos += n; } else { alvo.pessoa += n; totPessoas += n; }
+        });
+        // 01/11/2026 (ele): separar os suspeitos — confirmadas = páginas em que o vivo.js correu (navegador a sério);
+        // suspeitos = entradas «pessoa» sem essa confirmação. Só existe desde 01/11/2026 de manhã.
+        var INICIO_CONF = "2026-11-01", totConf = 0, totSusp = 0;
+        (Array.isArray(V.confirmadas) ? V.confirmadas : []).forEach(function (r) {
+          if (!r || !r.dia || !porDia[r.dia]) return; var n = Number(r.n) || 0; porDia[r.dia].conf += n;
         });
         var diasC = Object.keys(porDia).sort();
         cd.innerHTML = "";
@@ -1393,19 +1404,25 @@ function carregar() {
         } else {
           var maxC = 1;
           diasC.forEach(function (k) { if (porDia[k].pessoa > maxC) maxC = porDia[k].pessoa; });
+          var legenda = document.createElement("div");
+          legenda.style.cssText = "color:oklch(0.75 0.03 275);font-size:0.75rem;padding:0 0 0.4rem;text-align:center";
+          legenda.textContent = "desde 01/11: 👤 pessoas confirmadas (navegador a sério) · 🕵️ suspeitos (robôs disfarçados, em pequenino)";
+          cd.appendChild(legenda);
           diasC.forEach(function (k) {
             var l = document.createElement("div");
             l.className = "pais";
             l.title = plural(porDia[k].pessoa, "pessoa", "pessoas") + " · " +
               plural(porDia[k].robo, "robô travado", "robôs travados");
             l.innerHTML = '<span class="nome">' + dataPt(k) + '</span><span class="faixa"><span style="width:' +
-              Math.max(3, Math.round(porDia[k].pessoa / maxC * 100)) + '%"></span></span><span class="pct">' + porDia[k].pessoa + '</span>';
+              Math.max(3, Math.round((k >= INICIO_CONF ? porDia[k].conf : porDia[k].pessoa) / maxC * 100)) + '%"></span></span><span class="pct">' +
+              (k >= INICIO_CONF ? "👤 " + porDia[k].conf + ' <small style="opacity:.6;font-size:0.7em">🕵️ ' + Math.max(0, porDia[k].pessoa - porDia[k].conf) + "</small>" : porDia[k].pessoa) + '</span>';
+            if (k >= INICIO_CONF) { totConf += porDia[k].conf; totSusp += Math.max(0, porDia[k].pessoa - porDia[k].conf); }
             cd.appendChild(l);
           });
         }
         fonte("contador-nota", diasC.length
           ? plural(totPessoas, "pessoa", "pessoas") + " e " + plural(totRobos, "robô travado", "robôs travados") +
-            " em " + plural(diasC.length, "dia", "dias")
+            " em " + plural(diasC.length, "dia", "dias") + (totConf + totSusp ? " · desde 01/11: " + totConf + " confirmadas, " + totSusp + " suspeitas" : "")
           : "");
       }
 
