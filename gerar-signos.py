@@ -286,7 +286,7 @@ for r in REZAS:
 """
     open(f"{r['slug']}.html", "w", encoding="utf-8").write(cabeca(r["titulo"], r["desc"], url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
 url = SITE + "/rezas-e-oracoes"; titulo = "Rezas e Orações tradicionais: quebranto, mau olhado, talhar o ar"
-desc = "As rezas e benzeduras da tradição portuguesa: tirar o quebranto, mau olhado, mal de inveja, talhar o ar, o sol e o medo, espinhela caída, responsos a Santo António. Com o Mestre Alberto."
+desc = "As rezas e benzeduras da tradição portuguesa: quebranto, mau olhado, inveja, talhar o ar, o sol e o medo, espinhela caída e responsos."
 ld = {"@context": "https://schema.org", "@graph": [
     {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
     {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Rezas e Orações", "item": url}]}]}
@@ -367,6 +367,7 @@ if os.path.exists(PAR_F):
         titulo = f"Parábolas sobre {fr}: {len(ps)} histórias com lição de vida"
         if len(titulo) > 65: titulo = f"Parábolas sobre {fr}: {len(ps)} histórias"
         desc = f"Parábolas e histórias curtas sobre {fr}, com a lição de cada uma, contadas pelo Mestre Alberto: {', '.join(x['titulo_curto'] for x in ps[:3])} e outras."
+        while len(desc) > 165 and "," in desc: desc = desc.rsplit(",", 1)[0].rsplit(":", 1)[0] + ": " + ", ".join(desc.split(": ", 1)[1].split(", ")[:-1]) + " e outras." if desc.count(",") > 1 else desc.split(": ", 1)[0] + "."
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
             {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},

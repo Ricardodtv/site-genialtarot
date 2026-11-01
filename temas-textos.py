@@ -183,7 +183,7 @@ TEMAS = [
  "produtos": ["Consulta de Tarot Online", "Consulta de Emergência", "1 Pergunta Respondida em Áudio", "1 Pergunta de Tarot por Escrito", "Quiromancia"]},
 {"slug": "benzimentos", "menu": "✝️ Benzimentos", "h1": "Benzimentos e Rezas Tradicionais",
  "titulo": "Benzimentos e Rezas: quebranto, mau olhado, inveja e talhar o ar",
- "desc": "Benzimentos e rezas da tradição portuguesa: tirar o quebranto, o mau olhado e o mal de inveja, talhar o ar, o medo e o sol, responsos a Santo António. Com o Mestre Alberto.",
+ "desc": "Benzimentos e rezas da tradição portuguesa: quebranto, mau olhado, inveja, talhar o ar, o medo e o sol, responsos a Santo António.",
  "sub": "A sabedoria das nossas avós, guardada de geração em geração.",
  "seccoes": [
   ("O que são os benzimentos", "Os benzimentos, benzeduras ou talhas são rezas tradicionais, acompanhadas do sinal da cruz e de gestos simbólicos, usadas há séculos nas aldeias de Portugal para pedir proteção e alívio. Cada região tem as suas palavras, quase sempre passadas de boca em boca dentro da família."),
