@@ -599,11 +599,27 @@ async function estatisticasVisitas(env, dias) {
     google_bruto: "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
     aparelhos:"SELECT blob4 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 5",
   };
+  // 01/11/2026 19:45 (ele: «44 nas pessoas por dia e 7 pessoas hoje em cima?»): o sum() contava PÁGINAS vistas. Agora cada
+  // pessoa (sid do vivo.js, blob8) conta uma vez por dia/país/origem/aparelho; as linhas antigas, sem sid, contam como antes.
+  const comSid = so + " AND blob8 != ''", semSid = so + " AND blob8 = ''";
+  for (const [k, campo] of [["dias", "toDate(timestamp)"], ["origens", "blob2"], ["paises", "blob3"], ["aparelhos", "blob4"]]) {
+    consultas["u_" + k] = "SELECT " + campo + " AS nome, count(DISTINCT blob8) AS n FROM visitas_site WHERE " + janela + comSid + " GROUP BY nome";
+    consultas["r_" + k] = "SELECT " + campo + " AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + semSid + " GROUP BY nome";
+  }
   const nomes = Object.keys(consultas);
   const res = await Promise.all(nomes.map(k =>
     perguntarSQL(env, consultas[k]).catch(e => ({ erro: String(e).slice(0, 120) }))));
   const fora = {};
   nomes.forEach((k, i) => { fora[k] = res[i]; });
+  const junta = (k) => { const m = {}; for (const x of [].concat(Array.isArray(fora["u_" + k]) ? fora["u_" + k] : [], Array.isArray(fora["r_" + k]) ? fora["r_" + k] : []))
+    m[x.nome] = (m[x.nome] || 0) + Number(x.n || 0); delete fora["u_" + k]; delete fora["r_" + k];
+    return Object.entries(m).map(([nome, n]) => ({ nome, n })).sort((a, b) => b.n - a.n); };
+  try {
+    for (const k of ["origens", "paises", "aparelhos"]) { const l = junta(k); if (l.length || Array.isArray(fora[k])) fora[k] = l; }
+    const pd = junta("dias");   // as pessoas por dia substituem a linha «pessoa» (as dos robôs ficam como estão)
+    if (Array.isArray(fora.dias)) fora.dias = fora.dias.filter((x) => x.quem !== "pessoa").concat(pd.map((x) => ({ dia: x.nome, quem: "pessoa", n: x.n })))
+      .sort((a, b) => String(a.dia).localeCompare(String(b.dia)));
+  } catch (e) { /* se falhar, ficam os números antigos */ }
   return fora;
 }
 
@@ -641,7 +657,8 @@ export default {
             if (d.confirma && /^\/[a-z0-9-]*(\/[a-z0-9-]+)?$/.test(p) && /genialtarot\.com/.test(ref)) {
               const uaH = request.headers.get("user-agent") || "";
               env.VISITAS.writeDataPoint({ indexes: [(p || "/").slice(0, 90)], doubles: [1], blobs: [(p || "/").slice(0, 120), origemVivo(d).slice(0, 120),
-                (request.cf && request.cf.country) || "?", aparelhoDe(uaH), quemE(uaH, request.cf), "humano", servidorAlugado(request.cf)] });
+                (request.cf && request.cf.country) || "?", aparelhoDe(uaH), quemE(uaH, request.cf), "humano", servidorAlugado(request.cf),
+                String(d.sid || "").replace(/[^a-z0-9]/g, "").slice(0, 40)] });   // blob8 = sid (01/11 19:45): cada pessoa conta UMA vez, não cada página
               return;
             }
             if (!d.novo || !/^\/[a-z0-9-]+(\/[a-z0-9-]+)?$/.test(p) || !/genialtarot\.com/.test(ref)) return;
