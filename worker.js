@@ -549,7 +549,10 @@ async function estatisticasVisitas(env, dias) {
     paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
     confirmadas: "SELECT toDate(timestamp) AS dia, blob6 AS tipo, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND blob5 = 'pessoa' AND blob6 IN ('js','vivo') GROUP BY dia, tipo ORDER BY dia ASC",
     // 01/11/2026 (ele): pessoas vindas do Google, por página de entrada — para a divisão SEO do painel
-    google:   "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
+    // 01/11 (ele: «o mais fiel possível»): «google» só conta quem CONFIRMOU ser navegador a sério (o vivo.js correu); o «google_bruto»
+    // é o que diz vir do Google à entrada — inclui robôs que fingem vir de lá (20 em 2 dias contra 1 visto no painel ao vivo).
+    google:   "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND blob5 = 'pessoa' AND blob6 IN ('js','vivo') AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
+    google_bruto: "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
     aparelhos:"SELECT blob4 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 5",
   };
   const nomes = Object.keys(consultas);
@@ -593,7 +596,7 @@ export default {
             const ua = request.headers.get("user-agent") || "";
             // 01/11/2026 (ele: «separa os suspeitos»): numa página da lista, o worker já contou a entrada; este sinal só CONFIRMA
             // que era um navegador a sério (correu o vivo.js). Entradas «pessoa» sem confirmação = suspeitos (robôs disfarçados).
-            if (PAGINAS.has(p)) { env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120), "", (request.cf && request.cf.country) || "?", aparelhoDe(ua), ROBOS.test(ua) ? "robo" : "pessoa", "js"] }); return; }
+            if (PAGINAS.has(p)) { env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120), origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com").slice(0, 120), (request.cf && request.cf.country) || "?", aparelhoDe(ua), ROBOS.test(ua) ? "robo" : "pessoa", "js"] }); return; }
             env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120),
               origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com").slice(0, 120),
               (request.cf && request.cf.country) || "?", aparelhoDe(ua), ROBOS.test(ua) ? "robo" : "pessoa", "vivo"] });   // blob6 = «vivo»: veio pelo sinal do vivo.js
