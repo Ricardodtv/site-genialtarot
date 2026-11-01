@@ -655,7 +655,8 @@ export default {
           } catch (e) { /* contar nunca pode estragar o sinal */ }
         })());
       }
-      return env.SALA.get(env.SALA.idFromName("sala")).fetch(request);
+      try { return await env.SALA.get(env.SALA.idFromName("sala")).fetch(request); }
+      catch (e) { return new Response(JSON.stringify({ ok: false, erro: "sala: " + String(e && e.message || e).slice(0, 300) }), { status: 500, headers: { "Content-Type": "application/json" } }); }
     }
 
     // Vídeo diário mais recente + minutos de cada signo (com cache de 15 min)
