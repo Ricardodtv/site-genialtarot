@@ -396,12 +396,16 @@ const ROBOS = /bot\b|bot\/|crawl|spider|slurp|preview|facebookexternalhit|whatsa
 // só muda a gaveta (blob5). O blob7 guarda o NOME da rede só quando é de servidores (nunca o fornecedor de casa
 // de uma pessoa), para se poder conferir quem é quem.
 const ASN_SERVIDORES = new Set([32934, 15169, 396982, 19527, 16509, 14618, 8075, 8068, 14061, 16276, 24940, 63949, 20473, 51167,
-  132203, 45090, 45102, 37963, 136907, 55990, 31898, 9009, 212238, 60068, 13335, 54113, 62240, 202425, 12876, 16125, 47583,
+  132203, 45090, 45102, 37963, 136907, 55990, 31898, 9009, 212238, 60068, 62240, 202425, 12876, 16125, 47583,
   36352, 40021, 397423, 21859, 199524, 35540, 3223, 49453, 211252, 7941, 29802, 46606, 26496, 398324, 22612, 53667]);
-const ORG_SERVIDORES = /hosting|cloud|server|data ?cent|datacamp|vps|colocat|amazon|google|microsoft|digitalocean|ovh|hetzner|linode|akamai|vultr|choopa|contabo|tencent|alibaba|huawei|oracle|m247|leaseweb|scaleway|ionos|hostinger|godaddy|facebook|meta platforms|gcore|stark industries|clouvider|ponynet|frantech|psychz|quadranet|hostwinds|colocrossing/i;
+const ORG_SERVIDORES = /hosting|cloud|server|data ?cent|datacamp|vps|colocat|amazon|google|microsoft|digitalocean|ovh|hetzner|linode|vultr|choopa|contabo|tencent|alibaba|huawei|oracle|m247|leaseweb|scaleway|ionos|hostinger|godaddy|facebook|meta platforms|gcore|stark industries|clouvider|ponynet|frantech|psychz|quadranet|hostwinds|colocrossing/i;
+// ⚠️ Cloudflare, Akamai e Fastly NÃO entram: é por elas que passam pessoas reais (Relay Privado do iCloud nos
+// iPhones, a app 1.1.1.1/WARP). Contá-las como robô apagava gente de verdade.
+const ORG_PESSOAS = /cloudflare|akamai|fastly|apple/i;
 function servidorAlugado(cf) {
   if (!cf) return "";
   const org = String(cf.asOrganization || "");
+  if ([13335, 209242, 20940, 16625, 54113, 714, 6185].includes(Number(cf.asn)) || ORG_PESSOAS.test(org)) return "";
   return (ASN_SERVIDORES.has(Number(cf.asn)) || ORG_SERVIDORES.test(org)) ? (org || "AS" + cf.asn).slice(0, 60) : "";
 }
 function quemE(ua, cf) { return ROBOS.test(ua) || servidorAlugado(cf) ? "robo" : "pessoa"; }
