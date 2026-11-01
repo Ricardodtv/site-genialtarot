@@ -551,7 +551,10 @@ for f in sorted(_g.glob("arcano-*.html")):
 # 300+ palavras) e o Google pode mostrá-las como respostas. Vivem em faq-textos*.py: FAQ = {slug: [(pergunta, resposta), ...]}.
 FAQ = {}
 for _f in sorted(glob.glob("faq-textos*.py")):
-    _d = {}; exec(open(_f, encoding="utf-8").read(), _d); FAQ.update(_d.get("FAQ", {}))
+    _d = {}
+    try: exec(open(_f, encoding="utf-8").read(), _d)
+    except Exception as _e: print("⚠️ ficou de fora (ainda a ser escrito ou com erro):", _f, _e); continue
+    FAQ.update(_d.get("FAQ", {}))
 
 def pagina(slug, titulo, desc, img, migalhas, corpo):
     url = f"{SITE}/{slug}"
