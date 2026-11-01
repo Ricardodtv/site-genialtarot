@@ -33,7 +33,7 @@ REZAS = [
  "reza": ["Deus te fez, Deus te criou…", "Se dois te deram, três tirarão:", "São Pedro, São Paulo e São João…"]},
 {"slug": "reza-talhar-o-sol", "menu": "Talhar o Sol", "h1": "Talhar o Sol",
  "titulo": "Talhar o Sol: a benzedura antiga com toalha de linho e água fria",
- "desc": "Talhar ou atalhar o sol é uma benzedura tradicional portuguesa para quem apanhou sol a mais, feita com uma toalha de linho e um copo de água fria. A tradição e a reza.",
+ "desc": "Talhar o sol é uma benzedura tradicional portuguesa para quem apanhou sol a mais, feita com uma toalha de linho e um copo de água fria. A tradição e a reza.",
  "sub": "A benzedura de Santo Anastácio, passada de mães para filhos.",
  "seccoes": [
   ("De onde vem", "Nas aldeias, onde o médico ficava longe, muitas mães aprenderam a «atalhar o sol» para os filhos que voltavam do campo com dor de cabeça e calor a mais. A benzedura passou de geração em geração."),

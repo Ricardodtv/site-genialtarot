@@ -172,7 +172,7 @@ TEMAS = [
  "produtos": ["Mapa Numerológico", "Análise ao Seu Signo"]},
 {"slug": "consultas-a-distancia", "menu": "🌍 À distância", "h1": "Consultas à Distância",
  "titulo": "Consultas de Tarot à distância: Portugal, Brasil e todo o mundo",
- "desc": "Consultas de Tarot, quiromancia e astrologia à distância com o Mestre Alberto: por WhatsApp, em áudio, por escrito ou em videochamada, para Portugal, Brasil e o mundo.",
+ "desc": "Consultas de Tarot, quiromancia e astrologia à distância com o Mestre Alberto: por WhatsApp, áudio, escrito ou videochamada, para Portugal e Brasil.",
  "sub": "A distância não muda a leitura: as cartas respondem onde quer que esteja.",
  "seccoes": [
   ("Como funciona", "A consulta à distância é feita como a presencial: o Mestre Alberto ouve a sua pergunta, baralha e tira as cartas por si, e responde-lhe. Pode ser uma conversa em direto, uma resposta em áudio no WhatsApp ou um trabalho escrito, enviado para qualquer país."),

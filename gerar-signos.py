@@ -79,6 +79,7 @@ for i, s in enumerate(S):
     url = f"{SITE}/signo/{s['slug']}"; img = f"{SITE}/signos/{i:02d}.webp"
     nome = s["pt"] if s["pt"] == s["br"] else f"{s['pt']} ({s['br']})"
     titulo = f"Signo {nome}: características, amor e horóscopo de hoje"
+    if len(titulo) > 65: titulo = f"Signo {nome}: características, amor e horóscopo"   # 01/11: o Google corta acima de ~65 (Caranguejo (Câncer))
     desc = f"O signo {nome} ({s['datas']}): personalidade, amor, trabalho e dinheiro, compatibilidades e o horóscopo de hoje, pelo Mestre Alberto."
     el = ELEM[i % 4]; md = MOD[i % 3]; op = S[(i + 6) % 12]
     afins = [S[j] for j in range(12) if j != i and (j % 4 == i % 4 or (i % 4 in (0, 2) and j % 4 in (0, 2)) or (i % 4 in (1, 3) and j % 4 in (1, 3)))]
@@ -928,3 +929,4 @@ import subprocess as _sp; _sp.run(["python3", "ecossistema-signos.py"], check=Fa
 
 # 01/11/2026: o texto a mais das páginas que estavam abaixo das 300 palavras (SEO)
 _sp.run(["python3", "seo-texto-extra.py"], check=False)
+_sp.run(["python3", "seo-descricoes.py"], check=False)
