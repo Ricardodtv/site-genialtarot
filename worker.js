@@ -548,6 +548,8 @@ async function estatisticasVisitas(env, dias) {
     paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 40",
     paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
     confirmadas: "SELECT toDate(timestamp) AS dia, blob6 AS tipo, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND blob5 = 'pessoa' AND blob6 IN ('js','vivo') GROUP BY dia, tipo ORDER BY dia ASC",
+    // 01/11/2026 (ele): pessoas vindas do Google, por página de entrada — para a divisão SEO do painel
+    google:   "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
     aparelhos:"SELECT blob4 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 5",
   };
   const nomes = Object.keys(consultas);
@@ -1637,7 +1639,7 @@ export class Sala extends DurableObject {
     if (!this.env.STATS_KEY || request.headers.get("X-Chave") !== this.env.STATS_KEY) return J({ ok: false, erro: "chave" }, 403);
     if (p === "/api/vivo/painel") {
       const dias = Math.min(30, Math.max(1, parseInt(url.searchParams.get("dias")) || 1));
-      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, pagina, titulo, origem, primeiro, visto, n FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
+      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, pagina, titulo, origem, primeiro, visto, n, json_extract(paginas, '$[0][1]') AS entrada FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
         agora - dias * 864e5, dias === 1 ? 600 : 5000);
       const abertos = new Set(this.linhas("SELECT sid FROM aberto WHERE aberto=1").map((r) => r.sid));
       const ult = {}; for (const r of this.linhas("SELECT sid, MAX(id) AS id, MAX(quando) AS q FROM chat WHERE de='pessoa' GROUP BY sid")) ult[r.sid] = r.q;
