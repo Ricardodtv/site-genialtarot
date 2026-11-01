@@ -285,7 +285,7 @@ for r in REZAS:
   </section>
 """
     open(f"{r['slug']}.html", "w", encoding="utf-8").write(cabeca(r["titulo"], r["desc"], url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
-url = SITE + "/rezas-e-oracoes"; titulo = "Rezas e Orações tradicionais portuguesas: quebranto, mau olhado, talhar o ar"
+url = SITE + "/rezas-e-oracoes"; titulo = "Rezas e Orações tradicionais: quebranto, mau olhado, talhar o ar"
 desc = "As rezas e benzeduras da tradição portuguesa: tirar o quebranto, mau olhado, mal de inveja, talhar o ar, o sol e o medo, espinhela caída, responsos a Santo António. Com o Mestre Alberto."
 ld = {"@context": "https://schema.org", "@graph": [
     {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
@@ -365,6 +365,7 @@ if os.path.exists(PAR_F):
     for t in temas_ok:
         ps = por[t]; slug = "parabolas-sobre-" + SLUG_T(t); url = f"{SITE}/{slug}"; fr = FRASE_T.get(t, t)
         titulo = f"Parábolas sobre {fr}: {len(ps)} histórias com lição de vida"
+        if len(titulo) > 65: titulo = f"Parábolas sobre {fr}: {len(ps)} histórias"
         desc = f"Parábolas e histórias curtas sobre {fr}, com a lição de cada uma, contadas pelo Mestre Alberto: {', '.join(x['titulo_curto'] for x in ps[:3])} e outras."
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},

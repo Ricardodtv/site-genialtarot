@@ -42,7 +42,7 @@ REZAS = [
  "reza": ["E levantou-se Santo Anastácio,", "com Nosso Jesus Cristo se encontrou", "e Ele perguntou:", "«Com que se atalha o sol, Senhor?»…"],
  "aviso": CUIDADO + " Uma insolação pode ser grave: perante febre, vómitos, confusão ou desmaio, procure logo um médico."},
 {"slug": "reza-espinhela-caida", "menu": "Espinhela Caída", "h1": "Reza para a Espinhela Caída",
- "titulo": "Reza para a Espinhela Caída: a tradição e a reza para erguer a espinhela",
+ "titulo": "Reza para a Espinhela Caída: a tradição e a reza para a erguer",
  "desc": "A espinhela caída na medicina popular portuguesa e brasileira: o que é, como se reza «ergue-te espinhela» e como o Mestre Alberto faz esta benzedura.",
  "sub": "«Ergue-te espinhela, por Deus é mandada.»",
  "seccoes": [
@@ -52,7 +52,7 @@ REZAS = [
  "reza": ["Quando Deus pelo mundo andava,", "homem bom e mulher má encontrava…", "Ergue-te espinhela,", "por Deus é mandada…"],
  "aviso": CUIDADO + " Dores no peito ou nas costas devem ser sempre vistas por um médico."},
 {"slug": "reza-ventre-caido", "menu": "Ventre Caído", "h1": "Reza para o Ventre Caído",
- "titulo": "Ventre Caído e Bucho Virado: a reza tradicional para levantar o ventre",
+ "titulo": "Ventre Caído e Bucho Virado: a reza para levantar o ventre",
  "desc": "O ventre caído ou bucho virado é uma crença popular minhota sobre um mal em bebés e crianças. A tradição, a reza para levantar o ventre e os cuidados a ter.",
  "sub": "Uma das benzeduras mais antigas do Minho para os mais pequenos.",
  "seccoes": [

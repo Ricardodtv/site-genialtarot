@@ -195,7 +195,7 @@ TEMAS = [
  "produtos": ["Ritual de Proteção e Limpeza", "Vela Guia, Oração e Proteção", "Incenso + Oração"],
  "aviso": "Os benzimentos são uma tradição espiritual e cultural e nunca substituem o médico. Dores, feridas, febre, problemas de pele, entorses ou mal-estar devem ser sempre vistos por um profissional de saúde, sobretudo em crianças."},
 {"slug": "aconselhamento-espiritual", "menu": "🤝 Aconselhamento", "h1": "Aconselhamento Espiritual",
- "titulo": "Aconselhamento Espiritual e Orientação de Vida com o Mestre Alberto",
+ "titulo": "Aconselhamento Espiritual e Orientação de Vida · Mestre Alberto",
  "desc": "Aconselhamento espiritual e orientação de vida com o Mestre Alberto: ouvir, compreender e encontrar um caminho no amor, na família, no trabalho e nos negócios.",
  "sub": "Às vezes, o que mais precisamos é de alguém que nos ouça e nos ajude a ver claro.",
  "seccoes": [
