@@ -922,3 +922,6 @@ for _slug, _faq in FAQ.items():
     _s = _s[:_i] + _sec + _s[_i:]
     _s = _s.replace("</head>", _ld + "</head>", 1) if "</head>" in _s else _s.replace("</title>", "</title>\n" + _ld.rstrip("\n"), 1)
     open(_f, "w", encoding="utf-8").write(_s)
+
+# 01/11/2026: as caixas do ecossistema (lista por email + «Tudo sobre») voltam a entrar depois de refazer as páginas
+import subprocess as _sp; _sp.run(["python3", "ecossistema-signos.py"], check=False)

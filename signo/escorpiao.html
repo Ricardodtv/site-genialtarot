@@ -150,6 +150,29 @@ footer a { color: inherit; }
     <div id="hoje"><p class="aviso">A carregar o céu de hoje…</p></div>
     <div class="ligas"><a href="/horoscopo-2027-escorpiao">Horóscopo 2027</a><a href="/ascendente-em-escorpiao">Ascendente em Escorpião</a><a href="/lua-em-escorpiao">Lua em Escorpião</a><a href="/horoscopo-do-dia#s7">Ver os 12 signos de hoje</a><a href="/fimdesemana">Fim de semana</a><a href="/anual">Previsão anual</a></div>
   </section>
+<!-- ecossistema-signo --><style>
+#lista-signo{border:1.5px solid rgba(255,217,120,.7);background:linear-gradient(135deg,rgba(255,217,120,.12),rgba(160,48,122,.22))}
+#lista-signo h2{margin-top:0}#lista-signo .ls-form{display:grid;gap:.6rem;max-width:420px;margin:0 auto}
+#lista-signo input{font:inherit;padding:.75rem .9rem;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.25);color:inherit}
+#lista-signo label{font-size:.85rem;text-align:left;opacity:.85}
+#lista-signo button{font:inherit;font-weight:800;padding:.85rem 1rem;border:0;border-radius:999px;background:#ffd978;color:#2a0c3e;cursor:pointer}
+#lista-signo .ls-legal{font-size:.78rem;opacity:.75;margin:.3rem 0 0}#lista-signo .ls-erro{display:none;color:#ffb4b4;font-weight:700}
+#lista-signo .ls-feito{display:none;text-align:center}
+</style>
+  <section class="cartao" id="lista-signo" data-signo="Escorpião" style="text-align:center">
+    <h2>💌 A previsão de Escorpião no seu email</h2>
+    <p>Todas as sextas-feiras o Mestre Alberto envia-lhe a previsão do fim de semana para o seu signo, os avisos das noites
+    mágicas do céu (Luas Cheias, eclipses e retrógrados) e, no seu aniversário, um presente. É grátis.</p>
+    <form class="ls-form" novalidate>
+      <input name="nome" autocomplete="given-name" placeholder="O seu nome" aria-label="O seu nome">
+      <input name="email" type="email" autocomplete="email" placeholder="O seu email" aria-label="O seu email">
+      <label>A sua data de nascimento (para sabermos o seu signo)<input name="nasc" type="date" min="1920-01-01" max="2012-12-31" style="width:100%;box-sizing:border-box;margin-top:.3rem"></label>
+      <button type="submit">💌 Quero receber</button>
+      <div class="ls-erro" role="alert"></div>
+      <p class="ls-legal">Ao carregar em «Quero receber», aceita receber os emails do Mestre Alberto (previsões, novidades e promoções). Pode sair quando quiser, com um clique no fim de cada email. <a href="/privacidade">Privacidade</a></p>
+    </form>
+    <div class="ls-feito" aria-live="polite"><p style="font-size:2rem;margin:.2rem">💌✨</p><p>Obrigado, <b></b>! A primeira previsão chega na sexta-feira. Se não a vir, espreite a pasta Promoções ou Spam.</p></div>
+  </section>
   <section class="cartao texto">
     <div class="perfil">
       <div><b>Datas</b>23 de outubro a 21 de novembro</div><div><b>Elemento</b>Água</div><div><b>Modalidade</b>fixo</div><div><b>Regente</b>Plutão (e Marte, na tradição antiga)</div><div><b>Signo oposto</b><a href="/signo/touro">Touro</a></div>
@@ -187,6 +210,8 @@ footer a { color: inherit; }
   }).catch(function () { document.getElementById("hoje").innerHTML = '<p><a href="/horoscopo-do-dia#s7">Ver o horóscopo de hoje</a></p>'; });
 })();
 </script>
+
+  <section class="cartao" style="text-align:center"><h2>Tudo sobre Escorpião</h2><div class="ligas"><a href="/horoscopo-2027-escorpiao">Horóscopo 2027 de Escorpião</a><a href="/decanatos-escorpiao">Os decanatos de Escorpião</a><a href="/ascendente-em-escorpiao">Ascendente em Escorpião</a><a href="/lua-em-escorpiao">Lua em Escorpião</a><a href="/venus-em-escorpiao">Vénus em Escorpião</a><a href="/marte-em-escorpiao">Marte em Escorpião</a><a href="/escorpiao-no-tarot">Escorpião no Tarot</a><a href="/compatibilidade-entre-signos">Compatibilidade</a><a href="/tarot-gratis">Tarot Grátis</a><a href="/carta-de-tarot">A sua carta de Tarot</a><a href="/mapa-astral">O seu Mapa Astral</a></div></section>
 <footer>
   Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
   <a href="/privacidade">Política de Privacidade</a> · <a href="/termos">Termos de Serviço</a>
@@ -194,5 +219,6 @@ footer a { color: inherit; }
 </div>
 <script src="/vip-faixa.js" defer></script>
 <script src="/vivo.js" defer></script>
+<script src="/lista-signo.js" defer></script>
 </body>
 </html>
