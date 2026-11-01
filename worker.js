@@ -1112,7 +1112,15 @@ export default {
     }
 
     // Tudo o resto: servir o site normalmente
-    return env.ASSETS.fetch(request);
+    const resp = await env.ASSETS.fetch(request);
+    // 01/11/2026: endereço de PÁGINA que não existe → a 404.html do site (com ligações de volta), sempre com código 404.
+    // (Não pelo not_found_handling do wrangler: esse apanhava também /notify, /e/a, /api/vivo… e calava o worker.)
+    if (resp.status === 404 && request.method === "GET" && !/\.[a-z0-9]{1,5}$/i.test(url.pathname)
+        && !/^\/(api|e)\//.test(url.pathname)) {
+      const p404 = await env.ASSETS.fetch(new Request(new URL("/404", url), { method: "GET" }));
+      if (p404.ok) return new Response(p404.body, { status: 404, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
+    }
+    return resp;
   },
 };
 
