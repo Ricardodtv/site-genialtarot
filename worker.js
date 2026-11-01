@@ -1639,11 +1639,12 @@ export class Sala extends DurableObject {
     if (!this.env.STATS_KEY || request.headers.get("X-Chave") !== this.env.STATS_KEY) return J({ ok: false, erro: "chave" }, 403);
     if (p === "/api/vivo/painel") {
       const dias = Math.min(30, Math.max(1, parseInt(url.searchParams.get("dias")) || 1));
-      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, pagina, titulo, origem, primeiro, visto, n, json_extract(paginas, '$[0][1]') AS entrada FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
+      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, pagina, titulo, origem, primeiro, visto, n, paginas FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
         agora - dias * 864e5, dias === 1 ? 600 : 5000);
       const abertos = new Set(this.linhas("SELECT sid FROM aberto WHERE aberto=1").map((r) => r.sid));
       const ult = {}; for (const r of this.linhas("SELECT sid, MAX(id) AS id, MAX(quando) AS q FROM chat WHERE de='pessoa' GROUP BY sid")) ult[r.sid] = r.q;
-      return J({ agora, vis: vis.map((v) => ({ ...v, online: agora - v.visto < 45000, chat: abertos.has(v.sid), respondeu: ult[v.sid] || 0 })) });
+      const entrada = (t) => { try { return JSON.parse(t || "[]")[0][1]; } catch (e) { return ""; } };   // 01/11: a página onde a visita entrou
+      return J({ agora, vis: vis.map(({ paginas, ...v }) => ({ ...v, entrada: entrada(paginas), online: agora - v.visto < 45000, chat: abertos.has(v.sid), respondeu: ult[v.sid] || 0 })) });
     }
     if (p === "/api/vivo/pessoa") {
       const v = this.linhas("SELECT * FROM vis WHERE sid=?", sid)[0] || null;
