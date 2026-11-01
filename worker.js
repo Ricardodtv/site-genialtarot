@@ -1693,7 +1693,8 @@ export class Sala extends DurableObject {
           (r.n || 0) + (r.pagina !== pagina ? 1 : 0), JSON.stringify(ps), sid);
       } else {
         if (this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c > 30000) return J({ ok: false }, 429);
-        this.sql.exec("INSERT INTO vis VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", sid, request.headers.get("CF-Connecting-IP") || "?",
+        // 01/11: com a lista das colunas — a coluna «humano» acrescentada deixava o INSERT sem colunas a rebentar (erro 1101)
+        this.sql.exec("INSERT INTO vis (sid, ip, pais, cidade, regiao, aparelho, ua, pagina, titulo, origem, primeiro, visto, n, paginas) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", sid, request.headers.get("CF-Connecting-IP") || "?",
           cf.country || "?", cf.city || "", cf.region || "", aparelhoDe(ua), ua.slice(0, 160), pagina, titulo,
           String(d.origem || "").slice(0, 80), agora, agora, 1, JSON.stringify([[agora, pagina]]));
       }
