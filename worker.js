@@ -390,6 +390,22 @@ async function fetchLatestDailyZodiac(debug, env, playlistId = ZODIAC_PLAYLIST_I
 
 const ROBOS = /bot\b|bot\/|crawl|spider|slurp|preview|facebookexternalhit|whatsapp|telegram|headless|python-requests|curl\/|wget|scrapy|semrush|ahrefs|mj12|dotbot|petalbot|yandex|baidu|applebot|gptbot|claudebot|ccbot|bytespider|feedfetcher|monitoring|uptime|pingdom|lighthouse/i;
 
+// 01/11/2026 (ele: «separa também os países e as páginas — sem bloquear nada»): os robôs disfarçados de navegador
+// normal (o «/» com 1700 entradas, os EUA à frente de Portugal) vêm de SERVIDORES ALUGADOS, não de casas. A Cloudflare
+// diz a rede de onde vem cada pedido (cf.asn / cf.asOrganization); rede de servidores = robô. Ninguém é bloqueado:
+// só muda a gaveta (blob5). O blob7 guarda o NOME da rede só quando é de servidores (nunca o fornecedor de casa
+// de uma pessoa), para se poder conferir quem é quem.
+const ASN_SERVIDORES = new Set([32934, 15169, 396982, 19527, 16509, 14618, 8075, 8068, 14061, 16276, 24940, 63949, 20473, 51167,
+  132203, 45090, 45102, 37963, 136907, 55990, 31898, 9009, 212238, 60068, 13335, 54113, 62240, 202425, 12876, 16125, 47583,
+  36352, 40021, 397423, 21859, 199524, 35540, 3223, 49453, 211252, 7941, 29802, 46606, 26496, 398324, 22612, 53667]);
+const ORG_SERVIDORES = /hosting|cloud|server|data ?cent|datacamp|vps|colocat|amazon|google|microsoft|digitalocean|ovh|hetzner|linode|akamai|vultr|choopa|contabo|tencent|alibaba|huawei|oracle|m247|leaseweb|scaleway|ionos|hostinger|godaddy|facebook|meta platforms|gcore|stark industries|clouvider|ponynet|frantech|psychz|quadranet|hostwinds|colocrossing/i;
+function servidorAlugado(cf) {
+  if (!cf) return "";
+  const org = String(cf.asOrganization || "");
+  return (ASN_SERVIDORES.has(Number(cf.asn)) || ORG_SERVIDORES.test(org)) ? (org || "AS" + cf.asn).slice(0, 60) : "";
+}
+function quemE(ua, cf) { return ROBOS.test(ua) || servidorAlugado(cf) ? "robo" : "pessoa"; }
+
 function aparelhoDe(ua) {
   if (!ua) return "?";
   if (/ipad|tablet/i.test(ua)) return "tablet";
@@ -495,7 +511,9 @@ function contarVisita(request, url, env, ctx) {
         (marcaDe(url) || origemDe(request.headers.get("referer"), proprio)).slice(0, 120),
         (request.cf && request.cf.country) || "?",
         aparelhoDe(ua),
-        ROBOS.test(ua) ? "robo" : "pessoa",
+        quemE(ua, request.cf),
+        "",
+        servidorAlugado(request.cf),
       ],
       doubles: [1],
     };
@@ -596,10 +614,10 @@ export default {
             const ua = request.headers.get("user-agent") || "";
             // 01/11/2026 (ele: «separa os suspeitos»): numa página da lista, o worker já contou a entrada; este sinal só CONFIRMA
             // que era um navegador a sério (correu o vivo.js). Entradas «pessoa» sem confirmação = suspeitos (robôs disfarçados).
-            if (PAGINAS.has(p)) { env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120), origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com").slice(0, 120), (request.cf && request.cf.country) || "?", aparelhoDe(ua), ROBOS.test(ua) ? "robo" : "pessoa", "js"] }); return; }
+            if (PAGINAS.has(p)) { env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120), origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com").slice(0, 120), (request.cf && request.cf.country) || "?", aparelhoDe(ua), quemE(ua, request.cf), "js", servidorAlugado(request.cf)] }); return; }
             env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120),
               origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com").slice(0, 120),
-              (request.cf && request.cf.country) || "?", aparelhoDe(ua), ROBOS.test(ua) ? "robo" : "pessoa", "vivo"] });   // blob6 = «vivo»: veio pelo sinal do vivo.js
+              (request.cf && request.cf.country) || "?", aparelhoDe(ua), quemE(ua, request.cf), "vivo", servidorAlugado(request.cf)] });   // blob6 = «vivo»: veio pelo sinal do vivo.js
           } catch (e) { /* contar nunca pode estragar o sinal */ }
         })());
       }
