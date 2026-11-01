@@ -925,3 +925,6 @@ for _slug, _faq in FAQ.items():
 
 # 01/11/2026: as caixas do ecossistema (lista por email + «Tudo sobre») voltam a entrar depois de refazer as páginas
 import subprocess as _sp; _sp.run(["python3", "ecossistema-signos.py"], check=False)
+
+# 01/11/2026: o texto a mais das páginas que estavam abaixo das 300 palavras (SEO)
+_sp.run(["python3", "seo-texto-extra.py"], check=False)
