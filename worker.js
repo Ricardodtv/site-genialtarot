@@ -563,13 +563,14 @@ async function estatisticasVisitas(env, dias) {
   // de Lisboa em Novembro) os robôs disfarçados de servidores alugados gravavam-se como «pessoa» e não há como os
   // separar agora (não se guardava a rede). Por isso as contas de PESSOAS só começam aí — os dados antigos não se
   // apagam (ficam no Analytics Engine), só não entram nas contas.
-  const desdeLimpo = " AND timestamp >= toDateTime('2026-11-01 11:27:00')";
+  // 01/11 (ele): começa às 11:37 e não às 11:27 para deixar de fora a visita de teste do Claude (11:35, /lua); entre 11:27 e 11:37 só houve essa e as da China.
+  const desdeLimpo = " AND timestamp >= toDateTime('2026-11-01 11:37:00')";
   // 01/11/2026 (ele: «tira os que vêm da China, são robôs, não tenho clientes lá»; e depois Hong Kong, Singapura e Coreia do Sul): países sem clientes não contam
   // como pessoas. Só se tira das contas — ninguém é bloqueado.
   const foraPaises = " AND blob3 NOT IN ('CN','HK','SG','KR')";
   const so = " AND blob5 = 'pessoa'" + limpo + desdeLimpo + foraPaises;
   const consultas = {
-    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " AND (blob5 != 'pessoa' OR (timestamp >= toDateTime('2026-11-01 11:27:00') AND blob3 NOT IN ('CN','HK','SG','KR'))) GROUP BY dia, quem ORDER BY dia ASC",
+    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " AND (blob5 != 'pessoa' OR (timestamp >= toDateTime('2026-11-01 11:37:00') AND blob3 NOT IN ('CN','HK','SG','KR'))) GROUP BY dia, quem ORDER BY dia ASC",
     origens:  "SELECT blob2 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
     paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 40",
     paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
