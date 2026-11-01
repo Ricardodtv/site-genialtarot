@@ -793,6 +793,34 @@ export default {
     // GET mostra a confirmação; POST (o botão, ou o «cancelar subscrição» do
     // Gmail, RFC 8058) grava «sair-<token>» na fila sem prazo. O cerebro lê
     // estas chaves e tira a pessoa da lista; o fila-capturas.py não lhes toca.
+    // ── ABRIU / CARREGOU NUM EMAIL (01/11/2026, pedido dele: «coloca se a pessoa abriu o email e se entrou em algum
+    // link») ── /e/a?i=<id do envio> = a imagem invisível (abriu); /e/c?i=<id>&u=<destino> = o clique, que segue logo para
+    // o destino. Grava na fila (KV) «aberto-<id>» e «clique-<id>-<n>»; a casa recolhe-os (promocoes.py) e mostra na aba
+    // «Envios» (os dados vão também nos metadados, para a casa os ler numa só listagem). O id é aleatório, não diz quem é. Robôs (antivírus do correio, servidores) ficam marcados à parte.
+    // Só se segue para o próprio site, o YouTube e o WhatsApp — nunca para endereços de fora (não é um «redirect» aberto).
+    if (url.pathname === "/e/a" || url.pathname === "/e/c") {
+      const i = (url.searchParams.get("i") || "").toLowerCase();
+      const ok = /^[0-9a-f]{16}$/.test(i);
+      const uaE = request.headers.get("user-agent") || "";
+      const robo = quemE(uaE, request.cf) === "robo";
+      const dados = JSON.stringify({ quando: new Date().toISOString(), robo, pais: (request.cf && request.cf.country) || "?", aparelho: aparelhoDe(uaE) });
+      if (url.pathname === "/e/a") {
+        if (ok) ctx.waitUntil(env.CAPTURAS.put("aberto-" + i + "-" + Date.now().toString(36), dados, { expirationTtl: 60 * 864e2, metadata: JSON.parse(dados) }).catch(() => {}));
+        const gif = Uint8Array.from(atob("R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"), (ch) => ch.charCodeAt(0));
+        return new Response(gif, { headers: { "Content-Type": "image/gif", "Cache-Control": "no-store, max-age=0" } });
+      }
+      let destino = "https://www.genialtarot.com/";
+      try {
+        const d = new URL(url.searchParams.get("u") || "");
+        if (d.protocol === "https:" && /^(www\.)?genialtarot\.com$|^youtu\.be$|^(www\.|m\.)?youtube\.com$|^wa\.me$/.test(d.hostname)) destino = d.toString();
+      } catch (e) { /* fica a página principal */ }
+      if (ok) {
+        const pg = (() => { try { const d = new URL(destino); return (d.hostname.replace(/^www\./, "") + d.pathname).slice(0, 80); } catch (e) { return "?"; } })();
+        ctx.waitUntil(env.CAPTURAS.put("clique-" + i + "-" + Date.now().toString(36), JSON.stringify({ ...JSON.parse(dados), destino: pg }), { expirationTtl: 60 * 864e2, metadata: { ...JSON.parse(dados), destino: pg } }).catch(() => {}));
+      }
+      return Response.redirect(destino, 302);
+    }
+
     if (url.pathname === "/sair") {
       const t = (url.searchParams.get("t") || "").toLowerCase();
       const pagina = (msg) => new Response(`<!doctype html><html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Deixar de receber — Genial Tarot</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#1b1230;color:#efe8ff;font:17px/1.5 system-ui,sans-serif;padding:16px}main{max-width:440px;text-align:center}h1{font-size:1.3em;color:oklch(0.85 0.13 88)}button{font:inherit;background:oklch(0.85 0.13 88);color:#1b1230;border:0;border-radius:999px;padding:.7em 1.6em;cursor:pointer;font-weight:600}a{color:#cbb8ff}</style></head><body><main>${msg}<p><a href="/">genialtarot.com</a></p></main></body></html>`, { headers: { "Content-Type": "text/html; charset=utf-8" } });
