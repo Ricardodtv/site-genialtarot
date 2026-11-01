@@ -450,7 +450,7 @@ modal.addEventListener("click", e => { if (e.target === modal) closeSignModal();
 
 /* ===== Música de fundo ===== */
 const audio = new Audio("mystic-ambient.mp3");
-audio.loop = true; audio.volume = 0.006;
+audio.loop = true; audio.volume = 0.002;
 const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off");
 function setAudioUI(on) {
   const b = document.getElementById("audio-fab");
@@ -464,7 +464,7 @@ function tryPlay(dur) {
   audio.play().then(() => {
     setAudioUI(true);
     clearInterval(fadeMus); audio.volume = 0; let i = 0;
-    fadeMus = setInterval(() => { i++; audio.volume = Math.min(0.006, 0.006 * i / 35); if (i >= 35) clearInterval(fadeMus); }, dur / 35);
+    fadeMus = setInterval(() => { i++; audio.volume = Math.min(0.002, 0.002 * i / 35); if (i >= 35) clearInterval(fadeMus); }, dur / 35);
   }).catch(() => setAudioUI(false));
 }
 
