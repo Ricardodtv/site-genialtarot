@@ -1566,7 +1566,7 @@ export class Sala extends DurableObject {
   limpar(agora) {
     if (this.ultimaLimpeza && agora - this.ultimaLimpeza < 600000) return;
     this.ultimaLimpeza = agora;
-    this.sql.exec("DELETE FROM vis WHERE visto < ?", agora - 864e5);
+    this.sql.exec("DELETE FROM vis WHERE visto < ?", agora - 30 * 864e5);   // 01/11 (ele): histórico de 30 dias (era 24 h); a regra dos 30 dias
     this.sql.exec("DELETE FROM chat WHERE quando < ?", agora - 30 * 864e5);
   }
   async fetch(request) {
@@ -1589,7 +1589,7 @@ export class Sala extends DurableObject {
           request.headers.get("CF-Connecting-IP") || "?", cf.country || "?", cf.city || "", cf.region || "", pagina, titulo, agora,
           (r.n || 0) + (r.pagina !== pagina ? 1 : 0), JSON.stringify(ps), sid);
       } else {
-        if (this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c > 5000) return J({ ok: false }, 429);
+        if (this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c > 30000) return J({ ok: false }, 429);
         this.sql.exec("INSERT INTO vis VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", sid, request.headers.get("CF-Connecting-IP") || "?",
           cf.country || "?", cf.city || "", cf.region || "", aparelhoDe(ua), ua.slice(0, 160), pagina, titulo,
           String(d.origem || "").slice(0, 80), agora, agora, 1, JSON.stringify([[agora, pagina]]));
@@ -1619,7 +1619,9 @@ export class Sala extends DurableObject {
     // ---------- do lado dele (o painel) ----------
     if (!this.env.STATS_KEY || request.headers.get("X-Chave") !== this.env.STATS_KEY) return J({ ok: false, erro: "chave" }, 403);
     if (p === "/api/vivo/painel") {
-      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, pagina, titulo, origem, primeiro, visto, n FROM vis ORDER BY visto DESC LIMIT 300");
+      const dias = Math.min(30, Math.max(1, parseInt(url.searchParams.get("dias")) || 1));
+      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, pagina, titulo, origem, primeiro, visto, n FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
+        agora - dias * 864e5, dias === 1 ? 600 : 5000);
       const abertos = new Set(this.linhas("SELECT sid FROM aberto WHERE aberto=1").map((r) => r.sid));
       const ult = {}; for (const r of this.linhas("SELECT sid, MAX(id) AS id, MAX(quando) AS q FROM chat WHERE de='pessoa' GROUP BY sid")) ult[r.sid] = r.q;
       return J({ agora, vis: vis.map((v) => ({ ...v, online: agora - v.visto < 45000, chat: abertos.has(v.sid), respondeu: ult[v.sid] || 0 })) });
