@@ -559,9 +559,14 @@ async function estatisticasVisitas(env, dias) {
   // 01/11/2026 (ele): blob6 = 'js' é a CONFIRMAÇÃO do vivo.js de uma página da lista — não é visita nova, fica fora destas contas.
   const limpo = " AND blob6 != 'js' AND (blob1 IN (" +
     Array.from(PAGINAS).map(p => "'" + p + "'").join(",") + ") OR blob6 = 'vivo')";
-  const so = " AND blob5 = 'pessoa'" + limpo;
+  // 01/11/2026 (ele: «as métricas devem ser só das pessoas, assim são realistas»): antes de 01/11 11:27 (UTC = hora
+  // de Lisboa em Novembro) os robôs disfarçados de servidores alugados gravavam-se como «pessoa» e não há como os
+  // separar agora (não se guardava a rede). Por isso as contas de PESSOAS só começam aí — os dados antigos não se
+  // apagam (ficam no Analytics Engine), só não entram nas contas.
+  const desdeLimpo = " AND timestamp >= toDateTime('2026-11-01 11:27:00')";
+  const so = " AND blob5 = 'pessoa'" + limpo + desdeLimpo;
   const consultas = {
-    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " GROUP BY dia, quem ORDER BY dia ASC",
+    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " AND (blob5 != 'pessoa' OR timestamp >= toDateTime('2026-11-01 11:27:00')) GROUP BY dia, quem ORDER BY dia ASC",
     origens:  "SELECT blob2 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
     paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 40",
     paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
