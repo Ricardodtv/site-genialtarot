@@ -161,6 +161,22 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .alt-pag-toggle.aberta .seta-alt { transform: rotate(180deg); }
 .alt-pag { display: none; margin-top: 0.6rem; border: 1px solid oklch(0.82 0.11 85 / 0.3); border-radius: 0.7rem; background: oklch(0.17 0.04 265 / 0.9); padding: 0.7rem 0.8rem; }
 .alt-pag.aberta { display: block; animation: surgir 0.35s ease-out; }
+/* 01/11/2026 (ele, ver as capturas): a caixa de pagamento à vista, como a do Mapa Astral — por baixo do «Comprar Aqui» */
+.via-cartao { margin: .45rem 0 0; text-align: right; font-size: .74rem; color: var(--mudo); }
+.via-cartao b { color: var(--ouro-suave); }
+.caixa-pag { margin-top: .8rem; border-radius: .9rem; padding: .85rem .8rem .8rem; text-align: center;
+  background: oklch(0.20 0.07 300 / .8); border: 1.5px solid oklch(0.88 0.12 88 / .65); box-shadow: 0 0 18px -6px oklch(0.82 0.13 85 / .6); }
+.caixa-pag .cp-tit { font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ouro-suave); margin-bottom: .55rem; }
+.caixa-pag .cp-tit span { color: #fff; }
+.caixa-pag button, .caixa-pag a.cp-btn { display: flex; width: 100%; box-sizing: border-box; align-items: center; justify-content: center; gap: .45rem;
+  border: 0; border-radius: .7rem; font-weight: 800; font-size: .95rem; padding: .7rem; cursor: pointer; text-decoration: none; transition: transform .2s; margin-top: .5rem; }
+.caixa-pag button:hover, .caixa-pag a.cp-btn:hover { transform: scale(1.03); }
+.caixa-pag .cp-mbway { background: #d4002a; color: #fff; margin-top: 0; }
+.caixa-pag .cp-transf { background: oklch(0.26 0.05 265); color: #fff; border: 1px solid oklch(0.82 0.11 85 / .45); }
+.caixa-pag .cp-info { display: none; margin-top: .6rem; border-radius: .8rem; background: #fff; color: #1d1d2b; padding: .8rem; font-size: .88rem; line-height: 1.45; }
+.caixa-pag .cp-info.ver { display: block; animation: surgir .3s ease-out; }
+.caixa-pag .cp-info .num { font-size: 1.5rem; font-weight: 800; letter-spacing: .04em; color: #d4002a; }
+.caixa-pag .cp-info a { display: inline-block; margin-top: .5rem; border-radius: 999px; background: #25D366; color: #fff; padding: .5rem 1rem; font-weight: 700; text-decoration: none; }
 .alt-linha { display: flex; align-items: center; gap: 0.6rem; font-size: 0.85rem; color: var(--texto); padding: 0.35rem 0; }
 .alt-linha + .alt-linha { border-top: 1px solid oklch(0.82 0.11 85 / 0.15); }
 .mbway-badge { flex: none; display: inline-grid; place-items: center; background: white; border-radius: 0.45rem; padding: 0.28rem 0.45rem; box-shadow: 0 3px 10px rgba(0,0,0,0.4); }
@@ -198,6 +214,17 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .btn-pix .riscado { text-decoration: line-through; opacity: 0.6; font-weight: 400; font-size: 0.8rem; }
 .btn-pix .valor-pix { color: oklch(0.88 0.15 170); }
 .pix-logo { width: 1.25rem; height: 1.25rem; flex: none; }
+.pix-forte .btn-pix { flex-direction: column; gap: .2rem; border: 0; padding: .8rem; font-size: 1.05rem; font-weight: 900; color: #fff;
+  background: linear-gradient(135deg, #22c97d, #0f9d58); box-shadow: 0 0 0 0 rgba(34,201,125,.7), 0 8px 20px -6px rgba(15,157,88,.7); animation: pixBotao 1.6s ease-out infinite; }
+.pix-forte .btn-pix:hover { background: linear-gradient(135deg, #2bd98a, #12b064); }
+.pix-forte .pf-l1 { display: flex; align-items: center; gap: .45rem; }
+.pix-forte .pf-l1 .menos { background: oklch(0.9 0.18 95); color: oklch(0.25 0.05 80); border-radius: .4rem; padding: .05rem .4rem; font-size: .85rem; }
+.pix-forte .pf-l2 .riscado { color: #e3ffef; opacity: .75; text-decoration: line-through; font-weight: 500; font-size: .85rem; }
+.pix-forte .pf-l2 .valor-pix { color: #fff59d; font-size: 1.15rem; }
+.pix-forte .pix-logo { filter: brightness(0) invert(1); }
+.pix-forte .pf-dica { margin: 0; text-align: center; font-size: .74rem; color: oklch(0.85 0.1 165); }
+@keyframes pixBotao { 0% { box-shadow: 0 0 0 0 rgba(34,201,125,.75), 0 8px 20px -6px rgba(15,157,88,.7); transform: scale(1); }
+  50% { transform: scale(1.03); } 80%,100% { box-shadow: 0 0 0 14px rgba(34,201,125,0), 0 8px 20px -6px rgba(15,157,88,.7); transform: scale(1); } }
 .pix-fundo { position: fixed; inset: 0; z-index: 100; display: none; place-items: center; background: rgba(5,5,20,0.82); padding: 1rem; }
 .pix-fundo.aberto { display: grid; animation: surgir .3s ease-out; }
 .pix-caixa { position: relative; width: 100%; max-width: 24rem; max-height: 92vh; overflow-y: auto; border-radius: 1rem; background: #fff; color: #1d1d2b; padding: 1.2rem 1.2rem 1.4rem; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
@@ -353,6 +380,11 @@ function pixHtml(p) {
   const preco = promo
     ? `<span class="riscado">${brl(d.normal.valor)}</span> <span class="valor-pix">${brl(d.promo.valor)}</span>`
     : `<span class="valor-pix">${brl(d.normal.valor)}</span>`;
+  // 01/11/2026 (ele: «a pessoa que está no Brasil tem de entender que tem de clicar no botão verde»): nos produtos com a
+  // caixa de pagamento, a pílula verde que parecia botão sai — fica UM botão verde grande, a pulsar, com o desconto dentro.
+  if (p.caixaPag) return `<div class="pix-zona pix-forte"><div class="pix-divisor">🇧🇷 Está no Brasil? Toque no botão verde 👇</div>
+    <button type="button" class="btn-pix" data-pix="${esc(p.nome)}"><span class="pf-l1">${PIX_SVG} Pagar com PIX${promo ? ` <span class="menos">−${PIX_PROMO_PCT}%</span>` : ""}</span><span class="pf-l2">${preco}</span></button>
+    <p class="pf-dica">${promo ? "Preço de abertura para o Brasil · " : ""}abre o código PIX para pagar na hora</p></div>`;
   return `<div class="pix-zona"><div class="pix-divisor">🇧🇷 Está no Brasil? Pague com PIX</div>${selo}
     <button type="button" class="btn-pix" data-pix="${esc(p.nome)}">${PIX_SVG} Pagar com PIX ${preco}</button></div>`;
 }
@@ -462,9 +494,10 @@ function montarLoja() {
             <span class="preco">${esc(p.preco)}</span>
             <a class="btn-adquirir" href="${linkCompra(p)}" target="_blank" rel="noopener noreferrer">🛒 Comprar Aqui</a>
           </div>
+          ${p.caixaPag ? caixaPagHtml(p) : ""}
           ${pixHtml(p)}
-          <button type="button" class="alt-pag-toggle">💳 Outras formas de pagamento <span class="seta-alt">▾</span></button>
-          <div class="alt-pag">
+          ${p.caixaPag ? "" : `<button type="button" class="alt-pag-toggle">💳 Outras formas de pagamento <span class="seta-alt">▾</span></button>`}
+          <div class="alt-pag"${p.caixaPag ? " hidden" : ""}>
             <div class="alt-linha"><span class="mbway-badge"><img src="mbway.png" alt="MB Way" /></span> <b>914 920 427</b> <span class="duvidas-txt">Dúvidas?</span> <a class="wa-mini" href="https://wa.me/351914920427?text=${encodeURIComponent("Olá Mestre Alberto, vou pagar por MB Way: " + p.nome)}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp direto"><svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l.36.572-1 3.654 3.745-.985zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01a1.094 1.094 0 0 0-.793.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg></a></div>
             <div class="alt-linha">🏦 Transferência Bancária — <a href="https://wa.me/351914920427?text=${encodeURIComponent("Olá Mestre Alberto, quero pagar por transferência bancária: " + p.nome)}" target="_blank" rel="noopener noreferrer">peça os dados no WhatsApp</a></div>
           </div>
@@ -476,6 +509,24 @@ function montarLoja() {
       <div class="grelha">${cartas}</div>`;
   }).join("");
 }
+// 01/11/2026 (ele): a caixa de pagamento à vista — o «Comprar Aqui» leva ao cartão / Google Pay / Apple Pay (myPOS);
+// por baixo, as alternativas com o valor: MB WAY (mostra o número e o botão do comprovante) e transferência bancária.
+function caixaPagHtml(p) {
+  const v = esc(p.preco), wa = (t) => "https://wa.me/351914920427?text=" + encodeURIComponent(t);
+  return `<p class="via-cartao">💳 <b>Cartão, Google Pay ou Apple Pay</b> no botão acima</p>
+    <div class="caixa-pag">
+      <div class="cp-tit">Outras formas de pagamento · <span>${v}</span></div>
+      <button type="button" class="cp-mbway">📱 MB WAY · ${v}</button>
+      <div class="cp-info">Envie <b>${v}</b> por MB WAY para:<div class="num">914 920 427</div>Depois envie o comprovante pelo WhatsApp:<br>
+        <a href="${wa("Olá Mestre Alberto, paguei " + p.preco + " por MB WAY: " + p.nome + ". Segue o comprovante.")}" target="_blank" rel="noopener noreferrer">💬 Enviar comprovante</a></div>
+      <a class="cp-btn cp-transf" href="${wa("Olá Mestre Alberto, quero pagar por transferência bancária (" + p.preco + "): " + p.nome)}" target="_blank" rel="noopener noreferrer">🏦 Transferência bancária · ${v}</a>
+    </div>`;
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest(".cp-mbway");
+  if (b) b.nextElementSibling.classList.toggle("ver");
+});
+
 montarLoja();
 
 // Abrir/fechar as outras formas de pagamento

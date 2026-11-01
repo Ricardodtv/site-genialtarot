@@ -143,6 +143,7 @@ const PRODUTOS = [
     descricao: "Meia hora a sós com as cartas e com o Mestre. Ideal para uma ou duas questões objetivas — amor, trabalho, decisões — com resposta clara e orientação prática, por chamada ou vídeo, no conforto da sua casa.",
     link: "https://mypos.com/vmp/btn/BTSGROA5LPZ61",
     topvendas: true,
+    caixaPag: true,   // 01/11/2026 (ele): caixa de pagamento à vista (MB WAY · valor) por baixo do «Comprar Aqui» — à experiência só nesta
   },
 
   {
