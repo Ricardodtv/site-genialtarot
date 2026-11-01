@@ -487,7 +487,7 @@ document.addEventListener("click", e => {
 
 /* ===== Som de fundo (partilhado com o resto do site) ===== */
 const audio = new Audio("mystic-ambient.mp3");
-audio.loop = true; audio.volume = 0.003;
+audio.loop = true; audio.volume = 0.01;
 function setAudioUI(on) {
   const b = document.getElementById("audio-fab");
   b.classList.toggle("ligado", on);
@@ -499,7 +499,7 @@ function tryPlay(dur) {
   audio.play().then(() => {
     setAudioUI(true);
     clearInterval(fadeMus); audio.volume = 0; let i = 0;
-    fadeMus = setInterval(() => { i++; audio.volume = Math.min(0.003, 0.003 * i / 35); if (i >= 35) clearInterval(fadeMus); }, dur / 35);
+    fadeMus = setInterval(() => { i++; audio.volume = Math.min(0.01, 0.01 * i / 35); if (i >= 35) clearInterval(fadeMus); }, dur / 35);
   }).catch(() => setAudioUI(false));
 }
 const MUS_KEY = "mus_mystic";
