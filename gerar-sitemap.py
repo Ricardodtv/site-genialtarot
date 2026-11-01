@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Gera o sitemap.xml do genialtarot.com (31/10/2026, pedido dele: o robots.txt anunciava um sitemap que não existia — 404).
-Entra toda a página .html (raiz e sonho/) que NÃO tenha <meta name="robots" content="noindex">, menos as da lista FORA.
+Entra toda a página .html (raiz, sonho/ e signo/ — o signo/ faltava até 01/11) que NÃO tenha <meta name="robots" content="noindex">, menos as da lista FORA.
 Endereços sem «.html» (o Cloudflare manda o .html para lá com 307). lastmod = a data do último commit do ficheiro.
 Corre sozinho no pre-commit (.git/hooks/pre-commit, ligado por ele a 31/10 com ~/ligar-sitemap-auto.sh) sempre que o commit leva .html."""
 import glob, os, re, subprocess, html
@@ -14,12 +14,12 @@ def data(f):
     d = subprocess.run(["git", "log", "-1", "--format=%cs", "--", f], capture_output=True, text=True).stdout.strip()
     return d or None
 urls = []
-for f in sorted(glob.glob("*.html") + glob.glob("sonho/*.html")):
+for f in sorted(glob.glob("*.html") + glob.glob("sonho/*.html") + glob.glob("signo/*.html")):
     if f in FORA: continue
     s = open(f, encoding="utf-8", errors="ignore").read()
     if re.search(r'<meta[^>]+name="robots"[^>]+noindex', s, re.I): continue
     caminho = "/" if f == "index.html" else "/" + f[:-5]
-    prio = "1.0" if f == "index.html" else "0.8" if "/" not in f and not f.startswith("arcano-") else "0.6"
+    prio = "1.0" if f == "index.html" else "0.8" if ("/" not in f or f.startswith("signo/")) and not f.startswith("arcano-") else "0.6"
     urls.append((caminho, data(f), prio))
 linhas = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for c, d, p in urls:
