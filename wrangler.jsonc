@@ -6,7 +6,6 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
-    "not_found_handling": "404-page",
     // 🚨 08/09/2026 -- SEM ISTO O WORKER NAO CORRE NAS PAGINAS.
     // Por omissao, quando existe um ficheiro que corresponde ao pedido, a
     // Cloudflare serve-o DIRECTAMENTE e nao invoca o worker.
