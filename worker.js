@@ -388,7 +388,7 @@ async function fetchLatestDailyZodiac(debug, env, playlistId = ZODIAC_PLAYLIST_I
 // 🚨 Contar NUNCA pode derrubar o site: tudo dentro de try/catch e a escrita
 // vai por ctx.waitUntil, depois da resposta seguir.
 
-const ROBOS = /bot\b|bot\/|crawl|spider|slurp|preview|facebookexternalhit|whatsapp|telegram|headless|python-requests|curl\/|wget|scrapy|semrush|ahrefs|mj12|dotbot|petalbot|yandex|baidu|applebot|gptbot|claudebot|ccbot|bytespider|feedfetcher|monitoring|uptime|pingdom|lighthouse/i;
+const ROBOS = /google-safety|googleother|google-inspectiontool|google-extended|mediapartners-google|adsbot|apis-google|google-read-aloud|bot\b|bot\/|crawl|spider|slurp|preview|facebookexternalhit|whatsapp|telegram|headless|python-requests|curl\/|wget|scrapy|semrush|ahrefs|mj12|dotbot|petalbot|yandex|baidu|applebot|gptbot|claudebot|ccbot|bytespider|feedfetcher|monitoring|uptime|pingdom|lighthouse/i;
 
 // 01/11/2026 (ele: «separa também os países e as páginas — sem bloquear nada»): os robôs disfarçados de navegador
 // normal (o «/» com 1700 entradas, os EUA à frente de Portugal) vêm de SERVIDORES ALUGADOS, não de casas. A Cloudflare
@@ -579,13 +579,15 @@ async function estatisticasVisitas(env, dias) {
   // separar agora (não se guardava a rede). Por isso as contas de PESSOAS só começam aí — os dados antigos não se
   // apagam (ficam no Analytics Engine), só não entram nas contas.
   // 01/11 (ele): começa às 11:37 e não às 11:27 para deixar de fora a visita de teste do Claude (11:35, /lua); entre 11:27 e 11:37 só houve essa e as da China.
-  const desdeLimpo = " AND timestamp >= toDateTime('2026-11-01 11:37:00')";
+  const desdeLimpo = " AND timestamp >= toDateTime('2026-11-01 12:12:00')";
   // 01/11/2026 (ele: «tira os que vêm da China, são robôs, não tenho clientes lá»; e depois Hong Kong, Singapura e Coreia do Sul): países sem clientes não contam
   // como pessoas. Só se tira das contas — ninguém é bloqueado.
   const foraPaises = " AND blob3 NOT IN ('CN','HK','SG','KR')";
-  const so = " AND blob5 = 'pessoa'" + limpo + desdeLimpo + foraPaises;
+  // 01/11/2026 12:12 (UTC): PESSOA = só a visita CONFIRMADA pelo vivo.js (blob6 = 'humano': mexeu ou ficou 8 s à vista).
+  // A entrada servida pelo worker, sozinha, já não prova nada — o Google-Safety corria a página e saía em 0 s.
+  const so = " AND blob5 = 'pessoa' AND blob6 = 'humano'" + desdeLimpo + foraPaises;
   const consultas = {
-    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " AND (blob5 != 'pessoa' OR (timestamp >= toDateTime('2026-11-01 11:37:00') AND blob3 NOT IN ('CN','HK','SG','KR'))) GROUP BY dia, quem ORDER BY dia ASC",
+    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND ((blob5 != 'pessoa'" + limpo + ") OR (blob5 = 'pessoa' AND blob6 = 'humano'" + desdeLimpo + foraPaises + ")) GROUP BY dia, quem ORDER BY dia ASC",
     origens:  "SELECT blob2 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
     paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 40",
     paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
@@ -593,7 +595,7 @@ async function estatisticasVisitas(env, dias) {
     // 01/11/2026 (ele): pessoas vindas do Google, por página de entrada — para a divisão SEO do painel
     // 01/11 (ele: «o mais fiel possível»): «google» só conta quem CONFIRMOU ser navegador a sério (o vivo.js correu); o «google_bruto»
     // é o que diz vir do Google à entrada — inclui robôs que fingem vir de lá (20 em 2 dias contra 1 visto no painel ao vivo).
-    google:   "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND blob5 = 'pessoa' AND blob3 NOT IN ('CN','HK','SG','KR') AND blob6 IN ('js','vivo') AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
+    google:   "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND blob5 = 'pessoa' AND blob3 NOT IN ('CN','HK','SG','KR') AND blob6 = 'humano' AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
     google_bruto: "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
     aparelhos:"SELECT blob4 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 5",
   };
@@ -634,6 +636,14 @@ export default {
           try {
             const d = await copia.json(); const p = String(d.pagina || "").replace(/\.html$/, "");
             const ref = request.headers.get("origin") || request.headers.get("referer") || "";
+            // 01/11/2026: blob6 = «humano» — o vivo.js confirmou que mexeu na página ou a teve à vista 8 s. É SÓ ISTO
+            // que as estatísticas contam como pessoa (os robôs que correm a página saem em 0 s e nunca confirmam).
+            if (d.confirma && /^\/[a-z0-9-]*(\/[a-z0-9-]+)?$/.test(p) && /genialtarot\.com/.test(ref)) {
+              const uaH = request.headers.get("user-agent") || "";
+              env.VISITAS.writeDataPoint({ indexes: [(p || "/").slice(0, 90)], doubles: [1], blobs: [(p || "/").slice(0, 120), origemVivo(d).slice(0, 120),
+                (request.cf && request.cf.country) || "?", aparelhoDe(uaH), quemE(uaH, request.cf), "humano", servidorAlugado(request.cf)] });
+              return;
+            }
             if (!d.novo || !/^\/[a-z0-9-]+(\/[a-z0-9-]+)?$/.test(p) || !/genialtarot\.com/.test(ref)) return;
             const ua = request.headers.get("user-agent") || "";
             // 01/11/2026 (ele: «separa os suspeitos»): numa página da lista, o worker já contou a entrada; este sinal só CONFIRMA
@@ -1623,6 +1633,7 @@ export class Sala extends DurableObject {
     this.escreve = new Map();   // "sid|quem" -> quando escreveu a última tecla (para os «…»)
     this.sql.exec(`CREATE TABLE IF NOT EXISTS vis (sid TEXT PRIMARY KEY, ip TEXT, pais TEXT, cidade TEXT, regiao TEXT,
       aparelho TEXT, ua TEXT, pagina TEXT, titulo TEXT, origem TEXT, primeiro INTEGER, visto INTEGER, n INTEGER, paginas TEXT)`);
+    try { this.sql.exec("ALTER TABLE vis ADD COLUMN humano INTEGER DEFAULT 0"); } catch (e) { /* já existe */ }   // 01/11: confirmou ser pessoa
     this.sql.exec(`CREATE TABLE IF NOT EXISTS chat (id INTEGER PRIMARY KEY AUTOINCREMENT, sid TEXT, quando INTEGER, de TEXT, texto TEXT)`);
     this.sql.exec(`CREATE TABLE IF NOT EXISTS aberto (sid TEXT PRIMARY KEY, aberto INTEGER)`);
   }
@@ -1658,6 +1669,7 @@ export class Sala extends DurableObject {
           cf.country || "?", cf.city || "", cf.region || "", aparelhoDe(ua), ua.slice(0, 160), pagina, titulo,
           String(d.origem || "").slice(0, 80), agora, agora, 1, JSON.stringify([[agora, pagina]]));
       }
+      if (d.confirma) this.sql.exec("UPDATE vis SET humano=1 WHERE sid=?", sid);
       const ab = this.linhas("SELECT aberto FROM aberto WHERE sid=?", sid)[0];
       return J({ ok: true, aberto: !!(ab && ab.aberto) });
     }
@@ -1684,7 +1696,7 @@ export class Sala extends DurableObject {
     if (!this.env.STATS_KEY || request.headers.get("X-Chave") !== this.env.STATS_KEY) return J({ ok: false, erro: "chave" }, 403);
     if (p === "/api/vivo/painel") {
       const dias = Math.min(30, Math.max(1, parseInt(url.searchParams.get("dias")) || 1));
-      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, ua, pagina, titulo, origem, primeiro, visto, n, paginas FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
+      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, ua, humano, pagina, titulo, origem, primeiro, visto, n, paginas FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
         agora - dias * 864e5, dias === 1 ? 600 : 5000);
       const abertos = new Set(this.linhas("SELECT sid FROM aberto WHERE aberto=1").map((r) => r.sid));
       const ult = {}; for (const r of this.linhas("SELECT sid, MAX(id) AS id, MAX(quando) AS q FROM chat WHERE de='pessoa' GROUP BY sid")) ult[r.sid] = r.q;

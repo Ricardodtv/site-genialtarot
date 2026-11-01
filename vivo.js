@@ -96,6 +96,19 @@
     }).catch(function () {});
   }
   (function roda() { (aberto ? verChat() : Promise.resolve()).then(function () { setTimeout(roda, 2000); }); })();
+  // 01/11/2026 (ele: «só pessoas reais»): só se CONFIRMA que é pessoa quando mexe na página (toque, clique, tecla,
+  // roda do rato) ou a tem À VISTA 8 segundos. Os robôs que correm a página — o Google-Safety, que abriu as 12
+  // ligações dos vídeos em 13 s — abrem e saem em 0 s. Só a confirmação conta nas estatísticas de pessoas.
+  var confirmado = false, vista = 0;
+  function confirma() {
+    if (confirmado) return; confirmado = true;
+    var g = null; try { g = JSON.parse(sessionStorage.getItem("gt_marca") || "null"); } catch (e) {}
+    var o = ""; try { o = document.referrer ? new URL(document.referrer).hostname : ""; } catch (e) {}
+    post("", { sid: sid, pagina: location.pathname, titulo: document.title, origem: o, marca: g ? String(g[0]).slice(0, 20) : "",
+               c: g ? String(g[1]).slice(0, 40) : "", confirma: true }).catch(function () {});
+  }
+  ["pointerdown", "touchstart", "keydown", "wheel"].forEach(function (ev) { addEventListener(ev, function () { setTimeout(confirma, 300); }, { passive: true, once: true }); });
+  var tVista = setInterval(function () { if (document.visibilityState === "visible") vista++; if (vista >= 8) { clearInterval(tVista); confirma(); } }, 1000);
   ola(); setInterval(ola, 10000);   // de 10 em 10 s: é também o que faz o chat aparecer quando ele o abre
   document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") ola(); });
 })();
