@@ -3,7 +3,7 @@
 «Horóscopo», variantes por signo, com o nome de Portugal E do Brasil). Textos em signos-textos.json (POR APROVAR por ele:
 enquanto APROVADO = True   # 31/10/2026: ele mandou abrir todas as variantes ao Google, as páginas saem com noindex e ficam fora do sitemap). O horóscopo de hoje de cada signo vem do
 mesmo horoscopo-dia/AAAA-MM-DD.json da página Horóscopo do Dia. Correr: python3 gerar-signos.py"""
-import json, os, re, html
+import json, os, re, html, glob
 APROVADO = True   # 31/10/2026: ele mandou abrir todas as variantes ao Google
 AQUI = os.path.dirname(os.path.abspath(__file__)); os.chdir(AQUI)
 SITE = "https://genialtarot.com"
@@ -547,11 +547,20 @@ import glob as _g
 for f in sorted(_g.glob("arcano-*.html")):
     m = re.search(r"<h1[^>]*>(.*?)</h1>", open(f, encoding="utf-8").read(), re.S)
     if m: ARC_SLUG[re.sub(r"<[^>]+>", "", m.group(1)).strip()] = f[:-5]
+# 01/11/2026 (ele, SEO passo 2): «Perguntas frequentes» próprias de cada página — dão o texto que faltava (o Google prefere
+# 300+ palavras) e o Google pode mostrá-las como respostas. Vivem em faq-textos*.py: FAQ = {slug: [(pergunta, resposta), ...]}.
+FAQ = {}
+for _f in sorted(glob.glob("faq-textos*.py")):
+    _d = {}; exec(open(_f, encoding="utf-8").read(), _d); FAQ.update(_d.get("FAQ", {}))
+
 def pagina(slug, titulo, desc, img, migalhas, corpo):
     url = f"{SITE}/{slug}"
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Article", "headline": titulo, "description": desc, "image": img, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url},
         {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + u} for i, (n, u) in enumerate([("Início", "/")] + migalhas + [(titulo.split(":")[0], "/" + slug)])]}]}
+    if FAQ.get(slug):
+        corpo += '  <section class="cartao texto"><h2>Perguntas frequentes</h2>\n' + "".join(f"    <h3>{E(q)}</h3><p>{E(r)}</p>\n" for q, r in FAQ[slug]) + "  </section>\n"
+        ld["@graph"].append({"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in FAQ[slug]]})
     open(f"{slug}.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, img, ld, APROVADO) + corpo + RODAPE)
 
 if os.path.exists("compat-textos-a.py") and os.path.exists("compat-textos-b.py"):
