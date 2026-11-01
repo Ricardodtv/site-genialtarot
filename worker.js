@@ -564,17 +564,20 @@ async function estatisticasVisitas(env, dias) {
   // separar agora (não se guardava a rede). Por isso as contas de PESSOAS só começam aí — os dados antigos não se
   // apagam (ficam no Analytics Engine), só não entram nas contas.
   const desdeLimpo = " AND timestamp >= toDateTime('2026-11-01 11:27:00')";
-  const so = " AND blob5 = 'pessoa'" + limpo + desdeLimpo;
+  // 01/11/2026 (ele: «tira os que vêm da China, são robôs, não tenho clientes lá»): países sem clientes não contam
+  // como pessoas. Só se tira das contas — ninguém é bloqueado.
+  const foraPaises = " AND blob3 NOT IN ('CN')";
+  const so = " AND blob5 = 'pessoa'" + limpo + desdeLimpo + foraPaises;
   const consultas = {
-    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " AND (blob5 != 'pessoa' OR timestamp >= toDateTime('2026-11-01 11:27:00')) GROUP BY dia, quem ORDER BY dia ASC",
+    dias:     "SELECT toDate(timestamp) AS dia, blob5 AS quem, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + limpo + " AND (blob5 != 'pessoa' OR (timestamp >= toDateTime('2026-11-01 11:27:00') AND blob3 NOT IN ('CN'))) GROUP BY dia, quem ORDER BY dia ASC",
     origens:  "SELECT blob2 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 20",
     paginas:  "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 40",
     paises:   "SELECT blob3 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 15",
-    confirmadas: "SELECT toDate(timestamp) AS dia, blob6 AS tipo, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND blob5 = 'pessoa' AND blob6 IN ('js','vivo') GROUP BY dia, tipo ORDER BY dia ASC",
+    confirmadas: "SELECT toDate(timestamp) AS dia, blob6 AS tipo, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND blob5 = 'pessoa' AND blob3 NOT IN ('CN') AND blob6 IN ('js','vivo') GROUP BY dia, tipo ORDER BY dia ASC",
     // 01/11/2026 (ele): pessoas vindas do Google, por página de entrada — para a divisão SEO do painel
     // 01/11 (ele: «o mais fiel possível»): «google» só conta quem CONFIRMOU ser navegador a sério (o vivo.js correu); o «google_bruto»
     // é o que diz vir do Google à entrada — inclui robôs que fingem vir de lá (20 em 2 dias contra 1 visto no painel ao vivo).
-    google:   "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND blob5 = 'pessoa' AND blob6 IN ('js','vivo') AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
+    google:   "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + " AND blob5 = 'pessoa' AND blob3 NOT IN ('CN') AND blob6 IN ('js','vivo') AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
     google_bruto: "SELECT blob1 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " AND blob2 IN ('google.com','google.pt','google.com.br','com.google.android.googlequicksearchbox') GROUP BY nome ORDER BY n DESC LIMIT 200",
     aparelhos:"SELECT blob4 AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + so + " GROUP BY nome ORDER BY n DESC LIMIT 5",
   };
