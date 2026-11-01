@@ -902,3 +902,20 @@ corpo = '  <section class="heroi"><h1><span class="az">Mapa do site</span></h1><
     f'  <section class="cartao" style="margin-bottom:1rem"><h2>{nome} ({len(fs)})</h2><div class="ligas">' + "".join(f'<a href="/{"" if f == "index.html" else f[:-5]}">{E(_tit(f))}</a>' for f in fs) + "</div></section>\n" for nome, fs in blocos)
 pagina("mapa-do-site", "Mapa do site: todas as páginas do Genial Tarot", "Todas as páginas do Genial Tarot numa só página: signos, horóscopo, compatibilidade, Tarot, rezas, parábolas, histórias e sonhos.", SITE + "/og-image.jpg", [], corpo)
 print("mapa do site:", len(fich), "páginas em", len(blocos), "secções")
+
+# ── 01/11/2026 (ele, SEO): as Perguntas frequentes também nas páginas que NÃO são feitas por este gerador (as feitas à mão,
+# os arcanos, as ferramentas). Entram antes do rodapé, com o cartão FAQPage no <head>. Idempotente: se já lá estão, não mexe.
+for _slug, _faq in FAQ.items():
+    _f = _slug + ".html"
+    if not os.path.exists(_f): continue
+    _s = open(_f, encoding="utf-8").read()
+    if "FAQPage" in _s: continue
+    _sec = ('<section class="faq-genial" style="max-width:760px;margin:2rem auto;padding:1.2rem 1.4rem;border:1px solid rgba(212,175,55,.35);border-radius:16px;background:rgba(255,255,255,.04);line-height:1.6">'
+            '<h2 style="margin-top:0">Perguntas frequentes</h2>' + "".join(f'<h3 style="font-size:1.05rem;margin:1rem 0 .3rem">{E(q)}</h3><p style="margin:0">{E(r)}</p>' for q, r in _faq) + "</section>\n")
+    _ld = '<script type="application/ld+json">\n' + json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in _faq]}, ensure_ascii=False) + "\n</script>\n"
+    _i = _s.rfind("<footer")
+    if _i < 0: _i = _s.rfind("</body>")
+    if _i < 0: continue
+    _s = _s[:_i] + _sec + _s[_i:]
+    _s = _s.replace("</head>", _ld + "</head>", 1) if "</head>" in _s else _s.replace("</title>", "</title>\n" + _ld.rstrip("\n"), 1)
+    open(_f, "w", encoding="utf-8").write(_s)
