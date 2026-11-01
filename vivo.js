@@ -14,9 +14,18 @@
   function ola() {
     if (document.visibilityState !== "visible") return;
     var o = ""; try { o = document.referrer ? new URL(document.referrer).hostname : ""; } catch (e) {}
+    // 01/11/2026: a ligação marcada (?de=youtube&c=fds-touro-0111) — diz QUE vídeo trouxe a pessoa. Guarda-se na sessão,
+    // para continuar a valer nas páginas seguintes da mesma visita.
+    var md = "", mc0 = "", mc = "";
+    try {
+      var q = new URLSearchParams(location.search);
+      if (q.get("de")) sessionStorage.setItem("gt_marca", JSON.stringify([q.get("de"), q.get("c") || ""]));
+      var g = JSON.parse(sessionStorage.getItem("gt_marca") || "null");
+      if (g) { md = String(g[0]).slice(0, 20); mc0 = String(g[1]).slice(0, 40); mc = md + (mc0 ? "/" + mc0 : ""); }
+    } catch (e) {}
     // 01/11/2026: «novo» no primeiro sinal desta página aberta — o worker conta-o como visita (as páginas novas do SEO não passam pelo contador)
     var novo = !ola.feito; ola.feito = true;
-    post("", { sid: sid, pagina: location.pathname, titulo: document.title, origem: o, novo: novo }).then(function (r) { return r.json(); })
+    post("", { sid: sid, pagina: location.pathname, titulo: document.title, origem: (mc ? "marca:" + mc : o), marca: md, c: mc0, novo: novo }).then(function (r) { return r.json(); })
       .then(function (r) { if (r && r.aberto && !aberto) verChat(); }).catch(function () {});
   }
   // os sons (baixinhos, nunca alto): abrir = sino a subir; fechar = duas notas a descer; mensagem = «plim» curto

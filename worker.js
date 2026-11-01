@@ -442,14 +442,25 @@ function origemDe(referer, proprio) {
 const MARCAS = new Set(["tiktok", "youtube", "instagram", "facebook", "whatsapp",
                         "telegram", "email", "cartao", "bio"]);
 
-function marcaDe(url) {
-  const m = (url.searchParams.get("de") || url.searchParams.get("utm_source") || "")
-    .toLowerCase().slice(0, 20);
+// 01/11/2026 (ele: «passo 1 — trazer o público do canal para o site»): além da marca (?de=youtube), a ligação pode
+// levar o CÓDIGO da peça (?c=fds-touro-0111), para se saber QUE vídeo trouxe quem. Fica «marca:youtube/fds-touro-0111».
+// Só letras, números e hífen — nada que identifique a pessoa.
+function marcaTexto(de, c) {
+  const m = String(de || "").toLowerCase().slice(0, 20);
   if (!m) return null;
-  if (MARCAS.has(m)) return "marca:" + m;
   // Uma marca desconhecida e' quase sempre um engano a escrever o link.
   // Aparece assim, para dar nas vistas, em vez de se perder em silencio.
-  return /^[a-z0-9-]{1,20}$/.test(m) ? "marca:?" : null;
+  if (!MARCAS.has(m)) return /^[a-z0-9-]{1,20}$/.test(m) ? "marca:?" : null;
+  const k = String(c || "").toLowerCase();
+  return "marca:" + m + (/^[a-z0-9-]{1,40}$/.test(k) ? "/" + k : "");
+}
+function marcaDe(url) {
+  return marcaTexto(url.searchParams.get("de") || url.searchParams.get("utm_source"),
+                    url.searchParams.get("c") || url.searchParams.get("utm_campaign"));
+}
+// A origem que o vivo.js manda: a marca da ligação manda; o referrer so entra quando ela nao existe.
+function origemVivo(d) {
+  return (d.marca && marcaTexto(d.marca, d.c)) || origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com");
 }
 
 // 🚨 09/09/2026 — AS PAGINAS QUE EXISTEM MESMO. O crivo anterior aceitava
@@ -627,9 +638,9 @@ export default {
             const ua = request.headers.get("user-agent") || "";
             // 01/11/2026 (ele: «separa os suspeitos»): numa página da lista, o worker já contou a entrada; este sinal só CONFIRMA
             // que era um navegador a sério (correu o vivo.js). Entradas «pessoa» sem confirmação = suspeitos (robôs disfarçados).
-            if (PAGINAS.has(p)) { env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120), origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com").slice(0, 120), (request.cf && request.cf.country) || "?", aparelhoDe(ua), quemE(ua, request.cf), "js", servidorAlugado(request.cf)] }); return; }
+            if (PAGINAS.has(p)) { env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120), origemVivo(d).slice(0, 120), (request.cf && request.cf.country) || "?", aparelhoDe(ua), quemE(ua, request.cf), "js", servidorAlugado(request.cf)] }); return; }
             env.VISITAS.writeDataPoint({ indexes: [p.slice(0, 90)], doubles: [1], blobs: [p.slice(0, 120),
-              origemDe(d.origem ? "https://" + String(d.origem) : "", "genialtarot.com").slice(0, 120),
+              origemVivo(d).slice(0, 120),
               (request.cf && request.cf.country) || "?", aparelhoDe(ua), quemE(ua, request.cf), "vivo", servidorAlugado(request.cf)] });   // blob6 = «vivo»: veio pelo sinal do vivo.js
           } catch (e) { /* contar nunca pode estragar o sinal */ }
         })());
