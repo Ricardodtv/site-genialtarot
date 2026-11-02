@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tarot Cigano: as 36 cartas do Baralho Cigano e o seu significado · Mestre Alberto</title>
+<meta name="description" content="Tarot Cigano: as 36 cartas do Baralho Cigano com o significado no amor e no trabalho, a Mesa Real e uma tiragem grátis de 3 cartas." />
+<meta name="theme-color" content="#1d2350" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Tarot Cigano — as 36 cartas do Baralho Cigano · Mestre Alberto" />
+<meta property="og:description" content="Tarot Cigano: as 36 cartas do Baralho Cigano com o significado no amor e no trabalho, a Mesa Real e uma tiragem grátis de 3 cartas." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/tarot-cigano" />
+<link rel="canonical" href="https://genialtarot.com/tarot-cigano" />
+<meta property="og:image" content="https://genialtarot.com/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="672" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Tarot Cigano — o Baralho Cigano (Lenormand) de 36 cartas — azul-noite e ouro, copiado do horoscopo-do-dia.html (02/11/2026) ============ */
+:root {
+  --fundo: oklch(0.17 0.06 270); --texto: oklch(0.97 0.012 265); --suave: oklch(0.84 0.04 265);
+  --azul: oklch(0.72 0.13 255); --azul-claro: oklch(0.86 0.08 255); --lavanda: oklch(0.92 0.04 265);
+  --ouro: oklch(0.85 0.13 88); --borda: oklch(0.75 0.10 260 / 0.35); --vidro: oklch(0.30 0.08 268 / 0.55);
+  --grad-azul: linear-gradient(135deg, oklch(0.78 0.11 245), oklch(0.62 0.17 265) 55%, oklch(0.52 0.18 280));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif; --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.38 0.14 262) 0%, oklch(0.20 0.08 268) 45%, oklch(0.12 0.05 275) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden; }
+a { color: var(--azul-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(72rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2rem; }
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 270 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: var(--ouro); }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 270); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.az { background: var(--grad-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 36rem; margin: 0 auto 1rem; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.35rem, 3.4vw, 1.9rem); margin: 0 0 .4rem; text-align: center; }
+h3 { font-family: var(--titulo); font-weight: 600; font-size: 1.1rem; color: var(--ouro); margin: 1.2rem 0 .3rem; }
+.cartao { background: linear-gradient(160deg, oklch(0.29 0.09 265), oklch(0.20 0.07 272)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; }
+.heroi { text-align: center; padding: .5rem 0 1.5rem; }
+.foto-mestre { width: 7.5rem; height: 7.5rem; border-radius: 50%; object-fit: cover; border: 3px solid var(--ouro); box-shadow: 0 0 30px oklch(0.85 0.13 88 / .4); }
+.texto p, .texto li { font-family: var(--serifa); font-size: 1.15rem; line-height: 1.55; color: var(--lavanda); }
+.texto p { margin: 0 0 .8rem; max-width: 46rem; margin-left: auto; margin-right: auto; }
+.texto ul { max-width: 46rem; margin: 0 auto .8rem; padding-left: 1.3rem; }
+.texto h3 { max-width: 46rem; margin-left: auto; margin-right: auto; }
+.texto b { color: var(--texto); }
+.intro-sec { text-align: center; color: var(--suave); font-size: .92rem; max-width: 40rem; margin: 0 auto 1.2rem; }
+
+/* ---- a tiragem ---- */
+.modo { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: .3rem; padding: .3rem; border-radius: 999px; background: var(--vidro); border: 1px solid var(--borda); }
+.modo button { border: 0; cursor: pointer; font: inherit; font-size: .85rem; font-weight: 700; color: var(--suave); background: none; border-radius: 999px; padding: .45rem 1rem; }
+.modo button.ativo { color: white; background: var(--grad-azul); box-shadow: 0 4px 16px oklch(0.55 0.17 265 / .5); }
+.centro { text-align: center; }
+.mesa { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.5rem, 2vw, 1.2rem); max-width: 40rem; margin: 1.4rem auto 1rem; }
+.lugar { text-align: center; }
+.lugar .pos { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--suave); margin-bottom: .4rem; }
+.cc { perspective: 900px; aspect-ratio: 2 / 3; }
+.cc .dentro { position: relative; width: 100%; height: 100%; transition: transform .8s cubic-bezier(.2,.7,.2,1); transform-style: preserve-3d; }
+.cc.virada .dentro { transform: rotateY(180deg); }
+.cc .face { position: absolute; inset: 0; border-radius: .9rem; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: .5rem; }
+.cc .verso { border: 2px solid oklch(0.85 0.13 88 / .6); background:
+    radial-gradient(circle at 50% 50%, oklch(0.85 0.13 88 / .25) 0 18%, transparent 19%),
+    repeating-linear-gradient(45deg, oklch(0.26 0.09 268) 0 8px, oklch(0.22 0.08 272) 8px 16px);
+  box-shadow: 0 10px 30px #0008; color: var(--ouro); font-size: clamp(1.4rem, 5vw, 2.2rem); }
+.cc .frente { transform: rotateY(180deg); border: 2px solid var(--ouro); background: linear-gradient(170deg, oklch(0.97 0.03 90), oklch(0.89 0.06 85));
+  color: oklch(0.22 0.06 270); box-shadow: 0 0 28px oklch(0.85 0.13 88 / .45); }
+.frente .num { font-family: var(--titulo); font-weight: 700; font-size: clamp(.9rem, 3vw, 1.3rem); }
+.frente .emo { font-size: clamp(2rem, 9vw, 3.6rem); line-height: 1.1; margin: .2rem 0; }
+.frente .nm { font-family: var(--titulo); font-weight: 700; font-size: clamp(.72rem, 2.4vw, 1rem); line-height: 1.15; text-align: center; }
+.frente::before { content: ""; position: absolute; inset: 6px; border: 1px solid oklch(0.70 0.12 80 / .6); border-radius: .6rem; pointer-events: none; }
+.btn-tirar { border: 0; cursor: pointer; font: inherit; font-weight: 800; border-radius: 999px; padding: .85rem 1.6rem; color: oklch(0.22 0.06 270); background: var(--grad-ouro); box-shadow: 0 10px 30px oklch(0.75 0.15 75 / .35); }
+.btn-tirar:disabled { opacity: .5; cursor: default; }
+.leitura { max-width: 44rem; margin: 1rem auto 0; }
+.leitura .item { padding: .8rem 1rem; border-radius: 1rem; background: oklch(0.16 0.05 270 / .7); border: 1px solid var(--borda); margin-bottom: .7rem; }
+.leitura .item b { color: var(--ouro); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; display: block; }
+.leitura .item p { margin: .2rem 0 0; font-family: var(--serifa); font-size: 1.1rem; color: var(--lavanda); }
+.leitura .comb { background: oklch(0.85 0.13 88 / .1); border-color: oklch(0.85 0.13 88 / .35); }
+
+/* ---- as 36 cartas ---- */
+.grelha { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
+.carta { border-radius: 1.2rem; padding: 1rem 1.1rem 1.1rem; background: oklch(0.20 0.06 272 / .88); border: 1px solid var(--borda); scroll-margin-top: 1rem; }
+.carta .cab { display: flex; align-items: center; gap: .7rem; margin-bottom: .4rem; }
+.carta .ic { width: 3.2rem; height: 3.2rem; border-radius: .7rem; flex: none; display: grid; place-items: center; font-size: 1.7rem; background: linear-gradient(170deg, oklch(0.97 0.03 90), oklch(0.89 0.06 85)); box-shadow: 0 0 14px oklch(0.85 0.13 88 / .3); }
+.carta h3 { margin: 0; color: var(--texto); font-size: 1.08rem; }
+.carta h3 small { display: block; font-family: Inter, sans-serif; font-size: .7rem; letter-spacing: .1em; color: var(--ouro); font-weight: 700; }
+.carta .tb { font-size: .78rem; color: var(--suave); }
+.carta p { margin: 0 0 .35rem; font-family: var(--serifa); font-size: 1.05rem; line-height: 1.4; color: var(--lavanda); }
+.carta p b { font-family: Inter, sans-serif; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ouro); margin-right: .3rem; }
+
+.chamada { text-align: center; }
+.chamada p { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); max-width: 36rem; margin: 0 auto 1.2rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 800; border-radius: 999px; padding: .85rem 1.5rem; color: white; background: var(--grad-azul); box-shadow: 0 10px 30px oklch(0.55 0.17 265 / .5); }
+.btn.ouro { color: oklch(0.22 0.06 270); background: var(--grad-ouro); box-shadow: 0 10px 30px oklch(0.75 0.15 75 / .35); }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+@media (max-width: 30rem) { .lugar .pos { font-size: .62rem; letter-spacing: .06em; } .texto p, .texto li { font-size: 1.08rem; } }
+
+/* 🎵 28/10/2026, pedido dele: a MESMA música do Tarot Grátis (ambient.mp3), com o mesmo botão e a continuidade entre páginas */
+@keyframes pulso-som {
+  0% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0.75); }
+  70% { box-shadow: 0 0 0 13px oklch(0.82 0.13 85 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0); }
+}
+.som-chama { animation: pulso-som 1.1s ease-out infinite; border-radius: 9999px; }
+
+/* Botão de som unificado — canto superior direito, igual em todas as páginas */
+.som-fix { position: fixed; top: 1rem; right: 1rem; z-index: 90; display: grid; place-items: center; height: 3rem; width: 3rem; padding: 0; border-radius: 9999px; border: 1.5px solid oklch(0.82 0.11 85); background: oklch(0.22 0.05 265 / 0.92); color: oklch(0.82 0.11 85); font-size: 1.2rem; box-shadow: 0 6px 22px rgba(0,0,0,0.5); cursor: pointer; transition: transform .25s; }
+.som-fix:hover { transform: scale(1.08); }
+.som-fix.ligado { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); animation: brilho-som 2.6s ease-in-out infinite; }
+.som-fix::before { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2px solid oklch(0.87 0.16 95 / 0.9); animation: anel-pisca-som 1.1s ease-in-out infinite; pointer-events: none; }
+@keyframes anel-pisca-som { 0%, 100% { opacity: 0.15; transform: scale(1); } 50% { opacity: 1; transform: scale(1.14); } }
+@keyframes brilho-som { 0%, 100% { box-shadow: 0 0 22px oklch(0.82 0.11 85 / 0.35); } 50% { box-shadow: 0 0 45px oklch(0.82 0.11 85 / 0.65); } }
+.som-ico { width: 1.35rem; height: 1.35rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; grid-area: 1 / 1; }
+.som-ico-on { display: none; }
+.ligado .som-ico-on { display: block; }
+.ligado .som-ico-off { display: none; }
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "name": "Tarot Cigano: as 36 cartas do Baralho Cigano e o seu significado · Mestre Alberto", "description": "Tarot Cigano: as 36 cartas do Baralho Cigano com o significado no amor e no trabalho, a Mesa Real e uma tiragem grátis de 3 cartas.", "url": "https://genialtarot.com/tarot-cigano", "inLanguage": "pt", "isPartOf": {"@type": "WebSite", "name": "Genial Tarot", "url": "https://genialtarot.com/"}, "author": {"@type": "Person", "name": "Mestre Alberto", "url": "https://genialtarot.com/sobre"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://genialtarot.com/"}, {"@type": "ListItem", "position": 2, "name": "Tarot Cigano", "item": "https://genialtarot.com/tarot-cigano"}]}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O Tarot Cigano é o mesmo que o Tarot?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O Tarot tem 78 cartas, com os Arcanos Maiores e Menores, e trabalha muito com símbolos e estados interiores. O Baralho Cigano tem 36 cartas com imagens do dia a dia, como a Casa, o Navio ou o Anel, e é mais direto: fala de factos, pessoas e acontecimentos. O nome «Tarot Cigano» é popular, mas é um baralho diferente."}}, {"@type": "Question", "name": "Quantas cartas tem o Baralho Cigano?", "acceptedAnswer": {"@type": "Answer", "text": "Tem 36 cartas, numeradas de 1 (o Cavaleiro) a 36 (a Cruz). Duas delas, o Cigano (28) e a Cigana (29), representam a pessoa que consulta e a pessoa mais importante da sua vida."}}, {"@type": "Question", "name": "No Baralho Cigano há cartas invertidas?", "acceptedAnswer": {"@type": "Answer", "text": "Na leitura tradicional, não. O sentido de cada carta muda conforme as cartas que estão ao lado, e não conforme está de pé ou de cabeça para baixo. É por isso que as combinações são tão importantes."}}, {"@type": "Question", "name": "O que é a Mesa Real?", "acceptedAnswer": {"@type": "Answer", "text": "É a tiragem mais completa do Baralho Cigano: as 36 cartas são postas na mesa, em filas, e leem-se todas. Procura-se primeiro a carta do Cigano ou da Cigana, e a distância a que as outras cartas estão dela mostra o que está perto e o que está mais longe na vida da pessoa."}}, {"@type": "Question", "name": "Qual é a melhor tiragem para começar?", "acceptedAnswer": {"@type": "Answer", "text": "A de três cartas. Lê-se em linha, da esquerda para a direita, como uma frase: a primeira carta diz o assunto, a segunda o que o influencia e a terceira o desfecho ou o conselho. É simples, rápida e já mostra como as cartas conversam entre si."}}]}
+</script>
+</head>
+<body>
+<button id="audio-fab" class="som-fix" aria-label="Ligar ou desligar o som"><svg class="som-ico som-ico-on" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><svg class="som-ico som-ico-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg></button>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+
+  <section class="heroi">
+    <img class="foto-mestre" src="mestre-diario.jpg" alt="Mestre Alberto" width="120" height="120" />
+    <div><span class="selo">🃏 36 cartas ✦ tiragem grátis</span></div>
+    <h1>O <span class="az">Tarot Cigano</span></h1>
+    <p class="sub">O Baralho Cigano explicado carta a carta: o que cada uma diz no amor e no trabalho, como se lê e uma tiragem de três cartas para fazer agora.</p>
+  </section>
+
+  <!-- ===== 1. A tiragem grátis ===== -->
+  <section class="cartao" id="tiragem">
+    <h2>Tire três cartas do <span class="az">Baralho Cigano</span></h2>
+    <p class="intro-sec">Pense numa pergunta concreta, escolha a forma da leitura e carregue no botão. O baralho é baralhado de novo a cada tiragem.</p>
+    <div class="centro">
+      <div class="modo" role="group" aria-label="Forma da leitura">
+        <button type="button" data-modo="0" class="ativo">Passado · Presente · Futuro</button>
+        <button type="button" data-modo="1">Situação · Obstáculo · Conselho</button>
+      </div>
+    </div>
+    <div class="mesa" id="mesa" aria-live="polite"></div>
+    <div class="centro"><button type="button" class="btn-tirar" id="tirar">✨ Baralhar e tirar 3 cartas</button></div>
+    <div class="leitura" id="leitura"></div>
+  </section>
+
+  <!-- ===== 2. O que é ===== -->
+  <section class="cartao texto">
+    <h2>O que é o <span class="az">Baralho Cigano</span>?</h2>
+    <p>O Baralho Cigano, a que muita gente chama Tarot Cigano, é um baralho de <b>36 cartas</b> com imagens simples do quotidiano: um cavaleiro, um navio, uma casa, uma árvore, um anel, uma chave. Cada carta tem um sentido próprio, e a leitura nasce da forma como as cartas se juntam umas às outras, quase como palavras numa frase.</p>
+    <p>Fora do Brasil e de Portugal é conhecido como <b>baralho Lenormand</b>. As cartas que hoje usamos vêm de um jogo alemão publicado por volta de 1799, o <i>Spiel der Hoffnung</i> («Jogo da Esperança»), de Johann Kaspar Hechtel: era um jogo de tabuleiro com 36 cartas ilustradas. Só mais tarde, depois da morte da célebre cartomante francesa Marie-Anne Lenormand (1772–1843), o baralho passou a ser vendido com o nome dela, que era famoso. O nome «cigano» é o que ficou no Brasil e em Portugal, pela ligação popular entre os ciganos e a arte de ler a sorte.</p>
+    <h3>A diferença para o Tarot de 78 cartas</h3>
+    <ul>
+      <li><b>Número de cartas:</b> o Tarot tem 78 (22 Arcanos Maiores e 56 Menores); o Baralho Cigano tem 36.</li>
+      <li><b>A linguagem:</b> o Tarot fala muito do mundo interior e das grandes etapas da vida; o Baralho Cigano é mais direto e prático, e responde bem a perguntas sobre factos, pessoas e acontecimentos.</li>
+      <li><b>A leitura:</b> no Tarot cada carta conta uma história sozinha; no Baralho Cigano o sentido depende sobretudo das cartas vizinhas.</li>
+      <li><b>Cartas invertidas:</b> na tradição do Baralho Cigano não se usam.</li>
+    </ul>
+    <p>Se procura o Tarot tradicional, com os Arcanos, veja <a href="/arcanos">os 22 Arcanos Maiores</a> ou faça uma <a href="/tarot-gratis">tiragem de Tarot grátis</a>.</p>
+  </section>
+
+  <!-- ===== 3. As 36 cartas ===== -->
+  <section class="cartao" id="cartas">
+    <h2>As <span class="az">36 cartas</span> e o seu significado</h2>
+    <p class="intro-sec">O significado tradicional de cada carta, em geral, no amor e no trabalho. Algumas têm nomes diferentes no Brasil e em Portugal: estão os dois.</p>
+    <div class="grelha" id="grelha">
+      <article class="carta" id="c1" data-n="1" data-e="🐎" data-nome="Cavaleiro"><div class="cab"><div class="ic" aria-hidden="true">🐎</div><h3><small>CARTA 1</small>Cavaleiro</h3></div>
+        <p class="g">Notícias e movimento: algo chega depressa ou alguém entra em cena.</p><p class="am"><b>Amor</b>Um contacto novo ou inesperado.</p><p class="tr"><b>Trabalho</b>Propostas, respostas rápidas e deslocações.</p></article>
+      <article class="carta" id="c2" data-n="2" data-e="🍀" data-nome="Trevo"><div class="cab"><div class="ic" aria-hidden="true">🍀</div><h3><small>CARTA 2</small>Trevo</h3></div>
+        <p class="g">Uma pequena sorte, uma oportunidade curta que é para agarrar já.</p><p class="am"><b>Amor</b>Um momento leve e feliz, mas passageiro.</p><p class="tr"><b>Trabalho</b>Uma porta que abre por pouco tempo.</p></article>
+      <article class="carta" id="c3" data-n="3" data-e="⛵" data-nome="Navio"><div class="cab"><div class="ic" aria-hidden="true">⛵</div><h3><small>CARTA 3</small>Navio</h3></div>
+        <p class="g">Viagem, distância e vontade de mudar de horizonte.</p><p class="am"><b>Amor</b>Uma relação à distância ou saudade de alguém longe.</p><p class="tr"><b>Trabalho</b>Comércio, negócios com outros países, transferências.</p></article>
+      <article class="carta" id="c4" data-n="4" data-e="🏠" data-nome="Casa"><div class="cab"><div class="ic" aria-hidden="true">🏠</div><h3><small>CARTA 4</small>Casa</h3></div>
+        <p class="g">O lar, a família e tudo o que dá segurança.</p><p class="am"><b>Amor</b>Uma relação estável, vida a dois.</p><p class="tr"><b>Trabalho</b>Estabilidade, negócio de família ou trabalho em casa.</p></article>
+      <article class="carta" id="c5" data-n="5" data-e="🌳" data-nome="Árvore"><div class="cab"><div class="ic" aria-hidden="true">🌳</div><h3><small>CARTA 5</small>Árvore</h3></div>
+        <p class="g">Saúde, raízes e crescimento que leva tempo.</p><p class="am"><b>Amor</b>Um laço profundo, que se fortalece devagar.</p><p class="tr"><b>Trabalho</b>Projeto de longo prazo: a paciência dá fruto.</p></article>
+      <article class="carta" id="c6" data-n="6" data-e="☁️" data-nome="Nuvens"><div class="cab"><div class="ic" aria-hidden="true">☁️</div><h3><small>CARTA 6</small>Nuvens</h3></div>
+        <p class="g">Dúvida e confusão passageira: ainda não se vê bem.</p><p class="am"><b>Amor</b>Mal-entendidos e sentimentos pouco claros.</p><p class="tr"><b>Trabalho</b>Indefinição: melhor esperar antes de decidir.</p></article>
+      <article class="carta" id="c7" data-n="7" data-e="🐍" data-nome="Serpente"><div class="cab"><div class="ic" aria-hidden="true">🐍</div><h3><small>CARTA 7</small>Serpente <span class="tb">(Cobra)</span></h3></div>
+        <p class="g">Complicação, desvio no caminho, alguém astuto; também desejo.</p><p class="am"><b>Amor</b>Ciúme, rivalidade ou uma sedução forte.</p><p class="tr"><b>Trabalho</b>Intrigas; o caminho será mais longo do que parece.</p></article>
+      <article class="carta" id="c8" data-n="8" data-e="⚰️" data-nome="Caixão"><div class="cab"><div class="ic" aria-hidden="true">⚰️</div><h3><small>CARTA 8</small>Caixão</h3></div>
+        <p class="g">Fim de um ciclo e cansaço; fala de transformação, não de morte física.</p><p class="am"><b>Amor</b>Uma relação que acaba ou precisa de renascer.</p><p class="tr"><b>Trabalho</b>Um projeto que se fecha, uma pausa obrigatória.</p></article>
+      <article class="carta" id="c9" data-n="9" data-e="💐" data-nome="Buquê"><div class="cab"><div class="ic" aria-hidden="true">💐</div><h3><small>CARTA 9</small>Buquê <span class="tb">(Flores, Ramo)</span></h3></div>
+        <p class="g">Alegria, um presente, um convite, gentileza.</p><p class="am"><b>Amor</b>Carinho, admiração e gestos bonitos.</p><p class="tr"><b>Trabalho</b>Reconhecimento e bom ambiente.</p></article>
+      <article class="carta" id="c10" data-n="10" data-e="🌾" data-nome="Foice"><div class="cab"><div class="ic" aria-hidden="true">🌾</div><h3><small>CARTA 10</small>Foice</h3></div>
+        <p class="g">Um corte súbito ou uma decisão rápida; também a colheita.</p><p class="am"><b>Amor</b>Uma rutura ou uma decisão brusca.</p><p class="tr"><b>Trabalho</b>Cortes inesperados, ou colher o fruto do esforço.</p></article>
+      <article class="carta" id="c11" data-n="11" data-e="🪢" data-nome="Chicote"><div class="cab"><div class="ic" aria-hidden="true">🪢</div><h3><small>CARTA 11</small>Chicote</h3></div>
+        <p class="g">Discussão, tensão e coisas que se repetem; também energia física.</p><p class="am"><b>Amor</b>Discussões, ou uma paixão muito intensa.</p><p class="tr"><b>Trabalho</b>Conflitos, pressão e tarefas repetitivas.</p></article>
+      <article class="carta" id="c12" data-n="12" data-e="🐦" data-nome="Pássaros"><div class="cab"><div class="ic" aria-hidden="true">🐦</div><h3><small>CARTA 12</small>Pássaros</h3></div>
+        <p class="g">Conversas, telefonemas, nervosismo; muitas vezes fala de um par.</p><p class="am"><b>Amor</b>Diálogo a dois, mas também ansiedade.</p><p class="tr"><b>Trabalho</b>Reuniões e negociações; atenção à conversa a mais.</p></article>
+      <article class="carta" id="c13" data-n="13" data-e="👶" data-nome="Criança"><div class="cab"><div class="ic" aria-hidden="true">👶</div><h3><small>CARTA 13</small>Criança</h3></div>
+        <p class="g">Um começo novo, inocência, algo ainda pequeno; pode falar de uma criança.</p><p class="am"><b>Amor</b>Uma relação no início, sincera.</p><p class="tr"><b>Trabalho</b>Um projeto que nasce, um tempo de aprender.</p></article>
+      <article class="carta" id="c14" data-n="14" data-e="🦊" data-nome="Raposa"><div class="cab"><div class="ic" aria-hidden="true">🦊</div><h3><small>CARTA 14</small>Raposa</h3></div>
+        <p class="g">Esperteza e desconfiança: cuidado com enganos.</p><p class="am"><b>Amor</b>Alguém que não mostra tudo o que sente ou faz.</p><p class="tr"><b>Trabalho</b>Pede estratégia; atenção a quem não é leal.</p></article>
+      <article class="carta" id="c15" data-n="15" data-e="🐻" data-nome="Urso"><div class="cab"><div class="ic" aria-hidden="true">🐻</div><h3><small>CARTA 15</small>Urso</h3></div>
+        <p class="g">Força, poder e proteção; uma pessoa com autoridade.</p><p class="am"><b>Amor</b>Proteção, que pode resvalar para a posse.</p><p class="tr"><b>Trabalho</b>Um chefe, alguém influente, assuntos de dinheiro.</p></article>
+      <article class="carta" id="c16" data-n="16" data-e="⭐" data-nome="Estrela"><div class="cab"><div class="ic" aria-hidden="true">⭐</div><h3><small>CARTA 16</small>Estrela</h3></div>
+        <p class="g">Esperança, inspiração e proteção espiritual.</p><p class="am"><b>Amor</b>Um sonho que pode cumprir-se.</p><p class="tr"><b>Trabalho</b>Sucesso, visibilidade, boa orientação.</p></article>
+      <article class="carta" id="c17" data-n="17" data-e="🕊️" data-nome="Cegonha"><div class="cab"><div class="ic" aria-hidden="true">🕊️</div><h3><small>CARTA 17</small>Cegonha</h3></div>
+        <p class="g">Mudança para melhor, renovação; às vezes, mudança de casa.</p><p class="am"><b>Amor</b>Uma fase nova na relação.</p><p class="tr"><b>Trabalho</b>Transição, mudança de funções ou de lugar.</p></article>
+      <article class="carta" id="c18" data-n="18" data-e="🐕" data-nome="Cão"><div class="cab"><div class="ic" aria-hidden="true">🐕</div><h3><small>CARTA 18</small>Cão <span class="tb">(Cachorro)</span></h3></div>
+        <p class="g">Amizade fiel, lealdade e confiança.</p><p class="am"><b>Amor</b>Um parceiro leal, ou uma amizade que vira amor.</p><p class="tr"><b>Trabalho</b>Um colega de confiança, um aliado.</p></article>
+      <article class="carta" id="c19" data-n="19" data-e="🏰" data-nome="Torre"><div class="cab"><div class="ic" aria-hidden="true">🏰</div><h3><small>CARTA 19</small>Torre</h3></div>
+        <p class="g">Instituições, autoridade, solidão e ponto de vista elevado.</p><p class="am"><b>Amor</b>Distância emocional ou necessidade de estar só.</p><p class="tr"><b>Trabalho</b>Grandes empresas, serviços públicos, burocracia.</p></article>
+      <article class="carta" id="c20" data-n="20" data-e="🌷" data-nome="Jardim"><div class="cab"><div class="ic" aria-hidden="true">🌷</div><h3><small>CARTA 20</small>Jardim</h3></div>
+        <p class="g">Vida social, o público, festas e encontros.</p><p class="am"><b>Amor</b>Conhecer alguém num evento ou entre amigos.</p><p class="tr"><b>Trabalho</b>Contactos, divulgação, trabalho com o público.</p></article>
+      <article class="carta" id="c21" data-n="21" data-e="⛰️" data-nome="Montanha"><div class="cab"><div class="ic" aria-hidden="true">⛰️</div><h3><small>CARTA 21</small>Montanha</h3></div>
+        <p class="g">Obstáculo, atraso, algo que bloqueia.</p><p class="am"><b>Amor</b>Uma barreira entre os dois.</p><p class="tr"><b>Trabalho</b>Atrasos que só a persistência vence.</p></article>
+      <article class="carta" id="c22" data-n="22" data-e="🛤️" data-nome="Caminhos"><div class="cab"><div class="ic" aria-hidden="true">🛤️</div><h3><small>CARTA 22</small>Caminhos</h3></div>
+        <p class="g">Encruzilhada: há escolhas e alternativas.</p><p class="am"><b>Amor</b>Decidir entre caminhos, ou entre pessoas.</p><p class="tr"><b>Trabalho</b>Mais de uma proposta; liberdade para escolher.</p></article>
+      <article class="carta" id="c23" data-n="23" data-e="🐀" data-nome="Ratos"><div class="cab"><div class="ic" aria-hidden="true">🐀</div><h3><small>CARTA 23</small>Ratos</h3></div>
+        <p class="g">Perda e desgaste: uma preocupação que vai roendo.</p><p class="am"><b>Amor</b>Um desgaste que acontece aos poucos.</p><p class="tr"><b>Trabalho</b>Perdas, desvios, cansaço acumulado.</p></article>
+      <article class="carta" id="c24" data-n="24" data-e="❤️" data-nome="Coração"><div class="cab"><div class="ic" aria-hidden="true">❤️</div><h3><small>CARTA 24</small>Coração</h3></div>
+        <p class="g">Amor, afeto e generosidade.</p><p class="am"><b>Amor</b>Um sentimento verdadeiro.</p><p class="tr"><b>Trabalho</b>Trabalhar com gosto, ou em áreas de cuidado.</p></article>
+      <article class="carta" id="c25" data-n="25" data-e="💍" data-nome="Anel"><div class="cab"><div class="ic" aria-hidden="true">💍</div><h3><small>CARTA 25</small>Anel <span class="tb">(Aliança)</span></h3></div>
+        <p class="g">Compromisso, contrato e união.</p><p class="am"><b>Amor</b>Um compromisso sério, noivado ou casamento.</p><p class="tr"><b>Trabalho</b>Contratos e parcerias.</p></article>
+      <article class="carta" id="c26" data-n="26" data-e="📖" data-nome="Livro"><div class="cab"><div class="ic" aria-hidden="true">📖</div><h3><small>CARTA 26</small>Livro</h3></div>
+        <p class="g">Segredo, estudo e conhecimento escondido.</p><p class="am"><b>Amor</b>Algo que ainda não foi revelado.</p><p class="tr"><b>Trabalho</b>Estudos, formação, informação confidencial.</p></article>
+      <article class="carta" id="c27" data-n="27" data-e="✉️" data-nome="Carta"><div class="cab"><div class="ic" aria-hidden="true">✉️</div><h3><small>CARTA 27</small>Carta</h3></div>
+        <p class="g">Uma mensagem, um documento, uma notícia por escrito.</p><p class="am"><b>Amor</b>Uma mensagem de alguém.</p><p class="tr"><b>Trabalho</b>Papéis, correio, assuntos tratados por escrito.</p></article>
+      <article class="carta" id="c28" data-n="28" data-e="🤵" data-nome="Cigano"><div class="cab"><div class="ic" aria-hidden="true">🤵</div><h3><small>CARTA 28</small>Cigano</h3></div>
+        <p class="g">O consulente, se for homem; ou o homem mais importante na vida de quem consulta.</p><p class="am"><b>Amor</b>O companheiro ou o pretendente.</p><p class="tr"><b>Trabalho</b>Um homem com papel decisivo no assunto.</p></article>
+      <article class="carta" id="c29" data-n="29" data-e="💃" data-nome="Cigana"><div class="cab"><div class="ic" aria-hidden="true">💃</div><h3><small>CARTA 29</small>Cigana</h3></div>
+        <p class="g">A consulente, se for mulher; ou a mulher mais importante na vida de quem consulta.</p><p class="am"><b>Amor</b>A companheira ou a pretendente.</p><p class="tr"><b>Trabalho</b>Uma mulher com papel decisivo no assunto.</p></article>
+      <article class="carta" id="c30" data-n="30" data-e="⚜️" data-nome="Lírios"><div class="cab"><div class="ic" aria-hidden="true">⚜️</div><h3><small>CARTA 30</small>Lírios</h3></div>
+        <p class="g">Paz, maturidade e harmonia; a sabedoria dos anos.</p><p class="am"><b>Amor</b>Uma relação serena e madura.</p><p class="tr"><b>Trabalho</b>Experiência, estabilidade, fim de carreira tranquilo.</p></article>
+      <article class="carta" id="c31" data-n="31" data-e="☀️" data-nome="Sol"><div class="cab"><div class="ic" aria-hidden="true">☀️</div><h3><small>CARTA 31</small>Sol</h3></div>
+        <p class="g">Sucesso, energia e clareza: a carta mais luminosa do baralho.</p><p class="am"><b>Amor</b>Felicidade e calor no relacionamento.</p><p class="tr"><b>Trabalho</b>Vitória e resultados à vista.</p></article>
+      <article class="carta" id="c32" data-n="32" data-e="🌙" data-nome="Lua"><div class="cab"><div class="ic" aria-hidden="true">🌙</div><h3><small>CARTA 32</small>Lua</h3></div>
+        <p class="g">Emoções, intuição e reconhecimento.</p><p class="am"><b>Amor</b>Romance e grande sensibilidade.</p><p class="tr"><b>Trabalho</b>Fama, prestígio, trabalho criativo.</p></article>
+      <article class="carta" id="c33" data-n="33" data-e="🗝️" data-nome="Chave"><div class="cab"><div class="ic" aria-hidden="true">🗝️</div><h3><small>CARTA 33</small>Chave</h3></div>
+        <p class="g">Solução e certeza: uma porta que se abre.</p><p class="am"><b>Amor</b>Uma resposta clara, o que tem de ser.</p><p class="tr"><b>Trabalho</b>O problema encontra solução.</p></article>
+      <article class="carta" id="c34" data-n="34" data-e="🐟" data-nome="Peixes"><div class="cab"><div class="ic" aria-hidden="true">🐟</div><h3><small>CARTA 34</small>Peixes</h3></div>
+        <p class="g">Dinheiro, abundância e negócios.</p><p class="am"><b>Amor</b>Prosperidade a dois; atenção ao interesse material.</p><p class="tr"><b>Trabalho</b>Lucro, ganhos, negócio próprio.</p></article>
+      <article class="carta" id="c35" data-n="35" data-e="⚓" data-nome="Âncora"><div class="cab"><div class="ic" aria-hidden="true">⚓</div><h3><small>CARTA 35</small>Âncora</h3></div>
+        <p class="g">Estabilidade, firmeza e algo que dura.</p><p class="am"><b>Amor</b>Uma relação sólida e segura.</p><p class="tr"><b>Trabalho</b>Um emprego estável, objetivos alcançados.</p></article>
+      <article class="carta" id="c36" data-n="36" data-e="✝️" data-nome="Cruz"><div class="cab"><div class="ic" aria-hidden="true">✝️</div><h3><small>CARTA 36</small>Cruz</h3></div>
+        <p class="g">Provação, um fardo a carregar, e também fé e destino.</p><p class="am"><b>Amor</b>Sacrifício, uma relação que pesa.</p><p class="tr"><b>Trabalho</b>Muita responsabilidade; a fé ajuda a atravessar.</p></article>
+    </div>
+  </section>
+
+  <!-- ===== 4. Como ler ===== -->
+  <section class="cartao texto" id="como-ler">
+    <h2>Como ler o <span class="az">Baralho Cigano</span></h2>
+    <h3>A tiragem de três cartas</h3>
+    <p>É a melhor forma de começar. Baralhe com calma, pense numa pergunta concreta e tire três cartas, que se põem em linha. Pode lê-las como <b>passado, presente e futuro</b>, ou como <b>situação, obstáculo e conselho</b>. Mas no Baralho Cigano o mais importante é ler as três juntas, como uma frase: a primeira diz o assunto e as outras dizem como ele se desenvolve.</p>
+    <h3>As combinações</h3>
+    <p>Uma carta sozinha diz pouco; ao lado de outra ganha um sentido preciso. Uma regra simples é ler a primeira carta como o assunto e a segunda como aquilo que o qualifica. Alguns exemplos:</p>
+    <ul>
+      <li><b>Cavaleiro + Carta:</b> uma notícia por escrito que chega depressa.</li>
+      <li><b>Anel + Coração:</b> um compromisso feito por amor.</li>
+      <li><b>Navio + Casa:</b> mudança de casa, ou uma casa longe.</li>
+      <li><b>Montanha + Chave:</b> o obstáculo tem solução.</li>
+      <li><b>Peixes + Ratos:</b> dinheiro que se perde aos poucos.</li>
+    </ul>
+    <p>Um exemplo completo: alguém pergunta pelo trabalho e sai <b>Caminhos, Cavaleiro e Âncora</b>. Os Caminhos dizem que há uma escolha a fazer; o Cavaleiro mostra que uma proposta vai chegar depressa; a Âncora diz que, se a aceitar, é para ficar. Uma leitura simples, mas que já responde.</p>
+    <h3>A Mesa Real</h3>
+    <p>É a leitura mais completa do Baralho Cigano: usam-se as <b>36 cartas</b>, postas todas na mesa, em filas (é comum fazer quatro filas de nove; há quem faça quatro filas de oito e junte as últimas quatro por baixo). Cada lugar da mesa é uma «casa» com o tema da carta do mesmo número: a primeira posição é a casa do Cavaleiro, a segunda a do Trevo, e assim por diante.</p>
+    <p>Começa-se por encontrar a carta do <b>Cigano</b> ou da <b>Cigana</b>, que representa quem consulta. As cartas que ficam perto dela falam do que está próximo e é mais forte; as que estão longe falam do que está mais distante. Depois leem-se as cartas à volta, as linhas e as casas. É uma leitura longa, que pede experiência, e é por isso que costuma ser feita em consulta.</p>
+  </section>
+
+  <!-- ===== 5. Perguntas frequentes ===== -->
+  <section class="cartao texto" id="perguntas">
+    <h2>Perguntas frequentes</h2>
+    <h3>O Tarot Cigano é o mesmo que o Tarot?</h3>
+    <p>Não. O Tarot tem 78 cartas, com os Arcanos Maiores e Menores, e trabalha muito com símbolos e estados interiores. O Baralho Cigano tem 36 cartas com imagens do dia a dia, como a Casa, o Navio ou o Anel, e é mais direto: fala de factos, pessoas e acontecimentos. O nome «Tarot Cigano» é popular, mas é um baralho diferente.</p>
+    <h3>Quantas cartas tem o Baralho Cigano?</h3>
+    <p>Tem 36 cartas, numeradas de 1 (o Cavaleiro) a 36 (a Cruz). Duas delas, o Cigano (28) e a Cigana (29), representam a pessoa que consulta e a pessoa mais importante da sua vida.</p>
+    <h3>No Baralho Cigano há cartas invertidas?</h3>
+    <p>Na leitura tradicional, não. O sentido de cada carta muda conforme as cartas que estão ao lado, e não conforme está de pé ou de cabeça para baixo. É por isso que as combinações são tão importantes.</p>
+    <h3>O que é a Mesa Real?</h3>
+    <p>É a tiragem mais completa do Baralho Cigano: as 36 cartas são postas na mesa, em filas, e leem-se todas. Procura-se primeiro a carta do Cigano ou da Cigana, e a distância a que as outras cartas estão dela mostra o que está perto e o que está mais longe na vida da pessoa.</p>
+    <h3>Qual é a melhor tiragem para começar?</h3>
+    <p>A de três cartas. Lê-se em linha, da esquerda para a direita, como uma frase: a primeira carta diz o assunto, a segunda o que o influencia e a terceira o desfecho ou o conselho. É simples, rápida e já mostra como as cartas conversam entre si.</p>
+  </section>
+
+  <!-- ===== 6. Chamada ===== -->
+  <section class="cartao chamada">
+    <h2>Quer uma <span class="az">leitura completa</span>?</h2>
+    <p>Três cartas dão uma pista. Numa consulta, o Mestre Alberto olha para a sua pergunta com calma e lê as cartas à luz da sua vida em particular.</p>
+    <div class="botoes"><a class="btn ouro" href="loja.html#cat-consultas">🔮 Marcar uma consulta</a><a class="btn" href="/tarot-gratis">🃏 Tarot grátis (78 cartas)</a></div>
+  </section>
+  <p class="fonte">O Baralho Cigano é uma leitura simbólica, para refletir e inspirar. Não substitui o aconselhamento de um profissional de saúde, jurídico ou financeiro.</p>
+</div>
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script>
+/* 🃏 Tiragem grátis do Baralho Cigano (02/11/2026): lê as 36 cartas da própria página, baralha com crypto.getRandomValues
+   (Fisher–Yates sem enviesamento) e vira três. Sem imagens: o cartão mostra o número, o nome e o símbolo. */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const ESC = (s) => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const BARALHO = Array.from(document.querySelectorAll("#grelha .carta")).map(a => ({
+    n: +a.dataset.n, e: a.dataset.e, nome: a.dataset.nome,
+    g: a.querySelector(".g").textContent.trim()
+  }));
+  const MODOS = [["Passado", "Presente", "Futuro"], ["Situação", "Obstáculo", "Conselho"]];
+  let modo = 0, tiradas = null, aVirar = false;
+
+  function aleatorio(max) {               // inteiro em [0, max) sem enviesamento
+    const lim = Math.floor(0x100000000 / max) * max, b = new Uint32Array(1);
+    do { crypto.getRandomValues(b); } while (b[0] >= lim);
+    return b[0] % max;
+  }
+  function baralhar(v) {
+    const a = v.slice();
+    for (let i = a.length - 1; i > 0; i--) { const j = aleatorio(i + 1); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  }
+  function mesaVazia() {
+    $("mesa").innerHTML = MODOS[modo].map(p =>
+      `<div class="lugar"><div class="pos">${p}</div><div class="cc"><div class="dentro"><div class="face verso">✦</div><div class="face frente"></div></div></div></div>`).join("");
+  }
+  function ler() {
+    if (!tiradas || aVirar) { $("leitura").innerHTML = ""; return; }
+    const p = MODOS[modo];
+    let h = tiradas.map((c, i) => `<div class="item"><b>${p[i]} · ${c.n} ${ESC(c.nome)}</b><p>${ESC(c.g)} <a href="#c${c.n}">Ver no amor e no trabalho</a></p></div>`).join("");
+    h += `<div class="item comb"><b>Leia em conjunto</b><p>No Baralho Cigano as cartas falam umas com as outras: leia «${ESC(tiradas[0].nome)}» com «${ESC(tiradas[1].nome)}» e depois «${ESC(tiradas[1].nome)}» com «${ESC(tiradas[2].nome)}», como uma frase. A primeira dá o assunto, a seguinte diz como ele evolui.</p></div>`;
+    $("leitura").innerHTML = h;
+  }
+  function tirar() {
+    tiradas = baralhar(BARALHO).slice(0, 3);
+    aVirar = true; mesaVazia(); ler();
+    const cc = document.querySelectorAll("#mesa .cc");
+    $("tirar").disabled = true;
+    tiradas.forEach((c, i) => {
+      cc[i].querySelector(".frente").innerHTML = `<div class="num">${c.n}</div><div class="emo" aria-hidden="true">${c.e}</div><div class="nm">${ESC(c.nome)}</div>`;
+      cc[i].setAttribute("aria-label", `${MODOS[modo][i]}: carta ${c.n}, ${c.nome}`);
+      setTimeout(() => cc[i].classList.add("virada"), 250 + i * 450);
+    });
+    setTimeout(() => { aVirar = false; ler(); $("tirar").disabled = false; $("tirar").textContent = "🔄 Baralhar de novo"; }, 250 + 3 * 450 + 400);
+  }
+  document.querySelectorAll(".modo button").forEach(b => b.onclick = () => {
+    modo = +b.dataset.modo;
+    document.querySelectorAll(".modo button").forEach(x => x.classList.toggle("ativo", x === b));
+    document.querySelectorAll("#mesa .pos").forEach((el, i) => el.textContent = MODOS[modo][i]);
+    ler();
+  });
+  $("tirar").onclick = tirar;
+  mesaVazia();
+})();
+</script>
+<script>
+/* 🎵 28/10/2026, pedido dele: a mesma música do Tarot Grátis e a continuar entre as páginas que a usam
+   (sessionStorage «mus_ambient»: se estava a tocar, retoma no mesmo segundo). Os navegadores não deixam tocar
+   com som antes do primeiro toque na página: aí arranca ao primeiro toque, clique ou deslizar. Cópia do tarot-gratis.html. */
+(function () {
+/* ============ Som ambiente ============ */
+const ambient = new Audio("ambient.mp3");
+ambient.loop = false; ambient.volume = 0.01; ambient.preload = "auto";
+const AMB_VOL = 0.01;
+let ambFade = null;
+function ambFadeIn(dur) {
+  dur = dur || 3500;
+  clearInterval(ambFade); ambient.volume = 0; let i = 0;
+  ambFade = setInterval(() => { i++; ambient.volume = Math.min(AMB_VOL, AMB_VOL * i / 35); if (i >= 35) clearInterval(ambFade); }, dur / 35);
+}
+
+// ===== Continuidade do som (mesma sessão) =====
+const AMB_KEY = "mus_ambient";
+let ambEstado = null;
+// 28/10/2026, pedido dele: continuidade em TODAS as páginas com esta música (também noutros separadores) — no
+// localStorage deste navegador; quem nunca cá esteve (outra pessoa, outro IP) começa do início; ao fim de 2 h também.
+try { ambEstado = JSON.parse(localStorage.getItem(AMB_KEY) || "null"); if (ambEstado && !(Date.now() - (ambEstado.t || 0) < 7200000)) ambEstado = null; } catch {}
+const tentaRestauroAmb = () => {
+  if (!(ambEstado && ambEstado.pos > 0) || !isFinite(ambient.duration) || ambient.duration <= 0) return;
+  if (ambEstado.pos >= ambient.duration - 1) { ambEstado.pos = 0; return; }
+  const alvo = ambEstado.pos;
+  for (let i = 0; i < ambient.seekable.length; i++) {
+    if (ambient.seekable.start(i) <= alvo && ambient.seekable.end(i) >= alvo) {
+      ambient.currentTime = alvo; ambEstado.pos = 0;
+      ["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.removeEventListener(ev, tentaRestauroAmb));
+      return;
+    }
+  }
+};
+["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.addEventListener(ev, tentaRestauroAmb));
+const AMB_ID = Math.random().toString(36).slice(2);           // cada página aberta tem o seu id
+let ambDono = true;                                            // falso quando outra página tomou conta da música
+const guardaAmb = () => { if (!ambDono) return; try { localStorage.setItem(AMB_KEY, JSON.stringify({ on: !ambient.paused, pos: ambient.currentTime || 0, t: Date.now(), id: AMB_ID })); } catch {} };
+// Uma música só: quando outra página (outro separador) começa a tocar, esta cala-se; se a pessoa desliga noutra, desliga aqui.
+window.addEventListener("storage", (ev) => {
+  if (ev.key !== AMB_KEY || !ev.newValue) return;
+  try { const o = JSON.parse(ev.newValue); if (o.id !== AMB_ID) { ambDono = false; if (!ambient.paused) { ambient.pause(); setAmbientUI(false); } } } catch {}
+});
+window.addEventListener("pagehide", guardaAmb);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") guardaAmb(); });
+setInterval(() => { if (!ambient.paused) guardaAmb(); }, 2000);     // no telemóvel o «pagehide» nem sempre chega
+let ambientOn = false;
+function setAmbientUI(on) {
+  ambientOn = on;
+  const b = document.getElementById("audio-fab");
+  b.classList.toggle("ligado", on);
+  b.classList.toggle("desligado", !on);
+  b.classList.toggle("som-chama", !on);
+}
+const ambRetoma = ambEstado && ambEstado.on ? 1200 : 3500;
+if (!ambEstado || ambEstado.on) ambient.play().then(() => { setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb(); }).catch(() => {
+  // 28/10/2026: no telemóvel só o dedo a LEVANTAR (touchend/pointerup/click) conta como toque para o som — touchstart e
+  // scroll não. E a escuta só sai depois de a música tocar mesmo (antes, a 1.ª tentativa falhada desligava-a).
+  const EVS = ["pointerup", "touchend", "click", "keydown", "mousedown"];
+  const unlock = async (ev) => {
+    if (ev && ev.target && ev.target.closest && ev.target.closest("#audio-fab")) return;   // o botão trata de si
+    if (!ambient.paused) return;
+    try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb();
+          EVS.forEach(e => window.removeEventListener(e, unlock, true)); } catch { setAmbientUI(false); }
+  };
+  EVS.forEach(e => window.addEventListener(e, unlock, true));
+  setAmbientUI(false);
+});
+document.getElementById("audio-fab").addEventListener("click", async (e) => {
+  e.stopPropagation();
+  if (ambientOn && !ambient.paused) { ambient.pause(); setAmbientUI(false); guardaAmb(); return; }
+  try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(); guardaAmb(); } catch { setAmbientUI(false); }
+});
+})();
+</script>
+<script src="/vip-faixa.js" defer></script>
+<script src="/vivo.js" defer></script>
+</body>
+</html>

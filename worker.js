@@ -495,6 +495,8 @@ const PAGINAS = new Set([
   "/novidades", "/revolucao-solar", "/horoscopo-pessoal", "/carta-de-tarot", "/retrogrados", "/trio-astral", "/calendarios", "/horoscopo-chines", "/fase-lua-nascimento", "/adivinha-signo", "/mapa-do-casal",
   // 28/10/2026: o Oráculo das Cores (ideia do astro.com, textos originais)
   "/oraculo-cores", "/efemerides", "/famosos-ceu",
+  // 02/11/2026: as pesquisas que o Google Trends mostrou e o site não tinha (horóscopo semanal e de amanhã, tarot cigano, …)
+  "/horoscopo-semanal", "/horoscopo-de-amanha", "/tarot-cigano", "/consulta-de-tarot-online", "/datas-dos-signos", "/signos-que-combinam", "/cor-do-ano-2027", "/alinhamento-dos-planetas", "/astrologia-vedica",
 ]);
 
 function contarVisita(request, url, env, ctx) {
