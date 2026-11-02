@@ -194,3 +194,7 @@ JS_L = '''<script src="lua-azul-dados.js"></script>
 pagina("lua-azul", "Lua Azul: o que é e quando é a próxima · Mestre Alberto",
        "Lua Azul: o que é, porque é rara e quando é a próxima, calculada para Portugal e para o Brasil. A segunda Lua Cheia do mês e a sazonal, explicadas.",
        "A Lua Azul — Mestre Alberto", "Lua Azul", corpo, FAQ_L, JS_L)
+
+# 02/11/2026: as imagens de destaque voltam a entrar nas páginas que este gerador reescreveu (imagens-destaque.py)
+import subprocess as _sp
+_sp.run(["python3", "/home/ricardo/site-genialtarot/imagens-destaque.py"])
