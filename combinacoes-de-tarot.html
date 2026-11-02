@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Combinações de Tarot: leia duas cartas juntas · Mestre Alberto</title>
+<meta name="description" content="Combinações de tarot explicadas pelo Mestre Alberto: as regras para ler cartas juntas e uma ferramenta grátis para combinar dois Arcanos Maiores." />
+<meta name="theme-color" content="#1d2350" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Combinações de Tarot — o que dizem duas cartas juntas" />
+<meta property="og:description" content="Combinações de tarot explicadas pelo Mestre Alberto: as regras para ler cartas juntas e uma ferramenta grátis para combinar dois Arcanos Maiores." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/combinacoes-de-tarot" />
+<link rel="canonical" href="https://genialtarot.com/combinacoes-de-tarot" />
+<meta property="og:image" content="https://genialtarot.com/combinacoes-de-tarot.webp" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Combinação O Sol e A Lua no baralho do Mestre Alberto: combinações de tarot" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preload" as="image" href="combinacoes-de-tarot.webp" fetchpriority="high" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Combinações de Tarot — duas cartas do baralho do Mestre — azul-noite e ouro, a convenção do horoscopo-do-dia.html (02/11/2026) ============ */
+:root {
+  --fundo: oklch(0.17 0.06 270); --texto: oklch(0.97 0.012 265); --suave: oklch(0.84 0.04 265);
+  --azul: oklch(0.72 0.13 255); --azul-claro: oklch(0.86 0.08 255); --lavanda: oklch(0.92 0.04 265);
+  --ouro: oklch(0.85 0.13 88); --borda: oklch(0.75 0.10 260 / 0.35); --vidro: oklch(0.30 0.08 268 / 0.55);
+  --grad-azul: linear-gradient(135deg, oklch(0.78 0.11 245), oklch(0.62 0.17 265) 55%, oklch(0.52 0.18 280));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif; --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.38 0.14 262) 0%, oklch(0.20 0.08 268) 45%, oklch(0.12 0.05 275) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden; }
+a { color: var(--azul-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(72rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2rem; }
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 270 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: var(--ouro); }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 270); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.az { background: var(--grad-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 36rem; margin: 0 auto 1rem; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.35rem, 3.4vw, 1.9rem); margin: 0 0 .4rem; text-align: center; }
+.cartao { background: linear-gradient(160deg, oklch(0.29 0.09 265), oklch(0.20 0.07 272)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; }
+.heroi { text-align: center; padding: .5rem 0 1.5rem; }
+.foto-mestre { width: 7.5rem; height: 7.5rem; border-radius: 50%; object-fit: cover; border: 3px solid var(--ouro); box-shadow: 0 0 30px oklch(0.85 0.13 88 / .4); }
+.chamada { text-align: center; }
+.chamada p { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); max-width: 36rem; margin: 0 auto 1.2rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 800; border-radius: 999px; padding: .85rem 1.5rem; color: white; background: var(--grad-azul); box-shadow: 0 10px 30px oklch(0.55 0.17 265 / .5); }
+.btn.ouro { color: oklch(0.22 0.06 270); background: var(--grad-ouro); box-shadow: 0 10px 30px oklch(0.75 0.15 75 / .35); }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+
+/* 🎵 28/10/2026, pedido dele: a MESMA música do Tarot Grátis (ambient.mp3), com o mesmo botão e a continuidade entre páginas */
+@keyframes pulso-som {
+  0% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0.75); }
+  70% { box-shadow: 0 0 0 13px oklch(0.82 0.13 85 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0); }
+}
+.som-chama { animation: pulso-som 1.1s ease-out infinite; border-radius: 9999px; }
+
+/* Botão de som unificado — canto superior direito, igual em todas as páginas */
+.som-fix { position: fixed; top: 1rem; right: 1rem; z-index: 90; display: grid; place-items: center; height: 3rem; width: 3rem; padding: 0; border-radius: 9999px; border: 1.5px solid oklch(0.82 0.11 85); background: oklch(0.22 0.05 265 / 0.92); color: oklch(0.82 0.11 85); font-size: 1.2rem; box-shadow: 0 6px 22px rgba(0,0,0,0.5); cursor: pointer; transition: transform .25s; }
+.som-fix:hover { transform: scale(1.08); }
+.som-fix.ligado { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); animation: brilho-som 2.6s ease-in-out infinite; }
+.som-fix::before { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2px solid oklch(0.87 0.16 95 / 0.9); animation: anel-pisca-som 1.1s ease-in-out infinite; pointer-events: none; }
+@keyframes anel-pisca-som { 0%, 100% { opacity: 0.15; transform: scale(1); } 50% { opacity: 1; transform: scale(1.14); } }
+@keyframes brilho-som { 0%, 100% { box-shadow: 0 0 22px oklch(0.82 0.11 85 / 0.35); } 50% { box-shadow: 0 0 45px oklch(0.82 0.11 85 / 0.65); } }
+.som-ico { width: 1.35rem; height: 1.35rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; grid-area: 1 / 1; }
+.som-ico-on { display: none; }
+.ligado .som-ico-on { display: block; }
+.ligado .som-ico-off { display: none; }
+
+/* ---- Combinações de Tarot ---- */
+h3 { font-family: var(--titulo); font-weight: 600; font-size: 1.12rem; color: var(--ouro); margin: 0 0 .4rem; }
+.capa { display: block; width: 100%; max-width: 46rem; height: auto; margin: 1.2rem auto 0; border-radius: 1rem; border: 1px solid var(--borda); box-shadow: 0 16px 50px #0008; }
+.intro { font-family: var(--serifa); font-size: 1.15rem; color: var(--lavanda); max-width: 44rem; margin: 0 auto 1rem; text-align: center; }
+.escolha { display: grid; gap: .8rem; grid-template-columns: 1fr 1fr; max-width: 40rem; margin: 1rem auto; }
+.escolha label { display: block; font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--ouro); margin-bottom: .3rem; }
+.escolha select { width: 100%; font: inherit; font-size: 1rem; color: var(--texto); background: oklch(0.18 0.05 270); border: 1px solid var(--borda); border-radius: .8rem; padding: .7rem .8rem; }
+.escolha select:focus { outline: 2px solid var(--ouro); }
+.acoes { display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center; margin: .4rem 0 1.4rem; }
+.acoes button { cursor: pointer; border: 0; font: inherit; }
+.mesa { display: flex; gap: 1rem; justify-content: center; align-items: flex-start; margin: 0 auto 1rem; }
+.mesa figure { margin: 0; text-align: center; width: min(12rem, 42vw); }
+.mesa img { display: block; width: 100%; height: auto; border-radius: .7rem; border: 2px solid oklch(0.85 0.13 88 / .7); box-shadow: 0 10px 30px #0008; }
+.mesa figcaption { font-family: var(--titulo); font-size: .9rem; font-weight: 700; margin-top: .5rem; }
+.mesa figcaption small { display: block; font-family: Inter, sans-serif; font-size: .7rem; color: var(--suave); letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+.mesa .mais { align-self: center; font-family: var(--titulo); font-size: 2rem; color: var(--ouro); }
+.leitura { max-width: 44rem; margin: 0 auto; }
+.leitura p { font-family: var(--serifa); font-size: 1.17rem; line-height: 1.5; color: var(--lavanda); margin: 0 0 .7rem; }
+.leitura .titulo-par { font-family: var(--titulo); font-size: clamp(1.2rem, 3.4vw, 1.5rem); color: var(--texto); text-align: center; margin: 0 0 .8rem; }
+.leitura .chaves { display: flex; flex-wrap: wrap; gap: .35rem; justify-content: center; margin: 0 0 1rem; }
+.leitura .chaves span { font-size: .78rem; font-weight: 700; border: 1px solid var(--borda); background: var(--vidro); border-radius: 999px; padding: .25rem .65rem; }
+.leitura .conselho { margin-top: .8rem; padding: .8rem 1rem; border-radius: .9rem; background: oklch(0.85 0.13 88 / .1); border: 1px solid oklch(0.85 0.13 88 / .35); font-size: 1rem; color: var(--texto); }
+.leitura .conselho b { color: var(--ouro); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: .15rem; }
+.leitura .nota { font-size: .8rem; color: var(--suave); text-align: center; margin-top: .8rem; }
+.leitura .vazio { text-align: center; color: var(--suave); font-family: Inter, sans-serif; font-size: .95rem; }
+.regras { display: grid; gap: 1rem; }
+.regra { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; padding: 1rem; border-radius: 1.1rem; background: oklch(0.20 0.06 272 / .88); border: 1px solid var(--borda); }
+.regra p, .par p { font-family: var(--serifa); font-size: 1.1rem; line-height: 1.5; color: var(--lavanda); margin: 0; }
+.regra-cartas, .par-cartas { display: flex; gap: .4rem; }
+.regra-cartas img { width: 4.2rem; height: auto; border-radius: .35rem; border: 1px solid oklch(0.85 0.13 88 / .5); display: block; }
+.pares { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
+.par { padding: 1.1rem 1.2rem; border-radius: 1.2rem; background: oklch(0.20 0.06 272 / .88); border: 1px solid var(--borda); scroll-margin-top: 1rem; }
+.par-cartas { justify-content: center; margin-bottom: .7rem; }
+.par-cartas img { width: 6.2rem; height: auto; border-radius: .45rem; border: 1px solid oklch(0.85 0.13 88 / .6); display: block; }
+.par h3 { text-align: center; }
+.par .par-ver { font-family: Inter, sans-serif; font-size: .8rem; margin-top: .6rem; text-align: center; }
+.faq h3 { font-family: Inter, sans-serif; font-size: 1.02rem; color: var(--texto); margin: 1.1rem 0 .3rem; }
+.faq p { margin: 0; color: var(--lavanda); }
+@media (max-width: 34rem) {
+  .escolha { grid-template-columns: 1fr; }
+  .regra { grid-template-columns: 1fr; }
+  .regra-cartas { justify-content: center; }
+}
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://genialtarot.com/combinacoes-de-tarot#pagina", "name": "Combinações de Tarot: leia duas cartas juntas · Mestre Alberto", "description": "Combinações de tarot explicadas pelo Mestre Alberto: as regras para ler cartas juntas e uma ferramenta grátis para combinar dois Arcanos Maiores.", "url": "https://genialtarot.com/combinacoes-de-tarot", "inLanguage": "pt", "isPartOf": {"@type": "WebSite", "name": "Genial Tarot", "url": "https://genialtarot.com/"}, "author": {"@type": "Person", "name": "Mestre Alberto", "url": "https://genialtarot.com/sobre"}, "primaryImageOfPage": {"@id": "https://genialtarot.com/combinacoes-de-tarot.webp#imagem"}, "image": {"@id": "https://genialtarot.com/combinacoes-de-tarot.webp#imagem"}, "breadcrumb": {"@id": "https://genialtarot.com/combinacoes-de-tarot#migalhas"}, "datePublished": "2026-11-02", "dateModified": "2026-11-02"}, {"@type": "ImageObject", "@id": "https://genialtarot.com/combinacoes-de-tarot.webp#imagem", "contentUrl": "https://genialtarot.com/combinacoes-de-tarot.webp", "url": "https://genialtarot.com/combinacoes-de-tarot.webp", "width": 1200, "height": 630, "encodingFormat": "image/webp", "name": "Combinações de Tarot: O Sol e A Lua", "caption": "Combinação O Sol e A Lua no baralho do Mestre Alberto: combinações de tarot", "inLanguage": "pt", "creator": {"@type": "Person", "name": "Mestre Alberto", "url": "https://genialtarot.com/sobre"}, "copyrightHolder": {"@type": "Organization", "name": "Genial Tarot", "url": "https://genialtarot.com/"}, "creditText": "Mestre Alberto · Genial Tarot", "copyrightNotice": "© Genial Tarot"}, {"@type": "BreadcrumbList", "@id": "https://genialtarot.com/combinacoes-de-tarot#migalhas", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://genialtarot.com/"}, {"@type": "ListItem", "position": 2, "name": "Os Arcanos", "item": "https://genialtarot.com/arcanos"}, {"@type": "ListItem", "position": 3, "name": "Combinações de Tarot", "item": "https://genialtarot.com/combinacoes-de-tarot"}]}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que são combinações de tarot?", "acceptedAnswer": {"@type": "Answer", "text": "São as leituras de duas ou mais cartas em conjunto. Cada carta tem o seu significado, mas numa tiragem as cartas falam umas com as outras: uma carta difícil ao lado de uma luminosa já não diz o mesmo do que diria sozinha. Ler combinações é ler essa conversa entre as cartas."}}, {"@type": "Question", "name": "Qual é a carta que pesa mais numa combinação?", "acceptedAnswer": {"@type": "Answer", "text": "Um Arcano Maior pesa mais do que um Arcano Menor. Entre dois Arcanos Maiores, fala mais alto o que mexe mais com a vida, como A Torre, A Morte, O Diabo ou A Lua, e a outra carta lê-se à luz dele."}}, {"@type": "Question", "name": "A ordem das cartas muda o significado?", "acceptedAnswer": {"@type": "Answer", "text": "Muda. Nesta página, a primeira carta é a situação e a segunda é o que ela acrescenta ou para onde leva. A Lua seguida do Sol é o nevoeiro que levanta; O Sol seguido da Lua é uma alegria com um ponto ainda por esclarecer."}}, {"@type": "Question", "name": "Como se lê um Arcano Maior com um Arcano Menor?", "acceptedAnswer": {"@type": "Answer", "text": "O Arcano Maior dá o tema e o Arcano Menor mostra a área e a maneira. O naipe do Menor diz de que se fala: Paus é ação e trabalho, Copas é amor e sentimentos, Espadas é pensamento e decisões, Ouros é dinheiro, corpo e casa."}}, {"@type": "Question", "name": "A ferramenta de combinações substitui uma consulta?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A ferramenta junta os significados de duas cartas, de forma simbólica e igual para toda a gente. Numa consulta, as cartas leem-se com a sua pergunta, a sua história e as outras cartas da tiragem, e é aí que ganham sentido."}}]}
+</script>
+</head>
+<body>
+<button id="audio-fab" class="som-fix" aria-label="Ligar ou desligar o som"><svg class="som-ico som-ico-on" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><svg class="som-ico som-ico-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg></button>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+  <section class="heroi">
+    <img class="foto-mestre" src="mestre-diario.jpg" alt="Mestre Alberto, tarólogo" width="120" height="120" />
+    <div><span class="selo">🃏 Duas cartas ✦ baralho do Mestre</span></div>
+    <h1>Combinações de <span class="az">Tarot</span></h1>
+    <p class="sub">Uma carta sozinha diz uma coisa; ao lado de outra, diz outra. Escolha duas cartas e veja o que dizem juntas, com o baralho do Mestre Alberto e os significados de cada arcano aqui do site.</p>
+    <img class="capa" src="combinacoes-de-tarot.webp" alt="Combinação O Sol e A Lua no baralho do Mestre Alberto: combinações de tarot" width="1200" height="630" fetchpriority="high" />
+  </section>
+
+  <section class="cartao" id="ferramenta">
+    <h2>Junte duas <span class="az">cartas</span></h2>
+    <p class="intro">Escolha dois dos 22 Arcanos Maiores, ou deixe a sorte escolher. A primeira carta é a situação; a segunda é o que ela acrescenta.</p>
+    <div class="escolha">
+      <div><label for="c1">1.ª carta</label><select id="c1"><option value="">Escolha uma carta…</option><option value="0">0 · O Louco</option><option value="1">I · O Mago</option><option value="2">II · A Sacerdotisa</option><option value="3">III · A Imperatriz</option><option value="4">IV · O Imperador</option><option value="5">V · O Hierofante</option><option value="6">VI · Os Enamorados</option><option value="7">VII · O Carro</option><option value="8">VIII · A Força</option><option value="9">IX · O Eremita</option><option value="10">X · A Roda da Fortuna</option><option value="11">XI · A Justiça</option><option value="12">XII · O Enforcado</option><option value="13">XIII · A Morte</option><option value="14">XIV · A Temperança</option><option value="15">XV · O Diabo</option><option value="16">XVI · A Torre</option><option value="17">XVII · A Estrela</option><option value="18">XVIII · A Lua</option><option value="19">XIX · O Sol</option><option value="20">XX · O Julgamento</option><option value="21">XXI · O Mundo</option></select></div>
+      <div><label for="c2">2.ª carta</label><select id="c2"><option value="">Escolha uma carta…</option><option value="0">0 · O Louco</option><option value="1">I · O Mago</option><option value="2">II · A Sacerdotisa</option><option value="3">III · A Imperatriz</option><option value="4">IV · O Imperador</option><option value="5">V · O Hierofante</option><option value="6">VI · Os Enamorados</option><option value="7">VII · O Carro</option><option value="8">VIII · A Força</option><option value="9">IX · O Eremita</option><option value="10">X · A Roda da Fortuna</option><option value="11">XI · A Justiça</option><option value="12">XII · O Enforcado</option><option value="13">XIII · A Morte</option><option value="14">XIV · A Temperança</option><option value="15">XV · O Diabo</option><option value="16">XVI · A Torre</option><option value="17">XVII · A Estrela</option><option value="18">XVIII · A Lua</option><option value="19">XIX · O Sol</option><option value="20">XX · O Julgamento</option><option value="21">XXI · O Mundo</option></select></div>
+    </div>
+    <div class="acoes"><button type="button" class="btn ouro" id="sorte">🎲 Tirar duas ao acaso</button><button type="button" class="btn" id="trocar">⇄ Trocar a ordem</button></div>
+    <div class="mesa" id="mesa">
+      <figure><img id="img1" src="cartas/verso-gt.webp" alt="Verso da carta do baralho do Mestre Alberto" width="240" height="402" /><figcaption id="cap1"><small>1.ª carta</small>?</figcaption></figure>
+      <span class="mais" aria-hidden="true">+</span>
+      <figure><img id="img2" src="cartas/verso-gt.webp" alt="Verso da carta do baralho do Mestre Alberto" width="240" height="402" /><figcaption id="cap2"><small>2.ª carta</small>?</figcaption></figure>
+    </div>
+    <div class="leitura" id="leitura" aria-live="polite"><p class="vazio">Escolha as duas cartas para ver a leitura da combinação.</p></div>
+  </section>
+
+  <section class="cartao">
+    <h2>Como se <span class="az">combinam</span> as cartas</h2>
+    <p class="intro">Seis regras práticas para ler cartas juntas, com exemplos. Servem para qualquer tiragem, das três cartas à Cruz Celta.</p>
+    <div class="regras">
+<article class="regra"><div class="regra-cartas"><a href="/arcano-19-o-sol"><img src="/cartas/19-o-sol.webp" alt="O Sol, carta do baralho do Mestre Alberto, na combinação O Sol e Ás de Ouros" width="96" height="161" loading="lazy" decoding="async"></a><a href="/carta-as-de-ouros"><img src="/cartas/menores/ace-of-pentacles.webp" alt="Ás de Ouros, carta do baralho do Mestre Alberto, na combinação O Sol e Ás de Ouros" width="96" height="161" loading="lazy" decoding="async"></a></div><div><h3>1. O Arcano Maior dá o tema, o Menor mostra o terreno</h3><p>Os 22 Arcanos Maiores falam das grandes etapas da vida; os 56 Menores falam do dia a dia. Quando saem juntos, o Maior diz <em>o quê</em> e o Menor diz <em>onde</em> e <em>como</em>. Exemplo: <a href="/arcano-19-o-sol">O Sol</a> (sucesso, alegria, clareza) com o <a href="/carta-as-de-ouros">Ás de Ouros</a> (oportunidade, prosperidade) é um sucesso que se vê no dinheiro, numa oportunidade concreta.</p></div></article>
+<article class="regra"><div class="regra-cartas"><a href="/carta-dois-de-copas"><img src="/cartas/menores/two-of-cups.webp" alt="Dois de Copas, carta do baralho do Mestre Alberto, na combinação Dois de Copas e Dez de Copas" width="96" height="161" loading="lazy" decoding="async"></a><a href="/carta-dez-de-copas"><img src="/cartas/menores/ten-of-cups.webp" alt="Dez de Copas, carta do baralho do Mestre Alberto, na combinação Dois de Copas e Dez de Copas" width="96" height="161" loading="lazy" decoding="async"></a></div><div><h3>2. O naipe que se repete diz de que área se fala</h3><p>Numa tiragem com várias cartas do mesmo naipe, é esse naipe que marca o assunto. <b>Paus</b>: o fogo, a ação, a vontade, o trabalho e a criatividade. <b>Copas</b>: a água, os sentimentos, o amor, as relações e a intuição. <b>Espadas</b>: o ar, o pensamento, a palavra, as decisões e os conflitos que nos obrigam a ver claro. <b>Ouros</b>: a terra, o dinheiro, o corpo, a casa e tudo o que se constrói com tempo e paciência. Exemplo: <a href="/carta-dois-de-copas">Dois de Copas</a> (união, parceria) com <a href="/carta-dez-de-copas">Dez de Copas</a> (família, harmonia): mesmo que a pergunta fosse sobre trabalho, a resposta está no coração.</p></div></article>
+<article class="regra"><div class="regra-cartas"><a href="/carta-as-de-paus"><img src="/cartas/menores/ace-of-wands.webp" alt="Ás de Paus, carta do baralho do Mestre Alberto, na combinação Ás de Paus e Ás de Copas" width="96" height="161" loading="lazy" decoding="async"></a><a href="/carta-as-de-copas"><img src="/cartas/menores/ace-of-cups.webp" alt="Ás de Copas, carta do baralho do Mestre Alberto, na combinação Ás de Paus e Ás de Copas" width="96" height="161" loading="lazy" decoding="async"></a></div><div><h3>3. Números repetidos reforçam a mensagem</h3><p>Quando sai o mesmo número em naipes diferentes, a mensagem desse número fica mais forte. Vários <b>Ases</b> falam de começos (o Ás de Paus é começo e energia, o de Copas é abertura no amor, o de Espadas é clareza, o de Ouros é oportunidade). Vários <b>Cincos</b> falam de uma fase de atrito: competição, perda, conflito, dificuldade. Vários <b>Dez</b> mostram ciclos que chegam ao ponto final, para o bem (Dez de Copas: família, harmonia) ou para o difícil (Dez de Espadas: fim, bater no fundo). Exemplo: <a href="/carta-as-de-paus">Ás de Paus</a> com <a href="/carta-as-de-copas">Ás de Copas</a> é um começo com energia e com coração.</p></div></article>
+<article class="regra"><div class="regra-cartas"><a href="/carta-cavaleiro-de-copas"><img src="/cartas/menores/knight-of-cups.webp" alt="Cavaleiro de Copas, carta do baralho do Mestre Alberto, na combinação Cavaleiro de Copas e Os Enamorados" width="96" height="161" loading="lazy" decoding="async"></a><a href="/arcano-06-os-enamorados"><img src="/cartas/06-os-enamorados.webp" alt="Os Enamorados, carta do baralho do Mestre Alberto, na combinação Cavaleiro de Copas e Os Enamorados" width="96" height="161" loading="lazy" decoding="async"></a></div><div><h3>4. As figuras da corte costumam ser pessoas</h3><p>Valetes, Cavaleiros, Rainhas e Reis podem representar alguém da sua vida, ou a atitude que a situação lhe pede. Os <b>Valetes</b> trazem notícias, mensagens e aprendizagem; os <b>Cavaleiros</b> trazem movimento (ação, propostas, rapidez, persistência); as <b>Rainhas</b> falam de confiança, empatia, lucidez e cuidado; os <b>Reis</b>, de liderança, autoridade e solidez. Exemplo: o <a href="/carta-cavaleiro-de-copas">Cavaleiro de Copas</a> (romance, proposta) ao lado dos <a href="/arcano-06-os-enamorados">Enamorados</a> pode ser uma proposta que chega e que obriga a uma escolha.</p></div></article>
+<article class="regra"><div class="regra-cartas"><a href="/carta-tres-de-espadas"><img src="/cartas/menores/three-of-swords.webp" alt="Três de Espadas, carta do baralho do Mestre Alberto, na combinação Três de Espadas e A Estrela" width="96" height="161" loading="lazy" decoding="async"></a><a href="/arcano-17-a-estrela"><img src="/cartas/17-a-estrela.webp" alt="A Estrela, carta do baralho do Mestre Alberto, na combinação Três de Espadas e A Estrela" width="96" height="161" loading="lazy" decoding="async"></a></div><div><h3>5. As cartas vizinhas mudam o sentido umas das outras</h3><p>Uma carta nunca se lê sozinha: lê-se com as que saem ao lado dela e com a sua pergunta. A mesma carta difícil muda de cor com uma vizinha luminosa, e vice-versa. Exemplo: o <a href="/carta-tres-de-espadas">Três de Espadas</a> (desgosto, mágoa) ao lado da <a href="/arcano-17-a-estrela">Estrela</a> (esperança, cura) já não é só a mágoa: é a mágoa a sarar.</p></div></article>
+<article class="regra"><div class="regra-cartas"><a href="/carta-quatro-de-ouros"><img src="/cartas/menores/four-of-pentacles.webp" alt="Quatro de Ouros, carta do baralho do Mestre Alberto, na combinação Quatro de Ouros e A Torre" width="96" height="161" loading="lazy" decoding="async"></a><a href="/arcano-16-a-torre"><img src="/cartas/16-a-torre.webp" alt="A Torre, carta do baralho do Mestre Alberto, na combinação Quatro de Ouros e A Torre" width="96" height="161" loading="lazy" decoding="async"></a></div><div><h3>6. Há sempre uma carta que pesa mais</h3><p>Um Arcano Maior pesa mais do que um Menor. Entre duas cartas, fala mais alto a que mexe mais com a vida: A Torre, A Morte, O Diabo ou A Lua dão a cor a quase qualquer combinação, e a outra carta lê-se à luz delas. Exemplo: o <a href="/carta-quatro-de-ouros">Quatro de Ouros</a> (segurança, poupança, controlo) com <a href="/arcano-16-a-torre">A Torre</a>: é A Torre que manda, e a segurança que julgava ter pode ser abalada.</p></div></article>
+    </div>
+  </section>
+
+  <section class="cartao">
+    <h2>As combinações mais <span class="az">procuradas</span></h2>
+    <p class="intro">Vinte pares de Arcanos Maiores, cada um com a sua leitura, escrita a partir do significado de cada carta.</p>
+    <div class="pares">
+<article class="par" id="par-0-1"><div class="par-cartas"><a href="/arcano-00-o-louco"><img src="/cartas/00-o-louco.webp" alt="Combinação O Louco e O Mago no baralho do Mestre Alberto: O Louco" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-01-o-mago"><img src="/cartas/01-o-mago.webp" alt="Combinação O Louco e O Mago no baralho do Mestre Alberto: O Mago" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>O Louco + O Mago</h3><p>É a combinação dos começos que têm pernas para andar. O Louco traz a coragem de dar o primeiro passo sem garantias; O Mago diz-lhe que, desta vez, já tem em cima da mesa tudo o que precisa: talento, ferramentas e ocasião. Juntas, falam de uma ideia que finalmente sai do papel, de um negócio que arranca, de uma mudança que deixa de ser sonho. O risco é a pressa de quem salta sem juntar as peças. O conselho: avance, mas use o que já sabe fazer. A certeza só chega depois de andar.</p><p class="par-ver"><a href="/arcano-00-o-louco">O Louco</a> · <a href="/arcano-01-o-mago">O Mago</a> · <a href="#ferramenta" data-par="0-1">Ver na ferramenta</a></p></article>
+<article class="par" id="par-6-16"><div class="par-cartas"><a href="/arcano-06-os-enamorados"><img src="/cartas/06-os-enamorados.webp" alt="Combinação Os Enamorados e A Torre no baralho do Mestre Alberto: Os Enamorados" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-16-a-torre"><img src="/cartas/16-a-torre.webp" alt="Combinação Os Enamorados e A Torre no baralho do Mestre Alberto: A Torre" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>Os Enamorados + A Torre</h3><p>Uma escolha e um abalo. Os Enamorados falam de amor, mas sobretudo de escolha; A Torre traz a verdade que rebenta de repente. Juntas, podem anunciar uma relação posta à prova por algo que vem à luz, ou uma decisão que deixou de poder esperar porque a estrutura cedeu. Não é castigo: o que cai aqui é o que estava mal construído. Se a relação tem alicerces, sai disto mais honesta; se não tem, a carta poupa-lhe anos. Pergunte-se o que valoriza de facto, porque é isso que vai decidir por si.</p><p class="par-ver"><a href="/arcano-06-os-enamorados">Os Enamorados</a> · <a href="/arcano-16-a-torre">A Torre</a> · <a href="#ferramenta" data-par="6-16">Ver na ferramenta</a></p></article>
+<article class="par" id="par-13-17"><div class="par-cartas"><a href="/arcano-13-a-morte"><img src="/cartas/13-a-morte.webp" alt="Combinação A Morte e A Estrela no baralho do Mestre Alberto: A Morte" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-17-a-estrela"><img src="/cartas/17-a-estrela.webp" alt="Combinação A Morte e A Estrela no baralho do Mestre Alberto: A Estrela" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>A Morte + A Estrela</h3><p>Das combinações mais bonitas do baralho, apesar do nome. A Morte fecha um capítulo de que não se foge: uma relação, um emprego, uma maneira de ser que já não cabe em si. A Estrela é o céu limpo depois da tempestade: a esperança que volta devagar, a ferida que sara. Juntas, dizem que o fim já está feito, ou quase, e que do outro lado há cura. Não tente ressuscitar o que acabou. Deixe ir e siga a luz que vem a seguir: é verdadeira.</p><p class="par-ver"><a href="/arcano-13-a-morte">A Morte</a> · <a href="/arcano-17-a-estrela">A Estrela</a> · <a href="#ferramenta" data-par="13-17">Ver na ferramenta</a></p></article>
+<article class="par" id="par-18-19"><div class="par-cartas"><a href="/arcano-18-a-lua"><img src="/cartas/18-a-lua.webp" alt="Combinação A Lua e O Sol no baralho do Mestre Alberto: A Lua" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-19-o-sol"><img src="/cartas/19-o-sol.webp" alt="Combinação A Lua e O Sol no baralho do Mestre Alberto: O Sol" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>A Lua + O Sol</h3><p>A noite e o dia. A Lua é a carta das dúvidas, dos medos antigos e das coisas ditas pela metade; O Sol é a mais luminosa do baralho, sem letras miudinhas. Lado a lado, falam de algo que estava escondido e que vem à luz, e é bom. Se O Sol aparece depois da Lua, o nevoeiro levanta e a resposta fica clara; se aparece antes, há uma alegria verdadeira, mas com um ponto ainda por esclarecer. Em qualquer ordem, o conselho é o mesmo: não decida no meio do nevoeiro, espere pela clareza que esta combinação traz.</p><p class="par-ver"><a href="/arcano-18-a-lua">A Lua</a> · <a href="/arcano-19-o-sol">O Sol</a> · <a href="#ferramenta" data-par="18-19">Ver na ferramenta</a></p></article>
+<article class="par" id="par-10-21"><div class="par-cartas"><a href="/arcano-10-a-roda-da-fortuna"><img src="/cartas/10-a-roda-da-fortuna.webp" alt="Combinação A Roda da Fortuna e O Mundo no baralho do Mestre Alberto: A Roda da Fortuna" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-21-o-mundo"><img src="/cartas/21-o-mundo.webp" alt="Combinação A Roda da Fortuna e O Mundo no baralho do Mestre Alberto: O Mundo" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>A Roda da Fortuna + O Mundo</h3><p>A roda vira e o círculo fecha-se. A Roda da Fortuna traz a viragem que chega sem pedir licença: uma oportunidade, um encontro, uma notícia que reorganiza o ano. O Mundo é a última carta, a do objetivo atingido e da etapa concluída com orgulho. Juntas, dizem que a mudança que está a acontecer leva a bom porto, e muitas vezes a horizontes maiores: estrangeiro, mudança de país, um projeto que chega mais longe. Se a roda está a subir, aproveite agora. E comemore antes de começar a próxima etapa.</p><p class="par-ver"><a href="/arcano-10-a-roda-da-fortuna">A Roda da Fortuna</a> · <a href="/arcano-21-o-mundo">O Mundo</a> · <a href="#ferramenta" data-par="10-21">Ver na ferramenta</a></p></article>
+<article class="par" id="par-6-15"><div class="par-cartas"><a href="/arcano-06-os-enamorados"><img src="/cartas/06-os-enamorados.webp" alt="Combinação Os Enamorados e O Diabo no baralho do Mestre Alberto: Os Enamorados" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-15-o-diabo"><img src="/cartas/15-o-diabo.webp" alt="Combinação Os Enamorados e O Diabo no baralho do Mestre Alberto: O Diabo" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>Os Enamorados + O Diabo</h3><p>Desejo e escolha no mesmo lance. Os Enamorados pedem uma escolha feita pelo que valoriza de facto; O Diabo mostra aquilo que o prende e que, no fundo, escolhe manter. No amor, esta combinação fala de atração forte, mas também de dependência: a relação que faz mal e de que não se sai, o desejo que decide por si. As correntes do Diabo estão largas. A pergunta desta combinação é simples e difícil: está a escolher com liberdade ou a ficar porque é mais fácil?</p><p class="par-ver"><a href="/arcano-06-os-enamorados">Os Enamorados</a> · <a href="/arcano-15-o-diabo">O Diabo</a> · <a href="#ferramenta" data-par="6-15">Ver na ferramenta</a></p></article>
+<article class="par" id="par-16-17"><div class="par-cartas"><a href="/arcano-16-a-torre"><img src="/cartas/16-a-torre.webp" alt="Combinação A Torre e A Estrela no baralho do Mestre Alberto: A Torre" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-17-a-estrela"><img src="/cartas/17-a-estrela.webp" alt="Combinação A Torre e A Estrela no baralho do Mestre Alberto: A Estrela" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>A Torre + A Estrela</h3><p>São cartas seguidas na sequência dos Arcanos Maiores (XVI e XVII), e a ordem conta a história toda: primeiro cai o que estava mal construído, depois vem o céu limpo. A Torre é o despedimento inesperado, a verdade que rebenta, a separação que ninguém viu chegar; A Estrela diz que valeu a pena aguentar e que a confiança se recupera. Se está no meio do susto, esta combinação é um consolo honesto: o que se construir a seguir fica em chão firme.</p><p class="par-ver"><a href="/arcano-16-a-torre">A Torre</a> · <a href="/arcano-17-a-estrela">A Estrela</a> · <a href="#ferramenta" data-par="16-17">Ver na ferramenta</a></p></article>
+<article class="par" id="par-2-18"><div class="par-cartas"><a href="/arcano-02-a-sacerdotisa"><img src="/cartas/02-a-sacerdotisa.webp" alt="Combinação A Sacerdotisa e A Lua no baralho do Mestre Alberto: A Sacerdotisa" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-18-a-lua"><img src="/cartas/18-a-lua.webp" alt="Combinação A Sacerdotisa e A Lua no baralho do Mestre Alberto: A Lua" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>A Sacerdotisa + A Lua</h3><p>Duas cartas do que não se vê. A Sacerdotisa fala do saber interior e do que não foi dito; A Lua fala de medos antigos, de sonhos e de informação que falta. Juntas, pedem que distinga a intuição verdadeira da imaginação que preenche os buracos, quase sempre com o pior. Preste atenção aos sonhos e ao que sente no corpo, mas não tome decisões grandes enquanto o nevoeiro não levantar. Fique quieto o tempo suficiente para ouvir a resposta que já sabe.</p><p class="par-ver"><a href="/arcano-02-a-sacerdotisa">A Sacerdotisa</a> · <a href="/arcano-18-a-lua">A Lua</a> · <a href="#ferramenta" data-par="2-18">Ver na ferramenta</a></p></article>
+<article class="par" id="par-3-4"><div class="par-cartas"><a href="/arcano-03-a-imperatriz"><img src="/cartas/03-a-imperatriz.webp" alt="Combinação A Imperatriz e O Imperador no baralho do Mestre Alberto: A Imperatriz" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-04-o-imperador"><img src="/cartas/04-o-imperador.webp" alt="Combinação A Imperatriz e O Imperador no baralho do Mestre Alberto: O Imperador" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>A Imperatriz + O Imperador</h3><p>O par que constrói, e são cartas seguidas (III e IV). A Imperatriz é a carta do que cresce e dá fruto; O Imperador dá-lhe estrutura: contratos, casas, regras claras, uma decisão tomada de uma vez por todas. Juntas, falam de projetos feitos para durar, de famílias e casas que se organizam, de abundância que se protege. No amor, é a relação que passa do sentimento para a vida construída a dois. O conselho: deixe as coisas amadurecerem no tempo delas, mas dê-lhes um plano e um orçamento.</p><p class="par-ver"><a href="/arcano-03-a-imperatriz">A Imperatriz</a> · <a href="/arcano-04-o-imperador">O Imperador</a> · <a href="#ferramenta" data-par="3-4">Ver na ferramenta</a></p></article>
+<article class="par" id="par-13-20"><div class="par-cartas"><a href="/arcano-13-a-morte"><img src="/cartas/13-a-morte.webp" alt="Combinação A Morte e O Julgamento no baralho do Mestre Alberto: A Morte" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-20-o-julgamento"><img src="/cartas/20-o-julgamento.webp" alt="Combinação A Morte e O Julgamento no baralho do Mestre Alberto: O Julgamento" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>A Morte + O Julgamento</h3><p>Duas cartas que partilham a palavra «renascer». A Morte fecha um capítulo; O Julgamento é a chamada para fazer o balanço e decidir o que faz da vida daqui para a frente. Juntas, falam de grandes viragens: uma fase que termina e uma vida que recomeça com outra consciência. Alguma coisa do passado pode voltar, não para o prender, mas para ser fechada em condições. Não ressuscite o que acabou. Responda à chamada.</p><p class="par-ver"><a href="/arcano-13-a-morte">A Morte</a> · <a href="/arcano-20-o-julgamento">O Julgamento</a> · <a href="#ferramenta" data-par="13-20">Ver na ferramenta</a></p></article>
+<article class="par" id="par-9-12"><div class="par-cartas"><a href="/arcano-09-o-eremita"><img src="/cartas/09-o-eremita.webp" alt="Combinação O Eremita e O Enforcado no baralho do Mestre Alberto: O Eremita" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-12-o-enforcado"><img src="/cartas/12-o-enforcado.webp" alt="Combinação O Eremita e O Enforcado no baralho do Mestre Alberto: O Enforcado" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>O Eremita + O Enforcado</h3><p>Uma combinação de pausa. O Eremita afasta-se do barulho para conseguir pensar; O Enforcado está parado de propósito e vê, do avesso, o que ninguém vê. Juntas, dizem que este não é o momento de forçar: é o momento de recolher, estudar e esperar o que não depende de si. Pode parecer que nada anda, mas é aqui que se percebe o que se quer. Não tenha medo do silêncio nem da espera: as duas têm propósito.</p><p class="par-ver"><a href="/arcano-09-o-eremita">O Eremita</a> · <a href="/arcano-12-o-enforcado">O Enforcado</a> · <a href="#ferramenta" data-par="9-12">Ver na ferramenta</a></p></article>
+<article class="par" id="par-7-8"><div class="par-cartas"><a href="/arcano-07-o-carro"><img src="/cartas/07-o-carro.webp" alt="Combinação O Carro e A Força no baralho do Mestre Alberto: O Carro" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-08-a-forca"><img src="/cartas/08-a-forca.webp" alt="Combinação O Carro e A Força no baralho do Mestre Alberto: A Força" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>O Carro + A Força</h3><p>Duas maneiras de vencer, e são cartas seguidas na sequência (VII e VIII). O Carro avança com as rédeas na mão e arranca a vitória com foco; A Força domina o leão sem violência, pela mão calma de quem não tem de provar nada. Juntas, dizem que vai conseguir, desde que junte a disciplina à paciência. A pressa pode ganhar uma corrida, mas é a serenidade que segura o resultado. Não largue as rédeas e responda com calma.</p><p class="par-ver"><a href="/arcano-07-o-carro">O Carro</a> · <a href="/arcano-08-a-forca">A Força</a> · <a href="#ferramenta" data-par="7-8">Ver na ferramenta</a></p></article>
+<article class="par" id="par-11-20"><div class="par-cartas"><a href="/arcano-11-a-justica"><img src="/cartas/11-a-justica.webp" alt="Combinação A Justiça e O Julgamento no baralho do Mestre Alberto: A Justiça" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-20-o-julgamento"><img src="/cartas/20-o-julgamento.webp" alt="Combinação A Justiça e O Julgamento no baralho do Mestre Alberto: O Julgamento" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>A Justiça + O Julgamento</h3><p>Duas cartas de verdade e de contas feitas. A Justiça pesa sem simpatias e mostra a verdade dos factos; O Julgamento chama ao balanço e ao perdão, dado ou pedido. Aparecem juntas em processos, partilhas, contratos e decisões que fecham assuntos antigos. É boa notícia para quem tem razão e agiu bem. E pedem-lhe o mesmo: honestidade consigo. Assuma a sua parte e feche em condições o que ficou por resolver.</p><p class="par-ver"><a href="/arcano-11-a-justica">A Justiça</a> · <a href="/arcano-20-o-julgamento">O Julgamento</a> · <a href="#ferramenta" data-par="11-20">Ver na ferramenta</a></p></article>
+<article class="par" id="par-6-14"><div class="par-cartas"><a href="/arcano-06-os-enamorados"><img src="/cartas/06-os-enamorados.webp" alt="Combinação Os Enamorados e A Temperança no baralho do Mestre Alberto: Os Enamorados" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-14-a-temperanca"><img src="/cartas/14-a-temperanca.webp" alt="Combinação Os Enamorados e A Temperança no baralho do Mestre Alberto: A Temperança" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>Os Enamorados + A Temperança</h3><p>Amor com medida. Os Enamorados falam de união verdadeira e de escolha; A Temperança é a carta das reconciliações e dos acordos em que ninguém perde a cara. Juntas, falam de relações que se acertam com paciência, de pazes feitas, de escolhas tomadas sem extremos. Se houve afastamento, esta é uma combinação de reaproximação lenta. A resposta está no meio, e chega-se lá devagar.</p><p class="par-ver"><a href="/arcano-06-os-enamorados">Os Enamorados</a> · <a href="/arcano-14-a-temperanca">A Temperança</a> · <a href="#ferramenta" data-par="6-14">Ver na ferramenta</a></p></article>
+<article class="par" id="par-1-21"><div class="par-cartas"><a href="/arcano-01-o-mago"><img src="/cartas/01-o-mago.webp" alt="Combinação O Mago e O Mundo no baralho do Mestre Alberto: O Mago" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-21-o-mundo"><img src="/cartas/21-o-mundo.webp" alt="Combinação O Mago e O Mundo no baralho do Mestre Alberto: O Mundo" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>O Mago + O Mundo</h3><p>A primeira carta de ação e a última da viagem. O Mago tem o talento, as ferramentas e a ocasião; O Mundo é o objetivo atingido, o círculo que se fecha com orgulho. Juntas, falam de um projeto que vai do início ao fim: a ideia que sai do papel e chega a bom porto, às vezes com horizontes no estrangeiro. O poder não vem de fora, vem de usar o que já tem. E quando lá chegar, comemore. Merece.</p><p class="par-ver"><a href="/arcano-01-o-mago">O Mago</a> · <a href="/arcano-21-o-mundo">O Mundo</a> · <a href="#ferramenta" data-par="1-21">Ver na ferramenta</a></p></article>
+<article class="par" id="par-0-21"><div class="par-cartas"><a href="/arcano-00-o-louco"><img src="/cartas/00-o-louco.webp" alt="Combinação O Louco e O Mundo no baralho do Mestre Alberto: O Louco" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-21-o-mundo"><img src="/cartas/21-o-mundo.webp" alt="Combinação O Louco e O Mundo no baralho do Mestre Alberto: O Mundo" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>O Louco + O Mundo</h3><p>O princípio e o fim do caminho dos Arcanos Maiores. O Louco é o primeiro passo sem garantias; O Mundo é a última carta, a mais completa. Juntas, falam de um ciclo que se fecha para outro começar: o curso terminado e a viagem a seguir, a etapa concluída e a vontade de partir de novo. Muitas vezes aparecem em mudanças de país e em horizontes maiores. Comemore o que fechou e depois vá, mas vá desperto.</p><p class="par-ver"><a href="/arcano-00-o-louco">O Louco</a> · <a href="/arcano-21-o-mundo">O Mundo</a> · <a href="#ferramenta" data-par="0-21">Ver na ferramenta</a></p></article>
+<article class="par" id="par-19-21"><div class="par-cartas"><a href="/arcano-19-o-sol"><img src="/cartas/19-o-sol.webp" alt="Combinação O Sol e O Mundo no baralho do Mestre Alberto: O Sol" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-21-o-mundo"><img src="/cartas/21-o-mundo.webp" alt="Combinação O Sol e O Mundo no baralho do Mestre Alberto: O Mundo" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>O Sol + O Mundo</h3><p>Uma das combinações mais felizes do baralho. O Sol traz sucesso, saúde e alegria simples; O Mundo traz o objetivo atingido e a recompensa. Juntas, dizem que aquilo por que trabalhou está a chegar ao fim, e chega bem, com reconhecimento à vista de todos. Se andava a perguntar se ia correr bem, a resposta é sim. Aproveite sem desconfiar e comemore antes de começar a próxima etapa.</p><p class="par-ver"><a href="/arcano-19-o-sol">O Sol</a> · <a href="/arcano-21-o-mundo">O Mundo</a> · <a href="#ferramenta" data-par="19-21">Ver na ferramenta</a></p></article>
+<article class="par" id="par-15-16"><div class="par-cartas"><a href="/arcano-15-o-diabo"><img src="/cartas/15-o-diabo.webp" alt="Combinação O Diabo e A Torre no baralho do Mestre Alberto: O Diabo" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-16-a-torre"><img src="/cartas/16-a-torre.webp" alt="Combinação O Diabo e A Torre no baralho do Mestre Alberto: A Torre" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>O Diabo + A Torre</h3><p>Cartas seguidas na sequência (XV e XVI), e a segunda responde à primeira. O Diabo mostra o que o prende e que, no fundo, escolhe manter; A Torre faz cair de repente o que estava mal construído. Juntas, dizem que aquilo que não largou a bem pode cair a mal: o hábito, a relação, o dinheiro que comprava silêncio. Não é castigo, é libertação, mesmo que assuste. Se ainda pode escolher, solte as correntes antes que a torre caia por si.</p><p class="par-ver"><a href="/arcano-15-o-diabo">O Diabo</a> · <a href="/arcano-16-a-torre">A Torre</a> · <a href="#ferramenta" data-par="15-16">Ver na ferramenta</a></p></article>
+<article class="par" id="par-13-16"><div class="par-cartas"><a href="/arcano-13-a-morte"><img src="/cartas/13-a-morte.webp" alt="Combinação A Morte e A Torre no baralho do Mestre Alberto: A Morte" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-16-a-torre"><img src="/cartas/16-a-torre.webp" alt="Combinação A Morte e A Torre no baralho do Mestre Alberto: A Torre" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>A Morte + A Torre</h3><p>Duas cartas de fim, de naturezas diferentes. A Morte é o fim de um capítulo de que não se foge; A Torre é a queda súbita, a separação ou o despedimento que ninguém viu chegar. Juntas, falam de uma mudança grande e a sério: um ciclo que acaba com um abanão. Assusta, mas lembre-se do que as duas dizem: o que morre abre passagem ao que vem, e o que cai já não tinha alicerces. Deixe ir. O que se construir a seguir fica em chão firme.</p><p class="par-ver"><a href="/arcano-13-a-morte">A Morte</a> · <a href="/arcano-16-a-torre">A Torre</a> · <a href="#ferramenta" data-par="13-16">Ver na ferramenta</a></p></article>
+<article class="par" id="par-5-6"><div class="par-cartas"><a href="/arcano-05-o-hierofante"><img src="/cartas/05-o-hierofante.webp" alt="Combinação O Hierofante e Os Enamorados no baralho do Mestre Alberto: O Hierofante" width="120" height="201" loading="lazy" decoding="async"></a><a href="/arcano-06-os-enamorados"><img src="/cartas/06-os-enamorados.webp" alt="Combinação O Hierofante e Os Enamorados no baralho do Mestre Alberto: Os Enamorados" width="120" height="201" loading="lazy" decoding="async"></a></div><h3>O Hierofante + Os Enamorados</h3><p>Cartas seguidas (V e VI) e uma combinação clássica de compromisso. O Hierofante fala de compromissos formais (casamento, contrato, batismo) e do conselho pedido à pessoa certa; Os Enamorados falam de união verdadeira e de escolha. Juntas, podem anunciar um pedido, um casamento, uma relação que se assume perante os outros. Também pedem que a escolha seja sua, e não só da tradição. Escolha pelo que valoriza de facto.</p><p class="par-ver"><a href="/arcano-05-o-hierofante">O Hierofante</a> · <a href="/arcano-06-os-enamorados">Os Enamorados</a> · <a href="#ferramenta" data-par="5-6">Ver na ferramenta</a></p></article>
+    </div>
+  </section>
+
+  <section class="cartao faq">
+    <h2>Perguntas <span class="az">frequentes</span></h2>
+    <h3>O que são combinações de tarot?</h3><p>São as leituras de duas ou mais cartas em conjunto. Cada carta tem o seu significado, mas numa tiragem as cartas falam umas com as outras: uma carta difícil ao lado de uma luminosa já não diz o mesmo do que diria sozinha. Ler combinações é ler essa conversa entre as cartas.</p>
+    <h3>Qual é a carta que pesa mais numa combinação?</h3><p>Um Arcano Maior pesa mais do que um Arcano Menor. Entre dois Arcanos Maiores, fala mais alto o que mexe mais com a vida, como A Torre, A Morte, O Diabo ou A Lua, e a outra carta lê-se à luz dele.</p>
+    <h3>A ordem das cartas muda o significado?</h3><p>Muda. Nesta página, a primeira carta é a situação e a segunda é o que ela acrescenta ou para onde leva. A Lua seguida do Sol é o nevoeiro que levanta; O Sol seguido da Lua é uma alegria com um ponto ainda por esclarecer.</p>
+    <h3>Como se lê um Arcano Maior com um Arcano Menor?</h3><p>O Arcano Maior dá o tema e o Arcano Menor mostra a área e a maneira. O naipe do Menor diz de que se fala: Paus é ação e trabalho, Copas é amor e sentimentos, Espadas é pensamento e decisões, Ouros é dinheiro, corpo e casa.</p>
+    <h3>A ferramenta de combinações substitui uma consulta?</h3><p>Não. A ferramenta junta os significados de duas cartas, de forma simbólica e igual para toda a gente. Numa consulta, as cartas leem-se com a sua pergunta, a sua história e as outras cartas da tiragem, e é aí que ganham sentido.</p>
+  </section>
+
+  <section class="cartao chamada">
+    <h2>E as <span class="az">suas</span> cartas?</h2>
+    <p>Aqui as combinações são iguais para toda a gente. Numa consulta, as cartas leem-se com a sua pergunta e com a sua vida, e é aí que ganham sentido.</p>
+    <div class="botoes"><a class="btn ouro" href="loja.html#cat-consultas">🔮 Marcar uma consulta</a><a class="btn" href="/arcanos">📖 Os 22 Arcanos</a><a class="btn" href="/tarot-gratis">🃏 Tarot Grátis</a><a class="btn" href="/carta-de-tarot">✨ A sua Carta de Tarot</a><a class="btn" href="/tiragem-tres-cartas">🔺 Tiragem de três cartas</a></div>
+  </section>
+  <p class="fonte">Os significados vêm das páginas de cada arcano, escritas pelo Mestre Alberto. As combinações são leituras simbólicas, para inspirar, e não substituem aconselhamento profissional.</p>
+</div>
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script>
+/* Combinações de Tarot — o leitor de dois Arcanos Maiores (02/11/2026).
+   Os sentidos de cada carta são os das páginas /arcano-* do site (palavras-chave e texto «Em pé»), resumidos;
+   as frases variam por regras fixas (o mesmo par dá sempre a mesma leitura). */
+var CT = (function () {
+  // [nome, número romano, ficheiro, tom (L luz, N neutro, S sombra), palavras-chave, traz, acrescenta, conselho]
+  const AR = [
+    ["O Louco","0","00-o-louco","L",["começo","coragem","confiança","o salto"],"um começo sem garantias, vivido com o coração leve","a coragem de dar o primeiro passo antes de ter tudo calculado","Vá, mas vá desperto: a certeza só chega depois de andar."],
+    ["O Mago","I","01-o-mago","L",["poder pessoal","talento","ação","recursos"],"o talento, as ferramentas e a ocasião ao mesmo tempo","a vontade que transforma uma ideia em obra","Use o que já tem: o poder não vem de fora."],
+    ["A Sacerdotisa","II","02-a-sacerdotisa","N",["intuição","silêncio","segredo","saber interior"],"aquilo que você já sabe e ainda não admitiu a si próprio","a escuta do que não foi dito e do que se sente sem explicar","Fique quieto o tempo suficiente para ouvir a resposta que já sabe."],
+    ["A Imperatriz","III","03-a-imperatriz","L",["abundância","criação","cuidado","fertilidade"],"aquilo que cresce e dá fruto","a abundância de ter o suficiente e saber desfrutá-lo","Deixe as coisas amadurecerem no tempo delas."],
+    ["O Imperador","IV","04-o-imperador","N",["estrutura","autoridade","disciplina","proteção"],"ordem, limites e responsabilidade assumida","a estrutura que faz durar: um horário, um orçamento, uma decisão tomada de vez","Dê estrutura ao que quer: um horário, um orçamento, uma decisão tomada de uma vez por todas."],
+    ["O Hierofante","V","05-o-hierofante","N",["tradição","ensino","fé","compromisso"],"um caminho já andado por outros e a sabedoria de aproveitar essa experiência","o conselho pedido à pessoa certa, ou um compromisso formal","Procure o mestre, o livro ou a regra que já foi testada, em vez de reinventar tudo sozinho."],
+    ["Os Enamorados","VI","06-os-enamorados","N",["amor","escolha","união","valores"],"uma escolha entre duas estradas","a escolha feita pelo que valoriza de facto, e a união verdadeira","Escolha pelo que valoriza de facto: escolher uma coisa é deixar outra."],
+    ["O Carro","VII","07-o-carro","L",["vitória","vontade","rumo","domínio"],"um avanço com as rédeas na mão, mesmo com forças a puxar para lados opostos","a vitória conquistada com foco e disciplina","Não largue as rédeas nem desvie o olhar do fim."],
+    ["A Força","VIII","08-a-forca","N",["coragem serena","paciência","domínio de si","compaixão"],"a força serena de quem domina os próprios impulsos","a paciência de aguentar sem perder a calma","Responda com calma: tem mais fundo do que julga."],
+    ["O Eremita","IX","09-o-eremita","N",["recolhimento","procura","sabedoria","verdade"],"um tempo de recolhimento, longe do barulho","a lanterna de quem se afasta para conseguir pensar","Afaste-se do barulho e não tenha medo do silêncio."],
+    ["A Roda da Fortuna","X","10-a-roda-da-fortuna","L",["ciclos","destino","viragem","sorte"],"uma viragem que chega sem pedir licença","a oportunidade, o encontro ou a notícia que reorganiza o ano","Se a roda está a subir, aproveite agora: este é o momento de agir."],
+    ["A Justiça","XI","11-a-justica","N",["verdade","equilíbrio","consequência","lei"],"a verdade dos factos e a consequência de cada ato","um peso justo, sem simpatias, nas decisões e nos contratos","Seja honesto consigo e assuma a sua parte no que aconteceu."],
+    ["O Enforcado","XII","12-o-enforcado","N",["pausa","outra visão","entrega","sacrifício"],"uma paragem que tem propósito","o olhar do avesso, que vê o que ninguém vê","Deixe de forçar: pare e olhe a situação do avesso."],
+    ["A Morte","XIII","13-a-morte","S",["fim","transformação","passagem","renascer"],"o fim de um capítulo de que não se foge","a transformação que abre passagem ao que vem","Não tente ressuscitar o que já acabou. Deixe ir, e o alívio chega."],
+    ["A Temperança","XIV","14-a-temperanca","N",["equilíbrio","paciência","cura","medida"],"a medida certa, encontrada devagar","a reconciliação e a cura lenta, longe dos extremos","Nem tudo nem nada: procure o meio, com paciência."],
+    ["O Diabo","XV","15-o-diabo","S",["dependência","ilusão","desejo","prisão"],"aquilo que o prende e que, no fundo, escolhe manter","o espelho do desejo e do apego ao que é material","Pergunte-se o que ganha em ficar preso: as correntes estão largas."],
+    ["A Torre","XVI","16-a-torre","S",["rutura","verdade súbita","choque","limpeza"],"a queda súbita do que estava mal construído","a verdade que rebenta e deixa o terreno limpo","Deixe cair o que não tinha alicerces e construa a seguir em chão firme."],
+    ["A Estrela","XVII","17-a-estrela","L",["esperança","cura","fé","recomeço"],"a esperança que volta devagar, depois da tempestade","a cura e a confiança que se recupera","Siga essa luz: é verdadeira."],
+    ["A Lua","XVIII","18-a-lua","S",["ilusão","medo","sonhos","o que não se vê"],"dúvidas, medos antigos e coisas ditas pela metade","o nevoeiro em que a imaginação preenche o que falta saber","Não tome decisões grandes enquanto o nevoeiro não levantar."],
+    ["O Sol","XIX","19-o-sol","L",["alegria","sucesso","clareza","vitalidade"],"sucesso, alegria simples e clareza, sem letras miudinhas","o reconhecimento e a luz sobre o que estava escondido","Aproveite sem desconfiar: nem tudo o que corre bem tem armadilha."],
+    ["O Julgamento","XX","20-o-julgamento","N",["chamado","balanço","perdão","renascer"],"uma chamada a que tem de responder e a hora do balanço","o passado que volta para ser fechado em condições","Faça o balanço sem se enganar e feche o que ficou por resolver."],
+    ["O Mundo","XXI","21-o-mundo","L",["conclusão","plenitude","viagem","recompensa"],"o círculo fechado: o objetivo atingido, a etapa concluída","a recompensa e horizontes maiores, às vezes no estrangeiro","Comemore o que conquistou antes de começar a próxima etapa."]
+  ].map(a => ({ n: a[0], rom: a[1], img: a[2], t: a[3], kw: a[4], traz: a[5], acr: a[6], cons: a[7] }));
+  // «de» + artigo: «da Estrela», «do Louco», «dos Enamorados»
+  const DE = { "O": "do", "A": "da", "Os": "dos" };
+  AR.forEach(a => { const p = a.n.split(" "); a.de = DE[p[0]] + " " + p.slice(1).join(" "); a.pl = p[0] === "Os"; });
+
+  const ABRE = {
+    LL: ["{A} e {B} puxam para o mesmo lado: é uma combinação de vento a favor.",
+         "Com {A} e {B} lado a lado, a leitura começa com luz dos dois lados.",
+         "Poucas combinações são tão abertas como esta: primeiro {A}, logo a seguir {B}."],
+    LN: ["{A} {vA:dá/dão} o impulso e {B} {vB:dá-lhe/dão-lhe} forma.",
+         "A energia {deA} encontra aqui o tom mais ponderado {deB}.",
+         "{A} {vA:abre/abrem} a porta; {B} {vB:mostra/mostram} como passar por ela."],
+    NL: ["{A} {vA:prepara/preparam} o terreno e {B} {vB:abre-o/abrem-no}.",
+         "A leitura começa num tom contido, com {A}, e abre-se com {B}.",
+         "Depois {deA}, {B} {vB:abre/abrem} uma porta nova."],
+    NN: ["Nesta combinação, {A} {vA:dá/dão} o tema e {B} {vB:mostra/mostram} o caminho.",
+         "{A} e {B} pedem uma leitura feita com calma: cada carta acrescenta uma camada à outra.",
+         "São duas cartas de consciência: {A} {vA:põe/põem} a questão e {B} {vB:ajuda/ajudam} a respondê-la."],
+    LS: ["{A} {vA:traz/trazem} luz, mas {B} {vB:lembra/lembram} que ainda há uma parte por resolver.",
+         "A combinação tem dois lados: a força {deA} e o aviso {deB}.",
+         "O começo é bom, com {A}; {B} {vB:pede/pedem} atenção ao que fica na sombra."],
+    SL: ["Começa pelo lado difícil e acaba a abrir: depois {deA} vem {B}.",
+         "{A} {vA:é/são} a parte dura da leitura; {B} {vB:é/são} a resposta que vem a seguir.",
+         "Há uma travessia a fazer, com {A}, e do outro lado {vB:está/estão} {B}."],
+    NS: ["{A} {vA:dá/dão} o contexto e {B} {vB:traz/trazem} o ponto sensível da leitura.",
+         "O tom {deA} é sereno, mas {B} {vB:mexe/mexem} com o que estava quieto.",
+         "{A} {vA:pede/pedem} consciência, e {B} {vB:mostra/mostram} porquê."],
+    SN: ["{A} {vA:toca/tocam} no ponto sensível, e {B} {vB:mostra/mostram} como lidar com ele.",
+         "Depois do impacto {deA}, {B} {vB:traz/trazem} a maneira de seguir em frente.",
+         "{A} {vA:abre/abrem} a questão difícil; {B} {vB:dá-lhe/dão-lhe} uma saída."],
+    SS: ["{A} e {B} formam uma combinação exigente, mas nenhuma das duas é castigo: são cartas que mostram o que precisa de mudar.",
+         "Duas cartas fortes lado a lado: {A} e {B} pedem coragem para olhar de frente.",
+         "É das combinações mais intensas do baralho: {A} e logo a seguir {B}."]
+  };
+  const TRAZ = ["{A} {vA:traz/trazem} {x}.", "Em primeiro plano, {A} {vA:mostra/mostram} {x}.", "{A} {vA:põe/põem} em cima da mesa {x}."];
+  const ACR = ["{B} {vB:acrescenta/acrescentam} {x}.", "Ao lado {deA}, {B} {vB:junta/juntam} {x}.", "{B} {vB:completa/completam} o quadro com {x}."];
+  const RESUMO = ["Em poucas palavras: {x} e {y}.", "Se tivesse de resumir em duas palavras: {x} e {y}.", "As palavras que ficam desta combinação: {x} e {y}."];
+
+  function enche(t, A, B, x, y) {
+    return t.replace(/\{A\}/g, A.n).replace(/\{B\}/g, B.n).replace(/\{deA\}/g, A.de).replace(/\{deB\}/g, B.de)
+            .replace(/\{vA:([^/}]*)\/([^}]*)\}/g, (_, s, p) => A.pl ? p : s).replace(/\{vB:([^/}]*)\/([^}]*)\}/g, (_, s, p) => B.pl ? p : s)
+            .replace(/\{x\}/g, x || "").replace(/\{y\}/g, y || "");
+  }
+  // a leitura do par (i = 1.ª carta, j = 2.ª carta), sempre igual para o mesmo par e a mesma ordem
+  function ler(i, j) {
+    const A = AR[i], B = AR[j], tt = A.t + B.t;
+    const tom = ABRE[tt === "LN" || tt === "NL" || tt === "NN" || tt === "LL" || tt === "SS" || tt === "SL" || tt === "LS" ? tt : tt[0] === "S" ? "SN" : "NS"];
+    const h = i * 7 + j * 3;
+    const r = { abre: enche(tom[h % 3], A, B), traz: enche(TRAZ[(i + 2 * j) % 3], A, B, A.traz), acr: enche(ACR[(2 * i + j) % 3], A, B, B.acr), ponte: [] };
+    const comum = A.kw.filter(k => B.kw.indexOf(k) >= 0);
+    if (comum.length) r.ponte.push(`As duas cartas partilham a palavra «${comum[0]}», e é aí que a leitura assenta.`);
+    if (j === i + 1) r.ponte.push(`São cartas seguidas na sequência dos Arcanos Maiores (${A.rom} e ${B.rom}): ${B.n} ${B.pl ? "são" : "é"} o passo natural depois ${A.de}.`);
+    else if (j === i - 1) r.ponte.push(`A combinação anda um passo atrás na sequência dos Arcanos Maiores (${A.rom} e ${B.rom}): antes de avançar, há algo ${B.de} que ainda pede atenção.`);
+    const nS = (A.t === "S") + (B.t === "S");
+    let consDe = B;
+    if (nS === 1 && !(A.t === "S" && B.t === "L")) {
+      const S = A.t === "S" ? A : B, O = S === A ? B : A;
+      r.ponte.push(`Aqui, quem fala mais alto é ${S.n}: leia ${O.n} à luz ${S.de}.`);
+      consDe = S;
+    }
+    let x = A.kw[(i + j) % 4], y = B.kw[(3 * i + j) % 4];
+    if (x === y) y = B.kw[((3 * i + j) % 4 + 1) % 4];
+    r.resumo = enche(RESUMO[(i + j) % 3], A, B, x, y);
+    r.cons = consDe.cons;
+    return r;
+  }
+  return { AR, ler };
+})();
+if (typeof module !== "undefined") module.exports = CT;
+</script>
+<script>
+(function () {
+  const PARES = {"0-1": "É a combinação dos começos que têm pernas para andar. O Louco traz a coragem de dar o primeiro passo sem garantias; O Mago diz-lhe que, desta vez, já tem em cima da mesa tudo o que precisa: talento, ferramentas e ocasião. Juntas, falam de uma ideia que finalmente sai do papel, de um negócio que arranca, de uma mudança que deixa de ser sonho. O risco é a pressa de quem salta sem juntar as peças. O conselho: avance, mas use o que já sabe fazer. A certeza só chega depois de andar.", "6-16": "Uma escolha e um abalo. Os Enamorados falam de amor, mas sobretudo de escolha; A Torre traz a verdade que rebenta de repente. Juntas, podem anunciar uma relação posta à prova por algo que vem à luz, ou uma decisão que deixou de poder esperar porque a estrutura cedeu. Não é castigo: o que cai aqui é o que estava mal construído. Se a relação tem alicerces, sai disto mais honesta; se não tem, a carta poupa-lhe anos. Pergunte-se o que valoriza de facto, porque é isso que vai decidir por si.", "13-17": "Das combinações mais bonitas do baralho, apesar do nome. A Morte fecha um capítulo de que não se foge: uma relação, um emprego, uma maneira de ser que já não cabe em si. A Estrela é o céu limpo depois da tempestade: a esperança que volta devagar, a ferida que sara. Juntas, dizem que o fim já está feito, ou quase, e que do outro lado há cura. Não tente ressuscitar o que acabou. Deixe ir e siga a luz que vem a seguir: é verdadeira.", "18-19": "A noite e o dia. A Lua é a carta das dúvidas, dos medos antigos e das coisas ditas pela metade; O Sol é a mais luminosa do baralho, sem letras miudinhas. Lado a lado, falam de algo que estava escondido e que vem à luz, e é bom. Se O Sol aparece depois da Lua, o nevoeiro levanta e a resposta fica clara; se aparece antes, há uma alegria verdadeira, mas com um ponto ainda por esclarecer. Em qualquer ordem, o conselho é o mesmo: não decida no meio do nevoeiro, espere pela clareza que esta combinação traz.", "10-21": "A roda vira e o círculo fecha-se. A Roda da Fortuna traz a viragem que chega sem pedir licença: uma oportunidade, um encontro, uma notícia que reorganiza o ano. O Mundo é a última carta, a do objetivo atingido e da etapa concluída com orgulho. Juntas, dizem que a mudança que está a acontecer leva a bom porto, e muitas vezes a horizontes maiores: estrangeiro, mudança de país, um projeto que chega mais longe. Se a roda está a subir, aproveite agora. E comemore antes de começar a próxima etapa.", "6-15": "Desejo e escolha no mesmo lance. Os Enamorados pedem uma escolha feita pelo que valoriza de facto; O Diabo mostra aquilo que o prende e que, no fundo, escolhe manter. No amor, esta combinação fala de atração forte, mas também de dependência: a relação que faz mal e de que não se sai, o desejo que decide por si. As correntes do Diabo estão largas. A pergunta desta combinação é simples e difícil: está a escolher com liberdade ou a ficar porque é mais fácil?", "16-17": "São cartas seguidas na sequência dos Arcanos Maiores (XVI e XVII), e a ordem conta a história toda: primeiro cai o que estava mal construído, depois vem o céu limpo. A Torre é o despedimento inesperado, a verdade que rebenta, a separação que ninguém viu chegar; A Estrela diz que valeu a pena aguentar e que a confiança se recupera. Se está no meio do susto, esta combinação é um consolo honesto: o que se construir a seguir fica em chão firme.", "2-18": "Duas cartas do que não se vê. A Sacerdotisa fala do saber interior e do que não foi dito; A Lua fala de medos antigos, de sonhos e de informação que falta. Juntas, pedem que distinga a intuição verdadeira da imaginação que preenche os buracos, quase sempre com o pior. Preste atenção aos sonhos e ao que sente no corpo, mas não tome decisões grandes enquanto o nevoeiro não levantar. Fique quieto o tempo suficiente para ouvir a resposta que já sabe.", "3-4": "O par que constrói, e são cartas seguidas (III e IV). A Imperatriz é a carta do que cresce e dá fruto; O Imperador dá-lhe estrutura: contratos, casas, regras claras, uma decisão tomada de uma vez por todas. Juntas, falam de projetos feitos para durar, de famílias e casas que se organizam, de abundância que se protege. No amor, é a relação que passa do sentimento para a vida construída a dois. O conselho: deixe as coisas amadurecerem no tempo delas, mas dê-lhes um plano e um orçamento.", "13-20": "Duas cartas que partilham a palavra «renascer». A Morte fecha um capítulo; O Julgamento é a chamada para fazer o balanço e decidir o que faz da vida daqui para a frente. Juntas, falam de grandes viragens: uma fase que termina e uma vida que recomeça com outra consciência. Alguma coisa do passado pode voltar, não para o prender, mas para ser fechada em condições. Não ressuscite o que acabou. Responda à chamada.", "9-12": "Uma combinação de pausa. O Eremita afasta-se do barulho para conseguir pensar; O Enforcado está parado de propósito e vê, do avesso, o que ninguém vê. Juntas, dizem que este não é o momento de forçar: é o momento de recolher, estudar e esperar o que não depende de si. Pode parecer que nada anda, mas é aqui que se percebe o que se quer. Não tenha medo do silêncio nem da espera: as duas têm propósito.", "7-8": "Duas maneiras de vencer, e são cartas seguidas na sequência (VII e VIII). O Carro avança com as rédeas na mão e arranca a vitória com foco; A Força domina o leão sem violência, pela mão calma de quem não tem de provar nada. Juntas, dizem que vai conseguir, desde que junte a disciplina à paciência. A pressa pode ganhar uma corrida, mas é a serenidade que segura o resultado. Não largue as rédeas e responda com calma.", "11-20": "Duas cartas de verdade e de contas feitas. A Justiça pesa sem simpatias e mostra a verdade dos factos; O Julgamento chama ao balanço e ao perdão, dado ou pedido. Aparecem juntas em processos, partilhas, contratos e decisões que fecham assuntos antigos. É boa notícia para quem tem razão e agiu bem. E pedem-lhe o mesmo: honestidade consigo. Assuma a sua parte e feche em condições o que ficou por resolver.", "6-14": "Amor com medida. Os Enamorados falam de união verdadeira e de escolha; A Temperança é a carta das reconciliações e dos acordos em que ninguém perde a cara. Juntas, falam de relações que se acertam com paciência, de pazes feitas, de escolhas tomadas sem extremos. Se houve afastamento, esta é uma combinação de reaproximação lenta. A resposta está no meio, e chega-se lá devagar.", "1-21": "A primeira carta de ação e a última da viagem. O Mago tem o talento, as ferramentas e a ocasião; O Mundo é o objetivo atingido, o círculo que se fecha com orgulho. Juntas, falam de um projeto que vai do início ao fim: a ideia que sai do papel e chega a bom porto, às vezes com horizontes no estrangeiro. O poder não vem de fora, vem de usar o que já tem. E quando lá chegar, comemore. Merece.", "0-21": "O princípio e o fim do caminho dos Arcanos Maiores. O Louco é o primeiro passo sem garantias; O Mundo é a última carta, a mais completa. Juntas, falam de um ciclo que se fecha para outro começar: o curso terminado e a viagem a seguir, a etapa concluída e a vontade de partir de novo. Muitas vezes aparecem em mudanças de país e em horizontes maiores. Comemore o que fechou e depois vá, mas vá desperto.", "19-21": "Uma das combinações mais felizes do baralho. O Sol traz sucesso, saúde e alegria simples; O Mundo traz o objetivo atingido e a recompensa. Juntas, dizem que aquilo por que trabalhou está a chegar ao fim, e chega bem, com reconhecimento à vista de todos. Se andava a perguntar se ia correr bem, a resposta é sim. Aproveite sem desconfiar e comemore antes de começar a próxima etapa.", "15-16": "Cartas seguidas na sequência (XV e XVI), e a segunda responde à primeira. O Diabo mostra o que o prende e que, no fundo, escolhe manter; A Torre faz cair de repente o que estava mal construído. Juntas, dizem que aquilo que não largou a bem pode cair a mal: o hábito, a relação, o dinheiro que comprava silêncio. Não é castigo, é libertação, mesmo que assuste. Se ainda pode escolher, solte as correntes antes que a torre caia por si.", "13-16": "Duas cartas de fim, de naturezas diferentes. A Morte é o fim de um capítulo de que não se foge; A Torre é a queda súbita, a separação ou o despedimento que ninguém viu chegar. Juntas, falam de uma mudança grande e a sério: um ciclo que acaba com um abanão. Assusta, mas lembre-se do que as duas dizem: o que morre abre passagem ao que vem, e o que cai já não tinha alicerces. Deixe ir. O que se construir a seguir fica em chão firme.", "5-6": "Cartas seguidas (V e VI) e uma combinação clássica de compromisso. O Hierofante fala de compromissos formais (casamento, contrato, batismo) e do conselho pedido à pessoa certa; Os Enamorados falam de união verdadeira e de escolha. Juntas, podem anunciar um pedido, um casamento, uma relação que se assume perante os outros. Também pedem que a escolha seja sua, e não só da tradição. Escolha pelo que valoriza de facto."};
+  const $ = (id) => document.getElementById(id);
+  const ESC = (s) => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const A = CT.AR, s1 = $("c1"), s2 = $("c2");
+  const VERSO = "cartas/verso-gt.webp";
+  function carta(n, k, a, par) {
+    const img = $("img" + n), cap = $("cap" + n);
+    if (!a) { img.src = VERSO; img.alt = "Verso da carta do baralho do Mestre Alberto"; cap.innerHTML = `<small>${n}.ª carta</small>?`; return; }
+    img.src = "cartas/" + a.img + ".webp";
+    img.alt = par ? `Combinação ${par} no baralho do Mestre Alberto: ${a.n}` : `${a.n}, carta do baralho do Mestre Alberto`;
+    cap.innerHTML = `<small>${n}.ª carta · ${a.rom}</small><a href="/arcano-${a.img}">${ESC(a.n)}</a>`;
+  }
+  function mostrar(empurra) {
+    const i = s1.value === "" ? -1 : +s1.value, j = s2.value === "" ? -1 : +s2.value;
+    const a = A[i], b = A[j], par = a && b ? `${a.n} e ${b.n}` : "";
+    carta(1, i, a, par); carta(2, j, b, par);
+    const L = $("leitura");
+    if (!a || !b) { L.innerHTML = `<p class="vazio">Escolha as duas cartas para ver a leitura da combinação.</p>`; return; }
+    if (i === j) { L.innerHTML = `<p class="vazio">Escolha duas cartas diferentes: no baralho só há uma de cada.</p>`; return; }
+    const r = CT.ler(i, j), chave = Math.min(i, j) + "-" + Math.max(i, j), mao = PARES[chave];
+    const chaves = a.kw.concat(b.kw).filter((k, x, t) => t.indexOf(k) === x).map(k => `<span>${ESC(k)}</span>`).join("");
+    let h = `<p class="titulo-par">${ESC(a.n)} + ${ESC(b.n)}</p><div class="chaves">${chaves}</div>`;
+    if (mao) h += `<p>${ESC(mao)}</p><p class="nota">Esta é uma das combinações mais procuradas. <a href="#par-${chave}">Vê-la na lista</a>.</p>`;
+    else h += [r.abre, r.traz + " " + r.acr].concat(r.ponte.length ? [r.ponte.join(" ")] : []).concat([r.resumo]).map(p => `<p>${ESC(p)}</p>`).join("")
+            + `<div class="conselho"><b>👉 O conselho</b>${ESC(r.cons)}</div>`;
+    h += `<p class="nota">Leia mais sobre <a href="/arcano-${a.img}">${ESC(a.n)}</a> e <a href="/arcano-${b.img}">${ESC(b.n)}</a>.</p>`;
+    L.innerHTML = h;
+    if (empurra) try { history.replaceState(null, "", "#c" + i + "-" + j); } catch (e) {}
+  }
+  function sorte() {
+    const u = new Uint32Array(1); let i, j;
+    const tira = () => { let x; do { crypto.getRandomValues(u); x = u[0]; } while (x >= 4294967286); return x % 22; };   // sem enviesamento
+    i = tira(); do { j = tira(); } while (j === i);
+    s1.value = i; s2.value = j; mostrar(true);
+    $("mesa").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  s1.onchange = s2.onchange = () => mostrar(true);
+  $("sorte").onclick = sorte;
+  $("trocar").onclick = () => { const t = s1.value; s1.value = s2.value; s2.value = t; mostrar(true); };
+  document.querySelectorAll("[data-par]").forEach(l => l.addEventListener("click", (ev) => {
+    ev.preventDefault(); const p = l.dataset.par.split("-"); s1.value = p[0]; s2.value = p[1]; mostrar(true);
+    $("ferramenta").scrollIntoView({ behavior: "smooth", block: "start" });
+  }));
+  const m = /^#c(\d+)-(\d+)$/.exec(location.hash);
+  if (m && +m[1] < 22 && +m[2] < 22) { s1.value = m[1]; s2.value = m[2]; }
+  mostrar(false);
+})();
+</script>
+<script>
+/* 🎵 28/10/2026, pedido dele: a mesma música do Tarot Grátis e a continuar entre as páginas que a usam
+   (sessionStorage «mus_ambient»: se estava a tocar, retoma no mesmo segundo). Os navegadores não deixam tocar
+   com som antes do primeiro toque na página: aí arranca ao primeiro toque, clique ou deslizar. Cópia do tarot-gratis.html. */
+(function () {
+/* ============ Som ambiente ============ */
+const ambient = new Audio("ambient.mp3");
+ambient.loop = false; ambient.volume = 0.01; ambient.preload = "auto";
+const AMB_VOL = 0.01;
+let ambFade = null;
+function ambFadeIn(dur) {
+  dur = dur || 3500;
+  clearInterval(ambFade); ambient.volume = 0; let i = 0;
+  ambFade = setInterval(() => { i++; ambient.volume = Math.min(AMB_VOL, AMB_VOL * i / 35); if (i >= 35) clearInterval(ambFade); }, dur / 35);
+}
+
+// ===== Continuidade do som (mesma sessão) =====
+const AMB_KEY = "mus_ambient";
+let ambEstado = null;
+// 28/10/2026, pedido dele: continuidade em TODAS as páginas com esta música (também noutros separadores) — no
+// localStorage deste navegador; quem nunca cá esteve (outra pessoa, outro IP) começa do início; ao fim de 2 h também.
+try { ambEstado = JSON.parse(localStorage.getItem(AMB_KEY) || "null"); if (ambEstado && !(Date.now() - (ambEstado.t || 0) < 7200000)) ambEstado = null; } catch {}
+const tentaRestauroAmb = () => {
+  if (!(ambEstado && ambEstado.pos > 0) || !isFinite(ambient.duration) || ambient.duration <= 0) return;
+  if (ambEstado.pos >= ambient.duration - 1) { ambEstado.pos = 0; return; }
+  const alvo = ambEstado.pos;
+  for (let i = 0; i < ambient.seekable.length; i++) {
+    if (ambient.seekable.start(i) <= alvo && ambient.seekable.end(i) >= alvo) {
+      ambient.currentTime = alvo; ambEstado.pos = 0;
+      ["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.removeEventListener(ev, tentaRestauroAmb));
+      return;
+    }
+  }
+};
+["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.addEventListener(ev, tentaRestauroAmb));
+const AMB_ID = Math.random().toString(36).slice(2);           // cada página aberta tem o seu id
+let ambDono = true;                                            // falso quando outra página tomou conta da música
+const guardaAmb = () => { if (!ambDono) return; try { localStorage.setItem(AMB_KEY, JSON.stringify({ on: !ambient.paused, pos: ambient.currentTime || 0, t: Date.now(), id: AMB_ID })); } catch {} };
+// Uma música só: quando outra página (outro separador) começa a tocar, esta cala-se; se a pessoa desliga noutra, desliga aqui.
+window.addEventListener("storage", (ev) => {
+  if (ev.key !== AMB_KEY || !ev.newValue) return;
+  try { const o = JSON.parse(ev.newValue); if (o.id !== AMB_ID) { ambDono = false; if (!ambient.paused) { ambient.pause(); setAmbientUI(false); } } } catch {}
+});
+window.addEventListener("pagehide", guardaAmb);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") guardaAmb(); });
+setInterval(() => { if (!ambient.paused) guardaAmb(); }, 2000);     // no telemóvel o «pagehide» nem sempre chega
+const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off"), fabLabel = document.getElementById("afab-label");
+let ambientOn = false;
+function setAmbientUI(on) {
+  ambientOn = on;
+  const b = document.getElementById("audio-fab");
+  b.classList.toggle("ligado", on);
+  b.classList.toggle("desligado", !on);
+  b.classList.toggle("som-chama", !on);
+}
+const ambRetoma = ambEstado && ambEstado.on ? 1200 : 3500;
+if (!ambEstado || ambEstado.on) ambient.play().then(() => { setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb(); }).catch(() => {
+  // 28/10/2026: no telemóvel só o dedo a LEVANTAR (touchend/pointerup/click) conta como toque para o som — touchstart e
+  // scroll não. E a escuta só sai depois de a música tocar mesmo (antes, a 1.ª tentativa falhada desligava-a).
+  const EVS = ["pointerup", "touchend", "click", "keydown", "mousedown"];
+  const unlock = async (ev) => {
+    if (ev && ev.target && ev.target.closest && ev.target.closest("#audio-fab")) return;   // o botão trata de si
+    if (!ambient.paused) return;
+    try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb();
+          EVS.forEach(e => window.removeEventListener(e, unlock, true)); } catch { setAmbientUI(false); }
+  };
+  EVS.forEach(e => window.addEventListener(e, unlock, true));
+  setAmbientUI(false);
+});
+document.getElementById("audio-fab").addEventListener("click", async (e) => {
+  e.stopPropagation();
+  if (ambientOn && !ambient.paused) { ambient.pause(); setAmbientUI(false); guardaAmb(); return; }
+  try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(); guardaAmb(); } catch { setAmbientUI(false); }
+});
+})();
+</script>
+<script src="/vip-faixa.js" defer></script><!-- 29/10/2026: faixa da Lista VIP -->
+<script src="/vivo.js" defer></script>
+</body>
+</html>
