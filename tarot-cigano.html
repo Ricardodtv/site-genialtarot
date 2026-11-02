@@ -73,7 +73,7 @@ h3 { font-family: var(--titulo); font-weight: 600; font-size: 1.1rem; color: var
 .mesa { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.5rem, 2vw, 1.2rem); max-width: 40rem; margin: 1.4rem auto 1rem; }
 .lugar { text-align: center; }
 .lugar .pos { font-size: .72rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--suave); margin-bottom: .4rem; }
-.cc { perspective: 900px; aspect-ratio: 2 / 3; }
+.cc { perspective: 900px; aspect-ratio: 3 / 4; }
 .cc .dentro { position: relative; width: 100%; height: 100%; transition: transform .8s cubic-bezier(.2,.7,.2,1); transform-style: preserve-3d; }
 .cc.virada .dentro { transform: rotateY(180deg); }
 .cc .face { position: absolute; inset: 0; border-radius: .9rem; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: .5rem; }
@@ -86,6 +86,9 @@ h3 { font-family: var(--titulo); font-weight: 600; font-size: 1.1rem; color: var
 .frente .num { font-family: var(--titulo); font-weight: 700; font-size: clamp(.9rem, 3vw, 1.3rem); }
 .frente .emo { font-size: clamp(2rem, 9vw, 3.6rem); line-height: 1.1; margin: .2rem 0; }
 .frente .nm { font-family: var(--titulo); font-weight: 700; font-size: clamp(.72rem, 2.4vw, 1rem); line-height: 1.15; text-align: center; }
+.frente.img { padding: 0; overflow: hidden; }
+.frente.img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.frente.img .nm { position: absolute; left: 0; right: 0; bottom: 0; padding: .35rem .3rem; background: linear-gradient(transparent, oklch(0.18 0.05 270 / .85)); color: white; }
 .frente::before { content: ""; position: absolute; inset: 6px; border: 1px solid oklch(0.70 0.12 80 / .6); border-radius: .6rem; pointer-events: none; }
 .btn-tirar { border: 0; cursor: pointer; font: inherit; font-weight: 800; border-radius: 999px; padding: .85rem 1.6rem; color: oklch(0.22 0.06 270); background: var(--grad-ouro); box-shadow: 0 10px 30px oklch(0.75 0.15 75 / .35); }
 .btn-tirar:disabled { opacity: .5; cursor: default; }
@@ -99,7 +102,7 @@ h3 { font-family: var(--titulo); font-weight: 600; font-size: 1.1rem; color: var
 .grelha { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); }
 .carta { border-radius: 1.2rem; padding: 1rem 1.1rem 1.1rem; background: oklch(0.20 0.06 272 / .88); border: 1px solid var(--borda); scroll-margin-top: 1rem; }
 .carta .cab { display: flex; align-items: center; gap: .7rem; margin-bottom: .4rem; }
-.carta .ic { width: 3.2rem; height: 3.2rem; border-radius: .7rem; flex: none; display: grid; place-items: center; font-size: 1.7rem; background: linear-gradient(170deg, oklch(0.97 0.03 90), oklch(0.89 0.06 85)); box-shadow: 0 0 14px oklch(0.85 0.13 88 / .3); }
+.carta .ic { width: 4.8rem; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: .45rem; flex: none; border: 1px solid oklch(0.85 0.13 88 / .5); box-shadow: 0 0 14px oklch(0.85 0.13 88 / .3); }  /* 02/11: as cartas do baralho de 1799 */
 .carta h3 { margin: 0; color: var(--texto); font-size: 1.08rem; }
 .carta h3 small { display: block; font-family: Inter, sans-serif; font-size: .7rem; letter-spacing: .1em; color: var(--ouro); font-weight: 700; }
 .carta .tb { font-size: .78rem; color: var(--suave); }
@@ -192,78 +195,79 @@ footer a { color: inherit; }
   <section class="cartao" id="cartas">
     <h2>As <span class="az">36 cartas</span> e o seu significado</h2>
     <p class="intro-sec">O significado tradicional de cada carta, em geral, no amor e no trabalho. Algumas têm nomes diferentes no Brasil e em Portugal: estão os dois.</p>
+    <p class="intro-sec">🃏 As imagens são do <b>baralho original</b>, o «Spiel der Hoffnung» de Johann Kaspar Hechtel (Nuremberga, c. 1799), pintado à mão — o jogo de onde nasceu o Baralho Cigano. Exemplar do British Museum, em domínio público.</p>
     <div class="grelha" id="grelha">
-      <article class="carta" id="c1" data-n="1" data-e="🐎" data-nome="Cavaleiro"><div class="cab"><div class="ic" aria-hidden="true">🐎</div><h3><small>CARTA 1</small>Cavaleiro</h3></div>
+      <article class="carta" id="c1" data-n="1" data-e="🐎" data-nome="Cavaleiro"><div class="cab"><img class="ic" src="cartas-ciganas/01.webp" alt="Carta 1 do Baralho Cigano: Cavaleiro" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 1</small>Cavaleiro</h3></div>
         <p class="g">Notícias e movimento: algo chega depressa ou alguém entra em cena.</p><p class="am"><b>Amor</b>Um contacto novo ou inesperado.</p><p class="tr"><b>Trabalho</b>Propostas, respostas rápidas e deslocações.</p></article>
-      <article class="carta" id="c2" data-n="2" data-e="🍀" data-nome="Trevo"><div class="cab"><div class="ic" aria-hidden="true">🍀</div><h3><small>CARTA 2</small>Trevo</h3></div>
+      <article class="carta" id="c2" data-n="2" data-e="🍀" data-nome="Trevo"><div class="cab"><img class="ic" src="cartas-ciganas/02.webp" alt="Carta 2 do Baralho Cigano: Trevo" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 2</small>Trevo</h3></div>
         <p class="g">Uma pequena sorte, uma oportunidade curta que é para agarrar já.</p><p class="am"><b>Amor</b>Um momento leve e feliz, mas passageiro.</p><p class="tr"><b>Trabalho</b>Uma porta que abre por pouco tempo.</p></article>
-      <article class="carta" id="c3" data-n="3" data-e="⛵" data-nome="Navio"><div class="cab"><div class="ic" aria-hidden="true">⛵</div><h3><small>CARTA 3</small>Navio</h3></div>
+      <article class="carta" id="c3" data-n="3" data-e="⛵" data-nome="Navio"><div class="cab"><img class="ic" src="cartas-ciganas/03.webp" alt="Carta 3 do Baralho Cigano: Navio" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 3</small>Navio</h3></div>
         <p class="g">Viagem, distância e vontade de mudar de horizonte.</p><p class="am"><b>Amor</b>Uma relação à distância ou saudade de alguém longe.</p><p class="tr"><b>Trabalho</b>Comércio, negócios com outros países, transferências.</p></article>
-      <article class="carta" id="c4" data-n="4" data-e="🏠" data-nome="Casa"><div class="cab"><div class="ic" aria-hidden="true">🏠</div><h3><small>CARTA 4</small>Casa</h3></div>
+      <article class="carta" id="c4" data-n="4" data-e="🏠" data-nome="Casa"><div class="cab"><img class="ic" src="cartas-ciganas/04.webp" alt="Carta 4 do Baralho Cigano: Casa" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 4</small>Casa</h3></div>
         <p class="g">O lar, a família e tudo o que dá segurança.</p><p class="am"><b>Amor</b>Uma relação estável, vida a dois.</p><p class="tr"><b>Trabalho</b>Estabilidade, negócio de família ou trabalho em casa.</p></article>
-      <article class="carta" id="c5" data-n="5" data-e="🌳" data-nome="Árvore"><div class="cab"><div class="ic" aria-hidden="true">🌳</div><h3><small>CARTA 5</small>Árvore</h3></div>
+      <article class="carta" id="c5" data-n="5" data-e="🌳" data-nome="Árvore"><div class="cab"><img class="ic" src="cartas-ciganas/05.webp" alt="Carta 5 do Baralho Cigano: Árvore" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 5</small>Árvore</h3></div>
         <p class="g">Saúde, raízes e crescimento que leva tempo.</p><p class="am"><b>Amor</b>Um laço profundo, que se fortalece devagar.</p><p class="tr"><b>Trabalho</b>Projeto de longo prazo: a paciência dá fruto.</p></article>
-      <article class="carta" id="c6" data-n="6" data-e="☁️" data-nome="Nuvens"><div class="cab"><div class="ic" aria-hidden="true">☁️</div><h3><small>CARTA 6</small>Nuvens</h3></div>
+      <article class="carta" id="c6" data-n="6" data-e="☁️" data-nome="Nuvens"><div class="cab"><img class="ic" src="cartas-ciganas/06.webp" alt="Carta 6 do Baralho Cigano: Nuvens" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 6</small>Nuvens</h3></div>
         <p class="g">Dúvida e confusão passageira: ainda não se vê bem.</p><p class="am"><b>Amor</b>Mal-entendidos e sentimentos pouco claros.</p><p class="tr"><b>Trabalho</b>Indefinição: melhor esperar antes de decidir.</p></article>
-      <article class="carta" id="c7" data-n="7" data-e="🐍" data-nome="Serpente"><div class="cab"><div class="ic" aria-hidden="true">🐍</div><h3><small>CARTA 7</small>Serpente <span class="tb">(Cobra)</span></h3></div>
+      <article class="carta" id="c7" data-n="7" data-e="🐍" data-nome="Serpente"><div class="cab"><img class="ic" src="cartas-ciganas/07.webp" alt="Carta 7 do Baralho Cigano: Serpente" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 7</small>Serpente <span class="tb">(Cobra)</span></h3></div>
         <p class="g">Complicação, desvio no caminho, alguém astuto; também desejo.</p><p class="am"><b>Amor</b>Ciúme, rivalidade ou uma sedução forte.</p><p class="tr"><b>Trabalho</b>Intrigas; o caminho será mais longo do que parece.</p></article>
-      <article class="carta" id="c8" data-n="8" data-e="⚰️" data-nome="Caixão"><div class="cab"><div class="ic" aria-hidden="true">⚰️</div><h3><small>CARTA 8</small>Caixão</h3></div>
+      <article class="carta" id="c8" data-n="8" data-e="⚰️" data-nome="Caixão"><div class="cab"><img class="ic" src="cartas-ciganas/08.webp" alt="Carta 8 do Baralho Cigano: Caixão" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 8</small>Caixão</h3></div>
         <p class="g">Fim de um ciclo e cansaço; fala de transformação, não de morte física.</p><p class="am"><b>Amor</b>Uma relação que acaba ou precisa de renascer.</p><p class="tr"><b>Trabalho</b>Um projeto que se fecha, uma pausa obrigatória.</p></article>
-      <article class="carta" id="c9" data-n="9" data-e="💐" data-nome="Buquê"><div class="cab"><div class="ic" aria-hidden="true">💐</div><h3><small>CARTA 9</small>Buquê <span class="tb">(Flores, Ramo)</span></h3></div>
+      <article class="carta" id="c9" data-n="9" data-e="💐" data-nome="Buquê"><div class="cab"><img class="ic" src="cartas-ciganas/09.webp" alt="Carta 9 do Baralho Cigano: Buquê" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 9</small>Buquê <span class="tb">(Flores, Ramo)</span></h3></div>
         <p class="g">Alegria, um presente, um convite, gentileza.</p><p class="am"><b>Amor</b>Carinho, admiração e gestos bonitos.</p><p class="tr"><b>Trabalho</b>Reconhecimento e bom ambiente.</p></article>
-      <article class="carta" id="c10" data-n="10" data-e="🌾" data-nome="Foice"><div class="cab"><div class="ic" aria-hidden="true">🌾</div><h3><small>CARTA 10</small>Foice</h3></div>
+      <article class="carta" id="c10" data-n="10" data-e="🌾" data-nome="Foice"><div class="cab"><img class="ic" src="cartas-ciganas/10.webp" alt="Carta 10 do Baralho Cigano: Foice" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 10</small>Foice</h3></div>
         <p class="g">Um corte súbito ou uma decisão rápida; também a colheita.</p><p class="am"><b>Amor</b>Uma rutura ou uma decisão brusca.</p><p class="tr"><b>Trabalho</b>Cortes inesperados, ou colher o fruto do esforço.</p></article>
-      <article class="carta" id="c11" data-n="11" data-e="🪢" data-nome="Chicote"><div class="cab"><div class="ic" aria-hidden="true">🪢</div><h3><small>CARTA 11</small>Chicote</h3></div>
+      <article class="carta" id="c11" data-n="11" data-e="🪢" data-nome="Chicote"><div class="cab"><img class="ic" src="cartas-ciganas/11.webp" alt="Carta 11 do Baralho Cigano: Chicote" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 11</small>Chicote</h3></div>
         <p class="g">Discussão, tensão e coisas que se repetem; também energia física.</p><p class="am"><b>Amor</b>Discussões, ou uma paixão muito intensa.</p><p class="tr"><b>Trabalho</b>Conflitos, pressão e tarefas repetitivas.</p></article>
-      <article class="carta" id="c12" data-n="12" data-e="🐦" data-nome="Pássaros"><div class="cab"><div class="ic" aria-hidden="true">🐦</div><h3><small>CARTA 12</small>Pássaros</h3></div>
+      <article class="carta" id="c12" data-n="12" data-e="🐦" data-nome="Pássaros"><div class="cab"><img class="ic" src="cartas-ciganas/12.webp" alt="Carta 12 do Baralho Cigano: Pássaros" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 12</small>Pássaros</h3></div>
         <p class="g">Conversas, telefonemas, nervosismo; muitas vezes fala de um par.</p><p class="am"><b>Amor</b>Diálogo a dois, mas também ansiedade.</p><p class="tr"><b>Trabalho</b>Reuniões e negociações; atenção à conversa a mais.</p></article>
-      <article class="carta" id="c13" data-n="13" data-e="👶" data-nome="Criança"><div class="cab"><div class="ic" aria-hidden="true">👶</div><h3><small>CARTA 13</small>Criança</h3></div>
+      <article class="carta" id="c13" data-n="13" data-e="👶" data-nome="Criança"><div class="cab"><img class="ic" src="cartas-ciganas/13.webp" alt="Carta 13 do Baralho Cigano: Criança" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 13</small>Criança</h3></div>
         <p class="g">Um começo novo, inocência, algo ainda pequeno; pode falar de uma criança.</p><p class="am"><b>Amor</b>Uma relação no início, sincera.</p><p class="tr"><b>Trabalho</b>Um projeto que nasce, um tempo de aprender.</p></article>
-      <article class="carta" id="c14" data-n="14" data-e="🦊" data-nome="Raposa"><div class="cab"><div class="ic" aria-hidden="true">🦊</div><h3><small>CARTA 14</small>Raposa</h3></div>
+      <article class="carta" id="c14" data-n="14" data-e="🦊" data-nome="Raposa"><div class="cab"><img class="ic" src="cartas-ciganas/14.webp" alt="Carta 14 do Baralho Cigano: Raposa" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 14</small>Raposa</h3></div>
         <p class="g">Esperteza e desconfiança: cuidado com enganos.</p><p class="am"><b>Amor</b>Alguém que não mostra tudo o que sente ou faz.</p><p class="tr"><b>Trabalho</b>Pede estratégia; atenção a quem não é leal.</p></article>
-      <article class="carta" id="c15" data-n="15" data-e="🐻" data-nome="Urso"><div class="cab"><div class="ic" aria-hidden="true">🐻</div><h3><small>CARTA 15</small>Urso</h3></div>
+      <article class="carta" id="c15" data-n="15" data-e="🐻" data-nome="Urso"><div class="cab"><img class="ic" src="cartas-ciganas/15.webp" alt="Carta 15 do Baralho Cigano: Urso" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 15</small>Urso</h3></div>
         <p class="g">Força, poder e proteção; uma pessoa com autoridade.</p><p class="am"><b>Amor</b>Proteção, que pode resvalar para a posse.</p><p class="tr"><b>Trabalho</b>Um chefe, alguém influente, assuntos de dinheiro.</p></article>
-      <article class="carta" id="c16" data-n="16" data-e="⭐" data-nome="Estrela"><div class="cab"><div class="ic" aria-hidden="true">⭐</div><h3><small>CARTA 16</small>Estrela</h3></div>
+      <article class="carta" id="c16" data-n="16" data-e="⭐" data-nome="Estrela"><div class="cab"><img class="ic" src="cartas-ciganas/16.webp" alt="Carta 16 do Baralho Cigano: Estrela" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 16</small>Estrela</h3></div>
         <p class="g">Esperança, inspiração e proteção espiritual.</p><p class="am"><b>Amor</b>Um sonho que pode cumprir-se.</p><p class="tr"><b>Trabalho</b>Sucesso, visibilidade, boa orientação.</p></article>
-      <article class="carta" id="c17" data-n="17" data-e="🕊️" data-nome="Cegonha"><div class="cab"><div class="ic" aria-hidden="true">🕊️</div><h3><small>CARTA 17</small>Cegonha</h3></div>
+      <article class="carta" id="c17" data-n="17" data-e="🕊️" data-nome="Cegonha"><div class="cab"><img class="ic" src="cartas-ciganas/17.webp" alt="Carta 17 do Baralho Cigano: Cegonha" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 17</small>Cegonha</h3></div>
         <p class="g">Mudança para melhor, renovação; às vezes, mudança de casa.</p><p class="am"><b>Amor</b>Uma fase nova na relação.</p><p class="tr"><b>Trabalho</b>Transição, mudança de funções ou de lugar.</p></article>
-      <article class="carta" id="c18" data-n="18" data-e="🐕" data-nome="Cão"><div class="cab"><div class="ic" aria-hidden="true">🐕</div><h3><small>CARTA 18</small>Cão <span class="tb">(Cachorro)</span></h3></div>
+      <article class="carta" id="c18" data-n="18" data-e="🐕" data-nome="Cão"><div class="cab"><img class="ic" src="cartas-ciganas/18.webp" alt="Carta 18 do Baralho Cigano: Cão" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 18</small>Cão <span class="tb">(Cachorro)</span></h3></div>
         <p class="g">Amizade fiel, lealdade e confiança.</p><p class="am"><b>Amor</b>Um parceiro leal, ou uma amizade que vira amor.</p><p class="tr"><b>Trabalho</b>Um colega de confiança, um aliado.</p></article>
-      <article class="carta" id="c19" data-n="19" data-e="🏰" data-nome="Torre"><div class="cab"><div class="ic" aria-hidden="true">🏰</div><h3><small>CARTA 19</small>Torre</h3></div>
+      <article class="carta" id="c19" data-n="19" data-e="🏰" data-nome="Torre"><div class="cab"><img class="ic" src="cartas-ciganas/19.webp" alt="Carta 19 do Baralho Cigano: Torre" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 19</small>Torre</h3></div>
         <p class="g">Instituições, autoridade, solidão e ponto de vista elevado.</p><p class="am"><b>Amor</b>Distância emocional ou necessidade de estar só.</p><p class="tr"><b>Trabalho</b>Grandes empresas, serviços públicos, burocracia.</p></article>
-      <article class="carta" id="c20" data-n="20" data-e="🌷" data-nome="Jardim"><div class="cab"><div class="ic" aria-hidden="true">🌷</div><h3><small>CARTA 20</small>Jardim</h3></div>
+      <article class="carta" id="c20" data-n="20" data-e="🌷" data-nome="Jardim"><div class="cab"><img class="ic" src="cartas-ciganas/20.webp" alt="Carta 20 do Baralho Cigano: Jardim" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 20</small>Jardim</h3></div>
         <p class="g">Vida social, o público, festas e encontros.</p><p class="am"><b>Amor</b>Conhecer alguém num evento ou entre amigos.</p><p class="tr"><b>Trabalho</b>Contactos, divulgação, trabalho com o público.</p></article>
-      <article class="carta" id="c21" data-n="21" data-e="⛰️" data-nome="Montanha"><div class="cab"><div class="ic" aria-hidden="true">⛰️</div><h3><small>CARTA 21</small>Montanha</h3></div>
+      <article class="carta" id="c21" data-n="21" data-e="⛰️" data-nome="Montanha"><div class="cab"><img class="ic" src="cartas-ciganas/21.webp" alt="Carta 21 do Baralho Cigano: Montanha" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 21</small>Montanha</h3></div>
         <p class="g">Obstáculo, atraso, algo que bloqueia.</p><p class="am"><b>Amor</b>Uma barreira entre os dois.</p><p class="tr"><b>Trabalho</b>Atrasos que só a persistência vence.</p></article>
-      <article class="carta" id="c22" data-n="22" data-e="🛤️" data-nome="Caminhos"><div class="cab"><div class="ic" aria-hidden="true">🛤️</div><h3><small>CARTA 22</small>Caminhos</h3></div>
+      <article class="carta" id="c22" data-n="22" data-e="🛤️" data-nome="Caminhos"><div class="cab"><img class="ic" src="cartas-ciganas/22.webp" alt="Carta 22 do Baralho Cigano: Caminhos" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 22</small>Caminhos</h3></div>
         <p class="g">Encruzilhada: há escolhas e alternativas.</p><p class="am"><b>Amor</b>Decidir entre caminhos, ou entre pessoas.</p><p class="tr"><b>Trabalho</b>Mais de uma proposta; liberdade para escolher.</p></article>
-      <article class="carta" id="c23" data-n="23" data-e="🐀" data-nome="Ratos"><div class="cab"><div class="ic" aria-hidden="true">🐀</div><h3><small>CARTA 23</small>Ratos</h3></div>
+      <article class="carta" id="c23" data-n="23" data-e="🐀" data-nome="Ratos"><div class="cab"><img class="ic" src="cartas-ciganas/23.webp" alt="Carta 23 do Baralho Cigano: Ratos" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 23</small>Ratos</h3></div>
         <p class="g">Perda e desgaste: uma preocupação que vai roendo.</p><p class="am"><b>Amor</b>Um desgaste que acontece aos poucos.</p><p class="tr"><b>Trabalho</b>Perdas, desvios, cansaço acumulado.</p></article>
-      <article class="carta" id="c24" data-n="24" data-e="❤️" data-nome="Coração"><div class="cab"><div class="ic" aria-hidden="true">❤️</div><h3><small>CARTA 24</small>Coração</h3></div>
+      <article class="carta" id="c24" data-n="24" data-e="❤️" data-nome="Coração"><div class="cab"><img class="ic" src="cartas-ciganas/24.webp" alt="Carta 24 do Baralho Cigano: Coração" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 24</small>Coração</h3></div>
         <p class="g">Amor, afeto e generosidade.</p><p class="am"><b>Amor</b>Um sentimento verdadeiro.</p><p class="tr"><b>Trabalho</b>Trabalhar com gosto, ou em áreas de cuidado.</p></article>
-      <article class="carta" id="c25" data-n="25" data-e="💍" data-nome="Anel"><div class="cab"><div class="ic" aria-hidden="true">💍</div><h3><small>CARTA 25</small>Anel <span class="tb">(Aliança)</span></h3></div>
+      <article class="carta" id="c25" data-n="25" data-e="💍" data-nome="Anel"><div class="cab"><img class="ic" src="cartas-ciganas/25.webp" alt="Carta 25 do Baralho Cigano: Anel" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 25</small>Anel <span class="tb">(Aliança)</span></h3></div>
         <p class="g">Compromisso, contrato e união.</p><p class="am"><b>Amor</b>Um compromisso sério, noivado ou casamento.</p><p class="tr"><b>Trabalho</b>Contratos e parcerias.</p></article>
-      <article class="carta" id="c26" data-n="26" data-e="📖" data-nome="Livro"><div class="cab"><div class="ic" aria-hidden="true">📖</div><h3><small>CARTA 26</small>Livro</h3></div>
+      <article class="carta" id="c26" data-n="26" data-e="📖" data-nome="Livro"><div class="cab"><img class="ic" src="cartas-ciganas/26.webp" alt="Carta 26 do Baralho Cigano: Livro" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 26</small>Livro</h3></div>
         <p class="g">Segredo, estudo e conhecimento escondido.</p><p class="am"><b>Amor</b>Algo que ainda não foi revelado.</p><p class="tr"><b>Trabalho</b>Estudos, formação, informação confidencial.</p></article>
-      <article class="carta" id="c27" data-n="27" data-e="✉️" data-nome="Carta"><div class="cab"><div class="ic" aria-hidden="true">✉️</div><h3><small>CARTA 27</small>Carta</h3></div>
+      <article class="carta" id="c27" data-n="27" data-e="✉️" data-nome="Carta"><div class="cab"><img class="ic" src="cartas-ciganas/27.webp" alt="Carta 27 do Baralho Cigano: Carta" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 27</small>Carta</h3></div>
         <p class="g">Uma mensagem, um documento, uma notícia por escrito.</p><p class="am"><b>Amor</b>Uma mensagem de alguém.</p><p class="tr"><b>Trabalho</b>Papéis, correio, assuntos tratados por escrito.</p></article>
-      <article class="carta" id="c28" data-n="28" data-e="🤵" data-nome="Cigano"><div class="cab"><div class="ic" aria-hidden="true">🤵</div><h3><small>CARTA 28</small>Cigano</h3></div>
+      <article class="carta" id="c28" data-n="28" data-e="🤵" data-nome="Cigano"><div class="cab"><img class="ic" src="cartas-ciganas/28.webp" alt="Carta 28 do Baralho Cigano: Cigano" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 28</small>Cigano</h3></div>
         <p class="g">O consulente, se for homem; ou o homem mais importante na vida de quem consulta.</p><p class="am"><b>Amor</b>O companheiro ou o pretendente.</p><p class="tr"><b>Trabalho</b>Um homem com papel decisivo no assunto.</p></article>
-      <article class="carta" id="c29" data-n="29" data-e="💃" data-nome="Cigana"><div class="cab"><div class="ic" aria-hidden="true">💃</div><h3><small>CARTA 29</small>Cigana</h3></div>
+      <article class="carta" id="c29" data-n="29" data-e="💃" data-nome="Cigana"><div class="cab"><img class="ic" src="cartas-ciganas/29.webp" alt="Carta 29 do Baralho Cigano: Cigana" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 29</small>Cigana</h3></div>
         <p class="g">A consulente, se for mulher; ou a mulher mais importante na vida de quem consulta.</p><p class="am"><b>Amor</b>A companheira ou a pretendente.</p><p class="tr"><b>Trabalho</b>Uma mulher com papel decisivo no assunto.</p></article>
-      <article class="carta" id="c30" data-n="30" data-e="⚜️" data-nome="Lírios"><div class="cab"><div class="ic" aria-hidden="true">⚜️</div><h3><small>CARTA 30</small>Lírios</h3></div>
+      <article class="carta" id="c30" data-n="30" data-e="⚜️" data-nome="Lírios"><div class="cab"><img class="ic" src="cartas-ciganas/30.webp" alt="Carta 30 do Baralho Cigano: Lírios" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 30</small>Lírios</h3></div>
         <p class="g">Paz, maturidade e harmonia; a sabedoria dos anos.</p><p class="am"><b>Amor</b>Uma relação serena e madura.</p><p class="tr"><b>Trabalho</b>Experiência, estabilidade, fim de carreira tranquilo.</p></article>
-      <article class="carta" id="c31" data-n="31" data-e="☀️" data-nome="Sol"><div class="cab"><div class="ic" aria-hidden="true">☀️</div><h3><small>CARTA 31</small>Sol</h3></div>
+      <article class="carta" id="c31" data-n="31" data-e="☀️" data-nome="Sol"><div class="cab"><img class="ic" src="cartas-ciganas/31.webp" alt="Carta 31 do Baralho Cigano: Sol" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 31</small>Sol</h3></div>
         <p class="g">Sucesso, energia e clareza: a carta mais luminosa do baralho.</p><p class="am"><b>Amor</b>Felicidade e calor no relacionamento.</p><p class="tr"><b>Trabalho</b>Vitória e resultados à vista.</p></article>
-      <article class="carta" id="c32" data-n="32" data-e="🌙" data-nome="Lua"><div class="cab"><div class="ic" aria-hidden="true">🌙</div><h3><small>CARTA 32</small>Lua</h3></div>
+      <article class="carta" id="c32" data-n="32" data-e="🌙" data-nome="Lua"><div class="cab"><img class="ic" src="cartas-ciganas/32.webp" alt="Carta 32 do Baralho Cigano: Lua" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 32</small>Lua</h3></div>
         <p class="g">Emoções, intuição e reconhecimento.</p><p class="am"><b>Amor</b>Romance e grande sensibilidade.</p><p class="tr"><b>Trabalho</b>Fama, prestígio, trabalho criativo.</p></article>
-      <article class="carta" id="c33" data-n="33" data-e="🗝️" data-nome="Chave"><div class="cab"><div class="ic" aria-hidden="true">🗝️</div><h3><small>CARTA 33</small>Chave</h3></div>
+      <article class="carta" id="c33" data-n="33" data-e="🗝️" data-nome="Chave"><div class="cab"><img class="ic" src="cartas-ciganas/33.webp" alt="Carta 33 do Baralho Cigano: Chave" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 33</small>Chave</h3></div>
         <p class="g">Solução e certeza: uma porta que se abre.</p><p class="am"><b>Amor</b>Uma resposta clara, o que tem de ser.</p><p class="tr"><b>Trabalho</b>O problema encontra solução.</p></article>
-      <article class="carta" id="c34" data-n="34" data-e="🐟" data-nome="Peixes"><div class="cab"><div class="ic" aria-hidden="true">🐟</div><h3><small>CARTA 34</small>Peixes</h3></div>
+      <article class="carta" id="c34" data-n="34" data-e="🐟" data-nome="Peixes"><div class="cab"><img class="ic" src="cartas-ciganas/34.webp" alt="Carta 34 do Baralho Cigano: Peixes" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 34</small>Peixes</h3></div>
         <p class="g">Dinheiro, abundância e negócios.</p><p class="am"><b>Amor</b>Prosperidade a dois; atenção ao interesse material.</p><p class="tr"><b>Trabalho</b>Lucro, ganhos, negócio próprio.</p></article>
-      <article class="carta" id="c35" data-n="35" data-e="⚓" data-nome="Âncora"><div class="cab"><div class="ic" aria-hidden="true">⚓</div><h3><small>CARTA 35</small>Âncora</h3></div>
+      <article class="carta" id="c35" data-n="35" data-e="⚓" data-nome="Âncora"><div class="cab"><img class="ic" src="cartas-ciganas/35.webp" alt="Carta 35 do Baralho Cigano: Âncora" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 35</small>Âncora</h3></div>
         <p class="g">Estabilidade, firmeza e algo que dura.</p><p class="am"><b>Amor</b>Uma relação sólida e segura.</p><p class="tr"><b>Trabalho</b>Um emprego estável, objetivos alcançados.</p></article>
-      <article class="carta" id="c36" data-n="36" data-e="✝️" data-nome="Cruz"><div class="cab"><div class="ic" aria-hidden="true">✝️</div><h3><small>CARTA 36</small>Cruz</h3></div>
+      <article class="carta" id="c36" data-n="36" data-e="✝️" data-nome="Cruz"><div class="cab"><img class="ic" src="cartas-ciganas/36.webp" alt="Carta 36 do Baralho Cigano: Cruz" width="420" height="560" loading="lazy" decoding="async"><h3><small>CARTA 36</small>Cruz</h3></div>
         <p class="g">Provação, um fardo a carregar, e também fé e destino.</p><p class="am"><b>Amor</b>Sacrifício, uma relação que pesa.</p><p class="tr"><b>Trabalho</b>Muita responsabilidade; a fé ajuda a atravessar.</p></article>
     </div>
   </section>
@@ -356,7 +360,8 @@ footer a { color: inherit; }
     const cc = document.querySelectorAll("#mesa .cc");
     $("tirar").disabled = true;
     tiradas.forEach((c, i) => {
-      cc[i].querySelector(".frente").innerHTML = `<div class="num">${c.n}</div><div class="emo" aria-hidden="true">${c.e}</div><div class="nm">${ESC(c.nome)}</div>`;
+      const fr = cc[i].querySelector(".frente"); fr.classList.add("img");   /* 02/11: a carta verdadeira (baralho de 1799) */
+      fr.innerHTML = `<img src="cartas-ciganas/${String(c.n).padStart(2, "0")}.webp" alt="Carta ${c.n}: ${ESC(c.nome)}"><div class="nm">${c.n} · ${ESC(c.nome)}</div>`;
       cc[i].setAttribute("aria-label", `${MODOS[modo][i]}: carta ${c.n}, ${c.nome}`);
       setTimeout(() => cc[i].classList.add("virada"), 250 + i * 450);
     });
