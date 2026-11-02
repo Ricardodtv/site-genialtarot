@@ -115,7 +115,7 @@ cards = []
 for s in range(12):
     n, porque = nota(s)
     selo = grupo(s)
-    cards.append(f'''<article class="signo" id="{SLUG[s]}"><div class="cab"><img class="gli" src="signos/{s:02d}.webp" alt="{PT[s]}" width="72" height="72" loading="lazy"><div><div class="nome">{nome(s)}</div><div class="ene">{selo}</div></div></div>
+    cards.append(f'''<article class="signo" id="{SLUG[s]}"><div class="cab"><img class="gli" src="signos/signo-{SLUG[s]}.webp" alt="Ilustração do signo {nome(s)} — Genial Tarot" width="72" height="72" loading="lazy"><div><div class="nome">{nome(s)}</div><div class="ene">{selo}</div></div></div>
 {"".join(f"<p>{E(x)}</p>" for x in texto(s))}
 <div class="dica"><b>👉 E em 2027?</b><a href="/horoscopo-2027-{SLUG[s]}">O horóscopo 2027 de {PT[s]}</a> · <a href="/signo/{SLUG[s]}">tudo sobre o signo</a></div></article>''')
 html = cabeca + estilo + "\n" + f'<script type="application/ld+json">\n{json.dumps(ld, ensure_ascii=False)}\n</script>\n</head>\n<body>\n' + som + '''<div class="estrelas" aria-hidden="true"></div>
@@ -140,7 +140,7 @@ html = cabeca + estilo + "\n" + f'<script type="application/ld+json">\n{json.dum
   </section>
   <section class="cartao">
     <h2>2026 signo a signo</h2>
-    <nav class="atalhos">''' + "".join(f'<a href="#{SLUG[s]}"><img src="signos/{s:02d}.webp" alt="" width="28" height="28">{PT[s]}</a>' for s in range(12)) + '''</nav>
+    <nav class="atalhos">''' + "".join(f'<a href="#{SLUG[s]}"><img src="signos/signo-{SLUG[s]}.webp" alt="" width="28" height="28">{PT[s]}</a>' for s in range(12)) + '''</nav>
     <div class="grelha">''' + "".join(cards) + f'''</div>
   </section>
   <section class="cartao">

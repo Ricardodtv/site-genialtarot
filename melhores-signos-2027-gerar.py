@@ -110,7 +110,7 @@ ld = {"@context": "https://schema.org", "@graph": [
     {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in FAQ]}]}
 cards = []
 for s in rank:
-    cards.append(f'''<article class="signo" id="{SLUG[s]}"><div class="cab"><img class="gli" src="signos/{s:02d}.webp" alt="{PT[s]}" width="72" height="72" loading="lazy"><div><div class="nome">{nome(s)}</div><div class="ene">{grupo(s)}</div></div></div>
+    cards.append(f'''<article class="signo" id="{SLUG[s]}"><div class="cab"><img class="gli" src="signos/signo-{SLUG[s]}.webp" alt="Ilustração do signo {nome(s)} — Genial Tarot" width="72" height="72" loading="lazy"><div><div class="nome">{nome(s)}</div><div class="ene">{grupo(s)}</div></div></div>
 {"".join(f"<p>{E(x)}</p>" for x in texto(s))}
 <div class="dica"><b>👉 O ano completo</b><a href="/horoscopo-2027-{SLUG[s]}">Horóscopo 2027 de {PT[s]}: amor, dinheiro e trabalho</a></div></article>''')
 html = cabeca + estilo + "\n" + f'<script type="application/ld+json">\n{json.dumps(ld, ensure_ascii=False)}\n</script>\n</head>\n<body>\n' + som + f'''<div class="estrelas" aria-hidden="true"></div>
@@ -134,7 +134,7 @@ html = cabeca + estilo + "\n" + f'<script type="application/ld+json">\n{json.dum
   </section>
   <section class="cartao">
     <h2>Signo a signo, do mais favorecido para o que mais constrói</h2>
-    <nav class="atalhos">''' + "".join(f'<a href="#{SLUG[s]}"><img src="signos/{s:02d}.webp" alt="" width="28" height="28">{PT[s]}</a>' for s in range(12)) + '''</nav>
+    <nav class="atalhos">''' + "".join(f'<a href="#{SLUG[s]}"><img src="signos/signo-{SLUG[s]}.webp" alt="" width="28" height="28">{PT[s]}</a>' for s in range(12)) + '''</nav>
     <div class="grelha">''' + "".join(cards) + '''</div>
   </section>
   <section class="cartao chamada">

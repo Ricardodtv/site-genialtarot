@@ -8,6 +8,7 @@ APROVADO = True   # 31/10/2026: ele mandou abrir todas as variantes ao Google
 AQUI = os.path.dirname(os.path.abspath(__file__)); os.chdir(AQUI)
 SITE = "https://genialtarot.com"
 S = json.load(open("signos-textos.json", encoding="utf-8"))
+SIGIMG = [f"signo-{x['slug']}.webp" for x in S]   # 02/11/2026 (SEO de imagens, pedido dele): nomes descritivos (os NN.webp ficam para os widgets)
 ELEM = ["Fogo", "Terra", "Ar", "Água"]; MOD = ["cardinal", "fixo", "mutável"]
 GLIFO = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"]
 E = lambda t: html.escape(t, quote=True)
@@ -76,7 +77,7 @@ AUTOR = {"@type": "Person", "name": "Mestre Alberto", "url": SITE + "/sobre"}
 EDITOR = {"@type": "Organization", "name": "Genial Tarot", "url": SITE + "/", "logo": {"@type": "ImageObject", "url": SITE + "/og-image.jpg"}}
 os.makedirs("signo", exist_ok=True)
 for i, s in enumerate(S):
-    url = f"{SITE}/signo/{s['slug']}"; img = f"{SITE}/signos/{i:02d}.webp"
+    url = f"{SITE}/signo/{s['slug']}"; img = f"{SITE}/signos/{SIGIMG[i]}"
     nome = s["pt"] if s["pt"] == s["br"] else f"{s['pt']} ({s['br']})"
     titulo = f"Signo {nome}: características, amor e horóscopo de hoje"
     if len(titulo) > 65: titulo = f"Signo {nome}: características, amor e horóscopo"   # 01/11: o Google corta acima de ~65 (Caranguejo (Câncer))
@@ -91,7 +92,7 @@ for i, s in enumerate(S):
             {"@type": "ListItem", "position": 2, "name": "Os 12 Signos", "item": SITE + "/signos-do-zodiaco"},
             {"@type": "ListItem", "position": 3, "name": nome, "item": url}]}]}
     corpo = f"""  <section class="heroi">
-    <img class="foto-mestre" src="/signos/{i:02d}.webp" alt="Signo {E(nome)}" width="120" height="120" />
+    <img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="Signo {E(nome)}" width="120" height="120" />
     <h1><span class="az">{GLIFO[i]}︎ Signo {E(nome)}</span></h1>
     <p class="sub">{E(s['datas'])} · signo de {el} · regido por {E(s['regente'])}</p>
   </section>
@@ -145,7 +146,7 @@ desc = "Descubra o seu signo: as datas dos 12 signos do zodíaco, a personalidad
 ld = {"@context": "https://schema.org", "@graph": [
     {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
     {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Os 12 Signos", "item": url}]}]}
-grelha = "".join(f'<a href="/signo/{x["slug"]}"><img src="/signos/{j:02d}.webp" alt="" width="58" height="58" loading="lazy"><span><b>{GLIFO[j]}︎ {E(x["pt"] if x["pt"] == x["br"] else x["pt"] + " (" + x["br"] + ")")}</b><small>{E(x["datas"])} · {ELEM[j % 4]}</small></span></a>' for j, x in enumerate(S))
+grelha = "".join(f'<a href="/signo/{x["slug"]}"><img src="/signos/{SIGIMG[j]}" alt="" width="58" height="58" loading="lazy"><span><b>{GLIFO[j]}︎ {E(x["pt"] if x["pt"] == x["br"] else x["pt"] + " (" + x["br"] + ")")}</b><small>{E(x["datas"])} · {ELEM[j % 4]}</small></span></a>' for j, x in enumerate(S))
 corpo = f"""  <section class="heroi">
     <h1><span class="az">Os 12 Signos do Zodíaco</span></h1>
     <p class="sub">Escolha o seu signo para ver a personalidade, o amor, o trabalho e o horóscopo de hoje.</p>
@@ -517,12 +518,12 @@ if os.path.exists("ascendente-lua-textos.py"):
         for i, t in enumerate(lista):
             s0 = S[i]; slug = f"{tipo}-{s0['slug']}"; url = f"{SITE}/{slug}"; h1 = f"{nome_t} em {nm(s0)}"
             ld = {"@context": "https://schema.org", "@graph": [
-                {"@type": "Article", "headline": t["titulo"], "description": t["desc"], "image": f"{SITE}/signos/{i:02d}.webp", "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url},
+                {"@type": "Article", "headline": t["titulo"], "description": t["desc"], "image": f"{SITE}/signos/{SIGIMG[i]}", "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR, "mainEntityOfPage": url},
                 {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
                     {"@type": "ListItem", "position": 2, "name": "Os 12 Signos", "item": SITE + "/signos-do-zodiaco"}, {"@type": "ListItem", "position": 3, "name": h1, "item": url}]}]}
             secs = "".join(f"<h2>{E(h)}</h2><p>{E(t[c])}</p>" for h, c in campos)
             corpo = f"""  <section class="heroi">
-    <img class="foto-mestre" src="/signos/{i:02d}.webp" alt="{E(h1)}" width="120" height="120" />
+    <img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="{E(h1)}" width="120" height="120" />
     <h1><span class="az">{GLIFO[i]}︎ {E(h1)}</span></h1>
   </section>
   <section class="cartao texto"><p>{E(t['intro'])}</p>{secs}</section>
@@ -531,7 +532,7 @@ if os.path.exists("ascendente-lua-textos.py"):
     <h2>{nome_t} nos outros signos</h2><div class="ligas">{"".join(f'<a href="/{tipo}-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div>
   </section>
 """
-            open(f"{slug}.html", "w", encoding="utf-8").write(cabeca(t["titulo"], t["desc"], url, f"{SITE}/signos/{i:02d}.webp", ld, APROVADO) + corpo + RODAPE)
+            open(f"{slug}.html", "w", encoding="utf-8").write(cabeca(t["titulo"], t["desc"], url, f"{SITE}/signos/{SIGIMG[i]}", ld, APROVADO) + corpo + RODAPE)
     # as páginas dos signos ganham as ligações ao Ascendente e à Lua
     for i, s0 in enumerate(S):
         f = f"signo/{s0['slug']}.html"; x = open(f, encoding="utf-8").read()
@@ -574,7 +575,7 @@ if os.path.exists("compat-textos-a.py") and os.path.exists("compat-textos-b.py")
     for (i, j), c in COMP.items():
         a, b = S[i], S[j]; nome = f"{a['pt']} e {b['pt']}"
         corpo = f"""  <section class="heroi">
-    <div style="display:flex;gap:.8rem;justify-content:center"><img class="foto-mestre" src="/signos/{i:02d}.webp" alt="{E(a['pt'])}" width="100" height="100" /><img class="foto-mestre" src="/signos/{j:02d}.webp" alt="{E(b['pt'])}" width="100" height="100" /></div>
+    <div style="display:flex;gap:.8rem;justify-content:center"><img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="{E(a['pt'])}" width="100" height="100" /><img class="foto-mestre" src="/signos/{SIGIMG[j]}" alt="{E(b['pt'])}" width="100" height="100" /></div>
     <h1><span class="az">{E(nome)}</span></h1>
     <p class="sub">Compatibilidade no amor e na amizade · afinidade <span style="color:var(--ouro)">{"♥" * c['nota']}{"♡" * (5 - c['nota'])}</span></p>
   </section>
@@ -589,7 +590,7 @@ if os.path.exists("compat-textos-a.py") and os.path.exists("compat-textos-b.py")
     <p>Tem dúvidas sobre a sua relação? <a href="/tarot-do-amor">Tarot do Amor</a> · <a href="{WA}">Falar com o Mestre Alberto</a></p>
   </section>
 """
-        pagina(cslug(i, j), c["titulo"], c["desc"], f"{SITE}/signos/{i:02d}.webp", [("Compatibilidade entre signos", "/compatibilidade-entre-signos")], corpo)
+        pagina(cslug(i, j), c["titulo"], c["desc"], f"{SITE}/signos/{SIGIMG[i]}", [("Compatibilidade entre signos", "/compatibilidade-entre-signos")], corpo)
     grelha = "".join(f'<section class="cartao" style="margin-bottom:1rem"><h2>{GLIFO[i]}︎ {E(nm(S[i]))}</h2><div class="ligas">' + "".join(f'<a href="/{cslug(i, k)}">{E(S[i]["pt"])} e {E(S[k]["pt"])}</a>' for k in range(12)) + "</div></section>" for i in range(12))
     corpo = f"""  <section class="heroi"><h1><span class="az">Compatibilidade entre Signos</span></h1>
     <p class="sub">Os 78 pares do zodíaco: como se dão no amor e na amizade, os desafios e o conselho para cada casal.</p></section>
@@ -611,13 +612,13 @@ if os.path.exists("venus-marte-textos.py"):
                                         ("marte-em", VM["MARTE"], [("A energia", "energia"), ("O desejo", "desejo"), ("Trabalho e ambição", "trabalho"), ("O desafio", "desafio")], "Marte")):
         for i, t in enumerate(lista):
             s0 = S[i]; outro = "marte-em" if tipo == "venus-em" else "venus-em"
-            corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{i:02d}.webp" alt="" width="120" height="120" />
+            corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="" width="120" height="120" />
     <h1><span class="az">{E(nome_t)} em {E(nm(s0))}</span></h1></section>
   <section class="cartao texto"><p>{E(t['intro'])}</p>{"".join(f"<h2>{E(h)}</h2><p>{E(t[c])}</p>" for h, c in campos)}</section>
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/mapa-amor">Descobrir a sua Vénus e o seu Marte</a><a href="/{outro}-{s0['slug']}">{'Marte' if tipo == 'venus-em' else 'Vénus'} em {E(s0['pt'])}</a><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a></div>
     <h2>{nome_t} nos outros signos</h2><div class="ligas">{"".join(f'<a href="/{tipo}-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div></section>
 """
-            pagina(f"{tipo}-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{i:02d}.webp", [("Os 12 Signos", "/signos-do-zodiaco")], corpo)
+            pagina(f"{tipo}-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{SIGIMG[i]}", [("Os 12 Signos", "/signos-do-zodiaco")], corpo)
     print("24 páginas de Vénus e Marte")
 
 if os.path.exists("chines-tarot-textos.py"):
@@ -643,7 +644,7 @@ if os.path.exists("chines-tarot-textos.py"):
         pagina(f"horoscopo-chines-{t['slug']}", t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Horóscopo Chinês", "/horoscopo-chines")], corpo)
     for i, t in enumerate(CT["SIGNO_TAROT"]):
         s0 = S[i]; arc = ARC_SLUG.get(t["arcano"]); img = f"{SITE}/cartas/partilha/" + (arc[7:] + ".jpg" if arc else "") if arc else SITE + "/og-image.jpg"
-        corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{i:02d}.webp" alt="" width="110" height="110" />
+        corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="" width="110" height="110" />
     <h1><span class="az">{E(nm(s0))} no Tarot</span></h1><p class="sub">A carta do signo: <b>{E(t['arcano'])}</b></p></section>
   <section class="cartao texto"><h2>Porque é a carta de {E(s0['pt'])}</h2><p>{E(t['ligacao'])}</p><h2>A lição da carta</h2><p>{E(t['licao'])}</p><h2>O conselho</h2><p>{E(t['conselho'])}</p></section>
   <section class="cartao" style="text-align:center"><div class="ligas">{f'<a href="/{arc}">O significado de {E(t["arcano"])}</a>' if arc else ""}<a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a><a href="/carta-de-tarot">A sua carta de nascimento</a></div>
@@ -839,7 +840,7 @@ if os.path.exists("horoscopo-2027-textos.py"):
     for i, t in enumerate(H7):
         s0 = S[i]
         datas = "".join(f"<li><b>{E(a)}</b> — {E(b)}</li>" for a, b in t["datas"])
-        corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{i:02d}.webp" alt="" width="120" height="120" />
+        corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="" width="120" height="120" />
     <h1><span class="az">Horóscopo 2027 · {E(nm(s0))}</span></h1><p class="sub">{E(t['resumo'])}</p></section>
   <section class="cartao texto"><h2>Amor</h2><p>{E(t['amor'])}</p><h2>Dinheiro</h2><p>{E(t['dinheiro'])}</p><h2>Trabalho</h2><p>{E(t['trabalho'])}</p>
     <h2>Bem-estar</h2><p>{E(t['saude_bemestar'])}</p><h2>As datas que contam em 2027</h2><ul>{datas}</ul><h2>O conselho do ano</h2><p>{E(t['conselho'])}</p>
@@ -848,8 +849,8 @@ if os.path.exists("horoscopo-2027-textos.py"):
     <h2>2027 nos outros signos</h2><div class="ligas">{"".join(f'<a href="/horoscopo-2027-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div>
     <a class="cta" href="{WA}">Falar com o Mestre Alberto</a></section>
 """
-        pagina(f"horoscopo-2027-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{i:02d}.webp", [("Horóscopo 2027", "/horoscopo-2027")], corpo)
-    grelha = "".join(f'<a href="/horoscopo-2027-{x["slug"]}"><img src="/signos/{j:02d}.webp" alt="" width="58" height="58" loading="lazy"><span><b>{GLIFO[j]}︎ {E(nm(x))}</b><small>{E(H7[j]["resumo"][:90])}</small></span></a>' for j, x in enumerate(S))
+        pagina(f"horoscopo-2027-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{SIGIMG[i]}", [("Horóscopo 2027", "/horoscopo-2027")], corpo)
+    grelha = "".join(f'<a href="/horoscopo-2027-{x["slug"]}"><img src="/signos/{SIGIMG[j]}" alt="" width="58" height="58" loading="lazy"><span><b>{GLIFO[j]}︎ {E(nm(x))}</b><small>{E(H7[j]["resumo"][:90])}</small></span></a>' for j, x in enumerate(S))
     pagina("horoscopo-2027", "Horóscopo 2027: as previsões para os 12 signos", "O horóscopo de 2027 para os 12 signos — amor, dinheiro e trabalho — com o céu real do ano: Júpiter em Virgem, Saturno em Carneiro e o grande eclipse de agosto.", SITE + "/og-image.jpg", [],
            f"""  <section class="heroi"><h1><span class="az">Horóscopo 2027</span></h1><p class="sub">O ano de cada signo, com o céu real de 2027: Júpiter de Leão para Virgem, Saturno em Carneiro e o eclipse total do Sol de 2 de agosto.</p></section>
   <section><div class="doze">{grelha}</div></section>
@@ -865,12 +866,12 @@ if os.path.exists("decanatos-2027-textos.py"):
     for i, t in enumerate(D7["DECANATOS"]):
         s0 = S[i]
         decs = "".join(f"<h2>{E(a)} · {E(b)}</h2><p><b>{E(c)}</b></p><p>{E(d)}</p>" for a, b, c, d in t["decs"])
-        corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{i:02d}.webp" alt="" width="120" height="120" />
+        corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="" width="120" height="120" />
     <h1><span class="az">Decanatos de {E(nm(s0))}</span></h1></section>
   <section class="cartao texto"><p>{E(t['intro'])}</p>{decs}</section>
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a>{"".join(f'<a href="/decanatos-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div></section>
 """
-        pagina(f"decanatos-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{i:02d}.webp", [("Os 12 Signos", "/signos-do-zodiaco")], corpo)
+        pagina(f"decanatos-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{SIGIMG[i]}", [("Os 12 Signos", "/signos-do-zodiaco")], corpo)
     for t in D7["PAGINAS_2027"]:
         per = "".join(f"<h2>{E(a)}</h2><p><b>{E(b)}</b></p><p>{E(c)}</p>" for a, b, c in t["periodos"])
         cons = "".join(f"<li>{E(c)}</li>" for c in t.get("conselhos", []))
