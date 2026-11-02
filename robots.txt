@@ -1,4 +1,56 @@
+# genialtarot.com — regras para robôs (02/11/2026, decisão do Mestre Alberto: abrir às IAs principais)
+# Motores de pesquisa e IAs principais podem ler tudo: queremos que o Google, o Bing, o ChatGPT, o Claude,
+# o Gemini e a Siri conheçam e citem o Mestre Alberto.
+
 User-agent: *
 Allow: /
+Disallow: /pagar
+Disallow: /api/
+Disallow: /e/
+
+# IAs principais — bem-vindas (pesquisa e aprendizagem)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+Disallow: /pagar
+Disallow: /api/
+Disallow: /e/
+
+# Robôs que só recolhem para treino/revenda e não trazem visitas — fora
+User-agent: Bytespider
+User-agent: CCBot
+User-agent: Diffbot
+User-agent: omgili
+User-agent: omgilibot
+User-agent: cohere-ai
+User-agent: cohere-training-data-crawler
+User-agent: MistralAI-Training
+User-agent: Google-CloudVertexBot
+User-agent: Cotoyogi
+User-agent: ICC-Crawler
+User-agent: PetalBot
+User-agent: Baiduspider
+User-agent: AwarioSmartBot
+User-agent: AwarioRssBot
+User-agent: magpie-crawler
+User-agent: KimiBot
+User-agent: FishBot
+User-agent: NavuBot
+User-agent: WARDBot
+User-agent: BorderxBot
+User-agent: QualifiedBot
+User-agent: CitibotSiteCrawler
+User-agent: atlassian-bot
+User-agent: SemrushBot-SWA
+Disallow: /
 
 Sitemap: https://genialtarot.com/sitemap.xml
