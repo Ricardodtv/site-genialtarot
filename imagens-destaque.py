@@ -44,8 +44,28 @@ IMAGENS = [
     ("A08", "signos-que-combinam", "signos-que-combinam",
      "Signos que combinam: casal abraçado a olhar o céu estrelado, com duas constelações a brilhar por cima",
      "Signos que combinam: o par ideal de cada signo e os que se desafiam, pela regra dos elementos."),
+    # 02/11/2026: os 10 planetas (P01–P10)
+    ("P01", "planeta-sol", "sol-na-astrologia", "O Sol na astrologia: o Sol com erupções douradas no espaço, sobre fundo estrelado",
+     "O Sol na astrologia: a identidade, a vontade e a energia vital de cada signo."),
+    ("P02", "planeta-lua", "lua-na-astrologia", "A Lua na astrologia: Lua cheia a nascer sobre o mar calmo com reflexo prateado",
+     "A Lua na astrologia: as emoções, a intuição e o que nos faz sentir em casa."),
+    ("P03", "planeta-mercurio", "mercurio-na-astrologia", "Mercúrio na astrologia: o planeta Mercúrio com crateras diante do Sol",
+     "Mercúrio na astrologia: a mente, a comunicação e as viagens curtas."),
+    ("P04", "planeta-venus", "venus-na-astrologia", "Vénus na astrologia: o planeta Vénus a brilhar no céu do entardecer sobre o mar",
+     "Vénus na astrologia: o amor, a beleza, o prazer e o dinheiro."),
+    ("P05", "planeta-marte", "marte-na-astrologia", "Marte na astrologia: o planeta vermelho com tempestades de poeira e as suas luas",
+     "Marte na astrologia: a coragem, a iniciativa, a paixão e a forma de lutar."),
+    ("P06", "planeta-jupiter", "jupiter-na-astrologia", "Júpiter na astrologia: o planeta Júpiter com as faixas e a Grande Mancha Vermelha",
+     "Júpiter na astrologia: a sorte, a expansão, a fé e as oportunidades."),
+    ("P07", "planeta-saturno", "saturno-na-astrologia", "Saturno na astrologia: o planeta Saturno com os anéis em grande detalhe",
+     "Saturno na astrologia: a disciplina, o tempo, as responsabilidades e a maturidade."),
+    ("P08", "planeta-urano", "urano-na-astrologia", "Úrano na astrologia: o planeta Úrano azul-turquesa com anéis finos",
+     "Úrano na astrologia: as mudanças súbitas, a liberdade e a originalidade."),
+    ("P09", "planeta-neptuno", "neptuno-na-astrologia", "Neptuno na astrologia: o planeta Neptuno azul profundo com nuvens brancas",
+     "Neptuno na astrologia: a inspiração, a espiritualidade, os sonhos e as ilusões."),
+    ("P10", "planeta-plutao", "plutao-na-astrologia", "Plutão na astrologia: o planeta-anão Plutão com a planície em forma de coração",
+     "Plutão na astrologia: a transformação profunda, o poder e o renascimento."),
 ]
-
 FIG = ('<!-- img-destaque:inicio -->\n<figure class="img-destaque" style="max-width:72rem;margin:0 auto 2rem;padding:0 1rem;position:relative;z-index:1">'
        '<img src="/{nome}.webp" alt="{alt}" title="{alt}" width="1200" height="800" fetchpriority="high" decoding="async" '
        'style="display:block;width:100%;height:auto;border-radius:1.2rem;border:1px solid rgba(212,175,55,.35);box-shadow:0 18px 50px #0008">'
