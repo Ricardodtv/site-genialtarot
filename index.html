@@ -992,11 +992,11 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <div class="porta porta-cigano-gt porta-brilho" id="porta-cigano-gt">
         <span class="porta-eti porta-eti-novo">Baralho próprio</span>
         <div class="leque" id="leque-cg" role="button" tabindex="0" aria-label="Virar cartas do Baralho Cigano Genial Tarot">
-          <span class="lc" style="transform:rotate(-24deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/01-cavaleiro.webp" alt="Carta 1 do Baralho Cigano Genial Tarot: Cavaleiro" width="480" height="804" loading="lazy" decoding="async"></span></span></span>
-          <span class="lc" style="transform:rotate(-12deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/16-estrela.webp" alt="Carta 16 do Baralho Cigano Genial Tarot: Estrela" width="480" height="804" loading="lazy" decoding="async"></span></span></span>
-          <span class="lc" style="transform:rotate(0deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/24-coracao.webp" alt="Carta 24 do Baralho Cigano Genial Tarot: Coração" width="480" height="804" loading="lazy" decoding="async"></span></span></span>
-          <span class="lc" style="transform:rotate(12deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/31-sol.webp" alt="Carta 31 do Baralho Cigano Genial Tarot: Sol" width="480" height="804" loading="lazy" decoding="async"></span></span></span>
-          <span class="lc" style="transform:rotate(24deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/33-chave.webp" alt="Carta 33 do Baralho Cigano Genial Tarot: Chave" width="480" height="804" loading="lazy" decoding="async"></span></span></span>
+          <span class="lc" style="transform:rotate(-24deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/01-cavaleiro.webp" alt="Carta 1 do Baralho Cigano Genial Tarot: Cavaleiro" width="480" height="804" decoding="async"></span></span></span>
+          <span class="lc" style="transform:rotate(-12deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/16-estrela.webp" alt="Carta 16 do Baralho Cigano Genial Tarot: Estrela" width="480" height="804" decoding="async"></span></span></span>
+          <span class="lc" style="transform:rotate(0deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/24-coracao.webp" alt="Carta 24 do Baralho Cigano Genial Tarot: Coração" width="480" height="804" decoding="async"></span></span></span>
+          <span class="lc" style="transform:rotate(12deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/31-sol.webp" alt="Carta 31 do Baralho Cigano Genial Tarot: Sol" width="480" height="804" decoding="async"></span></span></span>
+          <span class="lc" style="transform:rotate(24deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/33-chave.webp" alt="Carta 33 do Baralho Cigano Genial Tarot: Chave" width="480" height="804" decoding="async"></span></span></span>
         </div>
         <div class="cigano-txt">
           <strong>🃏 O Baralho Cigano GT</strong>
@@ -1797,7 +1797,8 @@ document.addEventListener("DOMContentLoaded", function () {
     cs.forEach((c, i) => {
       const img = c.querySelector("img"); img.src = "/cartas-ciganas/" + F[s[i]]; img.alt = "Carta " + (s[i] + 1) + " do Baralho Cigano Genial Tarot: " + N[s[i]];
       c.style.transform = `rotate(${abre[i]}deg) translateY(-6px)`;
-      timers.push(setTimeout(() => { c.classList.add("virada"); if (window.somCigano) window.somCigano(i); }, 120 + i * 190));
+      const pronta = img.decode ? img.decode().catch(() => {}) : Promise.resolve();   // vira só com a imagem já pronta
+      timers.push(setTimeout(() => pronta.then(() => { if (aberto) { c.classList.add("virada"); if (window.somCigano) window.somCigano(i); } }), 120 + i * 190));
     });
   }
   function fechar() {
