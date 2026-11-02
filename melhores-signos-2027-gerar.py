@@ -87,7 +87,7 @@ som = src[src.index('<button id="audio-fab"'):src.index('<div class="estrelas"')
 rodape = src[src.index("<footer>"):src.index("</footer>") + 9]
 musica = src[src.index("<script>\n/* 🎵 28/10/2026"):src.index('<script src="/vip-faixa.js"')]
 URL = "https://genialtarot.com/melhores-signos-2027"
-TIT = "Melhores Signos de 2027: os mais favorecidos do ano · Mestre Alberto"
+TIT = "Melhores Signos de 2027: os mais favorecidos · Mestre Alberto"
 fav = [PT[s] for s in rank if grupo(s) == GRUPOS[0]]
 DESC = f"Os melhores signos de 2027 pelo céu real: {', '.join(fav[:-1])} e {fav[-1]} à frente, com Júpiter a favor. A melhor fase de cada signo e porquê."
 assert len(TIT) <= 70 and 110 <= len(DESC) <= 160, (len(TIT), len(DESC))

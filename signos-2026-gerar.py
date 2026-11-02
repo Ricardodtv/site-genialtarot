@@ -87,7 +87,7 @@ som = src[src.index('<button id="audio-fab"'):src.index('<div class="estrelas"')
 rodape = src[src.index("<footer>"):src.index("</footer>") + 9]
 musica = src[src.index("<script>\n/* 🎵 28/10/2026"):src.index('<script src="/vip-faixa.js"')]
 URL = "https://genialtarot.com/signos-2026"
-TIT = "Signos 2026: o ano de cada signo e os melhores signos · Mestre Alberto"
+TIT = "Signos 2026: o ano de cada signo · Mestre Alberto"
 DESC = "Signos 2026: o que o céu real trouxe a cada signo — Saturno e Neptuno em Carneiro, Júpiter em Leão, os eclipses — e quais os melhores signos do ano."
 cabeca = re.sub(r"<title>.*?</title>", f"<title>{TIT}</title>", cabeca)
 cabeca = cabeca.replace("https://genialtarot.com/horoscopo-do-dia", URL)
