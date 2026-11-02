@@ -38,6 +38,7 @@
   <url><loc>https://genialtarot.com/ascendente-em-sagitario</loc><image:image><image:loc>https://genialtarot.com/signos/signo-sagitario.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/ascendente-em-touro</loc><image:image><image:loc>https://genialtarot.com/signos/signo-touro.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/ascendente-em-virgem</loc><image:image><image:loc>https://genialtarot.com/signos/signo-virgem.webp</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/astrologia-vedica</loc><image:image><image:loc>https://genialtarot.com/astrologia-vedica.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/astrologia</loc><image:image><image:loc>https://genialtarot.com/astrologia-ceu-de-hoje.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/carta-as-de-copas</loc><image:image><image:loc>https://genialtarot.com/cartas/menores/ace-of-cups.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/carta-as-de-espadas</loc><image:image><image:loc>https://genialtarot.com/cartas/menores/ace-of-swords.webp</image:loc></image:image></url>
@@ -178,6 +179,10 @@
   <url><loc>https://genialtarot.com/consulta-de-tarot-online</loc><image:image><image:loc>https://genialtarot.com/consulta-de-tarot-online.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/cor-do-ano-2027</loc><image:image><image:loc>https://genialtarot.com/cor-do-ano-2027-dourado.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/eclipses-2027</loc><image:image><image:loc>https://genialtarot.com/eclipse-total-do-sol.webp</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/elemento-agua</loc><image:image><image:loc>https://genialtarot.com/signos-de-agua.webp</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/elemento-ar</loc><image:image><image:loc>https://genialtarot.com/signos-de-ar.webp</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/elemento-fogo</loc><image:image><image:loc>https://genialtarot.com/signos-de-fogo.webp</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/elemento-terra</loc><image:image><image:loc>https://genialtarot.com/signos-de-terra.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/fimdesemana</loc><image:image><image:loc>https://genialtarot.com/mestre-fds.jpg</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/horoscopo-do-dia</loc><image:image><image:loc>https://genialtarot.com/horoscopo-do-dia.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/horoscopo-pessoal</loc><image:image><image:loc>https://genialtarot.com/mestre-horoscopo.jpg</image:loc></image:image></url>
@@ -199,7 +204,7 @@
   <url><loc>https://genialtarot.com/lua-em-virgem</loc><image:image><image:loc>https://genialtarot.com/signos/signo-virgem.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/lua</loc><image:image><image:loc>https://genialtarot.com/fases-da-lua.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/mapa-amor</loc><image:image><image:loc>https://genialtarot.com/mapa-amor-loja.jpg</image:loc></image:image><image:image><image:loc>https://genialtarot.com/mapa-astral-loja.jpg</image:loc></image:image><image:image><image:loc>https://genialtarot.com/atracao-amor.jpg</image:loc></image:image></url>
-  <url><loc>https://genialtarot.com/mapa-astral</loc><image:image><image:loc>https://genialtarot.com/mapa-astral.jpg</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/mapa-astral</loc><image:image><image:loc>https://genialtarot.com/mapa-astral.jpg</image:loc></image:image><image:image><image:loc>https://genialtarot.com/mapa-astral.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/mapa-do-casal</loc><image:image><image:loc>https://genialtarot.com/atracao-amor.jpg</image:loc></image:image><image:image><image:loc>https://genialtarot.com/terapia-casais.jpg</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/melhores-signos-2027</loc><image:image><image:loc>https://genialtarot.com/signos/signo-touro.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-leao.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-virgem.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-sagitario.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-carneiro.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-capricornio.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-gemeos.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-escorpiao.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-aquario.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-peixes.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-caranguejo.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-balanca.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/numerologia-2027</loc><image:image><image:loc>https://genialtarot.com/mestre-anual.jpg</image:loc></image:image></url>
