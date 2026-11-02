@@ -13,7 +13,7 @@ H2027 = [
    ["20 de fevereiro", "Eclipse da Lua em Virgem, na casa 6: hora de rever rotinas de trabalho e hábitos que o cansam."],
    ["26 de julho", "Júpiter entra em Virgem, na sua casa 6: o trabalho diário ganha ordem, apoio e novas oportunidades práticas."],
    ["2 de agosto", "Eclipse total do Sol em Leão, na casa 5: um recomeço no amor, na criatividade ou na relação com os filhos."],
-   ["10 de agosto", "Saturno fica retrógrado no seu signo: tempo de rever objectivos pessoais e consolidar o que já conquistou."],
+   ["9 de agosto", "Saturno fica retrógrado no seu signo: tempo de rever objectivos pessoais e consolidar o que já conquistou."],
    ["24 de dezembro", "Saturno retoma o movimento directo: as decisões amadurecidas no Outono podem avançar com firmeza."]],
   "conselho": "Leve-se a sério, mas não se leve a peso. O ano recompensa quem é firme nos objectivos e generoso com o coração."},
 
@@ -62,7 +62,7 @@ H2027 = [
    ["18 de julho", "Eclipse da Lua em Capricórnio, na casa 7: as relações mostram o que precisa de mudar."],
    ["26 de julho", "Júpiter entra em Virgem, na casa 3: bom período para estudar, escrever e criar contactos."],
    ["2 de agosto", "Eclipse total do Sol em Leão, na casa 2: nova fase nas finanças e na forma como se valoriza."],
-   ["10 de agosto", "Saturno fica retrógrado na casa 10: tempo de rever objectivos de carreira com calma."]],
+   ["9 de agosto", "Saturno fica retrógrado na casa 10: tempo de rever objectivos de carreira com calma."]],
   "conselho": "Proteja o seu valor como protege os seus. O esforço de 2027 na carreira é sementeira para muitos anos."},
 
  {"slug": "leao",
@@ -95,7 +95,7 @@ H2027 = [
    ["20 de fevereiro", "Eclipse da Lua no seu signo: emoções vêm à superfície e mostram o que precisa de mudar em si."],
    ["14 de maio", "Marte regressa ao seu signo, já directo: energia renovada para agir com objectivos claros."],
    ["26 de julho", "Júpiter entra no seu signo: começa um ciclo de crescimento, confiança e oportunidades."],
-   ["10 de agosto", "Saturno fica retrógrado na casa 8: tempo de rever dívidas, partilhas e compromissos profundos."]],
+   ["9 de agosto", "Saturno fica retrógrado na casa 8: tempo de rever dívidas, partilhas e compromissos profundos."]],
   "conselho": "Não espere estar pronto para aceitar o que a vida lhe oferece. A segunda metade de 2027 é sua."},
 
  {"slug": "balanca",
@@ -110,7 +110,7 @@ H2027 = [
    ["6 de fevereiro", "Eclipse do Sol em Aquário, na casa 5: recomeço no romance, na criatividade e no prazer."],
    ["15 de julho", "Marte entra no seu signo: mais energia, iniciativa e coragem para decidir."],
    ["2 de agosto", "Eclipse total do Sol em Leão, na casa 11: novas amizades e projectos de grupo."],
-   ["10 de agosto", "Saturno fica retrógrado na casa 7: as relações e os acordos são revistos com calma."],
+   ["9 de agosto", "Saturno fica retrógrado na casa 7: as relações e os acordos são revistos com calma."],
    ["28 de outubro", "Mercúrio fica directo no seu signo: clareza nas conversas e nas decisões adiadas."]],
   "conselho": "Um bom compromisso não é o que agrada a todos, é o que é justo para si também."},
 
@@ -158,7 +158,7 @@ H2027 = [
    ["6 de fevereiro", "Eclipse do Sol em Aquário, na casa 2: nova fase nos rendimentos e nos valores."],
    ["18 de julho", "Eclipse da Lua no seu signo: viragem emocional e clareza sobre o que precisa."],
    ["26 de julho", "Júpiter entra em Virgem, na casa 9: viagens, estudos e novos horizontes."],
-   ["10 de agosto", "Saturno, o seu regente, fica retrógrado na casa 4: revisão de assuntos de casa e família."],
+   ["9 de agosto", "Saturno, o seu regente, fica retrógrado na casa 4: revisão de assuntos de casa e família."],
    ["26 de novembro", "Marte entra no seu signo: energia, iniciativa e determinação para fechar o ano."]],
   "conselho": "Construa com firmeza, mas deixe espaço para sentir. A sua força vem também das suas raízes."},
 
@@ -191,6 +191,6 @@ H2027 = [
    ["20 de fevereiro", "Eclipse da Lua em Virgem, na casa 7: as relações pedem honestidade."],
    ["26 de julho", "Júpiter entra em Virgem, na casa 7: amor, compromissos e parcerias favorecidos."],
    ["2 de agosto", "Eclipse total do Sol em Leão, na casa 6: nova fase no trabalho e nos hábitos."],
-   ["10 de agosto", "Saturno fica retrógrado na casa 2: revisão das finanças e do que é essencial."]],
+   ["9 de agosto", "Saturno fica retrógrado na casa 2: revisão das finanças e do que é essencial."]],
   "conselho": "Dê forma aos seus sonhos com passos práticos. A estrutura não lhe tira magia, dá-lhe chão."},
 ]

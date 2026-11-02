@@ -151,7 +151,7 @@ html = cabeca + estilo + "\n" + f'<script type="application/ld+json">\n{json.dum
   <section class="cartao chamada">
     <h2>E o <span class="az">seu</span> 2027?</h2>
     <p>O signo solar é só o começo. Numa consulta olho para o seu mapa completo e para o ano que aí vem.</p>
-    <div class="botoes"><a class="btn" href="/horoscopo-2027">✨ Horóscopo 2027</a><a class="btn ouro" href="loja.html#cat-consultas">🔮 Marcar uma consulta</a></div>
+    <div class="botoes"><a class="btn" href="/horoscopo-2027">✨ Horóscopo 2027</a><a class="btn" href="/melhores-signos-2027">🌟 Melhores signos de 2027</a><a class="btn ouro" href="loja.html#cat-consultas">🔮 Marcar uma consulta</a></div>
   </section>
 </div>
 <!-- seo-extra -->
