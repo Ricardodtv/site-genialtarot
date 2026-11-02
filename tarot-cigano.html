@@ -362,7 +362,7 @@ footer a { color: inherit; }
       const fr = cc[i].querySelector(".frente"); fr.classList.add("img");   /* 02/11: a carta verdadeira (baralho de 1799) */
       fr.innerHTML = `<img src="cartas-ciganas/${window.FIC_GT[c.n - 1]}" alt="Carta ${c.n} do Baralho Cigano Genial Tarot: ${ESC(c.nome)}">`;   /* 02/11: o baralho cigano GT já traz número e nome */
       cc[i].setAttribute("aria-label", `${MODOS[modo][i]}: carta ${c.n}, ${c.nome}`);
-      setTimeout(() => cc[i].classList.add("virada"), 250 + i * 450);
+      setTimeout(() => { cc[i].classList.add("virada"); if (window.somCigano) window.somCigano(i); }, 250 + i * 450);   /* 02/11: o som das cartas ciganas */
     });
     setTimeout(() => { aVirar = false; ler(); $("tirar").disabled = false; $("tirar").textContent = "🔄 Baralhar de novo"; }, 250 + 3 * 450 + 400);
   }
@@ -451,6 +451,7 @@ document.getElementById("audio-fab").addEventListener("click", async (e) => {
 });
 })();
 </script>
+<script src="/som-cigano.js" defer></script>
 <script src="/vip-faixa.js" defer></script>
 <script src="/vivo.js" defer></script>
 </body>

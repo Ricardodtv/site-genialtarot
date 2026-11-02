@@ -766,6 +766,22 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .qs-lista li.sim { background: oklch(0.82 0.14 85 / .25); border-color: var(--gold); transform: scale(1.04); box-shadow: 0 0 24px oklch(0.82 0.14 85 / .45); }
 @media (max-width: 639px) { .qs-lista li { grid-template-columns: 1.7rem 1fr; gap: .4rem; padding: .5rem .55rem; } .qs-lista .g { font-size: 1.35rem; } .qs-lista b { font-size: .92rem; } .qs-lista small { font-size: .74rem; white-space: nowrap; } .qs-lista b em { display: block; } .qs-cuspide-campos { grid-template-columns: 1fr 1fr; } }
 .qs-nota { font-size: .82rem; color: oklch(0.80 0.05 310); margin-top: 1.1rem; }
+
+/* 🃏 02/11/2026 — o Baralho Cigano GT em destaque: leque de 5 cartas que viram ao passar/tocar, com o som da pandeireta */
+.porta-cigano-gt { grid-column: 1 / -1; display: flex; flex-direction: row; align-items: center; gap: 1.4rem; flex-wrap: wrap; background: linear-gradient(150deg, oklch(0.30 0.12 15 / .92), oklch(0.20 0.08 330 / .95)); border-color: oklch(0.85 0.13 88 / .55); }
+.leque { position: relative; width: 17rem; height: 11rem; flex: none; margin: 0 auto; cursor: pointer; }
+.leque .lc { display: block; position: absolute; left: 50%; bottom: 0; width: 5.2rem; aspect-ratio: 969 / 1624; margin-left: -2.6rem; transform-origin: 50% 120%; perspective: 700px; transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+.leque .lc-in { display: block; position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.leque .lc.virada .lc-in { transform: rotateY(180deg); }
+.leque .lf { display: block; position: absolute; inset: 0; border-radius: .35rem; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 6px 18px #0009; background: url(/cartas-ciganas/verso-gt.webp) center/cover no-repeat; }
+.leque .lf.fr { transform: rotateY(180deg); background: none; }
+.leque .lf.fr img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.leque:hover .lc { filter: drop-shadow(0 0 10px oklch(0.85 0.13 88 / .35)); }
+.cigano-txt { flex: 1; min-width: 14rem; }
+.cigano-txt strong { display: block; font-family: "Cinzel", var(--font-display); font-weight: 600; font-size: 1.35rem; line-height: 1.2; }
+.cigano-txt small { display: block; opacity: .85; margin: .3rem 0 .8rem; }
+.cigano-txt .botoes-cg { display: flex; gap: .5rem; flex-wrap: wrap; }
+@media (prefers-reduced-motion: reduce) { .leque .lc, .leque .lc-in { transition: none; } }
 </style>
 <script type="application/ld+json">
 {
@@ -971,6 +987,23 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
         </div>
         <span class="porta-btn">Ver o meu signo →</span>
       </a>
+
+      <!-- 🃏 O Baralho Cigano GT (02/11/2026, pedido dele: «nos destaques» + «um som engraçado ao girar as cartas») -->
+      <div class="porta porta-cigano-gt porta-brilho" id="porta-cigano-gt">
+        <span class="porta-eti porta-eti-novo">Baralho próprio</span>
+        <div class="leque" id="leque-cg" role="button" tabindex="0" aria-label="Virar cartas do Baralho Cigano Genial Tarot">
+          <span class="lc" style="transform:rotate(-24deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/01-cavaleiro.webp" alt="Carta 1 do Baralho Cigano Genial Tarot: Cavaleiro" width="480" height="804" loading="lazy" decoding="async"></span></span></span>
+          <span class="lc" style="transform:rotate(-12deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/16-estrela.webp" alt="Carta 16 do Baralho Cigano Genial Tarot: Estrela" width="480" height="804" loading="lazy" decoding="async"></span></span></span>
+          <span class="lc" style="transform:rotate(0deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/24-coracao.webp" alt="Carta 24 do Baralho Cigano Genial Tarot: Coração" width="480" height="804" loading="lazy" decoding="async"></span></span></span>
+          <span class="lc" style="transform:rotate(12deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/31-sol.webp" alt="Carta 31 do Baralho Cigano Genial Tarot: Sol" width="480" height="804" loading="lazy" decoding="async"></span></span></span>
+          <span class="lc" style="transform:rotate(24deg)"><span class="lc-in"><span class="lf"></span><span class="lf fr"><img src="/cartas-ciganas/33-chave.webp" alt="Carta 33 do Baralho Cigano Genial Tarot: Chave" width="480" height="804" loading="lazy" decoding="async"></span></span></span>
+        </div>
+        <div class="cigano-txt">
+          <strong>🃏 O Baralho Cigano GT</strong>
+          <small>As 36 cartas do baralho cigano do Mestre Alberto, desenhadas de novo. Passe o dedo ou o rato pelas cartas para as virar.</small>
+          <div class="botoes-cg"><a class="porta-btn" href="/tarot-cigano#tiragem">Tirar 3 cartas grátis →</a><a class="porta-btn" href="/tarot-cigano#cartas">Ver as 36 cartas →</a></div>
+        </div>
+      </div>
 
       <!-- 📅 O Horóscopo Semanal (02/11/2026, pedido dele: «nos destaques também») — o céu de cada semana calculado -->
       <a href="/horoscopo-semanal" class="porta porta-astral porta-brilho">
@@ -1747,6 +1780,36 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.innerWidth < 900) r.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 });
+</script>
+<script src="/som-cigano.js" defer></script>
+<script>
+/* 🃏 02/11/2026: o leque do Baralho Cigano GT — ao passar o rato (ou tocar) as 5 cartas viram uma a uma, com o som,
+   e mostram cartas diferentes de cada vez; ao sair voltam ao verso */
+(function () {
+  const L = document.getElementById("leque-cg"); if (!L) return;
+  const F = ["01-cavaleiro.webp", "02-trevo.webp", "03-navio.webp", "04-casa.webp", "05-arvore.webp", "06-nuvens.webp", "07-serpente.webp", "08-caixao.webp", "09-buque.webp", "10-foice.webp", "11-chicote.webp", "12-passaros.webp", "13-crianca.webp", "14-raposa.webp", "15-urso.webp", "16-estrela.webp", "17-cegonha.webp", "18-cao.webp", "19-torre.webp", "20-jardim.webp", "21-montanha.webp", "22-caminhos.webp", "23-ratos.webp", "24-coracao.webp", "25-anel.webp", "26-livro.webp", "27-carta.webp", "28-cigano.webp", "29-cigana.webp", "30-lirios.webp", "31-sol.webp", "32-lua.webp", "33-chave.webp", "34-peixes.webp", "35-ancora.webp", "36-cruz.webp"], N = ["Cavaleiro", "Trevo", "Navio", "Casa", "Árvore", "Nuvens", "Serpente", "Caixão", "Buquê", "Foice", "Chicote", "Pássaros", "Criança", "Raposa", "Urso", "Estrela", "Cegonha", "Cão", "Torre", "Jardim", "Montanha", "Caminhos", "Ratos", "Coração", "Anel", "Livro", "Carta", "Cigano", "Cigana", "Lírios", "Sol", "Lua", "Chave", "Peixes", "Âncora", "Cruz"];
+  const cs = [...L.querySelectorAll(".lc")], abre = [-34, -17, 0, 17, 34], fecha = [-24, -12, 0, 12, 24];
+  let aberto = false, timers = [];
+  const sorteio = () => { const a = [...Array(36).keys()]; for (let i = a.length - 1; i > 0; i--) { const r = new Uint32Array(1); crypto.getRandomValues(r); const j = r[0] % (i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a.slice(0, 5); };
+  function abrir() {
+    if (aberto) return; aberto = true; timers.forEach(clearTimeout); timers = [];
+    const s = sorteio();
+    cs.forEach((c, i) => {
+      const img = c.querySelector("img"); img.src = "/cartas-ciganas/" + F[s[i]]; img.alt = "Carta " + (s[i] + 1) + " do Baralho Cigano Genial Tarot: " + N[s[i]];
+      c.style.transform = `rotate(${abre[i]}deg) translateY(-6px)`;
+      timers.push(setTimeout(() => { c.classList.add("virada"); if (window.somCigano) window.somCigano(i); }, 120 + i * 190));
+    });
+  }
+  function fechar() {
+    if (!aberto) return; aberto = false; timers.forEach(clearTimeout); timers = [];
+    cs.forEach((c, i) => { c.classList.remove("virada"); c.style.transform = `rotate(${fecha[i]}deg)`; });
+  }
+  // rato: abre ao passar e fecha ao sair; dedo/caneta: cada toque abre ou fecha (o toque também simula «rato», por isso separa-se)
+  L.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") abrir(); });
+  L.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") fechar(); });
+  L.addEventListener("pointerup", (e) => { if (e.pointerType !== "mouse") (aberto ? fechar() : abrir()); });
+  L.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); aberto ? fechar() : abrir(); } });
+})();
 </script>
 <script src="/vip-faixa.js" defer></script><!-- 29/10/2026: faixa da Lista VIP -->
 <script src="/vivo.js" defer></script>
