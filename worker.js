@@ -623,6 +623,8 @@ async function estatisticasVisitas(env, dias) {
   return fora;
 }
 
+import REDIR_ANTIGAS from "./redirecoes-antigas.js";
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -1132,6 +1134,13 @@ export default {
     const resp = await env.ASSETS.fetch(request);
     // 01/11/2026: endereço de PÁGINA que não existe → a 404.html do site (com ligações de volta), sempre com código 404.
     // (Não pelo not_found_handling do wrangler: esse apanhava também /notify, /e/a, /api/vivo… e calava o worker.)
+    // 02/11/2026: endereço do site antigo → 301 para a página nova equivalente (redirecoes-antigas.js)
+    if (resp.status === 404 && (request.method === "GET" || request.method === "HEAD")) {
+      let pa = url.pathname; try { pa = decodeURIComponent(pa); } catch (e) {}
+      pa = pa.replace(/\/+$/, "") || "/";
+      const novo = REDIR_ANTIGAS[pa];
+      if (novo) return Response.redirect(new URL(novo, "https://genialtarot.com").toString(), 301);
+    }
     if (resp.status === 404 && request.method === "GET" && !/\.[a-z0-9]{1,5}$/i.test(url.pathname)
         && !/^\/(api|e)\//.test(url.pathname)) {
       const p404 = await env.ASSETS.fetch(new Request(new URL("/404", url), { method: "GET" }));
