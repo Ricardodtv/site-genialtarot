@@ -65,7 +65,21 @@ IMAGENS = [
      "Neptuno na astrologia: a inspiração, a espiritualidade, os sonhos e as ilusões."),
     ("P10", "planeta-plutao", "plutao-na-astrologia", "Plutão na astrologia: o planeta-anão Plutão com a planície em forma de coração",
      "Plutão na astrologia: a transformação profunda, o poder e o renascimento."),
+    # 02/11/2026: a Lua, os eclipses e o céu (L01–L06)
+    ("L01", "lua-azul", "lua-azul", "Lua Azul: Lua cheia enorme a nascer sobre um lago entre montanhas, com reflexo na água",
+     "A Lua Azul: a Lua Cheia «a mais», e quando é a próxima."),
+    ("L02", "lua", "fases-da-lua", "Fases da Lua: as oito fases da Lua em linha, da Lua Nova à Lua Cheia e de volta",
+     "As fases da Lua e a Lua nos signos, dia a dia, no Calendário Lunar."),
+    ("L03", "eclipses-2027", "eclipse-total-do-sol", "Eclipse total do Sol com a coroa solar visível sobre montanhas ao entardecer",
+     "Os eclipses de 2027: as datas, os signos e o que significam na astrologia."),
+    ("L04", "alinhamento-dos-planetas", "alinhamento-dos-planetas", "Alinhamento dos planetas: quatro planetas brilhantes em linha no céu do crepúsculo",
+     "O alinhamento dos planetas: quando se juntam no céu e quais se veem."),
+    ("L05", "retrogrados", "mercurio-retrogrado", "Planetas retrógrados: ampulheta dourada sob um céu estrelado e a Via Láctea",
+     "Os planetas retrógrados: Mercúrio retrógrado e os outros, quando e onde andam para trás."),
+    ("L06", "cor-do-ano-2027", "cor-do-ano-2027-dourado", "Cor do ano 2027: passagem de ano na praia com roupas e flores douradas e fogo de artifício dourado",
+     "A cor do ano 2027 na astrologia: o dourado e o amarelo do Sol, regente do ano."),
 ]
+
 FIG = ('<!-- img-destaque:inicio -->\n<figure class="img-destaque" style="max-width:72rem;margin:0 auto 2rem;padding:0 1rem;position:relative;z-index:1">'
        '<img src="/{nome}.webp" alt="{alt}" title="{alt}" width="1200" height="800" fetchpriority="high" decoding="async" '
        'style="display:block;width:100%;height:auto;border-radius:1.2rem;border:1px solid rgba(212,175,55,.35);box-shadow:0 18px 50px #0008">'

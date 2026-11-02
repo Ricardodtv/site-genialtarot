@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>https://genialtarot.com/alinhamento-dos-planetas</loc><image:image><image:loc>https://genialtarot.com/alinhamento-dos-planetas.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/anual</loc><image:image><image:loc>https://genialtarot.com/mestre-anual.jpg</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/arcano-00-o-louco</loc><image:image><image:loc>https://genialtarot.com/cartas/00-o-louco.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/arcano-01-o-mago</loc><image:image><image:loc>https://genialtarot.com/cartas/01-o-mago.webp</image:loc></image:image></url>
@@ -175,12 +176,15 @@
   <url><loc>https://genialtarot.com/compatibilidade-virgem-e-sagitario</loc><image:image><image:loc>https://genialtarot.com/signos/signo-virgem.webp</image:loc></image:image><image:image><image:loc>https://genialtarot.com/signos/signo-sagitario.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/compatibilidade-virgem-e-virgem</loc><image:image><image:loc>https://genialtarot.com/signos/signo-virgem.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/consulta-de-tarot-online</loc><image:image><image:loc>https://genialtarot.com/consulta-de-tarot-online.webp</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/cor-do-ano-2027</loc><image:image><image:loc>https://genialtarot.com/cor-do-ano-2027-dourado.webp</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/eclipses-2027</loc><image:image><image:loc>https://genialtarot.com/eclipse-total-do-sol.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/fimdesemana</loc><image:image><image:loc>https://genialtarot.com/mestre-fds.jpg</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/horoscopo-do-dia</loc><image:image><image:loc>https://genialtarot.com/horoscopo-do-dia.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/horoscopo-pessoal</loc><image:image><image:loc>https://genialtarot.com/mestre-horoscopo.jpg</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/horoscopo-semanal</loc><image:image><image:loc>https://genialtarot.com/horoscopo-semanal-signos.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/</loc><image:image><image:loc>https://genialtarot.com/mestre-principal.jpg</image:loc></image:image><image:image><image:loc>https://genialtarot.com/tudo-aqui.jpg</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/loja</loc><image:image><image:loc>https://genialtarot.com/profile.png</image:loc></image:image><image:image><image:loc>https://genialtarot.com/mbway.png</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/lua-azul</loc><image:image><image:loc>https://genialtarot.com/lua-azul.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/lua-em-aquario</loc><image:image><image:loc>https://genialtarot.com/signos/signo-aquario.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/lua-em-balanca</loc><image:image><image:loc>https://genialtarot.com/signos/signo-balanca.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/lua-em-capricornio</loc><image:image><image:loc>https://genialtarot.com/signos/signo-capricornio.webp</image:loc></image:image></url>
@@ -193,6 +197,7 @@
   <url><loc>https://genialtarot.com/lua-em-sagitario</loc><image:image><image:loc>https://genialtarot.com/signos/signo-sagitario.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/lua-em-touro</loc><image:image><image:loc>https://genialtarot.com/signos/signo-touro.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/lua-em-virgem</loc><image:image><image:loc>https://genialtarot.com/signos/signo-virgem.webp</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/lua</loc><image:image><image:loc>https://genialtarot.com/fases-da-lua.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/mapa-amor</loc><image:image><image:loc>https://genialtarot.com/mapa-amor-loja.jpg</image:loc></image:image><image:image><image:loc>https://genialtarot.com/mapa-astral-loja.jpg</image:loc></image:image><image:image><image:loc>https://genialtarot.com/atracao-amor.jpg</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/mapa-astral</loc><image:image><image:loc>https://genialtarot.com/mapa-astral.jpg</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/mapa-do-casal</loc><image:image><image:loc>https://genialtarot.com/atracao-amor.jpg</image:loc></image:image><image:image><image:loc>https://genialtarot.com/terapia-casais.jpg</image:loc></image:image></url>
@@ -208,6 +213,7 @@
   <url><loc>https://genialtarot.com/planeta-sol</loc><image:image><image:loc>https://genialtarot.com/sol-na-astrologia.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/planeta-urano</loc><image:image><image:loc>https://genialtarot.com/urano-na-astrologia.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/planeta-venus</loc><image:image><image:loc>https://genialtarot.com/venus-na-astrologia.webp</image:loc></image:image></url>
+  <url><loc>https://genialtarot.com/retrogrados</loc><image:image><image:loc>https://genialtarot.com/mercurio-retrogrado.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/revolucao-solar</loc><image:image><image:loc>https://genialtarot.com/mapa-astral.jpg</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/signo/aquario</loc><image:image><image:loc>https://genialtarot.com/signos/signo-aquario.webp</image:loc></image:image></url>
   <url><loc>https://genialtarot.com/signo/balanca</loc><image:image><image:loc>https://genialtarot.com/signos/signo-balanca.webp</image:loc></image:image></url>
