@@ -251,7 +251,18 @@ IMAGENS = [
      'Um Dedo Diferente por Dia — ilustração da história.'),
     ('H22', 'conto-como-a-comida-quer-o-sal', 'como-a-comida-quer-o-sal', 'Como a Comida Quer o Sal: taça de madeira cheia de sal grosso com uma colher de pau, numa mesa',
      'Como a Comida Quer o Sal — ilustração da história.'),
+    ('H01', 'lenda-justica-de-fafe', 'justica-de-fafe-monumento',
+     'Justiça de Fafe: estátua de bronze de um homem do Minho a erguer o varapau contra um fidalgo de casaca, em Fafe, sob o céu azul',
+     'O monumento à Justiça de Fafe, na cidade de Fafe: o varapau erguido que deu nome à lenda.'),
 ]
+
+# 03/11/2026: fotos de FORA com licença livre (ele: «vai buscar foto do monumento público, licença livre + crédito»).
+# A CC BY-SA pede o autor, a licença com ligação e a fonte; e o JSON-LD não pode dizer «© Genial Tarot».
+CREDITOS = {
+    "H01": {"autor": "Vitor Oliveira", "licenca": "CC BY-SA 2.0", "licenca_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+            "fonte": "https://commons.wikimedia.org/wiki/File:Monumento_%C3%A0_Justi%C3%A7a_de_Fafe_-_Portugal_(6766195051)_(cropped).jpg",
+            "nota": "adaptada (enquadrada com fundo desfocado)"},
+}
 
 FIG = ('<!-- img-destaque:inicio -->\n<figure class="img-destaque" style="max-width:72rem;margin:0 auto 2rem;padding:0 1rem;position:relative;z-index:1">'
        '<img src="/{nome}.webp" alt="{alt}" title="{alt}" width="1200" height="800" fetchpriority="high" decoding="async" '
@@ -281,7 +292,13 @@ def aplicar():
         f = f"{pag}.html"
         if not (os.path.exists(f) and os.path.exists(f"{nome}.webp")): continue
         h0 = h = open(f, encoding="utf-8").read()
-        fig = FIG.format(nome=nome, alt=html.escape(alt), leg=html.escape(leg))
+        cr = CREDITOS.get(cod)
+        legh = html.escape(leg)
+        if cr:
+            legh += (f'<br><small style="opacity:.75">Foto: {html.escape(cr["autor"])}, <a href="{cr["licenca_url"]}" rel="license noopener" '
+                     f'style="color:inherit">{cr["licenca"]}</a>, via <a href="{cr["fonte"]}" rel="noopener" style="color:inherit">Wikimedia Commons</a>'
+                     f'{" — " + html.escape(cr["nota"]) if cr.get("nota") else ""}</small>')
+        fig = FIG.format(nome=nome, alt=html.escape(alt), leg=legh)
         h = re.sub(r"<!-- img-destaque:inicio -->.*?<!-- img-destaque:fim -->\n", "", h, flags=re.S)   # tira exactamente o que pôs
         m = re.search(r'<section class="hero[i]?"[^>]*>', h)
         if not m: print("⚠️", f, "sem bloco de topo"); continue
@@ -298,6 +315,10 @@ def aplicar():
               "name": alt.split(":")[0], "caption": leg, "description": alt, "width": 1200, "height": 800,
               "creator": {"@type": "Organization", "name": "Genial Tarot"}, "copyrightHolder": {"@type": "Organization", "name": "Genial Tarot"},
               "creditText": "Genial Tarot · Mestre Alberto", "copyrightNotice": "© Genial Tarot", "representativeOfPage": True}
+        if cr:
+            ld.update({"creator": {"@type": "Person", "name": cr["autor"]}, "license": cr["licenca_url"], "acquireLicensePage": cr["fonte"],
+                       "creditText": f'{cr["autor"]} ({cr["licenca"]}, via Wikimedia Commons)', "copyrightNotice": f'© {cr["autor"]}, {cr["licenca"]}'})
+            ld.pop("copyrightHolder", None)
         h = re.sub(r'<script type="application/ld\+json" data-img-destaque>.*?</script>\n?', "", h, flags=re.S)
         h = h.replace("</head>", f'<script type="application/ld+json" data-img-destaque>{json.dumps(ld, ensure_ascii=False)}</script>\n</head>', 1)
         if h != h0:
