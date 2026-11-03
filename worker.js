@@ -1704,6 +1704,12 @@ export class Sala extends DurableObject {
     try { this.sql.exec("ALTER TABLE vis ADD COLUMN humano INTEGER DEFAULT 0"); } catch (e) { /* já existe */ }   // 01/11: confirmou ser pessoa
     this.sql.exec(`CREATE TABLE IF NOT EXISTS chat (id INTEGER PRIMARY KEY AUTOINCREMENT, sid TEXT, quando INTEGER, de TEXT, texto TEXT)`);
     this.sql.exec(`CREATE TABLE IF NOT EXISTS aberto (sid TEXT PRIMARY KEY, aberto INTEGER)`);
+    // 03/11/2026 20h: a quota grátis de LEITURAS do Durable Object esgotou («Exceeded allowed rows read»). O painel do HA
+    // pergunta de 3 em 3 s e cada pergunta lia a tabela INTEIRA (30 dias, robôs incluídos) por falta de índice na data;
+    // e cada visitante novo fazia um COUNT(*) à tabela toda. Índices + contagem guardada em memória.
+    this.sql.exec("CREATE INDEX IF NOT EXISTS vis_visto ON vis(visto)");
+    this.sql.exec("CREATE INDEX IF NOT EXISTS chat_sid ON chat(sid)");
+    this.total = null;
   }
   linhas(q, ...a) { return [...this.sql.exec(q, ...a)]; }
   limpar(agora) {
@@ -1711,6 +1717,7 @@ export class Sala extends DurableObject {
     this.ultimaLimpeza = agora;
     this.sql.exec("DELETE FROM vis WHERE visto < ?", agora - 30 * 864e5);   // 01/11 (ele): histórico de 30 dias (era 24 h); a regra dos 30 dias
     this.sql.exec("DELETE FROM chat WHERE quando < ?", agora - 30 * 864e5);
+    this.total = this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c;   // 03/11: contado aqui (de 10 em 10 min), não a cada visitante
   }
   async fetch(request) {
     const url = new URL(request.url), p = url.pathname, agora = Date.now();
@@ -1732,7 +1739,8 @@ export class Sala extends DurableObject {
           request.headers.get("CF-Connecting-IP") || "?", cf.country || "?", cf.city || "", cf.region || "", pagina, titulo, agora,
           (r.n || 0) + (r.pagina !== pagina ? 1 : 0), JSON.stringify(ps), sid);
       } else {
-        if (this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c > 30000) return J({ ok: false }, 429);
+        if ((this.total || 0) > 30000) return J({ ok: false }, 429);
+        this.total = (this.total || 0) + 1;
         // 01/11: com a lista das colunas — a coluna «humano» acrescentada deixava o INSERT sem colunas a rebentar (erro 1101)
         try {
           this.sql.exec("INSERT INTO vis (sid, ip, pais, cidade, regiao, aparelho, ua, pagina, titulo, origem, primeiro, visto, n, paginas) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", sid, request.headers.get("CF-Connecting-IP") || "?",
