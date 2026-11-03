@@ -29,12 +29,13 @@ IMAGENS = [
     ("A03", "horoscopo-semanal", "horoscopo-semanal-signos",
      "Horóscopo semanal dos signos: roda do zodíaco dourada com os 12 signos, astrolábio e agenda aberta sob um céu estrelado",
      "O horóscopo semanal dos 12 signos, de segunda a domingo, a partir do céu real da semana."),
+    # 03/11/2026: imagens novas dele (cofrecerebro) para A04, A05, L01 e S01; os originais antigos ficaram como <CÓD>.antes-03nov.png
     ("A04", "horoscopo-do-dia", "horoscopo-do-dia",
-     "Horóscopo do dia: nascer do sol sobre o mar com a Lua no céu e as constelações do zodíaco desenhadas em dourado",
+     "Horóscopo do dia: roda do zodíaco dourada com os 12 signos e o Sol ao centro, bola de cristal e livro de astrologia aberto ao pôr do sol",
      "O horóscopo do dia dos 12 signos, com a Lua e os aspetos dos planetas de hoje."),
     ("A05", "astrologia", "astrologia-ceu-de-hoje",
-     "Astrologia e o céu de hoje: astrólogo a observar a Via Láctea e os planetas alinhados, com um mapa astral e um astrolábio na mesa",
-     "Astrologia: o céu de agora, calculado, e tudo para ler os signos e o seu mapa astral."),
+     "Astrologia de agora: roda do zodíaco dourada, esfera armilar e bola de cristal, com a Lua e Saturno no céu estrelado",
+     "A astrologia de agora: onde está cada planeta neste momento, a Lua e os retrógrados, calculados."),
     ("A06", "tiragem-sim-ou-nao", "tarot-sim-ou-nao",
      "Tarot sim ou não: mão a escolher entre duas cartas de tarot, uma iluminada e outra na sombra, sobre veludo azul",
      "Tarot sim ou não: uma carta para uma pergunta direta, e como ler a resposta."),
@@ -66,7 +67,7 @@ IMAGENS = [
     ("P10", "planeta-plutao", "plutao-na-astrologia", "Plutão na astrologia: o planeta-anão Plutão com a planície em forma de coração",
      "Plutão na astrologia: a transformação profunda, o poder e o renascimento."),
     # 02/11/2026: a Lua, os eclipses e o céu (L01–L06)
-    ("L01", "lua-azul", "lua-azul", "Lua Azul: Lua cheia enorme a nascer sobre um lago entre montanhas, com reflexo na água",
+    ("L01", "lua-azul", "lua-azul", "Lua Azul: Lua cheia azul enorme no céu da noite, entre nuvens iluminadas pelo luar",
      "A Lua Azul: a Lua Cheia «a mais», e quando é a próxima."),
     ("L02", "lua", "fases-da-lua", "Fases da Lua: as oito fases da Lua em linha, da Lua Nova à Lua Cheia e de volta",
      "As fases da Lua e a Lua nos signos, dia a dia, no Calendário Lunar."),
@@ -91,6 +92,9 @@ IMAGENS = [
      "O mapa astral: os planetas no minuto em que nasceu, calculados ao minuto."),
     ("M02", "astrologia-vedica", "astrologia-vedica", "Astrologia védica: templo indiano ao anoitecer e um mapa védico desenhado em tecido cor de açafrão",
      "A astrologia védica (Jyotish): o zodíaco sideral e o seu signo védico."),
+    ("S01", "melhores-signos-2027", "melhores-signos-2027",
+     "Melhores signos de 2027: o número 2027 dourado no centro da roda do zodíaco, com os 12 signos, bola de cristal e ametistas",
+     "Os melhores signos de 2027: quem tem Júpiter a favor e a melhor fase do ano para cada signo."),
     # 03/11/2026: Histórias e Lendas + Contos tradicionais (H01–H25), geradas no renko (~/lendas-img)
     ('H02', 'lenda-galo-de-barcelos', 'lenda-do-galo-de-barcelos', 'Lenda do Galo de Barcelos: galo vermelho e preto em cima de uma mesa de madeira com velas acesas, numa sala de pedra',
      'A Lenda do Galo de Barcelos: o galo que cantou para provar a inocência do peregrino.'),
@@ -270,12 +274,22 @@ FIG = ('<!-- img-destaque:inicio -->\n<figure class="img-destaque" style="max-wi
        '<figcaption style="text-align:center;font-size:.85rem;color:#c9c2e0;margin-top:.6rem">{leg}</figcaption></figure>\n<!-- img-destaque:fim -->\n')
 
 
-def converter():
+# 03/11/2026: onde cortar quando o original não é 3:2 (0 = encostado à esquerda, 0.5 = ao centro, 1 = à direita)
+CORTE = {"A04": 0.05, "A05": 0.35}
+
+
+def converter(so=None):
     from PIL import Image
     for cod, _, nome, _, _ in IMAGENS:
+        if so and cod not in so: continue
         src = next((f"{ORIG}/{cod}.{e}" for e in ("png", "jpg", "jpeg", "webp") if os.path.exists(f"{ORIG}/{cod}.{e}")), None)
         if not src: print(cod, "sem original"); continue
         im = Image.open(src).convert("RGB")
+        if abs(im.width / im.height - 1.5) > 0.01:   # 03/11: cortar para 3:2 antes de reduzir (16:9 → sem faixas pretas)
+            if im.width / im.height > 1.5:
+                cw = round(im.height * 1.5); x = round((im.width - cw) * CORTE.get(cod, 0.5)); im = im.crop((x, 0, x + cw, im.height))
+            else:
+                ch = round(im.width / 1.5); y = (im.height - ch) // 2; im = im.crop((0, y, im.width, y + ch))
         w = im.resize((1200, round(im.height * 1200 / im.width)), Image.LANCZOS)
         if w.height != 800:   # 3:2 certinho
             t = (w.height - 800) // 2; w = w.crop((0, max(0, t), 1200, max(0, t) + 800))
@@ -361,5 +375,5 @@ def cartoes():
 
 
 if __name__ == "__main__":
-    if "--converter" in sys.argv: converter()
+    if "--converter" in sys.argv: converter([a for a in sys.argv[1:] if not a.startswith("--")] or None)   # 03/11: --converter A04 L01 … = só esses
     else: aplicar(); cartoes()

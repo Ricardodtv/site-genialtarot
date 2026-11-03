@@ -688,6 +688,20 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .orbita-2027 { position: absolute; inset: -0.45rem; animation: mini-roda-gira 7s linear infinite; }
 .orbita-2027 i { position: absolute; font-style: normal; color: oklch(0.90 0.14 88); font-size: 0.8rem; line-height: 1; }
 .orbita-2027 i:first-child { top: -0.1rem; left: 50%; } .orbita-2027 i:last-child { bottom: -0.1rem; right: 45%; font-size: 0.6rem; }
+/* 03/11/2026 — cartões com fotografia (pedido dele: as imagens dele nos cartões do início, «da forma dinâmica», com movimento).
+   Computador: a foto fica à esquerda do texto, no lugar do ícone (os pares de cartões mantêm a altura). Telemóvel: faixa larga em cima. */
+.porta-foto { display: block; position: relative; overflow: hidden; border-radius: 0.9rem; width: 9.5rem; aspect-ratio: 3 / 2;
+  border: 1px solid oklch(0.85 0.13 88 / 0.40); box-shadow: 0 8px 24px oklch(0.10 0.05 280 / 0.55); isolation: isolate; }
+.porta-foto img { display: block; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 45%;
+  animation: porta-foto-mexe 22s ease-in-out var(--atraso, 0s) infinite alternate; transition: filter .5s; will-change: transform; }
+.porta-foto::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: linear-gradient(115deg, transparent 30%, oklch(1 0 0 / 0.22) 45%, transparent 60%); background-size: 260% 100%;
+  background-position: 130% 0; animation: porta-foto-luz 7s ease-in-out var(--atraso, 0s) infinite; }
+@keyframes porta-foto-mexe { from { transform: scale(1.06) translate(0, 0); } to { transform: scale(1.24) translate(var(--dx, -3%), var(--dy, 2%)); } }
+@keyframes porta-foto-luz { 0%, 55% { background-position: 130% 0; } 85%, 100% { background-position: -40% 0; } }
+.porta:hover .porta-foto img, .porta:focus-visible .porta-foto img { filter: brightness(1.12) saturate(1.15); }
+@media (max-width: 859px) { .porta-cabeca:has(> .porta-foto) { flex-wrap: wrap; } .porta-foto { width: 100%; aspect-ratio: 2 / 1; } }
+@media (prefers-reduced-motion: reduce) { .porta-foto img, .porta-foto::after { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .porta-brilho::after, .mini-roda-anel, .mini-roda-sol, .porta-eti-novo, .orbita-2027 { animation: none; } }
 
 /* Lua de hoje dentro do cartão (as cores especiais de Cheia/Nova continuam a valer) */
@@ -978,7 +992,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="/horoscopo-do-dia" class="porta porta-astral porta-brilho">
         <span class="porta-eti porta-eti-novo">Todos os dias</span>
         <div class="porta-cabeca">
-          <span class="porta-visual porta-ico" aria-hidden="true">🔮</span>
+          <span class="porta-visual porta-foto" style="--dx:-4%;--dy:3%;--atraso:0s"><img src="/horoscopo-do-dia-cartao.webp" alt="Horóscopo do dia: roda do zodíaco dourada com os 12 signos e o Sol ao centro" width="960" height="480" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <span class="amor-data" id="horoscopo-data" aria-live="polite">Hoje</span>
             <strong>O Horóscopo do Dia</strong>
@@ -1040,7 +1054,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="/melhores-signos-2027" class="porta porta-2027 porta-brilho">
         <span class="porta-eti porta-eti-novo">Novidade</span>
         <div class="porta-cabeca">
-          <span class="porta-visual porta-ico" aria-hidden="true">🌟</span>
+          <span class="porta-visual porta-foto" style="--dx:3%;--dy:-2%;--atraso:-5s"><img src="/melhores-signos-2027-cartao.webp" alt="Melhores signos de 2027: o número 2027 dourado no centro da roda do zodíaco" width="960" height="480" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <strong>Os Melhores Signos de 2027</strong>
             <small>Quem tem Júpiter a favor em 2027 e a melhor fase do ano para o seu signo.</small>
@@ -1097,7 +1111,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="/astrologia" class="porta porta-astral porta-brilho">
         <span class="porta-eti porta-eti-novo">Novidade</span>
         <div class="porta-cabeca">
-          <span class="porta-visual porta-ico" aria-hidden="true">🪐</span>
+          <span class="porta-visual porta-foto" style="--dx:4%;--dy:2%;--atraso:-9s"><img src="/astrologia-ceu-de-hoje-cartao.webp" alt="Astrologia de agora: roda do zodíaco, esfera armilar e a Lua no céu estrelado" width="960" height="480" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <strong>A Astrologia de Agora</strong>
             <small>Onde está cada planeta neste momento, a Lua e os retrógrados.</small>
@@ -1110,7 +1124,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="/lua-azul" class="porta porta-2027 porta-brilho">
         <span class="porta-eti porta-eti-novo">Novidade</span>
         <div class="porta-cabeca">
-          <span class="porta-visual porta-ico" aria-hidden="true">🌕</span>
+          <span class="porta-visual porta-foto" style="--dx:-2%;--dy:-3%;--atraso:-13s"><img src="/lua-azul-cartao.webp" alt="A Lua Azul: Lua cheia azul no céu da noite entre nuvens" width="960" height="480" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <strong>A Próxima Lua Azul</strong>
             <small>O que é, porque é rara e quando volta, calculada para Portugal e Brasil.</small>
