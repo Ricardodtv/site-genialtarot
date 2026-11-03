@@ -89,7 +89,7 @@ for _f in glob.glob("sonho/sonhar-com-*.html"):
 TERMOS = [(re.compile(rf"(?<![\w-])(?:{p})(?![\w-])" if not p.startswith(_I) else _I + rf"(?<![\w-])(?:{p[len(_I):]})(?![\w-])"), u, w)
           for p, u, w in TERMOS if os.path.exists(u.lstrip("/") + ".html")]
 
-ZONAS = re.compile(r'<a\b[^>]*>.*?</a>|<section class="(?:heroi|hero)[^"]*".*?</section>|<p class="(?:sub|resumo|cat)[^"]*".*?</p>|' r"<(header|nav|footer|aside|script|style|h[1-6]|button|figure|figcaption|select|label|form)\b.*?</\1>|<!-- gt-casa:inicio -->.*?<!-- gt-casa:fim -->", re.S | re.I)
+ZONAS = re.compile(r'<a\b[^>]*>.*?</a>|<section class="(?:heroi|hero)[^"]*".*?</section>|<p class="(?:sub|resumo|cat|slogan|aviso|fonte|legal)[^"]*".*?</p>|' r"<(header|nav|footer|aside|script|style|h[1-6]|button|figure|figcaption|select|label|form)\b.*?</\1>|<!-- gt-casa:inicio -->.*?<!-- gt-casa:fim -->", re.S | re.I)
 BLOCO = re.compile(r"<(p|li)\b[^>]*>.*?</\1>", re.S | re.I)
 LIG = re.compile(r'<a class="li-gt" href="[^"]*">(.*?)</a>', re.S)
 
