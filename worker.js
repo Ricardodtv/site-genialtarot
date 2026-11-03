@@ -439,7 +439,7 @@ function origemDe(referer, proprio) {
 //
 // So entram as marcas desta lista. Sem ela, qualquer pessoa escrevia o que
 // lhe apetecesse nas estatisticas dele so por abrir o site com ?de=<lixo>.
-const MARCAS = new Set(["tiktok", "youtube", "instagram", "facebook", "whatsapp",
+const MARCAS = new Set(["tiktok", "youtube", "instagram", "facebook", "fb-grupo", "whatsapp",
                         "telegram", "email", "cartao", "bio"]);
 
 // 01/11/2026 (ele: «passo 1 — trazer o público do canal para o site»): além da marca (?de=youtube), a ligação pode

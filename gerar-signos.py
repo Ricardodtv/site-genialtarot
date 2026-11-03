@@ -203,7 +203,7 @@ NEGOCIO = {"@type": "ProfessionalService", "@id": SITE + "/#consultorio", "name"
            "address": {"@type": "PostalAddress", "streetAddress": "Rua da Barreira, 92", "addressLocality": "Fafe", "postalCode": "4820-474", "addressRegion": "Braga", "addressCountry": "PT"},
            "geo": {"@type": "GeoCoordinates", "latitude": 41.4682778, "longitude": -8.1984452},
            "founder": AUTOR, "areaServed": ["Fafe", "Guimarães", "Braga", "Portugal", "Brasil"],
-           "sameAs": ["https://www.youtube.com/@Genialtarot", "https://www.facebook.com/genial.tarot", "https://www.instagram.com/genialtarot/", "https://www.tiktok.com/@genialtarot"]}
+           "sameAs": ["https://www.youtube.com/@Genialtarot", "https://www.facebook.com/genial.tarot", "https://www.facebook.com/Mestre.Alberto", "https://www.facebook.com/LojaEspiritualbr", "https://www.instagram.com/genialtarot/", "https://www.tiktok.com/@genialtarot"]}
 ld = {"@context": "https://schema.org", "@graph": [NEGOCIO,
       {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Tarólogo em Fafe", "item": url}]}]}
 corpo = f"""  <section class="heroi">
