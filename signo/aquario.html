@@ -132,6 +132,12 @@ footer a { color: inherit; }
 .doze small { display: block; color: var(--suave); }
 .gmaps-btn{display:inline-flex;align-items:center;gap:.8rem;padding:.7rem 1.3rem .7rem 1rem;border-radius:999px;background:#fff;color:#202124;text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.35);text-align:left}
 .gmaps-btn b{display:block;font-size:1.02rem} .gmaps-btn small{display:block;color:#5f6368;font-size:.8rem}
+.video { position: relative; aspect-ratio: 16/9; max-width: 46rem; border-radius: 1rem; overflow: hidden; margin: .8rem auto 1.1rem; background: #000; cursor: pointer; border: 1px solid var(--borda); }
+.video img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video button { position: absolute; inset: 0; margin: auto; width: 4.4rem; height: 3.1rem; border: 0; border-radius: .9rem; background: #e01b1b; color: #fff; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 18px #0008; }
+.video:hover button { background: #ff2a2a; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video .vt { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.4rem .9rem .6rem; background: linear-gradient(transparent, #000d); color: #fff; font-size: .92rem; font-weight: 700; text-align: left; }
 </style>
 </head>
 <body>
@@ -147,8 +153,14 @@ footer a { color: inherit; }
   </section>
   <section class="cartao hoje">
     <h2>✨ Horóscopo de hoje para Aquário</h2>
+    <div class="video" id="v-dia" hidden></div>
     <div id="hoje"><p class="aviso">A carregar o céu de hoje…</p></div>
     <div class="ligas"><a href="/horoscopo-2027-aquario">Horóscopo 2027</a><a href="/ascendente-em-aquario">Ascendente em Aquário</a><a href="/lua-em-aquario">Lua em Aquário</a><a href="/horoscopo-do-dia#s10">Ver os 12 signos de hoje</a><a href="/fimdesemana">Fim de semana</a><a href="/anual">Previsão anual</a></div>
+  </section>
+  <section class="cartao" id="c-anual" hidden>
+    <h2>📅 Previsão anual para Aquário</h2>
+    <div class="video" id="v-anual"></div>
+    <div class="ligas"><a href="/anual">Ler a previsão anual</a><a href="https://www.youtube.com/@Genialtarot?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscrever o canal</a></div>
   </section>
 <!-- ecossistema-signo --><style>
 #lista-signo{border:1.5px solid rgba(255,217,120,.7);background:linear-gradient(135deg,rgba(255,217,120,.12),rgba(160,48,122,.22))}
@@ -208,6 +220,16 @@ footer a { color: inherit; }
     document.getElementById("hoje").innerHTML = '<div class="ene">' + "★".repeat(y.e) + "☆".repeat(5 - y.e) + ' energia</div><div class="chave">' + por(y.k) + "</div>"
       + y.t.map(function (t) { return "<p>" + por(t) + "</p>"; }).join("") + '<div class="dica"><b>👉 A dica de hoje</b> ' + por(y.d) + "</div>";
   }).catch(function () { document.getElementById("hoje").innerHTML = '<p><a href="/horoscopo-do-dia#s10">Ver o horóscopo de hoje</a></p>'; });
+  var vid = function (el, v) {
+    el.hidden = false;
+    el.innerHTML = '<img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="' + ESC(v.t) + '" width="480" height="270"><button type="button" aria-label="Ver o vídeo: ' + ESC(v.t) + '">▶</button><div class="vt">' + ESC(v.t) + "</div>";
+    el.onclick = function () { el.onclick = null; el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + v.id + '?autoplay=1&rel=0" title="' + ESC(v.t) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; };
+  };
+  fetch("/videos-signos.json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (x) {
+    var v = x["aquario"] || {};
+    if (v.dia) vid(document.getElementById("v-dia"), v.dia);
+    if (v.anual) { vid(document.getElementById("v-anual"), v.anual); document.getElementById("c-anual").hidden = false; }
+  }).catch(function () {});
 })();
 </script>
 

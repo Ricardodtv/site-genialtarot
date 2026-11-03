@@ -29,6 +29,12 @@ estilo = estilo.replace("</style>", """
 .ligas { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: 1rem 0; }
 .ligas a { text-decoration: none; font-weight: 700; color: var(--texto); border: 1px solid var(--borda); background: var(--vidro); border-radius: 999px; padding: .5rem 1rem; }
 .ligas a:hover { border-color: var(--ouro); }
+.video { position: relative; aspect-ratio: 16/9; max-width: 46rem; border-radius: 1rem; overflow: hidden; margin: .8rem auto 1.1rem; background: #000; cursor: pointer; border: 1px solid var(--borda); }
+.video img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video button { position: absolute; inset: 0; margin: auto; width: 4.4rem; height: 3.1rem; border: 0; border-radius: .9rem; background: #e01b1b; color: #fff; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 18px #0008; }
+.video:hover button { background: #ff2a2a; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video .vt { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.4rem .9rem .6rem; background: linear-gradient(transparent, #000d); color: #fff; font-size: .92rem; font-weight: 700; text-align: left; }
 .hoje .chave { font-family: var(--serifa); font-size: 1.3rem; color: var(--ouro); margin: .4rem 0; }
 .cta { display: inline-block; margin-top: .8rem; text-decoration: none; font-weight: 800; color: oklch(0.22 0.06 270); background: var(--grad-ouro); border-radius: 999px; padding: .75rem 1.4rem; }
 .doze { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
@@ -106,8 +112,14 @@ for i, s in enumerate(S):
   </section>
   <section class="cartao hoje">
     <h2>✨ Horóscopo de hoje para {E(s['pt'])}</h2>
+    <div class="video" id="v-dia" hidden></div>
     <div id="hoje"><p class="aviso">A carregar o céu de hoje…</p></div>
     <div class="ligas"><a href="/horoscopo-do-dia#s{i}">Ver os 12 signos de hoje</a><a href="/fimdesemana">Fim de semana</a><a href="/anual">Previsão anual</a></div>
+  </section>
+  <section class="cartao" id="c-anual" hidden>
+    <h2>📅 Previsão anual para {E(s['pt'])}</h2>
+    <div class="video" id="v-anual"></div>
+    <div class="ligas"><a href="/anual">Ler a previsão anual</a><a href="https://www.youtube.com/@Genialtarot?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscrever o canal</a></div>
   </section>
   <section class="cartao texto">
     <div class="perfil">
@@ -143,6 +155,16 @@ for i, s in enumerate(S):
     document.getElementById("hoje").innerHTML = '<div class="ene">' + "★".repeat(y.e) + "☆".repeat(5 - y.e) + ' energia</div><div class="chave">' + por(y.k) + "</div>"
       + y.t.map(function (t) {{ return "<p>" + por(t) + "</p>"; }}).join("") + '<div class="dica"><b>👉 A dica de hoje</b> ' + por(y.d) + "</div>";
   }}).catch(function () {{ document.getElementById("hoje").innerHTML = '<p><a href="/horoscopo-do-dia#s{i}">Ver o horóscopo de hoje</a></p>'; }});
+  var vid = function (el, v) {{
+    el.hidden = false;
+    el.innerHTML = '<img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="' + ESC(v.t) + '" width="480" height="270"><button type="button" aria-label="Ver o vídeo: ' + ESC(v.t) + '">▶</button><div class="vt">' + ESC(v.t) + "</div>";
+    el.onclick = function () {{ el.onclick = null; el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + v.id + '?autoplay=1&rel=0" title="' + ESC(v.t) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; }};
+  }};
+  fetch("/videos-signos.json").then(function (r) {{ if (!r.ok) throw 0; return r.json(); }}).then(function (x) {{
+    var v = x["{s['slug']}"] || {{}};
+    if (v.dia) vid(document.getElementById("v-dia"), v.dia);
+    if (v.anual) {{ vid(document.getElementById("v-anual"), v.anual); document.getElementById("c-anual").hidden = false; }}
+  }}).catch(function () {{}});
 }})();
 </script>
 """
