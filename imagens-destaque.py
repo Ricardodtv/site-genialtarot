@@ -134,6 +134,10 @@ IMAGENS = [
      'A Manta Partida ao Meio: o conto sobre como tratamos os mais velhos.'),
     ('H24', 'conto-frei-joao-sem-cuidados', 'frei-joao-sem-cuidados', 'Frei João Sem Cuidados: moinho de água de pedra junto ao rio, numa floresta de outono',
      'Frei João Sem Cuidados: as três perguntas do rei e o moleiro que respondeu.'),
+    ('H17', 'conto-coelhinho-branco', 'conto-do-coelhinho-branco', 'O Coelhinho Branco: coelho branco de casaco ao lado da porta da sua toca, num prado ao fim da tarde',
+     'O Coelhinho Branco: a cabra cabrês e o pequeno herói que a tirou da toca.'),
+    ('H25', 'conto-menina-e-o-figo', 'a-menina-e-o-figo', 'A Menina e o Figo: figos maduros roxos pendurados num ramo de figueira, com folhas verdes ao sol',
+     'A Menina e o Figo: o capim que cantou e a verdade que não ficou enterrada.'),
 ]
 
 FIG = ('<!-- img-destaque:inicio -->\n<figure class="img-destaque" style="max-width:72rem;margin:0 auto 2rem;padding:0 1rem;position:relative;z-index:1">'
