@@ -940,6 +940,9 @@ print("mapa do site:", len(fich), "páginas em", len(blocos), "secções")
 
 # ── 01/11/2026 (ele, SEO): as Perguntas frequentes também nas páginas que NÃO são feitas por este gerador (as feitas à mão,
 # os arcanos, as ferramentas). Entram antes do rodapé, com o cartão FAQPage no <head>. Idempotente: se já lá estão, não mexe.
+# 03/11/2026: os grandes trânsitos lentos (gerar-transitos.py)
+if os.path.exists("gerar-transitos.py"): exec(open("gerar-transitos.py", encoding="utf-8").read())
+
 for _slug, _faq in FAQ.items():
     _f = _slug + ".html"
     if not os.path.exists(_f): continue
@@ -964,7 +967,7 @@ _sp.run(["python3", "seo-descricoes.py"], check=False)
 
 # 02/11/2026: as imagens de destaque voltam a entrar nas páginas que este gerador reescreveu (imagens-destaque.py)
 import subprocess as _sp
-_sp.run(["python3", "/home/ricardo/site-genialtarot/imagens-destaque.py"])
+_sp.run(["python3", os.path.join(AQUI, "imagens-destaque.py")])   # 03/11: pela pasta deste guião (numa cópia/worktree não mexe na pasta principal)
 
 # 03/11/2026: repor os blocos «Veja também» que a reescrita tirou
 for _f, _bs in _GUARDA.items():

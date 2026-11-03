@@ -1,0 +1,2714 @@
+{
+ "motor": "Swiss Ephemeris 2.10.03",
+ "fuso": "Europe/Lisbon",
+ "ingressos": {
+  "jupiter": [
+   {
+    "data": "2018-11-08 12:38",
+    "de": "Escorpião",
+    "para": "Sagitário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2019-12-02 18:20",
+    "de": "Sagitário",
+    "para": "Capricórnio",
+    "sentido": "directo"
+   },
+   {
+    "data": "2020-12-19 13:07",
+    "de": "Capricórnio",
+    "para": "Aquário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2021-05-13 23:36",
+    "de": "Aquário",
+    "para": "Peixes",
+    "sentido": "directo"
+   },
+   {
+    "data": "2021-07-28 13:42",
+    "de": "Peixes",
+    "para": "Aquário",
+    "sentido": "retro"
+   },
+   {
+    "data": "2021-12-29 04:09",
+    "de": "Aquário",
+    "para": "Peixes",
+    "sentido": "directo"
+   },
+   {
+    "data": "2022-05-11 00:21",
+    "de": "Peixes",
+    "para": "Carneiro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2022-10-28 06:10",
+    "de": "Carneiro",
+    "para": "Peixes",
+    "sentido": "retro"
+   },
+   {
+    "data": "2022-12-20 14:31",
+    "de": "Peixes",
+    "para": "Carneiro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2023-05-16 18:20",
+    "de": "Carneiro",
+    "para": "Touro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2024-05-26 00:14",
+    "de": "Touro",
+    "para": "Gémeos",
+    "sentido": "directo"
+   },
+   {
+    "data": "2025-06-09 22:01",
+    "de": "Gémeos",
+    "para": "Caranguejo",
+    "sentido": "directo"
+   },
+   {
+    "data": "2026-06-30 06:52",
+    "de": "Caranguejo",
+    "para": "Leão",
+    "sentido": "directo"
+   },
+   {
+    "data": "2027-07-26 05:49",
+    "de": "Leão",
+    "para": "Virgem",
+    "sentido": "directo"
+   },
+   {
+    "data": "2028-08-24 06:08",
+    "de": "Virgem",
+    "para": "Balança",
+    "sentido": "directo"
+   },
+   {
+    "data": "2029-09-24 07:24",
+    "de": "Balança",
+    "para": "Escorpião",
+    "sentido": "directo"
+   },
+   {
+    "data": "2030-10-23 00:14",
+    "de": "Escorpião",
+    "para": "Sagitário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2031-11-15 10:29",
+    "de": "Sagitário",
+    "para": "Capricórnio",
+    "sentido": "directo"
+   },
+   {
+    "data": "2032-04-12 01:59",
+    "de": "Capricórnio",
+    "para": "Aquário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2032-06-26 13:55",
+    "de": "Aquário",
+    "para": "Capricórnio",
+    "sentido": "retro"
+   },
+   {
+    "data": "2032-11-30 03:32",
+    "de": "Capricórnio",
+    "para": "Aquário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2033-04-14 23:45",
+    "de": "Aquário",
+    "para": "Peixes",
+    "sentido": "directo"
+   },
+   {
+    "data": "2033-09-12 23:26",
+    "de": "Peixes",
+    "para": "Aquário",
+    "sentido": "retro"
+   },
+   {
+    "data": "2033-12-01 22:34",
+    "de": "Aquário",
+    "para": "Peixes",
+    "sentido": "directo"
+   },
+   {
+    "data": "2034-04-21 10:39",
+    "de": "Peixes",
+    "para": "Carneiro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2035-04-29 19:57",
+    "de": "Carneiro",
+    "para": "Touro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2036-05-09 15:52",
+    "de": "Touro",
+    "para": "Gémeos",
+    "sentido": "directo"
+   },
+   {
+    "data": "2037-05-24 03:12",
+    "de": "Gémeos",
+    "para": "Caranguejo",
+    "sentido": "directo"
+   },
+   {
+    "data": "2038-06-12 16:25",
+    "de": "Caranguejo",
+    "para": "Leão",
+    "sentido": "directo"
+   },
+   {
+    "data": "2038-11-16 21:20",
+    "de": "Leão",
+    "para": "Virgem",
+    "sentido": "directo"
+   },
+   {
+    "data": "2039-01-16 14:55",
+    "de": "Virgem",
+    "para": "Leão",
+    "sentido": "retro"
+   },
+   {
+    "data": "2039-07-08 01:24",
+    "de": "Leão",
+    "para": "Virgem",
+    "sentido": "directo"
+   },
+   {
+    "data": "2039-12-12 22:04",
+    "de": "Virgem",
+    "para": "Balança",
+    "sentido": "directo"
+   },
+   {
+    "data": "2040-02-20 05:35",
+    "de": "Balança",
+    "para": "Virgem",
+    "sentido": "retro"
+   },
+   {
+    "data": "2040-08-05 23:02",
+    "de": "Virgem",
+    "para": "Balança",
+    "sentido": "directo"
+   },
+   {
+    "data": "2041-01-11 19:32",
+    "de": "Balança",
+    "para": "Escorpião",
+    "sentido": "directo"
+   },
+   {
+    "data": "2041-03-21 00:02",
+    "de": "Escorpião",
+    "para": "Balança",
+    "sentido": "retro"
+   },
+   {
+    "data": "2041-09-06 01:11",
+    "de": "Balança",
+    "para": "Escorpião",
+    "sentido": "directo"
+   },
+   {
+    "data": "2042-02-08 23:52",
+    "de": "Escorpião",
+    "para": "Sagitário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2042-04-24 13:41",
+    "de": "Sagitário",
+    "para": "Escorpião",
+    "sentido": "retro"
+   },
+   {
+    "data": "2042-10-04 10:59",
+    "de": "Escorpião",
+    "para": "Sagitário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2043-03-01 17:05",
+    "de": "Sagitário",
+    "para": "Capricórnio",
+    "sentido": "directo"
+   },
+   {
+    "data": "2043-06-09 22:42",
+    "de": "Capricórnio",
+    "para": "Sagitário",
+    "sentido": "retro"
+   },
+   {
+    "data": "2043-10-26 11:30",
+    "de": "Sagitário",
+    "para": "Capricórnio",
+    "sentido": "directo"
+   },
+   {
+    "data": "2044-03-15 04:26",
+    "de": "Capricórnio",
+    "para": "Aquário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2044-08-09 13:43",
+    "de": "Aquário",
+    "para": "Capricórnio",
+    "sentido": "retro"
+   },
+   {
+    "data": "2044-11-04 17:31",
+    "de": "Capricórnio",
+    "para": "Aquário",
+    "sentido": "directo"
+   }
+  ],
+  "saturno": [
+   {
+    "data": "2020-03-22 03:58",
+    "de": "Capricórnio",
+    "para": "Aquário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2020-07-02 00:36",
+    "de": "Aquário",
+    "para": "Capricórnio",
+    "sentido": "retro"
+   },
+   {
+    "data": "2020-12-17 05:03",
+    "de": "Capricórnio",
+    "para": "Aquário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2023-03-07 13:35",
+    "de": "Aquário",
+    "para": "Peixes",
+    "sentido": "directo"
+   },
+   {
+    "data": "2025-05-25 04:35",
+    "de": "Peixes",
+    "para": "Carneiro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2025-09-01 09:06",
+    "de": "Carneiro",
+    "para": "Peixes",
+    "sentido": "retro"
+   },
+   {
+    "data": "2026-02-14 00:11",
+    "de": "Peixes",
+    "para": "Carneiro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2028-04-13 04:40",
+    "de": "Carneiro",
+    "para": "Touro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2030-06-01 03:34",
+    "de": "Touro",
+    "para": "Gémeos",
+    "sentido": "directo"
+   },
+   {
+    "data": "2032-07-14 03:16",
+    "de": "Gémeos",
+    "para": "Caranguejo",
+    "sentido": "directo"
+   },
+   {
+    "data": "2034-08-27 03:47",
+    "de": "Caranguejo",
+    "para": "Leão",
+    "sentido": "directo"
+   },
+   {
+    "data": "2035-02-15 19:33",
+    "de": "Leão",
+    "para": "Caranguejo",
+    "sentido": "retro"
+   },
+   {
+    "data": "2035-05-11 21:45",
+    "de": "Caranguejo",
+    "para": "Leão",
+    "sentido": "directo"
+   },
+   {
+    "data": "2036-10-16 08:35",
+    "de": "Leão",
+    "para": "Virgem",
+    "sentido": "directo"
+   },
+   {
+    "data": "2037-02-11 06:45",
+    "de": "Virgem",
+    "para": "Leão",
+    "sentido": "retro"
+   },
+   {
+    "data": "2037-07-07 03:31",
+    "de": "Leão",
+    "para": "Virgem",
+    "sentido": "directo"
+   },
+   {
+    "data": "2039-09-05 16:15",
+    "de": "Virgem",
+    "para": "Balança",
+    "sentido": "directo"
+   },
+   {
+    "data": "2041-11-11 10:57",
+    "de": "Balança",
+    "para": "Escorpião",
+    "sentido": "directo"
+   },
+   {
+    "data": "2042-06-21 11:26",
+    "de": "Escorpião",
+    "para": "Balança",
+    "sentido": "retro"
+   },
+   {
+    "data": "2042-07-14 14:59",
+    "de": "Balança",
+    "para": "Escorpião",
+    "sentido": "directo"
+   },
+   {
+    "data": "2044-02-21 14:22",
+    "de": "Escorpião",
+    "para": "Sagitário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2044-03-25 10:00",
+    "de": "Sagitário",
+    "para": "Escorpião",
+    "sentido": "retro"
+   },
+   {
+    "data": "2044-10-31 12:52",
+    "de": "Escorpião",
+    "para": "Sagitário",
+    "sentido": "directo"
+   }
+  ],
+  "urano": [
+   {
+    "data": "2018-05-15 16:17",
+    "de": "Carneiro",
+    "para": "Touro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2018-11-06 18:57",
+    "de": "Touro",
+    "para": "Carneiro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2019-03-06 08:27",
+    "de": "Carneiro",
+    "para": "Touro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2025-07-07 08:46",
+    "de": "Touro",
+    "para": "Gémeos",
+    "sentido": "directo"
+   },
+   {
+    "data": "2025-11-08 02:20",
+    "de": "Gémeos",
+    "para": "Touro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2026-04-26 01:51",
+    "de": "Touro",
+    "para": "Gémeos",
+    "sentido": "directo"
+   },
+   {
+    "data": "2032-08-03 19:21",
+    "de": "Gémeos",
+    "para": "Caranguejo",
+    "sentido": "directo"
+   },
+   {
+    "data": "2032-12-12 06:20",
+    "de": "Caranguejo",
+    "para": "Gémeos",
+    "sentido": "retro"
+   },
+   {
+    "data": "2033-05-22 14:16",
+    "de": "Gémeos",
+    "para": "Caranguejo",
+    "sentido": "directo"
+   },
+   {
+    "data": "2039-08-06 11:01",
+    "de": "Caranguejo",
+    "para": "Leão",
+    "sentido": "directo"
+   },
+   {
+    "data": "2040-02-25 07:35",
+    "de": "Leão",
+    "para": "Caranguejo",
+    "sentido": "retro"
+   },
+   {
+    "data": "2040-05-15 23:16",
+    "de": "Caranguejo",
+    "para": "Leão",
+    "sentido": "directo"
+   }
+  ],
+  "neptuno": [
+   {
+    "data": "2025-03-30 13:01",
+    "de": "Peixes",
+    "para": "Carneiro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2025-10-22 10:44",
+    "de": "Carneiro",
+    "para": "Peixes",
+    "sentido": "retro"
+   },
+   {
+    "data": "2026-01-26 17:40",
+    "de": "Peixes",
+    "para": "Carneiro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2038-05-22 01:23",
+    "de": "Carneiro",
+    "para": "Touro",
+    "sentido": "directo"
+   },
+   {
+    "data": "2038-10-21 13:11",
+    "de": "Touro",
+    "para": "Carneiro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2039-03-23 20:47",
+    "de": "Carneiro",
+    "para": "Touro",
+    "sentido": "directo"
+   }
+  ],
+  "plutao": [
+   {
+    "data": "2023-03-23 12:26",
+    "de": "Capricórnio",
+    "para": "Aquário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2023-06-11 10:31",
+    "de": "Aquário",
+    "para": "Capricórnio",
+    "sentido": "retro"
+   },
+   {
+    "data": "2024-01-21 00:58",
+    "de": "Capricórnio",
+    "para": "Aquário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2024-09-02 00:51",
+    "de": "Aquário",
+    "para": "Capricórnio",
+    "sentido": "retro"
+   },
+   {
+    "data": "2024-11-19 20:45",
+    "de": "Capricórnio",
+    "para": "Aquário",
+    "sentido": "directo"
+   },
+   {
+    "data": "2043-03-09 01:03",
+    "de": "Aquário",
+    "para": "Peixes",
+    "sentido": "directo"
+   },
+   {
+    "data": "2043-09-01 04:08",
+    "de": "Peixes",
+    "para": "Aquário",
+    "sentido": "retro"
+   },
+   {
+    "data": "2044-01-19 09:52",
+    "de": "Aquário",
+    "para": "Peixes",
+    "sentido": "directo"
+   }
+  ],
+  "nodo_verdadeiro": [
+   {
+    "data": "2018-11-06 17:53",
+    "de": "Leão",
+    "para": "Caranguejo",
+    "sentido": "retro"
+   },
+   {
+    "data": "2020-05-05 06:17",
+    "de": "Caranguejo",
+    "para": "Gémeos",
+    "sentido": "retro"
+   },
+   {
+    "data": "2022-01-18 19:10",
+    "de": "Gémeos",
+    "para": "Touro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2023-07-17 21:10",
+    "de": "Touro",
+    "para": "Carneiro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2025-01-11 23:27",
+    "de": "Carneiro",
+    "para": "Peixes",
+    "sentido": "retro"
+   },
+   {
+    "data": "2026-07-27 01:46",
+    "de": "Peixes",
+    "para": "Aquário",
+    "sentido": "retro"
+   },
+   {
+    "data": "2028-03-26 16:45",
+    "de": "Aquário",
+    "para": "Capricórnio",
+    "sentido": "retro"
+   },
+   {
+    "data": "2029-09-23 13:13",
+    "de": "Capricórnio",
+    "para": "Sagitário",
+    "sentido": "retro"
+   },
+   {
+    "data": "2031-03-21 00:03",
+    "de": "Sagitário",
+    "para": "Escorpião",
+    "sentido": "retro"
+   },
+   {
+    "data": "2032-12-02 05:11",
+    "de": "Escorpião",
+    "para": "Balança",
+    "sentido": "retro"
+   },
+   {
+    "data": "2034-06-03 18:30",
+    "de": "Balança",
+    "para": "Virgem",
+    "sentido": "retro"
+   },
+   {
+    "data": "2035-11-30 07:33",
+    "de": "Virgem",
+    "para": "Leão",
+    "sentido": "retro"
+   },
+   {
+    "data": "2037-05-29 11:42",
+    "de": "Leão",
+    "para": "Caranguejo",
+    "sentido": "retro"
+   },
+   {
+    "data": "2039-02-10 04:12",
+    "de": "Caranguejo",
+    "para": "Gémeos",
+    "sentido": "retro"
+   },
+   {
+    "data": "2040-08-11 10:16",
+    "de": "Gémeos",
+    "para": "Touro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2042-02-04 09:01",
+    "de": "Touro",
+    "para": "Carneiro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2043-08-18 17:16",
+    "de": "Carneiro",
+    "para": "Peixes",
+    "sentido": "retro"
+   }
+  ],
+  "nodo_medio": [
+   {
+    "data": "2018-11-16 01:28",
+    "de": "Leão",
+    "para": "Caranguejo",
+    "sentido": "retro"
+   },
+   {
+    "data": "2020-06-04 15:02",
+    "de": "Caranguejo",
+    "para": "Gémeos",
+    "sentido": "retro"
+   },
+   {
+    "data": "2021-12-23 03:15",
+    "de": "Gémeos",
+    "para": "Touro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2023-07-12 17:52",
+    "de": "Touro",
+    "para": "Carneiro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2025-01-29 06:49",
+    "de": "Carneiro",
+    "para": "Peixes",
+    "sentido": "retro"
+   },
+   {
+    "data": "2026-08-18 21:34",
+    "de": "Peixes",
+    "para": "Aquário",
+    "sentido": "retro"
+   },
+   {
+    "data": "2028-03-07 10:08",
+    "de": "Aquário",
+    "para": "Capricórnio",
+    "sentido": "retro"
+   },
+   {
+    "data": "2029-09-25 00:03",
+    "de": "Capricórnio",
+    "para": "Sagitário",
+    "sentido": "retro"
+   },
+   {
+    "data": "2031-04-14 12:32",
+    "de": "Sagitário",
+    "para": "Escorpião",
+    "sentido": "retro"
+   },
+   {
+    "data": "2032-10-31 23:24",
+    "de": "Escorpião",
+    "para": "Balança",
+    "sentido": "retro"
+   },
+   {
+    "data": "2034-05-21 12:10",
+    "de": "Balança",
+    "para": "Virgem",
+    "sentido": "retro"
+   },
+   {
+    "data": "2035-12-08 22:51",
+    "de": "Virgem",
+    "para": "Leão",
+    "sentido": "retro"
+   },
+   {
+    "data": "2037-06-27 11:58",
+    "de": "Leão",
+    "para": "Caranguejo",
+    "sentido": "retro"
+   },
+   {
+    "data": "2039-01-14 23:35",
+    "de": "Caranguejo",
+    "para": "Gémeos",
+    "sentido": "retro"
+   },
+   {
+    "data": "2040-08-03 13:40",
+    "de": "Gémeos",
+    "para": "Touro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2042-02-21 02:16",
+    "de": "Touro",
+    "para": "Carneiro",
+    "sentido": "retro"
+   },
+   {
+    "data": "2043-09-10 16:58",
+    "de": "Carneiro",
+    "para": "Peixes",
+    "sentido": "retro"
+   }
+  ]
+ },
+ "estacoes": {
+  "jupiter": [
+   {
+    "data": "2018-03-09 04:45",
+    "tipo": "fica retrógrado",
+    "pos": "23°13' Escorpião"
+   },
+   {
+    "data": "2018-07-10 18:03",
+    "tipo": "fica directo",
+    "pos": "13°20' Escorpião"
+   },
+   {
+    "data": "2019-04-10 18:00",
+    "tipo": "fica retrógrado",
+    "pos": "24°21' Sagitário"
+   },
+   {
+    "data": "2019-08-11 14:37",
+    "tipo": "fica directo",
+    "pos": "14°30' Sagitário"
+   },
+   {
+    "data": "2020-05-14 15:32",
+    "tipo": "fica retrógrado",
+    "pos": "27°14' Capricórnio"
+   },
+   {
+    "data": "2020-09-13 01:40",
+    "tipo": "fica directo",
+    "pos": "17°24' Capricórnio"
+   },
+   {
+    "data": "2021-06-20 16:05",
+    "tipo": "fica retrógrado",
+    "pos": "2°11' Peixes"
+   },
+   {
+    "data": "2021-10-18 06:30",
+    "tipo": "fica directo",
+    "pos": "22°19' Aquário"
+   },
+   {
+    "data": "2022-07-28 21:37",
+    "tipo": "fica retrógrado",
+    "pos": "8°43' Carneiro"
+   },
+   {
+    "data": "2022-11-23 23:02",
+    "tipo": "fica directo",
+    "pos": "28°47' Peixes"
+   },
+   {
+    "data": "2023-09-04 15:11",
+    "tipo": "fica retrógrado",
+    "pos": "15°34' Touro"
+   },
+   {
+    "data": "2023-12-31 02:40",
+    "tipo": "fica directo",
+    "pos": "5°34' Touro"
+   },
+   {
+    "data": "2024-10-09 08:05",
+    "tipo": "fica retrógrado",
+    "pos": "21°20' Gémeos"
+   },
+   {
+    "data": "2025-02-04 09:40",
+    "tipo": "fica directo",
+    "pos": "11°16' Gémeos"
+   },
+   {
+    "data": "2025-11-11 16:41",
+    "tipo": "fica retrógrado",
+    "pos": "25°09' Caranguejo"
+   },
+   {
+    "data": "2026-03-11 03:30",
+    "tipo": "fica directo",
+    "pos": "15°05' Caranguejo"
+   },
+   {
+    "data": "2026-12-13 00:56",
+    "tipo": "fica retrógrado",
+    "pos": "27°01' Leão"
+   },
+   {
+    "data": "2027-04-13 03:11",
+    "tipo": "fica directo",
+    "pos": "16°59' Leão"
+   },
+   {
+    "data": "2028-01-12 08:53",
+    "tipo": "fica retrógrado",
+    "pos": "27°30' Virgem"
+   },
+   {
+    "data": "2028-05-13 21:00",
+    "tipo": "fica directo",
+    "pos": "17°32' Virgem"
+   },
+   {
+    "data": "2029-02-10 13:07",
+    "tipo": "fica retrógrado",
+    "pos": "27°25' Balança"
+   },
+   {
+    "data": "2029-06-13 22:06",
+    "tipo": "fica directo",
+    "pos": "17°30' Balança"
+   },
+   {
+    "data": "2030-03-13 14:33",
+    "tipo": "fica retrógrado",
+    "pos": "27°38' Escorpião"
+   },
+   {
+    "data": "2030-07-15 02:26",
+    "tipo": "fica directo",
+    "pos": "17°45' Escorpião"
+   },
+   {
+    "data": "2031-04-15 13:04",
+    "tipo": "fica retrógrado",
+    "pos": "28°59' Sagitário"
+   },
+   {
+    "data": "2031-08-16 05:58",
+    "tipo": "fica directo",
+    "pos": "19°08' Sagitário"
+   },
+   {
+    "data": "2032-05-19 15:47",
+    "tipo": "fica retrógrado",
+    "pos": "2°08' Aquário"
+   },
+   {
+    "data": "2032-09-17 20:52",
+    "tipo": "fica directo",
+    "pos": "22°18' Capricórnio"
+   },
+   {
+    "data": "2033-06-25 22:51",
+    "tipo": "fica retrógrado",
+    "pos": "7°19' Peixes"
+   },
+   {
+    "data": "2033-10-23 08:18",
+    "tipo": "fica directo",
+    "pos": "27°27' Aquário"
+   },
+   {
+    "data": "2034-08-03 04:41",
+    "tipo": "fica retrógrado",
+    "pos": "13°57' Carneiro"
+   },
+   {
+    "data": "2034-11-29 02:24",
+    "tipo": "fica directo",
+    "pos": "4°01' Carneiro"
+   },
+   {
+    "data": "2035-09-09 15:14",
+    "tipo": "fica retrógrado",
+    "pos": "20°43' Touro"
+   },
+   {
+    "data": "2036-01-05 03:59",
+    "tipo": "fica directo",
+    "pos": "10°42' Touro"
+   },
+   {
+    "data": "2036-10-14 02:37",
+    "tipo": "fica retrógrado",
+    "pos": "26°14' Gémeos"
+   },
+   {
+    "data": "2037-02-09 07:41",
+    "tipo": "fica directo",
+    "pos": "16°10' Gémeos"
+   },
+   {
+    "data": "2037-11-16 02:17",
+    "tipo": "fica retrógrado",
+    "pos": "29°47' Caranguejo"
+   },
+   {
+    "data": "2038-03-15 17:51",
+    "tipo": "fica directo",
+    "pos": "19°43' Caranguejo"
+   },
+   {
+    "data": "2038-12-17 08:39",
+    "tipo": "fica retrógrado",
+    "pos": "1°27' Virgem"
+   },
+   {
+    "data": "2039-04-17 15:51",
+    "tipo": "fica directo",
+    "pos": "21°25' Leão"
+   },
+   {
+    "data": "2040-01-16 13:17",
+    "tipo": "fica retrógrado",
+    "pos": "1°50' Balança"
+   },
+   {
+    "data": "2040-05-18 04:57",
+    "tipo": "fica directo",
+    "pos": "21°52' Virgem"
+   },
+   {
+    "data": "2041-02-14 20:21",
+    "tipo": "fica retrógrado",
+    "pos": "1°45' Escorpião"
+   },
+   {
+    "data": "2041-06-18 07:13",
+    "tipo": "fica directo",
+    "pos": "21°51' Balança"
+   },
+   {
+    "data": "2042-03-18 02:47",
+    "tipo": "fica retrógrado",
+    "pos": "2°04' Sagitário"
+   },
+   {
+    "data": "2042-07-19 13:48",
+    "tipo": "fica directo",
+    "pos": "22°12' Escorpião"
+   },
+   {
+    "data": "2043-04-20 05:02",
+    "tipo": "fica retrógrado",
+    "pos": "3°35' Capricórnio"
+   },
+   {
+    "data": "2043-08-20 19:34",
+    "tipo": "fica directo",
+    "pos": "23°45' Sagitário"
+   },
+   {
+    "data": "2044-05-24 15:02",
+    "tipo": "fica retrógrado",
+    "pos": "6°57' Aquário"
+   },
+   {
+    "data": "2044-09-22 15:53",
+    "tipo": "fica directo",
+    "pos": "27°06' Capricórnio"
+   }
+  ],
+  "saturno": [
+   {
+    "data": "2018-04-18 02:46",
+    "tipo": "fica retrógrado",
+    "pos": "9°08' Capricórnio"
+   },
+   {
+    "data": "2018-09-06 12:08",
+    "tipo": "fica directo",
+    "pos": "2°32' Capricórnio"
+   },
+   {
+    "data": "2019-04-30 01:54",
+    "tipo": "fica retrógrado",
+    "pos": "20°31' Capricórnio"
+   },
+   {
+    "data": "2019-09-18 09:46",
+    "tipo": "fica directo",
+    "pos": "13°54' Capricórnio"
+   },
+   {
+    "data": "2020-05-11 05:09",
+    "tipo": "fica retrógrado",
+    "pos": "1°57' Aquário"
+   },
+   {
+    "data": "2020-09-29 06:11",
+    "tipo": "fica directo",
+    "pos": "25°20' Capricórnio"
+   },
+   {
+    "data": "2021-05-23 10:19",
+    "tipo": "fica retrógrado",
+    "pos": "13°31' Aquário"
+   },
+   {
+    "data": "2021-10-11 03:17",
+    "tipo": "fica directo",
+    "pos": "6°52' Aquário"
+   },
+   {
+    "data": "2022-06-04 22:46",
+    "tipo": "fica retrógrado",
+    "pos": "25°15' Aquário"
+   },
+   {
+    "data": "2022-10-23 05:07",
+    "tipo": "fica directo",
+    "pos": "18°35' Aquário"
+   },
+   {
+    "data": "2023-06-17 18:27",
+    "tipo": "fica retrógrado",
+    "pos": "7°12' Peixes"
+   },
+   {
+    "data": "2023-11-04 07:02",
+    "tipo": "fica directo",
+    "pos": "0°30' Peixes"
+   },
+   {
+    "data": "2024-06-29 20:06",
+    "tipo": "fica retrógrado",
+    "pos": "19°25' Peixes"
+   },
+   {
+    "data": "2024-11-15 14:21",
+    "tipo": "fica directo",
+    "pos": "12°41' Peixes"
+   },
+   {
+    "data": "2025-07-13 05:07",
+    "tipo": "fica retrógrado",
+    "pos": "1°56' Carneiro"
+   },
+   {
+    "data": "2025-11-28 03:51",
+    "tipo": "fica directo",
+    "pos": "25°09' Peixes"
+   },
+   {
+    "data": "2026-07-26 20:56",
+    "tipo": "fica retrógrado",
+    "pos": "14°44' Carneiro"
+   },
+   {
+    "data": "2026-12-10 23:31",
+    "tipo": "fica directo",
+    "pos": "7°55' Carneiro"
+   },
+   {
+    "data": "2027-08-09 19:05",
+    "tipo": "fica retrógrado",
+    "pos": "27°52' Carneiro"
+   },
+   {
+    "data": "2027-12-24 02:47",
+    "tipo": "fica directo",
+    "pos": "21°01' Carneiro"
+   },
+   {
+    "data": "2028-08-22 23:16",
+    "tipo": "fica retrógrado",
+    "pos": "11°18' Touro"
+   },
+   {
+    "data": "2029-01-05 12:38",
+    "tipo": "fica directo",
+    "pos": "4°24' Touro"
+   },
+   {
+    "data": "2029-09-06 09:34",
+    "tipo": "fica retrógrado",
+    "pos": "25°01' Touro"
+   },
+   {
+    "data": "2030-01-19 03:53",
+    "tipo": "fica directo",
+    "pos": "18°05' Touro"
+   },
+   {
+    "data": "2030-09-20 22:29",
+    "tipo": "fica retrógrado",
+    "pos": "8°56' Gémeos"
+   },
+   {
+    "data": "2031-02-02 02:24",
+    "tipo": "fica directo",
+    "pos": "1°59' Gémeos"
+   },
+   {
+    "data": "2031-10-05 11:50",
+    "tipo": "fica retrógrado",
+    "pos": "23°01' Gémeos"
+   },
+   {
+    "data": "2032-02-16 06:59",
+    "tipo": "fica directo",
+    "pos": "16°03' Gémeos"
+   },
+   {
+    "data": "2032-10-18 23:26",
+    "tipo": "fica retrógrado",
+    "pos": "7°11' Caranguejo"
+   },
+   {
+    "data": "2033-03-01 16:02",
+    "tipo": "fica directo",
+    "pos": "0°12' Caranguejo"
+   },
+   {
+    "data": "2033-11-02 07:03",
+    "tipo": "fica retrógrado",
+    "pos": "21°19' Caranguejo"
+   },
+   {
+    "data": "2034-03-16 02:29",
+    "tipo": "fica directo",
+    "pos": "14°21' Caranguejo"
+   },
+   {
+    "data": "2034-11-16 12:00",
+    "tipo": "fica retrógrado",
+    "pos": "5°22' Leão"
+   },
+   {
+    "data": "2035-03-30 14:12",
+    "tipo": "fica directo",
+    "pos": "28°25' Caranguejo"
+   },
+   {
+    "data": "2035-11-30 11:07",
+    "tipo": "fica retrógrado",
+    "pos": "19°14' Leão"
+   },
+   {
+    "data": "2036-04-12 23:37",
+    "tipo": "fica directo",
+    "pos": "12°19' Leão"
+   },
+   {
+    "data": "2036-12-13 02:58",
+    "tipo": "fica retrógrado",
+    "pos": "2°53' Virgem"
+   },
+   {
+    "data": "2037-04-27 05:57",
+    "tipo": "fica directo",
+    "pos": "25°59' Leão"
+   },
+   {
+    "data": "2037-12-26 11:35",
+    "tipo": "fica retrógrado",
+    "pos": "16°14' Virgem"
+   },
+   {
+    "data": "2038-05-11 07:21",
+    "tipo": "fica directo",
+    "pos": "9°23' Virgem"
+   },
+   {
+    "data": "2039-01-08 11:55",
+    "tipo": "fica retrógrado",
+    "pos": "29°17' Virgem"
+   },
+   {
+    "data": "2039-05-25 04:06",
+    "tipo": "fica directo",
+    "pos": "22°28' Virgem"
+   },
+   {
+    "data": "2040-01-21 04:12",
+    "tipo": "fica retrógrado",
+    "pos": "12°01' Balança"
+   },
+   {
+    "data": "2040-06-06 18:54",
+    "tipo": "fica directo",
+    "pos": "5°14' Balança"
+   },
+   {
+    "data": "2041-02-01 16:02",
+    "tipo": "fica retrógrado",
+    "pos": "24°26' Balança"
+   },
+   {
+    "data": "2041-06-20 02:09",
+    "tipo": "fica directo",
+    "pos": "17°42' Balança"
+   },
+   {
+    "data": "2042-02-13 22:50",
+    "tipo": "fica retrógrado",
+    "pos": "6°35' Escorpião"
+   },
+   {
+    "data": "2042-07-03 00:48",
+    "tipo": "fica directo",
+    "pos": "29°53' Balança"
+   },
+   {
+    "data": "2043-02-25 23:40",
+    "tipo": "fica retrógrado",
+    "pos": "18°30' Escorpião"
+   },
+   {
+    "data": "2043-07-15 19:07",
+    "tipo": "fica directo",
+    "pos": "11°50' Escorpião"
+   },
+   {
+    "data": "2044-03-08 22:25",
+    "tipo": "fica retrógrado",
+    "pos": "0°13' Sagitário"
+   },
+   {
+    "data": "2044-07-27 08:27",
+    "tipo": "fica directo",
+    "pos": "23°34' Escorpião"
+   }
+  ],
+  "urano": [
+   {
+    "data": "2018-01-02 14:10",
+    "tipo": "fica directo",
+    "pos": "24°34' Carneiro"
+   },
+   {
+    "data": "2018-08-07 17:49",
+    "tipo": "fica retrógrado",
+    "pos": "2°33' Touro"
+   },
+   {
+    "data": "2019-01-06 20:26",
+    "tipo": "fica directo",
+    "pos": "28°36' Carneiro"
+   },
+   {
+    "data": "2019-08-12 03:27",
+    "tipo": "fica retrógrado",
+    "pos": "6°36' Touro"
+   },
+   {
+    "data": "2020-01-11 01:48",
+    "tipo": "fica directo",
+    "pos": "2°38' Touro"
+   },
+   {
+    "data": "2020-08-15 15:26",
+    "tipo": "fica retrógrado",
+    "pos": "10°41' Touro"
+   },
+   {
+    "data": "2021-01-14 08:35",
+    "tipo": "fica directo",
+    "pos": "6°43' Touro"
+   },
+   {
+    "data": "2021-08-20 02:40",
+    "tipo": "fica retrógrado",
+    "pos": "14°47' Touro"
+   },
+   {
+    "data": "2022-01-18 15:26",
+    "tipo": "fica directo",
+    "pos": "10°49' Touro"
+   },
+   {
+    "data": "2022-08-24 14:53",
+    "tipo": "fica retrógrado",
+    "pos": "18°55' Touro"
+   },
+   {
+    "data": "2023-01-22 22:58",
+    "tipo": "fica directo",
+    "pos": "14°56' Touro"
+   },
+   {
+    "data": "2023-08-29 03:38",
+    "tipo": "fica retrógrado",
+    "pos": "23°04' Touro"
+   },
+   {
+    "data": "2024-01-27 07:34",
+    "tipo": "fica directo",
+    "pos": "19°05' Touro"
+   },
+   {
+    "data": "2024-09-01 16:17",
+    "tipo": "fica retrógrado",
+    "pos": "27°15' Touro"
+   },
+   {
+    "data": "2025-01-30 16:22",
+    "tipo": "fica directo",
+    "pos": "23°15' Touro"
+   },
+   {
+    "data": "2025-09-06 05:51",
+    "tipo": "fica retrógrado",
+    "pos": "1°27' Gémeos"
+   },
+   {
+    "data": "2026-02-04 02:33",
+    "tipo": "fica directo",
+    "pos": "27°27' Touro"
+   },
+   {
+    "data": "2026-09-10 19:27",
+    "tipo": "fica retrógrado",
+    "pos": "5°41' Gémeos"
+   },
+   {
+    "data": "2027-02-08 12:29",
+    "tipo": "fica directo",
+    "pos": "1°40' Gémeos"
+   },
+   {
+    "data": "2027-09-15 10:09",
+    "tipo": "fica retrógrado",
+    "pos": "9°57' Gémeos"
+   },
+   {
+    "data": "2028-02-12 23:49",
+    "tipo": "fica directo",
+    "pos": "5°55' Gémeos"
+   },
+   {
+    "data": "2028-09-19 01:01",
+    "tipo": "fica retrógrado",
+    "pos": "14°14' Gémeos"
+   },
+   {
+    "data": "2029-02-16 10:51",
+    "tipo": "fica directo",
+    "pos": "10°12' Gémeos"
+   },
+   {
+    "data": "2029-09-23 17:22",
+    "tipo": "fica retrógrado",
+    "pos": "18°33' Gémeos"
+   },
+   {
+    "data": "2030-02-20 23:22",
+    "tipo": "fica directo",
+    "pos": "14°30' Gémeos"
+   },
+   {
+    "data": "2030-09-28 09:26",
+    "tipo": "fica retrógrado",
+    "pos": "22°53' Gémeos"
+   },
+   {
+    "data": "2031-02-25 11:24",
+    "tipo": "fica directo",
+    "pos": "18°50' Gémeos"
+   },
+   {
+    "data": "2031-10-03 03:42",
+    "tipo": "fica retrógrado",
+    "pos": "27°15' Gémeos"
+   },
+   {
+    "data": "2032-03-01 01:34",
+    "tipo": "fica directo",
+    "pos": "23°12' Gémeos"
+   },
+   {
+    "data": "2032-10-06 20:52",
+    "tipo": "fica retrógrado",
+    "pos": "1°40' Caranguejo"
+   },
+   {
+    "data": "2033-03-05 14:41",
+    "tipo": "fica directo",
+    "pos": "27°35' Gémeos"
+   },
+   {
+    "data": "2033-10-11 17:04",
+    "tipo": "fica retrógrado",
+    "pos": "6°06' Caranguejo"
+   },
+   {
+    "data": "2034-03-10 06:48",
+    "tipo": "fica directo",
+    "pos": "2°01' Caranguejo"
+   },
+   {
+    "data": "2034-10-16 11:16",
+    "tipo": "fica retrógrado",
+    "pos": "10°34' Caranguejo"
+   },
+   {
+    "data": "2035-03-14 21:30",
+    "tipo": "fica directo",
+    "pos": "6°29' Caranguejo"
+   },
+   {
+    "data": "2035-10-21 09:02",
+    "tipo": "fica retrógrado",
+    "pos": "15°04' Caranguejo"
+   },
+   {
+    "data": "2036-03-18 15:29",
+    "tipo": "fica directo",
+    "pos": "10°59' Caranguejo"
+   },
+   {
+    "data": "2036-10-25 04:22",
+    "tipo": "fica retrógrado",
+    "pos": "19°37' Caranguejo"
+   },
+   {
+    "data": "2037-03-23 08:26",
+    "tipo": "fica directo",
+    "pos": "15°31' Caranguejo"
+   },
+   {
+    "data": "2037-10-30 01:59",
+    "tipo": "fica retrógrado",
+    "pos": "24°11' Caranguejo"
+   },
+   {
+    "data": "2038-03-28 05:26",
+    "tipo": "fica directo",
+    "pos": "20°05' Caranguejo"
+   },
+   {
+    "data": "2038-11-03 22:01",
+    "tipo": "fica retrógrado",
+    "pos": "28°47' Caranguejo"
+   },
+   {
+    "data": "2039-04-02 00:32",
+    "tipo": "fica directo",
+    "pos": "24°40' Caranguejo"
+   },
+   {
+    "data": "2039-11-08 21:04",
+    "tipo": "fica retrógrado",
+    "pos": "3°25' Leão"
+   },
+   {
+    "data": "2040-04-05 22:43",
+    "tipo": "fica directo",
+    "pos": "29°17' Caranguejo"
+   },
+   {
+    "data": "2040-11-12 17:54",
+    "tipo": "fica retrógrado",
+    "pos": "8°04' Leão"
+   },
+   {
+    "data": "2041-04-10 20:05",
+    "tipo": "fica directo",
+    "pos": "3°56' Leão"
+   },
+   {
+    "data": "2041-11-17 17:16",
+    "tipo": "fica retrógrado",
+    "pos": "12°45' Leão"
+   },
+   {
+    "data": "2042-04-15 19:57",
+    "tipo": "fica directo",
+    "pos": "8°37' Leão"
+   },
+   {
+    "data": "2042-11-22 15:15",
+    "tipo": "fica retrógrado",
+    "pos": "17°26' Leão"
+   },
+   {
+    "data": "2043-04-20 18:49",
+    "tipo": "fica directo",
+    "pos": "13°18' Leão"
+   },
+   {
+    "data": "2043-11-27 15:38",
+    "tipo": "fica retrógrado",
+    "pos": "22°09' Leão"
+   },
+   {
+    "data": "2044-04-24 19:51",
+    "tipo": "fica directo",
+    "pos": "18°01' Leão"
+   },
+   {
+    "data": "2044-12-01 14:46",
+    "tipo": "fica retrógrado",
+    "pos": "26°53' Leão"
+   }
+  ],
+  "neptuno": [
+   {
+    "data": "2018-06-19 00:26",
+    "tipo": "fica retrógrado",
+    "pos": "16°29' Peixes"
+   },
+   {
+    "data": "2018-11-25 01:08",
+    "tipo": "fica directo",
+    "pos": "13°41' Peixes"
+   },
+   {
+    "data": "2019-06-21 15:35",
+    "tipo": "fica retrógrado",
+    "pos": "18°43' Peixes"
+   },
+   {
+    "data": "2019-11-27 12:32",
+    "tipo": "fica directo",
+    "pos": "15°55' Peixes"
+   },
+   {
+    "data": "2020-06-23 05:32",
+    "tipo": "fica retrógrado",
+    "pos": "20°57' Peixes"
+   },
+   {
+    "data": "2020-11-29 00:36",
+    "tipo": "fica directo",
+    "pos": "18°09' Peixes"
+   },
+   {
+    "data": "2021-06-25 20:21",
+    "tipo": "fica retrógrado",
+    "pos": "23°11' Peixes"
+   },
+   {
+    "data": "2021-12-01 13:23",
+    "tipo": "fica directo",
+    "pos": "20°24' Peixes"
+   },
+   {
+    "data": "2022-06-28 08:54",
+    "tipo": "fica retrógrado",
+    "pos": "25°26' Peixes"
+   },
+   {
+    "data": "2022-12-04 00:15",
+    "tipo": "fica directo",
+    "pos": "22°38' Peixes"
+   },
+   {
+    "data": "2023-06-30 22:06",
+    "tipo": "fica retrógrado",
+    "pos": "27°41' Peixes"
+   },
+   {
+    "data": "2023-12-06 13:21",
+    "tipo": "fica directo",
+    "pos": "24°53' Peixes"
+   },
+   {
+    "data": "2024-07-02 11:40",
+    "tipo": "fica retrógrado",
+    "pos": "29°55' Peixes"
+   },
+   {
+    "data": "2024-12-07 23:43",
+    "tipo": "fica directo",
+    "pos": "27°07' Peixes"
+   },
+   {
+    "data": "2025-07-04 22:32",
+    "tipo": "fica retrógrado",
+    "pos": "2°10' Carneiro"
+   },
+   {
+    "data": "2025-12-10 12:23",
+    "tipo": "fica directo",
+    "pos": "29°22' Peixes"
+   },
+   {
+    "data": "2026-07-07 11:54",
+    "tipo": "fica retrógrado",
+    "pos": "4°25' Carneiro"
+   },
+   {
+    "data": "2026-12-12 22:17",
+    "tipo": "fica directo",
+    "pos": "1°36' Carneiro"
+   },
+   {
+    "data": "2027-07-09 23:41",
+    "tipo": "fica retrógrado",
+    "pos": "6°39' Carneiro"
+   },
+   {
+    "data": "2027-12-15 09:06",
+    "tipo": "fica directo",
+    "pos": "3°51' Carneiro"
+   },
+   {
+    "data": "2028-07-11 14:04",
+    "tipo": "fica retrógrado",
+    "pos": "8°54' Carneiro"
+   },
+   {
+    "data": "2028-12-16 20:42",
+    "tipo": "fica directo",
+    "pos": "6°05' Carneiro"
+   },
+   {
+    "data": "2029-07-14 03:11",
+    "tipo": "fica retrógrado",
+    "pos": "11°08' Carneiro"
+   },
+   {
+    "data": "2029-12-19 08:24",
+    "tipo": "fica directo",
+    "pos": "8°19' Carneiro"
+   },
+   {
+    "data": "2030-07-16 17:29",
+    "tipo": "fica retrógrado",
+    "pos": "13°22' Carneiro"
+   },
+   {
+    "data": "2030-12-21 20:40",
+    "tipo": "fica directo",
+    "pos": "10°34' Carneiro"
+   },
+   {
+    "data": "2031-07-19 07:11",
+    "tipo": "fica retrógrado",
+    "pos": "15°37' Carneiro"
+   },
+   {
+    "data": "2031-12-24 07:40",
+    "tipo": "fica directo",
+    "pos": "12°49' Carneiro"
+   },
+   {
+    "data": "2032-07-20 21:43",
+    "tipo": "fica retrógrado",
+    "pos": "17°52' Carneiro"
+   },
+   {
+    "data": "2032-12-25 21:02",
+    "tipo": "fica directo",
+    "pos": "15°03' Carneiro"
+   },
+   {
+    "data": "2033-07-23 11:25",
+    "tipo": "fica retrógrado",
+    "pos": "20°07' Carneiro"
+   },
+   {
+    "data": "2033-12-28 07:35",
+    "tipo": "fica directo",
+    "pos": "17°18' Carneiro"
+   },
+   {
+    "data": "2034-07-25 23:30",
+    "tipo": "fica retrógrado",
+    "pos": "22°22' Carneiro"
+   },
+   {
+    "data": "2034-12-30 20:08",
+    "tipo": "fica directo",
+    "pos": "19°33' Carneiro"
+   },
+   {
+    "data": "2035-07-28 13:26",
+    "tipo": "fica retrógrado",
+    "pos": "24°37' Carneiro"
+   },
+   {
+    "data": "2036-01-02 06:32",
+    "tipo": "fica directo",
+    "pos": "21°48' Carneiro"
+   },
+   {
+    "data": "2036-07-30 01:17",
+    "tipo": "fica retrógrado",
+    "pos": "26°52' Carneiro"
+   },
+   {
+    "data": "2037-01-03 17:43",
+    "tipo": "fica directo",
+    "pos": "24°03' Carneiro"
+   },
+   {
+    "data": "2037-08-01 14:57",
+    "tipo": "fica retrógrado",
+    "pos": "29°07' Carneiro"
+   },
+   {
+    "data": "2038-01-06 05:31",
+    "tipo": "fica directo",
+    "pos": "26°18' Carneiro"
+   },
+   {
+    "data": "2038-08-04 02:57",
+    "tipo": "fica retrógrado",
+    "pos": "1°22' Touro"
+   },
+   {
+    "data": "2039-01-08 16:59",
+    "tipo": "fica directo",
+    "pos": "28°33' Carneiro"
+   },
+   {
+    "data": "2039-08-06 16:58",
+    "tipo": "fica retrógrado",
+    "pos": "3°37' Touro"
+   },
+   {
+    "data": "2040-01-11 05:08",
+    "tipo": "fica directo",
+    "pos": "0°48' Touro"
+   },
+   {
+    "data": "2040-08-08 06:25",
+    "tipo": "fica retrógrado",
+    "pos": "5°52' Touro"
+   },
+   {
+    "data": "2041-01-12 16:36",
+    "tipo": "fica directo",
+    "pos": "3°03' Touro"
+   },
+   {
+    "data": "2041-08-10 20:56",
+    "tipo": "fica retrógrado",
+    "pos": "8°07' Touro"
+   },
+   {
+    "data": "2042-01-15 06:18",
+    "tipo": "fica directo",
+    "pos": "5°17' Touro"
+   },
+   {
+    "data": "2042-08-13 10:11",
+    "tipo": "fica retrógrado",
+    "pos": "10°21' Touro"
+   },
+   {
+    "data": "2043-01-17 17:04",
+    "tipo": "fica directo",
+    "pos": "7°32' Touro"
+   },
+   {
+    "data": "2043-08-15 22:56",
+    "tipo": "fica retrógrado",
+    "pos": "12°36' Touro"
+   },
+   {
+    "data": "2044-01-20 05:44",
+    "tipo": "fica directo",
+    "pos": "9°47' Touro"
+   },
+   {
+    "data": "2044-08-17 13:36",
+    "tipo": "fica retrógrado",
+    "pos": "14°51' Touro"
+   }
+  ],
+  "plutao": [
+   {
+    "data": "2018-04-22 16:25",
+    "tipo": "fica retrógrado",
+    "pos": "21°17' Capricórnio"
+   },
+   {
+    "data": "2018-10-01 03:03",
+    "tipo": "fica directo",
+    "pos": "18°45' Capricórnio"
+   },
+   {
+    "data": "2019-04-24 19:47",
+    "tipo": "fica retrógrado",
+    "pos": "23°09' Capricórnio"
+   },
+   {
+    "data": "2019-10-03 07:38",
+    "tipo": "fica directo",
+    "pos": "20°38' Capricórnio"
+   },
+   {
+    "data": "2020-04-25 19:54",
+    "tipo": "fica retrógrado",
+    "pos": "24°59' Capricórnio"
+   },
+   {
+    "data": "2020-10-04 14:32",
+    "tipo": "fica directo",
+    "pos": "22°29' Capricórnio"
+   },
+   {
+    "data": "2021-04-27 21:01",
+    "tipo": "fica retrógrado",
+    "pos": "26°48' Capricórnio"
+   },
+   {
+    "data": "2021-10-06 19:29",
+    "tipo": "fica directo",
+    "pos": "24°18' Capricórnio"
+   },
+   {
+    "data": "2022-04-29 19:35",
+    "tipo": "fica retrógrado",
+    "pos": "28°35' Capricórnio"
+   },
+   {
+    "data": "2022-10-08 22:56",
+    "tipo": "fica directo",
+    "pos": "26°06' Capricórnio"
+   },
+   {
+    "data": "2023-05-01 18:08",
+    "tipo": "fica retrógrado",
+    "pos": "0°21' Aquário"
+   },
+   {
+    "data": "2023-10-11 02:09",
+    "tipo": "fica directo",
+    "pos": "27°53' Capricórnio"
+   },
+   {
+    "data": "2024-05-02 18:46",
+    "tipo": "fica retrógrado",
+    "pos": "2°06' Aquário"
+   },
+   {
+    "data": "2024-10-12 01:32",
+    "tipo": "fica directo",
+    "pos": "29°38' Capricórnio"
+   },
+   {
+    "data": "2025-05-04 16:26",
+    "tipo": "fica retrógrado",
+    "pos": "3°49' Aquário"
+   },
+   {
+    "data": "2025-10-14 03:52",
+    "tipo": "fica directo",
+    "pos": "1°22' Aquário"
+   },
+   {
+    "data": "2026-05-06 16:34",
+    "tipo": "fica retrógrado",
+    "pos": "5°30' Aquário"
+   },
+   {
+    "data": "2026-10-16 03:40",
+    "tipo": "fica directo",
+    "pos": "3°04' Aquário"
+   },
+   {
+    "data": "2027-05-08 13:54",
+    "tipo": "fica retrógrado",
+    "pos": "7°10' Aquário"
+   },
+   {
+    "data": "2027-10-18 04:52",
+    "tipo": "fica directo",
+    "pos": "4°44' Aquário"
+   },
+   {
+    "data": "2028-05-09 10:29",
+    "tipo": "fica retrógrado",
+    "pos": "8°49' Aquário"
+   },
+   {
+    "data": "2028-10-19 04:45",
+    "tipo": "fica directo",
+    "pos": "6°24' Aquário"
+   },
+   {
+    "data": "2029-05-11 05:14",
+    "tipo": "fica retrógrado",
+    "pos": "10°27' Aquário"
+   },
+   {
+    "data": "2029-10-21 04:56",
+    "tipo": "fica directo",
+    "pos": "8°02' Aquário"
+   },
+   {
+    "data": "2030-05-13 00:10",
+    "tipo": "fica retrógrado",
+    "pos": "12°03' Aquário"
+   },
+   {
+    "data": "2030-10-23 04:06",
+    "tipo": "fica directo",
+    "pos": "9°39' Aquário"
+   },
+   {
+    "data": "2031-05-14 21:27",
+    "tipo": "fica retrógrado",
+    "pos": "13°39' Aquário"
+   },
+   {
+    "data": "2031-10-25 00:12",
+    "tipo": "fica directo",
+    "pos": "11°15' Aquário"
+   },
+   {
+    "data": "2032-05-15 16:54",
+    "tipo": "fica retrógrado",
+    "pos": "15°13' Aquário"
+   },
+   {
+    "data": "2032-10-25 22:08",
+    "tipo": "fica directo",
+    "pos": "12°50' Aquário"
+   },
+   {
+    "data": "2033-05-17 13:57",
+    "tipo": "fica retrógrado",
+    "pos": "16°46' Aquário"
+   },
+   {
+    "data": "2033-10-27 17:41",
+    "tipo": "fica directo",
+    "pos": "14°24' Aquário"
+   },
+   {
+    "data": "2034-05-19 07:56",
+    "tipo": "fica retrógrado",
+    "pos": "18°18' Aquário"
+   },
+   {
+    "data": "2034-10-29 13:46",
+    "tipo": "fica directo",
+    "pos": "15°57' Aquário"
+   },
+   {
+    "data": "2035-05-20 23:55",
+    "tipo": "fica retrógrado",
+    "pos": "19°49' Aquário"
+   },
+   {
+    "data": "2035-10-31 11:39",
+    "tipo": "fica directo",
+    "pos": "17°28' Aquário"
+   },
+   {
+    "data": "2036-05-21 16:35",
+    "tipo": "fica retrógrado",
+    "pos": "21°19' Aquário"
+   },
+   {
+    "data": "2036-11-01 07:55",
+    "tipo": "fica directo",
+    "pos": "18°58' Aquário"
+   },
+   {
+    "data": "2037-05-23 08:51",
+    "tipo": "fica retrógrado",
+    "pos": "22°47' Aquário"
+   },
+   {
+    "data": "2037-11-03 03:33",
+    "tipo": "fica directo",
+    "pos": "20°27' Aquário"
+   },
+   {
+    "data": "2038-05-25 03:24",
+    "tipo": "fica retrógrado",
+    "pos": "24°15' Aquário"
+   },
+   {
+    "data": "2038-11-04 20:17",
+    "tipo": "fica directo",
+    "pos": "21°55' Aquário"
+   },
+   {
+    "data": "2039-05-26 20:20",
+    "tipo": "fica retrógrado",
+    "pos": "25°41' Aquário"
+   },
+   {
+    "data": "2039-11-06 13:54",
+    "tipo": "fica directo",
+    "pos": "23°23' Aquário"
+   },
+   {
+    "data": "2040-05-27 14:19",
+    "tipo": "fica retrógrado",
+    "pos": "27°07' Aquário"
+   },
+   {
+    "data": "2040-11-07 06:08",
+    "tipo": "fica directo",
+    "pos": "24°49' Aquário"
+   },
+   {
+    "data": "2041-05-29 04:22",
+    "tipo": "fica retrógrado",
+    "pos": "28°32' Aquário"
+   },
+   {
+    "data": "2041-11-09 00:19",
+    "tipo": "fica directo",
+    "pos": "26°14' Aquário"
+   },
+   {
+    "data": "2042-05-30 17:29",
+    "tipo": "fica retrógrado",
+    "pos": "29°56' Aquário"
+   },
+   {
+    "data": "2042-11-10 19:28",
+    "tipo": "fica directo",
+    "pos": "27°39' Aquário"
+   },
+   {
+    "data": "2043-06-01 09:40",
+    "tipo": "fica retrógrado",
+    "pos": "1°19' Peixes"
+   },
+   {
+    "data": "2043-11-12 11:26",
+    "tipo": "fica directo",
+    "pos": "29°03' Aquário"
+   },
+   {
+    "data": "2044-06-02 00:17",
+    "tipo": "fica retrógrado",
+    "pos": "2°42' Peixes"
+   },
+   {
+    "data": "2044-11-13 04:03",
+    "tipo": "fica directo",
+    "pos": "0°26' Peixes"
+   }
+  ]
+ },
+ "aspectos": [
+  {
+   "data": "2024-04-21 03:26",
+   "aspecto": "jupiter conjunção urano",
+   "pos": "21°49' Touro / 21°49' Touro"
+  },
+  {
+   "data": "2024-05-23 22:43",
+   "aspecto": "jupiter sextil neptuno",
+   "pos": "29°30' Touro / 29°30' Peixes"
+  },
+  {
+   "data": "2024-06-03 01:11",
+   "aspecto": "jupiter trígono plutao",
+   "pos": "1°53' Gémeos / 1°53' Aquário"
+  },
+  {
+   "data": "2024-08-19 22:46",
+   "aspecto": "jupiter quadratura saturno",
+   "pos": "17°27' Gémeos / 17°27' Peixes"
+  },
+  {
+   "data": "2024-12-24 21:59",
+   "aspecto": "jupiter quadratura saturno",
+   "pos": "14°01' Gémeos / 14°01' Peixes"
+  },
+  {
+   "data": "2025-04-04 17:19",
+   "aspecto": "saturno sextil urano",
+   "pos": "24°55' Peixes / 24°55' Touro"
+  },
+  {
+   "data": "2025-06-15 15:35",
+   "aspecto": "jupiter quadratura saturno",
+   "pos": "1°18' Caranguejo / 1°18' Carneiro"
+  },
+  {
+   "data": "2025-06-19 04:15",
+   "aspecto": "jupiter quadratura neptuno",
+   "pos": "2°06' Caranguejo / 2°06' Carneiro"
+  },
+  {
+   "data": "2025-08-12 04:32",
+   "aspecto": "saturno sextil urano",
+   "pos": "1°12' Carneiro / 1°12' Gémeos"
+  },
+  {
+   "data": "2025-08-29 01:08",
+   "aspecto": "urano sextil neptuno",
+   "pos": "1°26' Gémeos / 1°26' Carneiro"
+  },
+  {
+   "data": "2025-11-20 14:38",
+   "aspecto": "urano sextil neptuno",
+   "pos": "29°29' Touro / 29°29' Peixes"
+  },
+  {
+   "data": "2026-01-20 05:18",
+   "aspecto": "saturno sextil urano",
+   "pos": "27°33' Peixes / 27°33' Touro"
+  },
+  {
+   "data": "2026-02-20 16:52",
+   "aspecto": "saturno conjunção neptuno",
+   "pos": "0°45' Carneiro / 0°45' Carneiro"
+  },
+  {
+   "data": "2026-03-28 22:09",
+   "aspecto": "saturno sextil plutao",
+   "pos": "5°09' Carneiro / 5°09' Aquário"
+  },
+  {
+   "data": "2026-07-15 21:32",
+   "aspecto": "urano sextil neptuno",
+   "pos": "4°23' Gémeos / 4°23' Carneiro"
+  },
+  {
+   "data": "2026-07-18 05:40",
+   "aspecto": "urano trígono plutao",
+   "pos": "4°29' Gémeos / 4°29' Aquário"
+  },
+  {
+   "data": "2026-07-20 08:22",
+   "aspecto": "jupiter trígono neptuno",
+   "pos": "4°22' Leão / 4°22' Carneiro"
+  },
+  {
+   "data": "2026-07-20 15:43",
+   "aspecto": "jupiter oposição plutao",
+   "pos": "4°26' Leão / 4°26' Aquário"
+  },
+  {
+   "data": "2026-07-21 12:10",
+   "aspecto": "jupiter sextil urano",
+   "pos": "4°37' Leão / 4°37' Gémeos"
+  },
+  {
+   "data": "2026-07-25 06:26",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "4°20' Carneiro / 4°20' Aquário"
+  },
+  {
+   "data": "2026-08-31 23:17",
+   "aspecto": "jupiter trígono saturno",
+   "pos": "13°41' Leão / 13°41' Carneiro"
+  },
+  {
+   "data": "2026-09-16 03:09",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "3°16' Carneiro / 3°16' Aquário"
+  },
+  {
+   "data": "2026-11-29 11:25",
+   "aspecto": "urano trígono plutao",
+   "pos": "3°31' Gémeos / 3°31' Aquário"
+  },
+  {
+   "data": "2027-01-15 09:30",
+   "aspecto": "urano sextil neptuno",
+   "pos": "1°56' Gémeos / 1°56' Carneiro"
+  },
+  {
+   "data": "2027-04-03 13:59",
+   "aspecto": "jupiter trígono saturno",
+   "pos": "17°08' Leão / 17°08' Carneiro"
+  },
+  {
+   "data": "2027-06-06 11:07",
+   "aspecto": "urano sextil neptuno",
+   "pos": "6°21' Gémeos / 6°21' Carneiro"
+  },
+  {
+   "data": "2027-06-15 09:08",
+   "aspecto": "urano trígono plutao",
+   "pos": "6°52' Gémeos / 6°52' Aquário"
+  },
+  {
+   "data": "2027-06-29 00:56",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "6°37' Carneiro / 6°37' Aquário"
+  },
+  {
+   "data": "2027-07-12 00:15",
+   "aspecto": "jupiter trígono saturno",
+   "pos": "27°10' Leão / 27°10' Carneiro"
+  },
+  {
+   "data": "2027-09-10 17:41",
+   "aspecto": "jupiter quadratura urano",
+   "pos": "9°56' Virgem / 9°56' Gémeos"
+  },
+  {
+   "data": "2027-10-16 15:39",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "4°44' Carneiro / 4°44' Aquário"
+  },
+  {
+   "data": "2028-01-13 06:43",
+   "aspecto": "urano trígono plutao",
+   "pos": "6°20' Gémeos / 6°20' Aquário"
+  },
+  {
+   "data": "2028-05-10 04:01",
+   "aspecto": "urano trígono plutao",
+   "pos": "8°49' Gémeos / 8°49' Aquário"
+  },
+  {
+   "data": "2028-06-09 05:26",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "8°37' Carneiro / 8°37' Aquário"
+  },
+  {
+   "data": "2028-06-24 03:59",
+   "aspecto": "saturno quadratura plutao",
+   "pos": "8°23' Touro / 8°23' Aquário"
+  },
+  {
+   "data": "2028-09-24 08:44",
+   "aspecto": "jupiter trígono plutao",
+   "pos": "6°32' Balança / 6°32' Aquário"
+  },
+  {
+   "data": "2028-09-28 20:15",
+   "aspecto": "jupiter oposição neptuno",
+   "pos": "7°30' Balança / 7°30' Carneiro"
+  },
+  {
+   "data": "2028-10-27 10:05",
+   "aspecto": "jupiter trígono urano",
+   "pos": "13°38' Balança / 13°38' Gémeos"
+  },
+  {
+   "data": "2028-11-08 01:43",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "6°30' Carneiro / 6°30' Aquário"
+  },
+  {
+   "data": "2028-11-15 12:56",
+   "aspecto": "saturno quadratura plutao",
+   "pos": "6°34' Touro / 6°34' Aquário"
+  },
+  {
+   "data": "2029-03-30 00:09",
+   "aspecto": "saturno quadratura plutao",
+   "pos": "10°03' Touro / 10°03' Aquário"
+  },
+  {
+   "data": "2029-05-22 20:17",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "10°25' Carneiro / 10°25' Aquário"
+  },
+  {
+   "data": "2029-11-01 00:42",
+   "aspecto": "jupiter quadratura plutao",
+   "pos": "8°04' Escorpião / 8°04' Aquário"
+  },
+  {
+   "data": "2029-11-30 21:08",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "8°25' Carneiro / 8°25' Aquário"
+  },
+  {
+   "data": "2029-12-22 07:02",
+   "aspecto": "jupiter oposição saturno",
+   "pos": "18°48' Escorpião / 18°48' Touro"
+  },
+  {
+   "data": "2030-04-24 02:57",
+   "aspecto": "jupiter oposição saturno",
+   "pos": "25°07' Escorpião / 25°07' Touro"
+  },
+  {
+   "data": "2030-05-04 16:28",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "12°02' Carneiro / 12°02' Aquário"
+  },
+  {
+   "data": "2030-11-20 01:05",
+   "aspecto": "jupiter oposição saturno",
+   "pos": "6°04' Sagitário / 6°04' Gémeos"
+  },
+  {
+   "data": "2030-12-08 06:41",
+   "aspecto": "jupiter sextil plutao",
+   "pos": "10°09' Sagitário / 10°09' Aquário"
+  },
+  {
+   "data": "2030-12-10 08:01",
+   "aspecto": "jupiter trígono neptuno",
+   "pos": "10°36' Sagitário / 10°36' Carneiro"
+  },
+  {
+   "data": "2030-12-26 14:34",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "10°34' Carneiro / 10°34' Aquário"
+  },
+  {
+   "data": "2031-01-20 12:03",
+   "aspecto": "jupiter oposição urano",
+   "pos": "19°23' Sagitário / 19°23' Gémeos"
+  },
+  {
+   "data": "2031-04-12 22:51",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "13°25' Carneiro / 13°25' Aquário"
+  },
+  {
+   "data": "2031-06-11 15:35",
+   "aspecto": "saturno trígono plutao",
+   "pos": "13°29' Gémeos / 13°29' Aquário"
+  },
+  {
+   "data": "2031-06-20 22:47",
+   "aspecto": "jupiter oposição urano",
+   "pos": "23°24' Sagitário / 23°24' Gémeos"
+  },
+  {
+   "data": "2031-06-27 10:10",
+   "aspecto": "saturno sextil neptuno",
+   "pos": "15°29' Gémeos / 15°29' Carneiro"
+  },
+  {
+   "data": "2031-08-01 09:26",
+   "aspecto": "jupiter oposição saturno",
+   "pos": "19°29' Sagitário / 19°29' Gémeos"
+  },
+  {
+   "data": "2031-10-06 22:54",
+   "aspecto": "jupiter oposição saturno",
+   "pos": "23°01' Sagitário / 23°01' Gémeos"
+  },
+  {
+   "data": "2031-10-30 18:10",
+   "aspecto": "jupiter oposição urano",
+   "pos": "26°56' Sagitário / 26°56' Gémeos"
+  },
+  {
+   "data": "2032-01-12 01:54",
+   "aspecto": "jupiter quadratura neptuno",
+   "pos": "12°55' Capricórnio / 12°55' Carneiro"
+  },
+  {
+   "data": "2032-02-10 16:05",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "13°28' Carneiro / 13°28' Aquário"
+  },
+  {
+   "data": "2032-02-29 10:11",
+   "aspecto": "neptuno sextil plutao",
+   "pos": "14°01' Carneiro / 14°01' Aquário"
+  },
+  {
+   "data": "2032-06-28 13:03",
+   "aspecto": "saturno conjunção urano",
+   "pos": "28°01' Gémeos / 28°01' Gémeos"
+  },
+  {
+   "data": "2033-02-04 21:49",
+   "aspecto": "jupiter conjunção plutao",
+   "pos": "14°50' Aquário / 14°50' Aquário"
+  },
+  {
+   "data": "2033-02-08 04:34",
+   "aspecto": "jupiter sextil neptuno",
+   "pos": "15°37' Aquário / 15°37' Carneiro"
+  },
+  {
+   "data": "2033-04-04 10:19",
+   "aspecto": "jupiter trígono urano",
+   "pos": "27°59' Aquário / 27°59' Gémeos"
+  },
+  {
+   "data": "2033-08-08 21:28",
+   "aspecto": "jupiter trígono urano",
+   "pos": "4°26' Peixes / 4°26' Caranguejo"
+  },
+  {
+   "data": "2033-09-16 11:13",
+   "aspecto": "saturno quadratura neptuno",
+   "pos": "19°22' Caranguejo / 19°22' Carneiro"
+  },
+  {
+   "data": "2033-12-27 19:37",
+   "aspecto": "jupiter trígono urano",
+   "pos": "3°57' Peixes / 3°57' Caranguejo"
+  },
+  {
+   "data": "2034-01-13 16:06",
+   "aspecto": "saturno quadratura neptuno",
+   "pos": "17°23' Caranguejo / 17°23' Carneiro"
+  },
+  {
+   "data": "2034-02-17 07:11",
+   "aspecto": "jupiter trígono saturno",
+   "pos": "15°00' Peixes / 15°00' Caranguejo"
+  },
+  {
+   "data": "2034-05-07 09:01",
+   "aspecto": "jupiter quadratura urano",
+   "pos": "3°26' Carneiro / 3°26' Caranguejo"
+  },
+  {
+   "data": "2034-06-25 16:04",
+   "aspecto": "saturno quadratura neptuno",
+   "pos": "22°07' Caranguejo / 22°07' Carneiro"
+  },
+  {
+   "data": "2034-09-21 15:43",
+   "aspecto": "jupiter quadratura urano",
+   "pos": "10°18' Carneiro / 10°18' Caranguejo"
+  },
+  {
+   "data": "2034-11-02 16:48",
+   "aspecto": "jupiter trígono saturno",
+   "pos": "5°11' Carneiro / 5°11' Leão"
+  },
+  {
+   "data": "2034-12-16 15:35",
+   "aspecto": "jupiter trígono saturno",
+   "pos": "4°32' Carneiro / 4°32' Leão"
+  },
+  {
+   "data": "2035-01-16 11:57",
+   "aspecto": "jupiter quadratura urano",
+   "pos": "7°48' Carneiro / 7°48' Caranguejo"
+  },
+  {
+   "data": "2035-03-14 00:56",
+   "aspecto": "jupiter sextil plutao",
+   "pos": "18°52' Carneiro / 18°52' Aquário"
+  },
+  {
+   "data": "2035-03-24 16:31",
+   "aspecto": "jupiter conjunção neptuno",
+   "pos": "21°21' Carneiro / 21°21' Carneiro"
+  },
+  {
+   "data": "2035-04-25 20:35",
+   "aspecto": "jupiter quadratura saturno",
+   "pos": "29°02' Carneiro / 29°02' Caranguejo"
+  },
+  {
+   "data": "2035-06-10 06:01",
+   "aspecto": "jupiter sextil urano",
+   "pos": "9°25' Touro / 9°25' Caranguejo"
+  },
+  {
+   "data": "2035-08-05 15:46",
+   "aspecto": "jupiter quadratura plutao",
+   "pos": "18°46' Touro / 18°46' Aquário"
+  },
+  {
+   "data": "2035-10-17 13:09",
+   "aspecto": "saturno oposição plutao",
+   "pos": "17°31' Leão / 17°31' Aquário"
+  },
+  {
+   "data": "2035-10-22 08:47",
+   "aspecto": "jupiter quadratura saturno",
+   "pos": "17°51' Touro / 17°51' Leão"
+  },
+  {
+   "data": "2035-10-25 10:18",
+   "aspecto": "jupiter quadratura plutao",
+   "pos": "17°28' Touro / 17°28' Aquário"
+  },
+  {
+   "data": "2035-11-14 06:16",
+   "aspecto": "jupiter sextil urano",
+   "pos": "14°49' Touro / 14°49' Caranguejo"
+  },
+  {
+   "data": "2036-01-01 18:33",
+   "aspecto": "saturno oposição plutao",
+   "pos": "18°18' Leão / 18°18' Aquário"
+  },
+  {
+   "data": "2036-01-31 18:47",
+   "aspecto": "jupiter sextil urano",
+   "pos": "11°53' Touro / 11°53' Caranguejo"
+  },
+  {
+   "data": "2036-02-22 10:44",
+   "aspecto": "jupiter quadratura saturno",
+   "pos": "14°25' Touro / 14°25' Leão"
+  },
+  {
+   "data": "2036-03-28 19:23",
+   "aspecto": "jupiter quadratura plutao",
+   "pos": "20°42' Touro / 20°42' Aquário"
+  },
+  {
+   "data": "2036-07-28 01:51",
+   "aspecto": "saturno oposição plutao",
+   "pos": "20°28' Leão / 20°28' Aquário"
+  },
+  {
+   "data": "2036-08-10 18:24",
+   "aspecto": "jupiter trígono plutao",
+   "pos": "20°10' Gémeos / 20°10' Aquário"
+  },
+  {
+   "data": "2036-09-12 19:20",
+   "aspecto": "saturno trígono neptuno",
+   "pos": "26°21' Leão / 26°21' Carneiro"
+  },
+  {
+   "data": "2036-09-30 15:14",
+   "aspecto": "jupiter sextil neptuno",
+   "pos": "25°56' Gémeos / 25°56' Carneiro"
+  },
+  {
+   "data": "2036-11-13 01:58",
+   "aspecto": "jupiter sextil neptuno",
+   "pos": "24°45' Gémeos / 24°45' Carneiro"
+  },
+  {
+   "data": "2036-12-24 07:23",
+   "aspecto": "jupiter trígono plutao",
+   "pos": "19°35' Gémeos / 19°35' Aquário"
+  },
+  {
+   "data": "2037-04-09 06:16",
+   "aspecto": "saturno trígono neptuno",
+   "pos": "26°16' Leão / 26°16' Carneiro"
+  },
+  {
+   "data": "2037-04-16 00:14",
+   "aspecto": "jupiter trígono plutao",
+   "pos": "22°29' Gémeos / 22°29' Aquário"
+  },
+  {
+   "data": "2037-05-05 02:43",
+   "aspecto": "jupiter sextil saturno",
+   "pos": "26°02' Gémeos / 26°02' Leão"
+  },
+  {
+   "data": "2037-05-12 07:24",
+   "aspecto": "jupiter sextil neptuno",
+   "pos": "27°30' Gémeos / 27°30' Carneiro"
+  },
+  {
+   "data": "2037-06-23 17:31",
+   "aspecto": "saturno trígono neptuno",
+   "pos": "28°43' Leão / 28°43' Carneiro"
+  },
+  {
+   "data": "2037-09-08 11:32",
+   "aspecto": "jupiter conjunção urano",
+   "pos": "23°02' Caranguejo / 23°02' Caranguejo"
+  },
+  {
+   "data": "2037-10-12 19:13",
+   "aspecto": "jupiter quadratura neptuno",
+   "pos": "27°55' Caranguejo / 27°55' Carneiro"
+  },
+  {
+   "data": "2038-01-02 23:49",
+   "aspecto": "jupiter quadratura neptuno",
+   "pos": "26°18' Caranguejo / 26°18' Carneiro"
+  },
+  {
+   "data": "2038-02-19 16:56",
+   "aspecto": "jupiter conjunção urano",
+   "pos": "20°39' Caranguejo / 20°39' Caranguejo"
+  },
+  {
+   "data": "2038-03-30 22:39",
+   "aspecto": "jupiter conjunção urano",
+   "pos": "20°05' Caranguejo / 20°05' Caranguejo"
+  },
+  {
+   "data": "2038-06-16 11:06",
+   "aspecto": "jupiter quadratura neptuno",
+   "pos": "0°44' Leão / 0°44' Touro"
+  },
+  {
+   "data": "2038-09-25 19:09",
+   "aspecto": "jupiter oposição plutao",
+   "pos": "22°16' Leão / 22°16' Aquário"
+  },
+  {
+   "data": "2038-11-11 04:43",
+   "aspecto": "jupiter trígono neptuno",
+   "pos": "29°25' Leão / 29°25' Carneiro"
+  },
+  {
+   "data": "2038-12-06 14:21",
+   "aspecto": "saturno sextil urano",
+   "pos": "28°19' Virgem / 28°19' Caranguejo"
+  },
+  {
+   "data": "2039-01-29 01:31",
+   "aspecto": "jupiter trígono neptuno",
+   "pos": "28°40' Leão / 28°40' Carneiro"
+  },
+  {
+   "data": "2039-03-03 23:44",
+   "aspecto": "jupiter oposição plutao",
+   "pos": "24°20' Leão / 24°20' Aquário"
+  },
+  {
+   "data": "2039-04-01 20:11",
+   "aspecto": "saturno sextil urano",
+   "pos": "24°40' Virgem / 24°40' Caranguejo"
+  },
+  {
+   "data": "2039-06-11 10:37",
+   "aspecto": "jupiter oposição plutao",
+   "pos": "25°38' Leão / 25°38' Aquário"
+  },
+  {
+   "data": "2039-07-26 16:58",
+   "aspecto": "jupiter trígono neptuno",
+   "pos": "3°35' Virgem / 3°35' Touro"
+  },
+  {
+   "data": "2039-09-26 20:08",
+   "aspecto": "saturno sextil urano",
+   "pos": "2°35' Balança / 2°35' Leão"
+  },
+  {
+   "data": "2039-10-03 02:18",
+   "aspecto": "urano quadratura neptuno",
+   "pos": "2°48' Leão / 2°48' Touro"
+  }
+ ]
+}

@@ -500,6 +500,8 @@ const PAGINAS = new Set([
   // 03/11/2026: mais 5 pesquisas a subir no Google Trends
   "/tarot-dos-gatos", "/stellium-astrologia", "/astrologia-horaria", "/astrologia-sideral", "/astrologia-sistemica",
   "/tarot-rider-waite", "/tarot-com-inteligencia-artificial",
+  // 03/11/2026: os grandes trânsitos lentos (gerar-transitos.py) e 3 páginas de serviço por público
+  "/transitos-lentos", "/neptuno-em-carneiro", "/saturno-em-carneiro", "/plutao-em-aquario", "/urano-em-gemeos", "/jupiter-em-leao", "/jupiter-em-virgem", "/nodos-lunares-aquario-leao", "/saturno-e-urano-2032", "/consulta-tarot-casal", "/tarot-para-decisoes", "/tarot-para-emigrantes",
 ]);
 
 function contarVisita(request, url, env, ctx) {

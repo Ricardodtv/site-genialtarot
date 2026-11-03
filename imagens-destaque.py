@@ -258,6 +258,25 @@ IMAGENS = [
     ('H01', 'lenda-justica-de-fafe', 'justica-de-fafe-monumento',
      'Justiça de Fafe: estátua de bronze de um homem do Minho a erguer o varapau contra um fidalgo de casaca, em Fafe, sob o céu azul',
      'O monumento à Justiça de Fafe, na cidade de Fafe: o varapau erguido que deu nome à lenda.'),
+    # 03/11/2026: os grandes trânsitos (gerar-transitos.py) — reaproveitam imagens que já existem
+    ("P09", "neptuno-em-carneiro", "neptuno-na-astrologia", "Neptuno na astrologia: o planeta Neptuno azul profundo com nuvens brancas",
+     "Neptuno em Carneiro: as datas exatas e o que muda para cada um dos 12 signos."),
+    ("P07", "saturno-em-carneiro", "saturno-na-astrologia", "Saturno na astrologia: o planeta Saturno com os anéis em grande detalhe",
+     "Saturno em Carneiro: as datas exatas e o que muda para cada um dos 12 signos."),
+    ("P10", "plutao-em-aquario", "plutao-na-astrologia", "Plutão na astrologia: o planeta-anão Plutão com a planície em forma de coração",
+     "Plutão em Aquário: as datas exatas e o que muda para cada um dos 12 signos."),
+    ("P08", "urano-em-gemeos", "urano-na-astrologia", "Úrano na astrologia: o planeta Úrano azul-turquesa com anéis finos",
+     "Úrano em Gémeos: as datas exatas e o que muda para cada um dos 12 signos."),
+    ("P06", "jupiter-em-leao", "jupiter-na-astrologia", "Júpiter na astrologia: o planeta Júpiter com as faixas e a Grande Mancha Vermelha",
+     "Júpiter em Leão: as datas exatas e o que muda para cada um dos 12 signos."),
+    ("P06", "jupiter-em-virgem", "jupiter-na-astrologia", "Júpiter na astrologia: o planeta Júpiter com as faixas e a Grande Mancha Vermelha",
+     "Júpiter em Virgem: as datas exatas e o que muda para cada um dos 12 signos."),
+    ("L03", "nodos-lunares-aquario-leao", "eclipse-total-do-sol", "Eclipse total do Sol com a coroa solar visível sobre montanhas ao entardecer",
+     "Nodos lunares: Aquário e Leão: as datas exatas e o que muda para cada um dos 12 signos."),
+    ("L04", "saturno-e-urano-2032", "alinhamento-dos-planetas", "Alinhamento dos planetas: quatro planetas brilhantes em linha no céu do crepúsculo",
+     "Saturno e Úrano em 2032: as datas exatas e o que muda para cada um dos 12 signos."),
+    ("L04", "transitos-lentos", "alinhamento-dos-planetas", "Alinhamento dos planetas: quatro planetas brilhantes em linha no céu do crepúsculo",
+     "Os grandes trânsitos dos planetas lentos, com as datas calculadas."),
 ]
 
 # 03/11/2026: fotos de FORA com licença livre (ele: «vai buscar foto do monumento público, licença livre + crédito»).
