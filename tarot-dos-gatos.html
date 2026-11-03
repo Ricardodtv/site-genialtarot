@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tarot dos Gatos: baralhos, símbolo e tiragem · Mestre Alberto</title>
+<meta name="description" content="Tarot dos gatos: o que são os baralhos de gatos, o gato preto da Rainha de Paus, o gato no folclore e uma tiragem simples de 3 cartas." />
+<meta name="theme-color" content="#1d2350" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Tarot dos Gatos — Mestre Alberto" />
+<meta property="og:description" content="Tarot dos gatos: o que são os baralhos de gatos, o gato preto da Rainha de Paus, o gato no folclore e uma tiragem simples de 3 cartas." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://genialtarot.com/tarot-dos-gatos" />
+<link rel="canonical" href="https://genialtarot.com/tarot-dos-gatos" />
+<meta property="og:image" content="https://genialtarot.com/og-image.jpg" />
+<meta property="og:image:alt" content="Genial Tarot · Mestre Alberto" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="672" />
+<meta property="og:locale" content="pt_PT" />
+<meta property="og:locale:alternate" content="pt_BR" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Tarot dos Gatos — os baralhos de gatos, o gato como símbolo e uma tiragem de 3 cartas (03/11/2026, pesquisa a subir no Google Trends; CSS copiado de astrologia-vedica.html) ============ */
+:root {
+  --fundo: oklch(0.17 0.06 270); --texto: oklch(0.97 0.012 265); --suave: oklch(0.84 0.04 265);
+  --azul: oklch(0.72 0.13 255); --azul-claro: oklch(0.86 0.08 255); --lavanda: oklch(0.92 0.04 265);
+  --ouro: oklch(0.85 0.13 88); --borda: oklch(0.75 0.10 260 / 0.35); --vidro: oklch(0.30 0.08 268 / 0.55);
+  --grad-azul: linear-gradient(135deg, oklch(0.78 0.11 245), oklch(0.62 0.17 265) 55%, oklch(0.52 0.18 280));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif; --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.38 0.14 262) 0%, oklch(0.20 0.08 268) 45%, oklch(0.12 0.05 275) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden; }
+a { color: var(--azul-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(72rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2rem; }
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 270 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: var(--ouro); }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 270); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.az { background: var(--grad-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 36rem; margin: 0 auto 1rem; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.35rem, 3.4vw, 1.9rem); margin: 0 0 .4rem; text-align: center; }
+.cartao { background: linear-gradient(160deg, oklch(0.29 0.09 265), oklch(0.20 0.07 272)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; }
+.heroi { text-align: center; padding: .5rem 0 1.5rem; }
+.foto-mestre { width: 7.5rem; height: 7.5rem; border-radius: 50%; object-fit: cover; border: 3px solid var(--ouro); box-shadow: 0 0 30px oklch(0.85 0.13 88 / .4); }
+.fuso { display: inline-flex; gap: .3rem; padding: .3rem; border-radius: 999px; background: var(--vidro); border: 1px solid var(--borda); margin-top: .4rem; }
+.fuso button { border: 0; cursor: pointer; font: inherit; font-size: .85rem; font-weight: 700; color: var(--suave); background: none; border-radius: 999px; padding: .45rem 1rem; }
+.fuso button.ativo { color: white; background: var(--grad-azul); box-shadow: 0 4px 16px oklch(0.55 0.17 265 / .5); }
+.nav-dia { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 0 1.2rem; }
+.nav-dia button { border: 1px solid var(--borda); background: var(--vidro); color: var(--texto); font-size: 1.3rem; width: 2.8rem; height: 2.8rem; border-radius: 50%; cursor: pointer; flex: none; }
+.nav-dia button:disabled { opacity: .3; cursor: default; }
+.nav-dia .data { font-family: var(--titulo); font-size: clamp(1.2rem, 3.5vw, 1.6rem); font-weight: 700; text-align: center; min-width: 12rem; }
+.nav-dia .data small { display: block; font-family: Inter, sans-serif; font-size: .75rem; font-weight: 600; color: var(--suave); letter-spacing: .1em; text-transform: uppercase; }
+.ceu { list-style: none; margin: 0 auto 1rem; padding: 1rem 1.2rem; max-width: 40rem; border-radius: 1rem; background: oklch(0.16 0.05 270 / .7); border: 1px solid var(--borda); }
+.ceu li { font-size: .95rem; color: var(--lavanda); padding: .15rem 0; }
+.ceu li.mom { color: var(--ouro); font-weight: 600; }
+.atalhos { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin: 0 0 1.4rem; }
+.atalhos a { text-decoration: none; font-size: .82rem; font-weight: 700; color: var(--texto); border: 1px solid var(--borda); background: var(--vidro); border-radius: 999px; padding: .35rem .75rem; }
+.atalhos a { display: inline-flex; align-items: center; gap: .35rem; padding-left: .3rem; }
+.atalhos a img { width: 1.6rem; height: 1.6rem; border-radius: 50%; }
+.atalhos a:hover { border-color: var(--ouro); }
+.grelha { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); }
+.signo { border-radius: 1.2rem; padding: 1.1rem 1.2rem 1.2rem; background: oklch(0.20 0.06 272 / .88); border: 1px solid var(--borda); scroll-margin-top: 1rem; }
+.signo .cab { display: flex; align-items: center; gap: .7rem; }
+.signo .gli { width: 4.5rem; height: 4.5rem; border-radius: 50%; flex: none; box-shadow: 0 0 18px oklch(0.85 0.13 88 / .35); }  /* as ilustrações do horóscopo diário (OBS), pedido dele 25/10 */
+.signo .nome { font-family: var(--titulo); font-size: 1.2rem; font-weight: 700; }
+.signo .ene { font-size: .8rem; color: var(--ouro); letter-spacing: .1em; }
+.signo .ene span { color: var(--suave); letter-spacing: 0; margin-left: .3rem; font-size: .72rem; text-transform: uppercase; font-weight: 700; }
+.signo .chave { font-family: var(--serifa); font-style: italic; font-size: 1.25rem; font-weight: 600; color: var(--ouro); margin: .6rem 0 .4rem; line-height: 1.3; }
+.signo p { margin: 0 0 .55rem; font-family: var(--serifa); font-size: 1.08rem; line-height: 1.45; color: var(--lavanda); }
+.signo .dica { margin-top: .7rem; padding: .7rem .85rem; border-radius: .8rem; background: oklch(0.85 0.13 88 / .1); border: 1px solid oklch(0.85 0.13 88 / .35); font-size: .95rem; color: var(--texto); }
+.signo .dica b { color: var(--ouro); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: .15rem; }
+.signo.alvo { outline: 2px solid var(--ouro); box-shadow: 0 0 26px oklch(0.85 0.13 88 / .35); }
+.aviso { text-align: center; color: var(--suave); padding: 2rem 0; }
+.chamada { text-align: center; }
+.chamada p { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); max-width: 36rem; margin: 0 auto 1.2rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 800; border-radius: 999px; padding: .85rem 1.5rem; color: white; background: var(--grad-azul); box-shadow: 0 10px 30px oklch(0.55 0.17 265 / .5); }
+.btn.ouro { color: oklch(0.22 0.06 270); background: var(--grad-ouro); box-shadow: 0 10px 30px oklch(0.75 0.15 75 / .35); }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+
+/* 🎵 28/10/2026, pedido dele: a MESMA música do Tarot Grátis (ambient.mp3), com o mesmo botão e a continuidade entre páginas */
+@keyframes pulso-som {
+  0% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0.75); }
+  70% { box-shadow: 0 0 0 13px oklch(0.82 0.13 85 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0); }
+}
+.som-chama { animation: pulso-som 1.1s ease-out infinite; border-radius: 9999px; }
+
+/* Botão de som unificado — canto superior direito, igual em todas as páginas */
+.som-fix { position: fixed; top: 1rem; right: 1rem; z-index: 90; display: grid; place-items: center; height: 3rem; width: 3rem; padding: 0; border-radius: 9999px; border: 1.5px solid oklch(0.82 0.11 85); background: oklch(0.22 0.05 265 / 0.92); color: oklch(0.82 0.11 85); font-size: 1.2rem; box-shadow: 0 6px 22px rgba(0,0,0,0.5); cursor: pointer; transition: transform .25s; }
+.som-fix:hover { transform: scale(1.08); }
+.som-fix.ligado { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); animation: brilho-som 2.6s ease-in-out infinite; }
+.som-fix::before { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2px solid oklch(0.87 0.16 95 / 0.9); animation: anel-pisca-som 1.1s ease-in-out infinite; pointer-events: none; }
+@keyframes anel-pisca-som { 0%, 100% { opacity: 0.15; transform: scale(1); } 50% { opacity: 1; transform: scale(1.14); } }
+@keyframes brilho-som { 0%, 100% { box-shadow: 0 0 22px oklch(0.82 0.11 85 / 0.35); } 50% { box-shadow: 0 0 45px oklch(0.82 0.11 85 / 0.65); } }
+.som-ico { width: 1.35rem; height: 1.35rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; grid-area: 1 / 1; }
+.som-ico-on { display: none; }
+.ligado .som-ico-on { display: block; }
+.ligado .som-ico-off { display: none; }
+
+/* comum às três páginas de 02/11/2026 (cor do ano, alinhamento, védica) */
+.texto { max-width: 46rem; margin: 0 auto; }
+.texto p, .texto li { font-family: var(--serifa); font-size: 1.14rem; line-height: 1.55; color: var(--lavanda); }
+.texto p { margin: 0 0 .8rem; }
+.texto h2 { margin-bottom: .8rem; }
+.texto h3 { font-family: var(--titulo); font-size: 1.1rem; color: var(--ouro); margin: 1.2rem 0 .4rem; }
+.texto b, .texto strong { color: var(--texto); }
+.tabela { width: 100%; border-collapse: collapse; margin: .6rem 0 1rem; font-size: .95rem; }
+.tabela th, .tabela td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--borda); vertical-align: top; }
+.tabela th { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ouro); font-weight: 800; }
+.tabela td { color: var(--lavanda); }
+.tabela tr.agora td { background: oklch(0.85 0.13 88 / .1); color: var(--texto); }
+.rolar { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.nota { font-size: .85rem; color: var(--suave); }
+.destaques { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin: 0 0 1rem; }
+.destaque { border-radius: 1.2rem; padding: 1.1rem 1.2rem; background: oklch(0.20 0.06 272 / .88); border: 1px solid var(--borda); text-align: center; }
+.destaque .rot { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--suave); font-weight: 800; }
+.destaque .grande { font-family: var(--titulo); font-size: 1.6rem; font-weight: 700; margin: .3rem 0; }
+.destaque p { font-family: var(--serifa); font-size: 1.05rem; color: var(--lavanda); margin: 0; }
+.fontes { font-size: .85rem; color: var(--suave); }
+.fontes li { margin: .2rem 0; }
+.fontes a { word-break: break-word; }
+.faq h3 { font-family: var(--titulo); font-size: 1.05rem; color: var(--ouro); margin: 1.1rem 0 .3rem; }
+.faq p { margin: 0; font-family: var(--serifa); font-size: 1.1rem; color: var(--lavanda); }
+@media (max-width: 34rem) { .tabela { font-size: .86rem; } .tabela th, .tabela td { padding: .4rem .35rem; } }
+.passos li { margin: 0 0 .5rem; }
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Tarot dos Gatos: baralhos, símbolo e tiragem", "name": "Tarot dos Gatos: baralhos, símbolo e tiragem · Mestre Alberto", "description": "Tarot dos gatos: o que são os baralhos de gatos, o gato preto da Rainha de Paus, o gato no folclore e uma tiragem simples de 3 cartas.", "url": "https://genialtarot.com/tarot-dos-gatos", "mainEntityOfPage": "https://genialtarot.com/tarot-dos-gatos", "inLanguage": "pt", "image": "https://genialtarot.com/og-image.jpg", "isPartOf": {"@type": "WebSite", "name": "Genial Tarot", "url": "https://genialtarot.com/"}, "author": {"@type": "Person", "name": "Mestre Alberto", "url": "https://genialtarot.com/sobre"}, "publisher": {"@type": "Organization", "name": "Genial Tarot", "url": "https://genialtarot.com/"}, "datePublished": "2026-11-03", "dateModified": "2026-11-03"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://genialtarot.com/"}, {"@type": "ListItem", "position": 2, "name": "Tarot dos Gatos", "item": "https://genialtarot.com/tarot-dos-gatos"}]}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O tarot dos gatos é diferente do tarot normal?", "acceptedAnswer": {"@type": "Answer", "text": "No método, não: tem as mesmas 78 cartas e os mesmos significados de base. Muda a ilustração, que usa gatos em vez de pessoas. Alguns baralhos mudam nomes ou cenas, e aí vale a pena ler o livro que vem com eles."}}, {"@type": "Question", "name": "Que gato aparece no tarot Rider-Waite?", "acceptedAnswer": {"@type": "Answer", "text": "O gato preto sentado aos pés da Rainha de Paus. Costuma ser lido como sinal de intuição, independência e do lado reservado da rainha, que é calorosa mas sabe proteger-se."}}, {"@type": "Question", "name": "O gato preto dá azar no tarot?", "acceptedAnswer": {"@type": "Answer", "text": "Não. No tarot, o gato preto é lido como intuição e proteção. A ideia de azar vem de superstições europeias e não é universal: em algumas regiões do Reino Unido, um gato preto à porta é sinal de sorte."}}, {"@type": "Question", "name": "Posso usar um tarot de gatos se estou a começar?", "acceptedAnswer": {"@type": "Answer", "text": "Pode. Se o baralho seguir o desenho do Rider-Waite, aprende os significados de sempre com imagens de que gosta, o que ajuda a memorizar as cartas."}}]}
+</script>
+</head>
+<body>
+<button id="audio-fab" class="som-fix" aria-label="Ligar ou desligar o som"><svg class="som-ico som-ico-on" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><svg class="som-ico som-ico-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg></button>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+  <section class="heroi">
+    <img class="foto-mestre" src="mestre-diario.jpg" alt="Mestre Alberto" width="120" height="120" />
+    <div><span class="selo">🐈‍⬛ Tarot ✦ o gato como símbolo</span></div>
+    <h1>Tarot dos <span class="az">Gatos</span></h1>
+    <p class="sub">Os baralhos ilustrados com gatos, o que o gato significa nas cartas e como ler com eles, com uma tiragem simples para começar.</p>
+  </section>
+
+  <section class="cartao texto">
+    <h2>O que é o <span class="az">tarot dos gatos</span></h2>
+    <p>Quando se fala em «tarot dos gatos» (ou «tarot gatos», como muita gente pesquisa), fala-se quase sempre de <b>baralhos de tarot em que as figuras humanas foram trocadas por gatos</b>. A estrutura mantém-se: 78 cartas, 22 Arcanos Maiores e 56 Arcanos Menores, divididos nos quatro naipes de Paus, Copas, Espadas e Ouros. O que muda é a ilustração: o Louco pode ser um gatinho à beira de um muro, a Imperatriz uma gata deitada entre almofadas, o Eremita um gato velho de lanterna na pata.</p>
+    <p>Há vários no mercado, de autores e editoras diferentes. Alguns exemplos conhecidos são o <i>Tarot of the Cat People</i>, de Karen Kuykendall, um dos mais antigos, o <i>Tarot of Pagan Cats</i>, o <i>Mystical Cats Tarot</i> e o <i>Cat's Eye Tarot</i>. A maioria segue de perto o desenho do tarot Rider-Waite, o que ajuda muito: quem conhece esse baralho reconhece logo cada carta. Outros são mais livres, mudam cenas ou nomes, e aí convém ter à mão o livro que vem com o baralho.</p>
+    <p>Não é um tarot «diferente» nem um método à parte. É o mesmo tarot com outra roupa. Para quem gosta de gatos, essa roupa torna as cartas mais próximas e menos intimidantes, e isso ajuda a ler com calma.</p>
+  </section>
+
+  <section class="cartao texto">
+    <h2>O gato como <span class="az">símbolo</span> no tarot</h2>
+    <h3>O gato preto da Rainha de Paus</h3>
+    <p>No tarot Rider-Waite, desenhado por Pamela Colman Smith e publicado em 1909, há um gato muito conhecido: o <b>gato preto sentado aos pés da Rainha de Paus</b>. A rainha segura um girassol, tem leões no trono, e o gato, à frente, olha para quem vê a carta. A leitura mais comum é que ele mostra o lado da rainha que não está à vista: a intuição, a independência, alguma reserva e a capacidade de se proteger. É uma mulher, ou uma energia, calorosa e confiante, mas que não se entrega a qualquer um. O significado completo está na página da <a href="/carta-rainha-de-paus">Rainha de Paus</a>.</p>
+    <h3>O que o gato costuma representar</h3>
+    <ul>
+      <li><b>Intuição</b>: o gato pressente antes de ver.</li>
+      <li><b>Independência</b>: vai e vem quando quer, mas escolhe a quem se liga.</li>
+      <li><b>Mistério</b>: anda à vontade de noite, o que o aproxima da Lua e do que está escondido.</li>
+      <li><b>Proteção e limites</b>: afasta-se do que não lhe faz bem e mostra as garras quando é preciso.</li>
+      <li><b>Curiosidade</b>: explora, testa, recua e volta a tentar.</li>
+    </ul>
+    <p>Num baralho de gatos, estes traços estão em todas as cartas, mas cada uma acentua um. Na <a href="/arcano-02-a-sacerdotisa">Sacerdotisa</a>, o silêncio e a intuição; na <a href="/arcano-08-a-forca">Força</a>, a doçura que domina sem violência; na <a href="/arcano-18-a-lua">Lua</a>, o caminho feito às escuras.</p>
+  </section>
+
+  <section class="cartao texto">
+    <h2>O gato na <span class="az">adivinhação</span> e no folclore</h2>
+    <p>O gato anda ligado à magia e aos presságios há muito tempo. No antigo Egito era associado à deusa <b>Bastet</b>, protetora da casa e da família, e era um animal muito respeitado. Na mitologia nórdica, conta-se que o carro da deusa Freya era puxado por gatos. Na Europa da Idade Média, pelo contrário, o gato preto passou a ser visto como companheiro das bruxas, e daí vem a superstição de que dá azar quando nos atravessa o caminho, uma ideia que ainda se ouve em Portugal e no Brasil.</p>
+    <p>Mas não é assim em todo o lado. Em algumas regiões do Reino Unido, um gato preto que aparece à porta é sinal de sorte, e no Japão o gato que acena, o <i>maneki-neko</i>, é um amuleto de boa sorte nas lojas. O mesmo animal, leituras opostas: um bom lembrete de que os símbolos dependem de quem os olha.</p>
+    <p>Há também o gato de carne e osso. Muitos leitores de cartas contam que o seu gato se deita em cima de uma carta ou fica junto à mesa durante a leitura. Faz parte do ambiente e da relação de cada um com o seu animal; não é uma regra do tarot, e uma leitura não depende disso.</p>
+  </section>
+
+  <section class="cartao texto">
+    <h2>Como ler com um <span class="az">tarot de gatos</span></h2>
+    <ol class="passos">
+      <li><b>Comece pelo que já sabe.</b> Se o baralho segue o Rider-Waite, cada carta tem o significado de sempre. Os <a href="/arcanos">22 Arcanos Maiores</a> explicados no site servem de base.</li>
+      <li><b>Olhe para a postura do gato.</b> Um gato encolhido, de orelhas para trás, não diz o mesmo que um gato estendido ao sol. A linguagem do corpo do animal é uma camada extra: tensão, descanso, alerta, brincadeira.</li>
+      <li><b>Repare no olhar.</b> Para onde olha o gato? Para outra carta, para fora, para si? Numa tiragem de várias cartas, os olhares ajudam a ligar as posições.</li>
+      <li><b>Leia o livro do baralho.</b> Quando o autor muda nomes ou cenas, a intenção dele conta.</li>
+      <li><b>Não force.</b> Se uma imagem não lhe diz nada, volte ao significado tradicional da carta. O gato é um apoio, não um enigma.</li>
+    </ol>
+  </section>
+
+  <section class="cartao texto">
+    <h2>Uma tiragem simples: <span class="az">os três sentidos do gato</span></h2>
+    <p>Para começar, chegam três cartas, de qualquer baralho. Pense numa pergunta ou numa situação concreta, baralhe com calma e tire três cartas, da esquerda para a direita:</p>
+    <div class="rolar"><table class="tabela">
+      <tr><th>Posição</th><th>Nome</th><th>O que mostra</th></tr>
+      <tr><td>1</td><td><b>Os bigodes</b></td><td>O que está a sentir sem ver: a sua intuição sobre a situação.</td></tr>
+      <tr><td>2</td><td><b>As garras</b></td><td>O que precisa de proteger, ou o limite que deve pôr.</td></tr>
+      <tr><td>3</td><td><b>A cauda</b></td><td>Para onde se inclina o caminho: o passo seguinte mais sensato.</td></tr>
+    </table></div>
+    <p><b>Um exemplo.</b> Saem o Cavaleiro de Copas nos bigodes, o Quatro de Ouros nas garras e a Estrela na cauda. A leitura pode ser: há uma proposta afetiva no ar, que sente antes de ela ser dita; o cuidado está em não fechar a porta só por medo de perder o que já tem; e o caminho aponta para a confiança e a esperança. Uma tiragem destas mostra tendências e ajuda a pensar; não decide por si.</p>
+    <p>Se quer experimentar já, sem baralho em casa, pode tirar cartas no <a href="/tarot-gratis">Tarot Grátis</a> do site, ou fazer a clássica <a href="/tiragem-tres-cartas">tiragem de três cartas</a>: passado, presente e futuro.</p>
+  </section>
+
+  <section class="cartao texto faq" id="perguntas">
+    <h2>Perguntas <span class="az">frequentes</span></h2>
+    <h3>O tarot dos gatos é diferente do tarot normal?</h3><p>No método, não: tem as mesmas 78 cartas e os mesmos significados de base. Muda a ilustração, que usa gatos em vez de pessoas. Alguns baralhos mudam nomes ou cenas, e aí vale a pena ler o livro que vem com eles.</p><h3>Que gato aparece no tarot Rider-Waite?</h3><p>O gato preto sentado aos pés da Rainha de Paus. Costuma ser lido como sinal de intuição, independência e do lado reservado da rainha, que é calorosa mas sabe proteger-se.</p><h3>O gato preto dá azar no tarot?</h3><p>Não. No tarot, o gato preto é lido como intuição e proteção. A ideia de azar vem de superstições europeias e não é universal: em algumas regiões do Reino Unido, um gato preto à porta é sinal de sorte.</p><h3>Posso usar um tarot de gatos se estou a começar?</h3><p>Pode. Se o baralho seguir o desenho do Rider-Waite, aprende os significados de sempre com imagens de que gosta, o que ajuda a memorizar as cartas.</p>
+  </section>
+  <section class="cartao chamada">
+    <h2>Uma leitura para o <span class="az">seu</span> momento</h2>
+    <p>Um baralho bonito ajuda, mas o que conta é a pergunta certa. O Mestre Alberto, com 18 anos de cartas, lê para o seu momento, por chamada, áudio ou por escrito.</p>
+    <div class="botoes"><a class="btn ouro" href="loja.html#cat-consultas">🔮 Ver as consultas e os preços</a><a class="btn" href="https://wa.me/351914920427?text=Ol%C3%A1%20Mestre%20Alberto%2C%20vi%20a%20p%C3%A1gina%20do%20tarot%20dos%20gatos%20e%20quero%20marcar%20uma%20consulta." target="_blank" rel="noopener noreferrer">💬 Perguntar no WhatsApp</a></div>
+  </section>
+</div>
+<!-- 03/11/2026: ligações às páginas novas --><section style="max-width:760px;margin:2rem auto;padding:1.2rem 1.4rem;border:1px solid rgba(212,175,55,.35);border-radius:16px;background:rgba(255,255,255,.04);line-height:1.6;text-align:center"><h2 style="margin-top:0">Veja também</h2><p style="margin:0"><a href="/tarot-gratis">Tarot Grátis</a> · <a href="/arcanos">Os 22 Arcanos Maiores</a> · <a href="/carta-rainha-de-paus">Rainha de Paus</a> · <a href="/tiragem-tres-cartas">Tiragem de 3 cartas</a> · <a href="/">Página inicial</a></p></section>
+<!-- gt-casa:inicio -->
+<aside class="gt-casa" aria-label="Genial Tarot — o site do Mestre Alberto"><style>
+.gt-casa{max-width:900px;margin:2.6rem auto 1.6rem;padding:0 14px;font-family:inherit}
+.gt-casa .gc-cx{position:relative;border-radius:22px;padding:1.6rem 1.4rem 1.4rem;overflow:hidden;color:#f7f0fb;text-align:center;
+ background:radial-gradient(120% 90% at 50% 0%,rgba(242,201,107,.20),transparent 60%),linear-gradient(160deg,#2a1245 0%,#1a0b30 55%,#120722 100%);
+ border:1px solid rgba(242,201,107,.45);box-shadow:0 18px 50px rgba(0,0,0,.35),inset 0 0 40px rgba(242,201,107,.06)}
+.gt-casa .gc-cx::before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 70%,rgba(242,201,107,.16) 80%,transparent 90%);animation:gc-gira 14s linear infinite;pointer-events:none}
+@keyframes gc-gira{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.gt-casa .gc-cx::before{animation:none}}
+.gt-casa .gc-in{position:relative}
+.gt-casa .gc-foto{width:92px;height:92px;border-radius:50%;object-fit:cover;border:3px solid #f2c96b;box-shadow:0 0 0 6px rgba(242,201,107,.15),0 8px 24px rgba(0,0,0,.4);display:block;margin:0 auto .7rem}
+.gt-casa .gc-sel{font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#f2c96b;opacity:.9}
+.gt-casa .gc-tit{font-family:Cinzel,Georgia,"Times New Roman",serif;font-size:clamp(1.25rem,3.6vw,1.75rem);margin:.35rem 0 .45rem;color:#ffe2a0;line-height:1.25}
+.gt-casa .gc-txt{margin:0 auto 1.1rem;max-width:560px;color:#e7dcf3;line-height:1.55;font-size:1rem}
+.gt-casa .gc-portas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 1.1rem}
+.gt-casa .gc-portas a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:.8rem .6rem;border-radius:14px;text-decoration:none;color:#f7f0fb;
+ background:rgba(255,255,255,.06);border:1px solid rgba(242,201,107,.22);transition:transform .2s,background .2s,border-color .2s}
+.gt-casa .gc-portas a:hover,.gt-casa .gc-portas a:focus-visible{transform:translateY(-3px);background:rgba(242,201,107,.13);border-color:#f2c96b}
+.gt-casa .gc-portas i{font-style:normal;font-size:1.6rem;line-height:1.2}
+.gt-casa .gc-portas b{font-size:.98rem;color:#ffe2a0}
+.gt-casa .gc-portas small{font-size:.8rem;color:#bfaed3}
+.gt-casa .gc-bot{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.gt-casa .gc-bot a{display:inline-block;padding:.75rem 1.3rem;border-radius:999px;font-weight:700;text-decoration:none;font-size:1rem}
+.gt-casa .gc-casa{background:linear-gradient(135deg,#ffe2a0,#f2c96b 55%,#d9a441);color:#2a1245;box-shadow:0 6px 18px rgba(242,201,107,.35)}
+.gt-casa .gc-wa{background:rgba(37,211,102,.16);color:#d8ffe6;border:1px solid rgba(37,211,102,.55)}
+.gt-casa .gc-bot a:hover{filter:brightness(1.08)}
+</style><div class="gc-cx"><div class="gc-in"><img class="gc-foto" src="/mestre-avatar.jpg" srcset="/mestre-avatar.jpg 1x, /mestre-avatar@2x.jpg 2x" width="92" height="92" alt="Mestre Alberto, tarólogo e astrólogo do Genial Tarot" loading="lazy" decoding="async"><div class="gc-sel">✦ Genial Tarot ✦</div><p class="gc-tit">Há 18 anos a ler o Tarot e os astros</p><p class="gc-txt">Este é o site do Mestre Alberto. Tire as cartas, leia o seu signo e descubra o que o céu diz de si — e quando precisar de uma resposta só sua, fale com ele numa consulta por videochamada.</p><nav class="gc-portas"><a href="/tarot-gratis"><i aria-hidden="true">🃏</i><b>Tarot Grátis</b><small>Tire as suas cartas agora</small></a><a href="/horoscopo-do-dia"><i aria-hidden="true">🔮</i><b>Horóscopo de Hoje</b><small>O seu signo, com o céu real</small></a><a href="/signos-do-zodiaco"><i aria-hidden="true">♈︎</i><b>Os 12 Signos</b><small>Personalidade, amor e datas</small></a><a href="/sonhos"><i aria-hidden="true">🌙</i><b>Sonhos</b><small>O que o seu sonho quer dizer</small></a></nav><div class="gc-bot"><a class="gc-casa" href="/">✨ Ir para a página inicial</a><a class="gc-wa" href="https://wa.me/351914920427" rel="noopener">💬 Marcar consulta</a></div></div></div></aside>
+<!-- gt-casa:fim -->
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+
+<script>
+/* 🎵 28/10/2026, pedido dele: a mesma música do Tarot Grátis e a continuar entre as páginas que a usam
+   (sessionStorage «mus_ambient»: se estava a tocar, retoma no mesmo segundo). Os navegadores não deixam tocar
+   com som antes do primeiro toque na página: aí arranca ao primeiro toque, clique ou deslizar. Cópia do tarot-gratis.html. */
+(function () {
+/* ============ Som ambiente ============ */
+const ambient = new Audio("ambient.mp3");
+ambient.loop = false; ambient.volume = 0.01; ambient.preload = "auto";
+const AMB_VOL = 0.01;
+let ambFade = null;
+function ambFadeIn(dur) {
+  dur = dur || 3500;
+  clearInterval(ambFade); ambient.volume = 0; let i = 0;
+  ambFade = setInterval(() => { i++; ambient.volume = Math.min(AMB_VOL, AMB_VOL * i / 35); if (i >= 35) clearInterval(ambFade); }, dur / 35);
+}
+
+// ===== Continuidade do som (mesma sessão) =====
+const AMB_KEY = "mus_ambient";
+let ambEstado = null;
+// 28/10/2026, pedido dele: continuidade em TODAS as páginas com esta música (também noutros separadores) — no
+// localStorage deste navegador; quem nunca cá esteve (outra pessoa, outro IP) começa do início; ao fim de 2 h também.
+try { ambEstado = JSON.parse(localStorage.getItem(AMB_KEY) || "null"); if (ambEstado && !(Date.now() - (ambEstado.t || 0) < 7200000)) ambEstado = null; } catch {}
+const tentaRestauroAmb = () => {
+  if (!(ambEstado && ambEstado.pos > 0) || !isFinite(ambient.duration) || ambient.duration <= 0) return;
+  if (ambEstado.pos >= ambient.duration - 1) { ambEstado.pos = 0; return; }
+  const alvo = ambEstado.pos;
+  for (let i = 0; i < ambient.seekable.length; i++) {
+    if (ambient.seekable.start(i) <= alvo && ambient.seekable.end(i) >= alvo) {
+      ambient.currentTime = alvo; ambEstado.pos = 0;
+      ["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.removeEventListener(ev, tentaRestauroAmb));
+      return;
+    }
+  }
+};
+["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.addEventListener(ev, tentaRestauroAmb));
+const AMB_ID = Math.random().toString(36).slice(2);           // cada página aberta tem o seu id
+let ambDono = true;                                            // falso quando outra página tomou conta da música
+const guardaAmb = () => { if (!ambDono) return; try { localStorage.setItem(AMB_KEY, JSON.stringify({ on: !ambient.paused, pos: ambient.currentTime || 0, t: Date.now(), id: AMB_ID })); } catch {} };
+// Uma música só: quando outra página (outro separador) começa a tocar, esta cala-se; se a pessoa desliga noutra, desliga aqui.
+window.addEventListener("storage", (ev) => {
+  if (ev.key !== AMB_KEY || !ev.newValue) return;
+  try { const o = JSON.parse(ev.newValue); if (o.id !== AMB_ID) { ambDono = false; if (!ambient.paused) { ambient.pause(); setAmbientUI(false); } } } catch {}
+});
+window.addEventListener("pagehide", guardaAmb);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") guardaAmb(); });
+setInterval(() => { if (!ambient.paused) guardaAmb(); }, 2000);     // no telemóvel o «pagehide» nem sempre chega
+const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off"), fabLabel = document.getElementById("afab-label");
+let ambientOn = false;
+function setAmbientUI(on) {
+  ambientOn = on;
+  const b = document.getElementById("audio-fab");
+  b.classList.toggle("ligado", on);
+  b.classList.toggle("desligado", !on);
+  b.classList.toggle("som-chama", !on);
+}
+const ambRetoma = ambEstado && ambEstado.on ? 1200 : 3500;
+if (!ambEstado || ambEstado.on) ambient.play().then(() => { setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb(); }).catch(() => {
+  // 28/10/2026: no telemóvel só o dedo a LEVANTAR (touchend/pointerup/click) conta como toque para o som — touchstart e
+  // scroll não. E a escuta só sai depois de a música tocar mesmo (antes, a 1.ª tentativa falhada desligava-a).
+  const EVS = ["pointerup", "touchend", "click", "keydown", "mousedown"];
+  const unlock = async (ev) => {
+    if (ev && ev.target && ev.target.closest && ev.target.closest("#audio-fab")) return;   // o botão trata de si
+    if (!ambient.paused) return;
+    try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb();
+          EVS.forEach(e => window.removeEventListener(e, unlock, true)); } catch { setAmbientUI(false); }
+  };
+  EVS.forEach(e => window.addEventListener(e, unlock, true));
+  setAmbientUI(false);
+});
+document.getElementById("audio-fab").addEventListener("click", async (e) => {
+  e.stopPropagation();
+  if (ambientOn && !ambient.paused) { ambient.pause(); setAmbientUI(false); guardaAmb(); return; }
+  try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(); guardaAmb(); } catch { setAmbientUI(false); }
+});
+})();
+</script>
+<script src="/vip-faixa.js" defer></script><!-- 29/10/2026: faixa da Lista VIP -->
+<script src="/vivo.js" defer></script>
+</body>
+</html>

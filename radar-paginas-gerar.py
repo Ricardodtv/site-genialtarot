@@ -93,6 +93,19 @@ GRUPOS = [
 ]
 for g in GRUPOS:
     for u, _, _ in g[1]: assert os.path.exists(u[1:] + ".html") or u in ("/astrologia", "/lua-azul"), u
+# 03/11/2026 (radar: «o que é astrologia», «astrologia significado» a subir): a explicação, visível na página
+_TIPOS = [("/astrologia-vedica", "Astrologia Védica"), ("/astrologia-sideral", "Astrologia Sideral"), ("/astrologia-horaria", "Astrologia Horária"),
+          ("/horoscopo-chines", "Horóscopo Chinês"), ("/astrologia-sistemica", "Astrologia Sistémica"), ("/stellium-astrologia", "Stellium")]
+_TIPOS = " · ".join(f'<a href="{u}">{n}</a>' for u, n in _TIPOS if os.path.exists(u[1:] + ".html"))
+O_QUE_E = f'''  <section class="cartao">
+    <h2>O que é a astrologia?</h2>
+    <p>A <b>astrologia</b> é a leitura simbólica do céu: olha para o Sol, a Lua e os planetas, para o signo em que cada um está e para os ângulos que fazem entre si, e procura nesses ciclos um espelho dos ciclos da vida. A palavra vem do grego <i>astron</i>, astro, e <i>logos</i>, estudo ou discurso.</p>
+    <p>É das tradições mais antigas que conhecemos. Nasceu na Mesopotâmia, ganhou os doze signos e as casas na Grécia e no Egito helenístico e chegou até nós através dos árabes e da Europa medieval. Durante séculos, astrologia e astronomia foram a mesma coisa; hoje são caminhos diferentes: a astronomia mede o céu, a astrologia interpreta-o.</p>
+    <p><b>Como funciona:</b> os <a href="/signos-do-zodiaco">12 signos</a> dizem <i>como</i> uma energia se expressa, os planetas dizem <i>que</i> energia é (o Sol a vontade, a Lua as emoções, Vénus o amor…), as casas dizem <i>onde</i> na vida isso acontece e os aspetos mostram como os planetas conversam entre si. O seu <a href="/mapa-astral">mapa astral</a> é a fotografia do céu no minuto e no lugar em que nasceu.</p>
+    <p><b>O que a astrologia não é:</b> não é uma ciência no sentido moderno nem uma sentença. Não decide por si; ajuda a conhecer-se, a perceber os momentos e a escolher com mais consciência.</p>
+    {"<p><b>Outras astrologias:</b> " + _TIPOS + ".</p>" if _TIPOS else ""}
+  </section>
+'''
 corpo = HEROI("✦ Astrologia ✦ céu real", 'A <span class="az">Astrologia</span> no Genial Tarot',
               "O céu deste momento e tudo o que precisa para ler os signos, o seu mapa e os ciclos do ano, sempre com o céu calculado e não inventado.") + '''
   <section class="cartao">
@@ -102,7 +115,7 @@ corpo = HEROI("✦ Astrologia ✦ céu real", 'A <span class="az">Astrologia</sp
     <p class="fonte" id="ag-lua"></p>
     <p class="fonte">Calculado com o Swiss Ephemeris (zodíaco tropical). Atualiza-se sozinho: volte amanhã e o céu já mudou. ℞ = retrógrado.</p>
   </section>
-''' + "".join(f'''  <section class="cartao"><h2>{t}</h2><div class="links">''' + "".join(f'<a href="{u}"><b>{n}</b><small>{d}</small></a>' for u, n, d in l) + "</div></section>\n" for t, l in GRUPOS) + '''  <section class="cartao chamada">
+''' + O_QUE_E + "".join(f'''  <section class="cartao"><h2>{t}</h2><div class="links">''' + "".join(f'<a href="{u}"><b>{n}</b><small>{d}</small></a>' for u, n, d in l) + "</div></section>\n" for t, l in GRUPOS) + '''  <section class="cartao chamada">
     <h2>A <span class="az">sua</span> leitura</h2>
     <p>O céu é igual para todos; o seu mapa não. Numa consulta junto a astrologia e o tarot para olhar para a sua vida em particular.</p>
     <div class="botoes"><a class="btn" href="/mapa-astral">✨ O meu Mapa Astral</a><a class="btn ouro" href="loja.html#cat-consultas">🔮 Marcar uma consulta</a></div>
@@ -138,8 +151,8 @@ JS_A = '''<script src="ceu-dados.js"></script>
   G.ligarFuso(desenha); desenha(); setInterval(desenha, 60000);
 })();
 </script>'''
-pagina("astrologia", "Astrologia: o céu de hoje, os signos e o mapa · Mestre Alberto",
-       "Astrologia no Genial Tarot: o céu de agora, calculado, os 12 signos, o mapa astral, o horóscopo do dia e da semana e os ciclos do ano.",
+pagina("astrologia", "Astrologia: o que é, o céu de hoje e os signos · Mestre Alberto",
+       "O que é a astrologia e como funciona, o céu de agora calculado, os 12 signos, o mapa astral e o horóscopo do dia e da semana.",
        "A Astrologia no Genial Tarot — Mestre Alberto", "Astrologia", corpo, FAQ_A, JS_A)
 
 # ───────────── /lua-azul ─────────────

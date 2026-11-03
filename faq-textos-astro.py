@@ -369,6 +369,8 @@ FAQ = {
    "Não, na astrologia ocidental. Ofiúco é uma constelação por onde o Sol passa, mas os signos não são constelações: são doze partes iguais de 30 graus, contadas a partir do equinócio da primavera. Por isso continuam a ser doze, ligados às estações do ano."),
   ("Qual é a diferença entre signo solar, Lua e Ascendente?",
    "O signo solar mostra a essência e a vontade. O signo da Lua mostra as emoções e aquilo de que precisa para estar bem. O Ascendente mostra a forma como se apresenta e como os outros o(a) veem. Os três juntos dizem muito mais do que o signo sozinho."),
+  ("Quais são os 12 signos astrológicos e as suas datas?",
+   "Os signos astrológicos são Carneiro (Áries), Touro, Gémeos, Caranguejo (Câncer), Leão, Virgem, Balança (Libra), Escorpião, Sagitário, Capricórnio, Aquário e Peixes. Seguem o caminho do Sol ao longo do ano: Carneiro começa no equinócio da primavera, por volta de 20 de março, e cada signo dura cerca de um mês. As datas exatas de cada um estão na grelha acima."),
  ],
  "horoscopo-2027": [
   ("Qual é o signo com mais sorte em 2027?",

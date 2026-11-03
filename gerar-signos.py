@@ -6,6 +6,14 @@ mesmo horoscopo-dia/AAAA-MM-DD.json da página Horóscopo do Dia. Correr: python
 import json, os, re, html, glob
 APROVADO = True   # 31/10/2026: ele mandou abrir todas as variantes ao Google
 AQUI = os.path.dirname(os.path.abspath(__file__)); os.chdir(AQUI)
+# 03/11/2026: os blocos «Veja também» postos à mão ou pelas rondas de SEO (<!-- dd/mm/aaaa: ligaç… -->) não se perdem
+# quando este gerador reescreve a página — guardam-se aqui e voltam a entrar no fim (antes do <footer>)
+_BLOCO = re.compile(r"<!-- \d\d/\d\d/\d{4}: liga[^>]*-->.*?</section>\n?", re.S)
+_GUARDA = {}
+for _f in glob.glob("*.html") + glob.glob("signo/*.html"):
+    try: _b = _BLOCO.findall(open(_f, encoding="utf-8").read())
+    except OSError: continue
+    if _b: _GUARDA[_f] = _b
 SITE = "https://genialtarot.com"
 S = json.load(open("signos-textos.json", encoding="utf-8"))
 SIGIMG = [f"signo-{x['slug']}.webp" for x in S]   # 02/11/2026 (SEO de imagens, pedido dele): nomes descritivos (os NN.webp ficam para os widgets)
@@ -142,14 +150,14 @@ for i, s in enumerate(S):
 # a montra dos 12
 url = SITE + "/signos-do-zodiaco"
 titulo = "Os 12 Signos do Zodiaco: datas, características e horóscopo".replace("Zodiaco", "Zodíaco")
-desc = "Descubra o seu signo: as datas dos 12 signos do zodíaco, a personalidade, o amor e o horóscopo de hoje de cada um, pelo Mestre Alberto."
+desc = "Os 12 signos astrológicos do zodíaco: as datas, a personalidade, o amor e o horóscopo de hoje de cada signo, pelo Mestre Alberto."
 ld = {"@context": "https://schema.org", "@graph": [
     {"@type": "CollectionPage", "name": titulo, "description": desc, "url": url, "inLanguage": "pt", "author": AUTOR, "publisher": EDITOR},
     {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Os 12 Signos", "item": url}]}]}
 grelha = "".join(f'<a href="/signo/{x["slug"]}"><img src="/signos/{SIGIMG[j]}" alt="" width="58" height="58" loading="lazy"><span><b>{GLIFO[j]}︎ {E(x["pt"] if x["pt"] == x["br"] else x["pt"] + " (" + x["br"] + ")")}</b><small>{E(x["datas"])} · {ELEM[j % 4]}</small></span></a>' for j, x in enumerate(S))
 corpo = f"""  <section class="heroi">
     <h1><span class="az">Os 12 Signos do Zodíaco</span></h1>
-    <p class="sub">Escolha o seu signo para ver a personalidade, o amor, o trabalho e o horóscopo de hoje.</p>
+    <p class="sub">Os 12 signos astrológicos, por ordem. Escolha o seu signo para ver a personalidade, o amor, o trabalho e o horóscopo de hoje.</p>
   </section>
   <section><div class="doze">{grelha}</div></section>
   <section class="cartao texto">
@@ -757,7 +765,7 @@ def junta(f, marca, bloco):
         s = s.replace("</div>\n<script src=\"/vip-faixa.js\"", "", 0)
         s = s.replace("<footer>", bloco + "\n<footer>", 1); open(f, "w", encoding="utf-8").write(s)
 L = lambda pares: "".join(f'<a href="/{a}">{E(b)}</a>' for a, b in pares if os.path.exists(a + ".html"))
-junta("signos-do-zodiaco.html", "compatibilidade-entre-signos", '<section class="cartao" style="text-align:center"><h2>Mais astrologia</h2><div class="ligas">' + L([("compatibilidade-entre-signos", "Compatibilidade entre signos"), ("signos-que-combinam", "Signos que combinam"), ("datas-dos-signos", "Datas dos signos"), ("aniversarios", "Quem faz anos hoje"), ("horoscopo-semanal", "Horóscopo semanal"), ("alinhamento-dos-planetas", "Alinhamento dos planetas"), ("astrologia-vedica", "Astrologia Védica"), ("signos-2026", "Signos 2026"), ("melhores-signos-2027", "Melhores signos 2027"), ("astrologia", "Astrologia hoje"), ("lua-azul", "Lua Azul"), ("cor-do-ano-2027", "Cor do Ano 2027"), ("horoscopo-chines", "Horóscopo Chinês"), ("elemento-fogo", "Os 4 elementos"), ("signos-cardinais", "Cardinais, fixos e mutáveis"), ("casa-1", "As 12 casas"), ("planeta-sol", "Os planetas")]) + "".join(f'<a href="/{x}-no-tarot">{GLIFO[j]}︎ {E(S[j]["pt"])} no Tarot</a>' for j, x in enumerate(s0["slug"] for s0 in S) if os.path.exists(f"{x}-no-tarot.html")) + "</div></section>")
+junta("signos-do-zodiaco.html", "compatibilidade-entre-signos", '<section class="cartao" style="text-align:center"><h2>Mais astrologia</h2><div class="ligas">' + L([("compatibilidade-entre-signos", "Compatibilidade entre signos"), ("signos-que-combinam", "Signos que combinam"), ("datas-dos-signos", "Datas dos signos"), ("aniversarios", "Quem faz anos hoje"), ("horoscopo-semanal", "Horóscopo semanal"), ("alinhamento-dos-planetas", "Alinhamento dos planetas"), ("astrologia-vedica", "Astrologia Védica"), ("signos-2026", "Signos 2026"), ("melhores-signos-2027", "Melhores signos 2027"), ("astrologia", "Astrologia hoje"), ("lua-azul", "Lua Azul"), ("cor-do-ano-2027", "Cor do Ano 2027"), ("horoscopo-chines", "Horóscopo Chinês"), ("elemento-fogo", "Os 4 elementos"), ("signos-cardinais", "Cardinais, fixos e mutáveis"), ("casa-1", "As 12 casas"), ("planeta-sol", "Os planetas"), ("astrologia-sideral", "Astrologia sideral"), ("astrologia-horaria", "Astrologia horária"), ("stellium-astrologia", "Stellium"), ("astrologia-sistemica", "Astrologia sistémica")]) + "".join(f'<a href="/{x}-no-tarot">{GLIFO[j]}︎ {E(S[j]["pt"])} no Tarot</a>' for j, x in enumerate(s0["slug"] for s0 in S) if os.path.exists(f"{x}-no-tarot.html")) + "</div></section>")
 junta("tarot-por-tema.html", "tiragem-", '<section class="cartao" style="text-align:center"><h2>Mais Tarot</h2><div class="ligas">' + L([("arcanos", "Os 22 Arcanos Maiores"), ("arcanos-menores", "Os 56 Arcanos Menores"), ("tiragem-tres-cartas", "Tiragem de 3 cartas"), ("cartas-do-tarot-amor", "As cartas do amor"), ("cartas-do-tarot-sim-ou-nao", "Sim ou não"), ("historias-e-lendas", "Histórias e Lendas"), ("parabolas", "Parábolas")]) + "</div></section>")
 print("montras ligadas")
 
@@ -935,3 +943,12 @@ _sp.run(["python3", "seo-descricoes.py"], check=False)
 # 02/11/2026: as imagens de destaque voltam a entrar nas páginas que este gerador reescreveu (imagens-destaque.py)
 import subprocess as _sp
 _sp.run(["python3", "/home/ricardo/site-genialtarot/imagens-destaque.py"])
+
+# 03/11/2026: repor os blocos «Veja também» que a reescrita tirou
+for _f, _bs in _GUARDA.items():
+    try: _h = open(_f, encoding="utf-8").read()
+    except OSError: continue
+    _falta = [b for b in _bs if b.strip() not in _h]
+    if _falta and "<footer" in _h:
+        _i = _h.index("<footer"); _h = _h[:_i] + "".join(b if b.endswith("\n") else b + "\n" for b in _falta) + _h[_i:]
+        open(_f, "w", encoding="utf-8").write(_h)
