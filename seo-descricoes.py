@@ -5,7 +5,7 @@ isso tudo»). Troca a description, a og:description e a twitter:description. Ide
 import os, re, html
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 DESC = {
- "aniversarios": "Os artistas e personalidades do Brasil e de Portugal que fazem anos hoje, e o signo de cada um. Descubra quem nasceu no mesmo dia que você.",
+ "aniversarios": "Veja quem faz anos hoje entre os famosos de Portugal e do Brasil e de que signo é cada um. Saiba o signo de quem nasce hoje e as datas dos 12 signos.",
  "anual": "Previsão Anual 2026 do Mestre Alberto para os 12 signos: escolha o seu e veja o vídeo completo com as previsões do ano para o seu signo.",
  "compatibilidade": "Compatibilidade entre signos: escolha dois signos e veja o que os une, o que pede cuidado no amor e a carta do Tarot para o par. Grátis.",
  "horoscopo-do-dia": "O horóscopo do dia de cada signo, feito a partir do céu real de hoje: a Lua, os aspetos dos planetas e uma dica nova todos os dias. Grátis.",
