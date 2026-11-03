@@ -499,6 +499,7 @@ const PAGINAS = new Set([
   "/horoscopo-semanal", "/horoscopo-de-amanha", "/tarot-cigano", "/consulta-de-tarot-online", "/datas-dos-signos", "/signos-que-combinam", "/cor-do-ano-2027", "/alinhamento-dos-planetas", "/astrologia-vedica", "/signos-2026", "/melhores-signos-2027", "/astrologia", "/lua-azul", "/tiragem-templo-de-afrodite", "/combinacoes-de-tarot",
   // 03/11/2026: mais 5 pesquisas a subir no Google Trends
   "/tarot-dos-gatos", "/stellium-astrologia", "/astrologia-horaria", "/astrologia-sideral", "/astrologia-sistemica",
+  "/tarot-rider-waite", "/tarot-com-inteligencia-artificial",
 ]);
 
 function contarVisita(request, url, env, ctx) {
