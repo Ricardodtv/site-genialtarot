@@ -109,6 +109,9 @@
   }
   ["pointerdown", "touchstart", "keydown", "wheel"].forEach(function (ev) { addEventListener(ev, function () { setTimeout(confirma, 300); }, { passive: true, once: true }); });
   var tVista = setInterval(function () { if (document.visibilityState === "visible") vista++; if (vista >= 8) { clearInterval(tVista); confirma(); } }, 1000);
-  ola(); setInterval(ola, 10000);   // de 10 em 10 s: é também o que faz o chat aparecer quando ele o abre
+  // 03/11/2026 (ele: «menos pedidos ao Cloudflare, que chegue para o dia todo»): de 20 em 20 s e SÓ com a página à vista —
+  // um separador esquecido aberto gastava ~9 mil pedidos por dia. O chat continua a aparecer (até 20 s depois de ele o abrir).
+  ola(); setInterval(function () { if (document.visibilityState === "visible") ola(); }, 20000);
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") ola(); });
   document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") ola(); });
 })();
