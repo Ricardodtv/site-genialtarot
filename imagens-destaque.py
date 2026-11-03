@@ -154,6 +154,7 @@ def converter():
         w.save(f"{nome}.webp", "WEBP", quality=82, method=6)
         h = round(1200 * 630 / 1200); og = w.crop((0, (800 - 630) // 2, 1200, (800 - 630) // 2 + 630))
         og.save(f"{nome}-og.jpg", "JPEG", quality=84, optimize=True, progressive=True)
+        w.resize((600, 400), Image.LANCZOS).save(f"{nome}-mini.webp", "WEBP", quality=78, method=6)   # 03/11: cartões dos índices
         print(cod, nome, os.path.getsize(f"{nome}.webp") // 1024, "KB webp,", os.path.getsize(f"{nome}-og.jpg") // 1024, "KB og")
 
 
@@ -187,6 +188,40 @@ def aplicar():
     for f in mudadas: print(f)
 
 
+# 03/11/2026 (ele: «põe também imagens nos cartões do índice das histórias»): nos índices (HUBS), cada cartão <a href="/pág">
+# de uma página com imagem ganha a miniatura em cima. Marcado com class="com-foto" e <img class="mini">, para se tirar e repor
+# sem duplicar; o estilo vai entre <!-- cartoes-foto:inicio/fim -->. Cartões sem imagem ficam como estavam.
+HUBS = ["historias-e-lendas", "contos-tradicionais", "parabolas", "parabolas-de-jesus", "fabulas-de-esopo"]
+CSS_CARTOES = ('<!-- cartoes-foto:inicio --><style>.doze a.com-foto{flex-direction:column;align-items:stretch;gap:0;padding:0;overflow:hidden}'
+               '.doze a.com-foto img.mini{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:0;display:block}'
+               '.doze a.com-foto>span{padding:.8rem 1rem}</style><!-- cartoes-foto:fim -->\n')
+
+
+def cartoes():
+    por_pag = {pag: (nome, alt) for _, pag, nome, alt, _ in IMAGENS if os.path.exists(f"{nome}-mini.webp")}
+    for hub in HUBS:
+        f = f"{hub}.html"
+        if not os.path.exists(f): continue
+        h0 = h = open(f, encoding="utf-8").read()
+        h = re.sub(r'<a href="(/[^"]+)" class="com-foto"><img class="mini"[^>]*>', r'<a href="\1">', h)
+        h = re.sub(r"<!-- cartoes-foto:inicio -->.*?<!-- cartoes-foto:fim -->\n", "", h, flags=re.S)
+        n = 0
+        def poe(m):
+            nonlocal n
+            pag = m.group(1)
+            if pag not in por_pag: return m.group(0)
+            nome, alt = por_pag[pag]; n += 1
+            return (f'<a href="/{pag}" class="com-foto"><img class="mini" src="/{nome}-mini.webp" alt="{html.escape(alt)}" '
+                    f'width="600" height="400" loading="lazy" decoding="async">')
+        i = h.find('<div class="doze">')
+        if i < 0: continue
+        j = h.find("</section>", i)
+        h = h[:i] + re.sub(r'<a href="/([^"/]+)">', poe, h[i:j]) + h[j:]
+        if n: h = h.replace("</head>", CSS_CARTOES + "</head>", 1)
+        if h != h0:
+            open(f, "w", encoding="utf-8").write(h); print(f, n, "cartões com imagem")
+
+
 if __name__ == "__main__":
     if "--converter" in sys.argv: converter()
-    else: aplicar()
+    else: aplicar(); cartoes()
