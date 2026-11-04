@@ -40,6 +40,12 @@ CSS = """<style>
 .gt-casa .gc-portas i{font-style:normal;font-size:1.6rem;line-height:1.2}
 .gt-casa .gc-portas b{font-size:.98rem;color:#ffe2a0}
 .gt-casa .gc-portas small{font-size:.8rem;color:#bfaed3}
+.gt-casa .gc-jardim{display:block;margin:0 auto 1.1rem;max-width:620px;padding:.75rem 1rem;border-radius:16px;text-decoration:none;color:#f7f0fb;
+ background:linear-gradient(135deg,rgba(242,201,107,.16),rgba(142,90,216,.18));border:1px solid rgba(242,201,107,.55);transition:transform .2s}
+.gt-casa .gc-jardim:hover{transform:translateY(-2px)}
+.gt-casa .gj-t{display:block;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:#f2c96b}
+.gt-casa .gj-n{display:block;font-family:Cinzel,Georgia,serif;font-size:clamp(1.7rem,6vw,2.3rem);color:#ffe2a0;line-height:1.15}
+.gt-casa .gj-r{display:block;font-size:.84rem;color:#e7dcf3;line-height:1.5}
 .gt-casa .gc-bot{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .gt-casa .gc-bot a{display:inline-block;padding:.75rem 1.3rem;border-radius:999px;font-weight:700;text-decoration:none;font-size:1rem}
 .gt-casa .gc-casa{background:linear-gradient(135deg,#ffe2a0,#f2c96b 55%,#d9a441);color:#2a1245;box-shadow:0 6px 18px rgba(242,201,107,.35)}
@@ -47,6 +53,22 @@ CSS = """<style>
 .gt-casa .gc-bot a:hover{filter:brightness(1.08)}
 </style>"""
 
+
+def _mil(n):
+    return f"{n/1000:.1f}".replace(".0", "").replace(".", ",") + " mil" if n >= 1000 else str(n)
+
+def jardim():
+    """04/11/2026 (ele): a alusão ao tamanho da comunidade, com números, em todas as páginas. Lê comunidade-numeros.json
+    (renovado pela actualização semanal da /comunidade); sem ficheiro, não mostra nada."""
+    import json
+    try: N = json.load(open(os.path.join(AQUI, "comunidade-numeros.json")))
+    except Exception: return ""
+    v = lambda k: N.get(k, {}).get("valor", 0)
+    tot = f"{N['total']:,}".replace(",", " ")
+    partes = [("👥", v("grupos"), "nos grupos"), ("▶️", v("youtube"), "no YouTube"), ("📘", v("perfil") + v("paginas"), "no Facebook"),
+              ("🎵", v("tiktok"), "no TikTok"), ("📸", v("instagram"), "no Instagram")]
+    return ('<a class="gc-jardim" href="/comunidade"><span class="gj-t">🌸 O nosso jardim de almas</span>'
+            f'<b class="gj-n">{tot}</b><span class="gj-r">' + " · ".join(f"{e} {_mil(n)} {t}" for e, n, t in partes if n) + '</span></a>')
 
 def bloco(pagina):
     eu = "/" + re.sub(r"\.html$", "", pagina)
@@ -58,6 +80,7 @@ def bloco(pagina):
             '<p class="gc-tit">Há 18 anos a ler o Tarot e os astros</p>'
             '<p class="gc-txt">Este é o site do Mestre Alberto. Tire as cartas, leia o seu signo e descubra o que o céu diz de si — '
             'e quando precisar de uma resposta só sua, fale com ele numa consulta por videochamada.</p>'
+            + jardim() +
             '<nav class="gc-portas">' + "".join(f'<a href="{u}"><i aria-hidden="true">{ic}</i><b>{t}</b><small>{d}</small></a>' for u, ic, t, d in portas) + '</nav>'
             '<div class="gc-bot"><a class="gc-casa" href="/">✨ Ir para a página inicial</a>'
             '<a class="gc-wa" href="https://wa.me/351914920427" rel="noopener">💬 Marcar consulta</a></div>'
