@@ -109,7 +109,7 @@ h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.5rem, 3.6v
 h2 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .cartao > p.int { text-align: center; color: var(--suave); margin: 0 auto 1.3rem; max-width: 36rem; }
 
-/* formulário (o mesmo da calculadora de Ascendente, sem email: aqui nada sai do aparelho) */
+/* formulário (o mesmo da calculadora de Ascendente; 04/11/2026, decisão dele: pede nome e email para abrir ficha) */
 .grelha { display: grid; gap: 1rem; grid-template-columns: 1fr; }
 @media (min-width: 680px) { .grelha { grid-template-columns: 1fr 1fr; } .largo { grid-column: 1 / -1; } }
 label.campo { display: flex; flex-direction: column; gap: .35rem; font-size: .88rem; font-weight: 600; color: var(--lavanda); }
@@ -298,8 +298,15 @@ body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklc
     <p class="int">Preencha com os dados do seu nascimento. Aqui a hora conta muito: <b>quatro minutos de diferença mudam as linhas cerca de 100 km</b>. Use a hora da certidão.</p>
     <form id="form" novalidate>
       <div class="grelha">
-        <label class="campo largo">O seu primeiro nome
-          <input type="text" id="nome" autocomplete="given-name" required maxlength="80" />
+        <label class="campo largo">O seu nome
+          <input type="text" id="nome" autocomplete="name" required maxlength="80" />
+        </label>
+        <label class="campo">O seu email <small>(para lhe enviarmos o seu mapa)</small>
+          <input type="email" id="email" autocomplete="email" required maxlength="120" />
+        </label>
+        <label class="caixa-novidades" style="display:flex;gap:.6em;align-items:flex-start;grid-column:1/-1;font-size:.92em;line-height:1.4;margin:.3em 0;cursor:pointer;text-align:left"><input type="checkbox" id="novidades" style="width:1.15em;height:1.15em;min-width:0;padding:0;margin:.15em 0 0;flex:none;accent-color:oklch(0.85 0.13 88)" /><span>Quero receber novidades do Mestre Alberto por email (horóscopos, mapas e promoções). Pode cancelar quando quiser.</span></label>
+        <label class="campo">WhatsApp <small>(opcional, com o indicativo do país)</small>
+          <input type="tel" id="tel" autocomplete="tel" maxlength="25" />
         </label>
         <label class="campo">Data de nascimento <small>(dia/mês/ano, ex.: 15/03/1990)</small>
           <input type="text" id="data" required inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" />
@@ -316,7 +323,7 @@ body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklc
       </div>
       <div class="erro" id="erro" role="alert"></div>
       <div class="enviar"><button class="btn-grande" type="submit" id="btn-calc">🗺️ Desenhar o meu mapa no mundo</button></div>
-      <p class="nota-priv">🔒 O cálculo é feito no seu telemóvel ou computador. Os seus dados não são enviados a ninguém.</p>
+      <p class="nota-priv">🔒 O cálculo é feito no seu telemóvel ou computador. O seu nome e email ficam só com o Mestre Alberto e não são partilhados com ninguém (<a href="/privacidade" target="_blank">Política de Privacidade</a>).</p>
     </form>
   </section>
 
@@ -782,7 +789,10 @@ body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklc
     mostraErro("");
     const nome = $("nome").value.trim(), data = $("data").value;
     const horaLida = lerHora($("hora").value);
-    if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return mostraErro("Escreva o seu primeiro nome, por favor.");
+    if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return mostraErro("Escreva o seu nome, por favor.");
+    // 04/11/2026 (decisão dele): a astrocartografia pede nome e email, para abrir a ficha como nas outras amostras
+    const email = $("email").value.trim().toLowerCase(), tel = $("tel").value.trim(), novidades = !!(document.getElementById("novidades") || {}).checked;
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return mostraErro("Escreva o seu email, por favor.");
     const dataLida = lerData(data);
     if (!data) return mostraErro("Falta a data de nascimento.");
     if (!dataLida) return mostraErro("Não percebi a data. Escreva assim: dia/mês/ano, por exemplo 15/03/1990.");
@@ -806,7 +816,7 @@ body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklc
     if (vez.nova) {
       try {
         fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true, body: JSON.stringify({ type: "mapa-captura", data: {
-          name: nome, date_of_birth: `${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`, birth_time: hora,
+          name: nome, email, phone: tel, novidades, date_of_birth: `${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`, birth_time: hora,
           city: inpCid.value, country: (CID.paises && CID.paises[escolhida[2]]) || escolhida[2] || "",
           area: "Astrocartografia (amostra grátis)" } }) });
       } catch (e) { /* o mapa já está no ecrã */ }
@@ -824,6 +834,7 @@ body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklc
   // ===== Vem com os dados no endereço (?nome=&data=&hora=&cidade=): preenche e calcula =====
   const vem = new URLSearchParams(location.search);
   if (vem.get("nome")) $("nome").value = vem.get("nome").slice(0, 80);
+  if (vem.get("email")) $("email").value = vem.get("email").slice(0, 120);
   if (vem.get("data")) { inpData.value = vem.get("data").slice(0, 22); inpData.dispatchEvent(new Event("blur")); }
   if (vem.get("hora")) { inpHora.value = vem.get("hora").slice(0, 12); inpHora.dispatchEvent(new Event("blur")); }
   if (vem.get("cidade")) {
