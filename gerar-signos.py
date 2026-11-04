@@ -209,7 +209,7 @@ titulo = "Tarólogo em Fafe: consultas de Tarot com o Mestre Alberto"
 desc = "Consultas de Tarot e astrologia no consultório do Mestre Alberto em Fafe (Golães) ou à distância, para Portugal e Brasil. 18 anos de prática. Marcações por WhatsApp."
 NEGOCIO = {"@type": "ProfessionalService", "@id": SITE + "/#consultorio", "name": "Genialtarot - Mestre Alberto", "url": SITE + "/",
            "image": SITE + "/mestre-r13.jpg", "telephone": "+351914920427", "hasMap": MAPS,
-           "address": {"@type": "PostalAddress", "streetAddress": "Rua da Barreira, 92", "addressLocality": "Fafe", "postalCode": "4820-474", "addressRegion": "Braga", "addressCountry": "PT"},
+           "address": {"@type": "PostalAddress", "streetAddress": "Rua da Barreira, 92", "addressLocality": "Fafe", "postalCode": "4820-459", "addressRegion": "Braga", "addressCountry": "PT"},
            "geo": {"@type": "GeoCoordinates", "latitude": 41.4682778, "longitude": -8.1984452},
            "founder": AUTOR, "areaServed": ["Fafe", "Guimarães", "Braga", "Portugal", "Brasil"],
            "sameAs": ["https://www.youtube.com/@Genialtarot", "https://www.facebook.com/genial.tarot", "https://www.facebook.com/Mestre.Alberto", "https://www.facebook.com/LojaEspiritualbr", "https://www.instagram.com/genialtarot/", "https://www.tiktok.com/@genialtarot"]}
@@ -228,7 +228,7 @@ corpo = f"""  <section class="heroi">
     <h2>Também à distância</h2>
     <p>Se não está perto de Fafe, pode fazer a consulta à distância, a partir de qualquer ponto de Portugal, do Brasil ou do mundo. A marcação é sempre pelo WhatsApp.</p>
     <h2>Onde fica o consultório</h2>
-    <div class="perfil"><div><b>Morada</b>Rua da Barreira, 92<br>4820-474 Golães, Fafe</div><div><b>Marcações</b><a href="https://wa.me/351914920427">WhatsApp +351 914 920 427</a></div><div><b>Mapa</b><a href="{MAPS}">Abrir no Google Maps</a></div></div>
+    <div class="perfil"><div><b>Morada</b>Rua da Barreira, 92<br>4820-459 Golães, Fafe</div><div><b>Marcações</b><a href="https://wa.me/351914920427">WhatsApp +351 914 920 427</a></div><div><b>Mapa</b><a href="{MAPS}">Abrir no Google Maps</a></div></div>
     <p style="text-align:center"><a class="gmaps-btn" href="{MAPS}" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 34" width="26" height="36" aria-hidden="true"><defs><linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4285F4"/><stop offset=".35" stop-color="#4285F4"/><stop offset=".35" stop-color="#EA4335"/><stop offset=".6" stop-color="#EA4335"/><stop offset=".6" stop-color="#FBBC04"/><stop offset=".78" stop-color="#FBBC04"/><stop offset=".78" stop-color="#34A853"/></linearGradient></defs><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 34 12 34s12-13.2 12-22.1C24 5.3 18.6 0 12 0z" fill="url(#gm)"/><circle cx="12" cy="12" r="4.6" fill="#fff"/></svg><span><b>Encontre-nos no Google Maps</b><small>Rua da Barreira, 92 · Golães, Fafe</small></span></a></p>
     <p>Atende quem vem de Fafe, Guimarães, Felgueiras, Cabeceiras de Basto, Póvoa de Lanhoso, Braga e de todo o Norte do país.</p>
   </section>

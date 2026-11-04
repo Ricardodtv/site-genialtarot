@@ -431,7 +431,7 @@ FAQ = {
  ],
  "tarologo-fafe": [
   ("Onde fica o consultório de Tarot em Fafe?",
-   "O consultório do Mestre Alberto fica na Rua da Barreira, 92, 4820-474 Golães, Fafe. Atende quem vem de Fafe, Guimarães, Felgueiras, Cabeceiras de Basto, Póvoa de Lanhoso, Braga e de todo o Norte do país."),
+   "O consultório do Mestre Alberto fica na Rua da Barreira, 92, 4820-459 Golães, Fafe. Atende quem vem de Fafe, Guimarães, Felgueiras, Cabeceiras de Basto, Póvoa de Lanhoso, Braga e de todo o Norte do país."),
   ("Como marcar uma consulta de Tarot em Fafe?",
    "A marcação é sempre pelo WhatsApp, para o +351 914 920 427. Cada consulta é feita pelo próprio Mestre Alberto, com o seu baralho: não é uma plataforma com vários tarólogos."),
   ("Se não morar perto de Fafe, posso fazer consulta?",
