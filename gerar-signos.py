@@ -105,15 +105,37 @@ for i, s in enumerate(S):
             {"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"},
             {"@type": "ListItem", "position": 2, "name": "Os 12 Signos", "item": SITE + "/signos-do-zodiaco"},
             {"@type": "ListItem", "position": 3, "name": nome, "item": url}]}]}
-    corpo = f"""  <section class="heroi">
+    # 04/11/2026 (ele: «melhora o primeiro ecrã das páginas dos signos»): medido — quem vem do YouTube ficava 9 s e não via
+    # mais nada (o 1.º ecrã era o MESMO vídeo que acabara de ver). Agora: topo compacto, a mensagem de hoje logo à vista,
+    # 3 portas grandes para o passo seguinte, e o vídeo DEPOIS do texto (escondido para quem vem do YouTube).
+    corpo = f"""<style>
+/* 04/11/2026: o 1.º ecrã das páginas dos signos — topo compacto, a mensagem de hoje à vista, 3 portas grandes */
+.heroi-signo {{ display: flex; align-items: center; gap: .9rem; text-align: left; padding: .3rem 0 .9rem; }}
+.heroi-signo .foto-mestre {{ width: 4.6rem; height: 4.6rem; flex: none; }}
+.heroi-signo h1 {{ font-size: clamp(1.45rem, 6vw, 2.1rem); margin: 0; line-height: 1.15; }}
+.heroi-signo .sub {{ margin: .25rem 0 0; font-size: .9rem; }}
+.ja-viu {{ margin: 0 0 .6rem; padding: .55rem .8rem; border-radius: .8rem; font-weight: 700; font-size: .95rem; background: oklch(0.85 0.13 88 / .14); border: 1px solid oklch(0.85 0.13 88 / .45); }}
+.portas-signo {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin: 1rem 0 .8rem; }}
+.portas-signo a {{ display: flex; flex-direction: column; align-items: center; gap: .2rem; padding: .7rem .4rem; border-radius: .9rem; text-align: center; text-decoration: none;
+  font-weight: 700; font-size: .85rem; line-height: 1.2; color: oklch(0.96 0.02 300); background: linear-gradient(160deg, oklch(0.4 0.13 300 / .75), oklch(0.25 0.08 290 / .85)); border: 1px solid oklch(0.85 0.13 88 / .5); }}
+.portas-signo a i {{ font-style: normal; font-size: 1.6rem; }}
+.portas-signo a:hover {{ border-color: oklch(0.85 0.13 88); }}
+</style>
+  <section class="heroi heroi-signo">
     <img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="Signo {E(nome)}" width="120" height="120" />
-    <h1><span class="az">{GLIFO[i]}︎ Signo {E(nome)}</span></h1>
-    <p class="sub">{E(s['datas'])} · signo de {el} · regido por {E(s['regente'])}</p>
+    <div class="heroi-txt"><h1><span class="az">{GLIFO[i]}︎ Signo {E(nome)}</span></h1>
+    <p class="sub">{E(s['datas'])} · signo de {el} · regido por {E(s['regente'])}</p></div>
   </section>
   <section class="cartao hoje">
-    <h2>✨ Horóscopo de hoje para {E(s['pt'])}</h2>
-    <div class="video" id="v-dia" hidden></div>
+    <p class="ja-viu" id="ja-viu" hidden>🎬 Já viu o vídeo? Aqui está o que não coube nele 👇</p>
+    <h2>✨ Hoje para {E(s['pt'])}</h2>
     <div id="hoje"><p class="aviso">A carregar o céu de hoje…</p></div>
+    <nav class="portas-signo" aria-label="O próximo passo">
+      <a href="/carta-de-tarot"><i>🃏</i><span>Tire a sua carta de hoje</span></a>
+      <a href="/compatibilidade"><i>💞</i><span>Com quem combina {E(s['pt'])}?</span></a>
+      <a href="/vip"><i>🎁</i><span>Lista VIP grátis</span></a>
+    </nav>
+    <div class="video" id="v-dia" hidden></div>
     <div class="ligas"><a href="/horoscopo-do-dia#s{i}">Ver os 12 signos de hoje</a><a href="/fimdesemana">Fim de semana</a><a href="/anual">Previsão anual</a></div>
   </section>
   <section class="cartao" id="c-anual" hidden>
@@ -154,8 +176,17 @@ for i, s in enumerate(S):
     var y = x.s[i];
     document.getElementById("hoje").innerHTML = '<div class="ene">' + "★".repeat(y.e) + "☆".repeat(5 - y.e) + ' energia</div><div class="chave">' + por(y.k) + "</div>"
       + y.t.map(function (t) {{ return "<p>" + por(t) + "</p>"; }}).join("") + '<div class="dica"><b>👉 A dica de hoje</b> ' + por(y.d) + "</div>";
+    // 04/11/2026: as 3 portas logo a seguir à frase principal do dia — ficam no 1.º ecrã do telemóvel
+    var pt = document.querySelector(".portas-signo"), ch = document.querySelector("#hoje .chave");
+    if (pt && ch) ch.insertAdjacentElement("afterend", pt);
   }}).catch(function () {{ document.getElementById("hoje").innerHTML = '<p><a href="/horoscopo-do-dia#s{i}">Ver o horóscopo de hoje</a></p>'; }});
+  // 04/11/2026: quem chega de um vídeo do YouTube já o viu — não se lho mostra outra vez no topo
+  var doYT = false;
+  try {{ var mq = new URLSearchParams(location.search).get("de") || (JSON.parse(sessionStorage.getItem("gt_marca") || "null") || [""])[0];
+         doYT = mq === "youtube" || /(^|\.)youtube\.com$|youtu\.be$/.test(document.referrer ? new URL(document.referrer).hostname : ""); }} catch (e) {{}}
+  if (doYT) {{ var jv = document.getElementById("ja-viu"); if (jv) jv.hidden = false; }}
   var vid = function (el, v) {{
+    if (doYT && el.id === "v-dia") return;
     el.hidden = false;
     el.innerHTML = '<img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="' + ESC(v.t) + '" width="480" height="270"><button type="button" aria-label="Ver o vídeo: ' + ESC(v.t) + '">▶</button><div class="vt">' + ESC(v.t) + "</div>";
     el.onclick = function () {{ el.onclick = null; el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + v.id + '?autoplay=1&rel=0" title="' + ESC(v.t) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; }};
