@@ -929,6 +929,9 @@ export default {
               recebido: new Date().toISOString(),
               cidade: cf2.city || null,
               pais: cf2.country || null,
+              // 04/11/2026: o IP e a região, para o cerebro pôr o nome da ficha na visita do painel «Site» (nomes.json, só no cerebro)
+              ip: request.headers.get("CF-Connecting-IP") || null,
+              regiao: cf2.region || null,
             }), { expirationTtl: 60 * 60 * 24 * 30 });
           }
         } catch (e) { /* nunca estragar o pedido do visitante por causa da fila */ }
