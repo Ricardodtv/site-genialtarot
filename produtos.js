@@ -338,6 +338,22 @@ const PRODUTOS = [
 
 const PRODUTOS_EM_PAUSA = [
 
+  /* 04/11/2026 — R-122, decisão dele: guia «Astrologia 2027», PDF completo dos 12 signos, 19 €.
+     Fica em pausa até ele aprovar o PDF (~/guia-2027/Astrologia-2027-Mestre-Alberto.pdf) e haver a ligação de
+     pagamento myPOS de 19 € (criada por ele). Para pôr à venda: mover para PROMOÇÃO, preencher link, apagar "pausado". */
+  {
+    nome: "📘 Astrologia 2027 – O Guia do Ano dos 12 Signos (PDF, 45 páginas)",
+    categoria: "Promoção",
+    preco: "19 €",
+    foto: "astrologia-2027-guia-loja.jpg",
+    descricao: "O seu 2027 signo a signo, com o céu real calculado ao minuto: os cinco eclipses, os retrógrados, o calendário lunar completo e, para cada signo, o amor, o dinheiro, o trabalho, a saúde, as datas do amor, os meses mais favoráveis e os de cautela, e a tabela do ano mês a mês. Escrito pelo Mestre Alberto e enviado para o seu email em PDF.",
+    link: "",
+    etiqueta: "NOVIDADE",
+    cor: "azul",
+    estrelas: 5,
+    pausado: "04/11/2026 — à espera da aprovação dele e da ligação myPOS de 19 €",
+  },
+
   /* 21/10/2026 — pedido dele: retirar da loja o Mapa Astral de 195 €
      (o Mapa Astral completo de 15 € fica nas promoções) */
   {
