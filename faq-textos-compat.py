@@ -59,6 +59,9 @@ FAQ = {
    "Ouvindo-a como um contributo e não como um ataque: Virgem critica porque se importa e quer ajudar. Do lado de Virgem, ajuda dizer primeiro o que está bem e só depois o que pode melhorar. Carneiro aceita muito melhor um reparo quando sente reconhecimento."),
   ("Carneiro e Virgem trabalham bem juntos?",
    "Podem ser uma boa equipa se dividirem papéis: Carneiro lança as ideias e abre portas, Virgem organiza, revê e termina. O atrito surge quando Carneiro decide sozinho e à pressa e Virgem se sente atropelado. Combinar quem faz o quê evita quase todos os choques."),
+  # 04/11/2026, ronda de SEO: «virgem e carneiro» (por esta ordem) pos. 9 no Google a 03/11
+  ("Virgem e Carneiro combinam no amor?",
+   "Podem combinar, mas com trabalho dos dois. Virgem, de Terra, procura ordem e segurança; Carneiro (Áries), de Fogo, procura ação e novidade. Quando Virgem deixa de corrigir tudo e Carneiro aprende a ouvir antes de decidir, o par ganha uma estabilidade que nenhum dos dois teria sozinho."),
  ],
  "compatibilidade-carneiro-e-balanca": [
   ("Carneiro e Balança atraem-se?",
@@ -67,6 +70,9 @@ FAQ = {
    "Podem dar-se bem se Balança disser o que sente e Carneiro aprender a esperar. Carneiro quer resolver a discussão já e Balança prefere evitá-la, e isso gera desencontros. Com conversas calmas e decisões partilhadas, este eixo de opostos encontra o seu equilíbrio."),
   ("Quem manda numa relação entre Carneiro e Balança?",
    "À superfície, costuma ser Carneiro quem toma a iniciativa. Mas Balança tem uma influência discreta e grande, porque sabe negociar e suavizar. A relação funciona melhor quando nenhum manda sozinho: Carneiro decide depressa e Balança garante que a decisão é justa para os dois."),
+  # 04/11/2026, ronda de SEO: «carneiro e balança» pos. 7 no Google a 03/11 (no Brasil diz-se Áries e Libra)
+  ("Áries e Libra combinam? É o mesmo que Carneiro e Balança?",
+   "É o mesmo par: em Portugal diz-se Carneiro e Balança, no Brasil Áries e Libra. E combinam pela atração dos opostos: Áries traz a iniciativa e Libra o tato e o sentido de parceria. Resulta quando Áries abranda o tom e Libra diz o que quer sem rodeios."),
  ],
  "compatibilidade-carneiro-e-escorpiao": [
   ("Carneiro e Escorpião têm química?",
@@ -283,6 +289,9 @@ FAQ = {
    "Porque Leão precisa de admiração e Caranguejo precisa de segurança, e cada um pode sentir que não recebe o suficiente. A sensibilidade de um e o orgulho do outro tornam grandes as coisas pequenas. Dizer o que se precisa, em vez de esperar, evita muitas mágoas."),
   ("Quem manda numa relação entre Caranguejo e Leão?",
    "À vista, costuma ser Leão, que gosta de liderar e de estar à frente. Mas Caranguejo tem muita influência em casa e nas decisões de família. O par funciona quando Leão brilha lá fora e Caranguejo se sente respeitado naquilo que construíram juntos."),
+  # 04/11/2026, ronda de SEO: «caranguejo e leao» pos. 9 no Google a 03/11 (no Brasil diz-se Câncer e Leão)
+  ("Câncer e Leão combinam? É o mesmo que Caranguejo e Leão?",
+   "Sim, é o mesmo par: Caranguejo em Portugal, Câncer no Brasil. Combinam quando a Lua de Câncer e o Sol de Leão se respeitam: Leão dá proteção, alegria e generosidade; Câncer dá carinho, casa e lealdade. O cuidado a ter é com o orgulho de um e a sensibilidade do outro."),
  ],
  "compatibilidade-caranguejo-e-virgem": [
   ("Caranguejo e Virgem combinam?",
