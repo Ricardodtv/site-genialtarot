@@ -702,6 +702,15 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .porta:hover .porta-foto img, .porta:focus-visible .porta-foto img { filter: brightness(1.12) saturate(1.15); }
 @media (max-width: 859px) { .porta-cabeca:has(> .porta-foto) { flex-wrap: wrap; } .porta-foto { width: 100%; aspect-ratio: 2 / 1; } }
 @media (prefers-reduced-motion: reduce) { .porta-foto img, .porta-foto::after { animation: none; } }
+/* 03/11→04/11/2026 — o cartão do Escolha um Monte: três montinhos do verso GT a flutuar, cada um ao seu ritmo */
+.mini-montes { display: flex; gap: .35rem; align-items: flex-end; height: 3.9rem; }
+.mini-montes i { position: relative; display: block; width: 1.75rem; aspect-ratio: 480 / 804; border-radius: .22rem;
+  background: url(/cartas/verso-gt.webp) center / cover; border: 1px solid oklch(0.85 0.13 88 / .7); box-shadow: 0 4px 10px #0009,
+  -3px 2px 0 -1px oklch(0.30 0.10 290), 3px 3px 0 -1px oklch(0.26 0.09 290); animation: mini-monte 3.2s ease-in-out infinite; }
+.mini-montes i:nth-child(2) { animation-delay: -1.1s; } .mini-montes i:nth-child(3) { animation-delay: -2.2s; }
+@keyframes mini-monte { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-6px) rotate(2deg); } }
+.porta:hover .mini-montes i { animation-duration: 1.4s; }
+@media (prefers-reduced-motion: reduce) { .mini-montes i { animation: none; } }
 @media (prefers-reduced-motion: reduce) { .porta-brilho::after, .mini-roda-anel, .mini-roda-sol, .porta-eti-novo, .orbita-2027 { animation: none; } }
 
 /* Lua de hoje dentro do cartão (as cores especiais de Cheia/Nova continuam a valer) */
@@ -1018,6 +1027,19 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
           <div class="botoes-cg"><a class="porta-btn" href="/tarot-cigano#tiragem">Tirar 3 cartas grátis →</a><a class="porta-btn" href="/tarot-cigano#cartas">Ver as 36 cartas →</a></div>
         </div>
       </div>
+
+      <!-- 🔮 Escolha um Monte (04/11/2026, pedido dele: «coloca ela nos destaques da página como novo») — três montes que mudam às segundas -->
+      <a href="/escolha-um-monte" class="porta porta-astral porta-brilho">
+        <span class="porta-eti porta-eti-novo">Novo</span>
+        <div class="porta-cabeca">
+          <span class="porta-visual mini-montes" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="porta-txt">
+            <strong>Escolha um Monte</strong>
+            <small>Três montes de cartas, uma mensagem para a sua semana. Escolha o seu: muda todas as segundas.</small>
+          </span>
+        </div>
+        <span class="porta-btn">Escolher o meu monte →</span>
+      </a>
 
       <!-- 📅 O Horóscopo Semanal (02/11/2026, pedido dele: «nos destaques também») — o céu de cada semana calculado -->
       <a href="/horoscopo-semanal" class="porta porta-astral porta-brilho">
