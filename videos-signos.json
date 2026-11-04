@@ -2,122 +2,170 @@
  "carneiro": {
   "dia": {
    "id": "jHfSjRolad0",
-   "t": "Horóscopo Diário Áries 3 e 4 Novembro"
+   "t": "Horóscopo Diário Áries 3 e 4 Novembro",
+   "d": "2026-11-03T14:41:27Z",
+   "dur": "PT5M52S"
   },
   "anual": {
    "id": "sYvV52nILsg",
-   "t": "2026 Carneiro: Tarot Revela Seu Destino Mensal"
+   "t": "2026 Carneiro: Tarot Revela Seu Destino Mensal",
+   "d": "2025-12-30T16:27:47Z",
+   "dur": "PT20M17S"
   }
  },
  "touro": {
   "dia": {
    "id": "bkQrPfO3Nb0",
-   "t": "Horóscopo Diário Touro 3 e 4 Novembro"
+   "t": "Horóscopo Diário Touro 3 e 4 Novembro",
+   "d": "2026-11-03T14:41:54Z",
+   "dur": "PT4M36S"
   },
   "anual": {
    "id": "PBDNKmuCGjE",
-   "t": "Previsão Anual 2026 Signo de Touro, 12 Meses"
+   "t": "Previsão Anual 2026 Signo de Touro, 12 Meses",
+   "d": "2025-12-30T16:30:09Z",
+   "dur": "PT14M7S"
   }
  },
  "gemeos": {
   "dia": {
    "id": "pcSM74Nyv4E",
-   "t": "Horóscopo Diário Gémeos 3 e 4 Novembro"
+   "t": "Horóscopo Diário Gémeos 3 e 4 Novembro",
+   "d": "2026-11-03T14:42:22Z",
+   "dur": "PT4M34S"
   },
   "anual": {
    "id": "EdzVicTufXw",
-   "t": "Previsão Anual 2026 Signo Gémeos, 12 Meses"
+   "t": "Previsão Anual 2026 Signo Gémeos, 12 Meses",
+   "d": "2025-12-30T16:32:36Z",
+   "dur": "PT11M49S"
   }
  },
  "caranguejo": {
   "dia": {
    "id": "yWogJMxHS9E",
-   "t": "Horóscopo Diário Caranguejo (Câncer) 3 e 4 Novembro"
+   "t": "Horóscopo Diário Caranguejo (Câncer) 3 e 4 Novembro",
+   "d": "2026-11-03T14:42:47Z",
+   "dur": "PT4M27S"
   },
   "anual": {
    "id": "G_Ox4x7wl_M",
-   "t": "Signo Caranguejo Previsão anual 2026 Todos os Meses"
+   "t": "Signo Caranguejo Previsão anual 2026 Todos os Meses",
+   "d": "2025-12-30T16:35:01Z",
+   "dur": "PT12M31S"
   }
  },
  "leao": {
   "dia": {
    "id": "BW4DnWPIgrw",
-   "t": "Horóscopo Diário Leão 3 e 4 Novembro"
+   "t": "Horóscopo Diário Leão 3 e 4 Novembro",
+   "d": "2026-11-03T14:43:38Z",
+   "dur": "PT6M19S"
   },
   "anual": {
    "id": "dto1ayURroc",
-   "t": "Previsão 2026 Signo Leão Todos os meses"
+   "t": "Previsão 2026 Signo Leão Todos os meses",
+   "d": "2025-12-30T16:37:14Z",
+   "dur": "PT10M55S"
   }
  },
  "virgem": {
   "dia": {
    "id": "Tg8qpQWDA6k",
-   "t": "Horóscopo Diário Virgem 3 e 4 Novembro"
+   "t": "Horóscopo Diário Virgem 3 e 4 Novembro",
+   "d": "2026-11-03T14:44:11Z",
+   "dur": "PT4M2S"
   },
   "anual": {
    "id": "S63ep0UfuI0",
-   "t": "Previsão Anual 2026, Signo Virgem Todos os Signos"
+   "t": "Previsão Anual 2026, Signo Virgem Todos os Signos",
+   "d": "2025-12-30T16:39:23Z",
+   "dur": "PT11M47S"
   }
  },
  "balanca": {
   "dia": {
    "id": "EkEpn0kfIdE",
-   "t": "Horóscopo Diário Balança (Libra) 3 e 4 Novembro"
+   "t": "Horóscopo Diário Balança (Libra) 3 e 4 Novembro",
+   "d": "2026-11-03T14:44:51Z",
+   "dur": "PT5M21S"
   },
   "anual": {
    "id": "_596jwAtBl0",
-   "t": "Previsão anual 2026, Signo Balança"
+   "t": "Previsão anual 2026, Signo Balança",
+   "d": "2025-12-30T16:41:27Z",
+   "dur": "PT9M57S"
   }
  },
  "escorpiao": {
   "dia": {
    "id": "YUUfjcyyefY",
-   "t": "Horóscopo Diário Escorpião 3 e 4 Novembro"
+   "t": "Horóscopo Diário Escorpião 3 e 4 Novembro",
+   "d": "2026-11-03T14:52:08Z",
+   "dur": "PT6M52S"
   },
   "anual": {
    "id": "vDhtOX8kixs",
-   "t": "Previsão Anual 2026 Signo Escorpião, 12 Meses"
+   "t": "Previsão Anual 2026 Signo Escorpião, 12 Meses",
+   "d": "2025-12-30T16:45:43Z",
+   "dur": "PT10M31S"
   }
  },
  "sagitario": {
   "dia": {
    "id": "Qk2ZGeok9rs",
-   "t": "Horóscopo Diário Sagitário 3 e 4 Novembro"
+   "t": "Horóscopo Diário Sagitário 3 e 4 Novembro",
+   "d": "2026-11-03T14:52:21Z",
+   "dur": "PT5M21S"
   },
   "anual": {
    "id": "SPco2eROtps",
-   "t": "Previsão Sagitário, ano 2026 Todos os Meses"
+   "t": "Previsão Sagitário, ano 2026 Todos os Meses",
+   "d": "2025-12-30T16:49:21Z",
+   "dur": "PT13M27S"
   }
  },
  "capricornio": {
   "dia": {
    "id": "6x6forI6-l4",
-   "t": "Horóscopo Diário Capricórnio 3 e 4 Novembro"
+   "t": "Horóscopo Diário Capricórnio 3 e 4 Novembro",
+   "d": "2026-11-03T14:52:33Z",
+   "dur": "PT5M39S"
   },
   "anual": {
    "id": "hrTjuSE8VmM",
-   "t": "Previsão 2026 Signo Capricórnio, 12 Meses"
+   "t": "Previsão 2026 Signo Capricórnio, 12 Meses",
+   "d": "2025-12-30T16:53:59Z",
+   "dur": "PT12M39S"
   }
  },
  "aquario": {
   "dia": {
    "id": "8w1Pib80CpA",
-   "t": "Horóscopo Diário Aquário 3 e 4 Novembro"
+   "t": "Horóscopo Diário Aquário 3 e 4 Novembro",
+   "d": "2026-11-03T14:52:54Z",
+   "dur": "PT5M36S"
   },
   "anual": {
    "id": "iXnf_orBfDs",
-   "t": "Previsão Anual 2026 Aquário 12 Meses"
+   "t": "Previsão Anual 2026 Aquário 12 Meses",
+   "d": "2025-12-30T16:58:41Z",
+   "dur": "PT9M49S"
   }
  },
  "peixes": {
   "dia": {
    "id": "HKbpUuyTADM",
-   "t": "Horóscopo Diário Peixes 3 e 4 Novembro"
+   "t": "Horóscopo Diário Peixes 3 e 4 Novembro",
+   "d": "2026-11-03T14:52:48Z",
+   "dur": "PT4M48S"
   },
   "anual": {
    "id": "60VId99VP8Y",
-   "t": "Previsão Anual 2026, Signo Peixes, 12 Meses"
+   "t": "Previsão Anual 2026, Signo Peixes, 12 Meses",
+   "d": "2025-12-30T16:56:30Z",
+   "dur": "PT9M41S"
   }
  },
- "_": "2026-11-03T15:51"
+ "_": "2026-11-04T01:03"
 }
