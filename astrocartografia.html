@@ -802,6 +802,15 @@ body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklc
       return;
     }
     const primeiro = nome.split(/\s+/)[0];
+    // 04/11/2026 (pedido dele: «todos os formulários vêm parar aos avisos»): cada astrocartografia NOVA é captura, como nas outras amostras
+    if (vez.nova) {
+      try {
+        fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true, body: JSON.stringify({ type: "mapa-captura", data: {
+          name: nome, date_of_birth: `${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A}`, birth_time: hora,
+          city: inpCid.value, country: (CID.paises && CID.paises[escolhida[2]]) || escolhida[2] || "",
+          area: "Astrocartografia (amostra grátis)" } }) });
+      } catch (e) { /* o mapa já está no ecrã */ }
+    }
     nasc = { lat: escolhida[3], lon: escolhida[4] };
     R = AstroCarto.linhas(ms);
     $("res-titulo").innerHTML = `${esc(primeiro)}, as suas linhas no <span class="lil">mapa-mundo</span>`;

@@ -140,6 +140,13 @@ function buildMessage(type, d = {}) {
   if (type === "blocked") {
     return `🚫 ACESSO BLOQUEADO — Genialtarot\n\nUm visitante foi bloqueado por dados inválidos repetidos.\n👤 Último nome usado: ${clean(d.name)}`;
   }
+  // 04/11/2026 (pedido dele): QUALQUER formulário do site chega aos avisos — também os que vierem a ser criados.
+  // Um tipo que ainda não tem mensagem própria sai com todos os campos que trouxe (se trouxer uma pessoa).
+  if (d && typeof d === "object" && (d.name || d.email || d.phone)) {
+    const linhas = Object.entries(d).filter(([, v]) => v !== null && v !== undefined && v !== "" && typeof v !== "object").slice(0, 20)
+      .map(([k, v]) => `• ${clean(k, 30)}: ${clean(String(v), 300)}`);
+    return [`📝 FORMULÁRIO DO SITE — ${clean(d.area || type, 80)}`, "", ...linhas].join("\n");
+  }
   return null;
 }
 
