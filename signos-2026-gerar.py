@@ -159,4 +159,7 @@ html = cabeca + estilo + "\n" + f'<script type="application/ld+json">\n{json.dum
     "".join(f'<h3 style="font-size:1.05rem;margin:1rem 0 .3rem">{E(q)}</h3><p style="margin:0">{E(r)}</p>' for q, r in FAQ) + "</section>\n" + rodape + "\n" + musica + \
     '<script src="/vip-faixa.js" defer></script>\n<script src="/vivo.js" defer></script>\n</body>\n</html>\n'
 open("signos-2026.html", "w", encoding="utf-8").write(html)
+# 04/11/2026: as Previsões Anuais 2026 em vídeo, no cartão de cada signo (videos-paginas.py)
+import subprocess as _sp, os as _os
+_sp.run(["python3", _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "videos-paginas.py")])
 print("signos-2026.html", len(html), "ranking:", [PT[s] for s in rank])

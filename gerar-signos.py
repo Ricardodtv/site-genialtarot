@@ -160,10 +160,19 @@ for i, s in enumerate(S):
     el.innerHTML = '<img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="' + ESC(v.t) + '" width="480" height="270"><button type="button" aria-label="Ver o vídeo: ' + ESC(v.t) + '">▶</button><div class="vt">' + ESC(v.t) + "</div>";
     el.onclick = function () {{ el.onclick = null; el.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + v.id + '?autoplay=1&rel=0" title="' + ESC(v.t) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'; }};
   }};
+  // 04/11/2026: o vídeo marcado para o Google (VideoObject) — a data e a duração vêm do videos-signos.json (videos-signos.py)
+  var ld = function (v) {{
+    if (!v.d || !v.dur) return;
+    var s = document.createElement("script"); s.type = "application/ld+json";
+    s.text = JSON.stringify({{ "@context": "https://schema.org", "@type": "VideoObject", "name": v.t, "description": v.t + " — vídeo do Mestre Alberto no canal Tarot e Horóscopo.",
+      "thumbnailUrl": ["https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg"], "uploadDate": v.d, "duration": v.dur, "embedUrl": "https://www.youtube.com/embed/" + v.id,
+      "url": "https://www.youtube.com/watch?v=" + v.id, "creator": {{ "@type": "Person", "name": "Mestre Alberto", "url": "https://genialtarot.com/sobre" }} }});
+    document.head.appendChild(s);
+  }};
   fetch("/videos-signos.json").then(function (r) {{ if (!r.ok) throw 0; return r.json(); }}).then(function (x) {{
     var v = x["{s['slug']}"] || {{}};
-    if (v.dia) vid(document.getElementById("v-dia"), v.dia);
-    if (v.anual) {{ vid(document.getElementById("v-anual"), v.anual); document.getElementById("c-anual").hidden = false; }}
+    if (v.dia) {{ vid(document.getElementById("v-dia"), v.dia); ld(v.dia); }}
+    if (v.anual) {{ vid(document.getElementById("v-anual"), v.anual); document.getElementById("c-anual").hidden = false; ld(v.anual); }}
   }}).catch(function () {{}});
 }})();
 </script>
@@ -968,6 +977,8 @@ _sp.run(["python3", "seo-descricoes.py"], check=False)
 # 02/11/2026: as imagens de destaque voltam a entrar nas páginas que este gerador reescreveu (imagens-destaque.py)
 import subprocess as _sp
 _sp.run(["python3", os.path.join(AQUI, "imagens-destaque.py")])   # 03/11: pela pasta deste guião (numa cópia/worktree não mexe na pasta principal)
+# 04/11/2026: os vídeos do canal nas páginas (videos-paginas.py) voltam a entrar nas que este gerador reescreveu
+_sp.run(["python3", os.path.join(AQUI, "videos-paginas.py")])
 
 # 03/11/2026: repor os blocos «Veja também» que a reescrita tirou
 for _f, _bs in _GUARDA.items():
