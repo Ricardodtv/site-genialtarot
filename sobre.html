@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sobre o Mestre Alberto — 18 anos a ler cartas | Genial Tarot</title>
-<meta name="description" content="Quem é o Mestre Alberto: 18 anos de Tarot e astrologia, horóscopo diário publicado sem falhar e consultas pessoais feitas uma a uma, em Fafe e online." />
+<title>Quem sou: Mestre Alberto, tarólogo, astrólogo e hipnoterapeuta</title>
+<meta name="description" content="Quem é o Mestre Alberto: 18 anos a ler cartas, consultório em Golães, Fafe, Curso de Tarot desde 2012, hipnoterapeuta certificado e baralhos próprios." />
 <meta name="theme-color" content="#2a1a3e" />
 <link rel="icon" href="favicon.ico" />
 <link rel="canonical" href="https://genialtarot.com/sobre" />
-<meta property="og:title" content="Sobre o Mestre Alberto | Genial Tarot" />
-<meta property="og:description" content="Quem é o Mestre Alberto: 18 anos de Tarot e astrologia, horóscopo diário publicado sem falhar e consultas pessoais feitas uma a uma, em Fafe e online." />
+<meta property="og:title" content="Quem sou: Mestre Alberto, tarólogo, astrólogo e hipnoterapeuta" />
+<meta property="og:description" content="Quem é o Mestre Alberto: 18 anos a ler cartas, consultório em Golães, Fafe, Curso de Tarot desde 2012, hipnoterapeuta certificado e baralhos próprios." />
 <meta property="og:image" content="https://genialtarot.com/og-image.jpg" />
 <meta property="og:url" content="https://genialtarot.com/sobre" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="profile" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,21 +27,132 @@
     border-left: 3px solid oklch(0.82 0.11 85 / 0.6);
     font-family: var(--font-display, "Cormorant Garamond", serif);
     font-size: 1.15rem; line-height: 1.6; color: oklch(0.93 0.05 90); }
+  /* 04/11/2026: a linha do tempo (2007 → hoje), pensada primeiro para o telemóvel */
+  .linha-tempo { list-style: none; padding: 0; margin: 1.1rem 0 0; position: relative; }
+  .linha-tempo::before { content: ""; position: absolute; left: 1.55rem; top: .4rem; bottom: .4rem; width: 2px;
+    background: linear-gradient(oklch(0.82 0.11 85 / .9), oklch(0.70 0.16 310 / .7), oklch(0.82 0.11 85 / .9)); }
+  .linha-tempo li { position: relative; display: grid; grid-template-columns: 3.1rem 1fr; gap: .85rem; align-items: start; padding: 0 0 1.05rem; }
+  .linha-tempo .ano { position: relative; z-index: 1; width: 3.1rem; height: 3.1rem; border-radius: 50%; display: grid; place-items: center;
+    font-family: var(--font-display, "Cormorant Garamond", serif); font-weight: 700; font-size: .98rem; color: oklch(0.2 0.05 285);
+    background: var(--gradient-gold, linear-gradient(135deg, #ffe2a0, #d9a441)); box-shadow: 0 0 0 4px oklch(0.23 0.06 290), 0 0 18px oklch(0.82 0.11 85 / .45); }
+  .linha-tempo .ano.hoje { font-size: .78rem; background: linear-gradient(135deg, oklch(0.75 0.19 145), oklch(0.62 0.17 160)); }
+  .linha-tempo .marco { background: oklch(0.19 0.05 290 / .75); border: 1px solid oklch(0.82 0.11 85 / .28); border-radius: 1rem; padding: .7rem .9rem; }
+  .linha-tempo .marco b { display: block; font-family: var(--font-display, "Cormorant Garamond", serif); font-size: 1.15rem; color: oklch(0.93 0.05 90); line-height: 1.25; }
+  .linha-tempo .marco span { display: block; margin-top: .25rem; font-size: .93rem; line-height: 1.6; color: oklch(0.88 0.02 300); }
+  @media (min-width: 640px) { .linha-tempo::before { left: 1.9rem; } .linha-tempo li { grid-template-columns: 3.8rem 1fr; } .linha-tempo .ano { width: 3.8rem; height: 3.8rem; font-size: 1.1rem; } }
+  .numeros { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-top: 1rem; text-align: center; }
+  .numeros div { border: 1px solid oklch(0.82 0.11 85 / .35); border-radius: 1rem; padding: .7rem .3rem; background: oklch(0.19 0.05 290 / .6); }
+  .numeros b { display: block; font-family: var(--font-display, "Cormorant Garamond", serif); font-size: 1.45rem; color: oklch(0.88 0.12 88); line-height: 1.1; }
+  .numeros small { font-size: .74rem; color: oklch(0.85 0.03 300); }
+  .redes { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+  .redes a { border: 1px solid oklch(0.82 0.11 85 / 0.45); border-radius: 999px; padding: .4rem .9rem; text-decoration: none; font-size: .9rem; }
+  .loja-global { margin-top: 1.5rem; border-radius: 1.4rem; padding: 1.3rem 1.2rem; text-align: center; position: relative; overflow: hidden;
+    background: radial-gradient(120% 90% at 50% 0%, oklch(0.82 0.11 85 / .22), transparent 60%), linear-gradient(160deg, oklch(0.30 0.10 300), oklch(0.18 0.06 290));
+    border: 1px solid oklch(0.82 0.11 85 / .6); box-shadow: 0 18px 50px #0006; }
+  .loja-global .eti { display: inline-block; font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+    color: oklch(0.2 0.05 285); background: var(--gradient-gold, #f2c96b); border-radius: 999px; padding: .25rem .8rem; }
+  .loja-global h2 { justify-content: center; margin: .6rem 0 .2rem; }
+  .loja-global p { color: oklch(0.92 0.02 300); line-height: 1.7; max-width: 34rem; margin: .5rem auto 0; }
+  .loja-global .btn { margin: 1rem auto 0; max-width: 20rem; }
+  .sentido h3 { font-size: 1.15rem; margin-top: 1rem; }
 </style>
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Mestre Alberto",
-  "jobTitle": "Tarólogo e astrólogo",
-  "url": "https://genialtarot.com/sobre",
-  "image": "https://genialtarot.com/mestre-r13.jpg",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Genial Tarot",
-    "url": "https://genialtarot.com"
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Person",
+   "@id": "https://genialtarot.com/sobre#mestre",
+   "name": "Mestre Alberto",
+   "alternateName": "Alberto Freitas",
+   "jobTitle": ["Tarólogo", "Astrólogo", "Hipnoterapeuta"],
+   "url": "https://genialtarot.com/sobre",
+   "image": "https://genialtarot.com/mestre-r13.jpg",
+   "description": "Tarólogo há 18 anos (desde 2008), astrólogo e hipnoterapeuta certificado desde 2016. Consultório em Golães, Fafe, desde 2016; Curso de Tarot desde 2012; autor do livro «Curso de Tarot» (2025) e de dois baralhos próprios (2026).",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua da Barreira, 92",
+    "addressLocality": "Golães, Fafe",
+    "postalCode": "4820-474",
+    "addressRegion": "Braga",
+    "addressCountry": "PT"
+   },
+   "worksFor": { "@id": "https://genialtarot.com/#org" },
+   "workLocation": { "@id": "https://genialtarot.com/#consultorio" },
+   "knowsAbout": ["Tarot", "Tarot Rider-Waite", "Arcanos Maiores", "Arcanos Menores", "Baralho cigano", "Astrologia", "Horóscopo", "Mapa astral", "Quiromancia", "Hipnose", "Hipnoterapia", "Rezas e benzeduras tradicionais portuguesas", "Lei da atração"],
+   "knowsLanguage": "pt",
+   "sameAs": [
+    "https://www.youtube.com/@Genialtarot",
+    "https://www.facebook.com/genial.tarot",
+    "https://www.facebook.com/Mestre.Alberto",
+    "https://www.facebook.com/LojaEspiritualbr",
+    "https://www.instagram.com/genialtarot/",
+    "https://www.tiktok.com/@genialtarot",
+    "https://livroosegredo.blogspot.com/"
+   ]
   },
-  "knowsAbout": ["Tarot Rider-Waite", "Arcanos Maiores", "Astrologia", "Mapa astral", "Quiromancia"]
+  {
+   "@type": "Organization",
+   "@id": "https://genialtarot.com/#org",
+   "name": "Genial Tarot",
+   "url": "https://genialtarot.com/",
+   "founder": { "@id": "https://genialtarot.com/sobre#mestre" },
+   "sameAs": [
+    "https://www.youtube.com/@Genialtarot",
+    "https://www.facebook.com/genial.tarot",
+    "https://www.facebook.com/LojaEspiritualbr",
+    "https://www.instagram.com/genialtarot/",
+    "https://www.tiktok.com/@genialtarot"
+   ]
+  },
+  {
+   "@type": "ProfessionalService",
+   "@id": "https://genialtarot.com/#consultorio",
+   "name": "Genialtarot - Mestre Alberto",
+   "telephone": "+351914920427",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua da Barreira, 92",
+    "addressLocality": "Fafe",
+    "postalCode": "4820-474",
+    "addressRegion": "Braga",
+    "addressCountry": "PT"
+   }
+  },
+  {
+   "@type": ["ProfilePage", "AboutPage"],
+   "@id": "https://genialtarot.com/sobre#pagina",
+   "url": "https://genialtarot.com/sobre",
+   "name": "Quem sou: Mestre Alberto, tarólogo, astrólogo e hipnoterapeuta",
+   "inLanguage": "pt",
+   "dateModified": "2026-11-04",
+   "mainEntity": { "@id": "https://genialtarot.com/sobre#mestre" },
+   "breadcrumb": { "@id": "https://genialtarot.com/sobre#migalhas" }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://genialtarot.com/sobre#migalhas",
+   "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://genialtarot.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Quem sou", "item": "https://genialtarot.com/sobre" }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    { "@type": "Question", "name": "Quem é o Mestre Alberto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "É o tarólogo e astrólogo do Genial Tarot e hipnoterapeuta certificado. Lê as cartas há 18 anos, desde 2008, escreve o horóscopo e atende consultas no consultório em Golães, Fafe, e à distância." } },
+    { "@type": "Question", "name": "Onde fica o consultório do Mestre Alberto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Na Rua da Barreira, 92, 4820-474 Golães, Fafe, desde 2016. Antes, de 2010 a 2016, o consultório foi em S. Torcato. As marcações são pelo WhatsApp, para o +351 914 920 427." } },
+    { "@type": "Question", "name": "Desde quando dá o Mestre Alberto o Curso de Tarot?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Desde 2012, com várias centenas de alunos. Em 2025 lançou também o livro «Curso de Tarot», em edição própria, na Amazon." } },
+    { "@type": "Question", "name": "Que baralho usa o Mestre Alberto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Um baralho próprio de 78 cartas, desenhado e lançado em 2026, na tradição Rider-Waite. Em 2026 lançou também o Baralho Cigano GT, de 36 cartas." } },
+    { "@type": "Question", "name": "O Mestre Alberto faz hipnose?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sim. É hipnoterapeuta certificado desde 2016, com formação feita no Brasil, e já hipnotizou centenas de pessoas. As consultas de hipnose estão explicadas na página genialtarot.com/hipnose." } }
+   ]
+  }
+ ]
 }
 </script>
 </head>
@@ -54,34 +165,98 @@
 <main class="container">
 
   <header class="indice-cabeca">
-    <img class="foto-mestre" src="mestre-r13.jpg" alt="Mestre Alberto, tarólogo e astrólogo" width="240" height="240" />
-    <h1 class="text-gold-gradient">Sobre o Mestre Alberto</h1>
+    <img class="foto-mestre" src="mestre-r13.jpg" alt="Mestre Alberto, tarólogo, astrólogo e hipnoterapeuta" width="240" height="240" />
+    <h1 class="text-gold-gradient">Quem sou · Mestre Alberto</h1>
     <p class="saudacao text-gold-gradient">Meu Querido Jardim de Almas!</p>
     <p>São <strong>18 anos</strong> a ler cartas e a escrever o que elas dizem.
        Não é uma plataforma com tarólogos a rodar: é uma pessoa que atende,
        escreve e assina cada trabalho.</p>
     <div class="chaves">
-      <span class="chave">18 anos de prática</span>
-      <span class="chave">Baralho próprio</span>
-      <span class="chave">Horóscopo diário</span>
-      <span class="chave">Consultas pessoais</span>
-      <span class="chave">Envio para todo o mundo</span>
+      <span class="chave">Tarot desde 2008</span>
+      <span class="chave">Consultório em Fafe</span>
+      <span class="chave">Curso de Tarot desde 2012</span>
+      <span class="chave">Hipnoterapeuta certificado</span>
+      <span class="chave">Dois baralhos próprios</span>
       <span class="chave">Canal no ar desde 2010</span>
     </div>
   </header>
 
   <section class="sentido">
+    <h2><span class="selo">✨</span> Como tudo começou</h2>
+    <p>Cheguei ao Tarot por um caminho que não esperava: a <strong>lei da atração</strong>.
+       Em setembro de 2007, num dos piores momentos da minha vida, abri um blogue sobre o
+       livro <em>«O Segredo»</em>, de Rhonda Byrne. No segundo texto que lá publiquei escrevi:
+       <em>«este blog vai dar que falar e eu vou ser entrevistado sobre o assunto»</em>.</p>
+    <p>Três dias depois, a revista <strong>Tabu</strong>, do semanário <strong>Sol</strong>,
+       publicou uma reportagem sobre <em>«O Segredo»</em> — e eu estava lá referido.
+       As provas e as fotografias continuam no blogue:
+       <a href="https://livroosegredo.blogspot.com/2007/09/aqui-est-prova-de-como-o-segredo.html" target="_blank" rel="noopener">veja aqui a prova, publicada em setembro de 2007</a>.</p>
+    <p>O blogue juntou dezenas de leitores — <strong>89 comentários entre 2007 e 2013</strong> —
+       e foi aí que comecei a ajudar pessoas. Em 2008 peguei nas cartas pela primeira vez,
+       e nunca mais as larguei.</p>
+    <p class="frase-mestre">Traga-me a sua pergunta. <strong>Eu tenho a sua resposta!</strong></p>
+  </section>
+
+  <section class="sentido">
+    <h2><span class="selo">🧭</span> O meu percurso</h2>
+    <p>Gosto de datas certas. Aqui ficam as que marcaram o caminho.</p>
+    <ol class="linha-tempo">
+      <li><span class="ano">2007</span><div class="marco"><b>O blogue de «O Segredo»</b><span>Em três dias, a previsão do segundo texto cumpre-se na revista Tabu, do Sol.</span></div></li>
+      <li><span class="ano">2008</span><div class="marco"><b>Começo a ler cartas</b><span>O início de 18 anos de Tarot.</span></div></li>
+      <li><span class="ano">2010</span><div class="marco"><b>O primeiro consultório e o canal</b><span>Abro o consultório em S. Torcato. Em julho nasce o canal <strong>Tarot e <a class="li-gt" href="/horoscopo">Horóscopo</a></strong> no YouTube.</span></div></li>
+      <li><span class="ano">2012</span><div class="marco"><b>O Curso de Tarot</b><span>Começo a ensinar. Desde então, várias centenas de alunos.</span></div></li>
+      <li><span class="ano">2016</span><div class="marco"><b>Golães, Fafe, e a hipnose</b><span>O consultório muda para Golães, Fafe. No mesmo ano fico certificado como hipnoterapeuta, com formação feita no Brasil.</span></div></li>
+      <li><span class="ano">2025</span><div class="marco"><b>O livro «Curso de Tarot»</b><span>Em edição própria, à venda na <a href="https://a.co/d/031WF3W8" target="_blank" rel="noopener noreferrer">Amazon</a>.</span></div></li>
+      <li><span class="ano">2026</span><div class="marco"><b>Os meus baralhos e a astrologia</b><span>Lanço o meu baralho de Tarot de 78 cartas e o <a href="/tarot-cigano">Baralho Cigano GT</a>, de 36. Começo a publicar conteúdos de <a href="/astrologia">astrologia</a>.</span></div></li>
+      <li><span class="ano hoje">Hoje</span><div class="marco"><b>Todos os dias por aqui</b><span>Mais de 9 000 vídeos, 26 700 subscritores e mais de 6,4 milhões de visualizações no canal.</span></div></li>
+    </ol>
+  </section>
+
+  <section class="sentido">
     <h2><span class="selo">🔮</span> Como eu leio</h2>
-    <p>Leio pelo <strong>meu próprio baralho</strong>, desenhado na tradição <a class="li-gt" href="/tarot-rider-waite">Rider-Waite</a>, e trabalho os 22 Arcanos
+    <p>Leio pelo <strong>meu próprio baralho</strong> de 78 cartas, desenhado na tradição <a class="li-gt" href="/tarot-rider-waite">Rider-Waite</a>, e trabalho os 22 Arcanos
        Maiores como uma história com princípio, meio e fim — não como cartas
        soltas com significados de dicionário. Uma carta sozinha explica; é o
        conjunto que responde.</p>
     <p>Por isso nunca há duas leituras iguais. <strong>Uma leitura sua, com o
        seu nome e a sua data</strong> — não um texto igual para toda a gente.
-       Os significados que encontra na internet são um guia geral; numa consulta
-       a carta lê-se com as que saem ao lado dela e com a sua pergunta, e é aí
-       que ganha sentido.</p>
-    <p class="frase-mestre">Traga-me a sua pergunta. <strong>Eu tenho a sua resposta!</strong></p>
+       É o mesmo baralho que aparece nas tiragens grátis do site e nos significados dos
+       <a href="/arcanos">Arcanos Maiores</a> e dos <a href="/arcanos-menores">Arcanos Menores</a>.
+       Para quem gosta da tradição cigana, há o <strong>Baralho Cigano GT</strong>, com 36 cartas:
+       pode tirar três cartas grátis no <a href="/tarot-cigano">Tarot Cigano</a>.</p>
+  </section>
+
+  <section class="sentido">
+    <h2><span class="selo">🌌</span> A astrologia</h2>
+    <p>A astrologia aprendi-a sozinho, para a pôr nas leituras dos horóscopos que faço nos
+       diretos. Em 2026 comecei a publicar conteúdos de astrologia no site: o
+       <a href="/horoscopo-do-dia">Horóscopo do Dia</a> com o céu calculado, o
+       <a href="/mapa-astral">mapa astral</a> e as páginas dos
+       <a href="/transitos-lentos">grandes trânsitos</a>.</p>
+  </section>
+
+  <section class="sentido">
+    <h2><span class="selo">🌀</span> A hipnose</h2>
+    <p>Sou <strong>hipnoterapeuta certificado desde 2016</strong>, com formação feita no Brasil,
+       e já hipnotizei <strong>centenas de pessoas</strong>. Em 2015 fiz hipnose de rua em
+       Belo Horizonte e, em 2018, uma demonstração numa televisão no Luxemburgo, com um
+       jornalista do Bom Dia. Os dois momentos ficaram gravados em vídeo.</p>
+    <p>Hoje faço consultas de hipnoterapia no consultório em Golães, Fafe. Explico tudo —
+       o que é, como decorre e para que costuma ser procurada — na página da
+       <a href="/hipnose"><strong>Hipnose com o Mestre Alberto</strong></a>.</p>
+  </section>
+
+  <section class="sentido">
+    <h2><span class="selo">📚</span> O que ensino</h2>
+    <p>Dou o <strong>Curso de Tarot</strong> desde 2012 e já passaram por ele
+       <strong>várias centenas de alunos</strong>. São três meses de formação direta comigo:
+       os arcanos, os métodos de tiragem, prática acompanhada e a confiança para fazer as
+       suas próprias leituras. Está tudo na <a href="/loja">Loja</a>.</p>
+    <p>Em 2025 juntei o que ensino num livro, o
+       <a href="https://a.co/d/031WF3W8" target="_blank" rel="noopener noreferrer"><strong>«Curso de Tarot»</strong></a>,
+       em edição própria, à venda na Amazon.</p>
+    <p>Guardo também um acervo de <a href="/rezas-e-oracoes">rezas e benzeduras</a>
+       recolhidas ao longo de 18 anos.</p>
   </section>
 
   <section class="sentido">
@@ -91,22 +266,24 @@
        falhar. Isso não é publicidade — é a prática que sustenta tudo o resto.
        Quem me lê todos os dias já sabe como eu penso muito antes de marcar
        uma consulta.</p>
-    <p>Publiquei também o significado de <a href="arcanos.html">cada um dos 22
-       Arcanos Maiores</a>, em pé e ao contrário, para que qualquer pessoa possa
-       estudar sozinha. O que é gratuito continua gratuito.</p>
+    <p>O canal <strong>Tarot e Horóscopo</strong> está no ar desde
+       <strong>julho de 2010</strong>. Digo estes números por uma razão só: mostram que não apareci ontem.</p>
+    <div class="numeros">
+      <div><b>9 000+</b><small>vídeos publicados</small></div>
+      <div><b>26 700</b><small>subscritores</small></div>
+      <div><b>6,4 M+</b><small>visualizações</small></div>
+    </div>
     <p class="frase-mestre">Faça chuva ou faça sol, todos os dias.
        <strong>Eu estou sempre por aqui!</strong></p>
   </section>
 
-  <section class="sentido">
-    <h2><span class="selo">📺</span> Dezasseis anos no ar, todos os dias</h2>
-    <p>O canal <strong>Tarot e <a class="li-gt" href="/horoscopo">Horóscopo</a></strong> está no ar desde <strong>Julho
-       de 2010</strong>. De lá para cá são <strong>8 630 vídeos publicados</strong>,
-       <strong>26 700 pessoas</strong> que escolheram acompanhar-me e mais de
-       <strong>6,2 milhões de visualizações</strong>.</p>
-    <p>Digo estes números por uma razão só: mostram que não apareci ontem. Um
-       horóscopo escrito todos os dias durante dezasseis anos não se improvisa —
-       e é o mesmo cuidado que ponho quando o caso é o seu.</p>
+  <section class="loja-global">
+    <span class="eti">A aposta principal</span>
+    <h2 class="text-gold-gradient">A loja global do ecossistema Genial Tarot</h2>
+    <p>Consultas, mapas astrais, cursos, rituais e <a class="li-gt" href="/amuletos">amuletos</a> — tudo num só sítio, com o preço
+       à vista e sem letras pequenas. É na <strong>loja online do site</strong> que reúno o
+       trabalho destes 18 anos, para Portugal, o Brasil e qualquer país.</p>
+    <a class="btn btn-loja" href="/loja"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Entrar na Loja Online</a>
   </section>
 
   <section class="sentido">
@@ -114,11 +291,11 @@
     <p>Com clareza, discrição e acolhimento. Falo consigo antes de lhe vender
        seja o que for, porque <strong>cada caso é único e merece uma palavra
        pessoal</strong>. Se o que precisa não for uma consulta, digo-lho.</p>
-    <p>Pode pedir-me uma pergunta respondida por escrito, meia hora ou uma hora
-       de consulta, uma previsão para os próximos doze meses, um <a class="li-gt" href="/mapa-astral">mapa astral</a>,
-       a leitura da sua mão, ou um trabalho dedicado ao seu caso. Está tudo na
-       <a href="loja.html">Loja Mística</a>, com o preço à vista e sem letras
-       pequenas.</p>
+    <p>O consultório fica na <strong>Rua da Barreira, 92, 4820-474 Golães, Fafe</strong>
+       (veja como chegar na página do <a href="/tarologo-fafe">consultório em Fafe</a>).
+       Também atendo à distância — veja como funcionam as
+       <a href="/consultas-a-distancia">consultas à distância</a>. A marcação é sempre pelo
+       WhatsApp, para o <a href="https://wa.me/351914920427">+351 914 920 427</a>.</p>
   </section>
 
   <section class="sentido sentido-invertido">
@@ -132,6 +309,35 @@
        outra coisa.</p>
     <p><strong>Não passo o seu caso a mais ninguém.</strong> O que me conta
        fica entre nós.</p>
+  </section>
+
+  <section class="sentido">
+    <h2><span class="selo">💬</span> Onde me segue</h2>
+    <p>Todos os dias publico no canal e nas redes. Estas são as minhas páginas oficiais —
+       qualquer outra que use o meu nome não é minha. Além delas, há <strong>10 grupos de
+       signos no Facebook</strong>, com mais de <strong>150 mil seguidores</strong>.</p>
+    <div class="redes">
+      <a href="https://www.youtube.com/@Genialtarot" rel="me noopener" target="_blank">YouTube · Tarot e Horóscopo</a>
+      <a href="https://www.facebook.com/genial.tarot" rel="me noopener" target="_blank">Facebook · Genial Tarot</a>
+      <a href="https://www.facebook.com/Mestre.Alberto" rel="me noopener" target="_blank">Facebook · Mestre Alberto</a>
+      <a href="https://www.facebook.com/LojaEspiritualbr" rel="me noopener" target="_blank">Facebook · LojaEspiritualbr</a>
+      <a href="https://www.instagram.com/genialtarot/" rel="me noopener" target="_blank">Instagram · @genialtarot</a>
+      <a href="https://www.tiktok.com/@genialtarot" rel="me noopener" target="_blank">TikTok</a>
+    </div>
+  </section>
+
+  <section class="sentido">
+    <h2><span class="selo">❓</span> Perguntas frequentes</h2>
+    <h3>Quem é o Mestre Alberto?</h3>
+    <p>É o tarólogo e astrólogo do Genial Tarot e hipnoterapeuta certificado. Lê as cartas há 18 anos, desde 2008, escreve o horóscopo e atende consultas no consultório em Golães, Fafe, e à distância.</p>
+    <h3>Onde fica o consultório do Mestre Alberto?</h3>
+    <p>Na Rua da Barreira, 92, 4820-474 Golães, Fafe, desde 2016. Antes, de 2010 a 2016, o consultório foi em S. Torcato. As marcações são pelo WhatsApp, para o +351 914 920 427.</p>
+    <h3>Desde quando dá o Mestre Alberto o Curso de Tarot?</h3>
+    <p>Desde 2012, com várias centenas de alunos. Em 2025 lançou também o livro «Curso de Tarot», em edição própria, na Amazon.</p>
+    <h3>Que baralho usa o Mestre Alberto?</h3>
+    <p>Um baralho próprio de 78 cartas, desenhado e lançado em 2026, na tradição Rider-Waite. Em 2026 lançou também o Baralho Cigano GT, de 36 cartas.</p>
+    <h3>O Mestre Alberto faz hipnose?</h3>
+    <p>Sim. É hipnoterapeuta certificado desde 2016, com formação feita no Brasil, e já hipnotizou centenas de pessoas. As consultas estão explicadas na página da <a href="/hipnose">Hipnose</a>.</p>
   </section>
 
   <p class="slogan text-gold-gradient">Uma carta explica. Uma leitura responde.</p>

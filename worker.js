@@ -508,6 +508,8 @@ const PAGINAS = new Set([
   "/aprender-astrologia",
   // 04/11/2026: Astrocartografia (o mapa astral no mapa-mundo; «mapa cartografico astrologia» +6050 % no Brasil)
   "/astrocartografia",
+  // 04/11/2026: área de Hipnose (consultas de hipnoterapia; rascunho à espera do OK dele)
+  "/hipnose",
 ]);
 
 function contarVisita(request, url, env, ctx) {
