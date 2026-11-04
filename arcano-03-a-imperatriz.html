@@ -24,6 +24,18 @@
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que significa A Imperatriz no Tarot?", "acceptedAnswer": {"@type": "Answer", "text": "É a carta do que cresce: projetos que dão fruto, relações que ganham raiz, casas que se enchem. Fala de abundância no sentido de ter o suficiente e saber desfrutá-lo, e também de maternidade e de tudo aquilo que você cria e cuida."}}, {"@type": "Question", "name": "O que significa A Imperatriz invertida?", "acceptedAnswer": {"@type": "Answer", "text": "Ao contrário, é dar-se a todos e não sobrar nada para si, ou um projeto que não avança. Também pode ser excesso: comodismo, gastos, dependência de quem trata de si. O conselho da carta é voltar a pôr-se na sua própria lista."}}, {"@type": "Question", "name": "A Imperatriz fala de gravidez?", "acceptedAnswer": {"@type": "Answer", "text": "Pela tradição, é uma das cartas ligadas à fertilidade e à maternidade, mas o seu sentido é mais largo: fala de tudo o que se cria, de um filho a um projeto. O contexto da pergunta e das outras cartas é que diz qual é o caso."}}]}
 </script>
+<style>/* 04/11/2026: 1.º ecrã dos arcanos */
+.topo-arcano{display:grid;grid-template-columns:7.4rem 1fr;grid-template-rows:auto auto auto auto 1fr;gap:.15rem 1rem;align-items:start;text-align:left;padding-top:.4rem}
+.topo-arcano .carta-img{width:7.4rem;margin:0;grid-row:1 / span 5;align-self:start}
+.topo-arcano .romano,.topo-arcano h1,.topo-arcano .nome-en{margin:0;text-align:left}
+.topo-arcano h1{font-size:clamp(1.8rem,7vw,2.6rem);line-height:1.1}
+.topo-arcano .chaves{justify-content:flex-start;margin-top:.4rem}
+.portas-arcano{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0 .4rem}
+.portas-arcano a{display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.7rem .35rem;border-radius:.9rem;text-align:center;text-decoration:none;font-weight:700;font-size:.82rem;line-height:1.2;
+ color:#f3ecfb;background:linear-gradient(160deg,rgba(120,70,190,.7),rgba(45,25,90,.85));border:1px solid rgba(242,201,107,.5)}
+.portas-arcano a i{font-style:normal;font-size:1.5rem}
+.topo-arcano .essencia{grid-column:2;margin:.55rem 0 0;font-style:italic;font-size:1rem;line-height:1.45;color:#f2dba0}
+</style>
 </head>
 <body>
 
@@ -33,15 +45,21 @@
 
 <main class="container">
 
-  <header class="topo">
-    <img class="foto-mestre" src="mestre-r11.jpg" alt="Mestre Alberto, tarólogo" width="240" height="240" />
+  <header class="topo topo-arcano">
+    <img class="carta-img" src="/cartas/03-a-imperatriz.webp" alt="Carta de Tarot do Mestre Alberto: A Imperatriz (The Empress)" fetchpriority="high" width="240" height="410" />
+
     <div class="romano text-gold-gradient">III</div>
     <h1 class="text-gold-gradient">A Imperatriz</h1>
     <div class="nome-en">The Empress</div>
     <div class="chaves"><span class="chave">Abundância</span><span class="chave">Criação</span><span class="chave">Cuidado</span><span class="chave">Fertilidade</span></div>
+    <p class="essencia">«É a carta do que cresce.»</p>
   </header>
+  <nav class="portas-arcano" aria-label="O próximo passo">
+    <a href="/carta-de-tarot"><i>🃏</i><span>Tire a sua carta de hoje</span></a>
+    <a href="/tarot-gratis"><i>🔮</i><span>Faça a sua pergunta ao Tarot</span></a>
+    <a href="/arcanos"><i>📚</i><span>Os 22 arcanos</span></a>
+  </nav>
 
-  <img class="carta-img" src="/cartas/03-a-imperatriz.webp" alt="Carta de Tarot do Mestre Alberto: A Imperatriz (The Empress)" loading="lazy" width="240" height="410" />
 
   <section class="sentido">
     <h2><span class="selo">&#9650;</span> Em pé</h2>

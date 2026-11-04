@@ -24,6 +24,18 @@
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que significa Os Enamorados no Tarot?", "acceptedAnswer": {"@type": "Answer", "text": "Amor, sim, mas sobretudo escolha. A carta aparece quando há dois caminhos e só se pode seguir um. Nas relações, fala de união verdadeira; fora delas, pergunta o que você valoriza de facto, porque é isso que decide quando chega a hora."}}, {"@type": "Question", "name": "O que significa Os Enamorados invertido?", "acceptedAnswer": {"@type": "Answer", "text": "Ao contrário, é a escolha adiada ou feita contra si próprio: ficar entre duas pessoas, uma relação sem acordo, dizer sim à espera de se convencer depois. O adiamento também é uma decisão, e costuma ser das piores."}}, {"@type": "Question", "name": "Os Enamorados é sempre uma carta de amor?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Muitas vezes fala de uma escolha importante — de trabalho, de casa, de valores. Pela Golden Dawn, é a carta de Gémeos, o signo do dois, das duas vozes e dos dois caminhos possíveis."}}]}
 </script>
+<style>/* 04/11/2026: 1.º ecrã dos arcanos */
+.topo-arcano{display:grid;grid-template-columns:7.4rem 1fr;grid-template-rows:auto auto auto auto 1fr;gap:.15rem 1rem;align-items:start;text-align:left;padding-top:.4rem}
+.topo-arcano .carta-img{width:7.4rem;margin:0;grid-row:1 / span 5;align-self:start}
+.topo-arcano .romano,.topo-arcano h1,.topo-arcano .nome-en{margin:0;text-align:left}
+.topo-arcano h1{font-size:clamp(1.8rem,7vw,2.6rem);line-height:1.1}
+.topo-arcano .chaves{justify-content:flex-start;margin-top:.4rem}
+.portas-arcano{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin:1rem 0 .4rem}
+.portas-arcano a{display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.7rem .35rem;border-radius:.9rem;text-align:center;text-decoration:none;font-weight:700;font-size:.82rem;line-height:1.2;
+ color:#f3ecfb;background:linear-gradient(160deg,rgba(120,70,190,.7),rgba(45,25,90,.85));border:1px solid rgba(242,201,107,.5)}
+.portas-arcano a i{font-style:normal;font-size:1.5rem}
+.topo-arcano .essencia{grid-column:2;margin:.55rem 0 0;font-style:italic;font-size:1rem;line-height:1.45;color:#f2dba0}
+</style>
 </head>
 <body>
 
@@ -33,15 +45,21 @@
 
 <main class="container">
 
-  <header class="topo">
-    <img class="foto-mestre" src="mestre-r19.jpg" alt="Mestre Alberto, tarólogo" width="240" height="240" />
+  <header class="topo topo-arcano">
+    <img class="carta-img" src="/cartas/06-os-enamorados.webp" alt="Carta de Tarot do Mestre Alberto: Os Enamorados (The Lovers)" fetchpriority="high" width="240" height="410" />
+
     <div class="romano text-gold-gradient">VI</div>
     <h1 class="text-gold-gradient">Os Enamorados</h1>
     <div class="nome-en">The Lovers</div>
     <div class="chaves"><span class="chave">Amor</span><span class="chave">Escolha</span><span class="chave">União</span><span class="chave">Valores</span></div>
+    <p class="essencia">«Amor, sim — mas sobretudo escolha.»</p>
   </header>
+  <nav class="portas-arcano" aria-label="O próximo passo">
+    <a href="/carta-de-tarot"><i>🃏</i><span>Tire a sua carta de hoje</span></a>
+    <a href="/tarot-gratis"><i>🔮</i><span>Faça a sua pergunta ao Tarot</span></a>
+    <a href="/arcanos"><i>📚</i><span>Os 22 arcanos</span></a>
+  </nav>
 
-  <img class="carta-img" src="/cartas/06-os-enamorados.webp" alt="Carta de Tarot do Mestre Alberto: Os Enamorados (The Lovers)" loading="lazy" width="240" height="410" />
 
   <section class="sentido">
     <h2><span class="selo">&#9650;</span> Em pé</h2>
