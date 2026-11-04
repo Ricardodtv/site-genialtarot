@@ -32,6 +32,9 @@ FAQ = {
    "Quase sempre pela pressa de um e pela teimosia do outro. Quando Carneiro insiste, Touro finca os pés, e uma pequena diferença transforma-se num braço de ferro. Ajuda Carneiro propor em vez de exigir, e Touro dizer claramente de que precisa para avançar."),
   ("Há atração entre Carneiro e Touro?",
    "Costuma haver, e forte. Carneiro traz a iniciativa e o gosto pela conquista; Touro, regido por Vénus, traz a sensualidade e o gosto pelo toque e pelo conforto. É na intimidade que estes dois signos tão diferentes muitas vezes se entendem melhor."),
+  # 04/11/2026, ronda de SEO: «touro e carneiro» (por esta ordem) pos. 8,5 no Google a 03/11
+  ("Touro e Carneiro combinam?",
+   "Combinam quando cada um respeita o ritmo do outro. Touro, regido por Vénus, dá estabilidade, paciência e carinho; Carneiro (Áries), regido por Marte, dá coragem e iniciativa. A ordem não muda nada: seja Touro e Carneiro ou Carneiro e Touro, o desafio é o mesmo, a pressa de um contra a teimosia do outro."),
  ],
  "compatibilidade-carneiro-e-gemeos": [
   ("Carneiro e Gémeos combinam no amor?",
