@@ -89,9 +89,20 @@ CSS = r"""
 .tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; max-width: 30rem; margin: .8rem auto 1.2rem; perspective: 900px; }
 .tres a { display: block; text-decoration: none; color: var(--texto); text-align: center; font-family: Inter, sans-serif; font-size: .82rem; font-weight: 700; }
 .tres .vira { position: relative; display: block; aspect-ratio: 480 / 804; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.3,.7,.3,1); margin-bottom: .4rem; }
-.js .leitura-monte .tres .vira { transform: rotateY(180deg); }
-.js .leitura-monte.aberta .tres .vira { transform: none; }
-.tres a:nth-child(2) .vira { transition-delay: .25s; } .tres a:nth-child(3) .vira { transition-delay: .5s; }
+/* 04/11: a viragem, carta a carta (o JS põe .virada em cada uma, com o som): levanta-se, gira em 3D e acende um brilho dourado */
+.js .leitura-monte .tres .vira { transform: rotateY(180deg); transition: none; }
+.js .leitura-monte .tres a.virada .vira { animation: carta-vira 1.05s cubic-bezier(.3,.7,.3,1) forwards; }
+.js .leitura-monte .tres a.virada .vira img:not(.costas) { animation: carta-brilho 1.8s ease .55s; }
+@keyframes carta-vira { 0% { transform: rotateY(180deg) translateY(0) scale(1); } 45% { transform: rotateY(95deg) translateY(-16px) scale(1.14); }
+  75% { transform: rotateY(-8deg) translateY(-4px) scale(1.04); } 100% { transform: rotateY(0) translateY(0) scale(1); } }
+@keyframes carta-brilho { 0%, 100% { box-shadow: 0 8px 22px #000a; } 35% { box-shadow: 0 0 32px oklch(0.85 0.13 88 / .9), 0 0 6px oklch(0.95 0.08 90), 0 8px 22px #000a; } }
+/* ao escolher, o monte «baralha-se» antes de abrir */
+.monte.baralha .pilha img:nth-child(1) { animation: baralha-a .32s ease-in-out 2; }
+.monte.baralha .pilha img:nth-child(2) { animation: baralha-b .32s ease-in-out 2; }
+.monte.baralha .pilha img:nth-child(3) { animation: baralha-c .32s ease-in-out 2; }
+@keyframes baralha-a { 0%, 100% { transform: translate(-7%, 5%) rotate(-7deg); } 50% { transform: translate(-34%, -2%) rotate(-18deg); } }
+@keyframes baralha-b { 0%, 100% { transform: translate(6%, 3%) rotate(6deg); } 50% { transform: translate(33%, -3%) rotate(17deg); } }
+@keyframes baralha-c { 0%, 100% { transform: translate(0, 0) rotate(-1deg); } 50% { transform: translateY(-14%) rotate(2deg); } }
 .tres .vira img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: .5rem; border: 1px solid oklch(0.85 0.13 88 / .6);
   box-shadow: 0 8px 22px #000a; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .tres .vira img.costas { transform: rotateY(180deg); }
@@ -107,7 +118,8 @@ CSS = r"""
   background: var(--vidro); border-radius: 999px; padding: .4rem .9rem; }
 .arquivo a:hover { border-color: var(--ouro); }
 @media (max-width: 34rem) { .montes { gap: .6rem; } .monte .rotulo { font-size: .92rem; } .areas { grid-template-columns: 1fr; } .tres { gap: .5rem; } }
-@media (prefers-reduced-motion: reduce) { .monte .pilha { animation: none; } .tres .vira, .monte, .monte .pilha img { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .monte .pilha, .monte.baralha .pilha img, .js .leitura-monte .tres a.virada .vira img { animation: none; }
+  .tres .vira, .monte, .monte .pilha img { transition: none; } .js .leitura-monte .tres .vira, .js .leitura-monte .tres a.virada .vira { transform: none; animation: none; } }
 """
 
 FAQ = [
@@ -252,19 +264,31 @@ def pagina(seg, atual_pag):
 /* Escolha um Monte: escolher um monte → a leitura desse monte aparece e as três cartas viram-se */
 (function () {{
   var montes = document.getElementById("montes");
-  function abrir(n) {{
-    document.querySelectorAll(".monte").forEach(function (b) {{ b.classList.toggle("este", b.dataset.m == n); }});
+  var timers = [];
+  var som = function (f, i) {{ if (window[f]) window[f](i); }};   // som-monte.js (Web Audio, volume baixo)
+  function abrir(n, doTopo) {{
+    timers.forEach(clearTimeout); timers = [];
+    var b = document.querySelector('.monte[data-m="' + n + '"]');
+    document.querySelectorAll(".monte").forEach(function (x) {{ x.classList.toggle("este", x === b); x.classList.remove("baralha"); }});
     montes.classList.add("escolhido");
-    document.querySelectorAll(".leitura-monte").forEach(function (s) {{ s.classList.remove("vista", "aberta"); }});
-    var s = document.getElementById("monte-" + n);
-    s.classList.add("vista");
-    s.scrollIntoView({{ behavior: "smooth", block: "start" }});
-    setTimeout(function () {{ s.classList.add("aberta"); }}, 450);
+    var espera = 0;
+    if (doTopo) {{ void b.offsetWidth; b.classList.add("baralha"); som("somBaralhar"); espera = 700; }}   // o monte baralha-se antes de abrir
+    timers.push(setTimeout(function () {{
+      document.querySelectorAll(".leitura-monte").forEach(function (s) {{ s.classList.remove("vista"); s.querySelectorAll(".tres a").forEach(function (a) {{ a.classList.remove("virada"); }}); }});
+      var s = document.getElementById("monte-" + n);
+      s.classList.add("vista");
+      s.scrollIntoView({{ behavior: "smooth", block: "start" }});
+      // depois de a leitura chegar ao ecrã, as três cartas viram uma a uma, cada uma com o seu som
+      s.querySelectorAll(".tres a").forEach(function (a, i) {{
+        timers.push(setTimeout(function () {{ a.classList.add("virada"); som("somVirar", i); }}, 750 + i * 560));
+      }});
+    }}, espera));
   }}
-  document.querySelectorAll(".monte").forEach(function (b) {{ b.addEventListener("click", function () {{ abrir(b.dataset.m); }}); }});
+  document.querySelectorAll(".monte").forEach(function (b) {{ b.addEventListener("click", function () {{ abrir(b.dataset.m, true); }}); }});
   document.querySelectorAll("[data-ver]").forEach(function (b) {{ b.addEventListener("click", function () {{ abrir(b.dataset.ver); }}); }});
 }})();
 </script>
+<script src="/som-monte.js" defer></script>
 {MUSICA}
 <script src="/vip-faixa.js" defer></script>
 <script src="/vivo.js" defer></script>
