@@ -679,6 +679,16 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 /* 🌀 Hipnose (04/11/2026): uma espiral pequena que gira devagar — só transform, como as outras */
 .porta-hipnose { background: linear-gradient(150deg, oklch(0.32 0.13 300 / .94), oklch(0.18 0.07 285 / .96)); border-color: oklch(0.85 0.13 88 / 0.5); }
 .porta-hipnose .porta-btn { background: var(--m-grad-ouro); color: oklch(0.22 0.06 300); }
+/* 04/11/2026 (ele): o cartão do jardim de almas com cor própria (rosa e ouro, de jardim) e o número grande a pulsar */
+.porta-jardim { background: radial-gradient(120% 90% at 20% 0%, oklch(0.62 0.17 350 / .55), transparent 60%), linear-gradient(150deg, oklch(0.42 0.15 355 / .96), oklch(0.22 0.09 320 / .97));
+  border-color: oklch(0.86 0.12 80 / .75); box-shadow: 0 0 0 1px oklch(0.86 0.12 80 / .25), 0 14px 40px oklch(0.55 0.2 350 / .35); }
+.porta-jardim .porta-btn { background: linear-gradient(135deg, oklch(0.93 0.08 85), oklch(0.82 0.14 75)); color: oklch(0.25 0.08 340); }
+.porta-jardim .porta-eti { background: linear-gradient(135deg, oklch(0.75 0.17 350), oklch(0.62 0.2 345)); color: #fff; }
+.jardim-num { display: block; font-family: "Cinzel", var(--font-display, serif); font-size: clamp(2.4rem, 11vw, 3.4rem); line-height: 1.05; margin: .15rem 0 .2rem;
+  background: linear-gradient(180deg, #fff3d0, #f2c96b 55%, #e9a0b8); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 14px oklch(0.8 0.15 350 / .55)); animation: jardim-pulsa 2.6s ease-in-out infinite; transform-origin: left center; }
+@keyframes jardim-pulsa { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px oklch(0.8 0.15 350 / .45)); } 50% { transform: scale(1.07); filter: drop-shadow(0 0 22px oklch(0.85 0.15 80 / .8)); } }
+@media (prefers-reduced-motion: reduce) { .jardim-num { animation: none; } }
 .mini-espiral { position: relative; width: 3.8rem; height: 3.8rem; border-radius: 50%; overflow: hidden;
   box-shadow: 0 0 0 2px oklch(0.85 0.13 88 / .8), 0 0 18px oklch(0.65 0.20 305 / .6); }
 .mini-espiral i { position: absolute; inset: -12%; background: repeating-conic-gradient(from 0deg, oklch(0.28 0.11 295) 0 15deg, oklch(0.58 0.19 305) 15deg 30deg);
@@ -1030,13 +1040,14 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 
       <!-- 💘 Mapa do Amor e da Sedução -->
       <!-- 🌸 O nosso jardim de almas (04/11/2026, pedido dele: entre os primeiros cartões). O número actualiza-se sozinho (comunidade-semanal) -->
-      <a href="/comunidade" class="porta porta-astral porta-brilho">
+      <a href="/comunidade" class="porta porta-jardim porta-brilho">
         <span class="porta-eti porta-eti-novo">Comunidade</span>
         <div class="porta-cabeca">
           <span class="porta-visual porta-foto" style="--dx:0%;--dy:-2%;--atraso:-4s"><img src="/comunidade-cartao.webp" alt="O Mestre Alberto rodeado dos doze signos: a comunidade dos grupos" width="600" height="400" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <strong>🌸 O nosso jardim de almas</strong>
-            <small><!--comunidade:total-->263 540<!--/comunidade:total--> almas acompanham o Mestre nos grupos dos signos e nas redes. Encontre o grupo do seu signo.</small>
+            <b class="jardim-num"><!--comunidade:total-->263 540<!--/comunidade:total--></b>
+            <small>almas acompanham o Mestre nos grupos dos signos e nas redes. Encontre o grupo do seu signo.</small>
           </span>
         </div>
         <span class="porta-btn">Entrar na comunidade →</span>
