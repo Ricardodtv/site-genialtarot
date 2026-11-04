@@ -89,6 +89,13 @@
   .redes { display: grid; grid-template-columns: repeat(3, 1fr); gap: .45rem; margin: 1rem 0 .4rem; }
   .rede { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: inherit; border-radius: .9rem; padding: .55rem .3rem; background: oklch(0.21 0.06 290 / .7); border: 1px solid var(--border); }
   .rede i { font-style: normal; font-size: 1.3rem; } .rede b { font-family: var(--font-display); font-size: 1.15rem; color: oklch(0.88 0.12 88); } .rede span { font-size: .72rem; line-height: 1.2; color: oklch(0.88 0.04 300); }
+  .selo-verif { display: inline-block; margin: .5rem 0 0; padding: .3rem .85rem; border-radius: 999px; font-size: .8rem; font-weight: 700; text-decoration: none;
+    color: oklch(0.92 0.12 150); background: oklch(0.45 0.12 150 / .25); border: 1px solid oklch(0.75 0.15 150 / .7); }
+  .tab-verif { width: 100%; border-collapse: collapse; font-size: .9rem; margin-top: .6rem; }
+  .tab-verif th { text-align: left; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: oklch(0.85 0.13 85); padding: .35rem .4rem; border-bottom: 1px solid var(--border); }
+  .tab-verif td { padding: .4rem; border-bottom: 1px solid oklch(1 0 0 / .08); }
+  .nota-verif { font-size: .85rem; opacity: .85; }
+  .rolar { overflow-x: auto; }
   .grelha-grp { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-top: 1rem; }
   @media (min-width: 640px) { .grelha-grp { grid-template-columns: repeat(3, 1fr); } }
   .grp { display: flex; flex-direction: column; align-items: center; gap: .15rem; text-align: center; text-decoration: none; color: inherit;
@@ -197,6 +204,7 @@
     <img class="foto-heroi" src="/mestre-principal.jpg" alt="Mestre Alberto" width="152" height="152" />
     <span class="etiqueta">A nossa comunidade</span>
     <h1 class="text-gold-gradient">🌸 O nosso jardim de almas</h1>
+    <a class="selo-verif" href="#como-contamos">✔ Números verificáveis · contados a 4 de novembro de 2026</a>
     <div class="contador">263 540</div>
     <p class="contador-sub">almas que acompanham o Mestre Alberto nos grupos e nas redes <small>(somadas, contadas a 4 de novembro de 2026; a mesma pessoa pode seguir em mais do que uma rede)</small></p>
     <div class="redes">
@@ -251,6 +259,20 @@
   </section>
 
   <!-- comentários verdadeiros entram aqui (comentarios.json), só com primeiro nome + inicial -->
+
+  <section class="sentido" id="como-contamos">
+    <h2><span class="selo">✔</span> Como contamos — para imprensa e parceiros</h2>
+    <p>Todos os números desta página são <strong>verificáveis</strong>: cada um vem diretamente da própria rede, tem a data da contagem e a ligação para a fonte, onde qualquer pessoa o pode confirmar. São atualizados todas as semanas.</p>
+    <div class="rolar"><table class="tab-verif"><tr><th>Rede</th><th>Número</th><th>Contado a</th><th>Fonte</th></tr>
+      <tr><td>👥 Grupos dos signos</td><td>220 192</td><td>04/11/2026</td><td><a href="#escolha">ver acima ↑</a></td></tr>
+      <tr><td>▶️ YouTube</td><td>26 900</td><td>04/11/2026</td><td><a href="https://www.youtube.com/@Genialtarot" target="_blank" rel="noopener noreferrer">ver na rede ↗</a></td></tr>
+      <tr><td>👤 Perfil Alberto Freitas</td><td>6 400</td><td>04/11/2026</td><td><a href="https://www.facebook.com/Mestre.Alberto" target="_blank" rel="noopener noreferrer">ver na rede ↗</a></td></tr>
+      <tr><td>🎵 TikTok</td><td>5 703</td><td>04/11/2026</td><td><a href="https://www.tiktok.com/@genialtarot" target="_blank" rel="noopener noreferrer">ver na rede ↗</a></td></tr>
+      <tr><td>📘 Páginas do Facebook</td><td>2 696</td><td>04/11/2026</td><td><a href="https://www.facebook.com/genial.tarot" target="_blank" rel="noopener noreferrer">ver na rede ↗</a></td></tr>
+      <tr><td>📸 Instagram</td><td>1 649</td><td>04/11/2026</td><td><a href="https://www.instagram.com/genialtarot" target="_blank" rel="noopener noreferrer">ver na rede ↗</a></td></tr>
+    </table></div>
+    <p class="nota-verif">Método: os membros dos grupos são lidos na página de membros de cada grupo; o YouTube, as páginas do Facebook e o Instagram pelas estatísticas oficiais das plataformas (o YouTube arredonda os subscritores); o TikTok pela página pública do perfil; o perfil pessoal do Facebook pelo número que o próprio perfil mostra. A soma conta seguidores e membros: a mesma pessoa pode estar em mais do que uma rede. <a href="/comunidade-numeros.json">Dados em bruto (JSON)</a> · <a href="/na-imprensa">Página de imprensa</a></p>
+  </section>
 
   <section class="sentido">
     <h2><span class="selo">❓</span> Perguntas frequentes</h2>
