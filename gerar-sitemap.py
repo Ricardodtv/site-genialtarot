@@ -14,7 +14,7 @@ def data(f):
     d = subprocess.run(["git", "log", "-1", "--format=%cs", "--", f], capture_output=True, text=True).stdout.strip()
     return d or None
 urls = []
-for f in sorted(glob.glob("*.html") + glob.glob("sonho/*.html") + glob.glob("signo/*.html")):
+for f in sorted(glob.glob("*.html") + glob.glob("sonho/*.html") + glob.glob("signo/*.html") + glob.glob("noticias/*.html")):
     if f in FORA: continue
     s = open(f, encoding="utf-8", errors="ignore").read()
     if re.search(r'<meta[^>]+name="robots"[^>]+noindex', s, re.I): continue

@@ -517,6 +517,8 @@ const PAGINAS = new Set([
   "/astrocartografia",
   // 04/11/2026: área de Hipnose (consultas de hipnoterapia; rascunho à espera do OK dele)
   "/hipnose",
+  // 04/11/2026: Notícias do dia (2 por dia, ~/noticias-site/gerar.py); os artigos /noticias/<data>-manha|tarde contam pelo vivo.js
+  "/noticias",
 ]);
 
 function contarVisita(request, url, env, ctx) {

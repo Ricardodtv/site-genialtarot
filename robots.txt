@@ -55,3 +55,4 @@ Disallow: /
 
 Sitemap: https://genialtarot.com/sitemap.xml
 Sitemap: https://genialtarot.com/sitemap-imagens.xml
+Sitemap: https://genialtarot.com/sitemap-noticias.xml
