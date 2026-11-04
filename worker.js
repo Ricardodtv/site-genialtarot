@@ -521,6 +521,8 @@ const PAGINAS = new Set([
   "/noticias",
   // 04/11/2026 (R-122, ideias da análise de paulocardoso.com): página do Curso de Tarot e «Na imprensa»
   "/curso-de-tarot", "/na-imprensa",
+  // 04/11/2026 (ideia dele): a comunidade dos 12 grupos de signos, com os membros contados
+  "/comunidade",
 ]);
 
 function contarVisita(request, url, env, ctx) {
