@@ -519,6 +519,8 @@ const PAGINAS = new Set([
   "/hipnose",
   // 04/11/2026: Notícias do dia (2 por dia, ~/noticias-site/gerar.py); os artigos /noticias/<data>-manha|tarde contam pelo vivo.js
   "/noticias",
+  // 04/11/2026 (R-122, ideias da análise de paulocardoso.com): página do Curso de Tarot e «Na imprensa»
+  "/curso-de-tarot", "/na-imprensa",
 ]);
 
 function contarVisita(request, url, env, ctx) {
