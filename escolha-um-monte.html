@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Escolha um Monte: a mensagem do Tarot desta semana</title>
+<meta name="description" content="Escolha um monte de cartas e leia a mensagem do Tarot para esta semana, de 2 a 8 de novembro de 2026. Grátis, com o baralho do Mestre Alberto. Muda às segundas." />
+<meta name="theme-color" content="#1d2350" />
+<link rel="icon" href="favicon.ico" />
+<meta property="og:title" content="Escolha um Monte: a mensagem do Tarot desta semana" />
+<meta property="og:description" content="Escolha um monte de cartas e leia a mensagem do Tarot para esta semana, de 2 a 8 de novembro de 2026. Grátis, com o baralho do Mestre Alberto. Muda às segundas." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/escolha-um-monte" />
+<link rel="canonical" href="https://genialtarot.com/escolha-um-monte" />
+<meta property="og:image" content="https://genialtarot.com/escolha-um-monte-og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Três montes de cartas do baralho do Mestre Alberto, viradas para baixo, para escolher um" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script>document.documentElement.classList.add("js");</script>
+<style>
+/* ============ Escolha um Monte — base copiada da horoscopo-do-dia.html (04/11/2026) ============ */
+/* ============ O Horóscopo do Dia — os 12 signos com o céu real do dia — azul-noite e ouro (25/10/2026) ============ */
+:root {
+  --fundo: oklch(0.17 0.06 270); --texto: oklch(0.97 0.012 265); --suave: oklch(0.84 0.04 265);
+  --azul: oklch(0.72 0.13 255); --azul-claro: oklch(0.86 0.08 255); --lavanda: oklch(0.92 0.04 265);
+  --ouro: oklch(0.85 0.13 88); --borda: oklch(0.75 0.10 260 / 0.35); --vidro: oklch(0.30 0.08 268 / 0.55);
+  --grad-azul: linear-gradient(135deg, oklch(0.78 0.11 245), oklch(0.62 0.17 265) 55%, oklch(0.52 0.18 280));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif; --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.38 0.14 262) 0%, oklch(0.20 0.08 268) 45%, oklch(0.12 0.05 275) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden; }
+a { color: var(--azul-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(72rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2rem; }
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 270 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: var(--ouro); }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 270); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.az { background: var(--grad-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 36rem; margin: 0 auto 1rem; }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.35rem, 3.4vw, 1.9rem); margin: 0 0 .4rem; text-align: center; }
+.cartao { background: linear-gradient(160deg, oklch(0.29 0.09 265), oklch(0.20 0.07 272)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; }
+.heroi { text-align: center; padding: .5rem 0 1.5rem; }
+.signo.alvo { outline: 2px solid var(--ouro); box-shadow: 0 0 26px oklch(0.85 0.13 88 / .35); }
+.aviso { text-align: center; color: var(--suave); padding: 2rem 0; }
+.chamada { text-align: center; }
+.chamada p { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); max-width: 36rem; margin: 0 auto 1.2rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 800; border-radius: 999px; padding: .85rem 1.5rem; color: white; background: var(--grad-azul); box-shadow: 0 10px 30px oklch(0.55 0.17 265 / .5); }
+.btn.ouro { color: oklch(0.22 0.06 270); background: var(--grad-ouro); box-shadow: 0 10px 30px oklch(0.75 0.15 75 / .35); }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+
+/* 🎵 28/10/2026, pedido dele: a MESMA música do Tarot Grátis (ambient.mp3), com o mesmo botão e a continuidade entre páginas */
+@keyframes pulso-som {
+  0% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0.75); }
+  70% { box-shadow: 0 0 0 13px oklch(0.82 0.13 85 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.82 0.13 85 / 0); }
+}
+.som-chama { animation: pulso-som 1.1s ease-out infinite; border-radius: 9999px; }
+
+/* Botão de som unificado — canto superior direito, igual em todas as páginas */
+.som-fix { position: fixed; top: 1rem; right: 1rem; z-index: 90; display: grid; place-items: center; height: 3rem; width: 3rem; padding: 0; border-radius: 9999px; border: 1.5px solid oklch(0.82 0.11 85); background: oklch(0.22 0.05 265 / 0.92); color: oklch(0.82 0.11 85); font-size: 1.2rem; box-shadow: 0 6px 22px rgba(0,0,0,0.5); cursor: pointer; transition: transform .25s; }
+.som-fix:hover { transform: scale(1.08); }
+.som-fix.ligado { background: linear-gradient(180deg, oklch(0.85 0.13 88), oklch(0.72 0.13 78)); color: oklch(0.2 0.04 270); animation: brilho-som 2.6s ease-in-out infinite; }
+.som-fix::before { content: ""; position: absolute; inset: -5px; border-radius: 9999px; border: 2px solid oklch(0.87 0.16 95 / 0.9); animation: anel-pisca-som 1.1s ease-in-out infinite; pointer-events: none; }
+@keyframes anel-pisca-som { 0%, 100% { opacity: 0.15; transform: scale(1); } 50% { opacity: 1; transform: scale(1.14); } }
+@keyframes brilho-som { 0%, 100% { box-shadow: 0 0 22px oklch(0.82 0.11 85 / 0.35); } 50% { box-shadow: 0 0 45px oklch(0.82 0.11 85 / 0.65); } }
+.som-ico { width: 1.35rem; height: 1.35rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; grid-area: 1 / 1; }
+.som-ico-on { display: none; }
+.ligado .som-ico-on { display: block; }
+
+/* ============ Escolha um Monte (04/11/2026) ============ */
+.texto { font-family: var(--serifa); font-size: 1.15rem; color: var(--lavanda); }
+.texto h2 { text-align: left; } .texto p { margin: 0 0 .8rem; } .texto b { color: var(--texto); }
+.texto h3 { font-family: var(--titulo); font-size: 1.05rem; color: var(--ouro); margin: 1.1rem 0 .3rem; }
+.semana { display: inline-block; font-family: Inter, sans-serif; font-weight: 700; font-size: .85rem; letter-spacing: .08em; color: var(--ouro);
+  border: 1px solid oklch(0.85 0.13 88 / .5); border-radius: 999px; padding: .3rem .9rem; margin-bottom: .4rem; }
+.montes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; max-width: 40rem; margin: 1.6rem auto .6rem; }
+.monte { position: relative; border: 0; background: none; padding: 0 0 2.2rem; cursor: pointer; color: var(--texto); font: inherit;
+  transition: transform .35s, opacity .4s, filter .4s; -webkit-tap-highlight-color: transparent; }
+.monte .pilha { position: relative; display: block; aspect-ratio: 480 / 804; margin: 0 11%; animation: monte-flutua 5s ease-in-out infinite; }   /* margem: as cartas de lado não saem do ecrã */
+.monte:nth-child(2) .pilha { animation-delay: -1.6s; } .monte:nth-child(3) .pilha { animation-delay: -3.2s; }
+.monte .pilha img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: .55rem; border: 1px solid oklch(0.85 0.13 88 / .6);
+  box-shadow: 0 10px 26px #000b; transition: transform .45s cubic-bezier(.3,.7,.3,1); }
+.monte .pilha img:nth-child(1) { transform: translate(-7%, 5%) rotate(-7deg); }
+.monte .pilha img:nth-child(2) { transform: translate(6%, 3%) rotate(6deg); }
+.monte .pilha img:nth-child(3) { transform: translate(0, 0) rotate(-1deg); }
+.monte:hover .pilha img:nth-child(1), .monte:focus-visible .pilha img:nth-child(1) { transform: translate(-16%, 4%) rotate(-13deg); }
+.monte:hover .pilha img:nth-child(2), .monte:focus-visible .pilha img:nth-child(2) { transform: translate(15%, 3%) rotate(12deg); }
+.monte:hover .pilha img:nth-child(3), .monte:focus-visible .pilha img:nth-child(3) { transform: translateY(-6%); }
+.monte .rotulo { position: absolute; left: 0; right: 0; bottom: 0; font-family: var(--titulo); font-weight: 700; font-size: 1.05rem; color: var(--ouro); }
+.monte .rotulo small { display: block; font-family: Inter, sans-serif; font-weight: 600; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--suave); }
+.montes.escolhido .monte:not(.este) { opacity: .35; filter: grayscale(.6); transform: scale(.92); }
+.montes.escolhido .monte.este { transform: translateY(-4px); }
+@keyframes monte-flutua { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.dica-monte { text-align: center; font-family: var(--serifa); font-size: 1.15rem; color: var(--lavanda); max-width: 34rem; margin: 0 auto; }
+.leitura-monte { scroll-margin-top: 1rem; }
+.js .leitura-monte { display: none; }
+.js .leitura-monte.vista { display: block; animation: monte-surge .7s ease both; }
+@keyframes monte-surge { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; max-width: 30rem; margin: .8rem auto 1.2rem; perspective: 900px; }
+.tres a { display: block; text-decoration: none; color: var(--texto); text-align: center; font-family: Inter, sans-serif; font-size: .82rem; font-weight: 700; }
+.tres .vira { position: relative; display: block; aspect-ratio: 480 / 804; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.3,.7,.3,1); margin-bottom: .4rem; }
+.js .leitura-monte .tres .vira { transform: rotateY(180deg); }
+.js .leitura-monte.aberta .tres .vira { transform: none; }
+.tres a:nth-child(2) .vira { transition-delay: .25s; } .tres a:nth-child(3) .vira { transition-delay: .5s; }
+.tres .vira img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: .5rem; border: 1px solid oklch(0.85 0.13 88 / .6);
+  box-shadow: 0 8px 22px #000a; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.tres .vira img.costas { transform: rotateY(180deg); }
+.tres a:hover { color: var(--ouro); }
+.titulo-monte { font-family: var(--serifa); font-style: italic; font-weight: 600; font-size: 1.5rem; color: var(--ouro); text-align: center; margin: 0 0 .6rem; }
+.areas { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 1rem 0; font-family: Inter, sans-serif; font-size: .95rem; }
+.areas div { background: var(--vidro); border: 1px solid var(--borda); border-radius: .9rem; padding: .7rem .9rem; color: var(--lavanda); }
+.areas b { display: block; color: var(--ouro); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .2rem; }
+.conselho { font-family: var(--serifa); font-size: 1.2rem; border-left: 3px solid var(--ouro); padding: .4rem .9rem; background: oklch(0.85 0.13 88 / .07); border-radius: 0 .6rem .6rem 0; }
+.outros { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin-top: 1rem; }
+.arquivo { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+.arquivo a { text-decoration: none; font-family: Inter, sans-serif; font-size: .85rem; font-weight: 700; color: var(--texto); border: 1px solid var(--borda);
+  background: var(--vidro); border-radius: 999px; padding: .4rem .9rem; }
+.arquivo a:hover { border-color: var(--ouro); }
+@media (max-width: 34rem) { .montes { gap: .6rem; } .monte .rotulo { font-size: .92rem; } .areas { grid-template-columns: 1fr; } .tres { gap: .5rem; } }
+@media (prefers-reduced-motion: reduce) { .monte .pilha { animation: none; } .tres .vira, .monte, .monte .pilha img { transition: none; } }
+
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://genialtarot.com/escolha-um-monte#pagina", "name": "Escolha um Monte: a mensagem do Tarot desta semana", "description": "Escolha um monte de cartas e leia a mensagem do Tarot para esta semana, de 2 a 8 de novembro de 2026. Grátis, com o baralho do Mestre Alberto. Muda às segundas.", "url": "https://genialtarot.com/escolha-um-monte", "inLanguage": "pt", "datePublished": "2026-11-02", "dateModified": "2026-11-02", "isPartOf": {"@type": "WebSite", "name": "Genial Tarot", "url": "https://genialtarot.com/"}, "author": {"@type": "Person", "name": "Mestre Alberto", "url": "https://genialtarot.com/sobre"}, "breadcrumb": {"@id": "https://genialtarot.com/escolha-um-monte#migalhas"}}, {"@type": "BreadcrumbList", "@id": "https://genialtarot.com/escolha-um-monte#migalhas", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://genialtarot.com/"}, {"@type": "ListItem", "position": 2, "name": "Tarot Grátis", "item": "https://genialtarot.com/tarot-gratis"}, {"@type": "ListItem", "position": 3, "name": "Escolha um Monte", "item": "https://genialtarot.com/escolha-um-monte"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Como funciona o Escolha um Monte?", "acceptedAnswer": {"@type": "Answer", "text": "Pense numa pergunta ou numa situação da sua vida, respire fundo e escolha o monte que mais o chama: o 1, o 2 ou o 3. Cada monte tem três cartas do baralho do Mestre Alberto e uma mensagem escrita para essa combinação. Não há monte certo nem errado: escolha pela intuição, sem pensar muito."}}, {"@type": "Question", "name": "A mensagem muda quando?", "acceptedAnswer": {"@type": "Answer", "text": "Todas as segundas-feiras há três montes novos, com cartas e mensagens novas. As semanas que já passaram ficam guardadas no arquivo, no fim da página, para poder voltar a elas."}}, {"@type": "Question", "name": "Posso escolher mais do que um monte?", "acceptedAnswer": {"@type": "Answer", "text": "Pode ler os três, mas a mensagem que é para si costuma ser a do monte que escolheu primeiro, sem pensar. Se os três lhe falarem, leia-os como um todo: o que se repete é o mais importante."}}, {"@type": "Question", "name": "É grátis?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. O Escolha um Monte é grátis e não precisa de dar o seu email. Se quiser uma leitura só sua, com as cartas tiradas para a sua pergunta, pode pedir uma consulta ao Mestre Alberto."}}, {"@type": "Question", "name": "As cartas saem ao acaso?", "acceptedAnswer": {"@type": "Answer", "text": "Não: nesta tiragem coletiva, as cartas de cada monte são escolhidas e lidas em conjunto, semana a semana, para que cada mensagem tenha princípio, meio e fim. Para uma tiragem ao acaso, só para si, use o Tarot Grátis."}}]}]}
+</script>
+</head>
+<body>
+<button id="audio-fab" class="som-fix" aria-label="Ligar ou desligar o som"><svg class="som-ico som-ico-on" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg><svg class="som-ico som-ico-off" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="22" y1="9" x2="16" y2="15"/><line x1="16" y1="9" x2="22" y2="15"/></svg></button>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+  <section class="heroi">
+    <div><span class="selo">🔮 Tarot da semana ✦ grátis</span></div>
+    <h1>Escolha um <span class="az">Monte</span></h1>
+    <div class="semana">2 a 8 de novembro de 2026</div>
+    <p class="sub">Pense numa pergunta, respire fundo e escolha um dos três montes. As cartas viram-se e mostram a mensagem para a sua semana.</p>
+    <div class="montes" id="montes"><button type="button" class="monte" data-m="1" aria-controls="monte-1" aria-label="Escolher o monte 1"><span class="pilha"><img src="/cartas/verso-gt.webp" alt="" width="480" height="804"><img src="/cartas/verso-gt.webp" alt="" width="480" height="804"><img src="/cartas/verso-gt.webp" alt="" width="480" height="804"></span><span class="rotulo">Monte 1<small>escolher</small></span></button><button type="button" class="monte" data-m="2" aria-controls="monte-2" aria-label="Escolher o monte 2"><span class="pilha"><img src="/cartas/verso-gt.webp" alt="" width="480" height="804"><img src="/cartas/verso-gt.webp" alt="" width="480" height="804"><img src="/cartas/verso-gt.webp" alt="" width="480" height="804"></span><span class="rotulo">Monte 2<small>escolher</small></span></button><button type="button" class="monte" data-m="3" aria-controls="monte-3" aria-label="Escolher o monte 3"><span class="pilha"><img src="/cartas/verso-gt.webp" alt="" width="480" height="804"><img src="/cartas/verso-gt.webp" alt="" width="480" height="804"><img src="/cartas/verso-gt.webp" alt="" width="480" height="804"></span><span class="rotulo">Monte 3<small>escolher</small></span></button></div>
+    <p class="dica-monte">Escolha pela intuição: o primeiro monte que lhe chamar a atenção é o seu.</p>
+  </section>
+
+  <section class="cartao texto leitura-monte" id="monte-1">
+    <h2>Monte 1</h2>
+    <p class="titulo-monte">Uma porta que se abre devagar</p>
+    <div class="tres"><a href="/arcano-00-o-louco"><span class="vira"><img src="/cartas/00-o-louco.webp" alt="Carta O Louco do baralho do Mestre Alberto — Escolha um Monte, monte 1" width="480" height="804" loading="lazy"><img class="costas" src="/cartas/verso-gt.webp" alt="" width="480" height="804" loading="lazy"></span>O Louco</a><a href="/carta-as-de-copas"><span class="vira"><img src="/cartas/menores/ace-of-cups.webp" alt="Carta Ás de Copas do baralho do Mestre Alberto — Escolha um Monte, monte 1" width="480" height="804" loading="lazy"><img class="costas" src="/cartas/verso-gt.webp" alt="" width="480" height="804" loading="lazy"></span>Ás de Copas</a><a href="/carta-tres-de-paus"><span class="vira"><img src="/cartas/menores/three-of-wands.webp" alt="Carta Três de Paus do baralho do Mestre Alberto — Escolha um Monte, monte 1" width="480" height="804" loading="lazy"><img class="costas" src="/cartas/verso-gt.webp" alt="" width="480" height="804" loading="lazy"></span>Três de Paus</a></div>
+    <p>Há um começo à sua espera, e ele não exige que tenha tudo resolvido antes de partir. <a class="li-gt" href="/arcano-00-o-louco">O Louco</a> aparece com a trouxa leve e o olhar posto no caminho: lembra-lhe que a segurança se ganha a andar, não sentado à espera dela. Ao lado, o Ás de Copas mostra que este começo nasce do coração — uma vontade sincera, uma alegria que volta a circular depois de um tempo mais seco. E o Três de Paus completa a história: aquilo que já preparou começa a mexer-se ao longe, como barcos que se aproximam do porto. Não é preciso correr nem forçar. Basta dar o passo que está ao seu alcance, com atenção e boa-fé, e deixar que o horizonte se vá alargando. Estas cartas falam de alguém que está pronto para mais do que imagina.</p>
+    <div class="areas"><div><b>💗 No amor</b>Abra espaço para sentir sem fazer contas. Quem está só pode cruzar-se com alguém que traz leveza; quem está acompanhado pode redescobrir o gosto de fazer coisas novas a dois. O segredo é chegar sem armaduras e sem frases ensaiadas.</div><div><b>💼 No trabalho e no dinheiro</b>Uma ideia que andava guardada pede para ser experimentada. Comece pequeno, teste, observe a resposta. O que semeou noutros meses pode agora dar sinais de movimento, sobretudo em contactos de longe ou em propostas que exigem alguma ousadia. Planeie, mas não fique eternamente no planeamento.</div></div>
+    <p class="conselho"><b>O conselho da semana:</b> Dê hoje um passo pequeno na direcção daquilo que o entusiasma, mesmo sem saber ainda onde termina a estrada.</p>
+    <div class="outros"><button type="button" class="btn" data-ver="2">Ver o monte 2</button><button type="button" class="btn" data-ver="3">Ver o monte 3</button><a class="btn ouro" href="/tarot-gratis">🃏 Tirar as minhas cartas</a></div>
+  </section>
+  <section class="cartao texto leitura-monte" id="monte-2">
+    <h2>Monte 2</h2>
+    <p class="titulo-monte">O tempo certo das coisas</p>
+    <div class="tres"><a href="/arcano-12-o-enforcado"><span class="vira"><img src="/cartas/12-o-enforcado.webp" alt="Carta O Enforcado do baralho do Mestre Alberto — Escolha um Monte, monte 2" width="480" height="804" loading="lazy"><img class="costas" src="/cartas/verso-gt.webp" alt="" width="480" height="804" loading="lazy"></span>O Enforcado</a><a href="/carta-sete-de-ouros"><span class="vira"><img src="/cartas/menores/seven-of-pentacles.webp" alt="Carta Sete de Ouros do baralho do Mestre Alberto — Escolha um Monte, monte 2" width="480" height="804" loading="lazy"><img class="costas" src="/cartas/verso-gt.webp" alt="" width="480" height="804" loading="lazy"></span>Sete de Ouros</a><a href="/carta-quatro-de-espadas"><span class="vira"><img src="/cartas/menores/four-of-swords.webp" alt="Carta Quatro de Espadas do baralho do Mestre Alberto — Escolha um Monte, monte 2" width="480" height="804" loading="lazy"><img class="costas" src="/cartas/verso-gt.webp" alt="" width="480" height="804" loading="lazy"></span>Quatro de Espadas</a></div>
+    <p>Quem anda a empurrar uma porta que só abre para fora vai reconhecer-se aqui. <a class="li-gt" href="/arcano-12-o-enforcado">O Enforcado</a> pede-lhe uma pausa com propósito: deixar de forçar e observar a situação de outro ângulo, mesmo que a posição pareça desconfortável. O Sete de Ouros confirma que o seu esforço não foi em vão — a planta está a crescer, só ainda não chegou a altura de colher. E o Quatro de Espadas acrescenta o que tantas vezes esquecemos: descansar também faz parte do trabalho. Uma cabeça exausta vê problemas onde há apenas demora. Nesta semana, a sabedoria está em parar sem desistir, avaliar com honestidade o que já fez e guardar forças. Quando o momento chegar, vai reconhecê-lo — e vai estar inteiro para o aproveitar.</p>
+    <div class="areas"><div><b>💗 No amor</b>Não pressione respostas. Se uma relação está em compasso de espera, dê-lhe ar e observe o que se revela sozinho. Às vezes, o gesto mais amoroso é não exigir nada durante uns dias. Quem está só ganha em perceber, com calma, o que realmente procura.</div><div><b>💼 No trabalho e no dinheiro</b>Os resultados aparecem mais devagar do que gostaria, mas aparecem. É um bom momento para rever números, prazos e prioridades sem alarme. Evite decisões grandes tomadas por cansaço ou impaciência. O tempo que investiu continua a contar, mesmo quando ninguém o vê.</div></div>
+    <p class="conselho"><b>O conselho da semana:</b> Antes de insistir mais uma vez, pare, respire e pergunte-se o que mudaria se olhasse para isto ao contrário.</p>
+    <div class="outros"><button type="button" class="btn" data-ver="1">Ver o monte 1</button><button type="button" class="btn" data-ver="3">Ver o monte 3</button><a class="btn ouro" href="/tarot-gratis">🃏 Tirar as minhas cartas</a></div>
+  </section>
+  <section class="cartao texto leitura-monte" id="monte-3">
+    <h2>Monte 3</h2>
+    <p class="titulo-monte">Rédeas na mão, olhar em frente</p>
+    <div class="tres"><a href="/arcano-07-o-carro"><span class="vira"><img src="/cartas/07-o-carro.webp" alt="Carta O Carro do baralho do Mestre Alberto — Escolha um Monte, monte 3" width="480" height="804" loading="lazy"><img class="costas" src="/cartas/verso-gt.webp" alt="" width="480" height="804" loading="lazy"></span>O Carro</a><a href="/carta-cavaleiro-de-paus"><span class="vira"><img src="/cartas/menores/knight-of-wands.webp" alt="Carta Cavaleiro de Paus do baralho do Mestre Alberto — Escolha um Monte, monte 3" width="480" height="804" loading="lazy"><img class="costas" src="/cartas/verso-gt.webp" alt="" width="480" height="804" loading="lazy"></span>Cavaleiro de Paus</a><a href="/carta-as-de-espadas"><span class="vira"><img src="/cartas/menores/ace-of-swords.webp" alt="Carta Ás de Espadas do baralho do Mestre Alberto — Escolha um Monte, monte 3" width="480" height="804" loading="lazy"><img class="costas" src="/cartas/verso-gt.webp" alt="" width="480" height="804" loading="lazy"></span>Ás de Espadas</a></div>
+    <p>Há momentos em que pensar mais já não ajuda, e este é um deles. O Ás de Espadas abre o caminho com uma lucidez rara: de repente, percebe sem rodeios o que precisa de fazer. O Cavaleiro de Paus traz o combustível — coragem, vontade, aquele impulso de agir já. Mas é <a class="li-gt" href="/arcano-07-o-carro">o Carro</a> que dá a direcção, lembrando que a vitória se ganha com foco e não com pressa desordenada. Forças contrárias podem puxar para lados opostos; a sua tarefa é segurar as rédeas e não desviar os olhos do destino. Esta combinação é um convite à decisão firme, seguida de acção consistente. O caminho abre-se à frente de quem se põe em marcha, e você tem tudo para o percorrer.</p>
+    <div class="areas"><div><b>💗 No amor</b>Se há uma conversa adiada, a energia favorece dizê-la com franqueza e carinho. Paixão não falta nestas cartas; falta, às vezes, paciência para que o outro acompanhe o seu ritmo. Avance, mas olhe para o lado de vez em quando.</div><div><b>💼 No trabalho e no dinheiro</b>Tempo de pôr em marcha aquilo que já está decidido. Projectos parados podem ganhar velocidade se assumir a liderança e cortar o que é acessório. Seja claro nos objectivos e firme nos prazos que dependem de si. A ousadia compensa quando tem método por trás.</div></div>
+    <p class="conselho"><b>O conselho da semana:</b> Decida com a cabeça, avance com o coração e não largue as rédeas a meio do caminho.</p>
+    <div class="outros"><button type="button" class="btn" data-ver="1">Ver o monte 1</button><button type="button" class="btn" data-ver="2">Ver o monte 2</button><a class="btn ouro" href="/tarot-gratis">🃏 Tirar as minhas cartas</a></div>
+  </section>
+  <section class="cartao texto">
+    <h2>O que é o Escolha um Monte</h2>
+    <p>O <b>Escolha um Monte</b> é uma tiragem coletiva de Tarot: em vez de baralhar as cartas só para si, escolhe entre três montes já preparados, cada um com três cartas e uma mensagem. Ficou famosa nos vídeos de Tarot, onde se pede a quem vê que escolha o monte 1, 2 ou 3 antes de o tarólogo revelar as cartas.</p>
+    <p>Aqui funciona da mesma forma, com o <a href="/tarot-gratis">baralho do Mestre Alberto</a>. Cada monte fala de uma energia diferente para a semana, no amor, no trabalho e no dinheiro, e fecha com um conselho. Os montes mudam todas as segundas-feiras.</p>
+    <h2>Perguntas frequentes</h2>
+    <h3>Como funciona o Escolha um Monte?</h3><p>Pense numa pergunta ou numa situação da sua vida, respire fundo e escolha o monte que mais o chama: o 1, o 2 ou o 3. Cada monte tem três cartas do baralho do Mestre Alberto e uma mensagem escrita para essa combinação. Não há monte certo nem errado: escolha pela intuição, sem pensar muito.</p><h3>A mensagem muda quando?</h3><p>Todas as segundas-feiras há três montes novos, com cartas e mensagens novas. As semanas que já passaram ficam guardadas no arquivo, no fim da página, para poder voltar a elas.</p><h3>Posso escolher mais do que um monte?</h3><p>Pode ler os três, mas a mensagem que é para si costuma ser a do monte que escolheu primeiro, sem pensar. Se os três lhe falarem, leia-os como um todo: o que se repete é o mais importante.</p><h3>É grátis?</h3><p>Sim. O Escolha um Monte é grátis e não precisa de dar o seu email. Se quiser uma leitura só sua, com as cartas tiradas para a sua pergunta, pode pedir uma consulta ao Mestre Alberto.</p><h3>As cartas saem ao acaso?</h3><p>Não: nesta tiragem coletiva, as cartas de cada monte são escolhidas e lidas em conjunto, semana a semana, para que cada mensagem tenha princípio, meio e fim. Para uma tiragem ao acaso, só para si, use o Tarot Grátis.</p>
+  </section>
+  
+  <section class="cartao chamada">
+    <h2>Quer uma leitura <span class="az">só sua</span>?</h2>
+    <p>O Escolha um Monte é uma mensagem para muitas pessoas ao mesmo tempo. Numa consulta, o Mestre Alberto tira as cartas para a sua pergunta e lê-as com a sua história.</p>
+    <div class="botoes"><a class="btn ouro" href="loja.html#cat-consultas">🔮 Marcar uma consulta</a></div>
+    <div class="ligas"><a href="/tarot-gratis">🃏 Tarot Grátis</a><a href="/tarot-sim-ou-nao">Tarot Sim ou Não</a><a href="/horoscopo-semanal">📅 Horóscopo Semanal</a><a href="/tarot-cigano">Tarot Cigano</a><a href="/tiragem-templo-de-afrodite">Templo de Afrodite</a></div>
+  </section>
+</div>
+<!-- gt-casa:inicio -->
+<aside class="gt-casa" aria-label="Genial Tarot — o site do Mestre Alberto"><style>
+.gt-casa{max-width:900px;margin:2.6rem auto 1.6rem;padding:0 14px;font-family:inherit}
+.gt-casa .gc-cx{position:relative;border-radius:22px;padding:1.6rem 1.4rem 1.4rem;overflow:hidden;color:#f7f0fb;text-align:center;
+ background:radial-gradient(120% 90% at 50% 0%,rgba(242,201,107,.20),transparent 60%),linear-gradient(160deg,#2a1245 0%,#1a0b30 55%,#120722 100%);
+ border:1px solid rgba(242,201,107,.45);box-shadow:0 18px 50px rgba(0,0,0,.35),inset 0 0 40px rgba(242,201,107,.06)}
+.gt-casa .gc-cx::before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 70%,rgba(242,201,107,.16) 80%,transparent 90%);animation:gc-gira 14s linear infinite;pointer-events:none}
+@keyframes gc-gira{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.gt-casa .gc-cx::before{animation:none}}
+.gt-casa .gc-in{position:relative}
+.gt-casa .gc-foto{width:92px;height:92px;border-radius:50%;object-fit:cover;border:3px solid #f2c96b;box-shadow:0 0 0 6px rgba(242,201,107,.15),0 8px 24px rgba(0,0,0,.4);display:block;margin:0 auto .7rem}
+.gt-casa .gc-sel{font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#f2c96b;opacity:.9}
+.gt-casa .gc-tit{font-family:Cinzel,Georgia,"Times New Roman",serif;font-size:clamp(1.25rem,3.6vw,1.75rem);margin:.35rem 0 .45rem;color:#ffe2a0;line-height:1.25}
+.gt-casa .gc-txt{margin:0 auto 1.1rem;max-width:560px;color:#e7dcf3;line-height:1.55;font-size:1rem}
+.gt-casa .gc-portas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 1.1rem}
+.gt-casa .gc-portas a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:.8rem .6rem;border-radius:14px;text-decoration:none;color:#f7f0fb;
+ background:rgba(255,255,255,.06);border:1px solid rgba(242,201,107,.22);transition:transform .2s,background .2s,border-color .2s}
+.gt-casa .gc-portas a:hover,.gt-casa .gc-portas a:focus-visible{transform:translateY(-3px);background:rgba(242,201,107,.13);border-color:#f2c96b}
+.gt-casa .gc-portas i{font-style:normal;font-size:1.6rem;line-height:1.2}
+.gt-casa .gc-portas b{font-size:.98rem;color:#ffe2a0}
+.gt-casa .gc-portas small{font-size:.8rem;color:#bfaed3}
+.gt-casa .gc-bot{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.gt-casa .gc-bot a{display:inline-block;padding:.75rem 1.3rem;border-radius:999px;font-weight:700;text-decoration:none;font-size:1rem}
+.gt-casa .gc-casa{background:linear-gradient(135deg,#ffe2a0,#f2c96b 55%,#d9a441);color:#2a1245;box-shadow:0 6px 18px rgba(242,201,107,.35)}
+.gt-casa .gc-wa{background:rgba(37,211,102,.16);color:#d8ffe6;border:1px solid rgba(37,211,102,.55)}
+.gt-casa .gc-bot a:hover{filter:brightness(1.08)}
+</style><div class="gc-cx"><div class="gc-in"><img class="gc-foto" src="/mestre-avatar.jpg" srcset="/mestre-avatar.jpg 1x, /mestre-avatar@2x.jpg 2x" width="92" height="92" alt="Mestre Alberto, tarólogo e astrólogo do Genial Tarot" loading="lazy" decoding="async"><div class="gc-sel">✦ Genial Tarot ✦</div><p class="gc-tit">Há 18 anos a ler o Tarot e os astros</p><p class="gc-txt">Este é o site do Mestre Alberto. Tire as cartas, leia o seu signo e descubra o que o céu diz de si — e quando precisar de uma resposta só sua, fale com ele numa consulta por videochamada.</p><nav class="gc-portas"><a href="/tarot-gratis"><i aria-hidden="true">🃏</i><b>Tarot Grátis</b><small>Tire as suas cartas agora</small></a><a href="/horoscopo-do-dia"><i aria-hidden="true">🔮</i><b>Horóscopo de Hoje</b><small>O seu signo, com o céu real</small></a><a href="/signos-do-zodiaco"><i aria-hidden="true">♈︎</i><b>Os 12 Signos</b><small>Personalidade, amor e datas</small></a><a href="/sonhos"><i aria-hidden="true">🌙</i><b>Sonhos</b><small>O que o seu sonho quer dizer</small></a></nav><div class="gc-bot"><a class="gc-casa" href="/">✨ Ir para a página inicial</a><a class="gc-wa" href="https://wa.me/351914920427" rel="noopener">💬 Marcar consulta</a></div></div></div></aside>
+<!-- gt-casa:fim -->
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a>
+</footer>
+<script>
+/* Escolha um Monte: escolher um monte → a leitura desse monte aparece e as três cartas viram-se */
+(function () {
+  var montes = document.getElementById("montes");
+  function abrir(n) {
+    document.querySelectorAll(".monte").forEach(function (b) { b.classList.toggle("este", b.dataset.m == n); });
+    montes.classList.add("escolhido");
+    document.querySelectorAll(".leitura-monte").forEach(function (s) { s.classList.remove("vista", "aberta"); });
+    var s = document.getElementById("monte-" + n);
+    s.classList.add("vista");
+    s.scrollIntoView({ behavior: "smooth", block: "start" });
+    setTimeout(function () { s.classList.add("aberta"); }, 450);
+  }
+  document.querySelectorAll(".monte").forEach(function (b) { b.addEventListener("click", function () { abrir(b.dataset.m); }); });
+  document.querySelectorAll("[data-ver]").forEach(function (b) { b.addEventListener("click", function () { abrir(b.dataset.ver); }); });
+})();
+</script>
+<script>
+/* 🎵 28/10/2026, pedido dele: a mesma música do Tarot Grátis e a continuar entre as páginas que a usam
+   (sessionStorage «mus_ambient»: se estava a tocar, retoma no mesmo segundo). Os navegadores não deixam tocar
+   com som antes do primeiro toque na página: aí arranca ao primeiro toque, clique ou deslizar. Cópia do tarot-gratis.html. */
+(function () {
+/* ============ Som ambiente ============ */
+const ambient = new Audio("ambient.mp3");
+ambient.loop = false; ambient.volume = 0.01; ambient.preload = "auto";
+const AMB_VOL = 0.01;
+let ambFade = null;
+function ambFadeIn(dur) {
+  dur = dur || 3500;
+  clearInterval(ambFade); ambient.volume = 0; let i = 0;
+  ambFade = setInterval(() => { i++; ambient.volume = Math.min(AMB_VOL, AMB_VOL * i / 35); if (i >= 35) clearInterval(ambFade); }, dur / 35);
+}
+
+// ===== Continuidade do som (mesma sessão) =====
+const AMB_KEY = "mus_ambient";
+let ambEstado = null;
+// 28/10/2026, pedido dele: continuidade em TODAS as páginas com esta música (também noutros separadores) — no
+// localStorage deste navegador; quem nunca cá esteve (outra pessoa, outro IP) começa do início; ao fim de 2 h também.
+try { ambEstado = JSON.parse(localStorage.getItem(AMB_KEY) || "null"); if (ambEstado && !(Date.now() - (ambEstado.t || 0) < 7200000)) ambEstado = null; } catch {}
+const tentaRestauroAmb = () => {
+  if (!(ambEstado && ambEstado.pos > 0) || !isFinite(ambient.duration) || ambient.duration <= 0) return;
+  if (ambEstado.pos >= ambient.duration - 1) { ambEstado.pos = 0; return; }
+  const alvo = ambEstado.pos;
+  for (let i = 0; i < ambient.seekable.length; i++) {
+    if (ambient.seekable.start(i) <= alvo && ambient.seekable.end(i) >= alvo) {
+      ambient.currentTime = alvo; ambEstado.pos = 0;
+      ["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.removeEventListener(ev, tentaRestauroAmb));
+      return;
+    }
+  }
+};
+["loadedmetadata", "canplay", "progress"].forEach(ev => ambient.addEventListener(ev, tentaRestauroAmb));
+const AMB_ID = Math.random().toString(36).slice(2);           // cada página aberta tem o seu id
+let ambDono = true;                                            // falso quando outra página tomou conta da música
+const guardaAmb = () => { if (!ambDono) return; try { localStorage.setItem(AMB_KEY, JSON.stringify({ on: !ambient.paused, pos: ambient.currentTime || 0, t: Date.now(), id: AMB_ID })); } catch {} };
+// Uma música só: quando outra página (outro separador) começa a tocar, esta cala-se; se a pessoa desliga noutra, desliga aqui.
+window.addEventListener("storage", (ev) => {
+  if (ev.key !== AMB_KEY || !ev.newValue) return;
+  try { const o = JSON.parse(ev.newValue); if (o.id !== AMB_ID) { ambDono = false; if (!ambient.paused) { ambient.pause(); setAmbientUI(false); } } } catch {}
+});
+window.addEventListener("pagehide", guardaAmb);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") guardaAmb(); });
+setInterval(() => { if (!ambient.paused) guardaAmb(); }, 2000);     // no telemóvel o «pagehide» nem sempre chega
+const fabOn = document.getElementById("afab-on"), fabOff = document.getElementById("afab-off"), fabLabel = document.getElementById("afab-label");
+let ambientOn = false;
+function setAmbientUI(on) {
+  ambientOn = on;
+  const b = document.getElementById("audio-fab");
+  b.classList.toggle("ligado", on);
+  b.classList.toggle("desligado", !on);
+  b.classList.toggle("som-chama", !on);
+}
+const ambRetoma = ambEstado && ambEstado.on ? 1200 : 3500;
+if (!ambEstado || ambEstado.on) ambient.play().then(() => { setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb(); }).catch(() => {
+  // 28/10/2026: no telemóvel só o dedo a LEVANTAR (touchend/pointerup/click) conta como toque para o som — touchstart e
+  // scroll não. E a escuta só sai depois de a música tocar mesmo (antes, a 1.ª tentativa falhada desligava-a).
+  const EVS = ["pointerup", "touchend", "click", "keydown", "mousedown"];
+  const unlock = async (ev) => {
+    if (ev && ev.target && ev.target.closest && ev.target.closest("#audio-fab")) return;   // o botão trata de si
+    if (!ambient.paused) return;
+    try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(ambRetoma); guardaAmb();
+          EVS.forEach(e => window.removeEventListener(e, unlock, true)); } catch { setAmbientUI(false); }
+  };
+  EVS.forEach(e => window.addEventListener(e, unlock, true));
+  setAmbientUI(false);
+});
+document.getElementById("audio-fab").addEventListener("click", async (e) => {
+  e.stopPropagation();
+  if (ambientOn && !ambient.paused) { ambient.pause(); setAmbientUI(false); guardaAmb(); return; }
+  try { ambDono = true; await ambient.play(); setAmbientUI(true); ambFadeIn(); guardaAmb(); } catch { setAmbientUI(false); }
+});
+})();
+</script>
+<script src="/vip-faixa.js" defer></script>
+<script src="/vivo.js" defer></script>
+</body>
+</html>
