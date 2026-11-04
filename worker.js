@@ -506,6 +506,8 @@ const PAGINAS = new Set([
   "/escolha-um-monte",
   // 04/11/2026: guia grátis para aprender astrologia (pesquisa «curso astrologia» a subir; NÃO é curso)
   "/aprender-astrologia",
+  // 04/11/2026: Astrocartografia (o mapa astral no mapa-mundo; «mapa cartografico astrologia» +6050 % no Brasil)
+  "/astrocartografia",
 ]);
 
 function contarVisita(request, url, env, ctx) {

@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Astrocartografia (04/11/2026) — RASCUNHO, à espera do OK dele. Responde à pesquisa «mapa cartografico astrologia»
+     (+6050 % no Brasil, radar de temas). Mesma linguagem visual do Mapa Astral (azul-noite e dourado).
+     O cálculo é todo no navegador: astrocarto-calc.js (conferido contra o Swiss Ephemeris, pior diferença 0,16°).
+     Terra: mundo-terra.json (Natural Earth 110m, domínio público). Cidades: astrocarto-cidades.js (gerado por astrocarto-cidades.py). -->
+<title>Astrocartografia grátis: o seu mapa astral no mapa-mundo</title>
+<meta name="description" content="Veja no mapa-mundo onde passam as linhas do Sol, da Lua, de Vénus e de Júpiter do seu mapa astral, e que cidades ficam perto delas. Astrocartografia grátis." />
+<link rel="canonical" href="https://genialtarot.com/astrocartografia" />
+<meta property="og:url" content="https://genialtarot.com/astrocartografia" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Astrocartografia grátis: o seu mapa astral no mapa-mundo" />
+<meta property="og:description" content="Veja no mapa-mundo onde passam as linhas do Sol, da Lua, de Vénus e de Júpiter do seu mapa astral, e que cidades ficam perto delas. Astrocartografia grátis." />
+<meta property="og:image" content="https://genialtarot.com/astrocartografia-og.jpg" />
+<meta property="og:image:alt" content="Astrocartografia: mapa-mundo escuro com as linhas douradas dos planetas a atravessar os continentes" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#1c1a4a" />
+<link rel="icon" href="favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============ Base: a mesma folha do Mapa do Amor (21/10/2026); as cores do Mapa Astral vêm mais abaixo ============ */
+:root {
+  --fundo: oklch(0.17 0.06 305);
+  --fundo-2: oklch(0.23 0.08 305);
+  --texto: oklch(0.97 0.015 315);
+  --suave: oklch(0.84 0.05 310);
+  --lilas: oklch(0.74 0.14 310);
+  --lilas-claro: oklch(0.86 0.09 312);
+  --lavanda: oklch(0.92 0.05 310);
+  --ameixa: oklch(0.40 0.15 310);
+  --ouro: oklch(0.85 0.13 88);
+  --rosa: oklch(0.78 0.13 355);
+  --borda: oklch(0.75 0.12 310 / 0.35);
+  --vidro: oklch(0.30 0.09 305 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.80 0.12 320), oklch(0.66 0.18 300) 55%, oklch(0.55 0.19 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.84 0.11 355), oklch(0.70 0.17 340) 55%, oklch(0.60 0.19 315));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif;
+  --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.40 0.16 320) 0%, oklch(0.20 0.08 305) 45%, oklch(0.12 0.05 300) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden;
+}
+a { color: var(--lilas-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent),
+    radial-gradient(1px 1px at 5% 60%, #fff7, transparent), radial-gradient(1px 1px at 55% 8%, #fff8, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(68rem, 100% - 2rem); margin: 0 auto; }
+
+/* topo */
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+/* 21/10/2026: a pílula «‹ genialtarot.com» igual às outras páginas (pedido dele) */
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 290 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); backdrop-filter: blur(10px); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: oklch(0.85 0.13 88); }
+.marca { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--texto); }
+.marca b { font-family: var(--titulo); font-size: 1.15rem; letter-spacing: .04em; background: var(--grad-lilas); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.marca small { display: block; font-size: .72rem; color: var(--suave); letter-spacing: .12em; text-transform: uppercase; }
+.voltar { font-size: .85rem; color: var(--suave); text-decoration: none; border: 1px solid var(--borda); border-radius: 999px; padding: .4rem .9rem; }
+
+/* herói */
+.heroi { display: grid; grid-template-columns: 1fr; gap: 1.5rem; align-items: center; text-align: center; padding: 1rem 0 2rem; }
+@media (min-width: 860px) { .heroi { grid-template-columns: 1.05fr 1fr; text-align: left; } }
+.selo { display: inline-flex; align-items: center; gap: .4rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: oklch(0.22 0.06 300); background: var(--grad-ouro); border-radius: 999px; padding: .35rem .9rem; box-shadow: 0 0 22px oklch(0.85 0.13 88 / .45); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+h1 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 34rem; margin: 0 auto 1rem; }
+@media (min-width: 860px) { .sub { margin-left: 0; } }
+.pontos { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: .8rem 0 1.2rem; padding: 0; list-style: none; }
+@media (min-width: 860px) { .pontos { justify-content: flex-start; } }
+.pontos li { font-size: .82rem; background: var(--vidro); border: 1px solid var(--borda); border-radius: 999px; padding: .35rem .8rem; }
+.btn-grande { display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; text-decoration: none; font-weight: 800; font-size: 1.05rem;
+  color: white; background: var(--grad-lilas); border-radius: 999px; padding: .95rem 1.7rem; box-shadow: 0 10px 30px oklch(0.55 0.19 300 / .5), inset 0 1px 0 #fff5;
+  transition: transform .2s, box-shadow .2s; }
+.btn-grande:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 14px 40px oklch(0.60 0.2 305 / .65); }
+
+/* a roda do zodíaco à volta da foto */
+.roda-wrap { position: relative; width: min(26rem, 88vw); aspect-ratio: 1; margin: 0 auto; }
+.roda { position: absolute; inset: 0; border-radius: 50%; animation: gira 60s linear infinite;
+  background: conic-gradient(from 0deg, oklch(0.72 0.15 345 / .35), oklch(0.55 0.18 300 / .2), oklch(0.80 0.10 320 / .35), oklch(0.55 0.18 300 / .2), oklch(0.72 0.15 345 / .35));
+  box-shadow: 0 0 60px oklch(0.72 0.16 335 / .45), inset 0 0 40px oklch(0.30 0.10 300 / .6); }
+.roda span { position: absolute; left: 50%; top: 50%; width: 2.2rem; height: 2.2rem; margin: -1.1rem 0 0 -1.1rem; display: grid; place-items: center;
+  font-size: 1.35rem; color: var(--ouro); text-shadow: 0 0 10px oklch(0.85 0.13 88 / .8); }
+@keyframes gira { to { transform: rotate(360deg); } }
+.foto-anel { position: absolute; inset: 15%; border-radius: 50%; overflow: hidden; border: 4px solid oklch(0.86 0.09 330);
+  box-shadow: 0 0 0 6px oklch(0.55 0.18 320 / .5), 0 20px 50px #0008; }
+.foto-anel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* cartões */
+.cartao { background: linear-gradient(160deg, oklch(0.32 0.10 308 / .82), oklch(0.22 0.08 300 / .9)); border: 1px solid var(--borda);
+  border-radius: 1.4rem; padding: clamp(1.2rem, 3vw, 2rem); box-shadow: 0 20px 60px #0007, inset 0 1px 0 #ffffff14; backdrop-filter: blur(6px); }
+h2 { font-family: var(--titulo); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.1rem); margin: 0 0 .4rem; text-align: center; }
+h2 .lil { background: var(--grad-rosa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cartao > p.int { text-align: center; color: var(--suave); margin: 0 auto 1.3rem; max-width: 36rem; }
+
+/* formulário (o mesmo da calculadora de Ascendente, sem email: aqui nada sai do aparelho) */
+.grelha { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 680px) { .grelha { grid-template-columns: 1fr 1fr; } .largo { grid-column: 1 / -1; } }
+label.campo { display: flex; flex-direction: column; gap: .35rem; font-size: .88rem; font-weight: 600; color: var(--lavanda); }
+label.campo small { font-weight: 400; color: var(--suave); }
+input[type=text], input[type=email], input[type=tel] {
+  width: 100%; font: inherit; font-size: 1rem; color: var(--texto); background: oklch(0.16 0.05 300 / .75); border: 1.5px solid var(--borda);
+  border-radius: .8rem; padding: .8rem .9rem; outline: none; transition: border-color .2s, box-shadow .2s; color-scheme: dark; }
+input:focus { border-color: var(--lilas); box-shadow: 0 0 0 4px oklch(0.74 0.14 310 / .25); }
+input:disabled { opacity: .45; }
+.lista-cid { position: absolute; z-index: 20; left: 0; right: 0; top: 100%; margin-top: .25rem; max-height: 15rem; overflow-y: auto;
+  background: oklch(0.24 0.08 305); border: 1px solid var(--borda); border-radius: .8rem; box-shadow: 0 14px 40px #000a; display: none; }
+.lista-cid.aberta { display: block; }
+.lista-cid button { display: block; width: 100%; text-align: left; border: 0; background: none; color: var(--texto); font: inherit; font-size: .92rem; padding: .6rem .9rem; cursor: pointer; }
+.lista-cid button:hover, .lista-cid button.ativo { background: oklch(0.40 0.14 310 / .6); }
+.lista-cid button small { color: var(--suave); }
+.rel { position: relative; }
+.marca-ok { font-size: .8rem; color: oklch(0.85 0.14 150); min-height: 1.1em; }
+.caixinha { display: flex; gap: .6rem; align-items: flex-start; font-size: .84rem; color: var(--suave); font-weight: 400; }
+.caixinha input { margin-top: .2rem; accent-color: var(--lilas); width: 1.05rem; height: 1.05rem; flex: none; }
+.erro { display: none; margin-top: .9rem; padding: .7rem .9rem; border-radius: .8rem; background: oklch(0.40 0.14 20 / .35); border: 1px solid oklch(0.65 0.18 20 / .6); font-size: .9rem; }
+.erro.ver { display: block; }
+.enviar { display: flex; justify-content: center; margin-top: 1.3rem; }
+.nota-priv { text-align: center; font-size: .76rem; color: var(--suave); margin-top: .8rem; }
+/* resultado */
+#resultado { display: none; scroll-margin-top: 1rem; }
+#resultado.ver { display: block; animation: surgir .7s ease-out; border-color: oklch(0.82 0.11 330 / .7); }
+@keyframes surgir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+/* consulta */
+.consulta { display: grid; gap: 1.4rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 860px) { .consulta { grid-template-columns: 0.8fr 1.2fr; } }
+.consulta-foto { border-radius: 1.3rem; overflow: hidden; border: 3px solid oklch(0.80 0.11 312); box-shadow: 0 20px 50px #0009, 0 0 40px oklch(0.65 0.17 305 / .4); max-width: 22rem; margin: 0 auto; }
+.consulta-foto img { display: block; width: 100%; height: auto; }
+.consulta h2 { text-align: left; }
+@media (max-width: 859px) { .consulta h2, .consulta .gancho, .consulta .botoes { text-align: center; justify-content: center; } }
+.gancho { font-family: var(--serifa); font-size: 1.2rem; color: var(--lavanda); margin: .2rem 0 1rem; }
+.botoes { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; }
+.btn-wa { display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; font-weight: 700; color: white; background: #25D366; border-radius: 999px; padding: .7rem 1.2rem; }
+section { margin: 0 0 2.2rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+/* ============ Mapa Astral — azul-noite e dourado (21/10/2026) ============ */
+:root {
+  --fundo: oklch(0.16 0.06 270);
+  --suave: oklch(0.84 0.04 265);
+  --lilas: oklch(0.74 0.12 270);
+  --lilas-claro: oklch(0.86 0.08 265);
+  --lavanda: oklch(0.93 0.04 265);
+  --rosa: oklch(0.85 0.13 88);
+  --borda: oklch(0.75 0.10 270 / 0.35);
+  --vidro: oklch(0.28 0.08 270 / 0.55);
+  --grad-lilas: linear-gradient(135deg, oklch(0.72 0.13 260), oklch(0.58 0.17 280) 55%, oklch(0.48 0.18 290));
+  --grad-rosa: linear-gradient(135deg, oklch(0.93 0.10 92), oklch(0.80 0.14 80) 55%, oklch(0.70 0.14 60));
+}
+body { background: radial-gradient(ellipse at top, oklch(0.38 0.14 275) 0%, oklch(0.20 0.08 270) 45%, oklch(0.11 0.04 265) 100%) fixed, var(--fundo); }
+.roda { background: conic-gradient(from 0deg, oklch(0.70 0.13 260 / .35), oklch(0.50 0.16 285 / .2), oklch(0.85 0.12 88 / .3), oklch(0.50 0.16 285 / .2), oklch(0.70 0.13 260 / .35));
+  box-shadow: 0 0 60px oklch(0.70 0.14 265 / .45), inset 0 0 40px oklch(0.25 0.08 270 / .6); }
+.foto-anel { border-color: oklch(0.88 0.12 88); box-shadow: 0 0 0 6px oklch(0.50 0.16 275 / .5), 0 20px 50px #0008; }
+.cartao { background: linear-gradient(160deg, oklch(0.30 0.09 272 / .82), oklch(0.20 0.07 268 / .9)); }
+#resultado.ver { border-color: oklch(0.85 0.11 88 / .55); }
+.tema, .capitulos li { background: oklch(0.17 0.05 268 / .6); }
+
+/* ============ Astrocartografia (04/11/2026) ============ */
+#resultado, .previa { background: linear-gradient(160deg, oklch(0.29 0.09 272), oklch(0.20 0.07 268)); backdrop-filter: none; -webkit-backdrop-filter: none; }
+#resultado p { color: oklch(0.98 0.01 265); }
+.mini-mapa { position: relative; border-radius: 1.4rem; overflow: hidden; border: 1px solid oklch(0.85 0.11 88 / .5);
+  box-shadow: 0 0 50px oklch(0.60 0.15 270 / .45), 0 20px 50px #0008; background: radial-gradient(ellipse at 50% 30%, #1d2560, #0b0f2e 75%); }
+.mini-mapa svg { display: block; width: 100%; height: auto; }
+.mini-mapa .rotulo-mini { position: absolute; left: .9rem; bottom: .7rem; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ouro); opacity: .9; }
+.mini-mapa .traco { stroke-dasharray: 2200; stroke-dashoffset: 2200; animation: traca 3.2s ease-out forwards; }
+.mini-mapa .traco:nth-of-type(2) { animation-delay: .6s; } .mini-mapa .traco:nth-of-type(3) { animation-delay: 1.2s; }
+@keyframes traca { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .mini-mapa .traco { animation: none; stroke-dashoffset: 0; } }
+
+/* o mapa-mundo do resultado */
+.mapa-caixa { position: relative; margin: 1rem calc(-1 * clamp(1.2rem, 3vw, 2rem)) 0; background: #0a0e2a; border-top: 1px solid var(--borda); border-bottom: 1px solid var(--borda); }
+@media (min-width: 860px) { .mapa-caixa { margin: 1rem 0 0; border: 1px solid oklch(0.85 0.11 88 / .45); border-radius: 1rem; overflow: hidden; } }
+#mundo { display: block; width: 100%; aspect-ratio: 5 / 4; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+@media (min-width: 560px) { #mundo { aspect-ratio: 16 / 9; } }
+@media (min-width: 860px) { #mundo { aspect-ratio: 2.3 / 1; } }
+#mundo.perto { touch-action: none; }
+#mundo.arrasta { cursor: grabbing; }
+#mundo .terra { fill: oklch(0.33 0.05 268); stroke: oklch(0.55 0.06 268); stroke-width: .6; vector-effect: non-scaling-stroke; }
+#mundo .rede { stroke: oklch(0.45 0.06 268 / .45); stroke-width: .6; vector-effect: non-scaling-stroke; fill: none; }
+#mundo .equador { stroke: oklch(0.65 0.08 88 / .45); stroke-dasharray: 4 4; }
+#mundo .linha { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+#mundo .l-mc { stroke-width: 2.4; } #mundo .l-ic { stroke-width: 1.6; opacity: .7; }
+#mundo .l-asc { stroke-width: 2.2; } #mundo .l-dsc { stroke-width: 1.8; stroke-dasharray: 7 5; }
+#mundo .brilho-l { stroke-width: 7; opacity: .16; }
+#mundo .rot { font-family: Inter, system-ui, sans-serif; font-weight: 800; paint-order: stroke; stroke: #0a0e2a; stroke-linejoin: round; }
+#mundo .nasc-txt { font-family: Inter, system-ui, sans-serif; font-weight: 700; fill: #fff6d8; paint-order: stroke; stroke: #0a0e2a; }
+#mundo .pulso { animation: pulsa 2s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes pulsa { from { opacity: .9; transform: scale(.4); } to { opacity: 0; transform: scale(1.6); } }
+.zoom { position: absolute; right: .6rem; top: .6rem; display: flex; flex-direction: column; gap: .35rem; }
+.zoom button { width: 2.4rem; height: 2.4rem; border-radius: .7rem; border: 1px solid oklch(0.85 0.11 88 / .55); background: oklch(0.20 0.07 268 / .88); color: var(--ouro);
+  font: 800 1.25rem/1 Inter, system-ui, sans-serif; cursor: pointer; display: grid; place-items: center; }
+.zoom button:hover { background: oklch(0.30 0.10 270); }
+.zoom button.mundo-todo { font-size: 1.05rem; }
+.dica-mapa { text-align: center; font-size: .76rem; color: var(--suave); margin: .45rem 0 0; }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .4rem; margin: .9rem 0 .2rem; }
+.chip-p { display: inline-flex; align-items: center; gap: .35rem; border-radius: 999px; padding: .32rem .7rem .32rem .55rem; font: 600 .82rem Inter, system-ui, sans-serif;
+  color: var(--texto); background: oklch(0.18 0.06 268); border: 1.5px solid var(--cor); cursor: pointer; transition: opacity .2s, transform .15s; }
+.chip-p b { color: var(--cor); font-size: 1.05rem; line-height: 1; }
+.chip-p[aria-pressed="false"] { opacity: .38; border-style: dashed; }
+.chip-p:hover { transform: translateY(-1px); }
+.chip-p.extra[hidden] { display: none; }
+.tipos { display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem 1.1rem; font-size: .76rem; color: var(--suave); margin: .5rem 0 0; }
+.tipos svg { width: 1.8rem; height: .6rem; vertical-align: middle; margin-right: .3rem; }
+.mais-planetas { display: block; margin: .6rem auto 0; background: none; border: 0; color: var(--lilas-claro); font: 600 .82rem Inter, system-ui, sans-serif; text-decoration: underline; cursor: pointer; }
+.no-lugar { max-width: 40rem; margin: 1.2rem auto 0; text-align: center; border-radius: 1.1rem; padding: 1rem 1.1rem; background: oklch(0.22 0.08 270 / .7); border: 1px solid oklch(0.85 0.11 88 / .5); }
+.no-lugar b { color: var(--ouro); }
+.sub-res { font-family: var(--titulo); text-align: center; font-size: clamp(1.15rem, 3.4vw, 1.4rem); color: var(--ouro); margin: 1.8rem 0 .3rem; }
+#calcular h2, #resultado h2 { line-height: 1.2; }
+@media (max-width: 520px) { h1 { font-size: 1.85rem; } }
+.sub-int { text-align: center; color: var(--suave); font-size: .88rem; margin: 0 auto .9rem; max-width: 34rem; }
+.cidades-boas { display: grid; gap: .7rem; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .cidades-boas { grid-template-columns: 1fr 1fr; } }
+.linha-boa { border-radius: 1rem; padding: .9rem 1rem; background: oklch(0.20 0.06 268); border: 1px solid var(--borda); border-left: 4px solid var(--cor); }
+.linha-boa h3 { margin: 0 0 .25rem; font-family: var(--titulo); font-size: 1.02rem; color: var(--lavanda); }
+.linha-boa h3 b { color: var(--cor); font-size: 1.2rem; margin-right: .2rem; }
+.linha-boa p { margin: 0 0 .55rem; font-size: .88rem; color: oklch(0.92 0.03 265) !important; }
+.linha-boa ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; }
+.linha-boa li { font-size: .8rem; border-radius: 999px; padding: .22rem .6rem; background: oklch(0.28 0.08 270); border: 1px solid var(--borda); }
+.linha-boa li small { color: var(--suave); }
+.linha-boa .nada { font-size: .82rem; color: var(--suave); font-style: italic; }
+.planetas-grelha { display: grid; gap: .7rem; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .planetas-grelha { grid-template-columns: 1fr 1fr; } }
+.pl { display: grid; grid-template-columns: 2.6rem 1fr; gap: .2rem .8rem; align-items: start; border-radius: 1rem; padding: .85rem 1rem; background: oklch(0.20 0.06 268); border: 1px solid var(--borda); }
+.pl .g { grid-row: span 3; font-size: 1.9rem; line-height: 1.1; color: var(--cor); text-align: center; text-shadow: 0 0 14px var(--cor); }
+.pl h3 { margin: 0; font-family: var(--titulo); font-size: 1.02rem; color: var(--lavanda); }
+.pl h3 small { font-family: Inter, system-ui, sans-serif; font-weight: 500; font-size: .76rem; color: var(--suave); margin-left: .25rem; }
+.pl p { margin: .1rem 0 0; font-size: .88rem; }
+.pl .onde { font-size: .78rem; color: var(--suave) !important; }
+.angulos { display: grid; gap: .6rem; grid-template-columns: 1fr 1fr; }
+@media (min-width: 860px) { .angulos { grid-template-columns: repeat(4, 1fr); } }
+.ang { border-radius: 1rem; padding: .8rem .85rem; background: oklch(0.18 0.05 268 / .8); border: 1px solid var(--borda); text-align: center; }
+.ang .sig { font-family: var(--titulo); font-size: 1.35rem; font-weight: 700; color: var(--ouro); }
+.ang .nm { display: block; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--suave); margin-bottom: .3rem; }
+.ang p { margin: 0; font-size: .84rem; line-height: 1.45; }
+.dados-nasc { text-align: center; font-size: .82rem; color: var(--suave); margin-top: 1.2rem; }
+.prudencia { text-align: center; font-size: .78rem; color: var(--suave); margin: .6rem auto 0; max-width: 36rem; }
+
+/* o texto útil */
+.texto { max-width: 760px; margin-left: auto; margin-right: auto; }
+.texto h2 { text-align: left; margin-top: 1.6rem; }
+.texto h2:first-child { margin-top: 0; }
+.texto p, .texto li { font-family: var(--serifa); font-size: 1.16rem; line-height: 1.65; color: var(--lavanda); }
+.texto strong { color: var(--ouro); font-weight: 700; }
+.texto ul { padding-left: 1.2rem; }
+</style>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+ {"@type": "WebPage", "@id": "https://genialtarot.com/astrocartografia#pagina", "name": "Astrocartografia grátis: o seu mapa astral no mapa-mundo", "description": "Veja no mapa-mundo onde passam as linhas do Sol, da Lua, de Vénus e de Júpiter do seu mapa astral, e que cidades ficam perto delas. Astrocartografia grátis.", "url": "https://genialtarot.com/astrocartografia", "inLanguage": "pt", "isPartOf": {"@type": "WebSite", "name": "Genial Tarot", "url": "https://genialtarot.com/"}, "author": {"@type": "Person", "name": "Mestre Alberto", "url": "https://genialtarot.com/sobre"}, "primaryImageOfPage": {"@type": "ImageObject", "url": "https://genialtarot.com/astrocartografia-og.jpg", "width": 1200, "height": 630}},
+ {"@type": "WebApplication", "name": "Astrocartografia — Genial Tarot", "alternateName": ["Mapa cartográfico astrológico", "Mapa astrocartográfico"], "url": "https://genialtarot.com/astrocartografia", "applicationCategory": "LifestyleApplication", "operatingSystem": "Qualquer navegador", "browserRequirements": "Requer JavaScript", "inLanguage": "pt", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "description": "Calcula as linhas do Meio do Céu, Fundo do Céu, Ascendente e Descendente dos planetas do seu mapa astral e desenha-as sobre o mapa-mundo, com as cidades que ficam perto das linhas de Vénus e de Júpiter.", "author": {"@type": "Person", "name": "Mestre Alberto", "url": "https://genialtarot.com/sobre"}},
+ {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://genialtarot.com/"}, {"@type": "ListItem", "position": 2, "name": "Astrologia", "item": "https://genialtarot.com/astrologia"}, {"@type": "ListItem", "position": 3, "name": "Astrocartografia", "item": "https://genialtarot.com/astrocartografia"}]}
+]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é a astrocartografia?", "acceptedAnswer": {"@type": "Answer", "text": "É o mapa astral desenhado sobre o mapa-mundo. Para o minuto em que você nasceu, calcula-se em que lugares da Terra cada planeta estava a nascer, a culminar, a pôr-se ou no fundo do céu. Esses lugares formam linhas, e cada linha costuma trazer o tema do seu planeta para a vida de quem vive ou passa por lá."}}, {"@type": "Question", "name": "Preciso da hora exacta de nascimento?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. A Terra roda um grau a cada quatro minutos, por isso quatro minutos de erro deslocam todas as linhas cerca de 100 km. Use a hora que está na certidão de nascimento. Sem hora não há astrocartografia: as linhas podiam estar em qualquer ponto do mundo."}}, {"@type": "Question", "name": "O que é a linha de Vénus?", "acceptedAnswer": {"@type": "Answer", "text": "É o caminho, no mapa-mundo, dos lugares onde Vénus estava num dos quatro ângulos do céu quando você nasceu. Vénus é o planeta do amor, da beleza e do prazer: perto da sua linha, a vida social e afectiva costuma ficar mais fácil. No Descendente tende a favorecer relações; no Meio do Céu, a imagem pública e os trabalhos ligados à arte ou às pessoas."}}, {"@type": "Question", "name": "Mudar de país muda o meu destino?", "acceptedAnswer": {"@type": "Answer", "text": "Não muda quem você é: o seu signo, a sua Lua e o seu mapa de nascimento são os mesmos em qualquer lugar. O que muda é o planeta que fica em destaque. Viver perto de uma linha tende a pôr esse tema mais à vista. É uma pista para reflectir, não uma ordem para fazer as malas, e as decisões continuam a ser suas."}}, {"@type": "Question", "name": "A astrocartografia é grátis?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. O mapa-mundo com as suas linhas, as cidades perto de Vénus e de Júpiter e a leitura planeta a planeta são grátis, e o cálculo é feito no seu próprio telemóvel ou computador. Se quiser uma leitura pessoal, pode marcar uma consulta com o Mestre Alberto."}}, {"@type": "Question", "name": "Mapa cartográfico astrológico é o mesmo que astrocartografia?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. Mapa cartográfico astrológico, mapa astrocartográfico, astrocartografia e, em inglês, Astro*Carto*Graphy são nomes para a mesma técnica: projectar as linhas dos planetas do seu mapa astral sobre o mapa-mundo."}}]}
+</script>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+
+  <section class="heroi">
+    <div>
+      <span class="selo">✦ Grátis · calculado ao minuto ✦</span>
+      <h1>Astrocartografia: o seu mapa astral no <span class="lil">mapa-mundo</span></h1>
+      <p class="sub">No minuto em que você nasceu, cada planeta estava a nascer, a culminar ou a pôr-se num sítio diferente da Terra. A astrocartografia desenha esses sítios no mapa-mundo: veja onde passam as suas linhas de Vénus, de Júpiter e dos outros planetas.</p>
+      <ul class="pontos">
+        <li>🗺️ Mapa-mundo com as suas linhas</li><li>♀&#xFE0E; Vénus e ♃&#xFE0E; Júpiter</li><li>📍 Cidades perto das linhas</li>
+      </ul>
+      <a class="btn-grande" href="#calcular">✨ Ver o meu mapa no mundo</a>
+    </div>
+    <div class="mini-mapa" aria-hidden="true">
+      <svg id="mini" viewBox="0 120 3600 1380"></svg>
+      <span class="rotulo-mini">✦ exemplo de astrocartografia</span>
+    </div>
+  </section>
+
+  <section id="calcular" class="cartao">
+    <h2>O céu do seu <span class="lil">nascimento</span></h2>
+    <p class="int">Preencha com os dados do seu nascimento. Aqui a hora conta muito: <b>quatro minutos de diferença mudam as linhas cerca de 100 km</b>. Use a hora da certidão.</p>
+    <form id="form" novalidate>
+      <div class="grelha">
+        <label class="campo largo">O seu primeiro nome
+          <input type="text" id="nome" autocomplete="given-name" required maxlength="80" />
+        </label>
+        <label class="campo">Data de nascimento <small>(dia/mês/ano, ex.: 15/03/1990)</small>
+          <input type="text" id="data" required inputmode="numeric" autocomplete="off" maxlength="22" placeholder="DD/MM/AAAA" />
+        </label>
+        <label class="campo">Hora de nascimento <small>(a que está na certidão)</small>
+          <input type="text" id="hora" required inputmode="numeric" autocomplete="off" maxlength="12" placeholder="HH:MM (ex.: 14:30)" />
+        </label>
+        <div class="campo largo rel">
+          <label class="campo" for="cidade">Cidade onde nasceu <small>(escreva e escolha na lista)</small></label>
+          <input type="text" id="cidade" autocomplete="off" required />
+          <div class="lista-cid" id="lista-cid" role="listbox"></div>
+          <div class="marca-ok" id="cidade-ok"></div>
+        </div>
+      </div>
+      <div class="erro" id="erro" role="alert"></div>
+      <div class="enviar"><button class="btn-grande" type="submit" id="btn-calc">🗺️ Desenhar o meu mapa no mundo</button></div>
+      <p class="nota-priv">🔒 O cálculo é feito no seu telemóvel ou computador. Os seus dados não são enviados a ninguém.</p>
+    </form>
+  </section>
+
+  <section id="resultado" class="cartao" aria-live="polite">
+    <h2 id="res-titulo">As suas linhas no <span class="lil">mapa-mundo</span></h2>
+    <div class="mapa-caixa">
+      <svg id="mundo" role="img" aria-label="Mapa-mundo com as linhas dos planetas do seu mapa astral"></svg>
+      <div class="zoom">
+        <button type="button" id="z-mais" aria-label="Aproximar">+</button>
+        <button type="button" id="z-menos" aria-label="Afastar">−</button>
+        <button type="button" id="z-mundo" class="mundo-todo" aria-label="Ver o mundo todo">🌍</button>
+      </div>
+    </div>
+    <p class="dica-mapa">Arraste para os lados para ver o resto do mundo · use + e − para aproximar · toque num planeta para o mostrar ou esconder</p>
+    <div class="chips" id="chips"></div>
+    <button type="button" class="mais-planetas" id="mais-planetas">+ mostrar também Urano, Neptuno e Plutão</button>
+    <div class="tipos">
+      <span><svg viewBox="0 0 30 10"><line x1="2" y1="5" x2="28" y2="5" stroke="#f3d27a" stroke-width="3"/></svg>MC · Meio do Céu</span>
+      <span><svg viewBox="0 0 30 10"><line x1="2" y1="5" x2="28" y2="5" stroke="#f3d27a" stroke-width="2" opacity=".7"/></svg>IC · Fundo do Céu</span>
+      <span><svg viewBox="0 0 30 10"><path d="M2 8 Q15 0 28 8" fill="none" stroke="#f3d27a" stroke-width="2.6"/></svg>AC · Ascendente</span>
+      <span><svg viewBox="0 0 30 10"><path d="M2 8 Q15 0 28 8" fill="none" stroke="#f3d27a" stroke-width="2" stroke-dasharray="5 3"/></svg>DC · Descendente</span>
+    </div>
+    <div class="no-lugar" id="no-lugar"></div>
+
+    <h3 class="sub-res" id="h-boas">Cidades perto das suas linhas de Vénus e Júpiter</h3>
+    <p class="sub-int">As linhas costumam sentir-se até cerca de 500 km para cada lado. Estas são as cidades conhecidas que ficam dentro dessa faixa.</p>
+    <div class="cidades-boas" id="cidades-boas"></div>
+
+    <h3 class="sub-res">As suas linhas, planeta a planeta</h3>
+    <p class="sub-int">O signo de cada planeta no seu mapa e o que a linha dele costuma trazer aos lugares por onde passa.</p>
+    <div class="planetas-grelha" id="planetas-grelha"></div>
+
+    <h3 class="sub-res">Os quatro ângulos</h3>
+    <div class="angulos">
+      <div class="ang"><span class="sig">MC</span><span class="nm">Meio do Céu</span><p>Carreira, imagem pública e reputação: o planeta está no ponto mais alto do céu.</p></div>
+      <div class="ang"><span class="sig">IC</span><span class="nm">Fundo do Céu</span><p>Lar, raízes, família e vida privada: o planeta está por baixo dos seus pés.</p></div>
+      <div class="ang"><span class="sig">AC</span><span class="nm">Ascendente</span><p>O eu, a presença física e a maneira de chegar aos outros: o planeta está a nascer.</p></div>
+      <div class="ang"><span class="sig">DC</span><span class="nm">Descendente</span><p>Relações, casamento, sócios e parcerias: o planeta está a pôr-se.</p></div>
+    </div>
+    <p class="dados-nasc" id="dados-nasc"></p>
+    <p class="prudencia">A astrocartografia é uma leitura simbólica: mostra tendências, não decide por si. Nenhum lugar é bom ou mau para toda a gente.</p>
+  </section>
+
+  <section class="cartao texto" id="o-que-e">
+    <h2>Astrocartografia: o que é</h2>
+    <p>A <strong>astrocartografia</strong> é o mapa astral posto em cima do mapa-mundo. O seu <a href="/mapa-astral">mapa astral</a> mostra onde estavam os planetas no minuto em que nasceu, vistos do sítio onde nasceu. Mas, nesse mesmo minuto, alguém noutro país via o mesmo céu de outro ângulo: em Lisboa <a class="li-gt" href="/planeta-sol">o Sol</a> podia estar a pôr-se, no Rio de Janeiro ainda alto, em Tóquio já de noite. A astrocartografia pergunta: <em>em que lugares da Terra cada planeta estava exactamente num dos quatro ângulos do céu?</em> A resposta são linhas que atravessam os continentes.</p>
+    <p>A ideia foi popularizada nos anos 70 pelo astrólogo norte-americano Jim Lewis, que lhe chamou <em>Astro*Carto*Graphy</em>. Hoje é usada por quem pensa em emigrar, estudar fora, mudar de cidade ou escolher onde passar uma temporada, e por quem simplesmente quer perceber porque se sentiu tão bem (ou tão desconfortável) num certo país.</p>
+
+    <h2>O mapa cartográfico astrológico, passo a passo</h2>
+    <p>No Brasil diz-se muitas vezes <strong>mapa cartográfico astrológico</strong> ou mapa astrocartográfico; é a mesma coisa. Para o desenhar, calculamos a posição de cada planeta no minuto do seu nascimento e vemos em que meridiano ele estava a culminar (a linha do Meio do Céu) e, latitude a latitude, onde estava a nascer no horizonte (Ascendente) ou a pôr-se (Descendente). As linhas do Meio do Céu e do Fundo do Céu são rectas de norte a sul; as do Ascendente e do Descendente são curvas, porque o horizonte muda com a latitude.</p>
+    <p>Usamos linhas zodiacais: cada planeta é medido pela sua posição no zodíaco, como no mapa astral, sem a pequena inclinação da órbita dele. As contas foram conferidas contra o Swiss Ephemeris, a referência dos programas de astrologia, com uma diferença máxima de um sexto de grau.</p>
+
+    <h2>Como ler as linhas</h2>
+    <p>Comece pelos planetas que lhe interessam e pelo tipo de linha:</p>
+    <ul>
+      <li><strong>Meio do Céu (MC)</strong>: o planeta fala da sua carreira e da forma como o mundo o(a) vê. Uma linha de Júpiter no MC costuma ser procurada por quem quer crescer profissionalmente.</li>
+      <li><strong>Fundo do Céu (IC)</strong>: lar, família, raízes. É a linha a olhar quando se pensa onde fazer casa.</li>
+      <li><strong>Ascendente (AC)</strong>: a sua presença e a energia com que chega aos lugares. Junto dela, o planeta tende a sentir-se na pele.</li>
+      <li><strong>Descendente (DC)</strong>: os outros, o amor e as parcerias. A linha de Vénus no Descendente é a mais citada quando o assunto é encontrar alguém.</li>
+    </ul>
+    <p>A influência é mais forte em cima da linha e vai enfraquecendo com a distância; a maioria dos astrólogos conta até 500 a 800 km. Onde duas linhas se cruzam, os dois planetas misturam-se. Vénus e Júpiter são tradicionalmente os planetas benéficos; Marte, Saturno e <a class="li-gt" href="/planeta-plutao">Plutão</a> pedem mais esforço, mas também dão força, disciplina e capacidade de transformação. Não há linhas proibidas: há linhas que pedem mais de si.</p>
+    <p>Lembre-se de que o seu signo continua o mesmo onde quer que vá: um Sol em <a class="li-gt" href="/signo/caranguejo">Câncer</a> (Caranguejo, em Portugal) ou em Libra (Balança) não muda de signo por atravessar o oceano. O que muda é qual planeta fica em destaque. Para conhecer o resto do seu céu, veja o seu <a href="/ascendente">Ascendente</a>, os <a href="/signos-do-zodiaco">12 signos do zodíaco</a>, o significado de <a href="/planeta-venus">Vénus</a> e de <a href="/planeta-jupiter">Júpiter</a>, e a <a href="/astrologia">astrologia de hoje</a>.</p>
+  </section>
+
+  <section class="faq-genial" id="perguntas" style="max-width:760px;margin:2rem auto;padding:1.2rem 1.4rem;border:1px solid rgba(212,175,55,.35);border-radius:16px;background:rgba(255,255,255,.04);line-height:1.6"><h2 style="margin-top:0">Perguntas frequentes sobre a astrocartografia</h2><h3 style="font-size:1.05rem;margin:1rem 0 .3rem">O que é a astrocartografia?</h3><p style="margin:0">É o mapa astral desenhado sobre o mapa-mundo. Para o minuto em que você nasceu, calcula-se em que lugares da Terra cada planeta estava a nascer, a culminar, a pôr-se ou no fundo do céu. Esses lugares formam linhas, e cada linha costuma trazer o tema do seu planeta para a vida de quem vive ou passa por lá.</p><h3 style="font-size:1.05rem;margin:1rem 0 .3rem">Preciso da hora exacta de nascimento?</h3><p style="margin:0">Sim. A Terra roda um grau a cada quatro minutos, por isso quatro minutos de erro deslocam todas as linhas cerca de 100 km. Use a hora que está na certidão de nascimento. Sem hora não há astrocartografia: as linhas podiam estar em qualquer ponto do mundo.</p><h3 style="font-size:1.05rem;margin:1rem 0 .3rem">O que é a linha de Vénus?</h3><p style="margin:0">É o caminho, no mapa-mundo, dos lugares onde Vénus estava num dos quatro ângulos do céu quando você nasceu. Vénus é o planeta do amor, da beleza e do prazer: perto da sua linha, a vida social e afectiva costuma ficar mais fácil. No Descendente tende a favorecer relações; no Meio do Céu, a imagem pública e os trabalhos ligados à arte ou às pessoas.</p><h3 style="font-size:1.05rem;margin:1rem 0 .3rem">Mudar de país muda o meu destino?</h3><p style="margin:0">Não muda quem você é: o seu signo, a sua Lua e o seu mapa de nascimento são os mesmos em qualquer lugar. O que muda é o planeta que fica em destaque. Viver perto de uma linha tende a pôr esse tema mais à vista. É uma pista para reflectir, não uma ordem para fazer as malas, e as decisões continuam a ser suas.</p><h3 style="font-size:1.05rem;margin:1rem 0 .3rem">A astrocartografia é grátis?</h3><p style="margin:0">Sim. O mapa-mundo com as suas linhas, as cidades perto de Vénus e de Júpiter e a leitura planeta a planeta são grátis, e o cálculo é feito no seu próprio telemóvel ou computador. Se quiser uma leitura pessoal, pode marcar uma consulta com o Mestre Alberto.</p><h3 style="font-size:1.05rem;margin:1rem 0 .3rem">Mapa cartográfico astrológico é o mesmo que astrocartografia?</h3><p style="margin:0">Sim. Mapa cartográfico astrológico, mapa astrocartográfico, astrocartografia e, em inglês, Astro*Carto*Graphy são nomes para a mesma técnica: projectar as linhas dos planetas do seu mapa astral sobre o mapa-mundo.</p></section>
+
+  <section id="consulta" class="cartao">
+    <div class="consulta">
+      <div class="consulta-foto"><img src="mestre-r14.jpg" alt="Mestre Alberto com as cartas do Tarot" width="800" height="800" loading="lazy" /></div>
+      <div>
+        <h2>Vai mudar de país? <span class="lil">Fale com o Mestre</span></h2>
+        <p class="gancho">Numa consulta online, o Mestre Alberto junta o seu mapa astral, as suas linhas no mapa-mundo e as cartas do Tarot para olhar para a decisão que tem pela frente: o momento, o lugar e o caminho que se abre.</p>
+        <div class="botoes">
+          <a class="btn-grande" href="loja.html">🔮 Marcar uma consulta</a>
+          <a class="btn-wa" href="https://wa.me/351914920427" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- gt-casa:inicio -->
+<aside class="gt-casa" aria-label="Genial Tarot — o site do Mestre Alberto"><style>
+.gt-casa{max-width:900px;margin:2.6rem auto 1.6rem;padding:0 14px;font-family:inherit}
+.gt-casa .gc-cx{position:relative;border-radius:22px;padding:1.6rem 1.4rem 1.4rem;overflow:hidden;color:#f7f0fb;text-align:center;
+ background:radial-gradient(120% 90% at 50% 0%,rgba(242,201,107,.20),transparent 60%),linear-gradient(160deg,#2a1245 0%,#1a0b30 55%,#120722 100%);
+ border:1px solid rgba(242,201,107,.45);box-shadow:0 18px 50px rgba(0,0,0,.35),inset 0 0 40px rgba(242,201,107,.06)}
+.gt-casa .gc-cx::before{content:"";position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 70%,rgba(242,201,107,.16) 80%,transparent 90%);animation:gc-gira 14s linear infinite;pointer-events:none}
+@keyframes gc-gira{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.gt-casa .gc-cx::before{animation:none}}
+.gt-casa .gc-in{position:relative}
+.gt-casa .gc-foto{width:92px;height:92px;border-radius:50%;object-fit:cover;border:3px solid #f2c96b;box-shadow:0 0 0 6px rgba(242,201,107,.15),0 8px 24px rgba(0,0,0,.4);display:block;margin:0 auto .7rem}
+.gt-casa .gc-sel{font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:#f2c96b;opacity:.9}
+.gt-casa .gc-tit{font-family:Cinzel,Georgia,"Times New Roman",serif;font-size:clamp(1.25rem,3.6vw,1.75rem);margin:.35rem 0 .45rem;color:#ffe2a0;line-height:1.25}
+.gt-casa .gc-txt{margin:0 auto 1.1rem;max-width:560px;color:#e7dcf3;line-height:1.55;font-size:1rem}
+.gt-casa .gc-portas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 1.1rem}
+.gt-casa .gc-portas a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:.8rem .6rem;border-radius:14px;text-decoration:none;color:#f7f0fb;
+ background:rgba(255,255,255,.06);border:1px solid rgba(242,201,107,.22);transition:transform .2s,background .2s,border-color .2s}
+.gt-casa .gc-portas a:hover,.gt-casa .gc-portas a:focus-visible{transform:translateY(-3px);background:rgba(242,201,107,.13);border-color:#f2c96b}
+.gt-casa .gc-portas i{font-style:normal;font-size:1.6rem;line-height:1.2}
+.gt-casa .gc-portas b{font-size:.98rem;color:#ffe2a0}
+.gt-casa .gc-portas small{font-size:.8rem;color:#bfaed3}
+.gt-casa .gc-bot{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.gt-casa .gc-bot a{display:inline-block;padding:.75rem 1.3rem;border-radius:999px;font-weight:700;text-decoration:none;font-size:1rem}
+.gt-casa .gc-casa{background:linear-gradient(135deg,#ffe2a0,#f2c96b 55%,#d9a441);color:#2a1245;box-shadow:0 6px 18px rgba(242,201,107,.35)}
+.gt-casa .gc-wa{background:rgba(37,211,102,.16);color:#d8ffe6;border:1px solid rgba(37,211,102,.55)}
+.gt-casa .gc-bot a:hover{filter:brightness(1.08)}
+</style><div class="gc-cx"><div class="gc-in"><img class="gc-foto" src="/mestre-avatar.jpg" srcset="/mestre-avatar.jpg 1x, /mestre-avatar@2x.jpg 2x" width="92" height="92" alt="Mestre Alberto, tarólogo e astrólogo do Genial Tarot" loading="lazy" decoding="async"><div class="gc-sel">✦ Genial Tarot ✦</div><p class="gc-tit">Há 18 anos a ler o Tarot e os astros</p><p class="gc-txt">Este é o site do Mestre Alberto. Tire as cartas, leia o seu signo e descubra o que o céu diz de si — e quando precisar de uma resposta só sua, fale com ele numa consulta por videochamada.</p><nav class="gc-portas"><a href="/tarot-gratis"><i aria-hidden="true">🃏</i><b>Tarot Grátis</b><small>Tire as suas cartas agora</small></a><a href="/horoscopo-do-dia"><i aria-hidden="true">🔮</i><b>Horóscopo de Hoje</b><small>O seu signo, com o céu real</small></a><a href="/signos-do-zodiaco"><i aria-hidden="true">♈︎</i><b>Os 12 Signos</b><small>Personalidade, amor e datas</small></a><a href="/sonhos"><i aria-hidden="true">🌙</i><b>Sonhos</b><small>O que o seu sonho quer dizer</small></a></nav><div class="gc-bot"><a class="gc-casa" href="/">✨ Ir para a página inicial</a><a class="gc-wa" href="https://wa.me/351914920427" rel="noopener">💬 Marcar consulta</a></div></div></div></aside>
+<!-- gt-casa:fim -->
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Serviço</a> · Cidades: GeoNames (CC BY 4.0) · Mapa: Natural Earth
+</footer>
+
+<script src="amostra-limite.js"></script>
+<script src="ascendente-calc.js"></script>
+<script src="mapa-amor-calc.js"></script>
+<script src="astrocarto-calc.js"></script>
+<script src="astrocarto-cidades.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const NS = "http://www.w3.org/2000/svg";
+  const T = "︎";   // pede o símbolo de texto: sem ele, os telemóveis desenham emojis
+  const NOMES = ["Áries (Carneiro)","Touro","Gêmeos","Câncer (Caranguejo)","Leão","Virgem","Libra (Balança)","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const idx = (lon) => Math.floor(((lon % 360) + 360) % 360 / 30);
+
+  // Os planetas: chave, nome, glifo, cor da linha, o que a linha costuma trazer
+  const PL = [
+    ["sol", "Sol", "☉", "#ffd23f", "Onde passa a linha do Sol, você tende a ser mais visto(a): lugares de reconhecimento, confiança e vontade de brilhar."],
+    ["lua", "Lua", "☽", "#dfe6ff", "A linha da Lua costuma falar de casa, família e emoções: lugares onde se sente acolhido(a), e também mais sensível."],
+    ["mercurio", "Mercúrio", "☿", "#6fe3c4", "Mercúrio põe a cabeça a trabalhar: estudos, escrita, comércio, línguas e conversas que abrem portas."],
+    ["venus", "Vénus", "♀", "#ff7eb6", "A linha de Vénus é das mais procuradas: amor, beleza, prazer, amizades e uma vida social mais leve."],
+    ["marte", "Marte", "♂", "#ff5a4f", "Marte traz energia e coragem, mas também pressa e conflito: bom para competir e começar, menos para descansar."],
+    ["jupiter", "Júpiter", "♃", "#b48cff", "Júpiter é a linha da expansão: oportunidades, sorte, viagens, estudos e gente que o(a) ajuda a crescer."],
+    ["saturno", "Saturno", "♄", "#d2a86a", "Saturno pede trabalho e paciência: lugares de responsabilidade e exigência, onde se constrói devagar mas a sério."],
+    ["urano", "Urano", "♅", "#4fd6ff", "Urano traz o inesperado: mudanças rápidas, liberdade, ideias novas e encontros fora do comum."],
+    ["neptuno", "Neptuno", "♆", "#6f94ff", "Neptuno puxa para o sonho, a arte e a espiritualidade; pede atenção às ilusões e aos limites."],
+    ["plutao", "Plutão", "♇", "#c2c2cc", "Plutão fala de transformação profunda e de poder pessoal: lugares intensos, que raramente deixam alguém igual."],
+  ];
+  const EXTRA = new Set(["urano", "neptuno", "plutao"]);
+  const ANG = { mc: "MC", ic: "IC", asc: "AC", dsc: "DC" };
+  const ANG_NOME = { mc: "Meio do Céu", ic: "Fundo do Céu", asc: "Ascendente", dsc: "Descendente" };
+  const BOAS = {
+    venus: { mc: "costuma favorecer uma imagem pública simpática e trabalhos ligados à beleza, à arte ou ao trato com pessoas.",
+             ic: "tende a dar um lar bonito e uma vida familiar mais doce: um bom lugar para fazer casa.",
+             asc: "costuma deixá-lo(a) mais atraente e bem recebido(a): as pessoas aproximam-se com facilidade.",
+             dsc: "é uma das linhas clássicas do amor: tende a atrair relações, namoros e boas parcerias." },
+    jupiter: { mc: "costuma abrir portas na carreira: reconhecimento, promoções e projectos que crescem.",
+               ic: "tende a trazer uma casa farta e uma sensação de protecção e de boas raízes.",
+               asc: "costuma dar confiança, optimismo e vontade de crescer: sente-se maior do que noutros lados.",
+               dsc: "tende a trazer sócios, mentores e relações generosas, que o(a) ajudam a ir mais longe." },
+  };
+
+  // ===== O mapa-mundo: coordenadas em décimas de grau (x = (lon+180)·10, y = (90−lat)·10) =====
+  const X = (lon) => (lon + 180) * 10, Y = (lat) => (90 - lat) * 10;
+  const TOPO = 60, BASE = 1500;                 // de 84° N a 60° S
+  let TERRA = null;
+  const terra = fetch("mundo-terra.json?v=1").then((r) => r.json()).then((d) => (TERRA = d.d));
+  const el = (n, a, pai) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); if (pai) pai.appendChild(e); return e; };
+  function caminho(trocos) {
+    return trocos.map((t) => t.map(([la, lo], i) => (i ? "L" : "M") + X(lo).toFixed(1) + " " + Y(la).toFixed(1)).join("")).join("");
+  }
+  function desenhaBase(svg) {
+    el("path", { d: TERRA, class: "terra" }, svg);
+    const rede = el("g", { class: "rede" }, svg);
+    for (let lo = -150; lo <= 150; lo += 30) el("line", { x1: X(lo), x2: X(lo), y1: TOPO, y2: BASE }, rede);
+    for (const la of [60, 30, -30]) el("line", { x1: 0, x2: 3600, y1: Y(la), y2: Y(la) }, rede);
+    el("line", { x1: 0, x2: 3600, y1: Y(0), y2: Y(0), class: "equador" }, rede);
+  }
+
+  // O mapa pequeno do topo: três linhas douradas de exemplo (15/03/1985 14:30 em Lisboa)
+  terra.then(() => {
+    const svg = $("mini"); desenhaBase(svg);
+    svg.querySelector(".terra").style.cssText = "fill:#2b3170;stroke:#5a62a8;stroke-width:1";
+    const r = AstroCarto.linhas(Date.UTC(1985, 2, 15, 14, 30));
+    const g = el("g", {}, svg);
+    const ouro = (d, w) => el("path", { d, fill: "none", stroke: "#f3d27a", "stroke-width": w, "stroke-linecap": "round", class: "traco", style: "filter:drop-shadow(0 0 10px #f3d27a)" }, g);
+    const v = r.planetas.venus, j = r.planetas.jupiter;
+    ouro(`M${X(v.mc)} ${TOPO}V${BASE}`, 9);
+    ouro(caminho(j.asc), 9);
+    ouro(caminho(v.dsc), 9);
+    el("circle", { cx: X(-9.14), cy: Y(38.72), r: 22, fill: "#fff6d8", style: "filter:drop-shadow(0 0 12px #ffd76a)" }, g);
+  });
+
+  // ===== Cidades (a mesma lista do GeoNames da calculadora de Ascendente; só serve para o fuso) =====
+  let CID = null, carregando = null, escolhida = null;
+  const sem = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  function carregarCidades() {
+    if (CID) return Promise.resolve(CID);
+    if (!carregando) carregando = fetch("cidades.json?v=1").then((r) => r.json()).then((d) => {
+      d.cidades.forEach((c) => { c.push(sem(c[0])); });
+      CID = d; return d;
+    });
+    return carregando;
+  }
+  const inpCid = $("cidade"), lista = $("lista-cid"), ok = $("cidade-ok");
+  inpCid.addEventListener("focus", carregarCidades, { once: true });
+  let ativo = -1, opcoes = [];
+  function rotulo(c) { return `${c[0]}${c[1] ? ", " + c[1] : ""}, ${CID.paises[c[2]] || c[2]}`; }
+  function procurar(q) {
+    const comeca = [], contem = [];
+    for (const c of CID.cidades) {
+      if (c[6].startsWith(q)) comeca.push(c); else if (q.length >= 3 && c[6].includes(q)) contem.push(c);
+      if (comeca.length >= 12) break;
+    }
+    return comeca.concat(contem).slice(0, 12);
+  }
+  inpCid.addEventListener("input", async () => {
+    escolhida = null; ok.textContent = "";
+    const q = sem(inpCid.value);
+    if (q.length < 2) { lista.classList.remove("aberta"); return; }
+    await carregarCidades();
+    opcoes = procurar(q);
+    ativo = -1;
+    lista.innerHTML = opcoes.length ? opcoes.map((c, i) => `<button type="button" role="option" data-i="${i}">${esc(c[0])} <small>${esc((c[1] ? c[1] + " · " : "") + (CID.paises[c[2]] || c[2]))}</small></button>`).join("")
+      : `<button type="button" disabled>Não encontrei. Escreva a cidade grande mais próxima.</button>`;
+    lista.classList.add("aberta");
+  });
+  function escolher(i) {
+    const c = opcoes[i]; if (!c) return;
+    escolhida = c; inpCid.value = rotulo(c); lista.classList.remove("aberta");
+    ok.textContent = "✓ " + rotulo(c);
+  }
+  lista.addEventListener("click", (e) => { const b = e.target.closest("button[data-i]"); if (b) escolher(+b.dataset.i); });
+  inpCid.addEventListener("keydown", (e) => {
+    if (!lista.classList.contains("aberta")) return;
+    const bs = lista.querySelectorAll("button[data-i]");
+    if (e.key === "ArrowDown") { ativo = Math.min(ativo + 1, bs.length - 1); }
+    else if (e.key === "ArrowUp") { ativo = Math.max(ativo - 1, 0); }
+    else if (e.key === "Enter") { if (ativo >= 0) { e.preventDefault(); escolher(ativo); } return; }
+    else return;
+    e.preventDefault(); bs.forEach((b, i) => b.classList.toggle("ativo", i === ativo));
+  });
+  document.addEventListener("click", (e) => { if (!e.target.closest(".rel")) lista.classList.remove("aberta"); });
+
+  // ===== Data e hora escritas à mão (as mesmas regras da calculadora de Ascendente) =====
+  // Aceita 15/03/1990, 15-3-1990, 15.03.90, 15 03 1990, 15031990 e «15 de março de 1990».
+  const MESES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  function lerData(txt) {
+    let t = sem(txt).replace(/\bde\b/g, " ");
+    MESES.forEach((m, i) => { t = t.replace(new RegExp("\\b" + m + "[a-z]*", "g"), " " + (i + 1) + " "); });
+    let p = t.match(/\d+/g) || [];
+    if (p.length === 1 && /^\d{8}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length === 1 && /^\d{6}$/.test(p[0])) p = [p[0].slice(0, 2), p[0].slice(2, 4), p[0].slice(4)];
+    if (p.length !== 3) return null;
+    let [d, m, a] = p.map(Number);
+    if (p[2].length <= 2) a += (a <= new Date().getFullYear() % 100) ? 2000 : 1900;
+    const dt = new Date(Date.UTC(a, m - 1, d));
+    if (a < 1900 || a > new Date().getFullYear() || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) return null;
+    return [a, m, d];
+  }
+  // Aceita 14:30, 1430, 14h30, 14.30, 9, 9h.
+  function lerHora(txt) {
+    const t = sem(txt).replace(/\s+/g, "");
+    let m = t.match(/^(\d{1,2})(?:[:h.]?(\d{2}))?(?:h|min)?$/) || (/^\d{3,4}$/.test(t) && [null, t.slice(0, t.length - 2), t.slice(-2)]);
+    if (!m) return null;
+    const h = +m[1], mi = m[2] ? +m[2] : 0;
+    return (h <= 23 && mi <= 59) ? [h, mi] : null;
+  }
+  const inpHora = $("hora");
+  inpHora.addEventListener("input", (e) => {
+    if (e.inputType && e.inputType.startsWith("delete")) return;
+    const v = inpHora.value;
+    if (/^[\d:]*$/.test(v)) {
+      const dig = v.replace(/\D/g, "").slice(0, 4);
+      inpHora.value = dig.length > 2 ? dig.slice(0, 2) + ":" + dig.slice(2) : dig;
+    }
+  });
+  inpHora.addEventListener("blur", () => {
+    const r = lerHora(inpHora.value);
+    if (r) inpHora.value = String(r[0]).padStart(2, "0") + ":" + String(r[1]).padStart(2, "0");
+  });
+  const inpData = $("data");
+  inpData.addEventListener("input", (e) => {
+    const v = inpData.value;
+    if (e.inputType && e.inputType.startsWith("delete")) return;
+    if (/^[\d\/]*$/.test(v)) {
+      const dig = v.replace(/\D/g, "").slice(0, 8);
+      inpData.value = dig.length > 4 ? dig.slice(0, 2) + "/" + dig.slice(2, 4) + "/" + dig.slice(4)
+                    : dig.length > 2 ? dig.slice(0, 2) + "/" + dig.slice(2) : dig;
+    }
+  });
+  inpData.addEventListener("blur", () => {
+    const r = lerData(inpData.value);
+    if (r) inpData.value = String(r[2]).padStart(2, "0") + "/" + String(r[1]).padStart(2, "0") + "/" + r[0];
+  });
+
+  // ===== O resultado =====
+  const svg = $("mundo");
+  let R = null, nasc = null, mostrar = new Set(PL.map((p) => p[0]).filter((k) => !EXTRA.has(k)));
+  let vista = { x: 0, y: TOPO, w: 3600, h: BASE - TOPO };
+  const pxPorUnidade = () => svg.getBoundingClientRect().width / vista.w;
+
+  function aspeto() { const b = svg.getBoundingClientRect(); return b.width / Math.max(1, b.height); }
+  function prende(v) {
+    const a = aspeto();
+    v.w = Math.min(Math.max(v.w, 300), 3600); v.h = v.w / a;
+    if (v.h > BASE - TOPO) { v.h = BASE - TOPO; v.w = Math.min(3600, v.h * a); }
+    v.x = Math.min(Math.max(v.x, 0), 3600 - v.w); v.y = Math.min(Math.max(v.y, TOPO), BASE - v.h);
+    return v;
+  }
+  function aplica() {
+    prende(vista);
+    svg.setAttribute("viewBox", `${vista.x.toFixed(1)} ${vista.y.toFixed(1)} ${vista.w.toFixed(1)} ${vista.h.toFixed(1)}`);
+    svg.classList.toggle("perto", vista.h < BASE - TOPO - 1);
+    rotulos();
+  }
+  function inicio() {
+    // o mundo todo em altura; nos ecrãs estreitos começa centrado no lugar de nascimento
+    const a = aspeto(), h = BASE - TOPO, w = Math.min(3600, h * a);
+    vista = { x: X(nasc.lon) - w / 2, y: TOPO, w, h };
+    aplica();
+  }
+  function zoom(f, cx, cy) {
+    const nx = cx ?? vista.x + vista.w / 2, ny = cy ?? vista.y + vista.h / 2;
+    const w = Math.min(Math.max(vista.w * f, 300), 3600);
+    vista = { x: nx - (nx - vista.x) * w / vista.w, y: ny - (ny - vista.y) * w / vista.w, w, h: vista.h * w / vista.w };
+    aplica();
+  }
+  $("z-mais").onclick = () => zoom(1 / 1.5);
+  $("z-menos").onclick = () => zoom(1.5);
+  $("z-mundo").onclick = () => { vista = { x: 0, y: TOPO, w: 3600, h: BASE - TOPO }; aplica(); if (vista.w < 3600) inicio(); };
+  svg.addEventListener("wheel", (e) => {
+    if (!e.ctrlKey && !e.metaKey) return;          // a roda sozinha continua a rolar a página
+    e.preventDefault();
+    const b = svg.getBoundingClientRect(), k = vista.w / b.width;
+    zoom(e.deltaY > 0 ? 1.2 : 1 / 1.2, vista.x + (e.clientX - b.left) * k, vista.y + (e.clientY - b.top) * k);
+  }, { passive: false });
+  // arrastar com um dedo / o rato; beliscar com dois dedos
+  const toques = new Map(); let antes = null;
+  svg.addEventListener("pointerdown", (e) => { toques.set(e.pointerId, [e.clientX, e.clientY]); svg.setPointerCapture(e.pointerId); svg.classList.add("arrasta"); antes = null; });
+  svg.addEventListener("pointermove", (e) => {
+    if (!toques.has(e.pointerId)) return;
+    const k = vista.w / svg.getBoundingClientRect().width, p = toques.get(e.pointerId);
+    if (toques.size === 1) {
+      vista.x -= (e.clientX - p[0]) * k; vista.y -= (e.clientY - p[1]) * k; toques.set(e.pointerId, [e.clientX, e.clientY]); aplica();
+    } else if (toques.size === 2) {
+      toques.set(e.pointerId, [e.clientX, e.clientY]);
+      const [a, c] = [...toques.values()], d = Math.hypot(a[0] - c[0], a[1] - c[1]);
+      if (antes) {
+        const b = svg.getBoundingClientRect();
+        zoom(antes / d, vista.x + ((a[0] + c[0]) / 2 - b.left) * k, vista.y + ((a[1] + c[1]) / 2 - b.top) * k);
+      }
+      antes = d;
+    }
+  });
+  const larga = (e) => { toques.delete(e.pointerId); antes = null; if (!toques.size) svg.classList.remove("arrasta"); };
+  svg.addEventListener("pointerup", larga); svg.addEventListener("pointercancel", larga);
+  // ao rodar o telemóvel ou mudar a janela: se o mapa estava sem zoom, volta a ocupar a altura toda, com o mesmo centro
+  addEventListener("resize", () => {
+    if (!R) return;
+    if (vista.h >= BASE - TOPO - 1) { const cx = vista.x + vista.w / 2, h = BASE - TOPO, w = Math.min(3600, h * aspeto()); vista = { x: cx - w / 2, y: TOPO, w, h }; }
+    aplica();
+  });
+
+  let gLinhas, gRot;
+  function desenhaMapa() {
+    svg.innerHTML = "";
+    desenhaBase(svg);
+    gLinhas = el("g", {}, svg);
+    for (const [k, , , cor] of PL) {
+      if (!mostrar.has(k)) continue;
+      const p = R.planetas[k], g = el("g", { stroke: cor }, gLinhas);
+      const mc = `M${X(p.mc)} ${TOPO}V${BASE}`, ic = `M${X(p.ic)} ${TOPO}V${BASE}`, asc = caminho(p.asc), dsc = caminho(p.dsc);
+      for (const d of [mc, asc]) el("path", { d, class: "linha brilho-l" }, g);
+      el("path", { d: ic, class: "linha l-ic" }, g);
+      el("path", { d: dsc, class: "linha l-dsc" }, g);
+      el("path", { d: asc, class: "linha l-asc" }, g);
+      el("path", { d: mc, class: "linha l-mc" }, g);
+    }
+    gRot = el("g", {}, svg);
+    aplica();
+  }
+  // Os rótulos (glifo + ângulo) ficam sempre do mesmo tamanho no ecrã, seja qual for o zoom
+  function rotulos() {
+    if (!gRot) return;
+    gRot.innerHTML = "";
+    const k = 1 / pxPorUnidade(), fs = 13 * k, usados = [];
+    const livre = (x, y) => { for (const [a, b] of usados) if (Math.abs(a - x) < 30 * k && Math.abs(b - y) < 15 * k) return false; return true; };
+    const poe = (x, y, txt, cor) => {
+      let yy = y; for (let i = 0; i < 6 && !livre(x, yy); i++) yy += 16 * k;
+      usados.push([x, yy]);
+      const t = el("text", { x, y: yy, fill: cor, "font-size": fs, "stroke-width": 3.5 * k, "text-anchor": "middle", class: "rot" }, gRot);
+      t.textContent = txt;
+    };
+    const dentro = (x, y) => x > vista.x + 10 * k && x < vista.x + vista.w - 10 * k && y > vista.y && y < vista.y + vista.h;
+    for (const [kk, , gl, cor] of PL) {
+      if (!mostrar.has(kk)) continue;
+      const p = R.planetas[kk];
+      if (dentro(X(p.mc), vista.y + 1)) poe(X(p.mc), vista.y + 16 * k, gl + T + "MC", cor);
+      if (dentro(X(p.ic), vista.y + 1)) poe(X(p.ic), vista.y + vista.h - 8 * k, gl + T + "IC", cor);
+      for (const [lado, nome] of [["asc", "AC"], ["dsc", "DC"]]) {
+        // o ponto da curva dentro da vista mais perto do meio da altura
+        let melhor = null, dm = Infinity; const meio = vista.y + vista.h * (lado === "asc" ? 0.42 : 0.58);
+        for (const t of p[lado]) for (const [la, lo] of t) { const x = X(lo), y = Y(la); if (dentro(x, y) && Math.abs(y - meio) < dm) { dm = Math.abs(y - meio); melhor = [x, y]; } }
+        if (melhor) poe(melhor[0], melhor[1] - 6 * k, gl + T + nome, cor);
+      }
+    }
+    // o lugar de nascimento: sempre do mesmo tamanho no ecrã
+    el("circle", { cx: X(nasc.lon), cy: Y(nasc.lat), r: 11 * k, fill: "#ffd76a", class: "pulso" }, gRot);
+    el("circle", { cx: X(nasc.lon), cy: Y(nasc.lat), r: 5.5 * k, fill: "#fff6d8", stroke: "#b8862b", "stroke-width": 2, "vector-effect": "non-scaling-stroke" }, gRot);
+    { const t = el("text", { x: X(nasc.lon) + 12 * k, y: Y(nasc.lat) + 22 * k, "font-size": 11.5 * k, "stroke-width": 3 * k, class: "nasc-txt" }, gRot); t.textContent = "✦ nasceu aqui"; }
+  }
+
+  // as pastilhas dos planetas: tocar mostra/esconde a linha
+  function chips() {
+    $("chips").innerHTML = PL.map(([k, n, g, cor]) => `<button type="button" class="chip-p${EXTRA.has(k) ? " extra" : ""}" data-k="${k}" style="--cor:${cor}" aria-pressed="${mostrar.has(k)}"${EXTRA.has(k) && !mostrar.has(k) && !extrasVisiveis ? " hidden" : ""}><b>${g}${T}</b>${n}</button>`).join("");
+  }
+  let extrasVisiveis = false;
+  $("chips").addEventListener("click", (e) => {
+    const b = e.target.closest(".chip-p"); if (!b) return;
+    const k = b.dataset.k; mostrar.has(k) ? mostrar.delete(k) : mostrar.add(k);
+    b.setAttribute("aria-pressed", mostrar.has(k)); desenhaMapa();
+  });
+  $("mais-planetas").onclick = () => {
+    extrasVisiveis = !extrasVisiveis;
+    EXTRA.forEach((k) => extrasVisiveis ? mostrar.add(k) : mostrar.delete(k));
+    $("mais-planetas").textContent = extrasVisiveis ? "− esconder Urano, Neptuno e Plutão" : "+ mostrar também Urano, Neptuno e Plutão";
+    chips(); desenhaMapa();
+  };
+
+  const km = (d) => d < 1 ? "em cima da linha" : `a ${Math.round(d / 10) * 10 < 10 ? Math.round(d) : Math.round(d / 10) * 10} km`;
+  function textos(primeiro) {
+    const C = window.CIDADES_CARTO, pais = (cc) => C.paises[cc] || cc;
+    // 1. o lugar onde nasceu: a linha mais perto
+    let perto = null;
+    for (const [k, n, g] of PL) {
+      const d = AstroCarto.distancias(R.planetas[k], nasc.lat, nasc.lon);
+      for (const a in d) if (!perto || d[a] < perto.d) perto = { k, n, g, a, d: d[a] };
+    }
+    $("no-lugar").innerHTML = perto.d <= 500
+      ? `📍 No lugar onde nasceu, ${esc(primeiro)}, a linha mais perto é a de <b>${perto.g}${T} ${perto.n} no ${ANG_NOME[perto.a]}</b> (${km(perto.d)}). É um tema que costuma acompanhá-lo(a) desde o berço.`
+      : `📍 Nenhuma linha passa a menos de 500 km do lugar onde nasceu, ${esc(primeiro)}: a mais perto é a de <b>${perto.g}${T} ${perto.n} no ${ANG_NOME[perto.a]}</b> (${km(perto.d)}). As suas linhas fortes estão noutras paragens.`;
+    // 2. as cidades perto das linhas de Vénus e Júpiter
+    const blocos = [];
+    for (const k of ["venus", "jupiter"]) {
+      const [, n, g, cor] = PL.find((p) => p[0] === k), p = R.planetas[k];
+      const dist = C.cidades.map((c) => ({ c, d: AstroCarto.distancias(p, c[2], c[3]) }));
+      for (const a of ["mc", "ic", "asc", "dsc"]) {
+        const lista = dist.filter((x) => x.d[a] <= 500).sort((x, y) => x.d[a] - y.d[a]).slice(0, 6);
+        blocos.push(`<div class="linha-boa" style="--cor:${cor}"><h3><b>${g}${T}</b>${n} no ${ANG_NOME[a]} <small>(${ANG[a]})</small></h3><p>${n} no ${ANG_NOME[a]} ${BOAS[k][a]}</p>`
+          + (lista.length ? `<ul>${lista.map((x) => `<li>${esc(x.c[0])} <small>${esc(pais(x.c[1]))} · ${km(x.d[a])}</small></li>`).join("")}</ul>`
+                          : `<span class="nada">Esta linha não passa perto de nenhuma das cidades da nossa lista: atravessa sobretudo mar ou zonas pouco povoadas. Veja o seu caminho no mapa.</span>`) + `</div>`);
+      }
+    }
+    $("cidades-boas").innerHTML = blocos.join("");
+    // 3. planeta a planeta: o signo, o que a linha costuma trazer e as cidades conhecidas mais perto de cada ângulo
+    $("planetas-grelha").innerHTML = PL.map(([k, n, g, cor, frase]) => {
+      const p = R.planetas[k], ond = [];
+      for (const a of ["mc", "ic", "asc", "dsc"]) {
+        let m = null; for (const c of C.cidades) { const d = AstroCarto.distancias(p, c[2], c[3])[a]; if (d <= 500 && (!m || d < m.d)) m = { c, d }; }
+        if (m) ond.push(`${ANG[a]} perto de ${esc(m.c[0])}`);
+      }
+      return `<div class="pl" style="--cor:${cor}"><span class="g">${g}${T}</span><h3>${n} <small>em ${NOMES[idx(p.lam)]}</small></h3><p>${frase}</p>`
+        + `<p class="onde">${ond.length ? "📍 " + ond.join(" · ") : "📍 As linhas deste planeta passam longe das cidades da nossa lista."}</p></div>`;
+    }).join("");
+  }
+
+  function mostraErro(t) { const e = $("erro"); e.textContent = t; e.classList.toggle("ver", !!t); }
+  function calcular(rolar) {
+    mostraErro("");
+    const nome = $("nome").value.trim(), data = $("data").value;
+    const horaLida = lerHora($("hora").value);
+    if (nome.replace(/[^A-Za-zÀ-ÿ]/g, "").length < 2) return mostraErro("Escreva o seu primeiro nome, por favor.");
+    const dataLida = lerData(data);
+    if (!data) return mostraErro("Falta a data de nascimento.");
+    if (!dataLida) return mostraErro("Não percebi a data. Escreva assim: dia/mês/ano, por exemplo 15/03/1990.");
+    if (!$("hora").value.trim()) return mostraErro("Falta a hora de nascimento. Na astrocartografia ela é indispensável: sem ela, as linhas podem estar em qualquer ponto do mundo.");
+    if (!horaLida) return mostraErro("Não percebi a hora. Escreva assim: 14:30.");
+    if (!escolhida) return mostraErro("Escolha a cidade onde nasceu na lista que aparece ao escrever.");
+    const [A, M, D] = dataLida, [h, mi] = horaLida, hora = String(h).padStart(2, "0") + ":" + String(mi).padStart(2, "0");
+    const tz = CID.fusos[escolhida[5]] || "UTC";
+    let ms;
+    try { ms = AstroAsc.localParaUTC(A, M, D, h, mi, tz); } catch (e) { return mostraErro("Não consegui ler a data. Confirme os dados, por favor."); }
+    // A regra dele (21/10/2026), para todos os mapas grátis: 2 no mesmo dia, depois 5 dias de espera. Rever o mesmo mapa não conta.
+    const vez = AmostraLimite.usar("astrocartografia", sem(nome) + "|" + A + "-" + M + "-" + D + "|" + hora + "|" + escolhida[0] + "|" + escolhida[2]);
+    if (!vez.ok) {
+      const e = $("erro");
+      e.innerHTML = `${esc(nome.split(/\s+/)[0])}, já fez as suas ${AmostraLimite.POR_DIA} astrocartografias grátis. A próxima fica disponível a <b>${AmostraLimite.dataCurta(vez.proxima)}</b>.<br>Quer ler as suas linhas com o Mestre? <a href="#consulta">🔮 Marque uma consulta</a>`;
+      e.classList.add("ver");
+      return;
+    }
+    const primeiro = nome.split(/\s+/)[0];
+    nasc = { lat: escolhida[3], lon: escolhida[4] };
+    R = AstroCarto.linhas(ms);
+    $("res-titulo").innerHTML = `${esc(primeiro)}, as suas linhas no <span class="lil">mapa-mundo</span>`;
+    $("dados-nasc").textContent = `Nascimento: ${String(D).padStart(2, "0")}/${String(M).padStart(2, "0")}/${A} às ${hora} · ${inpCid.value}`;
+    $("resultado").classList.add("ver");
+    chips();
+    terra.then(() => { desenhaMapa(); inicio(); textos(primeiro); if (rolar) $("resultado").scrollIntoView({ behavior: "smooth" }); });
+  }
+  $("form").addEventListener("submit", (ev) => { ev.preventDefault(); calcular(true); });
+
+  // ===== Vem com os dados no endereço (?nome=&data=&hora=&cidade=): preenche e calcula =====
+  const vem = new URLSearchParams(location.search);
+  if (vem.get("nome")) $("nome").value = vem.get("nome").slice(0, 80);
+  if (vem.get("data")) { inpData.value = vem.get("data").slice(0, 22); inpData.dispatchEvent(new Event("blur")); }
+  if (vem.get("hora")) { inpHora.value = vem.get("hora").slice(0, 12); inpHora.dispatchEvent(new Event("blur")); }
+  if (vem.get("cidade")) {
+    carregarCidades().then(() => {
+      const q = sem(vem.get("cidade"));
+      opcoes = procurar(q);
+      const i = Math.max(0, opcoes.findIndex((c) => c[6] === q));
+      if (opcoes.length) escolher(i); else inpCid.value = vem.get("cidade");
+      if (vem.get("nome") && vem.get("data")) calcular(vem.get("ver") !== "topo");
+    });
+  }
+})();
+</script>
+<script src="/vip-faixa.js" defer></script><script src="/novidades-caixa.js?v=3" defer></script>
+<script src="/vivo.js" defer></script>
+</body>
+</html>
