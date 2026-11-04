@@ -143,8 +143,8 @@
   "dia": {
    "id": "aS0gS6aEKEo",
    "t": "Horóscopo Diário Aquário 4 e 5 Novembro",
-   "d": "2026-11-04T14:11:52Z",
-   "dur": "P0D"
+   "d": "2026-11-04T14:12:20Z",
+   "dur": "PT5M30S"
   },
   "anual": {
    "id": "iXnf_orBfDs",
@@ -157,8 +157,8 @@
   "dia": {
    "id": "Q575uKsBagk",
    "t": "Horóscopo Diário Peixes 4 e 5 Novembro",
-   "d": "2026-11-04T14:12:04Z",
-   "dur": "P0D"
+   "d": "2026-11-04T14:13:08Z",
+   "dur": "PT3M58S"
   },
   "anual": {
    "id": "60VId99VP8Y",
@@ -167,5 +167,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-04T14:12"
+ "_": "2026-11-04T14:20"
 }
