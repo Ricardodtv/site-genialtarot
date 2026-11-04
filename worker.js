@@ -504,6 +504,8 @@ const PAGINAS = new Set([
   "/transitos-lentos", "/neptuno-em-carneiro", "/saturno-em-carneiro", "/plutao-em-aquario", "/urano-em-gemeos", "/jupiter-em-leao", "/jupiter-em-virgem", "/nodos-lunares-aquario-leao", "/saturno-e-urano-2032", "/consulta-tarot-casal", "/tarot-para-decisoes", "/tarot-para-emigrantes",
   // 04/11/2026: Escolha um Monte (muda às segundas; as semanas passadas ficam em /escolha-um-monte-<d>-<mês>-<ano>, contadas pelo vivo.js)
   "/escolha-um-monte",
+  // 04/11/2026: guia grátis para aprender astrologia (pesquisa «curso astrologia» a subir; NÃO é curso)
+  "/aprender-astrologia",
 ]);
 
 function contarVisita(request, url, env, ctx) {
