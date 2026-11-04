@@ -447,7 +447,8 @@ function origemDe(referer, proprio) {
 // So entram as marcas desta lista. Sem ela, qualquer pessoa escrevia o que
 // lhe apetecesse nas estatisticas dele so por abrir o site com ?de=<lixo>.
 const MARCAS = new Set(["tiktok", "youtube", "instagram", "facebook", "fb-grupo", "whatsapp",
-                        "telegram", "email", "cartao", "bio"]);
+                        "telegram", "email", "cartao", "bio",
+                        "maps"]);   // 04/11/2026: as ligações do Google Maps (ficha, publicações, produtos) já usavam ?de=maps
 
 // 01/11/2026 (ele: «passo 1 — trazer o público do canal para o site»): além da marca (?de=youtube), a ligação pode
 // levar o CÓDIGO da peça (?c=fds-touro-0111), para se saber QUE vídeo trouxe quem. Fica «marca:youtube/fds-touro-0111».
