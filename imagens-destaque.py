@@ -20,6 +20,9 @@ SITE = "https://genialtarot.com"
 
 # código, página, nome do ficheiro (o que o Google lê), texto alternativo, legenda
 IMAGENS = [
+    ("T01", "cartas-do-tarot-reconciliacao", "cartas-do-tarot-reconciliacao",
+     "Cartas do Tarot da reconciliação do baralho do Mestre Alberto: Dois de Copas ao centro, com Seis de Copas, O Julgamento, A Temperança e A Estrela",
+     "As cartas do Tarot da reconciliação: o Dois de Copas ao centro, com o Seis de Copas, O Julgamento, A Temperança e A Estrela, do baralho do Mestre Alberto."),
     ("A01", "consulta-de-tarot-online", "consulta-de-tarot-online",
      "Consulta de tarot online: mãos do tarólogo a virar as cartas numa mesa de veludo azul, com velas e uma videochamada ao lado",
      "Consulta de tarot online com o Mestre Alberto: as cartas são lançadas ao vivo e a leitura faz-se por videochamada, chamada ou mensagem."),
