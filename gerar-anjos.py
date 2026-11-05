@@ -232,4 +232,25 @@ CORPO_P = f"""{heroi("Anjo de Portugal", "O Anjo Custódio, celebrado a 10 de Ju
   <section class="cartao texto"><h2>Como viver o 10 de Junho</h2><ol class="passos"><li><b>Reze a oração do Anjo</b> três vezes, devagar.</li><li><b>Peça pelo país</b> e por quem vive longe dele: Portugal também é a sua diáspora.</li><li><b>Lembre-se de uma pessoa</b> de quem tem saudades e diga-lhe isso.</li></ol></section>
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/dia-do-anjo-da-guarda">Dia do Anjo da Guarda</a><a href="/sao-miguel-arcanjo">São Miguel Arcanjo</a></div></section>"""
 grava("anjo-de-portugal.html", pagina("/anjo-de-portugal", "Anjo de Portugal: a história do Anjo Custódio e da oração", "O Anjo de Portugal: a festa de 10 de Junho, D. Manuel I, Pio XII, o Anjo da Paz em Fátima em 1916, e a oração que ensinou aos pastorinhos.", CORPO_P, fim=CONTA % (6, 10)))
+# ─── Os 72 anjos, por signo (pedido dele, 05/11/2026: lista com ligações, mini resumo e o anjo de cada signo) ───
+def resumo(a):
+    return re.split(r"(?<=[.!?])\s", a[3])[0]
+CHIPS = "".join(f'<a href="#{s[2]}">{s[1]} {s[0]}</a>' for s in SIG)
+BLOCOS = ""
+for n, (sg, sim, sl) in enumerate(SIG):
+    its = "".join(f'<a class="an" href="/anjo/{slug(a[0])}"><span class="nr">{n * 6 + j + 1}</span><span class="tx"><b>{a[0]}</b><i>{a[1]} · {periodo(n * 6 + j)}</i><span>{resumo(a)}</span></span></a>' for j, a in enumerate(ANJOS[n * 6:n * 6 + 6]))
+    BLOCOS += f'<section class="cartao" id="{sl}"><h2>{sim} Anjos de {sg}</h2><div class="anl">{its}</div><p style="text-align:center;margin:.8rem 0 0"><a href="/signo/{sl}">Ver o signo de {sg}</a></p></section>\n'
+EST_L = """<style>
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center}.chips a{padding:.42rem .75rem;border-radius:99px;border:1px solid var(--borda);background:var(--vidro);color:inherit;text-decoration:none;font-weight:600;font-size:.92rem}.chips a:hover{border-color:var(--ouro);color:var(--ouro)}
+.anl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr));gap:.7rem}.an{display:flex;gap:.7rem;padding:.8rem;border-radius:.9rem;background:var(--vidro);border:1px solid var(--borda);color:inherit;text-decoration:none}.an:hover{border-color:var(--ouro)}
+.an .nr{flex:none;width:2.1rem;height:2.1rem;border-radius:50%;display:grid;place-items:center;border:1px solid var(--ouro);color:var(--ouro);font-weight:700;font-size:.85rem}
+.an .tx{display:flex;flex-direction:column;gap:.15rem;min-width:0}.an b{color:var(--ouro);font-size:1.08rem}.an i{font-style:normal;font-size:.82rem;color:var(--suave)}.an .tx span{font-size:.95rem;line-height:1.4}
+section[id]{scroll-margin-top:1rem}
+</style>"""
+CORPO_L = f"""{EST_L}{heroi("Os 72 Anjos", "A lista completa: o anjo de cada signo, as suas datas e um pequeno resumo")}
+  <section class="cartao" style="text-align:center"><p>Cada signo tem 30 graus e a cada 5 graus corresponde um anjo, por isso cada signo reúne 6 dos 72. Escolha o seu signo e toque num anjo para ler a história, a oração e um gesto para hoje.</p><div class="chips">{CHIPS}</div><p style="margin:.9rem 0 0"><a class="bt" href="/anjo-da-guarda">Descobrir o meu anjo pela data de nascimento</a></p></section>
+{BLOCOS}  <section class="cartao">{AVISO}</section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/carta-do-anjo">Carta do Anjo</a><a href="/dia-do-anjo-da-guarda">Dia do Anjo da Guarda</a><a href="/anjo-de-portugal">Anjo de Portugal</a></div></section>
+"""
+grava("os-72-anjos.html", pagina("/os-72-anjos", "Os 72 Anjos: lista completa e o anjo de cada signo", "Os 72 anjos da tradição, organizados por signo: nome, tema, datas e um pequeno resumo de cada um, com ligação à sua oração e história.", CORPO_L))
 print("feito")
