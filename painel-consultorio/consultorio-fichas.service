@@ -1,0 +1,11 @@
+[Unit]
+Description=Consultório Virtual: fichas de clientes, só com sessão do HA e cofre aberto (100.100.77.18:8811)
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/ricardo/site-painel/consultorio-fichas.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

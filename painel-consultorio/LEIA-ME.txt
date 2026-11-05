@@ -2,11 +2,12 @@ Consultório Virtual: aplicar no cerebro (só depois de publicar o worker; ver a
 Tudo isto fica FORA do site publicado: a pasta está no .assetsignore.
 
 1. Copiar para ~/site-painel/
-     cp consultorio_rotas.py consultorio_ficha.py consultorio.html consultorio-vigia.py ~/site-painel/
+     cp consultorio_rotas.py consultorio_ficha.py consultorio_clientes.py consultorio-fichas.py consultorio.html consultorio-vigia.py ~/site-painel/
 
 2. Em ~/site-painel/servidor.py, fazer uma cópia e acrescentar 3 coisas:
      cp ~/site-painel/servidor.py ~/site-painel/servidor.py.antes-consultorio
 
+   (Se o servidor.py já tiver estas três linhas, passa ao passo 3: só se copiam os ficheiros.)
    a) Depois da definição de pede() (antes de «# 01/11 (ele): «Sempre»»):
         import consultorio_rotas; consultorio_rotas.liga(pede, chave, SITE, UA)   # 05/11: Consultório Virtual
 
@@ -22,7 +23,8 @@ Tudo isto fica FORA do site publicado: a pasta está no .assetsignore.
 
 3. Em ~/ha-painel-site.py, acrescentar em VISTAS (a seguir a «Site ao vivo») e correr o guião:
      {"title": "Consultório", "path": "consultorio", "icon": "mdi:door-open", "panel": True,   # 05/11/2026: Consultório Virtual
-      "cards": [{"type": "iframe", "allow_open_top_navigation": True, "aspect_ratio": "150%", "url": "http://100.100.77.18:8768/consultorio.html"}]},
+      "cards": [{"type": "iframe", "allow_open_top_navigation": True, "aspect_ratio": "190%", "url": "/local/consultorio/index.html?v=1"}]},
+   (Se a vista já existir, muda-se só o url e o aspect_ratio. É o /local que dá acesso ao token do HA.)
 
 4. O vigia do Telegram:
      cp consultorio-vigia.service ~/.config/systemd/user/

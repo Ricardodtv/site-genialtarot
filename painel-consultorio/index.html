@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!-- Consultório Virtual no HA (05/11/2026). Vai para ~/homeassistant/www/consultorio/index.html.
+     O painel da 8768 fica dentro do iframe, e a ficha por baixo. Aqui não há dados (o /local abre-se sem login): vêm de consultorio-fichas.py,
+     na porta 8811, só com o token do HA. Do iframe só chega o código da conversa, por postMessage, com a origem verificada. -->
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultório Virtual</title>
+<style>
+:root { --ouro: #f2c96b; --borda: rgba(242,201,107,.25); --texto: #f7f0fb; --apagado: #a893bd; --verde: #25d366; }
+* { box-sizing: border-box; } [hidden] { display: none !important; }
+body { margin: 0; font: 15px/1.45 Inter, system-ui, sans-serif; color: var(--texto); background: #140826; }
+#painel { display: block; width: 100%; height: 860px; border: 0; }
+#ficha { margin: 0 14px 14px; background: #1d0d36; border: 1px solid var(--borda); border-radius: 14px; padding: 12px; }
+h2 { font-size: 15px; margin: 0 0 8px; color: var(--ouro); } h3 { font-size: 13px; margin: 12px 0 4px; color: var(--ouro); }
+input, textarea { min-width: 0; padding: 9px 10px; border-radius: 10px; border: 1px solid var(--borda); background: #140826; color: var(--texto); font: inherit; width: 100%; }
+button { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointer; font: inherit; font-weight: 700; background: var(--ouro); color: #2b1147; }
+button.q { background: rgba(255,255,255,.08); color: var(--texto); }
+.res div { padding: 8px 10px; border: 1px solid var(--borda); border-radius: 10px; margin-top: 6px; cursor: pointer; } .res div:hover { border-color: var(--ouro); } .res b { color: var(--ouro); margin-right: 8px; } .res small { color: var(--apagado); margin-left: 8px; }
+.linha-q { display: flex; gap: 6px; } .linha-q button { flex: 0 0 auto; } button:disabled { opacity: .42; cursor: default; }
+.gr { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; } label { font-size: 12.5px; color: var(--apagado); }
+.lin { font-size: 13.5px; padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,.06); overflow-wrap: anywhere; }
+.cab { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; } .cab b { color: var(--ouro); font-size: 17px; flex: 1; }
+.acoes { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; } .nota { color: var(--apagado); font-size: 13px; } #est { color: var(--ouro); font-size: 13.5px; min-height: 20px; margin-top: 6px; }
+</style></head><body>
+<iframe id="painel" src="http://100.100.77.18:8768/consultorio.html" title="Consultório Virtual"></iframe>
+<section id="ficha">
+  <h2>Ficha da pessoa</h2>
+  <div id="sem" class="nota">Escolhe uma ligação no painel.</div>
+  <div id="com" hidden>
+    <div id="procura"><div class="linha-q"><input id="q" placeholder="Procurar por nome, código ou data" autocomplete="off"><button type="button" id="nova">Abrir novo</button></div><div class="res" id="res"></div></div>
+    <div id="aberta" hidden>
+      <div class="cab"><b id="f-cod"></b><button class="q" type="button" id="trocar">Trocar de ficha</button></div>
+      <form id="fc"><div class="gr" id="campos"></div><div class="acoes"><button>Guardar</button></div></form>
+      <h3>Histórico</h3><div id="hist"></div>
+      <h3>Notas mais recentes</h3><div id="notas"></div>
+      <form id="fn" class="acoes"><textarea id="n-tx" rows="2" maxlength="2000" placeholder="Nova nota, fica com a data de hoje"></textarea><button>Acrescentar nota</button></form>
+    </div>
+    <div id="est" role="status"></div>
+  </div>
+</section>
+<script>
+var API = "http://100.100.77.18:8811", PAINEL = "http://100.100.77.18:8768", CONV = /^[a-hjkmnp-z2-9]{20}$/, COD = /^C-\d{3,4}$/;
+var $ = function (i) { return document.getElementById(i); }, sel = null, cod = "", tq = 0;
+var ROT = { nome: "Nome", nasc: "Nascimento (dd/mm/aaaa)", contato: "Contacto", email: "Email", cidade: "Cidade", pais: "País" };
+function token() { try { return parent.document.querySelector("home-assistant").hass.auth.data.access_token; } catch (e) { return null; } }
+function pede(c, corpo) {
+  var t = token(); if (!t) return Promise.reject(new Error("Abre esta página dentro do Home Assistant."));
+  return fetch(API + c, { method: corpo ? "POST" : "GET", headers: { Authorization: "Bearer " + t, "Content-Type": "application/json" }, body: corpo ? JSON.stringify(corpo) : undefined, cache: "no-store" }).then(function (r) { return r.json().then(function (j) { if (!r.ok && r.status !== 404) throw new Error(j.erro || "Não foi possível."); return j; }); });
+}
+function est(t) { $("est").textContent = t || ""; }
+function falha(e) { est(e.message); }
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+function muda() { $("nova").disabled = !!cod; $("aberta").hidden = !cod; if (cod) { $("res").innerHTML = ""; $("q").value = ""; } }
+function conversa(c) {
+  sel = c; cod = ""; $("q").value = ""; $("res").innerHTML = ""; muda(); est("");
+  $("sem").hidden = !!c; $("com").hidden = !c; if (!c) return;
+  pede("/conversa?c=" + c).then(function (r) { if (c !== sel) return; if (r.pendente) est("À espera do cofre aberto"); if (r.codigo) abre(r.codigo); else muda(); }).catch(falha);
+}
+function abre(k) {
+  pede("/ficha?cod=" + encodeURIComponent(k)).then(function (f) {
+    if (!f.codigo) { cod = ""; muda(); return est(f.erro || "Ficha não encontrada."); }
+    cod = f.codigo; muda(); $("f-cod").textContent = cod + (f.campos.nome ? " · " + f.campos.nome : "");
+    $("campos").innerHTML = Object.keys(ROT).map(function (x) { return "<label>" + ROT[x] + '<input name="' + x + '" value="' + esc(f.campos[x]) + '" autocomplete="off"></label>'; }).join("");
+    $("hist").innerHTML = f.historico.length ? f.historico.map(function (l) { return '<div class="lin">' + esc(l) + "</div>"; }).join("") : '<div class="nota">Sem linhas.</div>';
+    $("notas").innerHTML = f.notas.length ? f.notas.map(function (l) { return '<div class="lin">' + esc(l) + "</div>"; }).join("") : '<div class="nota">Sem notas.</div>';
+  }).catch(falha);
+}
+$("q").oninput = function () {
+  var v = this.value.trim(); clearTimeout(tq); if (v.length < 2) { $("res").innerHTML = ""; return; }
+  tq = setTimeout(function () {
+    pede("/procurar?q=" + encodeURIComponent(v)).then(function (r) {
+      if (v !== $("q").value.trim()) return; var l = r.fichas || [];
+      $("res").innerHTML = !l.length ? '<div class="nota" style="cursor:default;border:0">Sem resultados.</div>' : l.map(function (x) { return '<div data-c="' + esc(x.codigo) + '"><b>' + esc(x.codigo) + "</b>" + esc(x.nome) + "<small>" + esc(x.nasc) + "</small></div>"; }).join("");
+    }).catch(falha);
+  }, 250);
+};
+$("res").onclick = function (e) { var d = e.target.closest("[data-c]"); if (!d || !COD.test(d.dataset.c)) return; pede("/associar", { c: sel, cod: d.dataset.c }).then(function (r) { if (r.ok) abre(d.dataset.c); else est(r.erro); }).catch(falha); };
+// atribui logo o número seguinte e abre a ficha para preencher; o nome é o que estiver escrito na procura, se for um nome
+$("nova").onclick = function () { var b = this, v = $("q").value.trim(); if (cod) return; b.disabled = true; pede("/nova", { c: sel, nome: /[A-Za-zÀ-ÿ]{2}/.test(v) && !/^C-\d/i.test(v) ? v : "" }).then(function (r) { b.disabled = !!cod; if (!r.ok) return est(r.erro); est("Ficha " + r.codigo + " criada"); abre(r.codigo); }).catch(function (e) { b.disabled = !!cod; falha(e); }); };
+$("trocar").onclick = function () { pede("/associar", { c: sel, cod: "" }).then(function () { cod = ""; muda(); est(""); }).catch(falha); };
+$("fc").onsubmit = function (e) { e.preventDefault(); var c = {}; [].forEach.call($("campos").querySelectorAll("input"), function (i) { c[i.name] = i.value; }); pede("/corrigir", { cod: cod, campos: c }).then(function (r) { est(r.ok ? "Guardado" : r.erro); if (r.ok) abre(cod); }).catch(falha); };
+$("fn").onsubmit = function (e) { e.preventDefault(); var t = $("n-tx").value.trim(); if (!t) return; pede("/nota", { cod: cod, texto: t }).then(function (r) { est(r.ok ? "Nota acrescentada" : r.erro); if (r.ok) { $("n-tx").value = ""; abre(cod); } }).catch(falha); };
+// do painel só se aceita isto: da origem certa, do nosso iframe, e só no formato esperado
+addEventListener("message", function (e) {
+  if (e.origin !== PAINEL || e.source !== $("painel").contentWindow) return;
+  var d = e.data; if (!d || d.tipo !== "consultorio") return;
+  if (typeof d.h === "number" && d.h > 300 && d.h < 6000) $("painel").style.height = d.h + "px";
+  if (d.c !== undefined && (d.c === null || CONV.test(d.c)) && d.c !== sel) conversa(d.c);
+  if (d.fechou === true) { if (d.pendente === true) est("À espera do cofre aberto"); else if (typeof d.codigo === "string" && COD.test(d.codigo)) est("Histórico da " + d.codigo + " actualizado"); else est("Sem ficha escolhida: não foi escrito nada"); }
+});
+$("painel").addEventListener("load", function () { this.contentWindow.postMessage({ tipo: "consultorio", ola: 1 }, PAINEL); });
+</script>
+</body></html>

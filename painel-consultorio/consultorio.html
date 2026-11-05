@@ -20,6 +20,7 @@ textarea { flex: 1; min-width: 0; padding: 10px; border-radius: 10px; border: 1p
 form { display: flex; gap: 6px; }
 button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointer; font: inherit; font-weight: 700; text-decoration: none; display: inline-block; }
 .b-ouro { background: var(--ouro); color: #2b1147; } .b-verde { background: var(--verde); color: #08331a; } .b-sair { background: #5a1e2e; color: #fff; } .b-q { background: rgba(255,255,255,.08); color: var(--texto); }
+#lista { max-height: 460px; overflow-y: auto; }   /* a ficha fica logo abaixo, mesmo com muitas ligações */
 .linha { padding: 9px 10px; border: 1px solid var(--borda); border-radius: 12px; margin-top: 8px; cursor: pointer; }
 .linha.ativa { border-color: var(--ouro); background: rgba(242,201,107,.08); }
 .linha.espera { border-color: var(--verde); animation: chama 1.8s infinite; }
@@ -43,8 +44,6 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
 .mins { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 8px 0 0; font-size: 13px; color: var(--apagado); }
 .mins button { padding: 6px 11px; background: rgba(255,255,255,.08); color: var(--texto); } .mins button.sel { background: var(--ouro); color: #2b1147; }
 #falta { font-size: 22px; font-weight: 700; color: var(--ouro); font-variant-numeric: tabular-nums; margin-top: 8px; }
-.ficha { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--borda); }
-.ficha form { flex-wrap: wrap; } .ficha input[type=date] { flex: 0 0 170px; color-scheme: dark; } #f-est { color: var(--ouro); font-size: 13px; margin-top: 6px; min-height: 18px; }
 </style></head><body>
 <header><h1>🚪 Consultório Virtual</h1><span id="res" class="vazio"></span><span id="erro"></span></header>
 <main>
@@ -57,22 +56,19 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
     </div>
     <div class="nota">Vale 24 horas ou até fechares a conversa. Fechada ou expirada, reabre-se com o mesmo endereço e o histórico, enquanto os dados existirem (30 dias). Quem tiver a ligação entra, por isso manda-a só à pessoa.</div>
   </div>
-  <div class="caixa"><h2>Ligações</h2><div id="lista"><div class="vazio">A carregar…</div></div></div>
+  <div class="caixa"><h2>Ligações</h2><div id="lista-pe" class="nota" hidden></div><div id="lista"><div class="vazio">A carregar…</div></div></div>
 </div>
 <div class="caixa" id="painel"><div id="vazio" class="vazio">Escolhe uma ligação à esquerda.</div>
   <div id="conv" hidden>
     <h2 id="c-tit"></h2><div id="c-est" class="nota"></div><div id="c-ch" class="escreve"></div>
     <div class="acoes"><button class="b-verde" id="atender" hidden>🚪 Atender: abrir as portas</button><a class="bt b-ouro" id="micro" target="_blank" rel="noopener">📞 Ligar, videochamada e microfone</a><button class="b-q" id="cop2">Copiar ligação</button><button class="b-sair" id="fechar" hidden>Fechar conversa</button><button class="b-ouro" id="reabrir" hidden>🔓 Reabrir</button></div>
     <div id="falta" hidden></div><div class="mins" id="m-conv" hidden></div>
-    <div class="nota" id="n-fecha" hidden>A ficha é criada quando fechares a conversa.</div>
+    <div class="nota" id="n-fecha" hidden>Ao fechares, a linha entra no Histórico da ficha escolhida em baixo. Sem ficha escolhida, não se escreve nada.</div>
     <div id="msgs"></div><div class="escreve" id="esc"></div>
     <form id="fmsg"><textarea id="txt" placeholder="Escreve aqui…" maxlength="2000"></textarea><button class="b-verde">Enviar</button></form>
     <div class="acoes"><label class="bt b-q" for="ficheiro">🎙️ Enviar ficheiro de áudio</label><input id="ficheiro" type="file" accept="audio/*" capture hidden><label class="bt b-q" for="anexo">📎 Enviar foto ou PDF</label><input id="anexo" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" hidden></div>
     <div id="previa" hidden></div>
     <div class="nota">Aqui, no HA, não há microfone: o painel é http. Para gravar ou para ligar (só voz ou vídeo), usa «Ligar, videochamada e microfone»: abre a mesma conversa na página segura, com os botões no topo. O ficheiro de áudio aceita até 3 MB e 90 segundos.</div>
-    <div class="ficha"><h2>Ficha da pessoa</h2>
-      <form id="fficha"><input id="f-nome" maxlength="80" placeholder="Nome" autocomplete="off"><input id="f-nasc" type="date" aria-label="Data de nascimento"><button class="b-ouro">Guardar</button></form>
-      <div id="f-est"></div></div>
   </div>
 </div>
 </main>
@@ -93,6 +89,12 @@ setInterval(pintaFalta, 1000);
 function J(u, d) { return fetch(API + u, d ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) } : {}).then(function (r) { return r.json(); }); }
 function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 function hora(q) { return q ? new Date(q).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" }) : ""; }
+// fechadas há mais de 24 h e as de teste ficam escondidas até carregar em «Ver todas»; não se apaga nada
+var verTodas = false, TESTE = /\bteste?\b|^test/i;
+function escondida(x, agora) {
+  if (x.codigo === sel || !x.reabrivel) return false;
+  return TESTE.test(x.etiqueta || "") || agora - (x.fechado || x.expira) > 864e5;
+}
 var NOMES = { criado: "por usar", espera: "na sala", conversa: "em conversa", fechado: "fechada", expirado: "expirada" };
 addEventListener("pointerdown", function () { if (!somCtx) { var A = window.AudioContext || window.webkitAudioContext; if (A) somCtx = new A(); } }, { once: true });
 function campainha() {   // baixinha, como os sons do chat do site
@@ -109,7 +111,10 @@ function lista() {
     var n = dados.filter(function (x) { return x.estado === "espera"; }).length;
     $("res").textContent = n ? n + " na sala de espera" : "";
     dados.forEach(function (x) { if (x.estado === "espera" && !avisados[x.codigo]) { avisados[x.codigo] = 1; campainha(); } });
-    $("lista").innerHTML = dados.length ? dados.map(function (x) {
+    var ag = Date.now() + difRel, vis = verTodas ? dados : dados.filter(function (x) { return !escondida(x, ag); }), esc_ = dados.length - dados.filter(function (x) { return !escondida(x, ag); }).length;
+    $("lista-pe").hidden = !esc_; $("lista-pe").innerHTML = '<button class="b-q" type="button" id="ver-todas">' + (verTodas ? "Esconder antigas e testes" : "Ver todas (mais " + esc_ + ")") + "</button>";
+    $("ver-todas").onclick = function () { verTodas = !verTodas; lista(); };
+    $("lista").innerHTML = vis.length ? vis.map(function (x) {
       return '<div class="linha ' + (x.codigo === sel ? "ativa " : "") + (x.estado === "espera" ? "espera" : "") + '" data-c="' + x.codigo + '"><span class="pil ' + x.estado + '">' + (NOMES[x.estado] || x.estado) + "</span>" + (x.reabrivel ? '<button class="reabre" type="button" data-r="' + x.codigo + '">Reabrir</button>' : "") + "<b>" + esc(x.etiqueta || "sem etiqueta") + "</b><small>" +
         new Date(x.criado).toLocaleDateString("pt-PT") + " " + hora(x.criado) + (x.entrou ? " · entrou " + hora(x.entrou) : "") + (x.pais && x.pais !== "?" ? " · " + esc(x.pais) : "") + (x.aparelho ? " · " + esc(x.aparelho) : "") + (x.estado === "espera" && x.fim_espera ? " · falta " + mmss(x.fim_espera - (Date.now() + difRel)) : "") + (x.estado === "espera" || x.estado === "conversa" ? (x.online ? " · 🟢 presente" : " · ⚪ página fechada ou em segundo plano") : "") + "</small></div>";
     }).join("") : '<div class="vazio">Ainda não há ligações.</div>';
@@ -143,15 +148,15 @@ function reabre(c) {
   });
 }
 $("reabrir").onclick = function () { reabre(sel); };
-function estadoFicha(f) { $("f-est").textContent = f.codigo ? "Ficha " + f.codigo + " criada" : f.pendente ? "À espera do cofre aberto" : ""; }
-function verFicha() {
-  var c = sel; $("f-nome").value = ""; $("f-nasc").value = ""; $("f-est").textContent = "";
-  J("ficha?c=" + c).then(function (f) { if (c !== sel) return; $("f-nome").value = f.nome || ""; $("f-nasc").value = f.nasc || ""; estadoFicha(f); });
+// A ficha vive na página de /local que embrulha esta. Daqui só sai o código da conversa, e só para o HA, com a origem verificada nos dois sentidos.
+var PAIS = ["http://100.100.77.18:8123", "https://cerebro.tail5ae53.ts.net"], paiOrigem = "";
+function diz(extra) {
+  if (!paiOrigem) return; var d = { tipo: "consultorio", c: sel || null, h: document.documentElement.scrollHeight };
+  if (extra) for (var k in extra) d[k] = extra[k];
+  parent.postMessage(d, paiOrigem);
 }
-$("fficha").onsubmit = function (e) {
-  e.preventDefault();
-  J("ficha", { c: sel, nome: $("f-nome").value, nasc: $("f-nasc").value }).then(function (r) { if (r.ok) { estadoFicha(r); if (!r.codigo && !r.pendente) $("f-est").textContent = "Guardado"; } else $("f-est").textContent = r.erro || "Não guardou"; });
-};
+addEventListener("message", function (e) { if (e.source === parent && PAIS.indexOf(e.origin) >= 0 && e.data && e.data.tipo === "consultorio" && e.data.ola === 1) { paiOrigem = e.origin; diz(); } });
+function verFicha() { diz(); }
 function conversa() {
   clearTimeout(tC); if (!sel) return; var x = atual();
   if (document.hidden) { tC = setTimeout(conversa, 30000); return; }
@@ -189,7 +194,7 @@ function copia(v, b) { var t = b.textContent, ok = function () { b.textContent =
 $("copia").onclick = function () { copia($("nova-url").value, this); };
 $("cop2").onclick = function () { var x = atual(); if (x) copia(x.link, this); };
 $("atender").onclick = function () { J("atender", { c: sel }).then(function () { lista(); conversa(); }); };
-$("fechar").onclick = function () { if (confirm("Fechar esta conversa? A ligação deixa de funcionar até a reabrires.")) J("fechar", { c: sel }).then(function (r) { lista(); conversa(); estadoFicha(r); }); };
+$("fechar").onclick = function () { if (confirm("Fechar esta conversa? A ligação deixa de funcionar até a reabrires.")) J("fechar", { c: sel }).then(function (r) { lista(); conversa(); if (r.ok) diz({ fechou: true, codigo: r.codigo || "", pendente: !!r.pendente }); }); };
 $("fmsg").onsubmit = function (e) { e.preventDefault(); var t = $("txt").value.trim(); if (!t) return; $("txt").value = ""; J("msg", { c: sel, texto: t }).then(conversa); };
 $("txt").onkeydown = function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("fmsg").requestSubmit(); } };
 var tE = 0; $("txt").oninput = function () { if (Date.now() - tE > 2500 && this.value) { tE = Date.now(); J("escreve", { c: sel }); } };
