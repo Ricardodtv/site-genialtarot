@@ -1,0 +1,11 @@
+[Unit]
+Description=Consultório Virtual: avisa no Telegram quem entra na sala de espera
+After=site-painel.service network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/ricardo/site-painel/consultorio-vigia.py
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=default.target

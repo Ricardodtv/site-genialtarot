@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<!-- Consultório Virtual do Mestre Alberto (05/11/2026, pedido dele). Esta folha é servida pelo worker em /consultorio/<código>.
+     Fases: entrada → espera (sala, música, placa «Ocupado») → portas a abrir → chat em grande → fim.
+     Quem manda é o worker (classe Consultorio); aqui só se pergunta o estado, com calma: o Durable Object está no plano grátis.
+     Com #m=<mtoken> abre a mesma conversa do lado do Mestre Alberto: é assim que ele tem microfone, porque o painel do HA é http. -->
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Consultório Virtual do Mestre Alberto</title>
+<meta name="description" content="A sua sala de espera privada no Consultório Virtual do Mestre Alberto." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="referrer" content="no-referrer" />
+<meta name="theme-color" content="#1d0d36" />
+<meta property="og:title" content="Consultório Virtual do Mestre Alberto" />
+<meta property="og:description" content="A sua sala de espera privada. Entre, que o Mestre Alberto já fala consigo." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://genialtarot.com/consultorio-virtual-og.jpg" />
+<meta property="og:image:alt" content="Sala de espera do Consultório Virtual, com a porta roxa e dourada ao centro" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="preload" as="image" href="/consultorio-virtual-sala-de-espera.webp" />
+<style>
+:root {
+  --ouro: #f2c96b; --ouro2: #d9a441; --borda: rgba(242,201,107,.38); --texto: #f7f0fb; --apagado: #bfaed2; --verde: #25d366;
+  --noite: #160a2b; --roxo: #1d0d36; --roxo2: #3b1a63;
+  /* a cena (a imagem e tudo o que está por cima) mede --W; cobre o ecrã e fica centrada NA PORTA */
+  --W: max(100vw, calc(100svh * 1.7769));
+  --H: calc(var(--W) * .56280);
+  --u: calc(var(--W) / 1000);
+  --X: max(calc(100vw - var(--W)), min(0px, calc(50vw - var(--W) * .5039)));
+  --Y: calc((100svh - var(--H)) * .3);
+  --Z: 1;
+  --ori: 50.39% 44%;
+}
+/* iPhone anterior a 2022, sem svh */
+@supports not (height: 100svh) { :root { --W: max(100vw, calc(100vh * 1.7769)); --Y: calc((100vh - var(--H)) * .3); } @media (max-aspect-ratio: 1/1) { :root { --W: max(330vw, calc(100vh * .9)); --Y: calc(var(--H) * -.093); } } #entrada { max-height: calc(100vh - 28px); } }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--noite); color: var(--texto); font: 16px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; }
+button { font: inherit; color: inherit; cursor: pointer; }
+h1, h2 { font-family: "Cormorant Garamond", Georgia, serif; color: var(--ouro); font-weight: 700; line-height: 1.12; margin: 0; }
+a { color: var(--ouro); }
+
+/* ---------- a cena ---------- */
+#palco { position: fixed; inset: 0; overflow: hidden; background: radial-gradient(120% 70% at 50% 34%, #3b1a63 0%, var(--noite) 70%); }
+#cena { position: absolute; left: 0; top: 0; width: var(--W); height: var(--H); transform-origin: var(--ori); will-change: transform;
+  transform: translate3d(var(--X), var(--Y), 0) scale(var(--Z)); transition: transform 1.5s cubic-bezier(.45,.05,.2,1); }
+#cena > img, .vao img { display: block; position: absolute; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+.fundo { inset: 0; width: 100%; height: 100%; }
+/* medidas sobre a imagem de 1672×941 (ver o guião das camadas): vão 658–1026 × 220–669; a bola por cima */
+.vao { position: absolute; left: 39.354%; top: 23.379%; width: 22.010%; height: 47.715%; perspective: calc(var(--W) * .42); }
+.vao .cosmos { inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .5s; }
+.folha { position: absolute; top: 0; height: 100%; backface-visibility: visible; transition: transform 1.9s cubic-bezier(.5,.02,.18,1); }
+.folha img { position: static; width: 100%; height: 100%; }
+.folha.esq { left: 0; width: 50.27%; transform-origin: 0 50%; }
+.folha.dir { right: 0; width: 50%; transform-origin: 100% 50%; }
+.bola { left: 47.847%; top: 64.612%; width: 9.211%; height: 7.226%; }
+.fresta { position: absolute; left: 50.33%; top: 25%; width: .34%; height: 44.5%; margin-left: -.17%; border-radius: 4px; background: #ffe3a6; filter: blur(calc(var(--u) * 1.2)); opacity: .5; animation: fresta 5s ease-in-out infinite; transition: opacity .4s; }
+@keyframes fresta { 50% { opacity: .95; } }
+.luz { position: absolute; border-radius: 50%; pointer-events: none; background: radial-gradient(closest-side, rgba(255,214,140,.55), rgba(255,180,90,.18) 55%, transparent); animation: vela 3.4s ease-in-out infinite; }
+.luz.b { animation-duration: 2.7s; animation-delay: -1.1s; } .luz.c { animation-duration: 4.1s; animation-delay: -.6s; }
+.luz.bolaluz { background: radial-gradient(closest-side, rgba(214,150,255,.5), rgba(160,90,255,.16) 60%, transparent); animation: bolaluz 6s ease-in-out infinite; }
+@keyframes vela { 0%,100% { opacity: .55; transform: scale(1); } 30% { opacity: .9; transform: scale(1.06); } 55% { opacity: .62; } 75% { opacity: 1; transform: scale(.97); } }
+@keyframes bolaluz { 50% { opacity: .35; transform: scale(1.1); } 0%,100% { opacity: 1; } }
+
+/* a placa: pendurada nas duas maçanetas */
+.placa { position: absolute; left: 50.39%; top: 52.6%; width: 20.6%; margin-left: -10.3%; perspective: calc(var(--W) * .5); transform-origin: 50% -12%; animation: balanca 7s ease-in-out infinite; transition: opacity .6s, transform .6s; z-index: 2; }
+@keyframes balanca { 0%,100% { transform: rotate(-.8deg); } 50% { transform: rotate(.8deg); } }
+.placa::before, .placa::after { content: ""; position: absolute; top: calc(var(--u) * -19); height: calc(var(--u) * 21); width: 1.5px; background: linear-gradient(#ffe3a6, #b98a2e); }
+.placa::before { left: 45%; transform: rotate(16deg); } .placa::after { right: 45%; transform: rotate(-16deg); }
+.placa-in { position: relative; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.4,.1,.2,1); display: grid; }
+.face { grid-area: 1/1; backface-visibility: hidden; -webkit-backface-visibility: hidden; text-align: center; padding: calc(var(--u) * 8) calc(var(--u) * 10) calc(var(--u) * 9); border-radius: calc(var(--u) * 7);
+  background: linear-gradient(160deg, #3a1860, #1d0b38 70%); border: 1.5px solid var(--ouro); box-shadow: 0 0 0 calc(var(--u) * 1.6) #1d0b38, 0 0 0 calc(var(--u) * 2.2) var(--ouro2), 0 calc(var(--u) * 7) calc(var(--u) * 18) rgba(0,0,0,.6); font-family: "Cormorant Garamond", Georgia, serif; }
+.face b { display: block; color: var(--ouro); letter-spacing: .1em; text-transform: uppercase; font-size: max(17px, calc(var(--u) * 17.5)); line-height: 1.1; margin-bottom: calc(var(--u) * 3); }
+.face span { display: block; font-size: max(15px, calc(var(--u) * 12)); line-height: 1.17; font-weight: 600; color: #f7ecd6; }
+.face.tras { transform: rotateX(180deg); display: grid; align-content: center; background: linear-gradient(160deg, #6b3fa8, #3a1860); }
+.face.tras b { margin: 0; }
+body.virada .placa-in { transform: rotateX(180deg); }
+body.fase-entrada .placa, body.fase-carrega .placa, body.fase-fim .placa { opacity: 0; }   /* só aparece depois de se entrar */
+
+/* o clarão que sai da porta e enche a sala */
+#clarao { position: fixed; inset: 0; pointer-events: none; opacity: 0; transition: opacity 1.6s ease; background: radial-gradient(50% 48% at 50% 44%, rgba(255,226,255,.5), rgba(172,104,255,.26) 48%, rgba(40,12,80,.5) 100%); }
+#veu { position: fixed; inset: 0; pointer-events: none; opacity: 0; transition: opacity 1s; background: rgba(13,5,28,.62); }
+
+/* estados das portas */
+body.aberta .folha.esq { transform: rotateY(82deg); }
+body.aberta .folha.dir { transform: rotateY(-82deg); }
+body.aberta .cosmos { opacity: 1; }
+body.aberta .fresta { opacity: 0; animation: none; }
+body.aberta #clarao { opacity: 1; }
+body.aberta #cena { --Z: 1.14; }
+body.virada-saiu .placa { opacity: 0; animation: none; transform: translateY(calc(var(--u) * 12)) scale(.9); }
+body.cosmos-pulsa .cosmos { animation: pulso 5s ease-in-out infinite; }
+@keyframes pulso { 50% { filter: brightness(1.22) saturate(1.2); } }
+body.fase-chat #veu { opacity: 1; }
+body.fase-chat .luz { animation-play-state: paused; }
+
+/* ---------- cartões ---------- */
+.ecra { position: fixed; z-index: 5; display: none; }
+.cartao { background: linear-gradient(170deg, rgba(38,16,72,.95), rgba(22,9,44,.96)); border: 1px solid var(--borda); border-radius: 20px; box-shadow: 0 14px 44px rgba(0,0,0,.55); }
+#entrada { left: 50%; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(520px, calc(100vw - 28px)); max-height: calc(100svh - 28px); overflow-y: auto; padding: 22px 24px 20px; }
+#entrada h1 { font-size: 31px; margin-bottom: 8px; }
+#entrada p { margin: 0 0 12px; color: #e9def3; font-size: 15.5px; }
+.aceito { display: flex; gap: 11px; align-items: flex-start; padding: 11px 12px; border-radius: 13px; border: 1px solid rgba(242,201,107,.24); background: rgba(255,255,255,.04); font-size: 14px; line-height: 1.42; color: #e9def3; cursor: pointer; }
+.aceito input { flex: 0 0 auto; width: 21px; height: 21px; margin: 0; accent-color: var(--ouro2); }
+.grande { display: block; width: 100%; margin-top: 13px; padding: 14px 18px; border: 0; border-radius: 14px; font-weight: 700; font-size: 17px; color: #2b1147; background: linear-gradient(135deg, #ffe39e, #e7b64f); box-shadow: 0 6px 20px rgba(231,182,79,.32); transition: filter .2s, opacity .2s; }
+.grande:disabled { opacity: .42; cursor: default; box-shadow: none; }
+.grande:not(:disabled):hover { filter: brightness(1.06); }
+.pe { margin: 10px 0 0 !important; font-size: 13px !important; color: var(--apagado) !important; text-align: center; }
+.aviso-app { margin: 0 0 13px; padding: 11px 13px; border-radius: 13px; background: rgba(255,189,89,.1); border: 1px solid rgba(255,189,89,.42); font-size: 14px; line-height: 1.42; color: #ffeccb; }
+.aviso-app b { color: var(--ouro); display: block; margin-bottom: 2px; }
+.aviso-app .bts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.aviso-app a, .aviso-app button { display: inline-block; padding: 7px 12px; border-radius: 10px; background: rgba(242,201,107,.16); border: 1px solid var(--borda); color: var(--ouro); text-decoration: none; font-size: 13.5px; font-weight: 600; }
+
+#espera { left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(560px, calc(100vw - 24px)); padding: 13px 16px 13px 18px; }
+.esp-l { display: flex; align-items: center; gap: 12px; }
+.ponto { flex: 0 0 auto; width: 11px; height: 11px; border-radius: 50%; background: var(--ouro); box-shadow: 0 0 0 0 rgba(242,201,107,.6); animation: bate 2.4s infinite; }
+@keyframes bate { 70% { box-shadow: 0 0 0 10px rgba(242,201,107,0); } 100% { box-shadow: 0 0 0 0 rgba(242,201,107,0); } }
+#espera .tx { flex: 1; min-width: 0; }
+#espera h2 { font-size: 21px; }
+#frase { margin: 1px 0 0; font-size: 14px; color: #e3d7ef; min-height: 2.8em; transition: opacity .6s; line-height: 1.4; }
+.som { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1px; min-width: 62px; padding: 7px 8px; border-radius: 12px; border: 1px solid var(--borda); background: rgba(255,255,255,.05); color: var(--ouro); font-size: 11.5px; line-height: 1.2; }
+.som svg { width: 20px; height: 20px; }
+.som[aria-pressed="false"] { color: var(--apagado); }
+.som[aria-pressed="false"] .onda { display: none; } .som[aria-pressed="true"] .corte { display: none; }
+.mestre-acoes { display: none; gap: 8px; margin-top: 10px; } body.mestre .mestre-acoes { display: flex; } .mestre-acoes .grande { margin: 0; }
+
+/* ---------- o chat, em grande ---------- */
+#chat { z-index: 6; left: 50%; top: 50%; width: min(940px, 94vw); height: var(--chat-h, min(90svh, 880px)); margin-left: calc(min(940px, 94vw) / -2); margin-top: calc(var(--chat-h, min(90svh, 880px)) / -2); flex-direction: column; overflow: hidden; border-radius: 22px; border: 1px solid rgba(242,201,107,.55);
+  background: linear-gradient(175deg, rgba(36,15,68,.97), rgba(18,8,37,.985)); box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 0 70px rgba(176,108,255,.42), 0 24px 70px rgba(0,0,0,.6); opacity: 0; transform: scale(.16); transition: transform .85s cubic-bezier(.2,.9,.25,1.02), opacity .5s; }
+#chat.mostra { display: flex; }
+#chat.grande-ja { opacity: 1; transform: none; }
+.cab { flex: 0 0 auto; display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: linear-gradient(135deg, #3b1a63, #25104a); border-bottom: 1px solid rgba(242,201,107,.28); }
+.cab img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--verde); }
+.cab .quem { flex: 1; min-width: 0; }
+.cab h1 { font-size: 24px; }
+.cab small { display: block; color: #57e08f; font-size: 13px; }
+.cab .som { flex-direction: row; gap: 5px; min-width: 0; padding: 7px 10px; }
+.cab .terminar { display: none; padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(255,140,140,.5); background: rgba(255,90,90,.12); color: #ffc9c9; font-size: 13.5px; font-weight: 600; } body.mestre .cab .terminar { display: block; }
+#msgs { flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 16px 8px; display: flex; flex-direction: column; gap: 9px; scroll-behavior: smooth; }
+.m { max-width: min(76%, 560px); padding: 9px 13px 7px; border-radius: 17px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 16.5px; line-height: 1.42; animation: surge .3s ease; }
+@keyframes surge { from { opacity: 0; transform: translateY(8px); } }
+.m.outro { align-self: flex-start; background: rgba(242,201,107,.16); border: 1px solid rgba(242,201,107,.2); border-bottom-left-radius: 5px; }
+.m.eu { align-self: flex-end; background: rgba(120,70,200,.42); border: 1px solid rgba(190,150,255,.28); border-bottom-right-radius: 5px; }
+.m time { display: block; margin-top: 2px; font-size: 11.5px; color: var(--apagado); text-align: right; }
+.sis { align-self: center; max-width: 92%; text-align: center; font-size: 13.5px; color: var(--apagado); padding: 2px 10px; }
+.esc { display: none; align-self: flex-start; padding: 11px 14px; border-radius: 16px; background: rgba(242,201,107,.16); } .esc.on { display: block; }
+.esc i { display: inline-block; width: 7px; height: 7px; margin: 0 2px; border-radius: 50%; background: var(--ouro); animation: pt 1.2s infinite; } .esc i:nth-child(2) { animation-delay: .2s; } .esc i:nth-child(3) { animation-delay: .4s; }
+@keyframes pt { 0%,60%,100% { opacity: .3; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
+.au { display: flex; align-items: center; gap: 10px; min-width: min(250px, 58vw); }
+.au button { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--ouro); color: #2b1147; display: grid; place-items: center; }
+.au button svg { width: 18px; height: 18px; }
+.au .barra { flex: 1; height: 5px; border-radius: 3px; background: rgba(255,255,255,.2); overflow: hidden; }
+.au .barra i { display: block; height: 100%; width: 0; background: var(--ouro); }
+.au .dur { flex: 0 0 auto; font-size: 13px; color: #eadff4; font-variant-numeric: tabular-nums; }
+.au-erro { font-size: 13px; color: #ffd0a8; margin-top: 3px; }
+#nota { flex: 0 0 auto; display: none; padding: 7px 14px; font-size: 13.5px; line-height: 1.38; color: #ffe2b8; background: rgba(255,170,70,.1); border-top: 1px solid rgba(255,170,70,.28); } #nota.on { display: block; }
+#barra { flex: 0 0 auto; display: flex; align-items: flex-end; gap: 8px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); border-top: 1px solid rgba(255,255,255,.09); background: rgba(13,5,27,.5); }
+#texto { flex: 1; min-width: 0; resize: none; max-height: 128px; padding: 11px 14px; border-radius: 16px; border: 1px solid rgba(242,201,107,.34); background: #140826; color: var(--texto); font: 16px/1.4 Inter, system-ui, sans-serif; outline: none; }
+#texto:focus { border-color: var(--ouro); }
+.bt-r { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; border: 0; display: grid; place-items: center; }
+.bt-r svg { width: 22px; height: 22px; }
+#mic { background: rgba(242,201,107,.18); color: var(--ouro); border: 1px solid var(--borda); }
+#mic.sem { opacity: .5; }
+#enviar { background: linear-gradient(135deg, #ffe39e, #e7b64f); color: #2b1147; }
+#gravando { display: none; flex: 1; min-width: 0; align-items: center; gap: 10px; min-height: 46px; padding: 0 6px; }
+#gravando .bola-r { flex: 0 0 auto; width: 12px; height: 12px; border-radius: 50%; background: #ff5a5a; animation: bate-r 1.1s infinite; }
+@keyframes bate-r { 50% { opacity: .3; } }
+#gravando .tempo { font-variant-numeric: tabular-nums; font-weight: 600; }
+#gravando .lim { flex: 1; height: 5px; border-radius: 3px; background: rgba(255,255,255,.14); overflow: hidden; } #gravando .lim i { display: block; height: 100%; width: 0; background: #ff8f8f; }
+#cancelar { background: rgba(255,255,255,.08); color: #f3e7fb; }
+#parar { background: linear-gradient(135deg, #ffe39e, #e7b64f); color: #2b1147; }
+#barra.grava #texto, #barra.grava #mic, #barra.grava #enviar { display: none; }
+#barra.grava #gravando { display: flex; }
+#gravando button { display: grid; }
+
+/* ---------- o fim ---------- */
+#fim { left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(480px, calc(100vw - 28px)); padding: 26px 26px 24px; text-align: center; }
+#fim h1 { font-size: 32px; margin-bottom: 8px; } #fim p { margin: 0 0 16px; color: #e9def3; }
+#fim a.grande { text-decoration: none; }
+.mostra { display: block; }
+
+/* ---------- telemóvel (ao alto): a panorâmica enquadrada na porta ---------- */
+@media (max-aspect-ratio: 1/1) {
+  :root { --W: max(330vw, calc(100svh * .9)); --Y: calc(var(--H) * -.093); --Z: 1; --ori: 50.39% 0; }
+  /* à entrada, a sala inteira de longe, com o letreiro todo; ao entrar, a câmara aproxima-se da porta */
+  body.fase-entrada, body.fase-fim, body.fase-carrega { --Z: .506; --Y: 20px; }
+  #fim { top: auto; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%); }
+  .fundo { -webkit-mask-image: linear-gradient(#000 80%, transparent 99%); mask-image: linear-gradient(#000 80%, transparent 99%); }
+  body.aberta #cena { --Z: 1.1; }
+  #entrada { padding: 18px 18px 16px; bottom: max(12px, env(safe-area-inset-bottom)); }
+  #entrada h1 { font-size: 27px; }
+  #entrada p { font-size: 15px; margin-bottom: 10px; }
+  #chat { width: calc(100vw - 12px); margin-left: calc((100vw - 12px) / -2); height: var(--chat-h, calc(100svh - 12px)); margin-top: calc(var(--chat-h, calc(100svh - 12px)) / -2); border-radius: 18px; }
+  .m { max-width: 86%; }
+  .cab { padding: 9px 11px; gap: 9px; } .cab img { width: 42px; height: 42px; } .cab h1 { font-size: 21px; } .cab .som span { display: none; }
+  .cab .terminar { padding: 7px 8px; font-size: 12.5px; }
+}
+#titulo-m { display: none; position: fixed; z-index: 4; left: 0; right: 0; top: 0; padding: calc(12px + env(safe-area-inset-top)) 14px 38px; justify-content: center; text-align: center; font: 700 clamp(21px, 6.2vw, 29px)/1.08 "Cormorant Garamond", Georgia, serif; color: var(--ouro);
+  background: linear-gradient(#1d0d36 74%, rgba(29,13,54,.8) 86%, transparent); text-shadow: 0 2px 8px rgba(0,0,0,.5); transition: opacity .8s; pointer-events: none; }
+body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
+@media (max-aspect-ratio: 1/1) { body.fase-espera #titulo-m, body.fase-chat #titulo-m { display: flex; } }
+#rodape-m { position: fixed; z-index: 1; left: 0; right: 0; bottom: 0; height: 34svh; pointer-events: none; background: linear-gradient(transparent, rgba(22,10,43,.95) 62%); display: none; }
+@media (max-aspect-ratio: 1/1) { #rodape-m { display: block; } }
+
+/* ---------- ao baixo e pequeno (telemóvel deitado) ---------- */
+@media (max-height: 500px) {
+  #entrada { padding: 12px 16px; } #entrada h1 { font-size: 23px; } #entrada p { font-size: 13.5px; margin-bottom: 7px; }
+  .aceito { padding: 8px 10px; font-size: 13px; } .grande { padding: 10px 14px; margin-top: 8px; font-size: 16px; }
+  #espera { width: min(440px, 62vw); left: auto; right: 10px; transform: none; bottom: 8px; padding: 9px 12px; } #espera h2 { font-size: 18px; } #frase { font-size: 13px; }
+  .face span { font-size: 12.5px; } .face b { font-size: 14px; }
+  #chat { width: calc(100vw - 12px); margin-left: calc((100vw - 12px) / -2); height: var(--chat-h, calc(100svh - 10px)); margin-top: calc(var(--chat-h, calc(100svh - 10px)) / -2); }
+  .cab { padding: 5px 10px; } .cab img { width: 32px; height: 32px; } #msgs { padding: 8px 10px 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .placa, .luz, .fresta, .ponto { animation: none !important; }
+  #cena { transition: none; } .folha { transition: transform .3s; } #chat { transition: opacity .3s; transform: none; } #msgs { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body class="fase-carrega">
+<div id="palco" aria-hidden="true">
+  <div id="cena">
+    <img class="fundo" src="/consultorio-virtual-sala-de-espera.webp" alt="" width="1672" height="941" />
+    <i class="luz c" style="left:4.1%;top:57.4%;width:6%;height:10.7%"></i>
+    <i class="luz b" style="left:7.1%;top:58.5%;width:5%;height:8.9%"></i>
+    <i class="luz" style="left:24.2%;top:36.6%;width:4.8%;height:8.5%"></i>
+    <i class="luz b" style="left:27.3%;top:27.5%;width:3%;height:5.3%"></i>
+    <i class="luz c" style="left:59.1%;top:76.7%;width:5%;height:8.9%"></i>
+    <i class="luz b" style="left:94.8%;top:60.5%;width:5%;height:8.9%"></i>
+    <div class="vao">
+      <img class="cosmos" src="/consultorio-virtual-cosmos.webp" alt="" />
+      <div class="folha esq"><img src="/consultorio-virtual-porta-esquerda.webp" alt="" /></div>
+      <div class="folha dir"><img src="/consultorio-virtual-porta-direita.webp" alt="" /></div>
+    </div>
+    <i class="fresta"></i>
+    <i class="luz bolaluz" style="left:45.6%;top:60.7%;width:13.7%;height:24.4%"></i>
+    <img class="bola" src="/consultorio-virtual-bola.webp" alt="" />
+    <div class="placa">
+      <div class="placa-in">
+        <div class="face frente"><b>Ocupado</b><span>Aguarde uns minutos aqui, que o Mestre Alberto já fala consigo.</span></div>
+        <div class="face tras"><b>Pode entrar</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="clarao" aria-hidden="true"></div>
+<div id="veu" aria-hidden="true"></div>
+<div id="rodape-m" aria-hidden="true"></div>
+<div id="titulo-m" aria-hidden="true">Consultório Virtual<br />do Mestre Alberto</div>
+
+<section id="entrada" class="ecra cartao" aria-labelledby="t-ent">
+  <h1 id="t-ent">Boas-vindas ao Consultório</h1>
+  <div id="aviso-app" class="aviso-app" hidden></div>
+  <p id="ent-tx">Esta ligação foi criada só para si. Entre na sala de espera e fique à vontade: há música suave, que pode desligar. Quando o Mestre Alberto estiver pronto, a porta abre-se e falam aqui, por escrita ou por áudio.</p>
+  <label class="aceito" id="ent-aceito"><input type="checkbox" id="aceito" />
+    <span>Aceito que a conversa, escrita e voz, fique guardada e seja apagada ao fim de 30 dias. <a href="/privacidade" target="_blank" rel="noopener">Política de Privacidade</a></span></label>
+  <button class="grande" id="entrar" type="button" disabled>Entrar na sala de espera</button>
+</section>
+
+<section id="espera" class="ecra cartao" aria-live="polite">
+  <div class="esp-l">
+    <i class="ponto"></i>
+    <div class="tx"><h2 id="esp-t">Está na sala de espera</h2><p id="frase"></p></div>
+    <button class="som" id="som1" type="button" aria-pressed="true" aria-label="Ligar ou desligar a música"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path class="onda" d="M16 9a4 4 0 0 1 0 6M18.6 6.5a8 8 0 0 1 0 11"/><path class="corte" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span id="som1t">Música</span></button>
+  </div>
+  <div class="mestre-acoes"><button class="grande" id="atender" type="button">Abrir as portas</button></div>
+</section>
+
+<section id="chat" class="ecra" aria-label="Conversa com o Mestre Alberto">
+  <header class="cab">
+    <img src="/mestre-avatar@2x.jpg" alt="Mestre Alberto" />
+    <div class="quem"><h1 id="chat-nome">Mestre Alberto</h1><small id="chat-est">● A falar consigo</small></div>
+    <button class="som" id="som2" type="button" aria-pressed="true" aria-label="Ligar ou desligar a música"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path class="onda" d="M16 9a4 4 0 0 1 0 6M18.6 6.5a8 8 0 0 1 0 11"/><path class="corte" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span>Música</span></button>
+    <button class="terminar" id="terminar" type="button">Fechar conversa</button>
+  </header>
+  <div id="msgs" role="log" aria-live="polite"><div class="esc" id="esc"><i></i><i></i><i></i></div></div>
+  <div id="nota"></div>
+  <form id="barra">
+    <textarea id="texto" rows="1" maxlength="2000" placeholder="Escreva aqui…" aria-label="A sua mensagem"></textarea>
+    <button class="bt-r" id="mic" type="button" aria-label="Gravar um áudio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+    <button class="bt-r" id="enviar" type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4 21 12 3.4 3.6l.1 6.5L15 12 3.5 13.9z"/></svg></button>
+    <div id="gravando" aria-live="polite">
+      <button class="bt-r" id="cancelar" type="button" aria-label="Apagar a gravação"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <i class="bola-r"></i><span class="tempo" id="grav-t">0:00</span><span class="lim"><i id="grav-b"></i></span>
+      <button class="bt-r" id="parar" type="button" aria-label="Enviar o áudio"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4 21 12 3.4 3.6l.1 6.5L15 12 3.5 13.9z"/></svg></button>
+    </div>
+  </form>
+</section>
+
+<section id="fim" class="ecra cartao">
+  <h1 id="fim-t"></h1><p id="fim-p"></p>
+  <a class="grande" href="/">Ir para o site</a>
+</section>
+
+<script>
+(function () {
+  "use strict";
+  // ---------- o que se pode querer mudar ----------
+  var ESPERA_MS = 6000;      // sala de espera: de quantos em quantos ms pergunta se a porta abriu
+  var CONVERSA_MS = 3000;    // conversa activa
+  var CALMA_MS = 6000;       // conversa sem nada há mais de CALMA_APOS_MS
+  var CALMA_APOS_MS = 60000;
+  var ESCONDIDA_MS = 30000;  // separador em segundo plano
+  // A música calibra-se contra a regra dele: ambient.mp3 (−14,2 dB) a volume 0,01 = −54 dBFS. Mudar só este número.
+  var VOL_MUSICA = 0.0113;   // ganho final da música; dá os −54 dBFS, medido com OfflineAudioContext a 05/11
+  var FRASES = ["Respire devagar. Este tempo é seu.", "Pode ir pensando no que quer perguntar.", "Mantenha esta página aberta: a porta abre-se aqui."];
+
+  var $ = function (i) { return document.getElementById(i); };
+  var c = (location.pathname.match(/^\/consultorio\/([a-hjkmnp-z2-9]{20})\/?$/) || [])[1] || "";
+  var m = (location.hash.match(/[#&]m=([0-9a-f]{32})/) || [])[1] || "";
+  var Q = "c=" + c + (m ? "&m=" + m : "");
+  var mestre = !!m, desde = 0, estado = "", maxAudio = 90, ultimaAct = Date.now(), porLer = 0, tituloBase = document.title, falhas = 0;
+  if (mestre) document.body.classList.add("mestre");
+
+  function fase(f) { document.body.className = document.body.className.replace(/\bfase-\S+/g, "").trim() + " fase-" + f; }
+  function mostra(id, sim) { $(id).classList.toggle("mostra", !!sim); }
+  function post(u, d) { d = d || {}; d.c = c; if (m) d.m = m; return fetch("/api/consultorio/" + u, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d), keepalive: true }).then(function (r) { return r.json().then(function (j) { j._s = r.status; return j; }); }); }
+
+  // ---------- onde está a pessoa: dentro do WhatsApp/Facebook o microfone pode não funcionar ----------
+  var ua = navigator.userAgent, android = /Android/i.test(ua), ios = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var dentroApp = /FBAN|FBAV|FB_IAB|FBIOS|Instagram|WhatsApp|Messenger|MicroMessenger|TikTok|musical_ly|BytedanceWebview|Snapchat|Line\/|Twitter|; wv\)/i.test(ua) || (ios && !/Safari\//.test(ua));
+  function avisoApp() {
+    if (!dentroApp) return;
+    var el = $("aviso-app"), liga = location.href.split("#")[0];
+    el.innerHTML = "<b>Está a abrir esta ligação dentro de outra aplicação.</b>Aqui pode escrever, mas o microfone pode não funcionar. Para enviar áudio, abra a ligação no " + (ios ? "Safari: toque em ⋯ ou no ícone de partilha e escolha «Abrir no Safari»." : "Chrome: toque em ⋮ e escolha «Abrir no Chrome».") +
+      '<div class="bts">' + (android ? '<a href="intent://' + liga.replace(/^https?:\/\//, "") + '#Intent;scheme=https;package=com.android.chrome;end">Abrir no Chrome</a>' : "") + '<button type="button" id="copiar">Copiar ligação</button></div>';
+    el.hidden = false;
+    $("copiar").onclick = function () { var b = this; (navigator.clipboard ? navigator.clipboard.writeText(liga) : Promise.reject()).then(function () { b.textContent = "Ligação copiada"; }).catch(function () { window.prompt("Copie esta ligação:", liga); }); };
+  }
+
+  // ---------- a música: original, feita aqui no navegador, sem ficheiros nem direitos de autor ----------
+  // Harmonia lenta em ré, sinos pentatónicos e uma taça grave, tudo a passar por uma reverberação longa.
+  var ctx = null, mestreG = null, musG = null, reverbIn = null, secoIn = null, somLigado = true, nivel = 1, tMus = 0, passo = 0, gravandoSom = false;
+  var ACORDES = [[73.42, 110, 146.83, 174.61, 220, 329.63], [58.27, 116.54, 146.83, 174.61, 220, 261.63], [65.41, 98, 130.81, 164.81, 196, 293.66], [55, 110, 130.81, 164.81, 220, 246.94]];
+  var SINOS = [440, 523.25, 587.33, 659.25, 783.99, 880, 1046.5];
+  function audioCtx() {
+    if (ctx) { if (ctx.state === "suspended") ctx.resume(); return ctx; }
+    var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null;
+    ctx = new AC(); if (ctx.state === "suspended") ctx.resume();
+    return ctx;
+  }
+  function montarMusica(a, destino) {   // serve para o som verdadeiro e para a medição
+    var saida = a.createGain(), con = a.createConvolver(), ri = a.createGain(), seco = a.createGain();
+    var n = Math.floor(a.sampleRate * 4.6), ir = a.createBuffer(2, n, a.sampleRate);
+    for (var ch = 0; ch < 2; ch++) { var d = ir.getChannelData(ch), lp = 0; for (var i = 0; i < n; i++) { var e = Math.pow(1 - i / n, 2.6); lp += ((Math.random() * 2 - 1) - lp) * .22; d[i] = lp * e; } }
+    con.buffer = ir; ri.gain.value = .8; seco.gain.value = .55;
+    ri.connect(con); con.connect(saida); seco.connect(saida); saida.connect(destino);
+    return { ri: ri, seco: seco };
+  }
+  function acorde(a, r, t, dur, freqs) {
+    freqs.forEach(function (f, i) {
+      [-.0018, .0018].forEach(function (dt, k) {
+        var o = a.createOscillator(), g = a.createGain(), fl = a.createBiquadFilter(), p = a.createStereoPanner ? a.createStereoPanner() : null;
+        o.type = i < 2 ? "sine" : "triangle"; o.frequency.value = f * (1 + dt); fl.type = "lowpass"; fl.frequency.setValueAtTime(420, t); fl.frequency.linearRampToValueAtTime(760, t + dur * .55); fl.frequency.linearRampToValueAtTime(380, t + dur);
+        var pico = (i < 2 ? .1 : .055);
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(pico, t + dur / 3); g.gain.setValueAtTime(pico, t + dur * 2 / 3); g.gain.linearRampToValueAtTime(0, t + dur);   // lineares: um acorde entra enquanto o outro sai, sem buraco no meio
+        o.connect(fl); fl.connect(g); if (p) { p.pan.value = (k ? 1 : -1) * (.2 + i * .1); g.connect(p); p.connect(r.ri); p.connect(r.seco); } else { g.connect(r.ri); g.connect(r.seco); }
+        o.start(t); o.stop(t + dur + .05);
+      });
+    });
+  }
+  function sino(a, r, t, f, forca) {
+    [[1, 1], [2.76, .22], [5.4, .07]].forEach(function (h) {
+      var o = a.createOscillator(), g = a.createGain(); o.type = "sine"; o.frequency.value = f * h[0];
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(forca * h[1], t + .012); g.gain.exponentialRampToValueAtTime(.0001, t + 5.5 / Math.sqrt(h[0]));
+      o.connect(g); g.connect(r.ri); o.start(t); o.stop(t + 6);
+    });
+  }
+  function taca(a, r, t) {
+    [[110, .08], [110.9, .07], [298, .02], [299.4, .018]].forEach(function (h) {
+      var o = a.createOscillator(), g = a.createGain(); o.type = "sine"; o.frequency.value = h[0];
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(h[1], t + .9); g.gain.exponentialRampToValueAtTime(.0001, t + 16);
+      o.connect(g); g.connect(r.ri); g.connect(r.seco); o.start(t); o.stop(t + 16.5);
+    });
+  }
+  function agendar(a, r, de, ate, st) {   // escreve a música entre os instantes «de» e «ate»
+    while (st.t < ate) {
+      acorde(a, r, st.t, 24, ACORDES[st.i % ACORDES.length]);
+      st.i++; st.t += 16;
+    }
+    while (st.ts < ate) {
+      sino(a, r, st.ts, SINOS[Math.floor(Math.random() * SINOS.length)], .05 + Math.random() * .04);
+      if (Math.random() < .35) sino(a, r, st.ts + .9 + Math.random() * .6, SINOS[Math.floor(Math.random() * SINOS.length)], .03);
+      st.ts += 4.5 + Math.random() * 6.5;
+    }
+    while (st.tt < ate) { taca(a, r, st.tt); st.tt += 38 + Math.random() * 14; }
+  }
+  var estadoMus = null, rMus = null;
+  function ligarMusica() {
+    var a = audioCtx(); if (!a || musG) return;
+    musG = a.createGain(); musG.gain.value = 0; musG.connect(a.destination);
+    rMus = montarMusica(a, musG);
+    estadoMus = { t: a.currentTime + .1, i: 0, ts: a.currentTime + 4, tt: a.currentTime + 7 };
+    (function roda() { if (!musG) return; agendar(a, rMus, a.currentTime, a.currentTime + 24, estadoMus); tMus = setTimeout(roda, 8000); })();
+    aplicarVol(3);
+  }
+  function aplicarVol(s) {
+    if (!musG) return;
+    var alvo = somLigado && !gravandoSom ? Math.max(.00001, VOL_MUSICA * nivel) : .00001, t = ctx.currentTime;
+    try { musG.gain.cancelScheduledValues(t); musG.gain.setValueAtTime(Math.max(.00001, musG.gain.value), t); musG.gain.exponentialRampToValueAtTime(alvo, t + (s || .4)); } catch (e) {}
+  }
+  function botaoSom() { ["som1", "som2"].forEach(function (i) { $(i).setAttribute("aria-pressed", somLigado ? "true" : "false"); }); $("som1t").textContent = somLigado ? "Música" : "Sem música"; }
+  function trocaSom() { somLigado = !somLigado; if (somLigado && !musG) ligarMusica(); aplicarVol(.5); botaoSom(); }
+  // os sinais curtos, com os mesmos volumes do chat do site (vivo.js): nunca alto
+  function sinal(q) {
+    try {
+      var a = audioCtx(); if (!a) return; var t = a.currentTime, n = { abre: [[523.3, 0], [659.3, .14], [784, .28], [1046.5, .44]], fecha: [[784, 0], [523.3, .22]], msg: [[880, 0]] }[q];
+      n.forEach(function (x) { var o = a.createOscillator(), g = a.createGain(), t0 = t + x[1]; o.type = "sine"; o.frequency.value = x[0]; g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(q === "msg" ? .015 : .05, t0 + .02); g.gain.exponentialRampToValueAtTime(.0001, t0 + (q === "abre" ? 1.8 : q === "msg" ? .25 : 1.1)); o.connect(g); g.connect(a.destination); o.start(t0); o.stop(t0 + 1.9); });
+    } catch (e) {}
+  }
+
+  // ---------- as fases ----------
+  var iFrase = 0, tFrase = 0;
+  function rodaFrases() { clearInterval(tFrase); $("frase").textContent = FRASES[2]; iFrase = 0; tFrase = setInterval(function () { var f = $("frase"); f.style.opacity = 0; setTimeout(function () { f.textContent = FRASES[iFrase++ % FRASES.length]; f.style.opacity = 1; }, 650); }, 9000); }
+  function verEntrada(jaAceitou) {
+    fase("entrada"); mostra("entrada", true); avisoApp();
+    if (jaAceitou) { $("ent-aceito").style.display = "none"; $("t-ent").textContent = "Continua na sala de espera"; $("ent-tx").textContent = "A porta ainda não se abriu. Volte a entrar e aguarde mais um pouco."; $("entrar").textContent = "Voltar à sala de espera"; $("entrar").disabled = false; }
+  }
+  function verEspera() {
+    fase("espera"); mostra("entrada", false); mostra("espera", true); rodaFrases();
+    if (mestre) { $("esp-t").textContent = estado === "criado" ? "Ainda não há ninguém na sala" : "Há alguém na sala de espera"; $("frase").textContent = estado === "criado" ? "A porta só se abre depois de a pessoa entrar." : ""; clearInterval(tFrase); $("atender").disabled = estado !== "espera"; }
+  }
+  var abrindo = false;
+  function abrirPortas(depressa) {
+    if (abrindo) return; abrindo = true; clearInterval(tFrase);
+    nivel = .3; aplicarVol(2.5);
+    var b = document.body, calmo = depressa || matchMedia("(prefers-reduced-motion: reduce)").matches;
+    mostra("espera", false); if (!calmo) sinal("abre");
+    if (document.hidden) document.title = "🔔 O Mestre Alberto está pronto";
+    if (calmo) { b.classList.add("virada-saiu", "aberta", "cosmos-pulsa"); abrirChat(true); return; }
+    b.classList.add("virada");                                          // a placa vira para «Pode entrar»
+    setTimeout(function () { b.classList.add("virada-saiu"); }, 1500);  // e sai
+    setTimeout(function () { b.classList.add("aberta"); }, 1900);       // as folhas abrem-se e a luz entra
+    setTimeout(function () { b.classList.add("cosmos-pulsa"); abrirChat(false); }, 3900);   // e a conversa cresce de dentro da porta
+  }
+  function abrirChat(jaGrande) {
+    fase("chat"); mostra("chat", true); ajustarChat();
+    var f = function () { $("chat").classList.add("grande-ja"); };
+    if (jaGrande) f(); else requestAnimationFrame(function () { requestAnimationFrame(f); });
+    if (!$("msgs").querySelector(".sis")) { sistema(mestre ? "Está dentro. Pode escrever ou gravar um áudio." : "O Mestre Alberto abriu a porta. Pode escrever ou gravar um áudio."); }
+    if (typeof MediaRecorder === "undefined" || !navigator.mediaDevices) { if (!dentroApp) $("mic").classList.add("sem"); }
+    if (window.innerWidth > 760) setTimeout(function () { $("texto").focus(); }, 900);
+  }
+  function verFim(titulo, tx) {
+    clearInterval(tFrase); clearTimeout(tMus); pararGravacao(false);
+    if (musG) { var a = musG; nivel = 0; aplicarVol(2); setTimeout(function () { try { a.disconnect(); } catch (e) {} }, 2600); musG = null; }
+    mostra("espera", false); mostra("entrada", false); $("chat").classList.remove("grande-ja");
+    setTimeout(function () { mostra("chat", false); }, 700);
+    document.body.classList.remove("aberta", "virada", "virada-saiu", "cosmos-pulsa"); fase("fim");
+    document.title = tituloBase; $("fim-t").textContent = titulo; $("fim-p").textContent = tx; mostra("fim", true);
+  }
+  function fimDe(e) {
+    if (e === "fechado") verFim("A conversa terminou", "Obrigado pela sua presença. Esta ligação já não está activa; para uma nova consulta, fale com o Mestre Alberto.");
+    else if (e === "expirado") verFim("Esta ligação já expirou", "Cada ligação vale por pouco tempo, para sua segurança. Peça uma nova ao Mestre Alberto, por favor.");
+    else verFim("Ligação não encontrada", "Confirme se a abriu completa, tal como a recebeu. Se o problema continuar, peça uma nova ao Mestre Alberto.");
+  }
+
+  // ---------- as perguntas ao worker: nunca duas ao mesmo tempo, e cada vez menos quando nada acontece ----------
+  var tPerg = 0, aPerguntar = false, parado = false, notaRede = false;
+  function intervalo() {
+    if (document.hidden) return ESCONDIDA_MS;
+    if (estado === "conversa") return Date.now() - ultimaAct > CALMA_APOS_MS ? CALMA_MS : CONVERSA_MS;
+    return ESPERA_MS;
+  }
+  function proxima(ms) { clearTimeout(tPerg); if (!parado) tPerg = setTimeout(pergunta, ms === undefined ? Math.min(30000, intervalo() + falhas * 3000) : ms); }
+  function pergunta() {
+    if (aPerguntar || parado) return; aPerguntar = true;
+    fetch("/api/consultorio/estado?" + Q + "&desde=" + desde, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (r) {
+      falhas = 0; if (notaRede) nota(""); notaRede = false; trata(r);
+    }).catch(function () { falhas++; if (falhas > 2) { notaRede = true; nota("A ligação falhou. A tentar outra vez…"); } }).then(function () { aPerguntar = false; proxima(); });
+  }
+  function trata(r) {
+    var ant = estado; estado = r.estado; if (r.max_audio_s) maxAudio = r.max_audio_s;
+    if (["invalido", "fechado", "expirado"].indexOf(estado) >= 0) { parado = true; return fimDe(estado); }
+    (r.msgs || []).forEach(novaMsg);
+    $("esc").classList.toggle("on", !!r.escreve); if (r.escreve) { ultimaAct = Date.now(); rolar(); }
+    if (mestre) {
+      if (r.etiqueta) $("chat-nome").textContent = r.etiqueta;
+      $("chat-est").textContent = r.presente ? "● Na sala, a ver a conversa" : "○ A página da pessoa não responde agora";
+      if (estado === "conversa" && !abrindo) abrirPortas(true);
+      else if (estado !== "conversa" && (ant !== estado || !ant)) verEspera();
+      return;
+    }
+    if (estado === "conversa" && ant === "espera" && !abrindo && document.body.classList.contains("fase-espera")) abrirPortas(false);
+    else if (estado === "conversa" && !abrindo) abrirPortas(true);
+  }
+  function nota(t) { var n = $("nota"); n.textContent = t; n.classList.toggle("on", !!t); }
+
+  // ---------- as mensagens ----------
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (x) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[x]; }); }
+  function hora(q) { return new Date(q).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" }); }
+  function mmss(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+  function rolar() { var b = $("msgs"); b.scrollTop = b.scrollHeight; }
+  function sistema(t) { var d = document.createElement("div"); d.className = "sis"; d.textContent = t; var b = $("msgs"); b.insertBefore(d, b.firstChild); rolar(); }   // sempre no topo, mesmo com histórico
+  var ICO_P = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>', ICO_S = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4.5" width="4.4" height="15" rx="1"/><rect x="13.6" y="4.5" width="4.4" height="15" rx="1"/></svg>';
+  function novaMsg(x) {
+    if (x.id <= desde) return; desde = x.id; ultimaAct = Date.now();
+    var minha = x.de === (mestre ? "mestre" : "pessoa"), d = document.createElement("div");
+    d.className = "m " + (minha ? "eu" : "outro");
+    if (x.tipo === "audio") { d.innerHTML = '<div class="au"><button type="button" aria-label="Ouvir o áudio">' + ICO_P + '</button><span class="barra"><i></i></span><span class="dur">' + mmss(x.dur) + "</span></div><time>" + hora(x.quando) + "</time>"; leitor(d, x); }
+    else d.innerHTML = esc(x.texto) + "<time>" + hora(x.quando) + "</time>";
+    $("msgs").insertBefore(d, $("esc")); rolar();
+    if (!minha) { sinal("msg"); if (document.hidden) { porLer++; document.title = "(" + porLer + ") Nova mensagem"; } }
+  }
+  // O áudio descarrega-se já, para um Blob: o Safari do iPhone só aceita tocar dentro do toque e não gosta de servidores sem Range.
+  var atual = null;
+  function leitor(el, x) {
+    var bt = el.querySelector("button"), barra = el.querySelector(".barra i"), dur = el.querySelector(".dur"), au = null, urlB = null, querTocar = false;
+    function falha(t) { if (!el.querySelector(".au-erro")) { var e = document.createElement("div"); e.className = "au-erro"; e.textContent = t; el.insertBefore(e, el.querySelector("time")); } bt.innerHTML = ICO_P; }
+    function tocar() {
+      if (atual && atual !== au) { atual.pause(); }
+      if (!au) {
+        au = new Audio(urlB); au.preload = "auto";
+        au.ontimeupdate = function () { var d = isFinite(au.duration) && au.duration > 0 ? au.duration : (x.dur || 1); barra.style.width = Math.min(100, au.currentTime / d * 100) + "%"; dur.textContent = mmss(au.currentTime); };
+        au.onended = function () { bt.innerHTML = ICO_P; barra.style.width = "0"; dur.textContent = mmss(x.dur); nivelAudio(false); };
+        au.onpause = function () { bt.innerHTML = ICO_P; nivelAudio(false); };
+        au.onplay = function () { bt.innerHTML = ICO_S; nivelAudio(true); };
+        au.onerror = function () { falha("Este áudio não toca neste navegador. Peça para o repetir ou escreva aqui."); };
+      }
+      atual = au; var p = au.play(); if (p && p.catch) p.catch(function (e) { if (e && e.name === "NotSupportedError") falha("Este áudio não toca neste navegador. Peça para o repetir ou escreva aqui."); });
+    }
+    fetch("/api/consultorio/audio?" + Q + "&id=" + x.id).then(function (r) { if (!r.ok) throw 0; return r.blob(); }).then(function (b) { urlB = URL.createObjectURL(b); if (querTocar) tocar(); }).catch(function () { falha("Não foi possível descarregar este áudio."); });
+    bt.onclick = function () { if (au && !au.paused) return au.pause(); if (urlB) tocar(); else querTocar = true; };
+  }
+  function nivelAudio(aTocar) { gravandoSom = aTocar || !!grav; aplicarVol(.4); }
+  function ajustarChat() {   // com o teclado aberto, a conversa encolhe em vez de ficar tapada (o iPhone não redimensiona a página)
+    var v = window.visualViewport; if (!v) return;
+    var teclado = window.innerHeight - v.height > 120;
+    document.documentElement.style.setProperty("--chat-h", teclado ? (v.height - 8) + "px" : "");
+    if (teclado) { window.scrollTo(0, 0); } setTimeout(rolar, 60);
+  }
+  if (window.visualViewport) { visualViewport.addEventListener("resize", ajustarChat); }
+
+  var tEsc = 0;
+  $("texto").addEventListener("input", function () {
+    var t = this; t.style.height = "auto"; t.style.height = Math.min(128, t.scrollHeight + 2) + "px";
+    if (Date.now() - tEsc > 2500 && t.value) { tEsc = Date.now(); post("escreve").catch(function () {}); }
+  });
+  $("texto").addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 760) { e.preventDefault(); envia(); } });
+  $("barra").addEventListener("submit", function (e) { e.preventDefault(); envia(); });
+  function envia() {
+    var t = $("texto"), v = t.value.trim(); if (!v) return; t.value = ""; t.style.height = "auto"; ultimaAct = Date.now();
+    post("msg", { texto: v }).then(function (r) { if (!r.ok) throw 0; nota(""); proxima(0); }).catch(function () { t.value = t.value || v; nota("A mensagem não seguiu. Confirme a ligação à internet e tente outra vez."); });
+  }
+
+  // ---------- gravar ----------
+  // AAC em mp4 primeiro, porque é o único que toca em todo o lado; o iPhone só faz esse. O Chrome antigo fica-se por webm.
+  var grav = null;
+  function tipoGravacao() {
+    var l = ["audio/mp4;codecs=mp4a.40.2", "audio/mp4", "audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus"];
+    for (var i = 0; i < l.length; i++) if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(l[i])) return l[i];
+    return "";
+  }
+  function semMic(erro) {
+    $("mic").classList.add("sem");
+    if (erro && (erro.name === "NotFoundError" || erro.name === "DevicesNotFoundError")) nota("Não encontrámos microfone neste aparelho. Pode continuar a escrever.");
+    else if (dentroApp) nota("Dentro desta aplicação o microfone não funciona. Pode continuar a escrever ou abrir a ligação no " + (ios ? "Safari" : "Chrome") + " para enviar áudio.");
+    else if (!window.isSecureContext) nota("Esta página não pode usar o microfone. Pode continuar a escrever.");
+    else nota("Sem autorização para o microfone. Pode continuar a escrever, ou autorizar o microfone nas definições do navegador e tentar outra vez.");
+  }
+  $("mic").onclick = function () {
+    if (grav) return;
+    if (typeof MediaRecorder === "undefined" || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return semMic();
+    nota(""); $("mic").disabled = true;
+    navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } }).then(function (fluxo) {
+      $("mic").disabled = false; $("mic").classList.remove("sem");
+      var tipo = tipoGravacao(), op = { audioBitsPerSecond: 48000 }; if (tipo) op.mimeType = tipo;
+      var rec; try { rec = new MediaRecorder(fluxo, op); } catch (e) { rec = new MediaRecorder(fluxo); }
+      var partes = []; grav = { rec: rec, fluxo: fluxo, ini: Date.now(), enviar: true };
+      rec.ondataavailable = function (e) { if (e.data && e.data.size) partes.push(e.data); };
+      rec.onstop = function () {
+        var g = grav; grav = null; fluxo.getTracks().forEach(function (t) { t.stop(); }); clearInterval(g.tick); $("barra").classList.remove("grava"); gravandoSom = false; aplicarVol(.6);
+        if (!g.enviar || !partes.length) return;
+        var dur = (Date.now() - g.ini) / 1000, mime = (rec.mimeType || partes[0].type || "audio/webm").split(";")[0].replace(/^video\//, "audio/");
+        if (dur < .7) return nota("Áudio demasiado curto: carregue no microfone, fale e carregue na seta para enviar.");
+        nota("A enviar o áudio…");
+        fetch("/api/consultorio/audio?" + Q + "&dur=" + dur.toFixed(1), { method: "POST", headers: { "Content-Type": mime }, body: new Blob(partes, { type: mime }) }).then(function (r) { if (!r.ok) throw 0; nota(""); ultimaAct = Date.now(); proxima(0); }).catch(function () { nota("O áudio não seguiu. Confirme a ligação à internet e tente outra vez."); });
+      };
+      rec.start(1000); gravandoSom = true; aplicarVol(.25); $("barra").classList.add("grava"); $("grav-t").textContent = "0:00"; $("grav-b").style.width = "0";
+      grav.tick = setInterval(function () { var s = (Date.now() - grav.ini) / 1000; $("grav-t").textContent = mmss(s) + " / " + mmss(maxAudio); $("grav-b").style.width = Math.min(100, s / maxAudio * 100) + "%"; if (s >= maxAudio) { nota("Chegou ao limite de " + mmss(maxAudio) + ": o áudio foi enviado."); pararGravacao(true); } }, 250);
+    }).catch(function (e) { $("mic").disabled = false; semMic(e); });
+  };
+  function pararGravacao(enviar) { if (!grav) return; grav.enviar = enviar; if (grav.rec.state !== "inactive") grav.rec.stop(); }
+  $("parar").onclick = function () { pararGravacao(true); };
+  $("cancelar").onclick = function () { pararGravacao(false); };
+
+  // ---------- botões ----------
+  $("aceito").onchange = function () { $("entrar").disabled = !this.checked; };
+  $("entrar").onclick = function () {
+    var b = this; b.disabled = true;
+    // Este toque é o que autoriza o som nos telemóveis: a música nasce aqui, e só aqui.
+    ligarMusica();
+    post("entrar", { aceitou: true }).then(function (r) {
+      if (!r.ok) { parado = true; return fimDe(r.estado || "invalido"); }
+      estado = r.estado; verEspera(); proxima(0);
+    }).catch(function () { b.disabled = false; b.textContent = "Tentar outra vez"; });
+  };
+  $("som1").onclick = $("som2").onclick = trocaSom;
+  $("atender").onclick = function () { this.disabled = true; post("atender").then(function () { proxima(0); }); };
+  $("terminar").onclick = function () { if (confirm("Fechar esta conversa? A ligação deixa de funcionar para a pessoa.")) post("fechar").then(function () { proxima(0); }); };
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) { porLer = 0; document.title = tituloBase; if (!abrindo || estado === "conversa") proxima(0); } });
+
+  // ---------- arranque ----------
+  if (!c) { fimDe("invalido"); return; }
+  fetch("/api/consultorio/estado?" + Q, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (r) {
+    estado = r.estado;
+    if (["invalido", "fechado", "expirado"].indexOf(estado) >= 0) { return fimDe(estado); }
+    if (r.max_audio_s) maxAudio = r.max_audio_s;
+    if (mestre) { botaoSomMestre(); (r.msgs || []).forEach(novaMsg); if (r.etiqueta) $("chat-nome").textContent = r.etiqueta; if (estado === "conversa") abrirPortas(true); else verEspera(); proxima(); return; }
+    if (estado === "conversa") { (r.msgs || []).forEach(novaMsg); abrirPortas(true); somLigado = false; botaoSom(); proxima(); return; }
+    verEntrada(estado === "espera");
+  }).catch(function () { $("t-ent").textContent = "A ligação falhou"; $("ent-tx").textContent = "Confirme a internet e recarregue a página."; $("ent-aceito").style.display = "none"; $("entrar").style.display = "none"; fase("entrada"); mostra("entrada", true); });
+  function botaoSomMestre() { somLigado = false; $("som1").style.display = "none"; $("som2").style.display = "none"; }
+})();
+</script>
+</body>
+</html>

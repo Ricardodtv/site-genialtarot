@@ -1,0 +1,37 @@
+Consultório Virtual: aplicar no cerebro (só depois de publicar o worker; ver a ordem no relatório).
+Tudo isto fica FORA do site publicado: a pasta está no .assetsignore.
+
+1. Copiar para ~/site-painel/
+     cp consultorio_rotas.py consultorio.html consultorio-vigia.py ~/site-painel/
+
+2. Em ~/site-painel/servidor.py, fazer uma cópia e acrescentar 3 coisas:
+     cp ~/site-painel/servidor.py ~/site-painel/servidor.py.antes-consultorio
+
+   a) Depois da definição de pede() (antes de «# 01/11 (ele): «Sempre»»):
+        import consultorio_rotas; consultorio_rotas.liga(pede, chave, SITE, UA)   # 05/11: Consultório Virtual
+
+   b) Em do_GET, logo a seguir à linha «u = urllib.parse.urlparse(self.path); q = dict(...)»:
+        if u.path.startswith("/api/consultorio/"): return consultorio_rotas.get(self, u, q)
+
+   c) Em do_POST, logo a seguir a «u = urllib.parse.urlparse(self.path)» e ANTES de ler o corpo
+      (o áudio é binário e pode ter 3 MB; a linha seguinte só lê 20 kB e tenta JSON):
+        if u.path.startswith("/api/consultorio/"): return consultorio_rotas.post(self, u)
+
+   Depois: systemctl --user restart site-painel
+   Teste: curl -s http://100.100.77.18:8768/api/consultorio/vigia   → {"ok": true, ...}
+
+3. Em ~/ha-painel-site.py, acrescentar em VISTAS (a seguir a «Site ao vivo») e correr o guião:
+     {"title": "Consultório", "path": "consultorio", "icon": "mdi:door-open", "panel": True,   # 05/11/2026: Consultório Virtual
+      "cards": [{"type": "iframe", "allow_open_top_navigation": True, "aspect_ratio": "150%", "url": "http://100.100.77.18:8768/consultorio.html"}]},
+
+4. O vigia do Telegram:
+     cp consultorio-vigia.service ~/.config/systemd/user/
+     systemctl --user daemon-reload
+     systemctl --user enable --now consultorio-vigia
+     journalctl --user -u consultorio-vigia -n 5
+
+Para desfazer: parar o vigia, voltar ao servidor.py.antes-consultorio e reiniciar site-painel.
+
+Porque há «Abrir com microfone»: o painel é http://100.100.77.18:8768, e em http o navegador não dá microfone
+(e o HA também não o autoriza dentro do iframe). O botão abre a mesma conversa em https://genialtarot.com,
+com um passe (mtoken) que só serve para esta conversa e morre com ela.

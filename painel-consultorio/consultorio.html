@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!-- Consultório Virtual: a aba do painel Site no HA (05/11/2026). Lê de consultorio_rotas.py, a ponte para o worker.
+     Criar a ligação, ver quem está na sala, abrir as portas, falar. O microfone não funciona aqui porque o painel é http:
+     o botão «Abrir com microfone» leva à mesma conversa no site, em https. -->
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultório Virtual</title>
+<style>
+:root { --ouro: #f2c96b; --borda: rgba(242,201,107,.25); --texto: #f7f0fb; --apagado: #a893bd; --verde: #25d366; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; font: 15px/1.45 Inter, system-ui, sans-serif; color: var(--texto); background: #140826; }
+header { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 12px 16px; border-bottom: 1px solid var(--borda); background: #1d0d36; position: sticky; top: 0; z-index: 2; }
+header h1 { font-size: 18px; margin: 0; color: var(--ouro); }
+main { display: grid; grid-template-columns: minmax(300px, 400px) 1fr; gap: 14px; padding: 14px; }
+@media (max-width: 860px) { main { grid-template-columns: 1fr; } }
+.caixa { background: #1d0d36; border: 1px solid var(--borda); border-radius: 14px; padding: 12px; margin-bottom: 12px; }
+h2 { font-size: 15px; margin: 0 0 8px; color: var(--ouro); }
+input { flex: 1; min-width: 0; padding: 10px; border-radius: 10px; border: 1px solid var(--borda); background: #140826; color: var(--texto); font: inherit; }
+textarea { flex: 1; min-width: 0; padding: 10px; border-radius: 10px; border: 1px solid var(--borda); background: #140826; color: var(--texto); font: inherit; resize: none; height: 44px; }
+form { display: flex; gap: 6px; }
+button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointer; font: inherit; font-weight: 700; text-decoration: none; display: inline-block; }
+.b-ouro { background: var(--ouro); color: #2b1147; } .b-verde { background: var(--verde); color: #08331a; } .b-sair { background: #5a1e2e; color: #fff; } .b-q { background: rgba(255,255,255,.08); color: var(--texto); }
+.linha { padding: 9px 10px; border: 1px solid var(--borda); border-radius: 12px; margin-top: 8px; cursor: pointer; }
+.linha.ativa { border-color: var(--ouro); background: rgba(242,201,107,.08); }
+.linha.espera { border-color: var(--verde); animation: chama 1.8s infinite; }
+@keyframes chama { 50% { box-shadow: 0 0 0 4px rgba(37,211,102,.25); } }
+.linha b { color: var(--ouro); } .linha small { display: block; color: var(--apagado); }
+.pil { float: right; font-size: 12px; padding: 1px 8px; border-radius: 9px; background: rgba(255,255,255,.1); }
+.pil.espera { background: var(--verde); color: #08331a; font-weight: 700; } .pil.conversa { background: var(--ouro); color: #2b1147; font-weight: 700; }
+.ligacao { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.ligacao input { flex: 1 1 100%; font-size: 13px; }
+#msgs { height: min(56vh, 520px); overflow-y: auto; display: flex; flex-direction: column; gap: 6px; padding: 8px; border-radius: 12px; background: #140826; margin: 10px 0; }
+.m { max-width: 80%; padding: 7px 11px; border-radius: 14px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.m.mestre { align-self: flex-end; background: rgba(242,201,107,.18); } .m.pessoa { align-self: flex-start; background: rgba(37,211,102,.15); }
+.m time { display: block; font-size: 11px; color: var(--apagado); }
+.m audio { display: block; width: 260px; max-width: 100%; }
+.escreve { color: var(--verde); font-style: italic; font-size: 13px; min-height: 18px; }
+.vazio { color: var(--apagado); font-style: italic; } .acoes { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.nota { color: var(--apagado); font-size: 13px; margin-top: 8px; } #erro { color: #ffb0a8; font-size: 13px; }
+</style></head><body>
+<header><h1>🚪 Consultório Virtual</h1><span id="res" class="vazio"></span><span id="erro"></span></header>
+<main>
+<div>
+  <div class="caixa"><h2>Nova ligação</h2>
+    <form id="fcria"><input id="etq" maxlength="60" placeholder="Etiqueta só para ti, ex.: C-123" autocomplete="off"><button class="b-ouro">Criar</button></form>
+    <div id="nova" class="ligacao" hidden>
+      <input id="nova-url" readonly><button class="b-ouro" type="button" id="copia">Copiar</button><a class="bt b-verde" id="wa" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div class="nota">Vale 24 horas ou até fechares a conversa. Quem tiver a ligação entra, por isso manda-a só à pessoa.</div>
+  </div>
+  <div class="caixa"><h2>Ligações</h2><div id="lista"><div class="vazio">A carregar…</div></div></div>
+</div>
+<div class="caixa" id="painel"><div id="vazio" class="vazio">Escolhe uma ligação à esquerda.</div>
+  <div id="conv" hidden>
+    <h2 id="c-tit"></h2><div id="c-est" class="nota"></div>
+    <div class="acoes"><button class="b-verde" id="atender" hidden>🚪 Atender: abrir as portas</button><a class="bt b-ouro" id="micro" target="_blank" rel="noopener">🎙️ Abrir com microfone</a><button class="b-q" id="cop2">Copiar ligação</button><button class="b-sair" id="fechar" hidden>Fechar conversa</button></div>
+    <div id="msgs"></div><div class="escreve" id="esc"></div>
+    <form id="fmsg"><textarea id="txt" placeholder="Escreve aqui…" maxlength="2000"></textarea><button class="b-verde">Enviar</button></form>
+    <div class="acoes"><label class="bt b-q" for="ficheiro">📎 Enviar ficheiro de áudio</label><input id="ficheiro" type="file" accept="audio/*" capture hidden></div>
+    <div class="nota">Aqui, no HA, não há microfone: o painel é http. Para gravar, usa «Abrir com microfone». O ficheiro de áudio aceita até 3 MB e 90 segundos.</div>
+  </div>
+</div>
+</main>
+<script>
+var $ = function (i) { return document.getElementById(i); }, sel = null, dados = [], desde = 0, tC = 0, tL = 0, avisados = {}, somCtx = null;
+var API = "/api/consultorio/";
+function J(u, d) { return fetch(API + u, d ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) } : {}).then(function (r) { return r.json(); }); }
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+function hora(q) { return q ? new Date(q).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" }) : ""; }
+var NOMES = { criado: "por usar", espera: "na sala", conversa: "em conversa", fechado: "fechada", expirado: "expirada" };
+addEventListener("pointerdown", function () { if (!somCtx) { var A = window.AudioContext || window.webkitAudioContext; if (A) somCtx = new A(); } }, { once: true });
+function campainha() {   // baixinha, como os sons do chat do site
+  if (!somCtx) return; var t = somCtx.currentTime;
+  [[659.3, 0], [880, .18]].forEach(function (x) { var o = somCtx.createOscillator(), g = somCtx.createGain(); o.frequency.value = x[0]; g.gain.setValueAtTime(.0001, t + x[1]); g.gain.exponentialRampToValueAtTime(.05, t + x[1] + .02); g.gain.exponentialRampToValueAtTime(.0001, t + x[1] + 1); o.connect(g); g.connect(somCtx.destination); o.start(t + x[1]); o.stop(t + x[1] + 1.1); });
+}
+function atual() { return dados.filter(function (x) { return x.codigo === sel; })[0]; }
+function lista() {
+  clearTimeout(tL);
+  if (document.hidden) { tL = setTimeout(lista, 30000); return; }
+  J("lista").then(function (r) {
+    $("erro").textContent = r.ok ? "" : (r.erro || "o site não responde");
+    dados = r.consultas || [];
+    var n = dados.filter(function (x) { return x.estado === "espera"; }).length;
+    $("res").textContent = n ? n + " na sala de espera" : "";
+    dados.forEach(function (x) { if (x.estado === "espera" && !avisados[x.codigo]) { avisados[x.codigo] = 1; campainha(); } });
+    $("lista").innerHTML = dados.length ? dados.map(function (x) {
+      return '<div class="linha ' + (x.codigo === sel ? "ativa " : "") + (x.estado === "espera" ? "espera" : "") + '" data-c="' + x.codigo + '"><span class="pil ' + x.estado + '">' + (NOMES[x.estado] || x.estado) + "</span><b>" + esc(x.etiqueta || "sem etiqueta") + "</b><small>" +
+        new Date(x.criado).toLocaleDateString("pt-PT") + " " + hora(x.criado) + (x.entrou ? " · entrou " + hora(x.entrou) : "") + (x.pais && x.pais !== "?" ? " · " + esc(x.pais) : "") + (x.aparelho ? " · " + esc(x.aparelho) : "") + (x.estado === "espera" || x.estado === "conversa" ? (x.online ? " · 🟢 presente" : " · ⚪ página fechada ou em segundo plano") : "") + "</small></div>";
+    }).join("") : '<div class="vazio">Ainda não há ligações.</div>';
+    if (sel) pinta();
+    var ativa = dados.some(function (x) { return x.estado === "espera" || x.estado === "conversa" || x.estado === "criado"; });
+    tL = setTimeout(lista, ativa ? 8000 : 30000);
+  }).catch(function () { $("erro").textContent = "a ponte não responde"; tL = setTimeout(lista, 30000); });
+}
+function pinta() {
+  var x = atual(); if (!x) return;
+  $("vazio").hidden = true; $("conv").hidden = false;
+  $("c-tit").textContent = (x.etiqueta || "Sem etiqueta") + " · " + (NOMES[x.estado] || x.estado);
+  $("c-est").textContent = "Criada " + hora(x.criado) + ". Válida até " + new Date(x.expira).toLocaleString("pt-PT", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) + ".";
+  $("atender").hidden = x.estado !== "espera"; $("fechar").hidden = ["espera", "conversa", "criado"].indexOf(x.estado) < 0;
+  $("micro").href = x.link + "#m=" + x.mtoken; $("micro").style.display = ["fechado", "expirado"].indexOf(x.estado) < 0 ? "" : "none";
+  $("fmsg").style.display = x.estado === "conversa" ? "" : "none";
+  $("ficheiro").disabled = x.estado !== "conversa";
+}
+$("lista").onclick = function (e) { var l = e.target.closest(".linha"); if (!l) return; sel = l.dataset.c; desde = 0; $("msgs").innerHTML = ""; pinta(); lista(); conversa(); };
+function conversa() {
+  clearTimeout(tC); if (!sel) return; var x = atual();
+  if (document.hidden) { tC = setTimeout(conversa, 30000); return; }
+  var pedido = sel;
+  J("conversa?c=" + sel + "&desde=" + desde).then(function (r) {
+    if (pedido !== sel) return;
+    (r.msgs || []).forEach(function (m) {
+      if (m.id <= desde) return; desde = m.id;
+      var d = document.createElement("div"); d.className = "m " + m.de;
+      if (m.tipo === "audio") { d.innerHTML = '<audio controls preload="none"></audio><time>' + hora(m.quando) + " · " + Math.round(m.dur) + " s</time>"; carregaAudio(d.querySelector("audio"), m.id); }
+      else d.innerHTML = esc(m.texto) + "<time>" + hora(m.quando) + "</time>";
+      $("msgs").appendChild(d); $("msgs").scrollTop = 1e6;
+    });
+    $("esc").textContent = r.escreve ? "a escrever…" : "";
+    tC = setTimeout(conversa, r.estado === "conversa" ? 3000 : 10000);
+  }).catch(function () { tC = setTimeout(conversa, 10000); });
+}
+function carregaAudio(el, id) { fetch(API + "audio?c=" + sel + "&id=" + id).then(function (r) { return r.blob(); }).then(function (b) { el.src = URL.createObjectURL(b); }); }
+$("fcria").onsubmit = function (e) {
+  e.preventDefault();
+  J("criar", { etiqueta: $("etq").value.trim() }).then(function (r) {
+    if (!r.ok) { $("erro").textContent = r.erro || "não foi possível criar"; return; }
+    $("etq").value = ""; $("nova").hidden = false; $("nova-url").value = r.link;
+    $("wa").href = "https://wa.me/?text=" + encodeURIComponent("Olá! Aqui está a sua ligação para o Consultório Virtual do Mestre Alberto: " + r.link);
+    sel = r.codigo; desde = 0; $("msgs").innerHTML = ""; lista(); conversa();
+  });
+};
+function copia(v, b) { var t = b.textContent, ok = function () { b.textContent = "Copiado"; setTimeout(function () { b.textContent = t; }, 1500); };
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(v).then(ok); else { var i = document.createElement("textarea"); i.value = v; document.body.appendChild(i); i.select(); document.execCommand("copy"); i.remove(); ok(); } }
+$("copia").onclick = function () { copia($("nova-url").value, this); };
+$("cop2").onclick = function () { var x = atual(); if (x) copia(x.link, this); };
+$("atender").onclick = function () { J("atender", { c: sel }).then(function () { lista(); conversa(); }); };
+$("fechar").onclick = function () { if (confirm("Fechar esta conversa? A ligação deixa de funcionar.")) J("fechar", { c: sel }).then(function () { lista(); conversa(); }); };
+$("fmsg").onsubmit = function (e) { e.preventDefault(); var t = $("txt").value.trim(); if (!t) return; $("txt").value = ""; J("msg", { c: sel, texto: t }).then(conversa); };
+$("txt").onkeydown = function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("fmsg").requestSubmit(); } };
+var tE = 0; $("txt").oninput = function () { if (Date.now() - tE > 2500 && this.value) { tE = Date.now(); J("escreve", { c: sel }); } };
+$("ficheiro").onchange = function () {
+  var f = this.files[0]; this.value = ""; if (!f) return; $("erro").textContent = "A enviar o áudio…";
+  var au = new Audio(URL.createObjectURL(f));
+  var manda = function (d) { fetch(API + "audio?c=" + sel + "&dur=" + (isFinite(d) ? d.toFixed(1) : 0), { method: "POST", headers: { "Content-Type": f.type || "audio/mpeg" }, body: f }).then(function (r) { return r.json(); }).then(function (r) { $("erro").textContent = r.ok ? "" : (r.erro || "o áudio não seguiu"); conversa(); }); };
+  au.onloadedmetadata = function () { if (au.duration > 92) { $("erro").textContent = "O áudio não pode passar de 90 segundos."; return; } manda(au.duration); };
+  au.onerror = function () { manda(0); };
+};
+document.addEventListener("visibilitychange", function () { if (!document.hidden) { lista(); conversa(); } });
+lista();
+</script>
+</body></html>

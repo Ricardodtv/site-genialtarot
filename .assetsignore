@@ -6,3 +6,5 @@ wrangler.jsonc
 LEIA-ME.txt
 *.antes-*
 *.py
+# 05/11/2026: o que se aplica no cerebro não é para servir no site
+painel-consultorio

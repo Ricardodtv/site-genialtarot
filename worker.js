@@ -671,6 +671,19 @@ export default {
       contarVisita(request, url, env, ctx);
     }
 
+    // 05/11/2026: o Consultório Virtual (ver a classe Consultorio, no fim). A página é só uma, a do código é a mesma folha:
+    // /consultorio/<código> serve consultorio-sala.html; o código é lido no navegador. Sem indexar e sem mandar o endereço a ninguém.
+    if (/^\/consultorio\/[a-hjkmnp-z2-9]{20}\/?$/.test(url.pathname) && (request.method === "GET" || request.method === "HEAD")) {
+      const folha = await env.ASSETS.fetch(new Request(new URL("/consultorio-sala", url), { method: "GET" }));
+      return new Response(request.method === "HEAD" ? null : folha.body, { status: folha.status, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store",
+        "X-Robots-Tag": "noindex, nofollow", "Referrer-Policy": "no-referrer", "Permissions-Policy": "microphone=(self)" } });
+    }
+    if (url.pathname.startsWith("/api/consultorio/")) {
+      if (!env.CONSULTORIO) return new Response("{}", { status: 503 });
+      try { return await env.CONSULTORIO.get(env.CONSULTORIO.idFromName("consultorio")).fetch(request); }
+      catch (e) { return new Response(JSON.stringify({ ok: false, erro: "consultorio: " + String(e && e.message || e).slice(0, 300) }), { status: 500, headers: { "Content-Type": "application/json" } }); }
+    }
+
     // 31/10/2026: quem está no site agora + o chat dele com essa pessoa (ver a classe Sala, no fim)
     if (url.pathname === "/api/vivo" || url.pathname.startsWith("/api/vivo/")) {
       if (!env.SALA) return new Response("{}", { status: 503 });
@@ -1824,6 +1837,188 @@ export class Sala extends DurableObject {
     }
     if (p === "/api/vivo/mfechar") { if (sidOk) this.sql.exec("INSERT OR REPLACE INTO aberto VALUES (?,0)", sid); return J({ ok: true }); }
     if (p === "/api/vivo/mescreve") { if (sidOk) this.escreve.set(sid + "|mestre", agora); return J({ ok: true }); }
+    return J({ ok: false }, 404);
+  }
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// 05/11/2026, pedido dele: o Consultório Virtual. Ele cria um link para UMA pessoa; ela entra na sala de espera; ele é
+// avisado; ao atender, as portas abrem-se e os dois escrevem e mandam áudio. Durable Object À PARTE da Sala: não mexe no
+// chat do site, e uma avaria aqui não cala o /api/vivo.
+// ⚠️ Plano GRÁTIS (5 M linhas lidas/dia, partilhadas com a Sala; ver a nota de 03/11): nada de ler tabelas inteiras. Tudo
+// vai por chave primária ou índice, a presença fica em MEMÓRIA (nunca uma escrita por pergunta), e as esperas entre
+// perguntas são decididas no navegador (consultorio-sala.html). Sem R2: o áudio vive aqui, partido em pedaços, porque cada
+// linha do SQLite do Durable Object tem de ficar abaixo de 2 MB.
+// As escolhas por defeito (ele ainda pode mudar) estão todas nesta tabela:
+const CONSULTORIO = {
+  VALIDADE_H: 24,            // o link vale 24 h desde que é criado, ou até ele fechar a conversa
+  CONVERSA_H: 6,             // uma conversa aberta perto do fim da validade ganha pelo menos mais estas horas
+  RETENCAO_DIAS: 30,         // escrita e voz apagam-se aos 30 dias (está em privacidade.html: mudar lá também)
+  TEXTO_MAX: 2000,           // letras por mensagem
+  AUDIO_MAX_S: 90,           // o navegador pára aos 90 s; o servidor dá uma pequena folga
+  AUDIO_MAX_BYTES: 3 << 20,  // 3 MB chegam para 90 s, mesmo no iPhone, que às vezes ignora o débito pedido
+  PEDACO: 256 << 10,         // bem abaixo do limite de 2 MB por linha
+  AUDIOS_MAX: 80,            // por conversa e por pessoa: para um link esquecido não encher o armazenamento
+  TIPOS_AUDIO: ["audio/mp4", "audio/webm", "audio/ogg", "audio/aac", "audio/mpeg"],
+};
+const CODIGO_OK = /^[a-hjkmnp-z2-9]{20}$/;
+function novoCodigo() {   // 20 letras de 31 (sem i, l, o, 0, 1), ~99 bits: impossível de adivinhar
+  const A = "abcdefghjkmnpqrstuvwxyz23456789"; let c = "";
+  while (c.length < 20) for (const b of crypto.getRandomValues(new Uint8Array(24))) { if (b < 248 && c.length < 20) c += A[b % 31]; }
+  return c;
+}
+export class Consultorio extends DurableObject {
+  constructor(ctx, env) {
+    super(ctx, env);
+    this.sql = ctx.storage.sql;
+    this.visto = new Map();     // código -> quando a pessoa perguntou por último (em memória: uma escrita por pergunta gastava a quota)
+    this.vistoM = new Map();    // o mesmo para ele
+    this.escreve = new Map();   // "código|quem" -> a última tecla (para os «…»)
+    this.sql.exec(`CREATE TABLE IF NOT EXISTS consultas (codigo TEXT PRIMARY KEY, mtoken TEXT, etiqueta TEXT, estado TEXT, criado INTEGER, expira INTEGER,
+      entrou INTEGER, aceitou INTEGER, atendido INTEGER, fechado INTEGER, pais TEXT, aparelho TEXT, ult_pessoa INTEGER DEFAULT 0, audios_p INTEGER DEFAULT 0, audios_m INTEGER DEFAULT 0)`);
+    this.sql.exec(`CREATE TABLE IF NOT EXISTS msgs (id INTEGER PRIMARY KEY AUTOINCREMENT, codigo TEXT, quando INTEGER, de TEXT, tipo TEXT, texto TEXT, mime TEXT, dur REAL, tam INTEGER)`);
+    this.sql.exec("CREATE TABLE IF NOT EXISTS audio (msg INTEGER, pos INTEGER, dados BLOB, PRIMARY KEY (msg, pos))");
+    this.sql.exec("CREATE INDEX IF NOT EXISTS msgs_cod ON msgs(codigo, id)");
+    this.sql.exec("CREATE INDEX IF NOT EXISTS msgs_q ON msgs(quando)");
+    this.sql.exec("CREATE INDEX IF NOT EXISTS cons_estado ON consultas(estado)");
+    this.sql.exec("CREATE INDEX IF NOT EXISTS cons_criado ON consultas(criado)");
+  }
+  linhas(q, ...a) { return [...this.sql.exec(q, ...a)]; }
+  // A regra dos 30 dias não pode depender de haver visitas: o alarme acorda o objecto mesmo que ninguém cá venha.
+  limpar(agora) {
+    const lim = agora - CONSULTORIO.RETENCAO_DIAS * 864e5;
+    this.sql.exec("DELETE FROM audio WHERE msg IN (SELECT id FROM msgs WHERE quando < ? AND tipo='audio')", lim);
+    this.sql.exec("DELETE FROM msgs WHERE quando < ?", lim);
+    this.sql.exec("DELETE FROM consultas WHERE criado < ? AND NOT EXISTS (SELECT 1 FROM msgs m WHERE m.codigo = consultas.codigo)", lim);
+    for (const [k, v] of this.visto) if (agora - v > 864e5) this.visto.delete(k);
+    for (const [k, v] of this.vistoM) if (agora - v > 864e5) this.vistoM.delete(k);
+    for (const [k, v] of this.escreve) if (agora - v > 60000) this.escreve.delete(k);
+    this.ultimaLimpeza = agora;
+  }
+  async alarm() {
+    const agora = Date.now(); this.limpar(agora);
+    if (this.linhas("SELECT 1 AS h FROM consultas LIMIT 1").length) await this.ctx.storage.setAlarm(agora + 864e5);
+  }
+  // Uma linha da consulta, já com a validade aplicada (expira sozinha, sem depender de ninguém).
+  consulta(c, agora) {
+    if (!CODIGO_OK.test(c)) return null;
+    const r = this.linhas("SELECT * FROM consultas WHERE codigo=?", c)[0];
+    if (r && agora > r.expira && ["criado", "espera", "conversa"].includes(r.estado)) {
+      this.sql.exec("UPDATE consultas SET estado='expirado' WHERE codigo=?", c); r.estado = "expirado";
+    }
+    return r || null;
+  }
+  novaMsg(c, agora, de, tipo, texto, mime, dur, tam) {
+    return this.linhas("INSERT INTO msgs (codigo, quando, de, tipo, texto, mime, dur, tam) VALUES (?,?,?,?,?,?,?,?) RETURNING id", c, agora, de, tipo, texto, mime || "", dur || 0, tam || 0)[0].id;
+  }
+  async fetch(request) {
+    const url = new URL(request.url), p = url.pathname.replace("/api/consultorio/", ""), agora = Date.now();
+    const J = (o, s) => new Response(JSON.stringify(o), { status: s || 200, headers: { "Content-Type": "application/json", "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });
+    if (!this.ultimaLimpeza || agora - this.ultimaLimpeza > 600000) this.limpar(agora);
+    const chaveOk = !!this.env.STATS_KEY && request.headers.get("X-Chave") === this.env.STATS_KEY;
+    const binario = p === "audio" && request.method === "POST";
+    const d = request.method === "POST" && !binario ? await request.json().catch(() => ({})) : {};
+    const c = String(d.c || url.searchParams.get("c") || ""), m = String(d.m || url.searchParams.get("m") || "");
+
+    // ---------- só com a chave (o painel do HA, pelo servidor.py) ----------
+    if (p === "criar" || p === "lista" || p === "vigia") {
+      if (!chaveOk) return J({ ok: false, erro: "chave" }, 403);
+      if (p === "criar") {
+        const codigo = novoCodigo(), mtoken = [...crypto.getRandomValues(new Uint8Array(16))].map((b) => b.toString(16).padStart(2, "0")).join("");
+        const expira = agora + CONSULTORIO.VALIDADE_H * 36e5;
+        this.sql.exec("INSERT INTO consultas (codigo, mtoken, etiqueta, estado, criado, expira) VALUES (?,?,?,'criado',?,?)", codigo, mtoken, String(d.etiqueta || "").trim().slice(0, 60), agora, expira);
+        if (!(await this.ctx.storage.getAlarm())) await this.ctx.storage.setAlarm(agora + 864e5);
+        return J({ ok: true, codigo, mtoken, expira, url: "/consultorio/" + codigo });
+      }
+      if (p === "vigia") {   // o vigia do cerebro pergunta muito: só as linhas em curso, pelo índice do estado
+        const r = this.linhas("SELECT codigo, etiqueta, estado, entrou, expira FROM consultas WHERE estado IN ('criado','espera','conversa')").filter((x) => agora <= x.expira);
+        return J({ ok: true, agora, ativos: r.length, espera: r.filter((x) => x.estado === "espera").map(({ codigo, etiqueta, entrou }) => ({ codigo, etiqueta, entrou, online: agora - (this.visto.get(codigo) || 0) < 45000 })) });
+      }
+      const r = this.linhas("SELECT codigo, mtoken, etiqueta, estado, criado, expira, entrou, atendido, fechado, pais, aparelho, ult_pessoa FROM consultas ORDER BY criado DESC LIMIT 30");
+      return J({ ok: true, agora, consultas: r.map((x) => {
+        const v = this.visto.get(x.codigo) || 0;
+        if (agora > x.expira && ["criado", "espera", "conversa"].includes(x.estado)) x.estado = "expirado";
+        return { ...x, visto: v, online: agora - v < 45000 };
+      }) });
+    }
+
+    const r = this.consulta(c, agora);
+    if (!r) return J({ ok: false, estado: "invalido" }, 404);
+    const mestre = chaveOk || (m.length === 32 && m === r.mtoken);   // o mtoken abre a mesma conversa numa página HTTPS (o microfone no HA em http não funciona)
+    const de = mestre ? "mestre" : "pessoa";
+    const viva = r.estado === "conversa";
+
+    // ---------- dos dois lados ----------
+    if (p === "estado" && request.method === "GET") {
+      (mestre ? this.vistoM : this.visto).set(c, agora);
+      const base = { ok: true, estado: r.estado, papel: de, agora, max_audio_s: CONSULTORIO.AUDIO_MAX_S };
+      // conversa fechada ou expirada: à pessoa já não se mostra nada, mesmo com o link
+      if (!mestre && !["espera", "conversa"].includes(r.estado)) return J(base);
+      const msgs = this.linhas("SELECT id, quando, de, tipo, texto, dur, mime FROM msgs WHERE codigo=? AND id>? ORDER BY id LIMIT 200", c, Number(url.searchParams.get("desde")) || 0);
+      const outro = mestre ? "pessoa" : "mestre";
+      return J({ ...base, msgs, escreve: agora - (this.escreve.get(c + "|" + outro) || 0) < 5000,
+        presente: mestre ? agora - (this.visto.get(c) || 0) < 45000 : undefined, etiqueta: mestre ? r.etiqueta : undefined });
+    }
+    if (p === "entrar" && request.method === "POST") {
+      if (!["criado", "espera", "conversa"].includes(r.estado)) return J({ ok: false, estado: r.estado }, 410);
+      if (d.aceitou !== true) return J({ ok: false, erro: "aceitar" }, 400);   // sem aceitar a guarda da escrita e da voz, não se entra
+      this.visto.set(c, agora);
+      if (r.estado === "criado") {
+        const cf = request.cf || {}, ua = request.headers.get("user-agent") || "";
+        this.sql.exec("UPDATE consultas SET estado='espera', entrou=?, aceitou=?, pais=?, aparelho=? WHERE codigo=?", agora, agora, cf.country || "?", aparelhoDe(ua), c);
+        r.estado = "espera";
+      }
+      return J({ ok: true, estado: r.estado });
+    }
+    if (p === "msg" && request.method === "POST") {
+      const t = String(d.texto || "").trim().slice(0, CONSULTORIO.TEXTO_MAX);
+      if (!viva || !t) return J({ ok: false, estado: r.estado }, 400);   // tal como no chat do site: só depois de ele abrir a porta
+      const id = this.novaMsg(c, agora, de, "texto", t);
+      if (!mestre) this.sql.exec("UPDATE consultas SET ult_pessoa=? WHERE codigo=?", agora, c);
+      this.escreve.delete(c + "|" + de);
+      return J({ ok: true, id });
+    }
+    if (p === "escreve") { if (viva) this.escreve.set(c + "|" + de, agora); return J({ ok: true }); }
+    if (p === "audio" && request.method === "GET") {
+      const a = this.linhas("SELECT mime FROM msgs WHERE id=? AND codigo=? AND tipo='audio'", Number(url.searchParams.get("id")) || 0, c)[0];
+      if (!a || (!mestre && !["espera", "conversa"].includes(r.estado))) return J({ ok: false }, 404);
+      const partes = this.linhas("SELECT dados FROM audio WHERE msg=? ORDER BY pos", Number(url.searchParams.get("id"))).map((x) => new Uint8Array(x.dados));
+      const tudo = new Uint8Array(partes.reduce((n, x) => n + x.length, 0)); let o = 0; for (const x of partes) { tudo.set(x, o); o += x.length; }
+      return new Response(tudo, { headers: { "Content-Type": a.mime, "Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff", "X-Robots-Tag": "noindex",
+        "Content-Security-Policy": "sandbox; default-src 'none'" } });
+    }
+    if (binario) {
+      if (!viva) return J({ ok: false, estado: r.estado }, 400);
+      const mime = String(request.headers.get("Content-Type") || "").split(";")[0].trim().toLowerCase();
+      const dur = Math.min(CONSULTORIO.AUDIO_MAX_S + 3, Math.max(0, Number(url.searchParams.get("dur")) || 0));
+      if (!CONSULTORIO.TIPOS_AUDIO.includes(mime)) return J({ ok: false, erro: "formato" }, 415);
+      if (Number(url.searchParams.get("dur")) > CONSULTORIO.AUDIO_MAX_S + 3) return J({ ok: false, erro: "longo" }, 413);
+      if ((mestre ? r.audios_m : r.audios_p) >= CONSULTORIO.AUDIOS_MAX) return J({ ok: false, erro: "muitos" }, 429);
+      if (Number(request.headers.get("Content-Length")) > CONSULTORIO.AUDIO_MAX_BYTES) return J({ ok: false, erro: "grande" }, 413);
+      const b = new Uint8Array(await request.arrayBuffer());
+      if (!b.length) return J({ ok: false, erro: "vazio" }, 400);
+      if (b.length > CONSULTORIO.AUDIO_MAX_BYTES) return J({ ok: false, erro: "grande" }, 413);
+      const id = this.ctx.storage.transactionSync(() => {
+        const n = this.novaMsg(c, agora, de, "audio", "", mime, dur, b.length);
+        for (let i = 0, pos = 0; i < b.length; i += CONSULTORIO.PEDACO, pos++) this.sql.exec("INSERT INTO audio (msg, pos, dados) VALUES (?,?,?)", n, pos, b.slice(i, i + CONSULTORIO.PEDACO).buffer);
+        this.sql.exec(`UPDATE consultas SET ${mestre ? "audios_m=audios_m+1" : "audios_p=audios_p+1, ult_pessoa=" + agora} WHERE codigo=?`, c);
+        return n;
+      });
+      return J({ ok: true, id });
+    }
+
+    // ---------- só ele (pela chave, ou pelo mtoken desta conversa) ----------
+    if (!mestre) return J({ ok: false }, p === "atender" || p === "fechar" ? 403 : 404);
+    if (p === "atender") {
+      if (r.estado !== "espera") return J({ ok: false, estado: r.estado }, 409);   // só se atende quem está na sala
+      this.sql.exec("UPDATE consultas SET estado='conversa', atendido=?, expira=max(expira, ?) WHERE codigo=?", agora, agora + CONSULTORIO.CONVERSA_H * 36e5, c);
+      return J({ ok: true, estado: "conversa" });
+    }
+    if (p === "fechar") {
+      if (!["criado", "espera", "conversa"].includes(r.estado)) return J({ ok: true, estado: r.estado });
+      this.sql.exec("UPDATE consultas SET estado='fechado', fechado=? WHERE codigo=?", agora, c);
+      return J({ ok: true, estado: "fechado" });
+    }
     return J({ ok: false }, 404);
   }
 }
