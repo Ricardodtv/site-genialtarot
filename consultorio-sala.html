@@ -79,6 +79,13 @@ a { color: var(--ouro); }
 .face span { display: block; font-size: max(15px, calc(var(--u) * 12)); line-height: 1.17; font-weight: 600; color: #f7ecd6; }
 .face.tras { transform: rotateX(180deg); display: grid; align-content: center; background: linear-gradient(160deg, #6b3fa8, #3a1860); }
 .face.tras b { margin: 0; }
+/* 05/11 (ele): a placa «Ocupado» a pulsar enquanto se espera; pára quando vira para «Pode entrar» */
+.face.frente { animation: placa-pulsa 2.2s ease-in-out infinite; }
+.face.frente b { animation: ocupado-pulsa 2.2s ease-in-out infinite; }
+body.virada .face.frente, body.virada .face.frente b { animation: none; }
+@keyframes placa-pulsa { 0%,100% { transform: scale(1); box-shadow: 0 0 0 calc(var(--u) * 1.6) #1d0b38, 0 0 0 calc(var(--u) * 2.2) var(--ouro2), 0 calc(var(--u) * 7) calc(var(--u) * 18) rgba(0,0,0,.6); }
+  50% { transform: scale(1.045); box-shadow: 0 0 0 calc(var(--u) * 1.6) #1d0b38, 0 0 0 calc(var(--u) * 2.2) var(--ouro), 0 0 calc(var(--u) * 22) calc(var(--u) * 6) rgba(242,201,107,.62); } }
+@keyframes ocupado-pulsa { 0%,100% { text-shadow: none; } 50% { color: #ffe9b0; text-shadow: 0 0 calc(var(--u) * 9) rgba(255,225,150,.95); } }
 body.virada .placa-in { transform: rotateX(180deg); }
 body.fase-entrada .placa, body.fase-carrega .placa, body.fase-fim .placa { opacity: 0; }   /* só aparece depois de se entrar */
 
@@ -217,7 +224,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   .cab { padding: 5px 10px; } .cab img { width: 32px; height: 32px; } #msgs { padding: 8px 10px 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .placa, .luz, .fresta, .ponto { animation: none !important; }
+  .placa, .luz, .fresta, .ponto, .face.frente, .face.frente b { animation: none !important; }
   #cena { transition: none; } .folha { transition: transform .3s; } #chat { transition: opacity .3s; transform: none; } #msgs { scroll-behavior: auto; }
 }
 </style>
