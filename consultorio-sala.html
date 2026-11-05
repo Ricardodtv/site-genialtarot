@@ -152,7 +152,9 @@ body.mestre .conta { display: none; }
 .cab h1 { font-size: 24px; }
 .cab small { display: block; color: #57e08f; font-size: 13px; }
 .cab .som { flex-direction: row; gap: 5px; min-width: 0; padding: 7px 10px; }
-.cab .terminar { display: none; padding: 8px 12px; border-radius: 12px; border: 1px solid rgba(255,140,140,.5); background: rgba(255,90,90,.12); color: #ffc9c9; font-size: 13.5px; font-weight: 600; } body.mestre .cab .terminar { display: block; }
+.cab .terminar { flex: 0 0 auto; display: flex; align-items: center; gap: 5px; padding: 8px 11px; border-radius: 12px; border: 1px solid rgba(255,140,140,.5); background: rgba(255,90,90,.12); color: #ffc9c9; font-size: 13.5px; font-weight: 600; white-space: nowrap; }
+.cab .terminar svg { width: 15px; height: 15px; } .cab .terminar .c { display: none; }
+@media (max-width: 560px) { .cab .terminar .l { display: none; } .cab .terminar .c { display: inline; } .cab .terminar { padding: 7px 8px; font-size: 12.5px; } }
 #msgs { flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 16px 8px; display: flex; flex-direction: column; gap: 9px; scroll-behavior: smooth; }
 .m { max-width: min(76%, 560px); padding: 9px 13px 7px; border-radius: 17px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 16.5px; line-height: 1.42; animation: surge .3s ease; }
 @keyframes surge { from { opacity: 0; transform: translateY(8px); } }
@@ -212,7 +214,6 @@ body.mestre .conta { display: none; }
   #chat { width: calc(100vw - 8px - var(--sx) - var(--sd)); margin-left: calc((100vw - 8px - var(--sx) - var(--sd)) / -2); height: var(--chat-h, calc(var(--vh) - 8px - var(--st) - var(--sb))); margin-top: calc(var(--chat-h, calc(var(--vh) - 8px - var(--st) - var(--sb))) / -2); top: calc(50% + (var(--st) - var(--sb)) / 2); border-radius: 18px; }
   .m { max-width: 86%; }
   .cab { padding: 9px 11px; gap: 9px; } .cab img { width: 42px; height: 42px; } .cab h1 { font-size: 21px; } .cab .som span { display: none; }
-  .cab .terminar { padding: 7px 8px; font-size: 12.5px; }
 }
 #titulo-m { display: none; position: fixed; z-index: 4; left: 0; right: 0; top: 0; padding: calc(12px + var(--st)) 14px 0; justify-content: center; align-items: flex-start; text-align: center; transition: height 1.5s; font: 700 clamp(21px, 6.2vw, 29px)/1.08 "Cormorant Garamond", Georgia, serif; color: var(--ouro);
   background: linear-gradient(#1d0d36 calc(100% - 26px), rgba(29,13,54,.8) calc(100% - 12px), transparent); text-shadow: 0 2px 8px rgba(0,0,0,.5); transition: opacity .8s; pointer-events: none; }
@@ -291,7 +292,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     <img src="/mestre-avatar@2x.jpg" alt="Mestre Alberto" />
     <div class="quem"><h1 id="chat-nome">Mestre Alberto</h1><small id="chat-est">● A falar consigo</small></div>
     <button class="som" id="som2" type="button" aria-pressed="true" aria-label="Ligar ou desligar a música"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path class="onda" d="M16 9a4 4 0 0 1 0 6M18.6 6.5a8 8 0 0 1 0 11"/><path class="corte" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span>Música</span></button>
-    <button class="terminar" id="terminar" type="button">Fechar conversa</button>
+    <button class="terminar" id="terminar" type="button" aria-label="Fechar esta consulta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span class="l">Fechar esta consulta</span><span class="c">Fechar</span></button>
   </header>
   <div id="msgs" role="log" aria-live="polite"><div class="esc" id="esc"><i></i><i></i><i></i></div></div>
   <div id="nota"></div>
@@ -693,7 +694,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   };
   $("som1").onclick = $("som2").onclick = trocaSom;
   $("atender").onclick = function () { this.disabled = true; post("atender").then(function () { proxima(0); }); };
-  $("terminar").onclick = function () { if (confirm("Fechar esta conversa? A ligação deixa de funcionar até a reabrires.")) post("fechar").then(function () { proxima(0); }); };
+  $("terminar").onclick = function () { if (confirm(mestre ? "Fechar esta consulta? A ligação deixa de funcionar até a reabrires." : "Fechar esta consulta? A conversa termina para os dois.")) post("fechar").then(function () { proxima(0); }); };
   document.addEventListener("visibilitychange", function () { if (!document.hidden) { porLer = 0; document.title = tituloBase; if (!abrindo || estado === "conversa") proxima(0); } });
 
   // ---------- arranque ----------

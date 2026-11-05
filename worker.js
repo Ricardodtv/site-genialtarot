@@ -2023,7 +2023,13 @@ export class Consultorio extends DurableObject {
     }
 
     // ---------- só ele (pela chave, ou pelo mtoken desta conversa) ----------
-    if (!mestre) return J({ ok: false }, ["atender", "fechar", "reabrir", "tempo"].includes(p) ? 403 : 404);
+    // Fechar a consulta é dos dois lados (botão no cabeçalho do chat); reabrir, só dele
+    if (p === "fechar") {
+      if (!["criado", "espera", "conversa"].includes(r.estado)) return J({ ok: true, estado: r.estado });
+      this.sql.exec("UPDATE consultas SET estado='fechado', fechado=? WHERE codigo=?", agora, c);
+      return J({ ok: true, estado: "fechado" });
+    }
+    if (!mestre) return J({ ok: false }, ["atender", "reabrir", "tempo"].includes(p) ? 403 : 404);
     // Os botões de minutos: antes de a pessoa entrar escolhem o tempo; com ela na sala, somam. A 0 soma-se a partir de agora.
     if (p === "tempo") {
       const n = this.minutos(d.minutos);
@@ -2038,11 +2044,6 @@ export class Consultorio extends DurableObject {
       if (r.estado !== "espera") return J({ ok: false, estado: r.estado }, 409);   // só se atende quem está na sala
       this.sql.exec("UPDATE consultas SET estado='conversa', atendido=?, expira=max(expira, ?) WHERE codigo=?", agora, agora + CONSULTORIO.CONVERSA_H * 36e5, c);
       return J({ ok: true, estado: "conversa" });
-    }
-    if (p === "fechar") {
-      if (!["criado", "espera", "conversa"].includes(r.estado)) return J({ ok: true, estado: r.estado });
-      this.sql.exec("UPDATE consultas SET estado='fechado', fechado=? WHERE codigo=?", agora, c);
-      return J({ ok: true, estado: "fechado" });
     }
     // Reabrir: a MESMA ligação volta a funcionar, com o histórico, por mais VALIDADE_H a contar de agora. Depois da retenção a linha já
     // não existe e isto dá 404. «criado» conta de novo a partir daqui: sem isso, a limpeza podia apagar uma ligação viva sem mensagens.
