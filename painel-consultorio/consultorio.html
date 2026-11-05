@@ -61,15 +61,15 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
 </div>
 <div class="caixa" id="painel"><div id="vazio" class="vazio">Escolhe uma ligação à esquerda.</div>
   <div id="conv" hidden>
-    <h2 id="c-tit"></h2><div id="c-est" class="nota"></div>
-    <div class="acoes"><button class="b-verde" id="atender" hidden>🚪 Atender: abrir as portas</button><a class="bt b-ouro" id="micro" target="_blank" rel="noopener">🎙️ Abrir com microfone</a><button class="b-q" id="cop2">Copiar ligação</button><button class="b-sair" id="fechar" hidden>Fechar conversa</button><button class="b-ouro" id="reabrir" hidden>🔓 Reabrir</button></div>
+    <h2 id="c-tit"></h2><div id="c-est" class="nota"></div><div id="c-ch" class="escreve"></div>
+    <div class="acoes"><button class="b-verde" id="atender" hidden>🚪 Atender: abrir as portas</button><a class="bt b-ouro" id="micro" target="_blank" rel="noopener">📞 Ligar, videochamada e microfone</a><button class="b-q" id="cop2">Copiar ligação</button><button class="b-sair" id="fechar" hidden>Fechar conversa</button><button class="b-ouro" id="reabrir" hidden>🔓 Reabrir</button></div>
     <div id="falta" hidden></div><div class="mins" id="m-conv" hidden></div>
     <div class="nota" id="n-fecha" hidden>A ficha é criada quando fechares a conversa.</div>
     <div id="msgs"></div><div class="escreve" id="esc"></div>
     <form id="fmsg"><textarea id="txt" placeholder="Escreve aqui…" maxlength="2000"></textarea><button class="b-verde">Enviar</button></form>
     <div class="acoes"><label class="bt b-q" for="ficheiro">🎙️ Enviar ficheiro de áudio</label><input id="ficheiro" type="file" accept="audio/*" capture hidden><label class="bt b-q" for="anexo">📎 Enviar foto ou PDF</label><input id="anexo" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" hidden></div>
     <div id="previa" hidden></div>
-    <div class="nota">Aqui, no HA, não há microfone: o painel é http. Para gravar, usa «Abrir com microfone». O ficheiro de áudio aceita até 3 MB e 90 segundos.</div>
+    <div class="nota">Aqui, no HA, não há microfone: o painel é http. Para gravar ou para ligar (só voz ou vídeo), usa «Ligar, videochamada e microfone»: abre a mesma conversa na página segura, com os botões no topo. O ficheiro de áudio aceita até 3 MB e 90 segundos.</div>
     <div class="ficha"><h2>Ficha da pessoa</h2>
       <form id="fficha"><input id="f-nome" maxlength="80" placeholder="Nome" autocomplete="off"><input id="f-nasc" type="date" aria-label="Data de nascimento"><button class="b-ouro">Guardar</button></form>
       <div id="f-est"></div></div>
@@ -161,7 +161,8 @@ function conversa() {
     (r.msgs || []).forEach(function (m) {
       if (m.id <= desde) return; desde = m.id;
       var d = document.createElement("div"); d.className = "m " + m.de;
-      if (m.tipo === "anexo") {
+      if (m.tipo === "chamada") { d.className = "nota"; d.style.alignSelf = "center"; d.textContent = "📞 " + m.texto + " · " + hora(m.quando); }
+      else if (m.tipo === "anexo") {
         var u = API + "anexo?c=" + sel + "&id=" + m.id;
         d.innerHTML = (m.mime.indexOf("image/") === 0 ? '<a href="' + u + '" target="_blank" rel="noopener"><img alt="Foto" src="' + u + '"></a>' : '<a href="' + u + '">📄 ' + esc(m.texto) + "</a>") + "<time>" + hora(m.quando) + "</time>";
       } else if (m.tipo === "audio") { d.innerHTML = '<audio controls preload="none"></audio><time>' + hora(m.quando) + " · " + Math.round(m.dur) + " s</time>"; carregaAudio(d.querySelector("audio"), m.id); }
@@ -169,6 +170,7 @@ function conversa() {
       $("msgs").appendChild(d); $("msgs").scrollTop = 1e6;
     });
     $("esc").textContent = r.escreve ? "a escrever…" : "";
+    var ch = r.chamada; $("c-ch").textContent = !ch ? "" : ch.estado === "toca" ? "📞 A tocar…" : ch.estado === "ligada" ? (ch.modo === "video" ? "🎥 Em videochamada" : "📞 Em chamada de voz") : "📞 A ligar…";
     tC = setTimeout(conversa, r.estado === "conversa" ? 3000 : 10000);
   }).catch(function () { tC = setTimeout(conversa, 10000); });
 }

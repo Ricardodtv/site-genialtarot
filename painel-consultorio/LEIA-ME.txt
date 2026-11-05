@@ -32,6 +32,23 @@ Tudo isto fica FORA do site publicado: a pasta está no .assetsignore.
 
 Para desfazer: parar o vigia, voltar ao servidor.py.antes-consultorio e reiniciar site-painel.
 
-Porque há «Abrir com microfone»: o painel é http://100.100.77.18:8768, e em http o navegador não dá microfone
+Porque há «Ligar, videochamada e microfone» (antes «Abrir com microfone»): o painel é http://100.100.77.18:8768, e em http o navegador não dá microfone
 (e o HA também não o autoriza dentro do iframe). O botão abre a mesma conversa em https://genialtarot.com,
 com um passe (mtoken) que só serve para esta conversa e morre com ela.
+
+Ficha ligada à lista de clientes (substitui os campos Nome/Data):
+5. Migrar uma vez, ANTES de reiniciar site-painel e o vigia (faz cópia em .antes-clientes e só imprime contagens):
+     cd ~/site-painel && python3 consultorio_clientes.py migrar
+   As conversas com ficha criada pelo botão antigo ficam associadas a ela. «Com nome e sem ficha» já não criam nada ao fechar:
+   essas ligam-se à mão, na própria conversa.
+6. A página e o serviço (só sessão do HA + cofre aberto, escuta em 100.100.77.18:8811):
+     mkdir -p ~/homeassistant/www/consultorio && cp index.html ~/homeassistant/www/consultorio/
+     cp consultorio-fichas.service ~/.config/systemd/user/
+     systemctl --user daemon-reload && systemctl --user enable --now consultorio-fichas
+     systemctl --user restart site-painel consultorio-vigia
+   Confirmar que recusa sem sessão, e que a 8768 já não dá fichas:
+     curl -s -o /dev/null -w "%{http_code}\n" "http://100.100.77.18:8811/procurar?q=ab"   → 401
+     curl -s -o /dev/null -w "%{http_code}\n" "http://100.100.77.18:8768/api/consultorio/ficha?c=aaaaaaaaaaaaaaaaaaaa"   → 404
+
+Chamadas no renko (nada a instalar): no OBS, carregar em «Iniciar câmara virtual»; no Chrome, abrir «Ligar, videochamada e microfone»,
+tocar no botão dos reguladores e escolher «OBS Virtual Camera» e o microfone do estúdio. Fica guardado nesse navegador.
