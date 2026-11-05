@@ -78,7 +78,8 @@ GRUPOS = [
                            ("/noticias-do-ceu", "Notícias do Céu", "O que está a acontecer lá em cima"), ("/lua", "Calendário Lunar", "Fases da Lua e a Lua nos signos")]),
     ("O seu mapa", [("/mapa-astral", "Mapa Astral", "Os planetas no minuto em que nasceu"), ("/ascendente", "Calculadora de Ascendente", "O signo que nascia no horizonte"),
                     ("/revolucao-solar", "Revolução Solar", "O seu ano de aniversário a aniversário"), ("/horoscopo-pessoal", "Horóscopo Pessoal", "O céu de hoje no seu mapa"),
-                    ("/fase-lua-nascimento", "A Lua em que nasceu", "A fase da Lua no seu nascimento"), ("/astrologia-vedica", "Astrologia Védica", "O seu signo no zodíaco sideral")]),
+                    ("/fase-lua-nascimento", "A Lua em que nasceu", "A fase da Lua no seu nascimento"), ("/astrologia-vedica", "Astrologia Védica", "O seu signo no zodíaco sideral"),
+                    ("/astrocartografia", "Astrocartografia", "O seu mapa astral no mapa-mundo")]),
     ("Os signos", [("/signos-do-zodiaco", "Os 12 Signos", "Características, datas e elementos"), ("/datas-dos-signos", "Datas dos Signos", "A hora exata da mudança de signo"),
                    ("/signos-que-combinam", "Signos que Combinam", "O par ideal de cada signo"), ("/compatibilidade", "Compatibilidade", "Os 78 pares de signos no amor"),
                    ("/trio-astral", "Trio Astral", "Sol, Lua e Ascendente juntos"), ("/mapa-do-casal", "Mapa do Casal", "Os dois mapas lado a lado")]),
@@ -87,7 +88,7 @@ GRUPOS = [
                            ("/eclipses-2027", "Eclipses 2027", "As datas e os signos tocados"), ("/alinhamento-dos-planetas", "Alinhamento dos Planetas", "Quando se juntam no céu"),
                            ("/lua-azul", "Lua Azul", "A próxima e porque é rara"), ("/cor-do-ano-2027", "Cor do Ano 2027", "O regente do ano"),
                            ("/horoscopo-chines", "Horóscopo Chinês", "Os 12 animais"), ("/calendarios", "Calendários", "Luas, eclipses e retrógrados no seu telemóvel")]),
-    ("Aprender astrologia", [("/planeta-sol", "Os Planetas", "O que cada planeta representa"), ("/casa-1", "As 12 Casas", "As áreas da vida no mapa"),
+    ("Aprender astrologia", [("/aprender-astrologia", "Como aprender astrologia", "Guia grátis passo a passo"), ("/planeta-sol", "Os Planetas", "O que cada planeta representa"), ("/casa-1", "As 12 Casas", "As áreas da vida no mapa"),
                              ("/elemento-fogo", "Os 4 Elementos", "Fogo, Terra, Ar e Água"), ("/efemerides", "Efemérides", "As posições dos planetas dia a dia"),
                              ("/famosos-ceu", "Famosos e o seu céu", "O mapa de pessoas conhecidas")]),
 ]

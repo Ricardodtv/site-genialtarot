@@ -107,8 +107,8 @@
   <url><loc>https://genialtarot.com/arcano-20-o-julgamento</loc><lastmod>2026-11-05</lastmod><priority>0.6</priority></url>
   <url><loc>https://genialtarot.com/arcano-21-o-mundo</loc><lastmod>2026-11-05</lastmod><priority>0.6</priority></url>
   <url><loc>https://genialtarot.com/arcanos-menores</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
-  <url><loc>https://genialtarot.com/arcanos</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
-  <url><loc>https://genialtarot.com/arvore</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/arcanos</loc><lastmod>2026-11-05</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/arvore</loc><lastmod>2026-11-05</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/ascendente-em-aquario</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/ascendente-em-balanca</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/ascendente-em-capricornio</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
@@ -121,13 +121,13 @@
   <url><loc>https://genialtarot.com/ascendente-em-sagitario</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/ascendente-em-touro</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/ascendente-em-virgem</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
-  <url><loc>https://genialtarot.com/ascendente</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/ascendente</loc><lastmod>2026-11-05</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/astrocartografia</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/astrologia-horaria</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/astrologia-sideral</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/astrologia-sistemica</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/astrologia-vedica</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
-  <url><loc>https://genialtarot.com/astrologia</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/astrologia</loc><lastmod>2026-11-05</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/balanca-no-tarot</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/benzimentos</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/calendarios</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
@@ -721,7 +721,7 @@
   <url><loc>https://genialtarot.com/tarot-negocios</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/tarot-para-decisoes</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/tarot-para-emigrantes</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
-  <url><loc>https://genialtarot.com/tarot-por-tema</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
+  <url><loc>https://genialtarot.com/tarot-por-tema</loc><lastmod>2026-11-05</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/tarot-rider-waite</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/tarot-semestral</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
   <url><loc>https://genialtarot.com/tarot-trabalho</loc><lastmod>2026-11-04</lastmod><priority>0.8</priority></url>
