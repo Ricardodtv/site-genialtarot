@@ -178,6 +178,17 @@ body.mestre .conta { display: none; }
 #texto:focus { border-color: var(--ouro); }
 .bt-r { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; border: 0; display: grid; place-items: center; }
 .bt-r svg { width: 22px; height: 22px; }
+#clipe { background: rgba(242,201,107,.1); color: var(--ouro); border: 1px solid var(--borda); }
+#barra.grava #clipe { display: none; }
+@media (max-width: 340px) { #barra { gap: 5px; padding-left: 7px; padding-right: 7px; } .bt-r { width: 42px; height: 42px; } }
+#previa { flex: 0 0 auto; display: none; gap: 10px; align-items: center; padding: 9px 12px; border-top: 1px solid rgba(242,201,107,.3); background: rgba(40,18,74,.96); } #previa.on { display: flex; }
+#previa img { width: 74px; height: 74px; object-fit: cover; border-radius: 10px; border: 1px solid var(--borda); }
+#previa .ico { flex: 0 0 auto; width: 56px; height: 66px; border-radius: 8px; display: grid; place-items: center; background: #f7f0fb; color: #8a1c2c; font: 700 13px Inter, system-ui, sans-serif; }
+#previa .tx { flex: 1; min-width: 0; font-size: 13.5px; overflow-wrap: anywhere; } #previa small { display: block; color: var(--apagado); }
+#previa button { flex: 0 0 auto; padding: 9px 12px; border: 0; border-radius: 11px; font-weight: 700; background: linear-gradient(135deg, #ffe39e, #e7b64f); color: #2b1147; } #previa button.q { background: rgba(255,255,255,.1); color: var(--texto); }
+.m .foto { display: block; max-width: min(320px, 100%); max-height: 300px; border-radius: 11px; cursor: zoom-in; }
+.m .pdf { display: flex; gap: 10px; align-items: center; color: inherit; text-decoration: none; min-width: 180px; } .m .pdf i { flex: 0 0 auto; width: 38px; height: 46px; border-radius: 6px; display: grid; place-items: center; background: #f7f0fb; color: #8a1c2c; font: 700 11px Inter, system-ui, sans-serif; } .m .pdf small { display: block; color: var(--apagado); }
+#zoom { position: fixed; inset: 0; z-index: 12; display: none; align-items: center; justify-content: center; background: rgba(8,3,18,.92); padding: max(10px, var(--st)) 10px max(10px, var(--sb)); } #zoom.on { display: flex; } #zoom img { max-width: 100%; max-height: 100%; border-radius: 8px; }
 #mic { background: rgba(242,201,107,.18); color: var(--ouro); border: 1px solid var(--borda); }
 #mic.sem { opacity: .5; }
 #enviar { background: linear-gradient(135deg, #ffe39e, #e7b64f); color: #2b1147; }
@@ -189,6 +200,7 @@ body.mestre .conta { display: none; }
 #cancelar { background: rgba(255,255,255,.08); color: #f3e7fb; }
 #parar { background: linear-gradient(135deg, #ffe39e, #e7b64f); color: #2b1147; }
 #barra.grava #texto, #barra.grava #mic, #barra.grava #enviar { display: none; }
+input[hidden] { display: none; }
 #barra.grava #gravando { display: flex; }
 #gravando button { display: grid; }
 
@@ -296,8 +308,11 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   </header>
   <div id="msgs" role="log" aria-live="polite"><div class="esc" id="esc"><i></i><i></i><i></i></div></div>
   <div id="nota"></div>
+  <div id="previa"></div>
   <form id="barra">
     <textarea id="texto" rows="1" maxlength="2000" placeholder="Escreva aqui…" aria-label="A sua mensagem"></textarea>
+    <button class="bt-r" id="clipe" type="button" aria-label="Enviar uma foto ou um PDF"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.5 12 20a5 5 0 0 1-7-7l9-9a3.3 3.3 0 0 1 4.7 4.7l-9 9a1.6 1.6 0 0 1-2.3-2.3l8.2-8.2"/></svg></button>
+    <input type="file" id="ficheiro" accept="image/jpeg,image/png,image/webp,application/pdf" hidden />
     <button class="bt-r" id="mic" type="button" aria-label="Gravar um áudio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
     <button class="bt-r" id="enviar" type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4 21 12 3.4 3.6l.1 6.5L15 12 3.5 13.9z"/></svg></button>
     <div id="gravando" aria-live="polite">
@@ -308,6 +323,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   </form>
 </section>
 
+<div id="zoom" role="dialog" aria-label="Foto"><img alt="" /></div>
 <section id="fim" class="ecra cartao">
   <h1 id="fim-t"></h1><p id="fim-p"></p>
   <a class="grande" href="/">Ir para o site</a>
@@ -587,6 +603,14 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (x) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[x]; }); }
   function hora(q) { return new Date(q).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" }); }
   function mmss(s) { s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+  function tamanho(n) { return n > 1048576 ? (n / 1048576).toFixed(1).replace(".", ",") + " MB" : Math.max(1, Math.round(n / 1024)) + " kB"; }
+  function pintaAnexo(d, x) {
+    var u = "/api/consultorio/anexo?" + Q + "&id=" + x.id;
+    if (x.mime.indexOf("image/") === 0) d.innerHTML = '<img class="foto" alt="Foto enviada" src="' + u + '" /><time>' + hora(x.quando) + "</time>";
+    else d.innerHTML = '<a class="pdf" href="' + u + '" download="' + esc(x.texto) + '"><i>PDF</i><span>' + esc(x.texto) + "<small>" + tamanho(x.tam) + " · descarregar</small></span></a><time>" + hora(x.quando) + "</time>";
+    var f = d.querySelector(".foto"); if (f) { f.onload = rolar; f.onclick = function () { $("zoom").firstChild.src = u; $("zoom").classList.add("on"); }; }
+  }
+  $("zoom").onclick = function () { this.classList.remove("on"); this.firstChild.removeAttribute("src"); };
   function rolar() { var b = $("msgs"); b.scrollTop = b.scrollHeight; }
   function sistema(t) { var d = document.createElement("div"); d.className = "sis"; d.textContent = t; var b = $("msgs"); b.insertBefore(d, b.firstChild); rolar(); }   // sempre no topo, mesmo com histórico
   var ICO_P = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>', ICO_S = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4.5" width="4.4" height="15" rx="1"/><rect x="13.6" y="4.5" width="4.4" height="15" rx="1"/></svg>';
@@ -594,7 +618,8 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     if (x.id <= desde) return; desde = x.id; ultimaAct = Date.now();
     var minha = x.de === (mestre ? "mestre" : "pessoa"), d = document.createElement("div");
     d.className = "m " + (minha ? "eu" : "outro");
-    if (x.tipo === "audio") { d.innerHTML = '<div class="au"><button type="button" aria-label="Ouvir o áudio">' + ICO_P + '</button><span class="barra"><i></i></span><span class="dur">' + mmss(x.dur) + "</span></div><time>" + hora(x.quando) + "</time>"; leitor(d, x); }
+    if (x.tipo === "anexo") { pintaAnexo(d, x); }
+    else if (x.tipo === "audio") { d.innerHTML = '<div class="au"><button type="button" aria-label="Ouvir o áudio">' + ICO_P + '</button><span class="barra"><i></i></span><span class="dur">' + mmss(x.dur) + "</span></div><time>" + hora(x.quando) + "</time>"; leitor(d, x); }
     else d.innerHTML = esc(x.texto) + "<time>" + hora(x.quando) + "</time>";
     $("msgs").insertBefore(d, $("esc")); rolar();
     if (!minha && document.body.classList.contains("fase-chat")) { sinal("msg"); if (document.hidden) { porLer++; document.title = "(" + porLer + ") Nova mensagem"; } }
@@ -639,6 +664,45 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     var t = $("texto"), v = t.value.trim(); if (!v) return; t.value = ""; t.style.height = "auto"; ultimaAct = Date.now();
     post("msg", { texto: v }).then(function (r) { if (!r.ok) throw 0; nota(""); proxima(0); }).catch(function () { t.value = t.value || v; nota("A mensagem não seguiu. Confirme a ligação à internet e tente outra vez."); });
   }
+
+  // ---------- anexos: fotos e PDF, sempre com pré-visualização ----------
+  // As fotos saem daqui reduzidas e redesenhadas num canvas: sem dados internos (data, aparelho, GPS). O tipo é confirmado outra vez no worker.
+  var FOTO_LADO = 1600, ANEXO_MAX = 3 << 20, aEnviar = null;
+  function assinatura(f) { return f.slice(0, 12).arrayBuffer().then(function (a) { var b = new Uint8Array(a); return b[0] === 0xff && b[1] === 0xd8 ? "foto" : b[0] === 0x89 && b[1] === 0x50 ? "foto" : b[0] === 0x52 && b[8] === 0x57 ? "foto" : b[0] === 0x25 && b[1] === 0x50 && b[2] === 0x44 && b[3] === 0x46 ? "pdf" : ""; }); }
+  function reduz(f) {
+    return new Promise(function (ok, nao) {
+      var im = new Image(), u = URL.createObjectURL(f);
+      im.onerror = function () { URL.revokeObjectURL(u); nao(); };
+      im.onload = function () {
+        var w = im.naturalWidth, h = im.naturalHeight, z = Math.min(1, FOTO_LADO / Math.max(w, h)), c = document.createElement("canvas"); c.width = Math.round(w * z); c.height = Math.round(h * z);
+        var x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height); URL.revokeObjectURL(u);
+        (function tenta(q) { c.toBlob(function (b) { if (!b) return nao(); if (b.size <= ANEXO_MAX || q < .5) return ok(b); tenta(q - .15); }, "image/jpeg", q); })(.85);
+      };
+      im.src = u;
+    });
+  }
+  function previa(blob, nome, foto) {
+    var p = $("previa"), u = foto ? URL.createObjectURL(blob) : ""; aEnviar = { blob: blob, nome: nome };
+    p.innerHTML = (foto ? '<img alt="Foto a enviar" src="' + u + '" />' : '<span class="ico">PDF</span>') + '<span class="tx">' + esc(nome) + "<small>" + tamanho(blob.size) + '</small></span><button type="button" class="q" id="pv-nao">Cancelar</button><button type="button" id="pv-sim">Enviar</button>';
+    p.classList.add("on"); rolar();
+    var fim = function () { p.classList.remove("on"); p.innerHTML = ""; aEnviar = null; if (u) URL.revokeObjectURL(u); };
+    $("pv-nao").onclick = fim;
+    $("pv-sim").onclick = function () {
+      var a = aEnviar; fim(); nota("A enviar…");
+      fetch("/api/consultorio/anexo?" + Q + "&nome=" + encodeURIComponent(a.nome), { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: a.blob }).then(function (r) { return r.json().then(function (j) { if (!j.ok) throw j; nota(""); ultimaAct = Date.now(); proxima(0); }); }).catch(function (e) { nota(e && e.erro === "muitos" ? "Chegou ao limite de ficheiros nesta conversa." : e && e.erro === "formato" ? "Só se aceitam fotos JPG, PNG ou WebP e PDF." : e && e.erro === "grande" ? "O ficheiro passa de 3 MB." : "O ficheiro não seguiu. Confirme a ligação à internet e tente outra vez."); });
+    };
+  }
+  $("clipe").onclick = function () { if (!grav) $("ficheiro").click(); };
+  $("ficheiro").onchange = function () {
+    var f = this.files[0]; this.value = ""; if (!f) return; nota("");
+    var mau = function () { nota("Só se aceitam fotos JPG, PNG ou WebP e PDF, até 3 MB."); };
+    assinatura(f).then(function (t) {
+      var nome = f.name.replace(/\.[^.]*$/, "").slice(0, 70) || "anexo";
+      if (t === "pdf") { if (f.size > ANEXO_MAX) return nota("O PDF passa de 3 MB."); return previa(f, nome + ".pdf", false); }
+      if (t !== "foto") return mau();
+      return reduz(f).then(function (b) { if (b.size > ANEXO_MAX) return mau(); previa(b, nome + ".jpg", true); }, mau);
+    }, mau);
+  };
 
   // ---------- gravar ----------
   // AAC em mp4 primeiro, porque é o único que toca em todo o lado; o iPhone só faz esse. O Chrome antigo fica-se por webm.

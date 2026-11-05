@@ -34,6 +34,8 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
 .m.mestre { align-self: flex-end; background: rgba(242,201,107,.18); } .m.pessoa { align-self: flex-start; background: rgba(37,211,102,.15); }
 .m time { display: block; font-size: 11px; color: var(--apagado); }
 .m audio { display: block; width: 260px; max-width: 100%; }
+.m img { display: block; max-width: min(320px, 100%); max-height: 300px; border-radius: 10px; } .m a { color: var(--ouro); }
+#previa { display: flex; gap: 10px; align-items: center; margin-top: 8px; padding: 8px; border: 1px solid var(--borda); border-radius: 12px; } #previa img { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; } #previa span { flex: 1; font-size: 13.5px; overflow-wrap: anywhere; }
 .escreve { color: var(--verde); font-style: italic; font-size: 13px; min-height: 18px; }
 .vazio { color: var(--apagado); font-style: italic; } .acoes { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
 .nota { color: var(--apagado); font-size: 13px; margin-top: 8px; } #erro { color: #ffb0a8; font-size: 13px; }
@@ -65,7 +67,8 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
     <div class="nota" id="n-fecha" hidden>A ficha é criada quando fechares a conversa.</div>
     <div id="msgs"></div><div class="escreve" id="esc"></div>
     <form id="fmsg"><textarea id="txt" placeholder="Escreve aqui…" maxlength="2000"></textarea><button class="b-verde">Enviar</button></form>
-    <div class="acoes"><label class="bt b-q" for="ficheiro">📎 Enviar ficheiro de áudio</label><input id="ficheiro" type="file" accept="audio/*" capture hidden></div>
+    <div class="acoes"><label class="bt b-q" for="ficheiro">🎙️ Enviar ficheiro de áudio</label><input id="ficheiro" type="file" accept="audio/*" capture hidden><label class="bt b-q" for="anexo">📎 Enviar foto ou PDF</label><input id="anexo" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" hidden></div>
+    <div id="previa" hidden></div>
     <div class="nota">Aqui, no HA, não há microfone: o painel é http. Para gravar, usa «Abrir com microfone». O ficheiro de áudio aceita até 3 MB e 90 segundos.</div>
     <div class="ficha"><h2>Ficha da pessoa</h2>
       <form id="fficha"><input id="f-nome" maxlength="80" placeholder="Nome" autocomplete="off"><input id="f-nasc" type="date" aria-label="Data de nascimento"><button class="b-ouro">Guardar</button></form>
@@ -158,7 +161,10 @@ function conversa() {
     (r.msgs || []).forEach(function (m) {
       if (m.id <= desde) return; desde = m.id;
       var d = document.createElement("div"); d.className = "m " + m.de;
-      if (m.tipo === "audio") { d.innerHTML = '<audio controls preload="none"></audio><time>' + hora(m.quando) + " · " + Math.round(m.dur) + " s</time>"; carregaAudio(d.querySelector("audio"), m.id); }
+      if (m.tipo === "anexo") {
+        var u = API + "anexo?c=" + sel + "&id=" + m.id;
+        d.innerHTML = (m.mime.indexOf("image/") === 0 ? '<a href="' + u + '" target="_blank" rel="noopener"><img alt="Foto" src="' + u + '"></a>' : '<a href="' + u + '">📄 ' + esc(m.texto) + "</a>") + "<time>" + hora(m.quando) + "</time>";
+      } else if (m.tipo === "audio") { d.innerHTML = '<audio controls preload="none"></audio><time>' + hora(m.quando) + " · " + Math.round(m.dur) + " s</time>"; carregaAudio(d.querySelector("audio"), m.id); }
       else d.innerHTML = esc(m.texto) + "<time>" + hora(m.quando) + "</time>";
       $("msgs").appendChild(d); $("msgs").scrollTop = 1e6;
     });
@@ -185,6 +191,22 @@ $("fechar").onclick = function () { if (confirm("Fechar esta conversa? A ligaç�
 $("fmsg").onsubmit = function (e) { e.preventDefault(); var t = $("txt").value.trim(); if (!t) return; $("txt").value = ""; J("msg", { c: sel, texto: t }).then(conversa); };
 $("txt").onkeydown = function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("fmsg").requestSubmit(); } };
 var tE = 0; $("txt").oninput = function () { if (Date.now() - tE > 2500 && this.value) { tE = Date.now(); J("escreve", { c: sel }); } };
+// fotos e PDF: sempre com pré-visualização; as fotos saem reduzidas a 1600 px, em JPEG, sem dados internos
+function mostraPrevia(blob, nome, foto) {
+  var p = $("previa"), u = foto ? URL.createObjectURL(blob) : ""; p.hidden = false;
+  p.innerHTML = (foto ? '<img alt="" src="' + u + '">' : "📄") + "<span>" + esc(nome) + " · " + Math.max(1, Math.round(blob.size / 1024)) + ' kB</span><button class="b-q" type="button" id="pv-nao">Cancelar</button><button class="b-verde" type="button" id="pv-sim">Enviar</button>';
+  var fim = function () { p.hidden = true; p.innerHTML = ""; if (u) URL.revokeObjectURL(u); };
+  $("pv-nao").onclick = fim;
+  $("pv-sim").onclick = function () { fim(); $("erro").textContent = "A enviar…"; fetch(API + "anexo?c=" + sel + "&nome=" + encodeURIComponent(nome), { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: blob }).then(function (r) { return r.json(); }).then(function (r) { $("erro").textContent = r.ok ? "" : "O ficheiro não seguiu: só fotos e PDF, até 3 MB."; conversa(); }); };
+}
+$("anexo").onchange = function () {
+  var f = this.files[0]; this.value = ""; if (!f) return; var mau = function () { $("erro").textContent = "Só fotos JPG, PNG ou WebP e PDF, até 3 MB."; }, nome = f.name.replace(/\.[^.]*$/, "").slice(0, 70) || "anexo";
+  if (f.type === "application/pdf") { if (f.size > 3145728) return mau(); return mostraPrevia(f, nome + ".pdf", false); }
+  if (["image/jpeg", "image/png", "image/webp"].indexOf(f.type) < 0) return mau();
+  var im = new Image(), u = URL.createObjectURL(f); im.onerror = mau;
+  im.onload = function () { var z = Math.min(1, 1600 / Math.max(im.naturalWidth, im.naturalHeight)), c = document.createElement("canvas"); c.width = Math.round(im.naturalWidth * z); c.height = Math.round(im.naturalHeight * z); var x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height); URL.revokeObjectURL(u); c.toBlob(function (b) { if (!b || b.size > 3145728) return mau(); mostraPrevia(b, nome + ".jpg", true); }, "image/jpeg", .85); };
+  im.src = u;
+};
 $("ficheiro").onchange = function () {
   var f = this.files[0]; this.value = ""; if (!f) return; $("erro").textContent = "A enviar o áudio…";
   var au = new Audio(URL.createObjectURL(f));

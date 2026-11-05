@@ -55,6 +55,10 @@ def get(h, u, q):
     if via == "audio" and c:
         st, b, tipo = binario("/api/consultorio/audio?c=%s&id=%d" % (c, int(q.get("id") or 0)))
         h.send_response(st); h.send_header("Content-Type", tipo or "application/octet-stream"); h.send_header("Content-Length", str(len(b))); h.end_headers(); h.wfile.write(b); return
+    if via == "anexo" and c:
+        st, b, tipo = binario("/api/consultorio/anexo?c=%s&id=%d" % (c, int(q.get("id") or 0)))
+        h.send_response(st); h.send_header("Content-Type", tipo or "application/octet-stream"); h.send_header("Content-Length", str(len(b))); h.send_header("X-Content-Type-Options", "nosniff")
+        h.send_header("Content-Security-Policy", "sandbox; default-src 'none'"); h.send_header("Content-Disposition", "inline" if tipo.startswith("image/") else "attachment"); h.end_headers(); h.wfile.write(b); return
     return h.responde(404, {"ok": False})
 def post(h, u):
     q = dict(urllib.parse.parse_qsl(u.query)); via = u.path.replace("/api/consultorio/", "")
@@ -69,6 +73,15 @@ def post(h, u):
             if novo: dados, tipo = novo, t
         tipo = {"audio/x-m4a": "audio/mp4", "audio/mp3": "audio/mpeg"}.get(tipo, tipo)
         st, b, _ = binario("/api/consultorio/audio?c=%s&dur=%.1f" % (c, min(93, float(q.get("dur") or 0))), dados, tipo)
+        try: o = json.loads(b or b"{}")
+        except Exception: o = {"ok": False}
+        return h.responde(st, o)
+    if via == "anexo":
+        c = codigo(q.get("c"))
+        if n > AUDIO_MAX + 1024: h.rfile.read(n); return h.responde(413, {"ok": False, "erro": "O ficheiro não pode passar de 3 MB."})
+        dados = h.rfile.read(n)
+        if not c: return h.responde(400, {"ok": False})
+        st, b, _ = binario("/api/consultorio/anexo?c=%s&nome=%s" % (c, urllib.parse.quote(str(q.get("nome") or "anexo")[:80])), dados, "application/octet-stream")
         try: o = json.loads(b or b"{}")
         except Exception: o = {"ok": False}
         return h.responde(st, o)

@@ -1859,12 +1859,23 @@ const CONSULTORIO = {
   AUDIO_MAX_BYTES: 3 << 20,  // 3 MB chegam para 90 s, mesmo no iPhone, que às vezes ignora o débito pedido
   PEDACO: 256 << 10,         // bem abaixo do limite de 2 MB por linha
   AUDIOS_MAX: 80,            // por conversa e por pessoa: para um link esquecido não encher o armazenamento
+  ANEXO_MAX_BYTES: 3 << 20,  // fotos (já reduzidas no navegador) e PDF
+  ANEXOS_MAX: 40,            // por conversa e por lado
   ESPERA_MIN: 5,             // contador da sala de espera, se ele não escolher outro tempo
   ESPERA_OCUPADO_MIN: 15,    // com outra pessoa no consultório, a contagem nunca começa abaixo disto
   ESPERA_MAX_MIN: 180,       // tecto da soma de minutos no painel
   TIPOS_AUDIO: ["audio/mp4", "audio/webm", "audio/ogg", "audio/aac", "audio/mpeg"],
 };
 const CODIGO_OK = /^[a-hjkmnp-z2-9]{20}$/;
+// O tipo de um anexo decide-se pelos primeiros bytes, nunca pelo nome nem pelo que o navegador declara. SVG e HTML não passam aqui.
+function tipoAnexo(b) {
+  const ini = (...x) => x.every((v, i) => b[i] === v);
+  if (ini(0xff, 0xd8, 0xff)) return "image/jpeg";
+  if (ini(0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a)) return "image/png";
+  if (ini(0x52, 0x49, 0x46, 0x46) && b[8] === 0x57 && b[9] === 0x45 && b[10] === 0x42 && b[11] === 0x50) return "image/webp";
+  if (ini(0x25, 0x50, 0x44, 0x46, 0x2d)) return "application/pdf";
+  return "";
+}
 function novoCodigo() {   // 20 letras de 31 (sem i, l, o, 0, 1), ~99 bits: impossível de adivinhar
   const A = "abcdefghjkmnpqrstuvwxyz23456789"; let c = "";
   while (c.length < 20) for (const b of crypto.getRandomValues(new Uint8Array(24))) { if (b < 248 && c.length < 20) c += A[b % 31]; }
@@ -1885,6 +1896,8 @@ export class Consultorio extends DurableObject {
     // sobrevive a recarregar a página, e o navegador só desconta os segundos sem perguntar nada.
     try { this.sql.exec("ALTER TABLE consultas ADD COLUMN espera_min INTEGER"); } catch (e) { /* já existe */ }
     try { this.sql.exec("ALTER TABLE consultas ADD COLUMN fim_espera INTEGER"); } catch (e) { /* já existe */ }
+    try { this.sql.exec("ALTER TABLE consultas ADD COLUMN anexos_p INTEGER DEFAULT 0"); } catch (e) { /* já existe */ }
+    try { this.sql.exec("ALTER TABLE consultas ADD COLUMN anexos_m INTEGER DEFAULT 0"); } catch (e) { /* já existe */ }
     this.sql.exec("CREATE INDEX IF NOT EXISTS msgs_cod ON msgs(codigo, id)");
     this.sql.exec("CREATE INDEX IF NOT EXISTS msgs_q ON msgs(quando)");
     this.sql.exec("CREATE INDEX IF NOT EXISTS cons_estado ON consultas(estado)");
@@ -1895,7 +1908,7 @@ export class Consultorio extends DurableObject {
   // A regra dos 30 dias não pode depender de haver visitas: o alarme acorda o objecto mesmo que ninguém cá venha.
   limpar(agora) {
     const lim = agora - CONSULTORIO.RETENCAO_DIAS * 864e5;
-    this.sql.exec("DELETE FROM audio WHERE msg IN (SELECT id FROM msgs WHERE quando < ? AND tipo='audio')", lim);
+    this.sql.exec("DELETE FROM audio WHERE msg IN (SELECT id FROM msgs WHERE quando < ? AND tipo IN ('audio','anexo'))", lim);
     this.sql.exec("DELETE FROM msgs WHERE quando < ?", lim);
     this.sql.exec("DELETE FROM consultas WHERE criado < ? AND NOT EXISTS (SELECT 1 FROM msgs m WHERE m.codigo = consultas.codigo)", lim);
     for (const [k, v] of this.visto) if (agora - v > 864e5) this.visto.delete(k);
@@ -1924,8 +1937,8 @@ export class Consultorio extends DurableObject {
     const J = (o, s) => new Response(JSON.stringify(o), { status: s || 200, headers: { "Content-Type": "application/json", "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });
     if (!this.ultimaLimpeza || agora - this.ultimaLimpeza > 600000 || p === "reabrir") this.limpar(agora);
     const chaveOk = !!this.env.STATS_KEY && request.headers.get("X-Chave") === this.env.STATS_KEY;
-    const binario = p === "audio" && request.method === "POST";
-    const d = request.method === "POST" && !binario ? await request.json().catch(() => ({})) : {};
+    const binario = p === "audio" && request.method === "POST", semJson = binario || (p === "anexo" && request.method === "POST");
+    const d = request.method === "POST" && !semJson ? await request.json().catch(() => ({})) : {};
     const c = String(d.c || url.searchParams.get("c") || ""), m = String(d.m || url.searchParams.get("m") || "");
 
     // ---------- só com a chave (o painel do HA, pelo servidor.py) ----------
@@ -1964,7 +1977,7 @@ export class Consultorio extends DurableObject {
       const base = { ok: true, estado: r.estado, papel: de, agora, max_audio_s: CONSULTORIO.AUDIO_MAX_S, aceite: !!r.aceitou, fim_espera: r.estado === "espera" ? r.fim_espera : undefined };
       // conversa fechada ou expirada: à pessoa já não se mostra nada, mesmo com o link
       if (!mestre && !["espera", "conversa"].includes(r.estado)) return J(base);
-      const msgs = this.linhas("SELECT id, quando, de, tipo, texto, dur, mime FROM msgs WHERE codigo=? AND id>? ORDER BY id LIMIT 200", c, Number(url.searchParams.get("desde")) || 0);
+      const msgs = this.linhas("SELECT id, quando, de, tipo, texto, dur, mime, tam FROM msgs WHERE codigo=? AND id>? ORDER BY id LIMIT 200", c, Number(url.searchParams.get("desde")) || 0);
       const outro = mestre ? "pessoa" : "mestre";
       return J({ ...base, msgs, escreve: agora - (this.escreve.get(c + "|" + outro) || 0) < 5000,
         presente: mestre ? agora - (this.visto.get(c) || 0) < 45000 : undefined, etiqueta: mestre ? r.etiqueta : undefined });
@@ -2001,6 +2014,33 @@ export class Consultorio extends DurableObject {
       const tudo = new Uint8Array(partes.reduce((n, x) => n + x.length, 0)); let o = 0; for (const x of partes) { tudo.set(x, o); o += x.length; }
       return new Response(tudo, { headers: { "Content-Type": a.mime, "Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff", "X-Robots-Tag": "noindex",
         "Content-Security-Policy": "sandbox; default-src 'none'" } });
+    }
+    if (p === "anexo" && request.method === "GET") {
+      const id = Number(url.searchParams.get("id")) || 0, a = this.linhas("SELECT mime, texto FROM msgs WHERE id=? AND codigo=? AND tipo='anexo'", id, c)[0];
+      if (!a || (!mestre && !["espera", "conversa"].includes(r.estado))) return J({ ok: false }, 404);
+      const partes = this.linhas("SELECT dados FROM audio WHERE msg=? ORDER BY pos", id).map((x) => new Uint8Array(x.dados));
+      const tudo = new Uint8Array(partes.reduce((n, x) => n + x.length, 0)); let o = 0; for (const x of partes) { tudo.set(x, o); o += x.length; }
+      const nome = a.texto.replace(/[^\w.-]+/g, "_").slice(0, 80) || "anexo";
+      return new Response(tudo, { headers: { "Content-Type": a.mime, "Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff", "X-Robots-Tag": "noindex",
+        "Content-Security-Policy": "sandbox; default-src 'none'", "Content-Disposition": (a.mime.startsWith("image/") ? "inline" : "attachment") + '; filename="' + nome + '"' } });
+    }
+    if (p === "anexo" && request.method === "POST") {
+      if (!viva) return J({ ok: false, estado: r.estado }, 400);
+      if ((mestre ? r.anexos_m : r.anexos_p) >= CONSULTORIO.ANEXOS_MAX) return J({ ok: false, erro: "muitos" }, 429);
+      if (Number(request.headers.get("Content-Length")) > CONSULTORIO.ANEXO_MAX_BYTES * 4) return J({ ok: false, erro: "grande" }, 413);
+      const b = new Uint8Array(await request.arrayBuffer());
+      if (!b.length) return J({ ok: false, erro: "vazio" }, 400);
+      if (b.length > CONSULTORIO.ANEXO_MAX_BYTES) return J({ ok: false, erro: "grande" }, 413);
+      const mime = tipoAnexo(b);
+      if (!mime) return J({ ok: false, erro: "formato" }, 415);
+      const nome = String(url.searchParams.get("nome") || "anexo").replace(/[\x00-\x1f<>:"/\\|?*]+/g, " ").trim().slice(0, 80) || "anexo";
+      const id = this.ctx.storage.transactionSync(() => {
+        const n = this.novaMsg(c, agora, de, "anexo", nome, mime, 0, b.length);
+        for (let i = 0, pos = 0; i < b.length; i += CONSULTORIO.PEDACO, pos++) this.sql.exec("INSERT INTO audio (msg, pos, dados) VALUES (?,?,?)", n, pos, b.slice(i, i + CONSULTORIO.PEDACO).buffer);
+        this.sql.exec(`UPDATE consultas SET ${mestre ? "anexos_m=anexos_m+1" : "anexos_p=anexos_p+1, ult_pessoa=" + agora} WHERE codigo=?`, c);
+        return n;
+      });
+      return J({ ok: true, id, mime });
     }
     if (binario) {
       if (!viva) return J({ ok: false, estado: r.estado }, 400);
