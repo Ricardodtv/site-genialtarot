@@ -1,0 +1,14 @@
+[Unit]
+Description=Vigia das contas do genialtarot.com (envia a ligação de entrada)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ricardo
+ExecStart=/usr/bin/python3 /home/ricardo/conta-painel/conta-vigia.py
+Restart=always
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

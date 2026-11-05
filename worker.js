@@ -684,6 +684,14 @@ export default {
       catch (e) { return new Response(JSON.stringify({ ok: false, erro: "consultorio: " + String(e && e.message || e).slice(0, 300) }), { status: 500, headers: { "Content-Type": "application/json" } }); }
     }
 
+    // 05/11/2026: a conta do visitante e o início de sessão (ver a classe Contas, no fim). /api/conta/* não é ficheiro,
+    // por isso chega aqui sem precisar de regra no run_worker_first (como o /api/vivo e o /notify).
+    if (url.pathname.startsWith("/api/conta/")) {
+      if (!env.CONTAS) return new Response(JSON.stringify({ ok: false, erro: "indisponivel" }), { status: 503, headers: { "Content-Type": "application/json" } });
+      try { return await env.CONTAS.get(env.CONTAS.idFromName("contas")).fetch(request); }
+      catch (e) { return new Response(JSON.stringify({ ok: false, erro: "indisponivel" }), { status: 500, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } }); }
+    }
+
     // 31/10/2026: quem está no site agora + o chat dele com essa pessoa (ver a classe Sala, no fim)
     if (url.pathname === "/api/vivo" || url.pathname.startsWith("/api/vivo/")) {
       if (!env.SALA) return new Response("{}", { status: 503 });
@@ -2092,6 +2100,295 @@ export class Consultorio extends DurableObject {
       const expira = agora + CONSULTORIO.VALIDADE_H * 36e5;
       this.sql.exec("UPDATE consultas SET estado='criado', criado=?, expira=?, entrou=NULL, atendido=NULL, fechado=NULL, fim_espera=NULL WHERE codigo=?", agora, expira, c);
       return J({ ok: true, estado: "criado", expira });
+    }
+    return J({ ok: false }, 404);
+  }
+}
+
+// ===== CONTA E INÍCIO DE SESSÃO (05/11/2026, pedido dele) =====
+// Entrar por Google (ID token verificado aqui pelas chaves públicas da Google, sem segredo) ou por nome + email com ligação
+// de confirmação, sem palavra-passe. Durable Object próprio, separado da Sala e do Consultorio: as contas não dependem deles.
+//
+// - O worker não envia correio: o pedido fica na tabela «fila» e a campainha (WebSocket em hibernação, sem gastar pedidos
+//   enquanto ninguém entra) acorda o vigia do cerebro, conta-painel/conta-vigia.py, que envia pelo SMTP das promoções.
+// - Sessão: cookie HttpOnly com um token aleatório; aqui só fica o hash. O navegador nunca lê o token.
+// - Só se pergunta ao servidor se o navegador tem a marca de sessão (conta.js): quem não entrou não gasta pedidos.
+// - Marketing: caixa à parte, por marcar. Cada alteração fica em «consentimentos» com data, texto e versão.
+// - Apagar conta apaga as linhas todas; para a casa saber quem tirar da lista fica só um hash, até o vigia o ir buscar.
+const CONTA = {
+  GOOGLE_CLIENT_ID: "",      // público. Vazio = botão Google escondido e /google recusado. Ver conta-painel/GOOGLE-PASSO-A-PASSO.md
+  JWKS: "https://www.googleapis.com/oauth2/v3/certs",
+  LIGACAO_MIN: 15,           // validade da ligação do email; serve uma só vez
+  SESSAO_DIAS: 90,           // renova-se sozinha para quem continua a vir
+  FILA_MIN: 15,              // um email por enviar ao fim disto já não serve: a ligação caducou
+  EVENTOS_DIAS: 30,          // se a casa nunca os for buscar, não ficam para sempre
+  CONSENT_VERSAO: "2026-11-05",
+  // O mesmo texto da caixa dos formulários do site. Se mudar, muda a versão.
+  CONSENT_TEXTO: "Quero receber novidades do Mestre Alberto por email (horóscopos, mapas e promoções). Pode cancelar quando quiser.",
+  // [máximo, janela em minutos]
+  LIM_IP: [[5, 15], [20, 1440]],
+  LIM_EMAIL: [[3, 15], [8, 1440]],
+  LIM_TOTAL: [[60, 60], [300, 1440]],   // tudo somado: o Gmail aguenta ~500/dia e as promoções também saem por lá
+  LIM_ACCAO: [[40, 15]],                // confirmar, Google, guardar dados: por IP
+};
+const CONTA_EMAIL = /^[^@\s<>"']{1,64}@[^@\s<>"']{1,190}\.[A-Za-z]{2,}$/;
+const contaLimpo = (v, n) => String(v == null ? "" : v).replace(/[\u0000-\u001f\u007f<>]/g, " ").replace(/\s+/g, " ").trim().slice(0, n);
+function contaData(v) {   // AAAA-MM-DD real, entre 1900 e hoje
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(v || "")) return null;
+  const d = new Date(v + "T00:00:00Z");
+  return !isNaN(d) && d.toISOString().slice(0, 10) === v && v >= "1900-01-01" && d.getTime() <= Date.now() ? v : null;
+}
+async function contaSha(t) {
+  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t));
+  return [...new Uint8Array(b)].map((x) => x.toString(16).padStart(2, "0")).join("");
+}
+function contaAleatorio() { return [...crypto.getRandomValues(new Uint8Array(32))].map((x) => x.toString(16).padStart(2, "0")).join(""); }
+function contaB64(s) {
+  const b = atob(s.replace(/-/g, "+").replace(/_/g, "/").padEnd(Math.ceil(s.length / 4) * 4, "="));
+  return Uint8Array.from(b, (c) => c.charCodeAt(0));
+}
+
+export class Contas extends DurableObject {
+  constructor(ctx, env) {
+    super(ctx, env);
+    this.sql = ctx.storage.sql;
+    this.jwks = null;           // as chaves públicas da Google, em memória
+    this.sql.exec(`CREATE TABLE IF NOT EXISTS contas (id TEXT PRIMARY KEY, email TEXT UNIQUE, nome TEXT, nasc TEXT, hora TEXT, local TEXT, google TEXT UNIQUE,
+      marketing INTEGER DEFAULT 0, marketing_em INTEGER, criado INTEGER)`);
+    this.sql.exec("CREATE TABLE IF NOT EXISTS sessoes (hash TEXT PRIMARY KEY, conta TEXT, criado INTEGER, expira INTEGER)");
+    this.sql.exec("CREATE INDEX IF NOT EXISTS sess_conta ON sessoes(conta)");
+    this.sql.exec("CREATE INDEX IF NOT EXISTS sess_expira ON sessoes(expira)");
+    this.sql.exec("CREATE TABLE IF NOT EXISTS ligacoes (hash TEXT PRIMARY KEY, email TEXT, nome TEXT, expira INTEGER)");
+    this.sql.exec("CREATE INDEX IF NOT EXISTS lig_expira ON ligacoes(expira)");
+    // Email por enviar: o único sítio onde a ligação está legível, e só até o vigia confirmar o envio.
+    this.sql.exec("CREATE TABLE IF NOT EXISTS fila (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, link TEXT, criado INTEGER)");
+    this.sql.exec(`CREATE TABLE IF NOT EXISTS consentimentos (id INTEGER PRIMARY KEY AUTOINCREMENT, conta TEXT, accao TEXT, quando INTEGER, versao TEXT, texto TEXT)`);
+    this.sql.exec("CREATE INDEX IF NOT EXISTS cons_conta ON consentimentos(conta)");
+    // Para a lista de promoções (preparado, por ligar no vigia). Depois de apagar a conta, só o hash do email.
+    this.sql.exec("CREATE TABLE IF NOT EXISTS eventos (id INTEGER PRIMARY KEY AUTOINCREMENT, tipo TEXT, conta TEXT, email TEXT, nome TEXT, hash TEXT, quando INTEGER, versao TEXT, texto TEXT)");
+    this.sql.exec("CREATE INDEX IF NOT EXISTS ev_conta ON eventos(conta)");
+    this.sql.exec("CREATE TABLE IF NOT EXISTS limites (chave TEXT, inicio INTEGER, n INTEGER, PRIMARY KEY (chave, inicio))");
+  }
+  linhas(q, ...a) { return [...this.sql.exec(q, ...a)]; }
+  limpar(agora) {
+    if (this.ultimaLimpeza && agora - this.ultimaLimpeza < 600000) return;
+    this.ultimaLimpeza = agora;
+    this.sql.exec("DELETE FROM sessoes WHERE expira < ?", agora);
+    this.sql.exec("DELETE FROM ligacoes WHERE expira < ?", agora);
+    this.sql.exec("DELETE FROM fila WHERE criado < ?", agora - CONTA.FILA_MIN * 6e4);
+    this.sql.exec("DELETE FROM limites WHERE inicio < ?", agora - 1500 * 6e4);
+    this.sql.exec("DELETE FROM eventos WHERE quando < ?", agora - CONTA.EVENTOS_DIAS * 864e5);
+  }
+  async alarm() {   // o que caduca sai mesmo que ninguém cá venha; dorme quando não há nada que caducar
+    const agora = Date.now(); this.ultimaLimpeza = 0; this.limpar(agora);
+    if (this.linhas("SELECT 1 AS h FROM sessoes UNION ALL SELECT 1 FROM ligacoes UNION ALL SELECT 1 FROM eventos UNION ALL SELECT 1 FROM limites LIMIT 1").length) await this.ctx.storage.setAlarm(agora + 864e5);
+  }
+  async acordar() { if (!(await this.ctx.storage.getAlarm())) await this.ctx.storage.setAlarm(Date.now() + 864e5); }
+  // Conta uma tentativa em cada janela; devolve false se alguma já estava cheia. Os IP e os emails só entram com hash.
+  async dentro(tipo, valor, regras, agora) {
+    const h = (await contaSha((this.env.STATS_KEY || "") + "|" + tipo + "|" + valor)).slice(0, 32);
+    let ok = true;
+    for (const [max, min] of regras) {
+      const inicio = Math.floor(agora / (min * 6e4)) * min * 6e4, k = h + ":" + min;
+      const n = this.linhas("INSERT INTO limites (chave, inicio, n) VALUES (?,?,1) ON CONFLICT (chave, inicio) DO UPDATE SET n = n + 1 RETURNING n", k, inicio)[0].n;
+      if (n > max) ok = false;
+    }
+    return ok;
+  }
+  cookie(request, valor, maxIdade) {
+    const host = new URL(request.url).hostname;
+    return `gt_sessao=${valor}; Path=/; Max-Age=${maxIdade}; HttpOnly; Secure; SameSite=Lax` + (/(^|\.)genialtarot\.com$/.test(host) ? "; Domain=genialtarot.com" : "");
+  }
+  async sessao(request, agora) {
+    const m = (request.headers.get("cookie") || "").match(/(?:^|;\s*)gt_sessao=([0-9a-f]{64})/);
+    if (!m) return null;
+    const s = this.linhas("SELECT s.hash, s.expira, c.* FROM sessoes s JOIN contas c ON c.id = s.conta WHERE s.hash=? AND s.expira>?", await contaSha(m[1]), agora)[0];
+    if (s) s.token = m[1];
+    return s || null;
+  }
+  async abrirSessao(request, id, agora) {
+    const t = contaAleatorio(), dias = CONTA.SESSAO_DIAS;
+    this.sql.exec("INSERT INTO sessoes (hash, conta, criado, expira) VALUES (?,?,?,?)", await contaSha(t), id, agora, agora + dias * 864e5);
+    await this.acordar();
+    return this.cookie(request, t, dias * 86400);
+  }
+  publico(c) {
+    return { nome: c.nome || "", email: c.email, nasc: c.nasc || "", hora: c.hora || "", local: c.local || "", google: !!c.google,
+      marketing: !!c.marketing, marketing_em: c.marketing_em || 0 };
+  }
+  consentir(c, quer, agora) {
+    if (!!c.marketing === quer) return;
+    this.sql.exec("UPDATE contas SET marketing=?, marketing_em=? WHERE id=?", quer ? 1 : 0, agora, c.id);
+    this.sql.exec("INSERT INTO consentimentos (conta, accao, quando, versao, texto) VALUES (?,?,?,?,?)", c.id, quer ? "deu" : "retirou", agora, CONTA.CONSENT_VERSAO, CONTA.CONSENT_TEXTO);
+    // O evento mais recente é o que conta: consentir e retirar seguidos não deixam um «deu» pendente.
+    this.sql.exec("DELETE FROM eventos WHERE conta=?", c.id);
+    this.sql.exec("INSERT INTO eventos (tipo, conta, email, nome, quando, versao, texto) VALUES (?,?,?,?,?,?,?)", quer ? "deu" : "retirou", c.id, c.email, c.nome || "", agora, CONTA.CONSENT_VERSAO, CONTA.CONSENT_TEXTO);
+    c.marketing = quer ? 1 : 0; c.marketing_em = agora;
+  }
+  async chavesGoogle(kid, agora) {
+    const base = this.env.CONTA_JWKS_TESTE || CONTA.JWKS;
+    if (!this.jwks || agora - this.jwks.em > 36e5 || (!this.jwks.keys.some((k) => k.kid === kid) && agora - this.jwks.em > 3e5)) {
+      const r = await fetch(base); if (!r.ok) throw new Error("jwks " + r.status);
+      this.jwks = { keys: (await r.json()).keys || [], em: agora };
+    }
+    return this.jwks.keys.find((k) => k.kid === kid) || null;
+  }
+  // O ID token da Google: assinatura RS256 pela chave pública + emissor, destinatário, validade e email confirmado.
+  async tokenGoogle(cred, agora) {
+    const cliente = this.env.CONTA_GOOGLE_ID_TESTE || CONTA.GOOGLE_CLIENT_ID;
+    const p = String(cred || "").split(".");
+    if (!cliente || p.length !== 3) return null;
+    let cab, dados;
+    try { cab = JSON.parse(new TextDecoder().decode(contaB64(p[0]))); dados = JSON.parse(new TextDecoder().decode(contaB64(p[1]))); } catch (e) { return null; }
+    if (cab.alg !== "RS256" || !cab.kid) return null;
+    const jwk = await this.chavesGoogle(cab.kid, agora);
+    if (!jwk) return null;
+    const chave = await crypto.subtle.importKey("jwk", jwk, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["verify"]);
+    const certo = await crypto.subtle.verify("RSASSA-PKCS1-v1_5", chave, contaB64(p[2]), new TextEncoder().encode(p[0] + "." + p[1]));
+    const seg = agora / 1000;
+    if (!certo || !["accounts.google.com", "https://accounts.google.com"].includes(dados.iss) || dados.aud !== cliente) return null;
+    if (!(dados.exp > seg) || !(dados.iat < seg + 300) || dados.email_verified !== true || !dados.sub || !CONTA_EMAIL.test(dados.email || "")) return null;
+    return dados;
+  }
+  webSocketMessage() { /* a campainha só toca para lá; o vigia não manda nada */ }
+  webSocketClose(ws) { try { ws.close(); } catch (e) {} }
+  async fetch(request) {
+    const url = new URL(request.url), p = url.pathname.replace("/api/conta/", ""), agora = Date.now();
+    const J = (o, s, cookie) => {
+      const h = new Headers({ "Content-Type": "application/json", "Cache-Control": "no-store", "X-Robots-Tag": "noindex" });
+      if (cookie) h.append("Set-Cookie", cookie);
+      return new Response(JSON.stringify(o), { status: s || 200, headers: h });
+    };
+    this.limpar(agora);
+
+    // ---------- só com a chave (o vigia do cerebro) ----------
+    if (p === "campainha" || p === "fila" || p === "feito") {
+      if (!this.env.STATS_KEY || request.headers.get("X-Chave") !== this.env.STATS_KEY) return J({ ok: false, erro: "chave" }, 403);
+      if (p === "campainha") {
+        if (request.headers.get("Upgrade") !== "websocket") return J({ ok: false }, 426);
+        for (const v of this.ctx.getWebSockets("vigia")) { try { v.close(1000, "outro"); } catch (e) {} }   // só há um vigia
+        const par = new WebSocketPair();
+        this.ctx.acceptWebSocket(par[1], ["vigia"]);
+        return new Response(null, { status: 101, webSocket: par[0] });
+      }
+      if (p === "fila") return J({ ok: true, emails: this.linhas("SELECT id, email, link, criado FROM fila ORDER BY id LIMIT 50"),
+        eventos: this.linhas("SELECT id, tipo, email, nome, hash, quando, versao, texto FROM eventos ORDER BY id LIMIT 200") });
+      const d = await request.json().catch(() => ({}));
+      for (const i of (d.emails || []).slice(0, 200)) this.sql.exec("DELETE FROM fila WHERE id=?", Number(i) || 0);
+      for (const i of (d.eventos || []).slice(0, 200)) this.sql.exec("DELETE FROM eventos WHERE id=?", Number(i) || 0);
+      return J({ ok: true });
+    }
+
+    if (p === "config" && request.method === "GET")   // o texto da caixa vem daqui: o que se mostra é o que fica registado
+      return J({ ok: true, google: this.env.CONTA_GOOGLE_ID_TESTE || CONTA.GOOGLE_CLIENT_ID, consent: { versao: CONTA.CONSENT_VERSAO, texto: CONTA.CONSENT_TEXTO }, ligacao_min: CONTA.LIGACAO_MIN });
+
+    if (p === "eu" && request.method === "GET") {
+      const c = await this.sessao(request, agora);
+      if (!c) return J({ ok: true, sessao: false }, 200, request.headers.has("cookie") && /gt_sessao=/.test(request.headers.get("cookie")) ? this.cookie(request, "", 0) : null);
+      let renova = null;
+      if (c.expira - agora < (CONTA.SESSAO_DIAS - 7) * 864e5) {   // no máximo uma escrita por semana
+        this.sql.exec("UPDATE sessoes SET expira=? WHERE hash=?", agora + CONTA.SESSAO_DIAS * 864e5, c.hash);
+        renova = this.cookie(request, c.token, CONTA.SESSAO_DIAS * 86400);
+      }
+      return J({ ok: true, sessao: true, conta: this.publico(c) }, 200, renova);
+    }
+
+    if (request.method !== "POST") return J({ ok: false }, 405);
+    // Pedido de outro site nunca passa: a origem tem de ser esta (com ou sem www) e o corpo JSON.
+    const origem = request.headers.get("origin") || "";
+    let mesma = false; try { mesma = new URL(origem).host === url.host; } catch (e) {}
+    if (!mesma || !/^application\/json/.test(request.headers.get("content-type") || "")) return J({ ok: false, erro: "origem" }, 403);
+    const d = await request.json().catch(() => ({}));
+    const ip = request.headers.get("CF-Connecting-IP") || "?";
+
+    // ---------- pedir a ligação: a resposta é igual exista ou não a conta ----------
+    if (p === "pedir") {
+      const nome = contaLimpo(d.nome, 80), email = contaLimpo(d.email, 254).toLowerCase();
+      if (d.site) return J({ ok: true });   // o campo escondido: só os robôs o preenchem
+      if (nome.length < 2) return J({ ok: false, erro: "nome" }, 400);
+      if (!CONTA_EMAIL.test(email)) return J({ ok: false, erro: "email" }, 400);
+      if (!(await this.dentro("ip", ip, CONTA.LIM_IP, agora))) return J({ ok: false, erro: "muitos" }, 429);
+      const porEmail = await this.dentro("email", email, CONTA.LIM_EMAIL, agora), porTotal = await this.dentro("total", "site", CONTA.LIM_TOTAL, agora);
+      if (porEmail && porTotal) {
+        const t = contaAleatorio();
+        this.sql.exec("INSERT INTO ligacoes (hash, email, nome, expira) VALUES (?,?,?,?)", await contaSha(t), email, nome, agora + CONTA.LIGACAO_MIN * 6e4);
+        this.sql.exec("INSERT INTO fila (email, link, criado) VALUES (?,?,?)", email, url.origin + "/conta#t=" + t, agora);
+        await this.acordar();
+        for (const v of this.ctx.getWebSockets("vigia")) { try { v.send("fila"); } catch (e) {} }
+      }
+      return J({ ok: true });
+    }
+
+    if (!(await this.dentro("accao", ip, CONTA.LIM_ACCAO, agora))) return J({ ok: false, erro: "muitos" }, 429);
+
+    // ---------- a ligação do email: só com POST do botão (os antivírus do correio abrem ligações sozinhos) ----------
+    if (p === "confirmar") {
+      const t = String(d.t || "");
+      if (!/^[0-9a-f]{64}$/.test(t)) return J({ ok: false, erro: "ligacao" }, 400);
+      const h = await contaSha(t), l = this.linhas("SELECT * FROM ligacoes WHERE hash=? AND expira>?", h, agora)[0];
+      if (!l) return J({ ok: false, erro: "ligacao" }, 400);
+      this.sql.exec("DELETE FROM ligacoes WHERE email=?", l.email);   // serve uma vez, e leva as irmãs consigo
+      let c = this.linhas("SELECT * FROM contas WHERE email=?", l.email)[0];
+      if (!c) {
+        const id = crypto.randomUUID();
+        this.sql.exec("INSERT INTO contas (id, email, nome, criado) VALUES (?,?,?,?)", id, l.email, l.nome, agora);
+        c = this.linhas("SELECT * FROM contas WHERE id=?", id)[0];
+      }
+      return J({ ok: true, sessao: true, conta: this.publico(c) }, 200, await this.abrirSessao(request, c.id, agora));
+    }
+
+    if (p === "google") {
+      let g = null;
+      try { g = await this.tokenGoogle(d.credential, agora); } catch (e) { return J({ ok: false, erro: "google-fora" }, 502); }
+      if (!g) return J({ ok: false, erro: "google" }, 400);
+      const email = g.email.toLowerCase();
+      let c = this.linhas("SELECT * FROM contas WHERE google=?", g.sub)[0] || this.linhas("SELECT * FROM contas WHERE email=?", email)[0];
+      if (c && !c.google) { this.sql.exec("UPDATE contas SET google=? WHERE id=?", g.sub, c.id); c.google = g.sub; }
+      if (!c) {
+        const id = crypto.randomUUID();
+        this.sql.exec("INSERT INTO contas (id, email, nome, google, criado) VALUES (?,?,?,?,?)", id, email, contaLimpo(g.name, 80), g.sub, agora);
+        c = this.linhas("SELECT * FROM contas WHERE id=?", id)[0];
+      }
+      return J({ ok: true, sessao: true, conta: this.publico(c) }, 200, await this.abrirSessao(request, c.id, agora));
+    }
+
+    // ---------- daqui para baixo, só com sessão ----------
+    const c = await this.sessao(request, agora);
+    if (!c) return J({ ok: false, erro: "sessao" }, 401);
+
+    if (p === "perfil") {
+      const nome = contaLimpo(d.nome, 80) || c.nome, hora = contaLimpo(d.hora, 5), local = contaLimpo(d.local, 120);
+      const nasc = d.nasc ? contaData(d.nasc) : "";
+      if (nasc === null) return J({ ok: false, erro: "data" }, 400);
+      if (d.marketing === true && d.versao !== CONTA.CONSENT_VERSAO) return J({ ok: false, erro: "versao" }, 409);
+      if (hora && !/^([01]\d|2[0-3]):[0-5]\d$/.test(hora)) return J({ ok: false, erro: "hora" }, 400);
+      this.sql.exec("UPDATE contas SET nome=?, nasc=?, hora=?, local=? WHERE id=?", nome, nasc, hora, local, c.id);
+      Object.assign(c, { nome, nasc, hora, local });
+      // Só a caixa marcada pela pessoa, sobre o texto que lhe foi mostrado. Ausente = não mexe.
+      if (typeof d.marketing === "boolean") this.consentir(c, d.marketing, agora);
+      return J({ ok: true, conta: this.publico(c) });
+    }
+    if (p === "consentimento") {
+      if (d.marketing !== true && d.marketing !== false) return J({ ok: false }, 400);
+      if (d.marketing && d.versao !== CONTA.CONSENT_VERSAO) return J({ ok: false, erro: "versao" }, 409);
+      this.consentir(c, d.marketing, agora);
+      return J({ ok: true, conta: this.publico(c) });
+    }
+    if (p === "sair") {
+      this.sql.exec("DELETE FROM sessoes WHERE hash=?", c.hash);
+      return J({ ok: true }, 200, this.cookie(request, "", 0));
+    }
+    if (p === "apagar") {
+      if (d.confirmo !== true) return J({ ok: false }, 400);
+      const deu = this.linhas("SELECT 1 AS h FROM consentimentos WHERE conta=? LIMIT 1", c.id).length > 0;
+      const hash = deu ? await contaSha((this.env.STATS_KEY || "") + "|" + c.email) : "";
+      this.ctx.storage.transactionSync(() => {
+        for (const q of ["DELETE FROM sessoes WHERE conta=?", "DELETE FROM consentimentos WHERE conta=?", "DELETE FROM eventos WHERE conta=?", "DELETE FROM contas WHERE id=?"]) this.sql.exec(q, c.id);
+        this.sql.exec("DELETE FROM ligacoes WHERE email=?", c.email);
+        this.sql.exec("DELETE FROM fila WHERE email=?", c.email);
+        if (deu) this.sql.exec("INSERT INTO eventos (tipo, hash, quando) VALUES ('apagou',?,?)", hash, agora);
+      });
+      return J({ ok: true }, 200, this.cookie(request, "", 0));
     }
     return J({ ok: false }, 404);
   }

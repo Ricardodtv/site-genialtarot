@@ -127,8 +127,8 @@
   ],
   // Onde ficam as visitas contadas pelo proprio worker (ver contarVisita).
   // 31/10/2026: a sala de quem está no site agora + o chat (classe Sala no worker.js)
-  "durable_objects": { "bindings": [ { "name": "SALA", "class_name": "Sala" }, { "name": "CONSULTORIO", "class_name": "Consultorio" } ] },
-  "migrations": [ { "tag": "v1-sala", "new_sqlite_classes": ["Sala"] }, { "tag": "v2-consultorio", "new_sqlite_classes": ["Consultorio"] } ],
+  "durable_objects": { "bindings": [ { "name": "SALA", "class_name": "Sala" }, { "name": "CONSULTORIO", "class_name": "Consultorio" }, { "name": "CONTAS", "class_name": "Contas" } ] },
+  "migrations": [ { "tag": "v1-sala", "new_sqlite_classes": ["Sala"] }, { "tag": "v2-consultorio", "new_sqlite_classes": ["Consultorio"] }, { "tag": "v3-contas", "new_sqlite_classes": ["Contas"] } ],
   "analytics_engine_datasets": [
     { "binding": "VISITAS", "dataset": "visitas_site" }
   ]

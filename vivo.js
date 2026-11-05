@@ -3,6 +3,9 @@
    abrir uma conversa no painel dele; aí aparece o chat, com a foto dele, como na aplicação. */
 (function () {
   if (window.__vivo) return; window.__vivo = 1;
+  // 05/11/2026: o botão «Entrar» em todas as páginas. O vivo.js já está em todas (757, menos a app), incluindo as que os geradores
+  // ainda vão criar; por isso carrega-se daqui, sem tocar em cada ficheiro. Fora do consultório, da app e do pagamento.
+  if (!/^\/(consultorio|o-teu-ceu|pagar)(\/|\.html|-sala|$)/.test(location.pathname)) { var gtc = document.createElement("script"); gtc.src = "/conta.js"; gtc.async = true; document.head.appendChild(gtc); }
   var A = "/api/vivo", sid;
   try { sid = localStorage.getItem("gt_vivo"); } catch (e) {}
   if (!sid || !/^[a-z0-9]{12,40}$/.test(sid)) {

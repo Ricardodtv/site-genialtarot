@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 05/11/2026: a página da conta (pedido dele): confirmar a ligação do email, os meus dados, novidades e apagar conta. Sem indexar. -->
+<title>A sua conta — Genial Tarot</title>
+<meta name="description" content="Veja e altere os seus dados no Genial Tarot, escolha se quer receber novidades e apague a sua conta quando quiser." />
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#2a0f45" />
+<meta name="referrer" content="no-referrer" />
+<link rel="icon" href="favicon.ico" />
+<link rel="canonical" href="https://genialtarot.com/conta" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+:root{--fundo:#12061f;--cartao:#1f0d33;--borda:#6b3f8f;--ouro:#f2c96b;--texto:#f6efff;--suave:#cdb8e6;--sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{min-height:100vh;background:radial-gradient(90% 60% at 50% 0%,#4a1670 0%,#1d0830 55%,var(--fundo) 100%) fixed,var(--fundo);color:var(--texto);font:16px/1.55 var(--sans)}
+main{max-width:600px;margin:0 auto;padding:5.5rem 16px 60px}
+.voltar{position:absolute;top:1.3rem;left:1rem;display:inline-flex;padding:.45rem .9rem;border:1px solid var(--borda);border-radius:999px;background:rgba(255,255,255,.04);color:var(--texto);font-size:14px;text-decoration:none}
+h1{margin:0 0 .4rem;color:var(--ouro);font:700 clamp(1.7rem,6vw,2.2rem)/1.2 Cinzel,Georgia,serif}
+h2{margin:0 0 .5rem;color:var(--ouro);font:700 1.15rem/1.3 Cinzel,Georgia,serif}
+.cartao{margin:1.2rem 0;padding:1.3rem 1.2rem;border:1px solid var(--borda);border-radius:18px;background:var(--cartao)}
+.cartao p{margin:.4rem 0;color:#e5d8f2;font-size:.96rem}
+label.c{display:block;margin:.8rem 0 0;font-size:.9rem;font-weight:600}
+label.c small{font-weight:400;color:var(--suave)}
+input.i{display:block;width:100%;margin:.3rem 0 0;padding:.7rem .8rem;border:1px solid rgba(242,201,107,.4);border-radius:11px;background:#140826;color:var(--texto);font:16px/1.3 var(--sans)}
+input.i[readonly]{opacity:.7}
+input.i::placeholder{color:#9d8cb3;opacity:1}
+input.i:focus{outline:2px solid var(--ouro);outline-offset:1px}
+.bt{display:inline-block;width:100%;margin-top:1rem;padding:.8rem 1rem;border:0;border-radius:12px;background:linear-gradient(135deg,#ffe49a,#f0b440);color:#2a1300;font:800 16px/1.2 var(--sans);cursor:pointer}
+.bt:disabled{opacity:.6;cursor:wait}
+.bt2{display:inline-block;width:100%;margin-top:.6rem;padding:.7rem 1rem;border:1px solid var(--borda);border-radius:12px;background:none;color:var(--texto);font:600 15px/1.2 var(--sans);cursor:pointer}
+.perigo{border-color:#a8505a;color:#ffb0b0}
+.perigo.forte{background:#8c2331;border-color:#8c2331;color:#fff}
+.mkt{display:flex;gap:.6em;align-items:flex-start;font-size:.95rem;line-height:1.45;cursor:pointer}
+.mkt input{flex:none;width:1.2em;height:1.2em;margin:.15em 0 0;accent-color:var(--ouro)}
+.msg{min-height:1.3em;margin:.6rem 0 0;font-size:.9rem;color:#e8cf95}
+.msg.mal{color:#ff9d9d}
+[hidden]{display:none!important}
+a{color:var(--ouro)}
+</style>
+</head>
+<body>
+<a class="voltar" href="/">&#8592; Início</a>
+<main>
+  <h1 id="titulo">A sua conta</h1>
+
+  <section class="cartao" id="v-confirmar" hidden>
+    <h2>Confirmar o email</h2>
+    <p>Carregue no botão para entrar. A ligação só funciona uma vez.</p>
+    <button class="bt" id="b-confirmar" type="button">Confirmar e entrar</button>
+    <p class="msg" id="m-confirmar" role="alert"></p>
+  </section>
+
+  <section class="cartao" id="v-fora" hidden>
+    <h2>Ainda não entrou</h2>
+    <p>Entre uma vez e deixa de preencher o nome e a data de nascimento nos formulários do site.</p>
+    <button class="bt" id="b-entrar" type="button">Entrar</button>
+  </section>
+
+  <div id="v-dados" hidden>
+    <section class="cartao">
+      <h2>Os meus dados</h2>
+      <p>Os formulários do site vêm preenchidos com isto. Pode sempre alterar lá, só para esse pedido.</p>
+      <form id="f-dados" novalidate>
+        <label class="c">Nome<input class="i" id="c-nome" maxlength="80" autocomplete="name"></label>
+        <label class="c">Email<input class="i" id="c-email" readonly tabindex="-1"></label>
+        <label class="c">Data de nascimento<input class="i" id="c-nasc" maxlength="32" autocomplete="bday" placeholder="Ex.: 23/01/1976 ou 23 janeiro 1976"></label>
+        <label class="c">Hora de nascimento <small>(opcional)</small><input class="i" id="c-hora" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="Ex.: 14:30"></label>
+        <label class="c">Local de nascimento <small>(opcional)</small><input class="i" id="c-local" maxlength="120" autocomplete="off" placeholder="Ex.: Porto, Portugal"></label>
+        <button class="bt" type="submit">Guardar alterações</button>
+        <p class="msg" id="m-dados" role="status"></p>
+      </form>
+    </section>
+
+    <section class="cartao" id="novidades">
+      <h2>Novidades por email</h2>
+      <label class="mkt"><input type="checkbox" id="c-mkt"><span id="c-mkt-texto"></span></label>
+      <p class="msg" id="m-mkt" role="status"></p>
+    </section>
+
+    <section class="cartao" id="apagar">
+      <h2>Sair ou apagar</h2>
+      <button class="bt2" id="b-sair" type="button">Sair desta sessão</button>
+      <button class="bt2 perigo" id="b-apagar" type="button">Apagar a minha conta</button>
+      <div id="z-apagar" hidden>
+        <p><b>Apagar mesmo?</b> Apaga o nome, o email, os dados de nascimento e o registo das suas escolhas, e termina a sessão em todos os aparelhos. Não dá para desfazer. Pedidos e consultas que já tenha feito não estão na conta: para os apagar, fale connosco (<a href="/privacidade">Privacidade</a>).</p>
+        <button class="bt2 perigo forte" id="b-apagar2" type="button">Sim, apagar para sempre</button>
+        <button class="bt2" id="b-apagar0" type="button">Não, manter a conta</button>
+      </div>
+      <p class="msg mal" id="m-apagar" role="alert"></p>
+    </section>
+  </div>
+
+  <section class="cartao" id="v-apagada" hidden>
+    <h2>Conta apagada</h2>
+    <p>Os seus dados foram apagados. Se um dia quiser voltar, é só entrar outra vez.</p>
+    <a class="bt" style="text-align:center;text-decoration:none" href="/">Voltar ao início</a>
+  </section>
+</main>
+<script src="/data-facil.js" defer></script>
+<script src="/conta.js" defer></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var C = window.gtConta, $ = function (i) { return document.getElementById(i); }, versao = "";
+  function vista(q) { ["v-confirmar", "v-fora", "v-dados", "v-apagada"].forEach(function (i) { $(i).hidden = i !== q; }); }
+  function mostrar(c) {
+    $("c-nome").value = c.nome; $("c-email").value = c.email; $("c-hora").value = c.hora; $("c-local").value = c.local;
+    var p = c.nasc ? c.nasc.split("-") : null; $("c-nasc").value = p ? p[2] + "/" + p[1] + "/" + p[0] : "";
+    $("c-mkt").checked = c.marketing;
+    vista("v-dados");
+    if (location.hash === "#apagar") { $("apagar").scrollIntoView(); $("b-apagar").focus(); }
+  }
+  function abrir() {
+    C.fresco().then(function (c) { if (c) mostrar(c); else vista("v-fora"); });
+    C.config().then(function (x) { if (x) { versao = x.consent.versao; $("c-mkt-texto").textContent = x.consent.texto; } });
+  }
+  function semSessao(r) { if (r && r.erro === "sessao") { C.esquecer(); vista("v-fora"); return true; } return false; }
+
+  var m = location.hash.match(/^#t=([0-9a-f]{64})$/);
+  if (m) {
+    var t = m[1];
+    history.replaceState(null, "", location.pathname);   // a ligação não fica no histórico do navegador
+    vista("v-confirmar");
+    $("b-confirmar").onclick = function () {
+      var b = this; b.disabled = true; $("m-confirmar").textContent = ""; $("m-confirmar").classList.remove("mal");
+      C.api("confirmar", { t: t }).then(function (r) {
+        b.disabled = false;
+        if (!r || !r.ok) {
+          $("m-confirmar").classList.add("mal");
+          $("m-confirmar").textContent = r && r.erro === "ligacao" ? "Esta ligação já foi usada ou caducou. Peça outra no botão «Entrar»." : "Não foi possível agora. Tente outra vez daqui a pouco.";
+          if (r && r.erro === "ligacao") { b.hidden = true; }
+          return;
+        }
+        C.entrou(r, function () { var v = C.volta(); if (v && v !== "/conta") location.replace(v); else abrir(); });
+      }).catch(function () { b.disabled = false; $("m-confirmar").classList.add("mal"); $("m-confirmar").textContent = "Não foi possível agora. Tente outra vez daqui a pouco."; });
+    };
+  } else abrir();
+
+  $("b-entrar").onclick = function () { C.abrirEntrar(); };
+  $("f-dados").onsubmit = function (e) {
+    e.preventDefault();
+    var msg = $("m-dados"), r = window.dataFacil && window.dataFacil.ler($("c-nasc").value), h = C.lerHora($("c-hora").value);
+    msg.className = "msg mal"; msg.textContent = "";
+    if ($("c-nasc").value.trim() && !r) { msg.textContent = "Essa data não parece certa. Confirme, por favor."; return; }
+    if (h === null) { msg.textContent = "Essa hora não parece certa. Escreva, por exemplo, 14:30."; return; }
+    C.api("perfil", { nome: $("c-nome").value.trim(), nasc: r ? r.iso : "", hora: h, local: $("c-local").value.trim() }).then(function (x) {
+      if (semSessao(x)) return;
+      if (!x || !x.ok) { msg.textContent = "Não foi possível guardar. Tente outra vez."; return; }
+      C.guardar(x.conta); mostrar(x.conta); msg.className = "msg"; msg.textContent = "✓ Guardado.";
+    }).catch(function () { msg.textContent = "Não foi possível guardar. Tente outra vez."; });
+  };
+  // Um clique, nos dois sentidos: fica logo gravado, com data, texto e versão.
+  $("c-mkt").onchange = function () {
+    var cx = this, quer = cx.checked, msg = $("m-mkt"); msg.className = "msg"; msg.textContent = "";
+    C.api("consentimento", { marketing: quer, versao: versao }).then(function (x) {
+      if (semSessao(x)) return;
+      if (!x || !x.ok) { cx.checked = !quer; msg.className = "msg mal"; msg.textContent = "Não foi possível gravar. Tente outra vez."; return; }
+      C.guardar(x.conta);
+      msg.textContent = quer ? "✓ Passa a receber as novidades." : "✓ Feito. Deixa de receber as novidades.";
+    }).catch(function () { cx.checked = !quer; msg.className = "msg mal"; msg.textContent = "Não foi possível gravar. Tente outra vez."; });
+  };
+  $("b-sair").onclick = function () { C.sair(); };
+  $("b-apagar").onclick = function () { $("z-apagar").hidden = false; this.hidden = true; $("b-apagar0").focus(); };
+  $("b-apagar0").onclick = function () { $("z-apagar").hidden = true; $("b-apagar").hidden = false; };
+  $("b-apagar2").onclick = function () {
+    var b = this; b.disabled = true; $("m-apagar").textContent = "";
+    C.api("apagar", { confirmo: true }).then(function (x) {
+      b.disabled = false;
+      if (semSessao(x)) return;
+      if (!x || !x.ok) { $("m-apagar").textContent = "Não foi possível apagar agora. Tente outra vez daqui a pouco."; return; }
+      C.esquecer(); vista("v-apagada");
+    }).catch(function () { b.disabled = false; $("m-apagar").textContent = "Não foi possível apagar agora. Tente outra vez daqui a pouco."; });
+  };
+});
+</script>
+<script src="/vivo.js" defer></script>
+</body>
+</html>
