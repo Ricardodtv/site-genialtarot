@@ -246,11 +246,24 @@ EST_L = """<style>
 .an .nr{flex:none;width:2.1rem;height:2.1rem;border-radius:50%;display:grid;place-items:center;border:1px solid var(--ouro);color:var(--ouro);font-weight:700;font-size:.85rem}
 .an .tx{display:flex;flex-direction:column;gap:.15rem;min-width:0}.an b{color:var(--ouro);font-size:1.08rem}.an i{font-style:normal;font-size:.82rem;color:var(--suave)}.an .tx span{font-size:.95rem;line-height:1.4}
 section[id]{scroll-margin-top:1rem}
+.busca{max-width:30rem;margin:.6rem auto 1.1rem;text-align:left}.busca label{display:block;text-align:center;font-weight:600;margin-bottom:.4rem;color:var(--ouro)}.bc{display:flex;gap:.45rem}
+.bc input{flex:1;min-width:0;font:inherit;font-size:1rem;padding:.72rem .95rem;border-radius:99px;border:1px solid var(--ouro);background:var(--vidro);color:inherit}.bc input::placeholder{color:var(--suave)}
+.bc button{all:unset;cursor:pointer;padding:.72rem 1.05rem;border-radius:99px;background:var(--ouro);color:#1d1140;font-weight:700}.bc button:focus-visible,.br a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.br a{display:flex;flex-direction:column;margin-top:.45rem;padding:.65rem .9rem;border-radius:.8rem;background:var(--vidro);border:1px solid var(--borda);color:inherit;text-decoration:none}.br a:hover{border-color:var(--ouro)}.br b{color:var(--ouro)}.br span{font-size:.88rem;color:var(--suave)}.br p{text-align:center;margin:.6rem 0 0}
 </style>"""
-CORPO_L = f"""{EST_L}{heroi("Os 72 Anjos", "A lista completa: o anjo de cada signo, as suas datas e um pequeno resumo")}
+J_BUSCA = json.dumps([[a[0], a[1], SIG[i // 6][0], "/anjo/" + slug(a[0])] for i, a in enumerate(ANJOS)] + [["Miguel", "São Miguel Arcanjo", "Arcanjo", "/sao-miguel-arcanjo"]], ensure_ascii=False, separators=(",", ":"))
+BUSCA = """<form class="busca" id="bf" role="search" autocomplete="off"><label for="bi">Procurar um anjo pelo nome</label><div class="bc"><input id="bi" type="search" placeholder="Escreva o nome do anjo" enterkeyhint="search" aria-controls="br"><button type="submit">Procurar</button></div><div id="br" class="br" aria-live="polite"></div></form>"""
+JS_L = """<script>(function(){var A=""" + J_BUSCA + """,i=document.getElementById("bi"),r=document.getElementById("br");
+function n(t){return t.normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLowerCase().trim()}
+function e(t){var d=document.createElement("div");d.textContent=t;return d.innerHTML}
+function acha(q){q=n(q);if(!q)return[];var a=A.filter(function(x){return n(x[0]).indexOf(q)===0}),b=A.filter(function(x){return n(x[0]).indexOf(q)>0}),c=q.length>2?A.filter(function(x){return n(x[1]).indexOf(q)>=0&&n(x[0]).indexOf(q)<0}):[];return a.concat(b,c).slice(0,6)}
+i.addEventListener("input",function(){var q=i.value,l=acha(q);r.innerHTML=!q.trim()?"":l.length?l.map(function(x){return'<a href="'+x[3]+'"><b>'+e(x[0])+'</b><span>'+e(x[1])+' · '+e(x[2])+'</span></a>'}).join(""):'<p>Não encontrei esse anjo. Veja se o nome está bem escrito, ou procure na lista abaixo.</p>'});
+document.getElementById("bf").addEventListener("submit",function(v){v.preventDefault();var l=acha(i.value);if(l.length)location.href=l[0][3]})})();</script>
+"""
+CORPO_L = f"""{EST_L}{heroi("Os 72 Anjos", "A lista completa: o anjo de cada signo, as suas datas e um pequeno resumo").replace(ASA, ASA + BUSCA)}
   <section class="cartao" style="text-align:center"><p>Cada signo tem 30 graus e a cada 5 graus corresponde um anjo, por isso cada signo reúne 6 dos 72. Escolha o seu signo e toque num anjo para ler a história, a oração e um gesto para hoje.</p><div class="chips">{CHIPS}</div><p style="margin:.9rem 0 0"><a class="bt" href="/anjo-da-guarda">Descobrir o meu anjo pela data de nascimento</a></p></section>
 {BLOCOS}  <section class="cartao">{AVISO}</section>
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/carta-do-anjo">Carta do Anjo</a><a href="/dia-do-anjo-da-guarda">Dia do Anjo da Guarda</a><a href="/anjo-de-portugal">Anjo de Portugal</a></div></section>
 """
-grava("os-72-anjos.html", pagina("/os-72-anjos", "Os 72 Anjos: lista completa e o anjo de cada signo", "Os 72 anjos da tradição, organizados por signo: nome, tema, datas e um pequeno resumo de cada um, com ligação à sua oração e história.", CORPO_L))
+grava("os-72-anjos.html", pagina("/os-72-anjos", "Os 72 Anjos: lista completa e o anjo de cada signo", "Os 72 anjos da tradição, organizados por signo: nome, tema, datas e um pequeno resumo de cada um, com ligação à sua oração e história.", CORPO_L, fim=JS_L))
 print("feito")
