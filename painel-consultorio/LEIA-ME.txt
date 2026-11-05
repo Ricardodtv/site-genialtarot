@@ -2,7 +2,7 @@ Consultório Virtual: aplicar no cerebro (só depois de publicar o worker; ver a
 Tudo isto fica FORA do site publicado: a pasta está no .assetsignore.
 
 1. Copiar para ~/site-painel/
-     cp consultorio_rotas.py consultorio.html consultorio-vigia.py ~/site-painel/
+     cp consultorio_rotas.py consultorio_ficha.py consultorio.html consultorio-vigia.py ~/site-painel/
 
 2. Em ~/site-painel/servidor.py, fazer uma cópia e acrescentar 3 coisas:
      cp ~/site-painel/servidor.py ~/site-painel/servidor.py.antes-consultorio

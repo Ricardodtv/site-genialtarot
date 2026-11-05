@@ -1914,7 +1914,7 @@ export class Consultorio extends DurableObject {
   async fetch(request) {
     const url = new URL(request.url), p = url.pathname.replace("/api/consultorio/", ""), agora = Date.now();
     const J = (o, s) => new Response(JSON.stringify(o), { status: s || 200, headers: { "Content-Type": "application/json", "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });
-    if (!this.ultimaLimpeza || agora - this.ultimaLimpeza > 600000) this.limpar(agora);
+    if (!this.ultimaLimpeza || agora - this.ultimaLimpeza > 600000 || p === "reabrir") this.limpar(agora);
     const chaveOk = !!this.env.STATS_KEY && request.headers.get("X-Chave") === this.env.STATS_KEY;
     const binario = p === "audio" && request.method === "POST";
     const d = request.method === "POST" && !binario ? await request.json().catch(() => ({})) : {};
@@ -1932,13 +1932,15 @@ export class Consultorio extends DurableObject {
       }
       if (p === "vigia") {   // o vigia do cerebro pergunta muito: só as linhas em curso, pelo índice do estado
         const r = this.linhas("SELECT codigo, etiqueta, estado, entrou, expira FROM consultas WHERE estado IN ('criado','espera','conversa')").filter((x) => agora <= x.expira);
-        return J({ ok: true, agora, ativos: r.length, espera: r.filter((x) => x.estado === "espera").map(({ codigo, etiqueta, entrou }) => ({ codigo, etiqueta, entrou, online: agora - (this.visto.get(codigo) || 0) < 45000 })) });
+        // ?f=1 (de vez em quando): as conversas fechadas nas últimas 24 h, porque ele também as fecha na página https, onde o cerebro não vê
+        const fechadas = url.searchParams.get("f") ? this.linhas("SELECT codigo, fechado FROM consultas WHERE estado='fechado' AND fechado > ?", agora - 864e5) : undefined;
+        return J({ ok: true, agora, ativos: r.length, fechadas, espera: r.filter((x) => x.estado === "espera").map(({ codigo, etiqueta, entrou }) => ({ codigo, etiqueta, entrou, online: agora - (this.visto.get(codigo) || 0) < 45000 })) });
       }
       const r = this.linhas("SELECT codigo, mtoken, etiqueta, estado, criado, expira, entrou, atendido, fechado, pais, aparelho, ult_pessoa FROM consultas ORDER BY criado DESC LIMIT 30");
       return J({ ok: true, agora, consultas: r.map((x) => {
         const v = this.visto.get(x.codigo) || 0;
         if (agora > x.expira && ["criado", "espera", "conversa"].includes(x.estado)) x.estado = "expirado";
-        return { ...x, visto: v, online: agora - v < 45000 };
+        return { ...x, visto: v, online: agora - v < 45000, reabrivel: ["fechado", "expirado"].includes(x.estado) };   // a linha só existe enquanto a retenção não a apagou
       }) });
     }
 
@@ -1951,7 +1953,7 @@ export class Consultorio extends DurableObject {
     // ---------- dos dois lados ----------
     if (p === "estado" && request.method === "GET") {
       (mestre ? this.vistoM : this.visto).set(c, agora);
-      const base = { ok: true, estado: r.estado, papel: de, agora, max_audio_s: CONSULTORIO.AUDIO_MAX_S };
+      const base = { ok: true, estado: r.estado, papel: de, agora, max_audio_s: CONSULTORIO.AUDIO_MAX_S, aceite: !!r.aceitou };
       // conversa fechada ou expirada: à pessoa já não se mostra nada, mesmo com o link
       if (!mestre && !["espera", "conversa"].includes(r.estado)) return J(base);
       const msgs = this.linhas("SELECT id, quando, de, tipo, texto, dur, mime FROM msgs WHERE codigo=? AND id>? ORDER BY id LIMIT 200", c, Number(url.searchParams.get("desde")) || 0);
@@ -1961,11 +1963,11 @@ export class Consultorio extends DurableObject {
     }
     if (p === "entrar" && request.method === "POST") {
       if (!["criado", "espera", "conversa"].includes(r.estado)) return J({ ok: false, estado: r.estado }, 410);
-      if (d.aceitou !== true) return J({ ok: false, erro: "aceitar" }, 400);   // sem aceitar a guarda da escrita e da voz, não se entra
+      if (d.aceitou !== true && !r.aceitou) return J({ ok: false, erro: "aceitar" }, 400);   // sem aceitar a guarda da escrita e da voz, não se entra; numa ligação reaberta já aceitou
       this.visto.set(c, agora);
       if (r.estado === "criado") {
         const cf = request.cf || {}, ua = request.headers.get("user-agent") || "";
-        this.sql.exec("UPDATE consultas SET estado='espera', entrou=?, aceitou=?, pais=?, aparelho=? WHERE codigo=?", agora, agora, cf.country || "?", aparelhoDe(ua), c);
+        this.sql.exec("UPDATE consultas SET estado='espera', entrou=?, aceitou=COALESCE(aceitou, ?), pais=?, aparelho=? WHERE codigo=?", agora, agora, cf.country || "?", aparelhoDe(ua), c);
         r.estado = "espera";
       }
       return J({ ok: true, estado: r.estado });
@@ -2008,7 +2010,7 @@ export class Consultorio extends DurableObject {
     }
 
     // ---------- só ele (pela chave, ou pelo mtoken desta conversa) ----------
-    if (!mestre) return J({ ok: false }, p === "atender" || p === "fechar" ? 403 : 404);
+    if (!mestre) return J({ ok: false }, ["atender", "fechar", "reabrir"].includes(p) ? 403 : 404);
     if (p === "atender") {
       if (r.estado !== "espera") return J({ ok: false, estado: r.estado }, 409);   // só se atende quem está na sala
       this.sql.exec("UPDATE consultas SET estado='conversa', atendido=?, expira=max(expira, ?) WHERE codigo=?", agora, agora + CONSULTORIO.CONVERSA_H * 36e5, c);
@@ -2018,6 +2020,14 @@ export class Consultorio extends DurableObject {
       if (!["criado", "espera", "conversa"].includes(r.estado)) return J({ ok: true, estado: r.estado });
       this.sql.exec("UPDATE consultas SET estado='fechado', fechado=? WHERE codigo=?", agora, c);
       return J({ ok: true, estado: "fechado" });
+    }
+    // Reabrir: a MESMA ligação volta a funcionar, com o histórico, por mais VALIDADE_H a contar de agora. Depois da retenção a linha já
+    // não existe e isto dá 404. «criado» conta de novo a partir daqui: sem isso, a limpeza podia apagar uma ligação viva sem mensagens.
+    if (p === "reabrir") {
+      if (!["fechado", "expirado"].includes(r.estado)) return J({ ok: false, estado: r.estado }, 409);
+      const expira = agora + CONSULTORIO.VALIDADE_H * 36e5;
+      this.sql.exec("UPDATE consultas SET estado='criado', criado=?, expira=?, entrou=NULL, atendido=NULL, fechado=NULL WHERE codigo=?", agora, expira, c);
+      return J({ ok: true, estado: "criado", expira });
     }
     return J({ ok: false }, 404);
   }

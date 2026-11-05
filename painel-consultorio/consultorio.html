@@ -37,6 +37,9 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
 .escreve { color: var(--verde); font-style: italic; font-size: 13px; min-height: 18px; }
 .vazio { color: var(--apagado); font-style: italic; } .acoes { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
 .nota { color: var(--apagado); font-size: 13px; margin-top: 8px; } #erro { color: #ffb0a8; font-size: 13px; }
+.reabre { float: right; margin: -2px 6px 0 0; padding: 2px 9px; font-size: 12px; background: var(--ouro); color: #2b1147; }
+.ficha { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--borda); }
+.ficha form { flex-wrap: wrap; } .ficha input[type=date] { flex: 0 0 170px; color-scheme: dark; } #f-est { color: var(--ouro); font-size: 13px; margin-top: 6px; min-height: 18px; }
 </style></head><body>
 <header><h1>🚪 Consultório Virtual</h1><span id="res" class="vazio"></span><span id="erro"></span></header>
 <main>
@@ -46,18 +49,22 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
     <div id="nova" class="ligacao" hidden>
       <input id="nova-url" readonly><button class="b-ouro" type="button" id="copia">Copiar</button><a class="bt b-verde" id="wa" target="_blank" rel="noopener">WhatsApp</a>
     </div>
-    <div class="nota">Vale 24 horas ou até fechares a conversa. Quem tiver a ligação entra, por isso manda-a só à pessoa.</div>
+    <div class="nota">Vale 24 horas ou até fechares a conversa. Fechada ou expirada, reabre-se com o mesmo endereço e o histórico, enquanto os dados existirem (30 dias). Quem tiver a ligação entra, por isso manda-a só à pessoa.</div>
   </div>
   <div class="caixa"><h2>Ligações</h2><div id="lista"><div class="vazio">A carregar…</div></div></div>
 </div>
 <div class="caixa" id="painel"><div id="vazio" class="vazio">Escolhe uma ligação à esquerda.</div>
   <div id="conv" hidden>
     <h2 id="c-tit"></h2><div id="c-est" class="nota"></div>
-    <div class="acoes"><button class="b-verde" id="atender" hidden>🚪 Atender: abrir as portas</button><a class="bt b-ouro" id="micro" target="_blank" rel="noopener">🎙️ Abrir com microfone</a><button class="b-q" id="cop2">Copiar ligação</button><button class="b-sair" id="fechar" hidden>Fechar conversa</button></div>
+    <div class="acoes"><button class="b-verde" id="atender" hidden>🚪 Atender: abrir as portas</button><a class="bt b-ouro" id="micro" target="_blank" rel="noopener">🎙️ Abrir com microfone</a><button class="b-q" id="cop2">Copiar ligação</button><button class="b-sair" id="fechar" hidden>Fechar conversa</button><button class="b-ouro" id="reabrir" hidden>🔓 Reabrir</button></div>
+    <div class="nota" id="n-fecha" hidden>A ficha é criada quando fechares a conversa.</div>
     <div id="msgs"></div><div class="escreve" id="esc"></div>
     <form id="fmsg"><textarea id="txt" placeholder="Escreve aqui…" maxlength="2000"></textarea><button class="b-verde">Enviar</button></form>
     <div class="acoes"><label class="bt b-q" for="ficheiro">📎 Enviar ficheiro de áudio</label><input id="ficheiro" type="file" accept="audio/*" capture hidden></div>
     <div class="nota">Aqui, no HA, não há microfone: o painel é http. Para gravar, usa «Abrir com microfone». O ficheiro de áudio aceita até 3 MB e 90 segundos.</div>
+    <div class="ficha"><h2>Ficha da pessoa</h2>
+      <form id="fficha"><input id="f-nome" maxlength="80" placeholder="Nome" autocomplete="off"><input id="f-nasc" type="date" aria-label="Data de nascimento"><button class="b-ouro">Guardar</button></form>
+      <div id="f-est"></div></div>
   </div>
 </div>
 </main>
@@ -84,7 +91,7 @@ function lista() {
     $("res").textContent = n ? n + " na sala de espera" : "";
     dados.forEach(function (x) { if (x.estado === "espera" && !avisados[x.codigo]) { avisados[x.codigo] = 1; campainha(); } });
     $("lista").innerHTML = dados.length ? dados.map(function (x) {
-      return '<div class="linha ' + (x.codigo === sel ? "ativa " : "") + (x.estado === "espera" ? "espera" : "") + '" data-c="' + x.codigo + '"><span class="pil ' + x.estado + '">' + (NOMES[x.estado] || x.estado) + "</span><b>" + esc(x.etiqueta || "sem etiqueta") + "</b><small>" +
+      return '<div class="linha ' + (x.codigo === sel ? "ativa " : "") + (x.estado === "espera" ? "espera" : "") + '" data-c="' + x.codigo + '"><span class="pil ' + x.estado + '">' + (NOMES[x.estado] || x.estado) + "</span>" + (x.reabrivel ? '<button class="reabre" type="button" data-r="' + x.codigo + '">Reabrir</button>' : "") + "<b>" + esc(x.etiqueta || "sem etiqueta") + "</b><small>" +
         new Date(x.criado).toLocaleDateString("pt-PT") + " " + hora(x.criado) + (x.entrou ? " · entrou " + hora(x.entrou) : "") + (x.pais && x.pais !== "?" ? " · " + esc(x.pais) : "") + (x.aparelho ? " · " + esc(x.aparelho) : "") + (x.estado === "espera" || x.estado === "conversa" ? (x.online ? " · 🟢 presente" : " · ⚪ página fechada ou em segundo plano") : "") + "</small></div>";
     }).join("") : '<div class="vazio">Ainda não há ligações.</div>';
     if (sel) pinta();
@@ -98,11 +105,31 @@ function pinta() {
   $("c-tit").textContent = (x.etiqueta || "Sem etiqueta") + " · " + (NOMES[x.estado] || x.estado);
   $("c-est").textContent = "Criada " + hora(x.criado) + ". Válida até " + new Date(x.expira).toLocaleString("pt-PT", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) + ".";
   $("atender").hidden = x.estado !== "espera"; $("fechar").hidden = ["espera", "conversa", "criado"].indexOf(x.estado) < 0;
+  $("n-fecha").hidden = $("fechar").hidden; $("reabrir").hidden = !x.reabrivel;
   $("micro").href = x.link + "#m=" + x.mtoken; $("micro").style.display = ["fechado", "expirado"].indexOf(x.estado) < 0 ? "" : "none";
   $("fmsg").style.display = x.estado === "conversa" ? "" : "none";
   $("ficheiro").disabled = x.estado !== "conversa";
 }
-$("lista").onclick = function (e) { var l = e.target.closest(".linha"); if (!l) return; sel = l.dataset.c; desde = 0; $("msgs").innerHTML = ""; pinta(); lista(); conversa(); };
+$("lista").onclick = function (e) {
+  var r = e.target.closest(".reabre"); if (r) return reabre(r.dataset.r);
+  var l = e.target.closest(".linha"); if (!l) return; sel = l.dataset.c; desde = 0; $("msgs").innerHTML = ""; pinta(); lista(); conversa(); verFicha();
+};
+function reabre(c) {
+  J("reabrir", { c: c }).then(function (r) {
+    if (!r.ok) { $("erro").textContent = r.estado === "invalido" ? "Esta ligação já foi apagada: passaram os 30 dias." : "Não foi possível reabrir."; return; }
+    $("erro").textContent = ""; delete avisados[c]; lista(); if (c === sel) conversa();
+  });
+}
+$("reabrir").onclick = function () { reabre(sel); };
+function estadoFicha(f) { $("f-est").textContent = f.codigo ? "Ficha " + f.codigo + " criada" : f.pendente ? "À espera do cofre aberto" : ""; }
+function verFicha() {
+  var c = sel; $("f-nome").value = ""; $("f-nasc").value = ""; $("f-est").textContent = "";
+  J("ficha?c=" + c).then(function (f) { if (c !== sel) return; $("f-nome").value = f.nome || ""; $("f-nasc").value = f.nasc || ""; estadoFicha(f); });
+}
+$("fficha").onsubmit = function (e) {
+  e.preventDefault();
+  J("ficha", { c: sel, nome: $("f-nome").value, nasc: $("f-nasc").value }).then(function (r) { if (r.ok) { estadoFicha(r); if (!r.codigo && !r.pendente) $("f-est").textContent = "Guardado"; } else $("f-est").textContent = r.erro || "Não guardou"; });
+};
 function conversa() {
   clearTimeout(tC); if (!sel) return; var x = atual();
   if (document.hidden) { tC = setTimeout(conversa, 30000); return; }
@@ -127,7 +154,7 @@ $("fcria").onsubmit = function (e) {
     if (!r.ok) { $("erro").textContent = r.erro || "não foi possível criar"; return; }
     $("etq").value = ""; $("nova").hidden = false; $("nova-url").value = r.link;
     $("wa").href = "https://wa.me/?text=" + encodeURIComponent("Olá! Aqui está a sua ligação para o Consultório Virtual do Mestre Alberto: " + r.link);
-    sel = r.codigo; desde = 0; $("msgs").innerHTML = ""; lista(); conversa();
+    sel = r.codigo; desde = 0; $("msgs").innerHTML = ""; lista(); conversa(); verFicha();
   });
 };
 function copia(v, b) { var t = b.textContent, ok = function () { b.textContent = "Copiado"; setTimeout(function () { b.textContent = t; }, 1500); };
@@ -135,7 +162,7 @@ function copia(v, b) { var t = b.textContent, ok = function () { b.textContent =
 $("copia").onclick = function () { copia($("nova-url").value, this); };
 $("cop2").onclick = function () { var x = atual(); if (x) copia(x.link, this); };
 $("atender").onclick = function () { J("atender", { c: sel }).then(function () { lista(); conversa(); }); };
-$("fechar").onclick = function () { if (confirm("Fechar esta conversa? A ligação deixa de funcionar.")) J("fechar", { c: sel }).then(function () { lista(); conversa(); }); };
+$("fechar").onclick = function () { if (confirm("Fechar esta conversa? A ligação deixa de funcionar até a reabrires.")) J("fechar", { c: sel }).then(function (r) { lista(); conversa(); estadoFicha(r); }); };
 $("fmsg").onsubmit = function (e) { e.preventDefault(); var t = $("txt").value.trim(); if (!t) return; $("txt").value = ""; J("msg", { c: sel, texto: t }).then(conversa); };
 $("txt").onkeydown = function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("fmsg").requestSubmit(); } };
 var tE = 0; $("txt").oninput = function () { if (Date.now() - tE > 2500 && this.value) { tE = Date.now(); J("escreve", { c: sel }); } };

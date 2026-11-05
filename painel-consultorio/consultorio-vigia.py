@@ -3,12 +3,16 @@
 se ainda lá estiver ao fim de VOLTA_S. Pergunta à ponte local (site-painel), por isso não precisa de chave nenhuma.
 Sem ligações em curso quase não gasta: pergunta de PAUSA_S em PAUSA_S; a criação de uma ligação no painel acorda-o.
 Calado das 03:00 às 07:00 não é daqui: o notify.sh guarda o aviso e manda-o às 07:00."""
-import json, os, subprocess, time, urllib.request
+import json, os, subprocess, sys, time, urllib.request
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try: import consultorio_ficha as ficha
+except Exception: ficha = None
 PONTE = os.environ.get("CONSULTORIO_PONTE", "http://100.100.77.18:8768")
 NOTIFY = os.environ.get("CONSULTORIO_NOTIFY", os.path.expanduser("~/.claude/telegram-service/notify.sh"))
 ESTADO = os.environ.get("CONSULTORIO_ESTADO", os.path.expanduser("~/.consultorio-vigia.json"))
 ACORDAR = os.environ.get("CONSULTORIO_ACORDAR", os.path.expanduser("~/site-painel/consultorio-acordar"))
 ATIVO_S, PAUSA_S, VOLTA_S, TICK_S = 20, 120, 300, 5
+FECHOS_S = 300   # de quantos em quantos segundos vê as conversas fechadas na página https, por onde o painel não passa
 def ler():
     try: return json.load(open(ESTADO))
     except Exception: return {}
@@ -17,16 +21,29 @@ def gravar(e):
 def avisa(txt):
     try: subprocess.run(["bash", NOTIFY, txt], timeout=30, check=False)
     except Exception as x: print("aviso falhou:", x, flush=True)
+ultimo_fechos = [0]
+def fichas(r):
+    """Fichas pendentes (o cofre pode ter aberto) e conversas fechadas fora do painel. Sem nomes nos registos."""
+    if not ficha: return
+    try:
+        ficha.processar()
+        for x in r.get("fechadas") or []:
+            f = ficha.ver(x["codigo"])
+            if f["nome"] and not f["codigo"] and not f["pendente"]: ficha.ao_fechar(x["codigo"])
+    except Exception as x: print("ficha:", type(x).__name__, flush=True)
 def ronda(e):
-    r = json.load(urllib.request.urlopen(PONTE + "/api/consultorio/vigia", timeout=30))
+    f = time.time() - ultimo_fechos[0] > FECHOS_S
+    if f: ultimo_fechos[0] = time.time()
+    r = json.load(urllib.request.urlopen(PONTE + "/api/consultorio/vigia" + ("?f=1" if f else ""), timeout=30))
     if not r.get("ok"): return 0
+    fichas(r)
     agora = time.time(); na_sala = set()
     for p in r.get("espera", []):
         c = p["codigo"]; na_sala.add(c); nome = p.get("etiqueta") or "sem etiqueta"
         v = e.get(c)
-        if v is None:
+        if v is None or v.get("entrou") != p.get("entrou"):   # uma ligação reaberta é uma entrada nova, mesmo que o vigia não a tenha visto sair
             avisa(f"🚪 Alguém entrou na sala de espera do Consultório Virtual ({nome}). Atender: HA → Site → Consultório.")
-            e[c] = {"t": agora, "volta": False}; gravar(e)
+            e[c] = {"t": agora, "volta": False, "entrou": p.get("entrou")}; gravar(e)
         elif not v["volta"] and agora - v["t"] > VOLTA_S and p.get("online"):
             avisa(f"🚪 Continua alguém à espera na sala do Consultório Virtual ({nome}), há mais de {VOLTA_S // 60} minutos.")
             v["volta"] = True; gravar(e)

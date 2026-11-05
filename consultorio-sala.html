@@ -313,6 +313,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   var CALMA_MS = 6000;       // conversa sem nada há mais de CALMA_APOS_MS
   var CALMA_APOS_MS = 60000;
   var ESCONDIDA_MS = 30000;  // separador em segundo plano
+  var FIM_MS = 30000;        // ecrã final: só para dar por uma reabertura; com a página escondida nem isso
   // A música calibra-se contra a regra dele: ambient.mp3 (−14,2 dB) a volume 0,01 = −54 dBFS. Mudar só este número.
   var VOL_MUSICA = 0.08;   // ele pediu mais presente (05/11): 0.0113 dava −54 dBFS; isto sobe cerca de 17 dB. Nunca no máximo.
   var FRASES = ["Respire devagar. Este tempo é seu.", "Pode ir pensando no que quer perguntar.", "Mantenha esta página aberta: a porta abre-se aqui."];
@@ -426,7 +427,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   function rodaFrases() { clearInterval(tFrase); $("frase").textContent = FRASES[2]; iFrase = 0; tFrase = setInterval(function () { var f = $("frase"); f.style.opacity = 0; setTimeout(function () { f.textContent = FRASES[iFrase++ % FRASES.length]; f.style.opacity = 1; }, 650); }, 9000); }
   function verEntrada(jaAceitou) {
     fase("entrada"); mostra("entrada", true); avisoApp();
-    if (jaAceitou) { $("ent-aceito").style.display = "none"; $("t-ent").textContent = "Continua na sala de espera"; $("ent-tx").textContent = "A porta ainda não se abriu. Volte a entrar e aguarde mais um pouco."; $("entrar").textContent = "Voltar à sala de espera"; $("entrar").disabled = false; }
+    if (jaAceitou) { $("ent-aceito").style.display = "none"; $("t-ent").textContent = estado === "criado" ? "A sua sala de espera" : "Continua na sala de espera"; $("ent-tx").textContent = estado === "criado" ? "Esta ligação voltou a ficar disponível. Entre e aguarde: quando o Mestre Alberto estiver pronto, a porta abre-se." : "A porta ainda não se abriu. Volte a entrar e aguarde mais um pouco."; $("entrar").textContent = "Voltar à sala de espera"; $("entrar").disabled = false; }
   }
   function verEspera() {
     fase("espera"); mostra("entrada", false); mostra("espera", true); rodaFrases();
@@ -454,12 +455,21 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     if (window.innerWidth > 760) setTimeout(function () { $("texto").focus(); }, 900);
   }
   function verFim(titulo, tx) {
-    clearInterval(tFrase); clearTimeout(tMus); pararGravacao(false);
+    clearInterval(tFrase); clearTimeout(tMus); pararGravacao(false); abrindo = false;
     if (musG) { var a = musG; nivel = 0; aplicarVol(2); setTimeout(function () { try { a.disconnect(); } catch (e) {} }, 2600); musG = null; }
     mostra("espera", false); mostra("entrada", false); $("chat").classList.remove("grande-ja");
     setTimeout(function () { mostra("chat", false); }, 700);
     document.body.classList.remove("aberta", "virada", "virada-saiu", "cosmos-pulsa"); fase("fim");
     document.title = tituloBase; $("fim-t").textContent = titulo; $("fim-p").textContent = tx; mostra("fim", true);
+  }
+  // A ligação foi reaberta com a página no ecrã final: volta à sala, de porta fechada. Sem toque não há garantia de som, mas o botão fica lá.
+  function reaberta(r) {
+    mostra("fim", false); mostra("entrada", false); mostra("chat", false); document.title = tituloBase; nivel = 1;
+    if (mestre) return verEspera();
+    if (estado === "espera") { ligarMusica(); return verEspera(); }
+    if (!r.aceite) { $("aceito").checked = false; $("entrar").disabled = true; return verEntrada(false); }
+    ligarMusica();
+    post("entrar", { aceitou: true }).then(function (x) { if (x.ok) { estado = x.estado; verEspera(); proxima(0); } }).catch(function () { verEntrada(true); });
   }
   function fimDe(e) {
     if (e === "fechado") verFim("A conversa terminou", "Obrigado pela sua presença. Esta ligação já não está activa; para uma nova consulta, fale com o Mestre Alberto.");
@@ -471,19 +481,24 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   var tPerg = 0, aPerguntar = false, parado = false, notaRede = false;
   function intervalo() {
     if (document.hidden) return ESCONDIDA_MS;
+    if (estado === "fechado" || estado === "expirado") return FIM_MS;
     if (estado === "conversa") return Date.now() - ultimaAct > CALMA_APOS_MS ? CALMA_MS : CONVERSA_MS;
     return ESPERA_MS;
   }
   function proxima(ms) { clearTimeout(tPerg); if (!parado) tPerg = setTimeout(pergunta, ms === undefined ? Math.min(30000, intervalo() + falhas * 3000) : ms); }
   function pergunta() {
-    if (aPerguntar || parado) return; aPerguntar = true;
+    if (aPerguntar || parado) return;
+    if (document.hidden && (estado === "fechado" || estado === "expirado")) return;   // volta a perguntar ao regressar à página
+    aPerguntar = true;
     fetch("/api/consultorio/estado?" + Q + "&desde=" + desde, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (r) {
       falhas = 0; if (notaRede) nota(""); notaRede = false; trata(r);
     }).catch(function () { falhas++; if (falhas > 2) { notaRede = true; nota("A ligação falhou. A tentar outra vez…"); } }).then(function () { aPerguntar = false; proxima(); });
   }
   function trata(r) {
     var ant = estado; estado = r.estado; if (r.max_audio_s) maxAudio = r.max_audio_s;
-    if (["invalido", "fechado", "expirado"].indexOf(estado) >= 0) { parado = true; return fimDe(estado); }
+    if (estado === "invalido") { parado = true; return fimDe(estado); }
+    if (estado === "fechado" || estado === "expirado") { if (ant !== estado) fimDe(estado); return; }
+    if (ant === "fechado" || ant === "expirado") { mostra("fim", false); (r.msgs || []).forEach(novaMsg); if (estado !== "conversa") return reaberta(r); }
     (r.msgs || []).forEach(novaMsg);
     $("esc").classList.toggle("on", !!r.escreve); if (r.escreve) { ultimaAct = Date.now(); rolar(); }
     if (mestre) {
@@ -512,7 +527,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     if (x.tipo === "audio") { d.innerHTML = '<div class="au"><button type="button" aria-label="Ouvir o áudio">' + ICO_P + '</button><span class="barra"><i></i></span><span class="dur">' + mmss(x.dur) + "</span></div><time>" + hora(x.quando) + "</time>"; leitor(d, x); }
     else d.innerHTML = esc(x.texto) + "<time>" + hora(x.quando) + "</time>";
     $("msgs").insertBefore(d, $("esc")); rolar();
-    if (!minha) { sinal("msg"); if (document.hidden) { porLer++; document.title = "(" + porLer + ") Nova mensagem"; } }
+    if (!minha && document.body.classList.contains("fase-chat")) { sinal("msg"); if (document.hidden) { porLer++; document.title = "(" + porLer + ") Nova mensagem"; } }
   }
   // O áudio descarrega-se já, para um Blob: o Safari do iPhone só aceita tocar dentro do toque e não gosta de servidores sem Range.
   var atual = null;
@@ -603,24 +618,24 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     // Este toque é o que autoriza o som nos telemóveis: a música nasce aqui, e só aqui.
     ligarMusica();
     post("entrar", { aceitou: true }).then(function (r) {
-      if (!r.ok) { parado = true; return fimDe(r.estado || "invalido"); }
+      if (!r.ok) { estado = r.estado || "invalido"; fimDe(estado); if (estado !== "invalido") proxima(); return; }
       estado = r.estado; verEspera(); proxima(0);
     }).catch(function () { b.disabled = false; b.textContent = "Tentar outra vez"; });
   };
   $("som1").onclick = $("som2").onclick = trocaSom;
   $("atender").onclick = function () { this.disabled = true; post("atender").then(function () { proxima(0); }); };
-  $("terminar").onclick = function () { if (confirm("Fechar esta conversa? A ligação deixa de funcionar para a pessoa.")) post("fechar").then(function () { proxima(0); }); };
+  $("terminar").onclick = function () { if (confirm("Fechar esta conversa? A ligação deixa de funcionar até a reabrires.")) post("fechar").then(function () { proxima(0); }); };
   document.addEventListener("visibilitychange", function () { if (!document.hidden) { porLer = 0; document.title = tituloBase; if (!abrindo || estado === "conversa") proxima(0); } });
 
   // ---------- arranque ----------
   if (!c) { fimDe("invalido"); return; }
   fetch("/api/consultorio/estado?" + Q, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (r) {
     estado = r.estado;
-    if (["invalido", "fechado", "expirado"].indexOf(estado) >= 0) { return fimDe(estado); }
+    if (["invalido", "fechado", "expirado"].indexOf(estado) >= 0) { fimDe(estado); if (estado !== "invalido") proxima(); return; }
     if (r.max_audio_s) maxAudio = r.max_audio_s;
     if (mestre) { botaoSomMestre(); (r.msgs || []).forEach(novaMsg); if (r.etiqueta) $("chat-nome").textContent = r.etiqueta; if (estado === "conversa") abrirPortas(true); else verEspera(); proxima(); return; }
     if (estado === "conversa") { (r.msgs || []).forEach(novaMsg); abrirPortas(true); somLigado = false; botaoSom(); proxima(); return; }
-    verEntrada(estado === "espera");
+    verEntrada(estado === "espera" || !!r.aceite);
   }).catch(function () { $("t-ent").textContent = "A ligação falhou"; $("ent-tx").textContent = "Confirme a internet e recarregue a página."; $("ent-aceito").style.display = "none"; $("entrar").style.display = "none"; fase("entrada"); mostra("entrada", true); });
   function botaoSomMestre() { somLigado = false; $("som1").style.display = "none"; $("som2").style.display = "none"; }
 })();
