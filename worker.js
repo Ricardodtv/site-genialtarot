@@ -1859,6 +1859,9 @@ const CONSULTORIO = {
   AUDIO_MAX_BYTES: 3 << 20,  // 3 MB chegam para 90 s, mesmo no iPhone, que às vezes ignora o débito pedido
   PEDACO: 256 << 10,         // bem abaixo do limite de 2 MB por linha
   AUDIOS_MAX: 80,            // por conversa e por pessoa: para um link esquecido não encher o armazenamento
+  ESPERA_MIN: 5,             // contador da sala de espera, se ele não escolher outro tempo
+  ESPERA_OCUPADO_MIN: 15,    // com outra pessoa no consultório, a contagem nunca começa abaixo disto
+  ESPERA_MAX_MIN: 180,       // tecto da soma de minutos no painel
   TIPOS_AUDIO: ["audio/mp4", "audio/webm", "audio/ogg", "audio/aac", "audio/mpeg"],
 };
 const CODIGO_OK = /^[a-hjkmnp-z2-9]{20}$/;
@@ -1878,12 +1881,17 @@ export class Consultorio extends DurableObject {
       entrou INTEGER, aceitou INTEGER, atendido INTEGER, fechado INTEGER, pais TEXT, aparelho TEXT, ult_pessoa INTEGER DEFAULT 0, audios_p INTEGER DEFAULT 0, audios_m INTEGER DEFAULT 0)`);
     this.sql.exec(`CREATE TABLE IF NOT EXISTS msgs (id INTEGER PRIMARY KEY AUTOINCREMENT, codigo TEXT, quando INTEGER, de TEXT, tipo TEXT, texto TEXT, mime TEXT, dur REAL, tam INTEGER)`);
     this.sql.exec("CREATE TABLE IF NOT EXISTS audio (msg INTEGER, pos INTEGER, dados BLOB, PRIMARY KEY (msg, pos))");
+    // 05/11: o contador da sala. A tabela já existe no site publicado, daí o ALTER (como na Sala). fim_espera é o relógio do servidor:
+    // sobrevive a recarregar a página, e o navegador só desconta os segundos sem perguntar nada.
+    try { this.sql.exec("ALTER TABLE consultas ADD COLUMN espera_min INTEGER"); } catch (e) { /* já existe */ }
+    try { this.sql.exec("ALTER TABLE consultas ADD COLUMN fim_espera INTEGER"); } catch (e) { /* já existe */ }
     this.sql.exec("CREATE INDEX IF NOT EXISTS msgs_cod ON msgs(codigo, id)");
     this.sql.exec("CREATE INDEX IF NOT EXISTS msgs_q ON msgs(quando)");
     this.sql.exec("CREATE INDEX IF NOT EXISTS cons_estado ON consultas(estado)");
     this.sql.exec("CREATE INDEX IF NOT EXISTS cons_criado ON consultas(criado)");
   }
   linhas(q, ...a) { return [...this.sql.exec(q, ...a)]; }
+  minutos(v) { const n = Math.floor(Number(v)); return n >= 1 && n <= CONSULTORIO.ESPERA_MAX_MIN ? n : 0; }
   // A regra dos 30 dias não pode depender de haver visitas: o alarme acorda o objecto mesmo que ninguém cá venha.
   limpar(agora) {
     const lim = agora - CONSULTORIO.RETENCAO_DIAS * 864e5;
@@ -1926,7 +1934,7 @@ export class Consultorio extends DurableObject {
       if (p === "criar") {
         const codigo = novoCodigo(), mtoken = [...crypto.getRandomValues(new Uint8Array(16))].map((b) => b.toString(16).padStart(2, "0")).join("");
         const expira = agora + CONSULTORIO.VALIDADE_H * 36e5;
-        this.sql.exec("INSERT INTO consultas (codigo, mtoken, etiqueta, estado, criado, expira) VALUES (?,?,?,'criado',?,?)", codigo, mtoken, String(d.etiqueta || "").trim().slice(0, 60), agora, expira);
+        this.sql.exec("INSERT INTO consultas (codigo, mtoken, etiqueta, estado, criado, expira, espera_min) VALUES (?,?,?,'criado',?,?,?)", codigo, mtoken, String(d.etiqueta || "").trim().slice(0, 60), agora, expira, this.minutos(d.minutos) || CONSULTORIO.ESPERA_MIN);
         if (!(await this.ctx.storage.getAlarm())) await this.ctx.storage.setAlarm(agora + 864e5);
         return J({ ok: true, codigo, mtoken, expira, url: "/consultorio/" + codigo });
       }
@@ -1936,7 +1944,7 @@ export class Consultorio extends DurableObject {
         const fechadas = url.searchParams.get("f") ? this.linhas("SELECT codigo, fechado FROM consultas WHERE estado='fechado' AND fechado > ?", agora - 864e5) : undefined;
         return J({ ok: true, agora, ativos: r.length, fechadas, espera: r.filter((x) => x.estado === "espera").map(({ codigo, etiqueta, entrou }) => ({ codigo, etiqueta, entrou, online: agora - (this.visto.get(codigo) || 0) < 45000 })) });
       }
-      const r = this.linhas("SELECT codigo, mtoken, etiqueta, estado, criado, expira, entrou, atendido, fechado, pais, aparelho, ult_pessoa FROM consultas ORDER BY criado DESC LIMIT 30");
+      const r = this.linhas("SELECT codigo, mtoken, etiqueta, estado, criado, expira, entrou, atendido, fechado, pais, aparelho, ult_pessoa, espera_min, fim_espera FROM consultas ORDER BY criado DESC LIMIT 30");
       return J({ ok: true, agora, consultas: r.map((x) => {
         const v = this.visto.get(x.codigo) || 0;
         if (agora > x.expira && ["criado", "espera", "conversa"].includes(x.estado)) x.estado = "expirado";
@@ -1953,7 +1961,7 @@ export class Consultorio extends DurableObject {
     // ---------- dos dois lados ----------
     if (p === "estado" && request.method === "GET") {
       (mestre ? this.vistoM : this.visto).set(c, agora);
-      const base = { ok: true, estado: r.estado, papel: de, agora, max_audio_s: CONSULTORIO.AUDIO_MAX_S, aceite: !!r.aceitou };
+      const base = { ok: true, estado: r.estado, papel: de, agora, max_audio_s: CONSULTORIO.AUDIO_MAX_S, aceite: !!r.aceitou, fim_espera: r.estado === "espera" ? r.fim_espera : undefined };
       // conversa fechada ou expirada: à pessoa já não se mostra nada, mesmo com o link
       if (!mestre && !["espera", "conversa"].includes(r.estado)) return J(base);
       const msgs = this.linhas("SELECT id, quando, de, tipo, texto, dur, mime FROM msgs WHERE codigo=? AND id>? ORDER BY id LIMIT 200", c, Number(url.searchParams.get("desde")) || 0);
@@ -1967,10 +1975,15 @@ export class Consultorio extends DurableObject {
       this.visto.set(c, agora);
       if (r.estado === "criado") {
         const cf = request.cf || {}, ua = request.headers.get("user-agent") || "";
-        this.sql.exec("UPDATE consultas SET estado='espera', entrou=?, aceitou=COALESCE(aceitou, ?), pais=?, aparelho=? WHERE codigo=?", agora, agora, cf.country || "?", aparelhoDe(ua), c);
+        // Consultório ocupado: outra conversa aberta, ou outra pessoa presente na sala. Quem saiu sem fechar não conta como à espera.
+        const outras = this.linhas("SELECT codigo, estado FROM consultas WHERE estado IN ('conversa','espera') AND codigo<>? AND expira>=?", c, agora);
+        const ocupado = outras.some((x) => x.estado === "conversa" || agora - (this.visto.get(x.codigo) || 0) < 300000);
+        const escolhido = r.espera_min || CONSULTORIO.ESPERA_MIN, min = ocupado ? Math.max(CONSULTORIO.ESPERA_OCUPADO_MIN, escolhido) : escolhido;
+        r.fim_espera = agora + min * 60000;
+        this.sql.exec("UPDATE consultas SET estado='espera', entrou=?, aceitou=COALESCE(aceitou, ?), pais=?, aparelho=?, fim_espera=? WHERE codigo=?", agora, agora, cf.country || "?", aparelhoDe(ua), r.fim_espera, c);
         r.estado = "espera";
       }
-      return J({ ok: true, estado: r.estado });
+      return J({ ok: true, estado: r.estado, agora, fim_espera: r.estado === "espera" ? r.fim_espera : undefined });
     }
     if (p === "msg" && request.method === "POST") {
       const t = String(d.texto || "").trim().slice(0, CONSULTORIO.TEXTO_MAX);
@@ -1996,7 +2009,7 @@ export class Consultorio extends DurableObject {
       if (!CONSULTORIO.TIPOS_AUDIO.includes(mime)) return J({ ok: false, erro: "formato" }, 415);
       if (Number(url.searchParams.get("dur")) > CONSULTORIO.AUDIO_MAX_S + 3) return J({ ok: false, erro: "longo" }, 413);
       if ((mestre ? r.audios_m : r.audios_p) >= CONSULTORIO.AUDIOS_MAX) return J({ ok: false, erro: "muitos" }, 429);
-      if (Number(request.headers.get("Content-Length")) > CONSULTORIO.AUDIO_MAX_BYTES) return J({ ok: false, erro: "grande" }, 413);
+      if (Number(request.headers.get("Content-Length")) > CONSULTORIO.AUDIO_MAX_BYTES * 4) return J({ ok: false, erro: "grande" }, 413);   // só o exagero se corta sem ler
       const b = new Uint8Array(await request.arrayBuffer());
       if (!b.length) return J({ ok: false, erro: "vazio" }, 400);
       if (b.length > CONSULTORIO.AUDIO_MAX_BYTES) return J({ ok: false, erro: "grande" }, 413);
@@ -2010,7 +2023,17 @@ export class Consultorio extends DurableObject {
     }
 
     // ---------- só ele (pela chave, ou pelo mtoken desta conversa) ----------
-    if (!mestre) return J({ ok: false }, ["atender", "fechar", "reabrir"].includes(p) ? 403 : 404);
+    if (!mestre) return J({ ok: false }, ["atender", "fechar", "reabrir", "tempo"].includes(p) ? 403 : 404);
+    // Os botões de minutos: antes de a pessoa entrar escolhem o tempo; com ela na sala, somam. A 0 soma-se a partir de agora.
+    if (p === "tempo") {
+      const n = this.minutos(d.minutos);
+      if (!n) return J({ ok: false, erro: "minutos" }, 400);
+      if (r.estado === "criado") { this.sql.exec("UPDATE consultas SET espera_min=? WHERE codigo=?", n, c); return J({ ok: true, estado: r.estado, espera_min: n }); }
+      if (r.estado !== "espera") return J({ ok: false, estado: r.estado }, 409);
+      const fim = Math.min(Math.max(r.fim_espera || 0, agora) + n * 60000, agora + CONSULTORIO.ESPERA_MAX_MIN * 60000);
+      this.sql.exec("UPDATE consultas SET fim_espera=? WHERE codigo=?", fim, c);
+      return J({ ok: true, estado: r.estado, agora, fim_espera: fim });
+    }
     if (p === "atender") {
       if (r.estado !== "espera") return J({ ok: false, estado: r.estado }, 409);   // só se atende quem está na sala
       this.sql.exec("UPDATE consultas SET estado='conversa', atendido=?, expira=max(expira, ?) WHERE codigo=?", agora, agora + CONSULTORIO.CONVERSA_H * 36e5, c);
@@ -2026,7 +2049,7 @@ export class Consultorio extends DurableObject {
     if (p === "reabrir") {
       if (!["fechado", "expirado"].includes(r.estado)) return J({ ok: false, estado: r.estado }, 409);
       const expira = agora + CONSULTORIO.VALIDADE_H * 36e5;
-      this.sql.exec("UPDATE consultas SET estado='criado', criado=?, expira=?, entrou=NULL, atendido=NULL, fechado=NULL WHERE codigo=?", agora, expira, c);
+      this.sql.exec("UPDATE consultas SET estado='criado', criado=?, expira=?, entrou=NULL, atendido=NULL, fechado=NULL, fim_espera=NULL WHERE codigo=?", agora, expira, c);
       return J({ ok: true, estado: "criado", expira });
     }
     return J({ ok: false }, 404);

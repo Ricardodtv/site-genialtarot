@@ -128,8 +128,13 @@ body.fase-chat .luz { animation-play-state: paused; }
 .ponto { flex: 0 0 auto; width: 11px; height: 11px; border-radius: 50%; background: var(--ouro); box-shadow: 0 0 0 0 rgba(242,201,107,.6); animation: bate 2.4s infinite; }
 @keyframes bate { 70% { box-shadow: 0 0 0 10px rgba(242,201,107,0); } 100% { box-shadow: 0 0 0 0 rgba(242,201,107,0); } }
 #espera .tx { flex: 1; min-width: 0; }
-#espera h2 { font-size: 21px; }
-#frase { margin: 1px 0 0; font-size: 14px; color: #e3d7ef; min-height: 2.8em; transition: opacity .6s; line-height: 1.4; }
+#espera h2 { font-size: 19px; }
+.conta { display: none; margin-top: 3px; } .conta.on { display: block; }
+.conta-n { display: block; font: 700 46px/1 "Cormorant Garamond", Georgia, serif; font-variant-numeric: lining-nums tabular-nums; font-feature-settings: "lnum", "tnum"; color: #ffe39e; letter-spacing: .03em; text-shadow: 0 0 14px rgba(242,201,107,.4); }
+.conta-n.quase { font-size: 25px; line-height: 1.15; letter-spacing: 0; }
+.conta-v { display: block; margin-top: 3px; font-size: 13px; line-height: 1.3; color: #d8cbe6; }
+body.mestre .conta { display: none; }
+#frase { margin: 5px 0 0; font-size: 13.5px; color: #cbbcdc; min-height: 1.4em; transition: opacity .6s; line-height: 1.4; }
 .som { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1px; min-width: 62px; padding: 7px 8px; border-radius: 12px; border: 1px solid var(--borda); background: rgba(255,255,255,.05); color: var(--ouro); font-size: 11.5px; line-height: 1.2; }
 .som svg { width: 20px; height: 20px; }
 .som[aria-pressed="false"] { color: var(--apagado); }
@@ -272,7 +277,9 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
 <section id="espera" class="ecra cartao" aria-live="polite">
   <div class="esp-l">
     <i class="ponto"></i>
-    <div class="tx"><h2 id="esp-t">Está na sala de espera</h2><p id="frase"></p></div>
+    <div class="tx"><h2 id="esp-t">Está na sala de espera</h2>
+      <div class="conta" id="conta"><span class="conta-n" id="conta-n" role="timer"></span><span class="conta-v">O tempo pode variar em função das consultas.</span></div>
+      <p id="frase"></p></div>
     <button class="som" id="som1" type="button" aria-pressed="true" aria-label="Ligar ou desligar a música"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path class="onda" d="M16 9a4 4 0 0 1 0 6M18.6 6.5a8 8 0 0 1 0 11"/><path class="corte" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span id="som1t">Música</span></button>
   </div>
   <div class="mestre-acoes"><button class="grande" id="atender" type="button">Abrir as portas</button></div>
@@ -429,13 +436,36 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     fase("entrada"); mostra("entrada", true); avisoApp();
     if (jaAceitou) { $("ent-aceito").style.display = "none"; $("t-ent").textContent = estado === "criado" ? "A sua sala de espera" : "Continua na sala de espera"; $("ent-tx").textContent = estado === "criado" ? "Esta ligação voltou a ficar disponível. Entre e aguarde: quando o Mestre Alberto estiver pronto, a porta abre-se." : "A porta ainda não se abriu. Volte a entrar e aguarde mais um pouco."; $("entrar").textContent = "Voltar à sala de espera"; $("entrar").disabled = false; }
   }
+  // O contador da sala: uma estimativa. O fim vem do servidor; os segundos descontam-se aqui, sem nenhuma pergunta a mais.
+  // A diferença de relógios fica com a medição mais favorável, para os atrasos da rede não fazerem saltar os segundos.
+  var fimEspera = null, difRelogio = null, mostrado = null, tConta = 0;
+  function relogio(agoraSrv) { var d = agoraSrv - Date.now(); if (difRelogio === null || d > difRelogio) difRelogio = d; }
+  function faltaMs() { return Math.max(0, fimEspera - (Date.now() + (difRelogio || 0))); }
+  function pintaConta() {
+    var n = $("conta-n"); if (fimEspera === null) return $("conta").classList.remove("on");
+    var f = faltaMs() / 1000;
+    // somou-se tempo: sobe depressa até lá, em vez de saltar
+    if (mostrado !== null && f > mostrado + 2) f = Math.min(f, mostrado + Math.max(8, (f - mostrado) / 4));
+    mostrado = f; $("conta").classList.add("on");
+    var s = Math.ceil(f);
+    if (s <= 0) { n.textContent = "O Mestre Alberto está quase a chegar"; n.classList.add("quase"); $("esp-t").style.display = "none"; }
+    else { n.textContent = ("0" + Math.floor(s / 60)).slice(-2) + ":" + ("0" + (s % 60)).slice(-2); n.classList.remove("quase"); $("esp-t").style.display = ""; $("esp-t").textContent = "Tempo para o seu atendimento"; }
+  }
+  function verConta(r) {
+    if (r.agora) relogio(r.agora);
+    fimEspera = r.fim_espera === undefined || r.fim_espera === null ? null : r.fim_espera;
+    if (mestre) return;
+    clearInterval(tConta); pintaConta();
+    if (fimEspera !== null) tConta = setInterval(pintaConta, 250);
+  }
+  function semConta() { clearInterval(tConta); fimEspera = null; mostrado = null; if (!mestre) { $("conta").classList.remove("on"); $("esp-t").style.display = ""; $("esp-t").textContent = "Está na sala de espera"; } }
   function verEspera() {
     fase("espera"); mostra("entrada", false); mostra("espera", true); rodaFrases();
     if (mestre) { $("esp-t").textContent = estado === "criado" ? "Ainda não há ninguém na sala" : "Há alguém na sala de espera"; $("frase").textContent = estado === "criado" ? "A porta só se abre depois de a pessoa entrar." : ""; clearInterval(tFrase); $("atender").disabled = estado !== "espera"; }
   }
   var abrindo = false;
   function abrirPortas(depressa) {
-    if (abrindo) return; abrindo = true; clearInterval(tFrase);
+    if (abrindo) return; abrindo = true; clearInterval(tFrase); semConta();
     nivel = .3; aplicarVol(2.5);
     var b = document.body, calmo = depressa || matchMedia("(prefers-reduced-motion: reduce)").matches;
     mostra("espera", false); if (!calmo) sinal("abre");
@@ -455,7 +485,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     if (window.innerWidth > 760) setTimeout(function () { $("texto").focus(); }, 900);
   }
   function verFim(titulo, tx) {
-    clearInterval(tFrase); clearTimeout(tMus); pararGravacao(false); abrindo = false;
+    clearInterval(tFrase); clearTimeout(tMus); pararGravacao(false); abrindo = false; semConta();
     if (musG) { var a = musG; nivel = 0; aplicarVol(2); setTimeout(function () { try { a.disconnect(); } catch (e) {} }, 2600); musG = null; }
     mostra("espera", false); mostra("entrada", false); $("chat").classList.remove("grande-ja");
     setTimeout(function () { mostra("chat", false); }, 700);
@@ -466,10 +496,10 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   function reaberta(r) {
     mostra("fim", false); mostra("entrada", false); mostra("chat", false); document.title = tituloBase; nivel = 1;
     if (mestre) return verEspera();
-    if (estado === "espera") { ligarMusica(); return verEspera(); }
+    if (estado === "espera") { ligarMusica(); verEspera(); return verConta(r); }
     if (!r.aceite) { $("aceito").checked = false; $("entrar").disabled = true; return verEntrada(false); }
     ligarMusica();
-    post("entrar", { aceitou: true }).then(function (x) { if (x.ok) { estado = x.estado; verEspera(); proxima(0); } }).catch(function () { verEntrada(true); });
+    post("entrar", { aceitou: true }).then(function (x) { if (x.ok) { estado = x.estado; verEspera(); verConta(x); proxima(0); } }).catch(function () { verEntrada(true); });
   }
   function fimDe(e) {
     if (e === "fechado") verFim("A conversa terminou", "Obrigado pela sua presença. Esta ligação já não está activa; para uma nova consulta, fale com o Mestre Alberto.");
@@ -498,8 +528,11 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     var ant = estado; estado = r.estado; if (r.max_audio_s) maxAudio = r.max_audio_s;
     if (estado === "invalido") { parado = true; return fimDe(estado); }
     if (estado === "fechado" || estado === "expirado") { if (ant !== estado) fimDe(estado); return; }
+    // fechada e reaberta entre duas perguntas (ou com a página escondida): nunca chegou a ver o fim
+    if ((ant === "conversa" || ant === "espera") && (estado === "criado" || (ant === "conversa" && estado === "espera"))) { var e1 = estado; fimDe("fechado"); estado = e1; (r.msgs || []).forEach(novaMsg); return reaberta(r); }
     if (ant === "fechado" || ant === "expirado") { mostra("fim", false); (r.msgs || []).forEach(novaMsg); if (estado !== "conversa") return reaberta(r); }
     (r.msgs || []).forEach(novaMsg);
+    if (estado === "espera" && !abrindo && document.body.classList.contains("fase-espera")) verConta(r);
     $("esc").classList.toggle("on", !!r.escreve); if (r.escreve) { ultimaAct = Date.now(); rolar(); }
     if (mestre) {
       if (r.etiqueta) $("chat-nome").textContent = r.etiqueta;
@@ -619,7 +652,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     ligarMusica();
     post("entrar", { aceitou: true }).then(function (r) {
       if (!r.ok) { estado = r.estado || "invalido"; fimDe(estado); if (estado !== "invalido") proxima(); return; }
-      estado = r.estado; verEspera(); proxima(0);
+      estado = r.estado; verEspera(); verConta(r); proxima(0);
     }).catch(function () { b.disabled = false; b.textContent = "Tentar outra vez"; });
   };
   $("som1").onclick = $("som2").onclick = trocaSom;

@@ -75,7 +75,7 @@ def post(h, u):
     try: d = json.loads(h.rfile.read(min(n, 20000)) or b"{}")
     except Exception: d = {}
     if via == "criar":
-        st, o = pede("/api/consultorio/criar", {"etiqueta": str(d.get("etiqueta", ""))[:60]})
+        st, o = pede("/api/consultorio/criar", {"etiqueta": str(d.get("etiqueta", ""))[:60], "minutos": d.get("minutos")})
         if o.get("ok"):
             o["link"] = SITE + o["url"]; _cache.pop("lista", None)
             try: open(ACORDAR, "w").close()
@@ -84,6 +84,9 @@ def post(h, u):
     c = codigo(d.get("c"))
     if via == "ficha" and c:
         return h.responde(200, ficha.guardar(c, d.get("nome"), d.get("nasc")) if ficha else {"ok": False, "erro": "Falta o consultorio_ficha.py."})
+    if via == "tempo" and c:
+        _cache.pop("lista", None)
+        return h.responde(*pede("/api/consultorio/tempo", {"c": c, "minutos": d.get("minutos")}))
     if via in ("atender", "fechar", "escreve", "msg", "reabrir") and c:
         _cache.pop("lista", None)
         st, o = pede("/api/consultorio/" + via, {"c": c, "texto": str(d.get("texto", ""))[:2000]})

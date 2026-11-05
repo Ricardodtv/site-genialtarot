@@ -38,6 +38,9 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
 .vazio { color: var(--apagado); font-style: italic; } .acoes { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
 .nota { color: var(--apagado); font-size: 13px; margin-top: 8px; } #erro { color: #ffb0a8; font-size: 13px; }
 .reabre { float: right; margin: -2px 6px 0 0; padding: 2px 9px; font-size: 12px; background: var(--ouro); color: #2b1147; }
+.mins { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 8px 0 0; font-size: 13px; color: var(--apagado); }
+.mins button { padding: 6px 11px; background: rgba(255,255,255,.08); color: var(--texto); } .mins button.sel { background: var(--ouro); color: #2b1147; }
+#falta { font-size: 22px; font-weight: 700; color: var(--ouro); font-variant-numeric: tabular-nums; margin-top: 8px; }
 .ficha { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--borda); }
 .ficha form { flex-wrap: wrap; } .ficha input[type=date] { flex: 0 0 170px; color-scheme: dark; } #f-est { color: var(--ouro); font-size: 13px; margin-top: 6px; min-height: 18px; }
 </style></head><body>
@@ -46,6 +49,7 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
 <div>
   <div class="caixa"><h2>Nova ligação</h2>
     <form id="fcria"><input id="etq" maxlength="60" placeholder="Etiqueta só para ti, ex.: C-123" autocomplete="off"><button class="b-ouro">Criar</button></form>
+    <div class="mins" id="m-novo"></div>
     <div id="nova" class="ligacao" hidden>
       <input id="nova-url" readonly><button class="b-ouro" type="button" id="copia">Copiar</button><a class="bt b-verde" id="wa" target="_blank" rel="noopener">WhatsApp</a>
     </div>
@@ -57,6 +61,7 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
   <div id="conv" hidden>
     <h2 id="c-tit"></h2><div id="c-est" class="nota"></div>
     <div class="acoes"><button class="b-verde" id="atender" hidden>🚪 Atender: abrir as portas</button><a class="bt b-ouro" id="micro" target="_blank" rel="noopener">🎙️ Abrir com microfone</a><button class="b-q" id="cop2">Copiar ligação</button><button class="b-sair" id="fechar" hidden>Fechar conversa</button><button class="b-ouro" id="reabrir" hidden>🔓 Reabrir</button></div>
+    <div id="falta" hidden></div><div class="mins" id="m-conv" hidden></div>
     <div class="nota" id="n-fecha" hidden>A ficha é criada quando fechares a conversa.</div>
     <div id="msgs"></div><div class="escreve" id="esc"></div>
     <form id="fmsg"><textarea id="txt" placeholder="Escreve aqui…" maxlength="2000"></textarea><button class="b-verde">Enviar</button></form>
@@ -70,7 +75,18 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
 </main>
 <script>
 var $ = function (i) { return document.getElementById(i); }, sel = null, dados = [], desde = 0, tC = 0, tL = 0, avisados = {}, somCtx = null;
-var API = "/api/consultorio/";
+var API = "/api/consultorio/", MINUTOS = [2, 5, 10, 15, 30], MIN_DEF = 5, minNovo = MIN_DEF, difRel = 0;
+function botoesMin(el, rot, sel) { el.innerHTML = rot + MINUTOS.map(function (m) { return '<button type="button" data-m="' + m + '"' + (m === sel ? ' class="sel"' : "") + ">" + m + " min</button>"; }).join(""); }
+botoesMin($("m-novo"), "Tempo de espera:", minNovo);
+$("m-novo").onclick = function (e) { var b = e.target.closest("button"); if (b) { minNovo = +b.dataset.m; botoesMin(this, "Tempo de espera:", minNovo); } };
+$("m-conv").onclick = function (e) { var b = e.target.closest("button"); if (!b) return; J("tempo", { c: sel, minutos: +b.dataset.m }).then(function (r) { if (!r.ok) $("erro").textContent = "Não foi possível mudar o tempo."; lista(); }); };
+function mmss(ms) { var s = Math.ceil(Math.max(0, ms) / 1000); return ("0" + Math.floor(s / 60)).slice(-2) + ":" + ("0" + (s % 60)).slice(-2); }
+function pintaFalta() {
+  var x = sel && atual(); if (!x) return;
+  var on = x.estado === "espera" && x.fim_espera; $("falta").hidden = !on;
+  if (on) { var f = x.fim_espera - (Date.now() + difRel); $("falta").textContent = f > 0 ? "Falta " + mmss(f) : "Chegou a 0: a pessoa vê «quase a chegar»"; }
+}
+setInterval(pintaFalta, 1000);
 function J(u, d) { return fetch(API + u, d ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d) } : {}).then(function (r) { return r.json(); }); }
 function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 function hora(q) { return q ? new Date(q).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" }) : ""; }
@@ -86,13 +102,13 @@ function lista() {
   if (document.hidden) { tL = setTimeout(lista, 30000); return; }
   J("lista").then(function (r) {
     $("erro").textContent = r.ok ? "" : (r.erro || "o site não responde");
-    dados = r.consultas || [];
+    dados = r.consultas || []; if (r.agora) difRel = r.agora - Date.now();
     var n = dados.filter(function (x) { return x.estado === "espera"; }).length;
     $("res").textContent = n ? n + " na sala de espera" : "";
     dados.forEach(function (x) { if (x.estado === "espera" && !avisados[x.codigo]) { avisados[x.codigo] = 1; campainha(); } });
     $("lista").innerHTML = dados.length ? dados.map(function (x) {
       return '<div class="linha ' + (x.codigo === sel ? "ativa " : "") + (x.estado === "espera" ? "espera" : "") + '" data-c="' + x.codigo + '"><span class="pil ' + x.estado + '">' + (NOMES[x.estado] || x.estado) + "</span>" + (x.reabrivel ? '<button class="reabre" type="button" data-r="' + x.codigo + '">Reabrir</button>' : "") + "<b>" + esc(x.etiqueta || "sem etiqueta") + "</b><small>" +
-        new Date(x.criado).toLocaleDateString("pt-PT") + " " + hora(x.criado) + (x.entrou ? " · entrou " + hora(x.entrou) : "") + (x.pais && x.pais !== "?" ? " · " + esc(x.pais) : "") + (x.aparelho ? " · " + esc(x.aparelho) : "") + (x.estado === "espera" || x.estado === "conversa" ? (x.online ? " · 🟢 presente" : " · ⚪ página fechada ou em segundo plano") : "") + "</small></div>";
+        new Date(x.criado).toLocaleDateString("pt-PT") + " " + hora(x.criado) + (x.entrou ? " · entrou " + hora(x.entrou) : "") + (x.pais && x.pais !== "?" ? " · " + esc(x.pais) : "") + (x.aparelho ? " · " + esc(x.aparelho) : "") + (x.estado === "espera" && x.fim_espera ? " · falta " + mmss(x.fim_espera - (Date.now() + difRel)) : "") + (x.estado === "espera" || x.estado === "conversa" ? (x.online ? " · 🟢 presente" : " · ⚪ página fechada ou em segundo plano") : "") + "</small></div>";
     }).join("") : '<div class="vazio">Ainda não há ligações.</div>';
     if (sel) pinta();
     var ativa = dados.some(function (x) { return x.estado === "espera" || x.estado === "conversa" || x.estado === "criado"; });
@@ -106,6 +122,9 @@ function pinta() {
   $("c-est").textContent = "Criada " + hora(x.criado) + ". Válida até " + new Date(x.expira).toLocaleString("pt-PT", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) + ".";
   $("atender").hidden = x.estado !== "espera"; $("fechar").hidden = ["espera", "conversa", "criado"].indexOf(x.estado) < 0;
   $("n-fecha").hidden = $("fechar").hidden; $("reabrir").hidden = !x.reabrivel;
+  var mv = x.estado === "criado" || x.estado === "espera"; $("m-conv").hidden = !mv;
+  if (mv) botoesMin($("m-conv"), x.estado === "espera" ? "Somar:" : "Tempo de espera:", x.estado === "espera" ? 0 : x.espera_min);
+  pintaFalta();
   $("micro").href = x.link + "#m=" + x.mtoken; $("micro").style.display = ["fechado", "expirado"].indexOf(x.estado) < 0 ? "" : "none";
   $("fmsg").style.display = x.estado === "conversa" ? "" : "none";
   $("ficheiro").disabled = x.estado !== "conversa";
@@ -150,7 +169,7 @@ function conversa() {
 function carregaAudio(el, id) { fetch(API + "audio?c=" + sel + "&id=" + id).then(function (r) { return r.blob(); }).then(function (b) { el.src = URL.createObjectURL(b); }); }
 $("fcria").onsubmit = function (e) {
   e.preventDefault();
-  J("criar", { etiqueta: $("etq").value.trim() }).then(function (r) {
+  J("criar", { etiqueta: $("etq").value.trim(), minutos: minNovo }).then(function (r) {
     if (!r.ok) { $("erro").textContent = r.erro || "não foi possível criar"; return; }
     $("etq").value = ""; $("nova").hidden = false; $("nova-url").value = r.link;
     $("wa").href = "https://wa.me/?text=" + encodeURIComponent("Olá! Aqui está a sua ligação para o Consultório Virtual do Mestre Alberto: " + r.link);
