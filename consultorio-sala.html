@@ -27,30 +27,31 @@
 :root {
   --ouro: #f2c96b; --ouro2: #d9a441; --borda: rgba(242,201,107,.38); --texto: #f7f0fb; --apagado: #bfaed2; --verde: #25d366;
   --noite: #160a2b; --roxo: #1d0d36; --roxo2: #3b1a63;
-  /* a cena (a imagem e tudo o que está por cima) mede --W; cobre o ecrã e fica centrada NA PORTA */
-  --W: max(100vw, calc(100svh * 1.7769));
-  --H: calc(var(--W) * .56280);
-  --u: calc(var(--W) / 1000);
-  --X: max(calc(100vw - var(--W)), min(0px, calc(50vw - var(--W) * .5039)));
-  --Y: calc((100svh - var(--H)) * .3);
-  --Z: 1;
-  --ori: 50.39% 44%;
+  /* a cena mede sempre 1672×941, as medidas da imagem. Quem a enquadra é o enquadra(), no fim do guião: mede o espaço livre e calcula
+     escala e posição, de modo a que porta, placa e bola caibam em qualquer ecrã. Tudo o que está em cima da imagem move-se com ela. */
+  --W: 1672px; --H: 941px; --u: 1.672px; --vh: 100svh;
+  --sx: env(safe-area-inset-left, 0px); --sd: env(safe-area-inset-right, 0px); --st: env(safe-area-inset-top, 0px); --sb: env(safe-area-inset-bottom, 0px);
 }
 /* iPhone anterior a 2022, sem svh */
-@supports not (height: 100svh) { :root { --W: max(100vw, calc(100vh * 1.7769)); --Y: calc((100vh - var(--H)) * .3); } @media (max-aspect-ratio: 1/1) { :root { --W: max(330vw, calc(100vh * .9)); --Y: calc(var(--H) * -.093); } } #entrada { max-height: calc(100vh - 28px); } }
+@supports not (height: 100svh) { :root { --vh: 100vh; } }
+@supports (height: 100dvh) { :root { --vh: 100dvh; } }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { margin: 0; height: 100%; }
+html, body { margin: 0; height: 100%; overflow: hidden; overscroll-behavior: none; }
 body { background: var(--noite); color: var(--texto); font: 16px/1.5 Inter, system-ui, -apple-system, "Segoe UI", sans-serif; overflow: hidden; }
 button { font: inherit; color: inherit; cursor: pointer; }
 h1, h2 { font-family: "Cormorant Garamond", Georgia, serif; color: var(--ouro); font-weight: 700; line-height: 1.12; margin: 0; }
 a { color: var(--ouro); }
 
 /* ---------- a cena ---------- */
-#palco { position: fixed; inset: 0; overflow: hidden; background: radial-gradient(120% 70% at 50% 34%, #3b1a63 0%, var(--noite) 70%); }
-#cena { position: absolute; left: 0; top: 0; width: var(--W); height: var(--H); transform-origin: var(--ori); will-change: transform;
-  transform: translate3d(var(--X), var(--Y), 0) scale(var(--Z)); transition: transform 1.5s cubic-bezier(.45,.05,.2,1); }
-#cena > img, .vao img { display: block; position: absolute; user-select: none; -webkit-user-drag: none; pointer-events: none; }
+#palco { position: fixed; inset: 0; overflow: hidden; background: var(--noite); }
+/* o que sobra à volta da imagem, em ecrãs muito largos ou muito altos: a mesma sala, desfocada e escura */
+.borrado { position: absolute; inset: -6%; width: 112%; height: 112%; object-fit: cover; filter: blur(26px) brightness(.5) saturate(1.15); }
+#cena { position: absolute; left: 0; top: 0; width: 1672px; height: 941px; transform-origin: 0 0; transform: translate(var(--X, 0px), var(--Y, 0px)) scale(var(--Z, .5)); }
+#cena.anda { transition: transform 1.5s cubic-bezier(.45,.05,.2,1); }
+.borrado, #cena > img, .vao img { display: block; position: absolute; user-select: none; -webkit-user-drag: none; pointer-events: none; }
 .fundo { inset: 0; width: 100%; height: 100%; }
+/* as beiras só se esbatem quando há sobra desse lado */
+#cena.solto .fundo { -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--ml, 0%), #000 calc(100% - var(--mr, 0%)), transparent), linear-gradient(transparent, #000 var(--mt, 0%), #000 calc(100% - var(--mb, 0%)), transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent, #000 var(--ml, 0%), #000 calc(100% - var(--mr, 0%)), transparent), linear-gradient(transparent, #000 var(--mt, 0%), #000 calc(100% - var(--mb, 0%)), transparent); mask-composite: intersect; }
 /* medidas sobre a imagem de 1672×941 (ver o guião das camadas): vão 658–1026 × 220–669; a bola por cima */
 .vao { position: absolute; left: 39.354%; top: 23.379%; width: 22.010%; height: 47.715%; perspective: calc(var(--W) * .42); }
 .vao .cosmos { inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .5s; }
@@ -68,15 +69,15 @@ a { color: var(--ouro); }
 @keyframes bolaluz { 50% { opacity: .35; transform: scale(1.1); } 0%,100% { opacity: 1; } }
 
 /* a placa: pendurada nas duas maçanetas */
-.placa { position: absolute; left: 50.39%; top: 52.6%; width: 20.6%; margin-left: -10.3%; perspective: calc(var(--W) * .5); transform-origin: 50% -12%; animation: balanca 7s ease-in-out infinite; transition: opacity .6s, transform .6s; z-index: 2; }
+.placa { position: absolute; left: 50.39%; bottom: 33.6%; width: 20.6%; margin-left: -10.3%; perspective: calc(var(--W) * .5); transform-origin: 50% 0; animation: balanca 7s ease-in-out infinite; transition: opacity .6s, transform .6s; z-index: 2; }
 @keyframes balanca { 0%,100% { transform: rotate(-.8deg); } 50% { transform: rotate(.8deg); } }
 .placa::before, .placa::after { content: ""; position: absolute; top: calc(var(--u) * -19); height: calc(var(--u) * 21); width: 1.5px; background: linear-gradient(#ffe3a6, #b98a2e); }
 .placa::before { left: 45%; transform: rotate(16deg); } .placa::after { right: 45%; transform: rotate(-16deg); }
 .placa-in { position: relative; transform-style: preserve-3d; transition: transform .8s cubic-bezier(.4,.1,.2,1); display: grid; }
 .face { grid-area: 1/1; backface-visibility: hidden; -webkit-backface-visibility: hidden; text-align: center; padding: calc(var(--u) * 8) calc(var(--u) * 10) calc(var(--u) * 9); border-radius: calc(var(--u) * 7);
   background: linear-gradient(160deg, #3a1860, #1d0b38 70%); border: 1.5px solid var(--ouro); box-shadow: 0 0 0 calc(var(--u) * 1.6) #1d0b38, 0 0 0 calc(var(--u) * 2.2) var(--ouro2), 0 calc(var(--u) * 7) calc(var(--u) * 18) rgba(0,0,0,.6); font-family: "Cormorant Garamond", Georgia, serif; }
-.face b { display: block; color: var(--ouro); letter-spacing: .1em; text-transform: uppercase; font-size: max(17px, calc(var(--u) * 17.5)); line-height: 1.1; margin-bottom: calc(var(--u) * 3); }
-.face span { display: block; font-size: max(15px, calc(var(--u) * 12)); line-height: 1.17; font-weight: 600; color: #f7ecd6; }
+.face b { display: block; color: var(--ouro); letter-spacing: .1em; text-transform: uppercase; font-size: calc(var(--u) * var(--fb, 17.5)); line-height: 1.1; margin-bottom: calc(var(--u) * 3); }
+.face span { display: block; font-size: calc(var(--u) * var(--ft, 12)); line-height: 1.17; font-weight: 600; color: #f7ecd6; }
 .face.tras { transform: rotateX(180deg); display: grid; align-content: center; background: linear-gradient(160deg, #6b3fa8, #3a1860); }
 .face.tras b { margin: 0; }
 /* 05/11 (ele): a placa «Ocupado» a pulsar enquanto se espera; pára quando vira para «Pode entrar» */
@@ -99,7 +100,6 @@ body.aberta .folha.dir { transform: rotateY(-82deg); }
 body.aberta .cosmos { opacity: 1; }
 body.aberta .fresta { opacity: 0; animation: none; }
 body.aberta #clarao { opacity: 1; }
-body.aberta #cena { --Z: 1.14; }
 body.virada-saiu .placa { opacity: 0; animation: none; transform: translateY(calc(var(--u) * 12)) scale(.9); }
 body.cosmos-pulsa .cosmos { animation: pulso 5s ease-in-out infinite; }
 @keyframes pulso { 50% { filter: brightness(1.22) saturate(1.2); } }
@@ -109,7 +109,7 @@ body.fase-chat .luz { animation-play-state: paused; }
 /* ---------- cartões ---------- */
 .ecra { position: fixed; z-index: 5; display: none; }
 .cartao { background: linear-gradient(170deg, rgba(38,16,72,.95), rgba(22,9,44,.96)); border: 1px solid var(--borda); border-radius: 20px; box-shadow: 0 14px 44px rgba(0,0,0,.55); }
-#entrada { left: 50%; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(520px, calc(100vw - 28px)); max-height: calc(100svh - 28px); overflow-y: auto; padding: 22px 24px 20px; }
+#entrada { left: 50%; bottom: max(14px, var(--sb)); transform: translateX(-50%); width: min(520px, calc(100vw - 24px - var(--sx) - var(--sd))); max-height: calc(var(--vh) - 20px - var(--st) - var(--sb)); overflow-y: auto; scrollbar-width: none; padding: 22px 24px 20px; }
 #entrada h1 { font-size: 31px; margin-bottom: 8px; }
 #entrada p { margin: 0 0 12px; color: #e9def3; font-size: 15.5px; }
 .aceito { display: flex; gap: 11px; align-items: flex-start; padding: 11px 12px; border-radius: 13px; border: 1px solid rgba(242,201,107,.24); background: rgba(255,255,255,.04); font-size: 14px; line-height: 1.42; color: #e9def3; cursor: pointer; }
@@ -123,7 +123,7 @@ body.fase-chat .luz { animation-play-state: paused; }
 .aviso-app .bts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .aviso-app a, .aviso-app button { display: inline-block; padding: 7px 12px; border-radius: 10px; background: rgba(242,201,107,.16); border: 1px solid var(--borda); color: var(--ouro); text-decoration: none; font-size: 13.5px; font-weight: 600; }
 
-#espera { left: 50%; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(560px, calc(100vw - 24px)); padding: 13px 16px 13px 18px; }
+#espera { left: 50%; bottom: max(12px, var(--sb)); transform: translateX(-50%); width: min(560px, calc(100vw - 20px - var(--sx) - var(--sd))); padding: 13px 16px 13px 18px; }
 .esp-l { display: flex; align-items: center; gap: 12px; }
 .ponto { flex: 0 0 auto; width: 11px; height: 11px; border-radius: 50%; background: var(--ouro); box-shadow: 0 0 0 0 rgba(242,201,107,.6); animation: bate 2.4s infinite; }
 @keyframes bate { 70% { box-shadow: 0 0 0 10px rgba(242,201,107,0); } 100% { box-shadow: 0 0 0 0 rgba(242,201,107,0); } }
@@ -142,7 +142,7 @@ body.mestre .conta { display: none; }
 .mestre-acoes { display: none; gap: 8px; margin-top: 10px; } body.mestre .mestre-acoes { display: flex; } .mestre-acoes .grande { margin: 0; }
 
 /* ---------- o chat, em grande ---------- */
-#chat { z-index: 6; left: 50%; top: 50%; width: min(940px, 94vw); height: var(--chat-h, min(90svh, 880px)); margin-left: calc(min(940px, 94vw) / -2); margin-top: calc(var(--chat-h, min(90svh, 880px)) / -2); flex-direction: column; overflow: hidden; border-radius: 22px; border: 1px solid rgba(242,201,107,.55);
+#chat { z-index: 6; left: 50%; top: 50%; width: min(940px, 94vw); height: var(--chat-h, min(calc(var(--vh) * .9), 880px)); margin-left: calc(min(940px, 94vw) / -2); margin-top: calc(var(--chat-h, min(calc(var(--vh) * .9), 880px)) / -2); flex-direction: column; overflow: hidden; border-radius: 22px; border: 1px solid rgba(242,201,107,.55);
   background: linear-gradient(175deg, rgba(36,15,68,.97), rgba(18,8,37,.985)); box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 0 70px rgba(176,108,255,.42), 0 24px 70px rgba(0,0,0,.6); opacity: 0; transform: scale(.16); transition: transform .85s cubic-bezier(.2,.9,.25,1.02), opacity .5s; }
 #chat.mostra { display: flex; }
 #chat.grande-ja { opacity: 1; transform: none; }
@@ -191,51 +191,53 @@ body.mestre .conta { display: none; }
 #gravando button { display: grid; }
 
 /* ---------- o fim ---------- */
-#fim { left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(480px, calc(100vw - 28px)); padding: 26px 26px 24px; text-align: center; }
+#fim { left: 50%; bottom: max(14px, var(--sb)); transform: translateX(-50%); width: min(480px, calc(100vw - 24px - var(--sx) - var(--sd))); padding: 24px 24px 22px; text-align: center; }
+/* deitado: o cartão vai para o lado direito, e a porta fica à esquerda dele */
+@media (min-aspect-ratio: 11/10) {
+  #entrada, #fim { left: auto; right: max(4vw, 16px, var(--sd)); bottom: auto; top: 50%; transform: translateY(-50%); width: min(440px, 46vw); }
+}
+@media (min-aspect-ratio: 11/10) and (max-height: 600px) {
+  #espera { left: auto; right: max(12px, var(--sd)); bottom: auto; top: 50%; transform: translateY(-50%); width: min(330px, 42vw); }
+}
+@media (max-height: 640px) { #frase { display: none; } .conta-n { font-size: 38px; } .conta-n.quase { font-size: 21px; } }
 #fim h1 { font-size: 32px; margin-bottom: 8px; } #fim p { margin: 0 0 16px; color: #e9def3; }
 #fim a.grande { text-decoration: none; }
 .mostra { display: block; }
 
 /* ---------- telemóvel (ao alto): a panorâmica enquadrada na porta ---------- */
 @media (max-aspect-ratio: 1/1) {
-  :root { --W: max(330vw, calc(100svh * .9)); --Y: calc(var(--H) * -.093); --Z: 1; --ori: 50.39% 0; }
-  /* à entrada, a sala inteira de longe, com o letreiro todo; ao entrar, a câmara aproxima-se da porta */
-  body.fase-entrada, body.fase-fim, body.fase-carrega { --Z: .506; --Y: 20px; }
-  #fim { top: auto; bottom: max(14px, env(safe-area-inset-bottom)); transform: translateX(-50%); }
-  .fundo { -webkit-mask-image: linear-gradient(#000 80%, transparent 99%); mask-image: linear-gradient(#000 80%, transparent 99%); }
-  body.aberta #cena { --Z: 1.1; }
-  #entrada { padding: 18px 18px 16px; bottom: max(12px, env(safe-area-inset-bottom)); }
+  #entrada { padding: 18px 18px 16px; }
   #entrada h1 { font-size: 27px; }
   #entrada p { font-size: 15px; margin-bottom: 10px; }
-  #chat { width: calc(100vw - 12px); margin-left: calc((100vw - 12px) / -2); height: var(--chat-h, calc(100svh - 12px)); margin-top: calc(var(--chat-h, calc(100svh - 12px)) / -2); border-radius: 18px; }
+  #chat { width: calc(100vw - 8px - var(--sx) - var(--sd)); margin-left: calc((100vw - 8px - var(--sx) - var(--sd)) / -2); height: var(--chat-h, calc(var(--vh) - 8px - var(--st) - var(--sb))); margin-top: calc(var(--chat-h, calc(var(--vh) - 8px - var(--st) - var(--sb))) / -2); top: calc(50% + (var(--st) - var(--sb)) / 2); border-radius: 18px; }
   .m { max-width: 86%; }
   .cab { padding: 9px 11px; gap: 9px; } .cab img { width: 42px; height: 42px; } .cab h1 { font-size: 21px; } .cab .som span { display: none; }
   .cab .terminar { padding: 7px 8px; font-size: 12.5px; }
 }
-#titulo-m { display: none; position: fixed; z-index: 4; left: 0; right: 0; top: 0; padding: calc(12px + env(safe-area-inset-top)) 14px 38px; justify-content: center; text-align: center; font: 700 clamp(21px, 6.2vw, 29px)/1.08 "Cormorant Garamond", Georgia, serif; color: var(--ouro);
-  background: linear-gradient(#1d0d36 74%, rgba(29,13,54,.8) 86%, transparent); text-shadow: 0 2px 8px rgba(0,0,0,.5); transition: opacity .8s; pointer-events: none; }
+#titulo-m { display: none; position: fixed; z-index: 4; left: 0; right: 0; top: 0; padding: calc(12px + var(--st)) 14px 0; justify-content: center; align-items: flex-start; text-align: center; transition: height 1.5s; font: 700 clamp(21px, 6.2vw, 29px)/1.08 "Cormorant Garamond", Georgia, serif; color: var(--ouro);
+  background: linear-gradient(#1d0d36 calc(100% - 26px), rgba(29,13,54,.8) calc(100% - 12px), transparent); text-shadow: 0 2px 8px rgba(0,0,0,.5); transition: opacity .8s; pointer-events: none; }
 body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
 @media (max-aspect-ratio: 1/1) { body.fase-espera #titulo-m, body.fase-chat #titulo-m { display: flex; } }
-#rodape-m { position: fixed; z-index: 1; left: 0; right: 0; bottom: 0; height: 34svh; pointer-events: none; background: linear-gradient(transparent, rgba(22,10,43,.95) 62%); display: none; }
-@media (max-aspect-ratio: 1/1) { #rodape-m { display: block; } }
 
 /* ---------- ao baixo e pequeno (telemóvel deitado) ---------- */
 @media (max-height: 500px) {
   #entrada { padding: 12px 16px; } #entrada h1 { font-size: 23px; } #entrada p { font-size: 13.5px; margin-bottom: 7px; }
   .aceito { padding: 8px 10px; font-size: 13px; } .grande { padding: 10px 14px; margin-top: 8px; font-size: 16px; }
-  #espera { width: min(440px, 62vw); left: auto; right: 10px; transform: none; bottom: 8px; padding: 9px 12px; } #espera h2 { font-size: 18px; } #frase { font-size: 13px; }
-  .face span { font-size: 12.5px; } .face b { font-size: 14px; }
-  #chat { width: calc(100vw - 12px); margin-left: calc((100vw - 12px) / -2); height: var(--chat-h, calc(100svh - 10px)); margin-top: calc(var(--chat-h, calc(100svh - 10px)) / -2); }
+  #espera { padding: 9px 12px; } #espera h2 { font-size: 17px; }
+  #chat { width: calc(100vw - 8px - var(--sx) - var(--sd)); margin-left: calc((100vw - 8px - var(--sx) - var(--sd)) / -2); height: var(--chat-h, calc(var(--vh) - 8px - var(--st) - var(--sb))); margin-top: calc(var(--chat-h, calc(var(--vh) - 8px - var(--st) - var(--sb))) / -2); top: calc(50% + (var(--st) - var(--sb)) / 2); }
   .cab { padding: 5px 10px; } .cab img { width: 32px; height: 32px; } #msgs { padding: 8px 10px 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .placa, .luz, .fresta, .ponto, .face.frente, .face.frente b { animation: none !important; }
   #cena { transition: none; } .folha { transition: transform .3s; } #chat { transition: opacity .3s; transform: none; } #msgs { scroll-behavior: auto; }
 }
+#seguras { position: fixed; visibility: hidden; pointer-events: none; padding: var(--st) var(--sd) var(--sb) var(--sx); }
 </style>
 </head>
 <body class="fase-carrega">
+<div id="seguras" aria-hidden="true"></div>
 <div id="palco" aria-hidden="true">
+  <img class="borrado" src="/consultorio-virtual-sala-de-espera.webp" alt="" />
   <div id="cena">
     <img class="fundo" src="/consultorio-virtual-sala-de-espera.webp" alt="" width="1672" height="941" />
     <i class="luz c" style="left:4.1%;top:57.4%;width:6%;height:10.7%"></i>
@@ -262,8 +264,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
 </div>
 <div id="clarao" aria-hidden="true"></div>
 <div id="veu" aria-hidden="true"></div>
-<div id="rodape-m" aria-hidden="true"></div>
-<div id="titulo-m" aria-hidden="true">Consultório Virtual<br />do Mestre Alberto</div>
+<div id="titulo-m" aria-hidden="true"><span id="titulo-t">Consultório Virtual<br />do Mestre Alberto</span></div>
 
 <section id="entrada" class="ecra cartao" aria-labelledby="t-ent">
   <h1 id="t-ent">Boas-vindas ao Consultório</h1>
@@ -332,8 +333,43 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   var mestre = !!m, desde = 0, estado = "", maxAudio = 90, ultimaAct = Date.now(), porLer = 0, tituloBase = document.title, falhas = 0;
   if (mestre) document.body.classList.add("mestre");
 
-  function fase(f) { document.body.className = document.body.className.replace(/\bfase-\S+/g, "").trim() + " fase-" + f; }
-  function mostra(id, sim) { $(id).classList.toggle("mostra", !!sim); }
+  function fase(f) { document.body.className = document.body.className.replace(/\bfase-\S+/g, "").trim() + " fase-" + f; pedeEnquadrar(); }
+  function mostra(id, sim) { $(id).classList.toggle("mostra", !!sim); pedeEnquadrar(); }
+  // ---------- enquadrar a sala em qualquer ecrã ----------
+  // Mede o espaço que os cartões deixam livre e escolhe escala e posição. Medidas na imagem de 1672×941: letreiro 420–1265, porta com as
+  // colunas 590–1100, porta 205–775 de alto até à base da bola. As folhas, a placa e a bola são filhas da cena: nunca se desencontram do fundo.
+  var tEnq = 0, primeira = true, SL = 845, SD = 510, CX = 842.5, CY = 445, BASE = 775, TOPO_P = 205;
+  function pedeEnquadrar() { cancelAnimationFrame(tEnq); tEnq = requestAnimationFrame(enquadra); }
+  function enquadra() {
+    if (document.documentElement.classList.contains("teclado")) return;
+    var p = $("palco"), vw = p.clientWidth, vh = p.clientHeight, b = document.body, alto = vh > vw * .9, cen = $("cena"), cs = getComputedStyle($("seguras"));
+    var A = { l: parseFloat(cs.paddingLeft) || 0, t: parseFloat(cs.paddingTop) || 0, r: vw - (parseFloat(cs.paddingRight) || 0), b: vh - (parseFloat(cs.paddingBottom) || 0) };
+    ["entrada", "espera", "fim"].forEach(function (i) {
+      var e = $(i); if (!e.classList.contains("mostra")) return; var r = e.getBoundingClientRect();
+      if (r.left > vw * .4 && r.top > -1 && vw / vh >= 1.1) A.r = Math.min(A.r, r.left - 8); else A.b = Math.min(A.b, r.top - 6);
+    });
+    if (b.classList.contains("fase-espera") && getComputedStyle($("titulo-m")).display !== "none") A.t = Math.max(A.t, $("titulo-t").getBoundingClientRect().bottom + 8);
+    var aw = Math.max(80, A.r - A.l), ah = Math.max(80, A.b - A.t), sCob = Math.max(vw / 1672, vh / 941), sTudo = Math.min(aw / SL, ah / BASE), sPorta = Math.min(aw / SD, ah / (BASE - TOPO_P)), s, yT;
+    var perto = (b.classList.contains("fase-espera") && alto) || ah < 430;
+    if (perto) { s = sPorta; yT = TOPO_P; } else { s = sCob <= sTudo * 1.12 ? Math.max(sTudo, Math.min(sCob, sPorta)) : sTudo; yT = 0; }
+    var cx = (A.l + A.r) / 2, X = cx - CX * s, Y = A.t + (ah - (BASE - yT) * s) / 2 - yT * s;
+    if (perto && alto) Y = A.t - yT * s + Math.max(0, ah - (BASE - yT) * s) * .35;
+    var W = 1672 * s, H = 941 * s;
+    if (W >= vw) { var X2 = Math.max(vw - W, Math.min(0, X)); if (X2 + 590 * s >= A.l - 1 && X2 + 1100 * s <= A.r + 1) X = X2; }
+    if (H >= vh) { var Y2 = Math.max(vh - H, Math.min(0, Y)); if (Y2 + yT * s >= A.t - 1 && Y2 + BASE * s <= A.b + 1) Y = Y2; }
+    if (b.classList.contains("aberta")) { var dx = X + CX * s, dy = Y + CY * s, z = Math.max(1, Math.min(1.12, (dy - A.t) / ((CY - TOPO_P) * s), dy / ((CY - 220) * s), (vh - dy) / ((669 - CY) * s), dx / (184 * s), (vw - dx) / (184 * s))); s *= z; X = dx - CX * s; Y = dy - CY * s; W = 1672 * s; H = 941 * s; }
+    // no telemóvel ao alto, a faixa do título desce até à porta: o letreiro pintado nunca aparece cortado
+    $("titulo-m").style.height = alto ? Math.max(0, Y + TOPO_P * s + 10).toFixed(0) + "px" : "";
+    var gl = X > 0, gr = X + W < vw, gt = Y > 0, gb = Y + H < vh;
+    cen.classList.toggle("solto", gl || gr || gt || gb); cen.classList.toggle("anda", !primeira);
+    cen.style.setProperty("--ml", gl ? "9%" : "0%"); cen.style.setProperty("--mr", gr ? "9%" : "0%"); cen.style.setProperty("--mt", gt ? "12%" : "0%"); cen.style.setProperty("--mb", gb ? "16%" : "0%");
+    cen.style.setProperty("--X", X.toFixed(2) + "px"); cen.style.setProperty("--Y", Y.toFixed(2) + "px"); cen.style.setProperty("--Z", s.toFixed(5));
+    // a letra da placa nunca desce abaixo do legível, a qualquer escala
+    cen.style.setProperty("--fb", Math.max(16, 17 / s / 1.672).toFixed(2)); cen.style.setProperty("--ft", Math.max(11, 13.5 / s / 1.672).toFixed(2));
+    primeira = false;
+  }
+  addEventListener("resize", pedeEnquadrar); addEventListener("orientationchange", function () { setTimeout(pedeEnquadrar, 250); });
+  if (window.ResizeObserver) { var ro = new ResizeObserver(pedeEnquadrar); ["entrada", "espera", "fim"].forEach(function (i) { ro.observe($(i)); }); }
   function post(u, d) { d = d || {}; d.c = c; if (m) d.m = m; return fetch("/api/consultorio/" + u, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d), keepalive: true }).then(function (r) { return r.json().then(function (j) { j._s = r.status; return j; }); }); }
 
   // ---------- onde está a pessoa: dentro do WhatsApp/Facebook o microfone pode não funcionar ----------
@@ -470,10 +506,10 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     var b = document.body, calmo = depressa || matchMedia("(prefers-reduced-motion: reduce)").matches;
     mostra("espera", false); if (!calmo) sinal("abre");
     if (document.hidden) document.title = "🔔 O Mestre Alberto está pronto";
-    if (calmo) { b.classList.add("virada-saiu", "aberta", "cosmos-pulsa"); abrirChat(true); return; }
+    if (calmo) { b.classList.add("virada-saiu", "aberta", "cosmos-pulsa"); pedeEnquadrar(); abrirChat(true); return; }
     b.classList.add("virada");                                          // a placa vira para «Pode entrar»
     setTimeout(function () { b.classList.add("virada-saiu"); }, 1500);  // e sai
-    setTimeout(function () { b.classList.add("aberta"); }, 1900);       // as folhas abrem-se e a luz entra
+    setTimeout(function () { b.classList.add("aberta"); pedeEnquadrar(); }, 1900);       // as folhas abrem-se e a luz entra
     setTimeout(function () { b.classList.add("cosmos-pulsa"); abrirChat(false); }, 3900);   // e a conversa cresce de dentro da porta
   }
   function abrirChat(jaGrande) {
@@ -489,7 +525,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     if (musG) { var a = musG; nivel = 0; aplicarVol(2); setTimeout(function () { try { a.disconnect(); } catch (e) {} }, 2600); musG = null; }
     mostra("espera", false); mostra("entrada", false); $("chat").classList.remove("grande-ja");
     setTimeout(function () { mostra("chat", false); }, 700);
-    document.body.classList.remove("aberta", "virada", "virada-saiu", "cosmos-pulsa"); fase("fim");
+    document.body.classList.remove("aberta", "virada", "virada-saiu", "cosmos-pulsa"); fase("fim"); pedeEnquadrar();
     document.title = tituloBase; $("fim-t").textContent = titulo; $("fim-p").textContent = tx; mostra("fim", true);
   }
   // A ligação foi reaberta com a página no ecrã final: volta à sala, de porta fechada. Sem toque não há garantia de som, mas o botão fica lá.
