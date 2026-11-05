@@ -122,6 +122,19 @@ footer a { color: inherit; }
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Porque é que o horóscopo do dia fala tanto da Lua?", "acceptedAnswer": {"@type": "Answer", "text": "Porque a Lua é o astro mais rápido do céu: muda de signo a cada dois dias e meio e faz aspetos novos quase todas as horas. É ela que dá o tom de cada dia, enquanto os planetas lentos marcam tendências de semanas, meses ou anos."}}, {"@type": "Question", "name": "O que são casas solares?", "acceptedAnswer": {"@type": "Answer", "text": "É a forma de ler o horóscopo de signo: o seu signo solar passa a ser a Casa 1, o seguinte a Casa 2, e assim por diante. Quando a Lua passa pelo signo da sua Casa 10, o dia fala de trabalho. No mapa completo, as casas calculam-se pela hora de nascimento."}}, {"@type": "Question", "name": "Quem nasceu na mudança de signo deve ler que horóscopo?", "acceptedAnswer": {"@type": "Answer", "text": "O do signo onde o Sol estava de facto quando nasceu, que só se sabe ao certo calculando o mapa com a hora. Enquanto não tem essa certeza, pode ler os dois e ver com qual se identifica, mas o cálculo resolve a dúvida de vez."}}]}
 </script>
+<style id="hd-1ecra">
+/* 04/11/2026 (ele: «faz o mesmo nas páginas do horóscopo do dia»): o 1.º ecrã — topo compacto, e a escolha do signo
+   e o céu de hoje à vista; a imagem decorativa passa para depois dos signos (só muda a ORDEM; o bloco img-destaque fica intacto) */
+.caixa { display: flex; flex-direction: column; }
+.caixa > .img-destaque { order: 1; }
+.caixa > .cartao ~ * { order: 2; }
+.heroi { display: grid; grid-template-columns: 4.4rem 1fr; gap: .1rem .9rem; align-items: center; text-align: left; padding: .2rem 0 .8rem; }
+.heroi .foto-mestre { width: 4.4rem; height: 4.4rem; grid-row: 1 / span 2; }
+.heroi h1 { font-size: clamp(1.6rem, 7vw, 2.4rem); margin: 0; line-height: 1.1; }
+.heroi .sub { grid-column: 1 / -1; font-size: .92rem; margin: .5rem 0 .3rem; }
+.heroi .fuso { grid-column: 1 / -1; justify-self: start; }
+.atalhos { order: -1; }
+</style>
 <script type="application/ld+json" data-img-destaque>{"@context": "https://schema.org", "@type": "ImageObject", "contentUrl": "https://genialtarot.com/horoscopo-do-dia.webp", "url": "https://genialtarot.com/horoscopo-do-dia.webp", "name": "Horóscopo do dia", "caption": "O horóscopo do dia dos 12 signos, com a Lua e os aspetos dos planetas de hoje.", "description": "Horóscopo do dia: roda do zodíaco dourada com os 12 signos e o Sol ao centro, bola de cristal e livro de astrologia aberto ao pôr do sol", "width": 1200, "height": 800, "creator": {"@type": "Organization", "name": "Genial Tarot"}, "copyrightHolder": {"@type": "Organization", "name": "Genial Tarot"}, "creditText": "Genial Tarot · Mestre Alberto", "copyrightNotice": "© Genial Tarot", "representativeOfPage": true}</script>
 </head>
 <body>
