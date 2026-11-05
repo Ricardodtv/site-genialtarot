@@ -57,7 +57,11 @@ def _hist(f, linha, nasc=""):
     t = io.open(f, encoding="utf-8", errors="replace").read()
     if linha in t: return
     r = "# 🎯 Histórico de Consultas\n"
-    t = t.replace(r + "\n", r + "\n" + linha + "\n", 1) if r + "\n" in t else t.rstrip() + "\n\n" + r + "\n" + linha + "\n"
+    if r in t:   # a mais nova vai no FIM da secção: medido em 44 fichas e confirmado por ele
+        i = t.index(r) + len(r); m = re.search(r"(?m)^# ", t[i:]); fim = i + m.start() if m else len(t)
+        cheio = t[i:fim].rstrip(); resto = t[i:fim][len(cheio):] or "\n"
+        t = t[:i] + (cheio + "\n" + linha + resto if cheio else linha + "\n" + resto) + t[fim:]
+    else: t = t.rstrip() + "\n\n" + r + "\n" + linha + "\n"
     if nasc: t = re.sub(r"(?m)^Data Nascimento:[ \t]*$", "Data Nascimento: " + nasc, t, count=1)
     io.open(f, "w", encoding="utf-8").write(t)
 def _ficha(cod, nome, nasc, agora):
