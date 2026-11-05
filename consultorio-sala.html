@@ -307,7 +307,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   var CALMA_APOS_MS = 60000;
   var ESCONDIDA_MS = 30000;  // separador em segundo plano
   // A música calibra-se contra a regra dele: ambient.mp3 (−14,2 dB) a volume 0,01 = −54 dBFS. Mudar só este número.
-  var VOL_MUSICA = 0.0113;   // ganho final da música; dá os −54 dBFS, medido com OfflineAudioContext a 05/11
+  var VOL_MUSICA = 0.08;   // ele pediu mais presente (05/11): 0.0113 dava −54 dBFS; isto sobe cerca de 17 dB. Nunca no máximo.
   var FRASES = ["Respire devagar. Este tempo é seu.", "Pode ir pensando no que quer perguntar.", "Mantenha esta página aberta: a porta abre-se aqui."];
 
   var $ = function (i) { return document.getElementById(i); };
