@@ -55,5 +55,6 @@ for slug, pt, br in S:
     s = s[:j] + "\n" + caixa + s[j:]
     s = s.replace("<footer>", hub + "<footer>", 1) if "<footer>" in s else s
     s = s.replace("</body>", '<script src="/lista-signo.js" defer></script>\n</body>', 1)
+    if "data-facil.js" not in s: s = s.replace("</body>", '<script src="/data-facil.js" defer></script>\n</body>', 1)
     open(f, "w", encoding="utf-8").write(s); feitos += 1
 print(f"ecossistema: {feitos} páginas de signo actualizadas")
