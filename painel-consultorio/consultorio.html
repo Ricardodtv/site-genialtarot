@@ -46,9 +46,9 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
 #falta { font-size: 22px; font-weight: 700; color: var(--ouro); font-variant-numeric: tabular-nums; margin-top: 8px; }
 #sala { display: none; width: 100%; height: 78vh; min-height: 480px; margin-top: 10px; border: 0; border-radius: 12px; background: #120a1e; }
 body.seguro #sala.on { display: block; } body.seguro.com-sala #micro, body.seguro.com-sala #c-ch, body.seguro.com-sala #msgs, body.seguro.com-sala #esc, body.seguro.com-sala #fmsg, body.seguro.com-sala .so-http { display: none !important; }
-#seguro { margin-left: 10px; font-size: 13px; color: var(--ouro); } body.seguro #seguro { display: none; }
+#seguro { margin-left: 10px; padding: 7px 12px; border-radius: 9px; background: var(--ouro); color: #2b1147; font-size: 14px; font-weight: 700; text-decoration: none; } body.seguro #seguro { display: none; }
 </style></head><body>
-<header><h1>🚪 Consultório Virtual</h1><span id="res" class="vazio"></span><span id="erro"></span><a id="seguro" href="https://cerebro.tail5ae53.ts.net:8443/consultorio.html" target="_blank" rel="noopener">🔒 Abrir painel com microfone e câmara</a></header>
+<header><h1>🚪 Consultório Virtual</h1><span id="res" class="vazio"></span><span id="erro"></span><a id="seguro" href="https://cerebro.tail5ae53.ts.net:8443/consultorio.html" target="_blank" rel="noopener">🎙️ Abrir com microfone e câmara</a></header>
 <main>
 <div>
   <div class="caixa"><h2>Nova ligação</h2>
@@ -141,6 +141,7 @@ function pinta() {
   $("micro").href = x.link + "#m=" + x.mtoken; $("micro").style.display = ["fechado", "expirado"].indexOf(x.estado) < 0 ? "" : "none";
   $("fmsg").style.display = x.estado === "conversa" ? "" : "none";
   $("ficheiro").disabled = x.estado !== "conversa";
+  $("seguro").href = "https://cerebro.tail5ae53.ts.net:8443/consultorio.html?c=" + sel;   // entra-se sempre pelo HA, e abre já esta conversa
   // 06/11 (ele): no endereço https a conversa é a própria sala, com microfone, câmara, chamadas e cartas. Dentro do HA, que é http, o navegador não o deixa.
   if (SEG) {
     var vs = ["espera", "conversa"].indexOf(x.estado) >= 0, sa = $("sala"), u = vs ? x.link + "#m=" + x.mtoken : "";
@@ -247,6 +248,6 @@ $("ficheiro").onchange = function () {
   au.onerror = function () { manda(0); };
 };
 document.addEventListener("visibilitychange", function () { if (!document.hidden) { lista(); conversa(); } });
-lista();
+sel = new URLSearchParams(location.search).get("c") || null; if (sel) { lista(); conversa(); } else lista();
 </script>
 </body></html>

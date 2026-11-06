@@ -2052,6 +2052,17 @@ export class Consultorio extends DurableObject {
     const de = mestre ? "mestre" : "pessoa";
     const viva = r.estado === "conversa";
 
+    // 06/11 (ele): servidor intermédio da Cloudflare, para as redes que bloqueiam a ligação directa. A credencial dura 4 horas e sai daqui,
+    // para a chave nunca chegar ao navegador. Sem chave, as chamadas seguem como antes, só com ligação directa.
+    if (p === "ice" && request.method === "GET") {
+      if (!viva || !this.env.TURN_ID || !this.env.TURN_KEY) return J({ ok: false });
+      const t = await fetch("https://rtc.live.cloudflare.com/v1/turn/keys/" + this.env.TURN_ID + "/credentials/generate-ice-servers", { method: "POST",
+        headers: { Authorization: "Bearer " + this.env.TURN_KEY, "Content-Type": "application/json" }, body: JSON.stringify({ ttl: 14400 }) }).catch(() => null);
+      if (!t || !t.ok) return J({ ok: false });
+      const j = await t.json().catch(() => ({}));
+      return J({ ok: !!j.iceServers, iceServers: j.iceServers });
+    }
+
     // ---------- dos dois lados ----------
     if (p === "estado" && request.method === "GET") {
       (mestre ? this.vistoM : this.visto).set(c, agora);

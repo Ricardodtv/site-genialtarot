@@ -686,13 +686,22 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     w.onmessage = function (e) { if (e.data === "1") { if (aPerguntar) repete = true; else proxima(0); } };
     w.onclose = function () { clearInterval(wsPing); if (ws === w) ws = null; if (!parado) { setTimeout(ligaWs, wsEspera); wsEspera = Math.min(wsEspera * 2, 30000); } };
   }
+  var iceEm = 0;
+  function pedeIce() {   // a meia hora de folga da credencial; se falhar, as chamadas seguem só com ligação directa
+    if (Date.now() - iceEm < 3e6) return; iceEm = Date.now();
+    fetch("/api/consultorio/ice?" + Q, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j.ok || !j.iceServers) return;
+      var l = [].concat(j.iceServers).map(function (x) { var u = [].concat(x.urls).filter(function (y) { return !/:53(\?|$)/.test(y); }); return { urls: u, username: x.username, credential: x.credential }; });
+      ICE = { iceServers: l };
+    }).catch(function () { iceEm = 0; });
+  }
   function pergunta() {
     if (aPerguntar || parado) return;
     if (document.hidden && (estado === "fechado" || estado === "expirado")) return;   // volta a perguntar ao regressar à página
     aPerguntar = true;
     fetch("/api/consultorio/estado?" + Q + "&desde=" + desde + "&cv=" + (ch ? ch.cv : 0), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (r) {
       falhas = 0; if (notaRede) nota(""); notaRede = false; trata(r);
-    }).catch(function () { falhas++; if (falhas > 2) { notaRede = true; nota("A ligação falhou. A tentar outra vez…"); } }).then(function () { aPerguntar = false; if (repete) { repete = false; proxima(0); } else proxima(); if (!ws) ligaWs(); });
+    }).catch(function () { falhas++; if (falhas > 2) { notaRede = true; nota("A ligação falhou. A tentar outra vez…"); } }).then(function () { aPerguntar = false; if (repete) { repete = false; proxima(0); } else proxima(); if (!ws) ligaWs(); if (estado === "conversa") pedeIce(); });
   }
   function trata(r) {
     var ant = estado; estado = r.estado; if (r.max_audio_s) maxAudio = r.max_audio_s;
