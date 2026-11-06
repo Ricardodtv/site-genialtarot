@@ -722,6 +722,15 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 @keyframes porta-foto-mexe { from { transform: scale(1.06) translate(0, 0); } to { transform: scale(1.24) translate(var(--dx, -3%), var(--dy, 2%)); } }
 @keyframes porta-foto-luz { 0%, 55% { background-position: 130% 0; } 85%, 100% { background-position: -40% 0; } }
 .porta:hover .porta-foto img, .porta:focus-visible .porta-foto img { filter: brightness(1.12) saturate(1.15); }
+/* 06/11/2026 — regra dele: em todos os cartões, atuais e novos, o rosto fica no centro. cartoes-foco.py mede o rosto e escreve --fx, --fy e --ar;
+   aqui a foto cresce o mínimo para o rosto chegar ao centro sem deixar vazio, e o movimento é só zoom a partir do rosto. */
+.porta-foto.foco { container-type: size; }
+.porta-foto.foco img { --mx: min(var(--fx), calc(1 - var(--fx))); --my: min(var(--fy), calc(1 - var(--fy)));
+  position: absolute; left: 50%; top: 50%; max-width: none; width: auto; aspect-ratio: var(--ar);
+  height: max(100cqh, calc(100cqw / var(--ar)), calc(100cqh / (2 * var(--my))), calc(100cqw / (2 * var(--mx) * var(--ar))));
+  translate: calc(-100% * var(--fx)) calc(-100% * var(--fy)); transform-origin: calc(100% * var(--fx)) calc(100% * var(--fy));
+  animation-name: porta-foto-foco; }
+@keyframes porta-foto-foco { from { transform: scale(1); } to { transform: scale(1.1); } }
 @media (max-width: 859px) { .porta-cabeca:has(> .porta-foto) { flex-wrap: wrap; } .porta-foto { width: 100%; aspect-ratio: 2 / 1; } }
 @media (prefers-reduced-motion: reduce) { .porta-foto img, .porta-foto::after { animation: none; } }
 /* 03/11→04/11/2026 — o cartão do Escolha um Monte: três montinhos do verso GT a flutuar, cada um ao seu ritmo */
@@ -1045,7 +1054,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="/comunidade" class="porta porta-jardim porta-brilho">
         <span class="porta-eti porta-eti-novo">Comunidade</span>
         <div class="porta-cabeca">
-          <span class="porta-visual porta-foto" style="--dx:0%;--dy:-2%;--atraso:-4s"><img src="/comunidade-cartao.webp" alt="O Mestre Alberto rodeado dos doze signos: a comunidade dos grupos" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="porta-visual porta-foto foco" style="--dx:0%;--dy:-2%;--atraso:-4s;--fx:0.511;--fy:0.519;--ar:1.500"><img src="/comunidade-cartao.webp" alt="O Mestre Alberto rodeado dos doze signos: a comunidade dos grupos" width="600" height="400" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <strong>🌸 O nosso jardim de almas</strong>
             <b class="jardim-num"><!--comunidade:total-->263 540<!--/comunidade:total--></b>
@@ -1059,7 +1068,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="/mapa-amor" class="porta porta-amor">
         <span class="porta-eti">Amostra Grátis</span>
         <div class="porta-cabeca">
-          <span class="porta-visual porta-foto" style="--dx:2%;--dy:-2%;--atraso:-7s"><img src="/atracao-amor.jpg" alt="Símbolo da atração e do amor entre duas pessoas" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="porta-visual porta-foto foco" style="--dx:2%;--dy:-2%;--atraso:-7s;--fx:0.500;--fy:0.500;--ar:1.500"><img src="/atracao-amor-cartao.webp" alt="Símbolo da atração e do amor entre duas pessoas" width="485" height="323" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <strong>Mapa do Amor e da Sedução</strong>
             <small>Vénus e Marte no seu mapa: o que o atrai e como seduz.</small>
@@ -1270,7 +1279,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="/os-72-anjos" class="porta porta-astral porta-brilho">
         <span class="porta-eti porta-eti-novo">Novo</span>
         <div class="porta-cabeca">
-          <span class="porta-visual porta-foto" style="--dx:2%;--dy:-2%;--atraso:-3s"><img src="/anjos-cartao.webp" alt="Anjo de asas brancas entre as nuvens, com uma pomba e uma escada de luz" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="porta-visual porta-foto foco" style="--dx:2%;--dy:-2%;--atraso:-3s;--fx:0.556;--fy:0.158;--ar:1.500"><img src="/anjos-cartao.webp" alt="Anjo de asas brancas entre as nuvens, com uma pomba e uma escada de luz" width="600" height="400" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <strong>Os 72 Anjos</strong>
             <small>A lista completa, o anjo de cada signo e um pequeno resumo de cada um. Encontre o seu.</small>
@@ -1283,7 +1292,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="/horoscopo-de-amanha" class="porta porta-astral porta-brilho">
         <span class="porta-eti porta-eti-novo">Todos os dias</span>
         <div class="porta-cabeca">
-          <span class="porta-visual porta-foto" style="--dx:2%;--dy:-2%;--atraso:-11s"><img src="/mestre-diario.jpg" alt="O Mestre Alberto no Horóscopo Diário" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="porta-visual porta-foto foco" style="--dx:2%;--dy:-2%;--atraso:-11s;--fx:0.469;--fy:0.298;--ar:1.000"><img src="/mestre-diario.jpg" alt="O Mestre Alberto no Horóscopo Diário" width="600" height="400" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <strong>Horóscopo de Amanhã</strong>
             <small>Prepare o dia de amanhã: os 12 signos lidos a partir do céu real.</small>
@@ -1295,7 +1304,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="/horoscopo" class="porta porta-astral porta-brilho">
         <span class="porta-eti porta-eti-novo">Em vídeo</span>
         <div class="porta-cabeca">
-          <span class="porta-visual porta-foto" style="--dx:2%;--dy:-2%;--atraso:-2s"><img data-video="zodiac" src="/horoscopo-do-dia-cartao.webp" alt="Capa do vídeo do Horóscopo Diário" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="porta-visual porta-foto foco" style="--dx:2%;--dy:-2%;--atraso:-2s;--fx:0.494;--fy:0.510;--ar:1.500"><img src="/horoscopo-diario-video-cartao.webp" alt="Mestre Alberto a sorrir no Horóscopo Diário em vídeo" width="705" height="470" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <strong>Horóscopo Diário em Vídeo</strong>
             <small>O vídeo do dia com os 12 signos, e salta direto para o seu.</small>
@@ -1307,7 +1316,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a href="/fimdesemana" class="porta porta-astral porta-brilho">
         <span class="porta-eti porta-eti-novo">Em vídeo</span>
         <div class="porta-cabeca">
-          <span class="porta-visual porta-foto" style="--dx:2%;--dy:-2%;--atraso:-2s"><img src="/horoscopo-fds-cartao.webp" alt="Mestre Alberto com as cartas de Tarot" width="600" height="400" loading="lazy" decoding="async"></span>
+          <span class="porta-visual porta-foto foco" style="--dx:2%;--dy:-2%;--atraso:-2s;--fx:0.497;--fy:0.483;--ar:1.499"><img src="/horoscopo-fds-cartao.webp" alt="Mestre Alberto com as cartas de Tarot" width="1000" height="667" loading="lazy" decoding="async"></span>
           <span class="porta-txt">
             <strong>Horóscopo Fim de Semana em Vídeo</strong>
             <small>O vídeo do fim de semana com os 12 signos, e salta direto para o seu.</small>

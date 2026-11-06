@@ -12,10 +12,6 @@
     box.style.gridAutoFlow = L.length ? "dense" : "";
     L.forEach((id, i) => { const s = a.sel && a.sel[id], e = s && document.querySelector(s); if (e) e.style.order = i - L.length; });
   }
-  // Os cartões de vídeo mostram a capa do vídeo mais recente da página respetiva.
-  document.querySelectorAll("img[data-video]").forEach((i) => fetch("/api/" + i.dataset.video).then((r) => r.json()).then((d) => {
-    const v = d && d.data && d.data.videoId; if (v) i.src = "https://i.ytimg.com/vi/" + encodeURIComponent(v) + "/hqdefault.jpg";
-  }).catch(() => {}));
   try { aplica(JSON.parse(localStorage.getItem(K))); } catch (e) {}   // o último plano entra logo, para os cartões não saltarem
   fetch("/api/cartoes-agenda").then((r) => r.ok ? r.json() : null).then((a) => {
     if (!a) return; aplica(a); try { localStorage.setItem(K, JSON.stringify(a)); } catch (e) {}
