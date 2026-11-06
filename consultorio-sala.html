@@ -1098,6 +1098,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   $("ch-nao").onclick = function () { if (!ch) return; chPost("desligar").catch(function () {}); fechaChamada(); proxima(0); };
   $("ch-fim").onclick = function () { if (!ch) return; chPost("desligar").catch(function () {}); fechaChamada(); proxima(0); };
   // 06/11 (ele): esta aba é a grande; o painel, com a lista à esquerda e o chat pequeno, é a mesma conversa. Fechar a aba não fecha a consulta.
+  if (window.top !== window.self) $("minimizar").style.display = "none";   // dentro do painel https já está pequeno
   $("minimizar").onclick = function () {
     if (ch || grav || cartasPrev) return nota("Termine primeiro a chamada, a câmara ou o áudio: ao minimizar, esta aba fecha.");
     window.close(); setTimeout(function () { nota("Feche esta aba: a conversa continua no painel."); }, 300);

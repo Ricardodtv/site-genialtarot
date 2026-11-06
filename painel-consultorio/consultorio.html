@@ -44,8 +44,11 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
 .mins { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 8px 0 0; font-size: 13px; color: var(--apagado); }
 .mins button { padding: 6px 11px; background: rgba(255,255,255,.08); color: var(--texto); } .mins button.sel { background: var(--ouro); color: #2b1147; }
 #falta { font-size: 22px; font-weight: 700; color: var(--ouro); font-variant-numeric: tabular-nums; margin-top: 8px; }
+#sala { display: none; width: 100%; height: 78vh; min-height: 480px; margin-top: 10px; border: 0; border-radius: 12px; background: #120a1e; }
+body.seguro #sala.on { display: block; } body.seguro.com-sala #micro, body.seguro.com-sala #c-ch, body.seguro.com-sala #msgs, body.seguro.com-sala #esc, body.seguro.com-sala #fmsg, body.seguro.com-sala .so-http { display: none !important; }
+#seguro { margin-left: 10px; font-size: 13px; color: var(--ouro); } body.seguro #seguro { display: none; }
 </style></head><body>
-<header><h1>🚪 Consultório Virtual</h1><span id="res" class="vazio"></span><span id="erro"></span></header>
+<header><h1>🚪 Consultório Virtual</h1><span id="res" class="vazio"></span><span id="erro"></span><a id="seguro" href="https://cerebro.tail5ae53.ts.net:8443/consultorio.html" target="_blank" rel="noopener">🔒 Abrir painel com microfone e câmara</a></header>
 <main>
 <div>
   <div class="caixa"><h2>Nova ligação</h2>
@@ -64,15 +67,17 @@ button, a.bt { border: 0; border-radius: 10px; padding: 9px 13px; cursor: pointe
     <div class="acoes"><button class="b-verde" id="atender" hidden>🚪 Atender: abrir as portas</button><a class="bt b-ouro" id="micro" target="_blank" rel="noopener">📞 Ligar, videochamada e microfone</a><button class="b-q" id="cop2">Copiar ligação</button><button class="b-sair" id="fechar" hidden>Fechar conversa</button><button class="b-ouro" id="reabrir" hidden>🔓 Reabrir</button></div>
     <div id="falta" hidden></div><div class="mins" id="m-conv" hidden></div>
     <div class="nota" id="n-fecha" hidden>Ao fechares, a linha entra no Histórico da ficha escolhida em baixo. Sem ficha escolhida, não se escreve nada.</div>
+    <iframe id="sala" title="Conversa" allow="microphone; camera; autoplay; fullscreen; clipboard-write"></iframe>
     <div id="msgs"></div><div class="escreve" id="esc"></div>
     <form id="fmsg"><textarea id="txt" placeholder="Escreve aqui…" maxlength="2000"></textarea><button class="b-verde">Enviar</button></form>
-    <div class="acoes"><label class="bt b-q" for="ficheiro">🎙️ Enviar ficheiro de áudio</label><input id="ficheiro" type="file" accept="audio/*" capture hidden><label class="bt b-q" for="anexo">📎 Enviar foto ou PDF</label><input id="anexo" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" hidden></div>
+    <div class="acoes so-http"><label class="bt b-q" for="ficheiro">🎙️ Enviar ficheiro de áudio</label><input id="ficheiro" type="file" accept="audio/*" capture hidden><label class="bt b-q" for="anexo">📎 Enviar foto ou PDF</label><input id="anexo" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" hidden></div>
     <div id="previa" hidden></div>
-    <div class="nota">Aqui, no HA, não há microfone: o painel é http. Para gravar ou para ligar (só voz ou vídeo), usa «Ligar, videochamada e microfone»: abre a mesma conversa na página segura, com os botões no topo. O ficheiro de áudio aceita até 3 MB e 90 segundos.</div>
+    <div class="nota so-http">Aqui, no HA, não há microfone: o painel é http. Para gravar ou para ligar (só voz ou vídeo), usa «Ligar, videochamada e microfone»: abre a mesma conversa na página segura, com os botões no topo. O ficheiro de áudio aceita até 3 MB e 90 segundos.</div>
   </div>
 </div>
 </main>
 <script>
+var SEG = location.protocol === "https:"; if (SEG) document.body.classList.add("seguro");
 var $ = function (i) { return document.getElementById(i); }, sel = null, dados = [], desde = 0, tC = 0, tL = 0, avisados = {}, somCtx = null;
 var API = "/api/consultorio/", MINUTOS = [2, 5, 10, 15, 30], MIN_DEF = 5, minNovo = MIN_DEF, difRel = 0;
 function botoesMin(el, rot, sel) { el.innerHTML = rot + MINUTOS.map(function (m) { return '<button type="button" data-m="' + m + '"' + (m === sel ? ' class="sel"' : "") + ">" + m + " min</button>"; }).join(""); }
@@ -136,6 +141,12 @@ function pinta() {
   $("micro").href = x.link + "#m=" + x.mtoken; $("micro").style.display = ["fechado", "expirado"].indexOf(x.estado) < 0 ? "" : "none";
   $("fmsg").style.display = x.estado === "conversa" ? "" : "none";
   $("ficheiro").disabled = x.estado !== "conversa";
+  // 06/11 (ele): no endereço https a conversa é a própria sala, com microfone, câmara, chamadas e cartas. Dentro do HA, que é http, o navegador não o deixa.
+  if (SEG) {
+    var vs = ["espera", "conversa"].indexOf(x.estado) >= 0, sa = $("sala"), u = vs ? x.link + "#m=" + x.mtoken : "";
+    document.body.classList.toggle("com-sala", vs); sa.classList.toggle("on", vs);
+    if (sa.dataset.u !== u) { sa.dataset.u = u; sa.src = u || "about:blank"; }
+  }
 }
 $("lista").onclick = function (e) {
   var r = e.target.closest(".reabre"); if (r) return reabre(r.dataset.r);
@@ -184,7 +195,7 @@ function conversa() {
       else if (m.tipo === "anexo") {
         var u = API + "anexo?c=" + sel + "&id=" + m.id;
         d.innerHTML = (m.mime.indexOf("image/") === 0 ? '<a href="' + u + '" target="_blank" rel="noopener"><img alt="Foto" src="' + u + '"></a>' : '<a href="' + u + '">📄 ' + esc(m.texto) + "</a>") + "<time>" + hora(m.quando) + "</time>";
-      } else if (m.tipo === "audio") { d.innerHTML = '<audio controls preload="none"></audio><time>' + hora(m.quando) + " · " + Math.round(m.dur) + " s</time>"; carregaAudio(d.querySelector("audio"), m.id); }
+      } else if (m.tipo === "audio") { d.innerHTML = '<audio controls preload="none"></audio><time>' + hora(m.quando) + " · " + Math.round(m.dur) + " s</time>"; if (!SEG) carregaAudio(d.querySelector("audio"), m.id); }
       else d.innerHTML = esc(m.texto) + "<time>" + hora(m.quando) + "</time>";
       $("msgs").appendChild(d); $("msgs").scrollTop = 1e6;
     });
