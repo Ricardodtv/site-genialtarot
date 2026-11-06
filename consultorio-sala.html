@@ -219,7 +219,7 @@ input[hidden] { display: none; }
 body.mestre #cartas-bt { display: flex; } #cartas.grande #cartas-bt { position: absolute; left: 0; right: 0; bottom: 0; }
 #cartas-cam { flex: 1 1 170px; min-width: 0; min-height: 40px; padding: 0 8px; border-radius: 9px; border: 1px solid var(--borda); background: #1b1028; color: #fff; font: inherit; font-size: 14px; }
 #cartas-bt button { min-height: 40px; padding: 0 14px; border-radius: 9px; border: 1px solid var(--borda); background: rgba(255,255,255,.08); color: #fff; font: inherit; font-size: 14px; cursor: pointer; }
-#cartas-ok { background: #f5b95f !important; color: #241433 !important; font-weight: 700; }
+#cartas-ok, #cartas-foto { background: #f5b95f !important; color: #241433 !important; font-weight: 700; }
 #ch-volta { flex: 0 0 auto; display: none; align-items: center; gap: 8px; flex-wrap: wrap; padding: 8px 14px; background: rgba(37,211,102,.12); border-bottom: 1px solid rgba(37,211,102,.35); font-size: 14px; } #ch-volta.on { display: flex; }
 #ch-volta span { flex: 1; min-width: 150px; } #ch-volta button { padding: 7px 12px; border: 0; border-radius: 10px; font-weight: 700; background: var(--verde); color: #08331a; } #ch-volta button + button { background: rgba(255,255,255,.1); color: var(--texto); }
 #toca { z-index: 9; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(440px, calc(100vw - 28px)); max-height: calc(100svh - 20px); overflow-y: auto; padding: 24px 22px 20px; text-align: center; }
@@ -368,12 +368,13 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     <button class="ch-lig" id="lig-disp" type="button" aria-label="Escolher câmara e microfone" title="Câmara e microfone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2.2"/><circle cx="8" cy="17" r="2.2"/></svg></button>
     <button class="ch-lig" id="lig-video" type="button" aria-label="Videochamada" title="Videochamada"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M17.5 10.5 22 7.5v9l-4.5-3z"/></svg></button>
     <button class="ch-lig" id="lig-cartas" type="button" aria-label="Mostrar as cartas" title="Mostrar as cartas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="9" y="4" width="11" height="16" rx="2" transform="rotate(10 14 12)"/><path d="M8 5.5 5.2 6A2 2 0 0 0 3.6 8.3l1.9 10.9"/></svg></button>
+    <button class="ch-lig" id="lig-foto" type="button" aria-label="Tirar foto às cartas" title="Tirar foto às cartas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 8h3l1.6-2.4h6.8L17 8h3a1.5 1.5 0 0 1 1.5 1.5v8A1.5 1.5 0 0 1 20 19H4a1.5 1.5 0 0 1-1.5-1.5v-8A1.5 1.5 0 0 1 4 8z"/><circle cx="12" cy="13" r="3.6"/></svg></button>
     <button class="ch-lig" id="minimizar" type="button" aria-label="Minimizar: voltar ao painel" title="Minimizar: voltar ao painel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 18h14"/></svg></button>
     <button class="terminar" id="terminar" type="button" aria-label="Fechar esta consulta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span class="l">Fechar esta consulta</span><span class="c">Fechar</span></button>
   </header>
   <div id="ch-volta"><span id="ch-volta-t">A chamada continua.</span><button type="button" id="ch-voltar">Voltar à chamada</button><button type="button" id="ch-largar">Terminar</button></div>
   <div id="cartas" aria-label="Cartas em direto"><video id="cartas-v" autoplay playsinline muted></video><div id="cartas-t"></div><button type="button" id="cartas-amp">Ampliar</button>
-    <div id="cartas-bt"><select id="cartas-cam" aria-label="Câmara das cartas"></select><button type="button" id="cartas-ok">Mostrar à pessoa</button><button type="button" id="cartas-sair">Cancelar</button></div></div>
+    <div id="cartas-bt"><select id="cartas-cam" aria-label="Câmara das cartas"></select><button type="button" id="cartas-foto">📷 Tirar foto e enviar</button><button type="button" id="cartas-ok">Mostrar à pessoa</button><button type="button" id="cartas-sair">Cancelar</button></div></div>
   <div id="msgs" role="log" aria-live="polite"><div class="esc" id="esc"><i></i><i></i><i></i></div></div>
   <div id="nota"></div>
   <div id="previa"></div>
@@ -802,6 +803,10 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
       im.src = u;
     });
   }
+  function enviaAnexo(blob, nome, feito) {
+    var a = { blob: blob, nome: nome }; nota("A enviar…");
+      fetch("/api/consultorio/anexo?" + Q + "&nome=" + encodeURIComponent(a.nome), { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: a.blob }).then(function (r) { return r.json().then(function (j) { if (!j.ok) throw j; nota(""); if (feito) feito(); ultimaAct = Date.now(); proxima(0); }); }).catch(function (e) { nota(e && e.erro === "muitos" ? "Chegou ao limite de ficheiros nesta conversa." : e && e.erro === "formato" ? "Só se aceitam fotos JPG, PNG ou WebP e PDF." : e && e.erro === "grande" ? "O ficheiro passa de 3 MB." : "O ficheiro não seguiu. Confirme a ligação à internet e tente outra vez."); });
+  }
   function previa(blob, nome, foto) {
     var p = $("previa"), u = foto ? URL.createObjectURL(blob) : ""; aEnviar = { blob: blob, nome: nome };
     p.innerHTML = (foto ? '<img alt="Foto a enviar" src="' + u + '" />' : '<span class="ico">PDF</span>') + '<span class="tx">' + esc(nome) + "<small>" + tamanho(blob.size) + '</small></span><button type="button" class="q" id="pv-nao">Cancelar</button><button type="button" id="pv-sim">Enviar</button>';
@@ -809,8 +814,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     var fim = function () { p.classList.remove("on"); p.innerHTML = ""; aEnviar = null; if (u) URL.revokeObjectURL(u); };
     $("pv-nao").onclick = fim;
     $("pv-sim").onclick = function () {
-      var a = aEnviar; fim(); nota("A enviar…");
-      fetch("/api/consultorio/anexo?" + Q + "&nome=" + encodeURIComponent(a.nome), { method: "POST", headers: { "Content-Type": "application/octet-stream" }, body: a.blob }).then(function (r) { return r.json().then(function (j) { if (!j.ok) throw j; nota(""); ultimaAct = Date.now(); proxima(0); }); }).catch(function (e) { nota(e && e.erro === "muitos" ? "Chegou ao limite de ficheiros nesta conversa." : e && e.erro === "formato" ? "Só se aceitam fotos JPG, PNG ou WebP e PDF." : e && e.erro === "grande" ? "O ficheiro passa de 3 MB." : "O ficheiro não seguiu. Confirme a ligação à internet e tente outra vez."); });
+      var a = aEnviar; fim(); enviaAnexo(a.blob, a.nome);
     };
   }
   $("clipe").onclick = function () { if (!grav) $("ficheiro").click(); };
@@ -961,7 +965,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   // ---------- mostrar as cartas (06/11, ordem dele) ----------
   // Usa a mesma ligação das chamadas, mas a imagem só vai do Mestre para a pessoa: não toca, não se atende, à pessoa não se pede câmara nem microfone,
   // e o chat e os áudios continuam. O Mestre vê primeiro a sua câmara, escolhe-a e só depois a mostra. Nada é gravado.
-  var cartasPrev = null;
+  var cartasPrev = null, soFoto = false;
   function pedeCartas(id) {
     var v = { width: { ideal: 1920 }, height: { ideal: 1080 } }; if (id) v.deviceId = { exact: id };
     return navigator.mediaDevices.getUserMedia({ audio: false, video: v }).catch(function (e) { if (id && e && (e.name === "OverconstrainedError" || e.name === "NotFoundError")) return pedeCartas(""); throw e; })
@@ -971,8 +975,8 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   function fechaCartas() { largaPrev(); var c = $("cartas"), v = $("cartas-v"); c.classList.remove("on", "grande"); v.srcObject = null; $("cartas-amp").textContent = "Ampliar"; }
   function painelCartas(fase) {   // fase: "ver" (só ele vê), "liga" ou "direto"
     var ao = fase === "direto" || (ch && ch.fase === "ativa");
-    $("cartas").classList.add("on"); $("cartas-ok").style.display = fase === "ver" ? "" : "none"; $("cartas-sair").textContent = fase === "ver" ? "Cancelar" : "Parar de mostrar";
-    $("cartas-t").textContent = mestre ? (fase === "ver" ? "Só você vê esta imagem. Escolha a câmara e carregue em Mostrar." : ao ? "A pessoa está a ver as cartas." : "A ligar à pessoa…") : (ao ? "O Mestre Alberto está a mostrar as cartas." : "O Mestre Alberto vai mostrar as cartas…");
+    $("cartas").classList.add("on"); $("cartas-ok").style.display = fase === "ver" && !soFoto ? "" : "none"; $("cartas-sair").textContent = fase === "ver" ? "Fechar a câmara" : "Parar de mostrar";
+    $("cartas-t").textContent = mestre ? (fase === "ver" ? (soFoto ? "Só você vê esta imagem. Aponte às cartas e tire a foto." : "Só você vê esta imagem. Escolha a câmara e carregue em Mostrar.") : ao ? "A pessoa está a ver as cartas." : "A ligar à pessoa…") : (ao ? "O Mestre Alberto está a mostrar as cartas." : "O Mestre Alberto vai mostrar as cartas…");
     if (mestre) $("cartas-v").srcObject = cartasPrev || (ch && ch.local) || null;
     setTimeout(rolar, 60);
   }
@@ -982,14 +986,30 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
       $("cartas-cam").innerHTML = l.filter(function (d) { return d.kind === "videoinput" && d.deviceId !== "default"; }).map(function (d, i) { return '<option value="' + esc(d.deviceId) + '"' + (d.deviceId === id ? " selected" : "") + ">" + esc(d.label || "Câmara " + (i + 1)) + "</option>"; }).join("");
     }).catch(function () {});
   }
-  $("lig-cartas").onclick = function () {
-    if (ch && ch.modo === "cartas") return $("cartas-sair").onclick();
-    if (ch) return nota("Termine a chamada antes de mostrar as cartas.");
-    if (cartasPrev) return;
-    if (!window.RTCPeerConnection || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return nota("Este navegador não consegue mostrar a câmara.");
-    nota(""); this.disabled = true; var b = this;
+  function abreCam(b, foto) {
+    if (ch && ch.modo === "cartas") return foto ? undefined : $("cartas-sair").onclick();
+    if (ch) return nota("Termine a chamada antes de usar a câmara das cartas.");
+    soFoto = foto;
+    if (cartasPrev) return painelCartas("ver");
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return nota("Este navegador não consegue abrir a câmara.");
+    if (!foto && !window.RTCPeerConnection) return nota("Este navegador não consegue mostrar a câmara em direto.");
+    nota(""); b.disabled = true;
     pedeCartas(guardado("gt_cam_cartas")).then(function (s) { b.disabled = false; cartasPrev = s; painelCartas("ver"); encheCartas(); })
       .catch(function (e) { b.disabled = false; nota(explica(e, "video")); });
+  }
+  $("lig-cartas").onclick = function () { abreCam(this, false); };
+  $("lig-foto").onclick = function () { abreCam(this, true); };
+  // 06/11 (ele): a foto vai como qualquer anexo, pelo servidor, por isso funciona mesmo nas redes que bloqueiam a imagem em direto
+  $("cartas-foto").onclick = function () {
+    var v = $("cartas-v"), b = this, w = v.videoWidth, h = v.videoHeight; if (!w || !h) return nota("A câmara ainda não está pronta.");
+    var z = Math.min(1, FOTO_LADO / Math.max(w, h)), c = document.createElement("canvas"); c.width = Math.round(w * z); c.height = Math.round(h * z); c.getContext("2d").drawImage(v, 0, 0, c.width, c.height);
+    b.disabled = true;
+    c.toBlob(function (bl) {
+      var t = $("cartas-t"), d = t.textContent, volta = function () { b.disabled = false; };
+      if (!bl) { volta(); return nota("Não foi possível tirar a foto."); }
+      enviaAnexo(bl, "cartas-" + new Date().toTimeString().slice(0, 5).replace(":", "h") + ".jpg", function () { t.textContent = "Foto enviada."; setTimeout(function () { if (t.textContent === "Foto enviada.") t.textContent = d; }, 2000); });
+      setTimeout(volta, 1200);
+    }, "image/jpeg", .9);
   };
   $("cartas-cam").onchange = function () {
     var id = this.value; guarda("gt_cam_cartas", id);
