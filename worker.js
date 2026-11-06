@@ -1982,7 +1982,9 @@ export class Consultorio extends DurableObject {
   }
   fimChamada(c, ch, motivo, agora) {
     const nome = ch.modo === "video" ? "Videochamada" : "Chamada de voz", dur = ch.ligada ? Math.round((agora - ch.ligada) / 1000) : 0;
-    const t = { terminada: nome + " terminada", recusada: nome + " recusada", perdida: nome + " sem resposta", cancelada: nome + " cancelada", falhou: nome + ": não foi possível ligar" }[motivo];
+    const t = (ch.modo === "cartas"   // 06/11 (ele): câmara só do Mestre, para mostrar as cartas; nada da pessoa é pedido e a imagem não é gravada
+      ? { terminada: "Cartas mostradas", recusada: "Cartas não mostradas", perdida: "Cartas não mostradas", cancelada: "Cartas não mostradas", falhou: "Cartas: não foi possível ligar" }
+      : { terminada: nome + " terminada", recusada: nome + " recusada", perdida: nome + " sem resposta", cancelada: nome + " cancelada", falhou: nome + ": não foi possível ligar" })[motivo];
     this.sql.exec("DELETE FROM chamadas WHERE codigo=?", c);
     this.novaMsg(c, agora, "sistema", "chamada", dur ? t + " · " + Math.floor(dur / 60) + ":" + String(dur % 60).padStart(2, "0") : t, motivo, dur);   // mime leva o motivo
     return null;
@@ -2133,7 +2135,7 @@ export class Consultorio extends DurableObject {
       if (a === "ligar") {
         if (!mestre) return J({ ok: false }, 403);
         if (ch) return J({ ok: false, erro: "ocupado", id: ch.id }, 409);
-        if (!["voz", "video"].includes(d.modo) || !sdp) return J({ ok: false }, 400);
+        if (!["voz", "video", "cartas"].includes(d.modo) || !sdp) return J({ ok: false }, 400);
         this.sql.exec("INSERT INTO chamadas (codigo, id, modo, estado, criada, oferta) VALUES (?,?,?,'toca',?,?)", c, agora, d.modo, agora, sdp);
         return J({ ok: true, id: agora, ver: 1 });
       }
