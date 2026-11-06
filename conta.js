@@ -50,6 +50,8 @@
       "#gtc-dlg{box-sizing:border-box;width:min(430px,calc(100vw - 24px));max-height:calc(100dvh - 24px);margin:auto;padding:1.5rem 1.35rem 1.3rem;overflow:auto;background:#1d0d36;color:#f7f0fb;border:1px solid rgba(242,201,107,.45);border-radius:20px;box-shadow:0 18px 60px rgba(0,0,0,.65);font:16px/1.5 Inter,system-ui,-apple-system,'Segoe UI',sans-serif}" +
       "#gtc-dlg::backdrop{background:rgba(10,3,20,.72)}#gtc-dlg h2{margin:0 2rem .35rem 0;color:#f2c96b;font:700 1.45rem/1.2 Cinzel,Georgia,serif;letter-spacing:0}#gtc-dlg p{margin:.4rem 0;color:#e5d8f2;font-size:.95rem}" +
       "#gtc-dlg .gtc-x{position:absolute;top:.7rem;right:.7rem;width:36px;height:36px;padding:0;border:0;border-radius:50%;background:none;color:#cdb8e6;font-size:22px;line-height:1;cursor:pointer}#gtc-dlg .gtc-x:hover{background:rgba(255,255,255,.1)}" +
+      "#gtc-dlg .gtc-conv{display:block;margin:.3rem 0 0;font-size:.8rem;line-height:1.3;font-weight:600;color:#ffd978}#gtc-dlg input.gtc-falta{border-color:#ffd978;animation:gtcPulsa 1.8s ease-out infinite}@keyframes gtcPulsa{0%{box-shadow:0 0 0 0 rgba(255,217,120,.6)}80%,100%{box-shadow:0 0 0 8px rgba(255,217,120,0)}}" +
+      "#gtc-dlg .gtc-seta{flex:none;width:1.6em;height:1.4em;margin:.05em .15em 0 0;animation:gtcSeta .9s ease-in-out infinite;filter:drop-shadow(0 0 5px rgba(255,215,120,.95))}@keyframes gtcSeta{0%,100%{opacity:1;transform:translateX(0)}50%{opacity:.25;transform:translateX(4px)}}@media (prefers-reduced-motion:reduce){#gtc-dlg .gtc-seta,#gtc-dlg input.gtc-falta{animation:none}}" +
       "#gtc-dlg label.gtc-c{display:block;margin:.8rem 0 0;color:#f6efff;font-size:.9rem;font-weight:600}#gtc-dlg label.gtc-c small{font-weight:400;color:#cdb8e6}" +
       "#gtc-dlg input.gtc-i{display:block;box-sizing:border-box;width:100%;height:auto;margin:.3rem 0 0;padding:.7rem .8rem;border:1px solid rgba(242,201,107,.4);border-radius:11px;background:#140826;color:#f7f0fb;font:16px/1.3 Inter,system-ui,sans-serif}#gtc-dlg input.gtc-i::placeholder{color:#9d8cb3;opacity:1}#gtc-dlg input.gtc-i:focus{outline:2px solid #f2c96b;outline-offset:1px}" +
       "#gtc-dlg .gtc-ok{display:block;box-sizing:border-box;width:100%;margin:1rem 0 0;padding:.8rem 1rem;border:0;border-radius:12px;background:linear-gradient(135deg,#ffe49a,#f0b440);color:#2a1300;font:800 16px/1.2 Inter,system-ui,sans-serif;cursor:pointer}#gtc-dlg .gtc-ok:disabled{opacity:.6;cursor:wait}" +
@@ -223,7 +225,20 @@
       versao = c.consent.versao;
       d.querySelector("#gtc-mz").innerHTML = '<label class="gtc-mkt"><input type="checkbox" name="mkt"><span></span></label>';
       d.querySelector("#gtc-mz span").textContent = c.consent.texto;
+      // setinha a piscar até a pessoa marcar a caixa; a caixa nunca vem marcada
+      var cx = d.querySelector('#gtc-mz input'), seta = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      seta.setAttribute("class", "gtc-seta"); seta.setAttribute("viewBox", "0 0 34 30"); seta.setAttribute("aria-hidden", "true");
+      seta.innerHTML = '<path d="M1 10h17V1l15 14-15 14v-9H1z" fill="#ffd978" stroke="#7a4b00" stroke-width="1.5" stroke-linejoin="round"/>';
+      cx.parentNode.insertBefore(seta, cx); cx.addEventListener("change", function () { seta.style.display = cx.checked ? "none" : ""; });
     });
+    // 06/11/2026 (ele): a mesma regra dos formulários. O exemplo fica 30 segundos, depois o campo fica vazio, a pulsar, com o convite a escrever.
+    var CONV = [[f.nasc, "Escreva aqui a sua data de nascimento"], [f.hora, "Escreva aqui a hora em que nasceu"], [f.local, "Escreva aqui a cidade onde nasceu"]].map(function (x) {
+      var n = document.createElement("span"); n.className = "gtc-conv"; n.textContent = "✍️ " + x[1]; x[0].parentNode.insertBefore(n, x[0].nextSibling); return { el: x[0], n: n };
+    }), acabou = false;
+    function convites() { CONV.forEach(function (c) { var v = !c.el.value.trim(); c.n.style.display = v ? "" : "none"; c.el.classList.toggle("gtc-falta", v && acabou); }); }
+    f.addEventListener("input", convites); convites();
+    var fim = setTimeout(function () { if (!d.open) return; acabou = true; CONV.forEach(function (c) { c.el.placeholder = ""; }); convites(); }, 30000);
+    d.addEventListener("close", function () { clearTimeout(fim); });
     f.nasc.onblur = function () {
       var r = window.dataFacil && window.dataFacil.ler(f.nasc.value);
       if (r) { f.nasc.value = ("0" + r.d).slice(-2) + "/" + ("0" + r.m).slice(-2) + "/" + r.a; msg.textContent = "✓ " + new Date(Date.UTC(r.a, r.m - 1, r.d)).toLocaleDateString("pt-PT", { timeZone: "UTC", day: "numeric", month: "long", year: "numeric" }); } else msg.textContent = "";
