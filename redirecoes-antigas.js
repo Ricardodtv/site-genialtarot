@@ -3,6 +3,11 @@
 // Lista legível no Obsidian: Estatisticas do site/Redirecções do site antigo.md. Usado no fim do fetch do worker.js,
 // só quando o endereço não existe (404) — nunca tapa uma página que exista.
 export default {
+// 06/11/2026: endereços antigos ainda a dar 404.
+"/signos": "/signos-do-zodiaco",
+"/oraculos": "/tarot-gratis",
+"/page/2": "/",
+"/os-6-signos-mais-extrovertidos-do-zodiaco": "/signos-do-zodiaco",
 "/5-dicas-para-ampliar-a-intuicao": "/aconselhamento-espiritual",
 "/5-dicas-para-ampliar-a-sua-intuicao": "/aconselhamento-espiritual",
 "/estados-de-espirito": "/aconselhamento-espiritual",

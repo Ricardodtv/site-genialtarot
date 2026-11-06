@@ -664,6 +664,14 @@ export default {
       return Response.redirect("https://genialtarot.com" + url.pathname + url.search, 301);
     }
 
+    // 06/11/2026 (ele, SEO): a Cloudflare manda /x.html para /x com 307 (temporário) e o Google ficou com o .html como canónica em 8 arcanos.
+    // Quando a resposta dos ficheiros é esse 307, sai 301. Endereço .html que não exista segue o caminho normal (tabela antiga e página 404).
+    if (url.pathname.endsWith(".html") && (request.method === "GET" || request.method === "HEAD")) {
+      const r = await env.ASSETS.fetch(request);
+      const destino = r.headers.get("location");
+      if (r.status >= 300 && r.status < 400 && destino) return Response.redirect(new URL(destino, url.origin).toString(), 301);
+    }
+
     // Contar a visita antes de tudo. So paginas: fora as APIs, o /cdn-cgi/ da
     // Cloudflare e a pagina privada das estatisticas (que sou eu a olhar).
     if (!url.pathname.startsWith("/api/") && !url.pathname.startsWith("/cdn-cgi/") &&
