@@ -477,7 +477,7 @@ grid.addEventListener("click", e => {
   const secs = zodiacData.timestamps[btn.dataset.key];
   document.getElementById("sign-modal-name").textContent = btn.dataset.label;
   if (!audio.paused) { audio.pause(); setAudioUI(false); }
-  modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${zodiacData.videoId}?start=${secs}&autoplay=1&mute=0&rel=0&playsinline=1" title="${btn.dataset.label}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${zodiacData.videoId}?start=${secs}&autoplay=1&mute=0&rel=0&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(location.origin)}" title="${btn.dataset.label}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
   modal.classList.add("open");
 });
 function closeSignModal() { modal.classList.remove("open"); modalVideo.innerHTML = ""; }

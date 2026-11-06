@@ -13,20 +13,36 @@
   document.head.appendChild(st);
   const f = document.createElement("div"), b = document.createElement("div"); f.className = "sc-fita"; b.className = "sc-barra"; b.innerHTML = "<i></i>"; bar.after(f, b); f.hidden = b.hidden = true;
   const chave = (t) => { const k = t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim().split(/\s+/)[0]; return { aries: "carneiro", cancer: "caranguejo", libra: "balanca" }[k] || k; };
-  let tempo = null, ligado = false;
-  function para() { clearInterval(tempo); clearTimeout(tempo); ligado = false; bar.querySelector(".name").style.visibility = ""; f.hidden = b.hidden = true; }
-  function conta(nome) {
-    let n = SEG; const i = b.firstChild; i.style.transition = "none"; i.style.transform = "scaleX(1)"; void i.offsetWidth;
-    i.style.transition = `transform ${SEG}s linear`; i.style.transform = "scaleX(0)";
-    tempo = setInterval(() => { n--; const s = f.querySelector("strong");
-      if (n > 0 && s) { s.textContent = n; s.parentElement.lastChild.textContent = n === 1 ? " segundo" : " segundos"; } else { clearInterval(tempo); f.classList.add("pronto"); f.querySelector("span").textContent = "✓ A ver agora"; b.hidden = true; } }, 1000);
-  }
+  let ligado = false, limpa = () => {};
+  function para() { limpa(); ligado = false; bar.querySelector(".name").style.visibility = ""; f.hidden = b.hidden = true; }
+  function numero(n) { const s = f.querySelector("strong"); if (!s) return; s.textContent = n; s.parentElement.lastChild.textContent = n === 1 ? " segundo" : " segundos"; }
+  function barra(r) { b.firstChild.style.transform = `scaleX(${Math.max(0, Math.min(1, r / SEG))})`; }
+  function pronto() { f.classList.add("pronto"); f.querySelector("span").textContent = "✓ A ver agora"; b.hidden = true; limpa(); }
   function abre() {
     const nome = document.getElementById("sign-modal-name").textContent.trim(); if (!nome) return;
     ligado = true; bar.querySelector(".name").style.visibility = "hidden"; f.classList.remove("pronto"); f.hidden = b.hidden = false;
     f.innerHTML = `<img src="/signos/m/${chave(nome)}.webp" alt="" width="96" height="96"><div><b>${nome.replace(/</g, "&lt;")}</b><span>começa em <strong>${SEG}</strong> segundos</span></div>`;
-    const v = m.querySelector("iframe"); let foi = false; const vai = () => { if (foi || !ligado) return; foi = true; conta(nome); };
-    if (v) v.addEventListener("load", vai, { once: true }); tempo = setTimeout(vai, 2500);
+    b.firstChild.style.transition = "transform .3s linear"; barra(SEG);
+    const v = m.querySelector("iframe"), inicio = +((v && v.src.match(/[?&]start=(\d+)/) || [])[1] || 0);
+    let estado = -1, t = -1, respondeu = false, pedidos = 0, relogio = null;
+    /* O leitor diz quando toca e em que segundo vai: a contagem segue o vídeo, pára se ele parar. Sem resposta, conta pelo relógio. */
+    const ouve = (e) => {
+      if (!v || e.source !== v.contentWindow) return; let d; try { d = JSON.parse(e.data); } catch { return; }
+      respondeu = true; const i = d && d.info; if (!i || typeof i !== "object") return;
+      if (typeof i.playerState === "number") estado = i.playerState; if (typeof i.currentTime === "number") t = i.currentTime;
+      if (estado !== 1 || t < inicio - 1) return;
+      const r = inicio + SEG - t; if (r <= 0) return pronto();
+      numero(Math.min(SEG, Math.ceil(r))); barra(r);
+    };
+    const contaSo = () => { let n = SEG; relogio = setInterval(() => { n--; if (n > 0) { numero(n); barra(n); } else pronto(); }, 1000); };
+    const pede = setInterval(() => {
+      if (respondeu) return clearInterval(pede);
+      if (++pedidos > 25) { clearInterval(pede); return contaSo(); }
+      try { v.contentWindow.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), "https://www.youtube.com"); } catch {}
+    }, 400);
+    if (!v) { clearInterval(pede); contaSo(); }
+    addEventListener("message", ouve);
+    limpa = () => { removeEventListener("message", ouve); clearInterval(pede); clearInterval(relogio); limpa = () => {}; };
   }
   new MutationObserver(() => { const o = m.classList.contains("open"); if (o && !ligado) abre(); else if (!o && ligado) para(); }).observe(m, { attributes: true, attributeFilter: ["class"] });
 })();

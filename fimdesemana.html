@@ -278,7 +278,7 @@ footer { position: relative; border-top: 1px solid oklch(0.70 0.10 205 / 0.15); 
       <div class="hero-img-wrap">
         <div class="hero-halo-1 animate-pulse-glow"></div>
         <div class="hero-halo-2 animate-pulse-glow"></div>
-        <a href="loja.html" aria-label="Loja Genial Tarot" style="display:contents"><img class="hero-img" src="mestre-fds.jpg" alt="Mestre Alberto — Fim de Semana" /></a>
+        <a href="loja.html" aria-label="Loja Genial Tarot" style="display:contents"><img class="hero-img" src="mestre-fds-cartas.jpg" alt="Mestre Alberto com as cartas de Tarot — Horóscopo de Fim de Semana" /></a>
       </div>
     </div>
     <p class="hero-sub animate-fade-up">
@@ -477,7 +477,7 @@ grid.addEventListener("click", e => {
   const secs = zodiacData.timestamps[btn.dataset.key];
   document.getElementById("sign-modal-name").textContent = btn.dataset.label;
   if (!audio.paused) { audio.pause(); setAudioUI(false); }
-  modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${zodiacData.videoId}?start=${secs}&autoplay=1&mute=0&rel=0&playsinline=1" title="${btn.dataset.label}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${zodiacData.videoId}?start=${secs}&autoplay=1&mute=0&rel=0&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(location.origin)}" title="${btn.dataset.label}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
   modal.classList.add("open");
 });
 function closeSignModal() { modal.classList.remove("open"); modalVideo.innerHTML = ""; }
