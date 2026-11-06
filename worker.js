@@ -737,6 +737,20 @@ export default {
     }
 
     // Vídeo diário mais recente + minutos de cada signo (com cache de 15 min)
+    // 06/11/2026 (ele): plano dos cartões da página inicial, feito no painel (aba Cartões). Ler é público; gravar exige a chave.
+    if (url.pathname === "/api/cartoes-agenda") {
+      if (request.method === "POST") {
+        if (!env.STATS_KEY || request.headers.get("X-Chave") !== env.STATS_KEY) return jsonResp({ ok: false, error: "chave errada" }, 403);
+        const t = await request.text();
+        try { JSON.parse(t); } catch (e) { return jsonResp({ ok: false, error: "json" }, 400); }
+        if (t.length > 30000) return jsonResp({ ok: false, error: "grande" }, 413);
+        await env.CAPTURAS.put("cartoes-agenda", t);
+        return jsonResp({ ok: true });
+      }
+      const t = await env.CAPTURAS.get("cartoes-agenda");
+      return new Response(t || "{}", { headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "public, max-age=300" } });
+    }
+
     if (url.pathname === "/api/zodiac") {
       if (url.searchParams.get("debug") === "1") {
         try {
