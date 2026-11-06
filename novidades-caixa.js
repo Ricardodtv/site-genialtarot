@@ -30,11 +30,14 @@
   color:#f1e6ff;background:transparent;border:1.5px solid rgba(241,230,255,.45)}
 #nov-jan .nn:hover{background:rgba(255,255,255,.08)}
 #nov-jan small{display:block;margin-top:1rem;font-size:.8rem;color:#cdb8e6}
+.nov-seta{flex:none;display:inline-block;width:1.7em;height:1.5em;margin-top:.1em;animation:novSeta .9s ease-in-out infinite;filter:drop-shadow(0 0 6px rgba(255,215,120,.95))}
+.caixa-novidades.marcada .nov-seta{display:none}
+@keyframes novSeta{0%,100%{opacity:1;transform:translateX(0)}50%{opacity:.25;transform:translateX(5px)}}
 @keyframes novEntra{from{opacity:0}}
 @keyframes novSobe{from{opacity:0;transform:translateY(24px) scale(.95)}}
 @keyframes novPresente{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-4px) rotate(6deg)}}
 @keyframes novPulsaB{0%{box-shadow:0 0 0 0 rgba(255,215,120,.7)}80%,100%{box-shadow:0 0 0 12px rgba(255,215,120,0)}}
-@media (prefers-reduced-motion:reduce){.caixa-novidades,#nov-jan,#nov-jan .ni,#nov-jan .ns,#nov-fundo{animation:none}}`;
+@media (prefers-reduced-motion:reduce){.nov-seta,.caixa-novidades,#nov-jan,#nov-jan .ni,#nov-jan .ns,#nov-fundo{animation:none}}`;
   const st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
 
   // ── a caixa: título dourado por cima do texto que já lá estava ──
@@ -44,6 +47,13 @@
     if (span && !lab.querySelector(".nov-tit")) {
       const t = document.createElement("b"); t.className = "nov-tit"; t.textContent = "🎁 Presentes e promoções do Mestre Alberto";
       span.prepend(t);
+    }
+    // 06/11 (ele): setinha sempre a piscar, a apontar para a caixa, até a pessoa a marcar. A caixa continua a não vir marcada.
+    if (!lab.querySelector(".nov-seta")) {
+      const seta = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      seta.setAttribute("class", "nov-seta"); seta.setAttribute("viewBox", "0 0 34 30"); seta.setAttribute("aria-hidden", "true");
+      seta.innerHTML = '<path d="M1 10h17V1l15 14-15 14v-9H1z" fill="#ffd978" stroke="#7a4b00" stroke-width="1.5" stroke-linejoin="round"/>';
+      caixa.before(seta);
     }
     const marca = () => lab.classList.toggle("marcada", caixa.checked);
     caixa.addEventListener("change", marca); marca();
