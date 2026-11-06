@@ -11,16 +11,16 @@
   const f = document.createElement("div"), b = document.createElement("div"); f.className = "sc-fita"; b.className = "sc-barra"; b.innerHTML = "<i></i>"; bar.after(f, b); f.hidden = b.hidden = true;
   const chave = (t) => { const k = t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim().split(/\s+/)[0]; return { aries: "carneiro", cancer: "caranguejo", libra: "balanca" }[k] || k; };
   let tempo = null, ligado = false;
-  function para() { clearInterval(tempo); clearTimeout(tempo); ligado = false; f.hidden = b.hidden = true; }
+  function para() { clearInterval(tempo); clearTimeout(tempo); ligado = false; bar.querySelector(".name").style.visibility = ""; f.hidden = b.hidden = true; }
   function conta(nome) {
     let n = SEG; const i = b.firstChild; i.style.transition = "none"; i.style.transform = "scaleX(1)"; void i.offsetWidth;
     i.style.transition = `transform ${SEG}s linear`; i.style.transform = "scaleX(0)";
     tempo = setInterval(() => { n--; const s = f.querySelector("strong");
-      if (n > 0 && s) s.textContent = n; else { clearInterval(tempo); f.classList.add("pronto"); f.querySelector("span").textContent = "✓ A ver agora"; b.hidden = true; } }, 1000);
+      if (n > 0 && s) { s.textContent = n; s.parentElement.lastChild.textContent = n === 1 ? " segundo" : " segundos"; } else { clearInterval(tempo); f.classList.add("pronto"); f.querySelector("span").textContent = "✓ A ver agora"; b.hidden = true; } }, 1000);
   }
   function abre() {
     const nome = document.getElementById("sign-modal-name").textContent.trim(); if (!nome) return;
-    ligado = true; f.classList.remove("pronto"); f.hidden = b.hidden = false;
+    ligado = true; bar.querySelector(".name").style.visibility = "hidden"; f.classList.remove("pronto"); f.hidden = b.hidden = false;
     f.innerHTML = `<img src="/signos/m/${chave(nome)}.webp" alt="" width="96" height="96"><div><b>${nome.replace(/</g, "&lt;")}</b><span>começa em <strong>${SEG}</strong> segundos</span></div>`;
     const v = m.querySelector("iframe"); let foi = false; const vai = () => { if (foi || !ligado) return; foi = true; conta(nome); };
     if (v) v.addEventListener("load", vai, { once: true }); tempo = setTimeout(vai, 2500);
