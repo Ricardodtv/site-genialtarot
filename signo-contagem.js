@@ -3,10 +3,13 @@
 (() => {
   const m = document.getElementById("sign-modal"), bar = m && m.querySelector(".sign-modal-bar"); if (!bar) return;
   const SEG = 6, st = document.createElement("style");
-  st.textContent = `.sc-fita{display:flex;align-items:center;gap:.7rem;margin:0 0 .5rem;padding:.45rem .7rem;border-radius:.8rem;background:linear-gradient(135deg,#3a2160,#1d0d36);border:1px solid #f2c96b;color:#f7f0fb}
-  .sc-fita img{width:3rem;height:3rem;border-radius:50%;object-fit:cover;border:2px solid #f2c96b;flex:none}.sc-fita b{display:block;color:#f2c96b;font-size:1.15rem;line-height:1.2}.sc-fita span{font-size:.92rem}
-  .sc-fita strong{display:inline-block;min-width:1.5em;text-align:center;font-size:1.25rem;color:#fff}.sc-fita.pronto span{color:#3ddc84;font-weight:600}
-  .sc-barra{height:4px;border-radius:9px;margin:-.3rem 0 .5rem;background:rgba(255,255,255,.12);overflow:hidden}.sc-barra i{display:block;height:100%;width:100%;background:#f2c96b;transform-origin:left}`;
+  st.textContent = `.sc-fita{display:flex;align-items:center;gap:.7rem;margin:.2rem 0 .6rem;padding:.5rem .75rem;border-radius:.8rem;background:linear-gradient(135deg,#ffe28a,#f5b13d);border:2px solid #fff6d0;color:#2a1240;box-shadow:0 0 10px 2px rgba(255,200,70,.55);animation:sc-pulso 1s ease-in-out infinite}
+  @keyframes sc-pulso{50%{box-shadow:0 0 26px 9px rgba(255,214,90,.95)}}
+  .sc-fita img{width:3rem;height:3rem;border-radius:50%;object-fit:cover;border:2px solid #fff;flex:none}.sc-fita b{display:block;color:#3a1460;font-size:1.2rem;line-height:1.2;font-weight:800}.sc-fita span{font-size:.95rem;font-weight:600}
+  .sc-fita strong{display:inline-block;min-width:1.55em;margin:0 .1em;padding:0 .2em;border-radius:.4em;text-align:center;font-size:1.3rem;color:#ffe28a;background:#3a1460}
+  .sc-fita.pronto{animation:none;background:linear-gradient(135deg,#3a2160,#1d0d36);border-color:#3ddc84;color:#f7f0fb;box-shadow:0 0 8px rgba(61,220,132,.45)}.sc-fita.pronto b{color:#f2c96b}.sc-fita.pronto span{color:#3ddc84}
+  .sc-barra{height:4px;border-radius:9px;margin:-.2rem 0 .5rem;background:rgba(255,255,255,.12);overflow:hidden}.sc-barra i{display:block;height:100%;width:100%;background:#ffd76a;transform-origin:left}
+  @media (prefers-reduced-motion:reduce){.sc-fita{animation:none}}`;
   document.head.appendChild(st);
   const f = document.createElement("div"), b = document.createElement("div"); f.className = "sc-fita"; b.className = "sc-barra"; b.innerHTML = "<i></i>"; bar.after(f, b); f.hidden = b.hidden = true;
   const chave = (t) => { const k = t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim().split(/\s+/)[0]; return { aries: "carneiro", cancer: "caranguejo", libra: "balanca" }[k] || k; };
