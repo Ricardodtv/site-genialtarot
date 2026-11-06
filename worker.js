@@ -2183,7 +2183,7 @@ export class Consultorio extends DurableObject {
 // - Marketing: caixa à parte, por marcar. Cada alteração fica em «consentimentos» com data, texto e versão.
 // - Apagar conta apaga as linhas todas; para a casa saber quem tirar da lista fica só um hash, até o vigia o ir buscar.
 const CONTA = {
-  GOOGLE_CLIENT_ID: "",      // público. Vazio = botão Google escondido e /google recusado. Ver conta-painel/GOOGLE-PASSO-A-PASSO.md
+  GOOGLE_CLIENT_ID: "602619603227-shd1e0g3vb45190il3itdgur5jmiosur.apps.googleusercontent.com",      // público (criado a 06/11/2026, projecto cerebro). Vazio = botão Google escondido e /google recusado.
   JWKS: "https://www.googleapis.com/oauth2/v3/certs",
   LIGACAO_MIN: 15,           // validade da ligação do email; serve uma só vez
   SESSAO_DIAS: 90,           // renova-se sozinha para quem continua a vir
