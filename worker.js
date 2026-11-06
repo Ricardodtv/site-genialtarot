@@ -1917,6 +1917,26 @@ function novoCodigo() {   // 20 letras de 31 (sem i, l, o, 0, 1), ~99 bits: impo
   return c;
 }
 export class Consultorio extends DurableObject {
+  // 06/11 (ele): chat instantâneo. A ligação directa só avisa «há novidade» e cada lado vai logo buscá-la pelo /estado de sempre;
+  // as perguntas de 3 em 3 segundos ficam como rede de segurança e continuam a medir quem está presente.
+  async fetch(request) {
+    const url = new URL(request.url);
+    if (url.pathname === "/api/consultorio/ws") {
+      if ((request.headers.get("Upgrade") || "").toLowerCase() !== "websocket") return new Response("", { status: 426 });
+      const c = String(url.searchParams.get("c") || "");
+      if (!this.consulta(c, Date.now())) return new Response("", { status: 404 });
+      if (this.ctx.getWebSockets(c).length >= 8) return new Response("", { status: 429 });
+      const par = new WebSocketPair();
+      this.ctx.acceptWebSocket(par[1], [c]);
+      return new Response(null, { status: 101, webSocket: par[0] });
+    }
+    const o = {}, res = await this.tratar(request, o);
+    if (o.c) for (const ws of this.ctx.getWebSockets(o.c)) { try { ws.send("1"); } catch (e) {} }
+    return res;
+  }
+  webSocketMessage(ws, m) { if (m === "p") { try { ws.send("k"); } catch (e) {} } }
+  webSocketClose(ws) { try { ws.close(); } catch (e) {} }
+  webSocketError(ws) { try { ws.close(); } catch (e) {} }
   constructor(ctx, env) {
     super(ctx, env);
     this.sql = ctx.storage.sql;
@@ -1992,7 +2012,7 @@ export class Consultorio extends DurableObject {
   novaMsg(c, agora, de, tipo, texto, mime, dur, tam) {
     return this.linhas("INSERT INTO msgs (codigo, quando, de, tipo, texto, mime, dur, tam) VALUES (?,?,?,?,?,?,?,?) RETURNING id", c, agora, de, tipo, texto, mime || "", dur || 0, tam || 0)[0].id;
   }
-  async fetch(request) {
+  async tratar(request, aviso) {
     const url = new URL(request.url), p = url.pathname.replace("/api/consultorio/", ""), agora = Date.now();
     const J = (o, s) => new Response(JSON.stringify(o), { status: s || 200, headers: { "Content-Type": "application/json", "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });
     if (!this.ultimaLimpeza || agora - this.ultimaLimpeza > 600000 || p === "reabrir") this.limpar(agora);
@@ -2000,6 +2020,7 @@ export class Consultorio extends DurableObject {
     const binario = p === "audio" && request.method === "POST", semJson = binario || (p === "anexo" && request.method === "POST");
     const d = request.method === "POST" && !semJson ? await request.json().catch(() => ({})) : {};
     const c = String(d.c || url.searchParams.get("c") || ""), m = String(d.m || url.searchParams.get("m") || "");
+    if (request.method === "POST") aviso.c = c;   // qualquer escrita desta conversa avisa quem está ligado
 
     // ---------- só com a chave (o painel do HA, pelo servidor.py) ----------
     if (p === "criar" || p === "lista" || p === "vigia") {

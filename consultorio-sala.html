@@ -675,13 +675,23 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     return ESPERA_MS;
   }
   function proxima(ms) { clearTimeout(tPerg); if (!parado) tPerg = setTimeout(pergunta, ms === undefined ? Math.min(30000, intervalo() + falhas * 3000) : ms); }
+  // 06/11: chat instantâneo. O aviso só diz «há novidade»; quem vai buscar é sempre o pergunta(), que continua a correr como rede de segurança.
+  var ws = null, wsEspera = 1000, wsPing = 0, repete = false;
+  function ligaWs() {
+    if (ws || parado || !window.WebSocket) return;
+    try { ws = new WebSocket((location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/api/consultorio/ws?" + Q); } catch (e) { ws = null; return; }
+    var w = ws;
+    w.onopen = function () { wsEspera = 1000; clearInterval(wsPing); wsPing = setInterval(function () { if (parado) w.close(); else if (w.readyState === 1) w.send("p"); }, 25000); proxima(0); };
+    w.onmessage = function (e) { if (e.data === "1") { if (aPerguntar) repete = true; else proxima(0); } };
+    w.onclose = function () { clearInterval(wsPing); if (ws === w) ws = null; if (!parado) { setTimeout(ligaWs, wsEspera); wsEspera = Math.min(wsEspera * 2, 30000); } };
+  }
   function pergunta() {
     if (aPerguntar || parado) return;
     if (document.hidden && (estado === "fechado" || estado === "expirado")) return;   // volta a perguntar ao regressar à página
     aPerguntar = true;
     fetch("/api/consultorio/estado?" + Q + "&desde=" + desde + "&cv=" + (ch ? ch.cv : 0), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (r) {
       falhas = 0; if (notaRede) nota(""); notaRede = false; trata(r);
-    }).catch(function () { falhas++; if (falhas > 2) { notaRede = true; nota("A ligação falhou. A tentar outra vez…"); } }).then(function () { aPerguntar = false; proxima(); });
+    }).catch(function () { falhas++; if (falhas > 2) { notaRede = true; nota("A ligação falhou. A tentar outra vez…"); } }).then(function () { aPerguntar = false; if (repete) { repete = false; proxima(0); } else proxima(); if (!ws) ligaWs(); });
   }
   function trata(r) {
     var ant = estado; estado = r.estado; if (r.max_audio_s) maxAudio = r.max_audio_s;
@@ -1181,7 +1191,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   $("som1").onclick = $("som2").onclick = trocaSom;
   $("atender").onclick = function () { this.disabled = true; post("atender").then(function () { proxima(0); }); };
   $("terminar").onclick = function () { if (confirm(mestre ? "Fechar esta consulta? A ligação deixa de funcionar até a reabrires." : "Fechar esta consulta? A conversa termina para os dois.")) post("fechar").then(function () { proxima(0); }); };
-  document.addEventListener("visibilitychange", function () { if (!document.hidden) { porLer = 0; document.title = tituloBase; if (!abrindo || estado === "conversa") proxima(0); } });
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) { porLer = 0; document.title = tituloBase; if (!abrindo || estado === "conversa") proxima(0); ligaWs(); } });
 
   // ---------- arranque ----------
   if (!c) { fimDe("invalido"); return; }

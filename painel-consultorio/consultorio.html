@@ -157,12 +157,26 @@ function diz(extra) {
 }
 addEventListener("message", function (e) { if (e.source === parent && PAIS.indexOf(e.origin) >= 0 && e.data && e.data.tipo === "consultorio" && e.data.ola === 1) { paiOrigem = e.origin; diz(); } });
 function verFicha() { diz(); }
+// 06/11: chat instantâneo. O aviso vem directo do site e só diz «há novidade»; o resto continua pela ponte, com as voltas de sempre como rede de segurança.
+var ws = null, wsC = "", wsEspera = 1000, emC = false, repC = false;
+function ligaWs() {
+  var x = atual(); if (!x || !x.mtoken || ws && wsC === sel) return;
+  if (ws) { var v = ws; ws = null; v.onclose = null; v.close(); }
+  if (["fechado", "expirado"].indexOf(x.estado) >= 0 || !window.WebSocket) return;
+  try { ws = new WebSocket("wss://genialtarot.com/api/consultorio/ws?c=" + sel + "&m=" + x.mtoken); } catch (e) { ws = null; return; }
+  var w = ws, cod = sel; wsC = sel;
+  w.onopen = function () { wsEspera = 1000; var t = setInterval(function () { if (w.readyState === 1) w.send("p"); else clearInterval(t); }, 25000); };
+  w.onmessage = function (e) { if (e.data === "1" && cod === sel) { if (emC) repC = true; else conversa(); } };
+  w.onclose = function () { if (ws === w) ws = null; if (cod === sel) { setTimeout(ligaWs, wsEspera); wsEspera = Math.min(wsEspera * 2, 30000); } };
+}
 function conversa() {
-  clearTimeout(tC); if (!sel) return; var x = atual();
+  if (emC) { repC = true; return; }
+  clearTimeout(tC); if (!sel) return; var x = atual(); ligaWs();
   if (document.hidden) { tC = setTimeout(conversa, 30000); return; }
-  var pedido = sel;
+  var pedido = sel; emC = true;
+  var fim = function () { emC = false; if (repC) { repC = false; clearTimeout(tC); tC = setTimeout(conversa, 0); } };
   J("conversa?c=" + sel + "&desde=" + desde).then(function (r) {
-    if (pedido !== sel) return;
+    if (pedido !== sel) { emC = false; repC = false; tC = setTimeout(conversa, 0); return; }
     (r.msgs || []).forEach(function (m) {
       if (m.id <= desde) return; desde = m.id;
       var d = document.createElement("div"); d.className = "m " + m.de;
@@ -175,9 +189,9 @@ function conversa() {
       $("msgs").appendChild(d); $("msgs").scrollTop = 1e6;
     });
     $("esc").textContent = r.escreve ? "a escrever…" : "";
-    var ch = r.chamada; $("c-ch").textContent = !ch ? "" : ch.estado === "toca" ? "📞 A tocar…" : ch.estado === "ligada" ? (ch.modo === "video" ? "🎥 Em videochamada" : "📞 Em chamada de voz") : "📞 A ligar…";
-    tC = setTimeout(conversa, r.estado === "conversa" ? 3000 : 10000);
-  }).catch(function () { tC = setTimeout(conversa, 10000); });
+    var ch = r.chamada; $("c-ch").textContent = !ch ? "" : ch.estado === "toca" ? "📞 A tocar…" : ch.estado === "ligada" ? (ch.modo === "cartas" ? "🃏 A mostrar as cartas" : ch.modo === "video" ? "🎥 Em videochamada" : "📞 Em chamada de voz") : "📞 A ligar…";
+    tC = setTimeout(conversa, r.estado === "conversa" ? 3000 : 10000); fim();
+  }).catch(function () { tC = setTimeout(conversa, 10000); fim(); });
 }
 function carregaAudio(el, id) { fetch(API + "audio?c=" + sel + "&id=" + id).then(function (r) { return r.blob(); }).then(function (b) { el.src = URL.createObjectURL(b); }); }
 $("fcria").onsubmit = function (e) {
