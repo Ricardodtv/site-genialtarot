@@ -5,8 +5,8 @@ Sem ligações em curso quase não gasta: pergunta de PAUSA_S em PAUSA_S; a cria
 Calado das 03:00 às 07:00 não é daqui: o notify.sh guarda o aviso e manda-o às 07:00."""
 import json, os, subprocess, sys, time, urllib.request
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-try: import consultorio_ficha as ficha
-except Exception: ficha = None
+try: import consultorio_clientes as clientes, consultorio_ficha as ficha
+except Exception: clientes = ficha = None
 PONTE = os.environ.get("CONSULTORIO_PONTE", "http://100.100.77.18:8768")
 NOTIFY = os.environ.get("CONSULTORIO_NOTIFY", os.path.expanduser("~/.claude/telegram-service/notify.sh"))
 ESTADO = os.environ.get("CONSULTORIO_ESTADO", os.path.expanduser("~/.consultorio-vigia.json"))
@@ -23,13 +23,11 @@ def avisa(txt):
     except Exception as x: print("aviso falhou:", x, flush=True)
 ultimo_fechos = [0]
 def fichas(r):
-    """Fichas pendentes (o cofre pode ter aberto) e conversas fechadas fora do painel. Sem nomes nos registos."""
-    if not ficha: return
+    """Linhas do Histórico à espera do cofre, e conversas fechadas fora do painel. Nunca cria fichas. Sem nomes nos registos."""
+    if not clientes: return
     try:
-        ficha.processar()
-        for x in r.get("fechadas") or []:
-            f = ficha.ver(x["codigo"])
-            if f["nome"] and not f["codigo"] and not f["pendente"]: ficha.ao_fechar(x["codigo"])
+        ficha.processar(); clientes.processar()   # a 1.ª só acaba o que o botão antigo deixou pendente
+        for x in r.get("fechadas") or []: clientes.ao_fechar(x["codigo"], x["fechado"])
     except Exception as x: print("ficha:", type(x).__name__, flush=True)
 def ronda(e):
     f = time.time() - ultimo_fechos[0] > FECHOS_S

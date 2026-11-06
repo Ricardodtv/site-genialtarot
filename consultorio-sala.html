@@ -204,6 +204,54 @@ input[hidden] { display: none; }
 #barra.grava #gravando { display: flex; }
 #gravando button { display: grid; }
 
+/* ---------- a chamada ---------- */
+.ch-lig { display: none; flex: 0 0 auto; width: 42px; height: 42px; padding: 0; place-items: center; border-radius: 12px; border: 1px solid var(--borda); background: rgba(255,255,255,.05); color: var(--ouro); }
+.ch-lig svg { width: 21px; height: 21px; } body.mestre.fase-chat .ch-lig { display: grid; }
+@media (max-width: 560px) { body.mestre .cab { gap: 6px; } body.mestre .cab .quem { display: none; } .ch-lig { width: 38px; height: 38px; } }
+#ch-volta { flex: 0 0 auto; display: none; align-items: center; gap: 8px; flex-wrap: wrap; padding: 8px 14px; background: rgba(37,211,102,.12); border-bottom: 1px solid rgba(37,211,102,.35); font-size: 14px; } #ch-volta.on { display: flex; }
+#ch-volta span { flex: 1; min-width: 150px; } #ch-volta button { padding: 7px 12px; border: 0; border-radius: 10px; font-weight: 700; background: var(--verde); color: #08331a; } #ch-volta button + button { background: rgba(255,255,255,.1); color: var(--texto); }
+#toca { z-index: 9; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(440px, calc(100vw - 28px)); max-height: calc(100svh - 20px); overflow-y: auto; padding: 24px 22px 20px; text-align: center; }
+#toca img { width: 104px; height: 104px; border-radius: 50%; object-fit: cover; border: 3px solid var(--ouro); animation: toque 1.6s ease-out infinite; }
+@keyframes toque { 0% { box-shadow: 0 0 0 0 rgba(242,201,107,.6); } 100% { box-shadow: 0 0 0 26px rgba(242,201,107,0); } }
+#toca h1 { font-size: 29px; margin: 16px 0 3px; } #toca p { margin: 0 0 8px; color: #e9def3; font-size: 15px; } #toca .peq { font-size: 13.5px; color: var(--apagado); }
+#toca .aviso-app { text-align: left; }
+.toca-bt { display: flex; gap: 10px; margin-top: 14px; } .toca-bt button { flex: 1; padding: 14px 10px; border: 0; border-radius: 14px; font-weight: 700; font-size: 17px; }
+#ch-sim { background: var(--verde); color: #08331a; } #ch-nao { background: #a8323a; color: #fff; }
+#ch { z-index: 7; inset: 0; background: radial-gradient(90% 70% at 50% 40%, #3b1a63, #120724 75%); overflow: hidden; }
+#ch.mostra { display: block; }
+#ch-outro { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #0a0316; display: none; }
+#ch.tem-video #ch-outro { display: block; }
+#ch-foto { position: absolute; inset: 0 0 96px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 16px; }
+#ch.tem-video #ch-foto { display: none; } #ch.tem-video.outro-sem-cam #ch-foto { display: flex; background: rgba(13,5,28,.92); }
+#ch-foto img { width: min(200px, 46vw); height: min(200px, 46vw); border-radius: 50%; object-fit: cover; border: 3px solid var(--ouro); box-shadow: 0 0 44px rgba(176,108,255,.5); }
+#ch-foto h2 { font-size: 32px; margin: 16px 0 2px; } #ch-sub { margin: 0; color: var(--apagado); font-size: 15px; }
+#ch-tempo { margin-top: 8px; font: 700 40px/1 "Cormorant Garamond", Georgia, serif; font-feature-settings: "lnum", "tnum"; color: #ffe39e; }
+#ch.tem-video #ch-tempo { display: none; }
+#ch-tempo2 { display: none; } #ch.tem-video #ch-tempo2 { display: inline; }
+#ch-eu { position: absolute; right: 14px; top: calc(14px + env(safe-area-inset-top)); width: clamp(104px, 22vw, 240px); aspect-ratio: 3/4; object-fit: cover; border-radius: 14px; border: 1px solid rgba(242,201,107,.6); background: #000; box-shadow: 0 6px 24px rgba(0,0,0,.55); display: none; }
+@media (min-aspect-ratio: 1/1) { #ch-eu { aspect-ratio: 16/10; } }
+#ch.com-eu #ch-eu { display: block; } #ch-eu.espelho { transform: scaleX(-1); }
+#ch-topo { position: absolute; left: 12px; top: calc(12px + env(safe-area-inset-top)); max-width: calc(100% - 150px); padding: 5px 11px; border-radius: 10px; background: rgba(13,5,28,.62); font-size: 12.5px; line-height: 1.3; color: #eadff4; }
+#ch-nota { position: absolute; left: 50%; bottom: 104px; transform: translateX(-50%); width: min(520px, calc(100% - 28px)); padding: 9px 13px; border-radius: 12px; background: rgba(40,20,5,.86); border: 1px solid rgba(255,170,70,.5); color: #ffe7c4; font-size: 14px; line-height: 1.38; text-align: center; display: none; } #ch-nota.on { display: block; }
+#ch-ouvir { position: absolute; left: 50%; top: 42%; transform: translateX(-50%); padding: 12px 18px; border: 0; border-radius: 13px; font-weight: 700; background: var(--ouro); color: #2b1147; display: none; }
+#ch-bt { position: absolute; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; gap: 12px; padding: 16px 12px calc(18px + env(safe-area-inset-bottom)); background: linear-gradient(transparent, rgba(13,5,28,.85) 42%); }
+.ch-b { position: relative; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.16); color: #fff; } .ch-b svg { width: 25px; height: 25px; }
+.ch-b.off { background: #f3e7fb; color: #2b1147; } #ch-fim { background: #d6333f; }
+#disp { z-index: 10; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(420px, calc(100vw - 24px)); padding: 18px; } #disp h2 { font-size: 23px; margin-bottom: 10px; } #disp label { display: block; font-size: 13.5px; color: var(--apagado); margin-top: 10px; }
+#disp select { display: block; width: 100%; margin-top: 3px; padding: 10px; border-radius: 11px; border: 1px solid var(--borda); background: #140826; color: var(--texto); font: 15px Inter, system-ui, sans-serif; } #disp .grande { margin-top: 14px; padding: 11px; }
+#ch-cam, #ch-virar { display: none; } #ch.modo-video #ch-cam { display: grid; } #ch.pode-virar #ch-virar { display: grid; }
+#ch-n { position: absolute; right: -2px; top: -2px; min-width: 20px; height: 20px; border-radius: 10px; background: var(--ouro); color: #2b1147; font-size: 12px; font-weight: 700; line-height: 20px; display: none; } #ch-n.on { display: block; }
+/* o chat continua à mão: ao lado no computador, por baixo no telemóvel; por cima enquanto se escreve */
+body.ch-chat .cab .terminar .l, body.ch-chat .cab .som span { display: none; } body.ch-chat .cab .terminar .c { display: inline; } body.ch-chat .cab .quem { min-width: 120px; }
+body.ch-chat #ch { right: 400px; }
+body.ch-chat #chat { z-index: 8; left: auto; right: 0; top: 0; margin: 0; width: 400px; height: 100%; border-radius: 0; opacity: 1; transform: none; }
+@media (max-aspect-ratio: 1/1) {
+  body.ch-chat #ch { right: 0; bottom: 52%; } body.ch-chat #chat { left: 0; right: 0; top: 48%; width: 100%; height: 52%; border-radius: 16px 16px 0 0; }
+  html.teclado body.ch-chat #chat { top: 0; height: var(--chat-h, 100%); } body.ch-chat #ch-foto img { width: 74px; height: 74px; } body.ch-chat #ch-foto h2 { font-size: 21px; margin-top: 6px; } body.ch-chat #ch-tempo { font-size: 26px; margin-top: 2px; } body.ch-chat #ch-foto { inset: 0 0 70px; padding-top: 34px; }
+  body.ch-chat #ch-bt { padding: 6px; gap: 8px; } body.ch-chat .ch-b { width: 46px; height: 46px; } body.ch-chat #ch-nota { bottom: 62px; }
+}
+body.em-chamada #chat:not(.fica) { visibility: hidden; } body.ch-chat #chat { visibility: visible !important; }
+
 /* ---------- o fim ---------- */
 #fim { left: 50%; bottom: max(14px, var(--sb)); transform: translateX(-50%); width: min(480px, calc(100vw - 24px - var(--sx) - var(--sd))); padding: 24px 24px 22px; text-align: center; }
 /* deitado: o cartão vai para o lado direito, e a porta fica à esquerda dele */
@@ -304,8 +352,12 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     <img src="/mestre-avatar@2x.jpg" alt="Mestre Alberto" />
     <div class="quem"><h1 id="chat-nome">Mestre Alberto</h1><small id="chat-est">● A falar consigo</small></div>
     <button class="som" id="som2" type="button" aria-pressed="true" aria-label="Ligar ou desligar a música"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path class="onda" d="M16 9a4 4 0 0 1 0 6M18.6 6.5a8 8 0 0 1 0 11"/><path class="corte" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span>Música</span></button>
+    <button class="ch-lig" id="lig-voz" type="button" aria-label="Ligar, só voz" title="Ligar"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></button>
+    <button class="ch-lig" id="lig-disp" type="button" aria-label="Escolher câmara e microfone" title="Câmara e microfone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2.2"/><circle cx="8" cy="17" r="2.2"/></svg></button>
+    <button class="ch-lig" id="lig-video" type="button" aria-label="Videochamada" title="Videochamada"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M17.5 10.5 22 7.5v9l-4.5-3z"/></svg></button>
     <button class="terminar" id="terminar" type="button" aria-label="Fechar esta consulta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span class="l">Fechar esta consulta</span><span class="c">Fechar</span></button>
   </header>
+  <div id="ch-volta"><span id="ch-volta-t">A chamada continua.</span><button type="button" id="ch-voltar">Voltar à chamada</button><button type="button" id="ch-largar">Terminar</button></div>
   <div id="msgs" role="log" aria-live="polite"><div class="esc" id="esc"><i></i><i></i><i></i></div></div>
   <div id="nota"></div>
   <div id="previa"></div>
@@ -324,6 +376,38 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
 </section>
 
 <div id="zoom" role="dialog" aria-label="Foto"><img alt="" /></div>
+<section id="disp" class="ecra cartao" aria-label="Câmara e microfone">
+  <h2>Câmara e microfone</h2>
+  <label id="d-cam-l">Câmara<select id="d-cam"></select></label>
+  <label>Microfone<select id="d-mic"></select></label>
+  <button class="grande" id="d-ok" type="button">Pronto</button>
+</section>
+
+<section id="toca" class="ecra cartao" role="alertdialog" aria-labelledby="toca-t">
+  <img src="/mestre-avatar@2x.jpg" alt="" />
+  <h1 id="toca-t"></h1><p id="toca-sub"></p>
+  <div id="toca-app" class="aviso-app" hidden></div>
+  <p class="peq" id="toca-nota"></p>
+  <div class="toca-bt"><button type="button" id="ch-sim">Atender</button><button type="button" id="ch-nao">Recusar</button></div>
+</section>
+
+<section id="ch" class="ecra" aria-label="Chamada">
+  <video id="ch-outro" autoplay playsinline></video><audio id="ch-audio" autoplay></audio>
+  <div id="ch-foto"><img src="/mestre-avatar@2x.jpg" alt="" /><h2 id="ch-nome">Mestre Alberto</h2><p id="ch-sub"></p><div id="ch-tempo">00:00</div></div>
+  <video id="ch-eu" autoplay playsinline muted></video>
+  <div id="ch-topo">Esta chamada não é gravada. <span id="ch-tempo2"></span></div>
+  <button type="button" id="ch-ouvir">Toque para ouvir</button>
+  <div id="ch-nota" role="status"></div>
+  <div id="ch-bt">
+    <button class="ch-b" id="ch-mic" type="button" aria-label="Desligar o microfone" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+    <button class="ch-b" id="ch-cam" type="button" aria-label="Desligar a câmara" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M17.5 10.5 22 7.5v9l-4.5-3z"/></svg></button>
+    <button class="ch-b" id="ch-virar" type="button" aria-label="Virar a câmara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><path d="M15 12a3 3 0 0 0-5.4-1.5M9 14a3 3 0 0 0 5.4 1.5M9 9v2h2M15 16v-2h-2"/></svg></button>
+    <button class="ch-b" id="ch-disp" type="button" aria-label="Escolher câmara e microfone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2.2"/><circle cx="8" cy="17" r="2.2"/></svg></button>
+    <button class="ch-b" id="ch-txt" type="button" aria-label="Abrir o chat"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg><span id="ch-n"></span></button>
+    <button class="ch-b" id="ch-fim" type="button" aria-label="Desligar a chamada"><svg viewBox="0 0 24 24" fill="currentColor" style="transform:rotate(135deg)"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></button>
+  </div>
+</section>
+
 <section id="fim" class="ecra cartao">
   <h1 id="fim-t"></h1><p id="fim-p"></p>
   <a class="grande" href="/">Ir para o site</a>
@@ -338,6 +422,9 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   var CALMA_MS = 6000;       // conversa sem nada há mais de CALMA_APOS_MS
   var CALMA_APOS_MS = 60000;
   var ESCONDIDA_MS = 30000;  // separador em segundo plano
+  var ESCONDIDA_CONV_MS = 15000;   // conversa em segundo plano: uma chamada dura 60 s a tocar, tem de se dar por ela
+  var CHAMADA_MS = 1500;     // só enquanto toca, liga ou recupera
+  var ICE = { iceServers: [{ urls: ["stun:stun.l.google.com:19302", "stun:stun.cloudflare.com:3478"] }] };   // sem TURN, por agora
   var FIM_MS = 30000;        // ecrã final: só para dar por uma reabertura; com a página escondida nem isso
   // A música calibra-se contra a regra dele: ambient.mp3 (−14,2 dB) a volume 0,01 = −54 dBFS. Mudar só este número.
   var VOL_MUSICA = 0.08;   // ele pediu mais presente (05/11): 0.0113 dava −54 dBFS; isto sobe cerca de 17 dB. Nunca no máximo.
@@ -392,18 +479,18 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   // ---------- onde está a pessoa: dentro do WhatsApp/Facebook o microfone pode não funcionar ----------
   var ua = navigator.userAgent, android = /Android/i.test(ua), ios = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   var dentroApp = /FBAN|FBAV|FB_IAB|FBIOS|Instagram|WhatsApp|Messenger|MicroMessenger|TikTok|musical_ly|BytedanceWebview|Snapchat|Line\/|Twitter|; wv\)/i.test(ua) || (ios && !/Safari\//.test(ua));
-  function avisoApp() {
+  function avisoApp(id) {
     if (!dentroApp) return;
-    var el = $("aviso-app"), liga = location.href.split("#")[0];
+    var el = $(id || "aviso-app"), liga = location.href.split("#")[0];
     el.innerHTML = "<b>Está a abrir esta ligação dentro de outra aplicação.</b>Aqui pode escrever, mas o microfone pode não funcionar. Para enviar áudio, abra a ligação no " + (ios ? "Safari: toque em ⋯ ou no ícone de partilha e escolha «Abrir no Safari»." : "Chrome: toque em ⋮ e escolha «Abrir no Chrome».") +
       '<div class="bts">' + (android ? '<a href="intent://' + liga.replace(/^https?:\/\//, "") + '#Intent;scheme=https;package=com.android.chrome;end">Abrir no Chrome</a>' : "") + '<button type="button" id="copiar">Copiar ligação</button></div>';
     el.hidden = false;
-    $("copiar").onclick = function () { var b = this; (navigator.clipboard ? navigator.clipboard.writeText(liga) : Promise.reject()).then(function () { b.textContent = "Ligação copiada"; }).catch(function () { window.prompt("Copie esta ligação:", liga); }); };
+    el.querySelector("#copiar").onclick = function () { var b = this; (navigator.clipboard ? navigator.clipboard.writeText(liga) : Promise.reject()).then(function () { b.textContent = "Ligação copiada"; }).catch(function () { window.prompt("Copie esta ligação:", liga); }); };
   }
 
   // ---------- a música: original, feita aqui no navegador, sem ficheiros nem direitos de autor ----------
   // Harmonia lenta em ré, sinos pentatónicos e uma taça grave, tudo a passar por uma reverberação longa.
-  var ctx = null, mestreG = null, musG = null, reverbIn = null, secoIn = null, somLigado = true, nivel = 1, tMus = 0, passo = 0, gravandoSom = false;
+  var emChamada = false, ctx = null, mestreG = null, musG = null, reverbIn = null, secoIn = null, somLigado = true, nivel = 1, tMus = 0, passo = 0, gravandoSom = false;
   var ACORDES = [[73.42, 110, 146.83, 174.61, 220, 329.63], [58.27, 116.54, 146.83, 174.61, 220, 261.63], [65.41, 98, 130.81, 164.81, 196, 293.66], [55, 110, 130.81, 164.81, 220, 246.94]];
   var SINOS = [440, 523.25, 587.33, 659.25, 783.99, 880, 1046.5];
   function audioCtx() {
@@ -469,7 +556,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   }
   function aplicarVol(s) {
     if (!musG) return;
-    var alvo = somLigado && !gravandoSom ? Math.max(.00001, VOL_MUSICA * nivel) : .00001, t = ctx.currentTime;
+    var alvo = somLigado && !gravandoSom && !emChamada ? Math.max(.00001, VOL_MUSICA * nivel) : .00001, t = ctx.currentTime;
     try { musG.gain.cancelScheduledValues(t); musG.gain.setValueAtTime(Math.max(.00001, musG.gain.value), t); musG.gain.exponentialRampToValueAtTime(alvo, t + (s || .4)); } catch (e) {}
   }
   function botaoSom() { ["som1", "som2"].forEach(function (i) { $(i).setAttribute("aria-pressed", somLigado ? "true" : "false"); }); $("som1t").textContent = somLigado ? "Música" : "Sem música"; }
@@ -477,8 +564,8 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   // os sinais curtos, com os mesmos volumes do chat do site (vivo.js): nunca alto
   function sinal(q) {
     try {
-      var a = audioCtx(); if (!a) return; var t = a.currentTime, n = { abre: [[523.3, 0], [659.3, .14], [784, .28], [1046.5, .44]], fecha: [[784, 0], [523.3, .22]], msg: [[880, 0]] }[q];
-      n.forEach(function (x) { var o = a.createOscillator(), g = a.createGain(), t0 = t + x[1]; o.type = "sine"; o.frequency.value = x[0]; g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(q === "msg" ? .015 : .05, t0 + .02); g.gain.exponentialRampToValueAtTime(.0001, t0 + (q === "abre" ? 1.8 : q === "msg" ? .25 : 1.1)); o.connect(g); g.connect(a.destination); o.start(t0); o.stop(t0 + 1.9); });
+      var a = audioCtx(); if (!a) return; var t = a.currentTime, n = { abre: [[523.3, 0], [659.3, .14], [784, .28], [1046.5, .44]], fecha: [[784, 0], [523.3, .22]], msg: [[880, 0]], toca: [[659.3, 0], [880, .16], [659.3, .62], [880, .78]], chama: [[440, 0], [440, .5]] }[q];
+      n.forEach(function (x) { var o = a.createOscillator(), g = a.createGain(), t0 = t + x[1]; o.type = "sine"; o.frequency.value = x[0]; g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(q === "msg" ? .015 : q === "chama" ? .02 : .05, t0 + .02); g.gain.exponentialRampToValueAtTime(.0001, t0 + (q === "abre" ? 1.8 : q === "msg" ? .25 : 1.1)); o.connect(g); g.connect(a.destination); o.start(t0); o.stop(t0 + 1.9); });
     } catch (e) {}
   }
 
@@ -538,7 +625,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     if (window.innerWidth > 760) setTimeout(function () { $("texto").focus(); }, 900);
   }
   function verFim(titulo, tx) {
-    clearInterval(tFrase); clearTimeout(tMus); pararGravacao(false); abrindo = false; semConta();
+    clearInterval(tFrase); clearTimeout(tMus); pararGravacao(false); abrindo = false; semConta(); fechaChamada(); $("ch-volta").classList.remove("on");
     if (musG) { var a = musG; nivel = 0; aplicarVol(2); setTimeout(function () { try { a.disconnect(); } catch (e) {} }, 2600); musG = null; }
     mostra("espera", false); mostra("entrada", false); $("chat").classList.remove("grande-ja");
     setTimeout(function () { mostra("chat", false); }, 700);
@@ -563,8 +650,11 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   // ---------- as perguntas ao worker: nunca duas ao mesmo tempo, e cada vez menos quando nada acontece ----------
   var tPerg = 0, aPerguntar = false, parado = false, notaRede = false;
   function intervalo() {
-    if (document.hidden) return ESCONDIDA_MS;
+    if (document.hidden && !(ch && ch.fase !== "ativa") && estado !== "conversa") return ESCONDIDA_MS;
     if (estado === "fechado" || estado === "expirado") return FIM_MS;
+    if (ch && ch.fase !== "ativa") return CHAMADA_MS;   // só enquanto toca, liga ou recupera
+    if (document.hidden && estado === "conversa") return ESCONDIDA_CONV_MS;
+    if (ch) return CONVERSA_MS;
     if (estado === "conversa") return Date.now() - ultimaAct > CALMA_APOS_MS ? CALMA_MS : CONVERSA_MS;
     return ESPERA_MS;
   }
@@ -573,7 +663,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     if (aPerguntar || parado) return;
     if (document.hidden && (estado === "fechado" || estado === "expirado")) return;   // volta a perguntar ao regressar à página
     aPerguntar = true;
-    fetch("/api/consultorio/estado?" + Q + "&desde=" + desde, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (r) {
+    fetch("/api/consultorio/estado?" + Q + "&desde=" + desde + "&cv=" + (ch ? ch.cv : 0), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (r) {
       falhas = 0; if (notaRede) nota(""); notaRede = false; trata(r);
     }).catch(function () { falhas++; if (falhas > 2) { notaRede = true; nota("A ligação falhou. A tentar outra vez…"); } }).then(function () { aPerguntar = false; proxima(); });
   }
@@ -587,8 +677,9 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     (r.msgs || []).forEach(novaMsg);
     if (estado === "espera" && !abrindo && document.body.classList.contains("fase-espera")) verConta(r);
     $("esc").classList.toggle("on", !!r.escreve); if (r.escreve) { ultimaAct = Date.now(); rolar(); }
+    if (estado === "conversa") tratarChamada(r.chamada || null, r.agora);
     if (mestre) {
-      if (r.etiqueta) $("chat-nome").textContent = r.etiqueta;
+      if (r.etiqueta) { $("chat-nome").textContent = r.etiqueta; $("ch-nome").textContent = r.etiqueta; }
       $("chat-est").textContent = r.presente ? "● Na sala, a ver a conversa" : "○ A página da pessoa não responde agora";
       if (estado === "conversa" && !abrindo) abrirPortas(true);
       else if (estado !== "conversa" && (ant !== estado || !ant)) verEspera();
@@ -611,17 +702,20 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     var f = d.querySelector(".foto"); if (f) { f.onload = rolar; f.onclick = function () { $("zoom").firstChild.src = u; $("zoom").classList.add("on"); }; }
   }
   $("zoom").onclick = function () { this.classList.remove("on"); this.firstChild.removeAttribute("src"); };
+  function sistema2(t) { var d = document.createElement("div"); d.className = "sis"; d.textContent = t; $("msgs").insertBefore(d, $("esc")); rolar(); }
   function rolar() { var b = $("msgs"); b.scrollTop = b.scrollHeight; }
   function sistema(t) { var d = document.createElement("div"); d.className = "sis"; d.textContent = t; var b = $("msgs"); b.insertBefore(d, b.firstChild); rolar(); }   // sempre no topo, mesmo com histórico
   var ICO_P = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>', ICO_S = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4.5" width="4.4" height="15" rx="1"/><rect x="13.6" y="4.5" width="4.4" height="15" rx="1"/></svg>';
   function novaMsg(x) {
     if (x.id <= desde) return; desde = x.id; ultimaAct = Date.now();
+    if (x.tipo === "chamada") { fimVisto = x.mime; sistema2(x.texto); return; }
     var minha = x.de === (mestre ? "mestre" : "pessoa"), d = document.createElement("div");
     d.className = "m " + (minha ? "eu" : "outro");
     if (x.tipo === "anexo") { pintaAnexo(d, x); }
     else if (x.tipo === "audio") { d.innerHTML = '<div class="au"><button type="button" aria-label="Ouvir o áudio">' + ICO_P + '</button><span class="barra"><i></i></span><span class="dur">' + mmss(x.dur) + "</span></div><time>" + hora(x.quando) + "</time>"; leitor(d, x); }
     else d.innerHTML = esc(x.texto) + "<time>" + hora(x.quando) + "</time>";
     $("msgs").insertBefore(d, $("esc")); rolar();
+    if (!minha && document.body.classList.contains("em-chamada") && !document.body.classList.contains("ch-chat")) { $("ch-n").textContent = ++chPorLer; $("ch-n").classList.add("on"); }
     if (!minha && document.body.classList.contains("fase-chat")) { sinal("msg"); if (document.hidden) { porLer++; document.title = "(" + porLer + ") Nova mensagem"; } }
   }
   // O áudio descarrega-se já, para um Blob: o Safari do iPhone só aceita tocar dentro do toque e não gosta de servidores sem Range.
@@ -648,6 +742,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   function ajustarChat() {   // com o teclado aberto, a conversa encolhe em vez de ficar tapada (o iPhone não redimensiona a página)
     var v = window.visualViewport; if (!v) return;
     var teclado = window.innerHeight - v.height > 120;
+    document.documentElement.classList.toggle("teclado", teclado);
     document.documentElement.style.setProperty("--chat-h", teclado ? (v.height - 8) + "px" : "");
     if (teclado) { window.scrollTo(0, 0); } setTimeout(rolar, 60);
   }
@@ -721,6 +816,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   }
   $("mic").onclick = function () {
     if (grav) return;
+    if (ch && ch.fase !== "toque") return nota("Durante a chamada, escreva aqui. Os áudios gravam-se quando a chamada acabar.");
     if (typeof MediaRecorder === "undefined" || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return semMic();
     nota(""); $("mic").disabled = true;
     navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } }).then(function (fluxo) {
@@ -745,6 +841,253 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   $("parar").onclick = function () { pararGravacao(true); };
   $("cancelar").onclick = function () { pararGravacao(false); };
 
+  // ---------- a chamada ----------
+  // Só o Mestre liga, e sempre pela página https. A oferta e a resposta já levam os candidatos todos: duas escritas no Durable Object por
+  // chamada. Som e imagem vão directos entre os aparelhos e não são gravados. Recarregar não desliga: quem recarrega volta com um toque.
+  var ch = null, chPorLer = 0, fimVisto = "", chVoltaS = null, tQueda = 0, tToque = 0, tRelogio = 0, AUD = { echoCancellation: true, noiseSuppression: true, autoGainControl: true };
+  function chPost(acao, d) { d = d || {}; d.acao = acao; if (ch) d.id = ch.id; return post("chamada", d); }
+  function novaCh(id, modo, fase) { return { id: id, modo: modo, fase: fase, pc: null, local: null, remoto: null, dc: null, cv: 0, ver: 0, ligou: false, frente: "user", mic: true, cam: true, base: 0, oferta: "" }; }
+  function nomeModo(m) { return m === "video" ? "Videochamada" : "Chamada de voz"; }
+  function notaCh(t, s) { var n = $("ch-nota"); n.textContent = t || ""; n.classList.toggle("on", !!t); clearTimeout(n._t); if (t && s) n._t = setTimeout(function () { n.classList.remove("on"); }, s * 1000); }
+  function explica(e, modo) {
+    var cam = modo === "video";
+    if (dentroApp) return "Dentro desta aplicação o " + (cam ? "microfone e a câmara não funcionam" : "microfone não funciona") + ". Abra a ligação no " + (ios ? "Safari" : "Chrome") + " ou continue pelo chat.";
+    if (!window.isSecureContext || !navigator.mediaDevices) return "Esta página não pode usar o " + (cam ? "microfone nem a câmara" : "microfone") + ". Continue pelo chat.";
+    if (e && (e.name === "NotFoundError" || e.name === "DevicesNotFoundError" || e.name === "OverconstrainedError")) return cam ? "Não encontrámos câmara neste aparelho." : "Não encontrámos microfone neste aparelho.";
+    if (e && e.name === "NotReadableError") return (cam ? "A câmara ou o microfone" : "O microfone") + " está a ser usado por outra aplicação. Feche-a e tente outra vez.";
+    return "Sem autorização para " + (cam ? "a câmara ou o microfone" : "o microfone") + ". Pode autorizar nas definições do navegador.";
+  }
+  function pedeMedia(modo) {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return Promise.reject({ name: "SemMedia" });
+    var pref = function (ctr) { return navigator.mediaDevices.getUserMedia(ctr); }, cam = guardado("gt_cam"), mic = guardado("gt_mic");
+    var ped = function (usa) {
+      var a = {}, k; for (k in AUD) a[k] = AUD[k]; if (usa && mic) a.deviceId = { exact: mic };
+      var v = { width: { ideal: 1280 }, height: { ideal: 720 } }; if (usa && cam) v.deviceId = { exact: cam }; else v.facingMode = "user";
+      return pref(modo === "video" ? { audio: a, video: v } : { audio: a, video: false });
+    };
+    return ped(true).catch(function (e) { if (cam || mic) { if (e && (e.name === "OverconstrainedError" || e.name === "NotFoundError")) return ped(false); } throw e; });   // o aparelho guardado pode já não estar ligado
+  }
+  // a escolha fica neste navegador: no renko, por exemplo, a OBS Virtual Camera e o microfone do estúdio
+  function guardado(k) { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } }
+  function guarda(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function encheDisp() {
+    return navigator.mediaDevices.enumerateDevices().then(function (l) {
+      [["d-cam", "videoinput", "gt_cam", "Câmara"], ["d-mic", "audioinput", "gt_mic", "Microfone"]].forEach(function (x) {
+        var el = $(x[0]), atual = ch && ch.local && (x[1] === "videoinput" ? ch.local.getVideoTracks()[0] : ch.local.getAudioTracks()[0]), id = atual && atual.getSettings().deviceId || guardado(x[2]);
+        el.innerHTML = l.filter(function (d) { return d.kind === x[1] && d.deviceId !== "default" && d.deviceId !== "communications"; }).map(function (d, i) { return '<option value="' + esc(d.deviceId) + '"' + (d.deviceId === id ? " selected" : "") + ">" + esc(d.label || x[3] + " " + (i + 1)) + "</option>"; }).join("") || "<option value=''>Nenhuma encontrada</option>";
+      });
+      return l;
+    });
+  }
+  function abreDisp() {
+    if (!navigator.mediaDevices) return nota("Este navegador não dá acesso à câmara nem ao microfone.");
+    mostra("disp", true);
+    encheDisp().then(function (l) {
+      if (l.some(function (d) { return d.label; })) return;   // sem autorização o navegador esconde os nomes: pede uma vez e larga logo
+      return navigator.mediaDevices.getUserMedia({ audio: true, video: true }).catch(function () { return navigator.mediaDevices.getUserMedia({ audio: true }); }).then(function (s) { s.getTracks().forEach(function (t) { t.stop(); }); return encheDisp(); });
+    }).catch(function () { notaCh("O navegador não deixou ver a câmara e o microfone.", 5); });
+  }
+  function trocaDisp(tipo, id, chave) {   // a meio da chamada: replaceTrack, sem voltar a ligar
+    guarda(chave, id); if (!ch || !ch.local || !ch.pc) return;
+    var c0 = ch, video = tipo === "video", velha = (video ? c0.local.getVideoTracks() : c0.local.getAudioTracks())[0];
+    navigator.mediaDevices.getUserMedia(video ? { audio: false, video: { deviceId: { exact: id }, width: { ideal: 1280 }, height: { ideal: 720 } } } : { audio: (function () { var a = {}, k; for (k in AUD) a[k] = AUD[k]; a.deviceId = { exact: id }; return a; })(), video: false }).then(function (s) {
+      var t = (video ? s.getVideoTracks() : s.getAudioTracks())[0], snd = c0.pc.getSenders().filter(function (x) { return x.track && x.track.kind === t.kind; })[0];
+      t.enabled = video ? c0.cam : c0.mic; if (video) c0.frente = "";
+      return (snd ? snd.replaceTrack(t) : Promise.resolve()).then(function () { if (velha) { c0.local.removeTrack(velha); velha.stop(); } c0.local.addTrack(t); if (video) $("ch-eu").classList.remove("espelho"); });
+    }).catch(function () { notaCh("Não foi possível usar esse aparelho.", 5); });
+  }
+  $("lig-disp").onclick = abreDisp; $("ch-disp").onclick = abreDisp; $("d-ok").onclick = function () { mostra("disp", false); };
+  $("d-cam").onchange = function () { trocaDisp("video", this.value, "gt_cam"); };
+  $("d-mic").onchange = function () { trocaDisp("audio", this.value, "gt_mic"); };
+  function esperaIce(pc) {   // sem «trickle»: espera pelos candidatos, 2,5 s no máximo, e manda tudo de uma vez
+    return new Promise(function (ok) {
+      if (pc.iceGatheringState === "complete") return ok();
+      var t = setTimeout(ok, 2500); pc.addEventListener("icegatheringstatechange", function () { if (pc.iceGatheringState === "complete") { clearTimeout(t); ok(); } });
+    });
+  }
+  function novoPc() {
+    // ao voltar a ligar usa-se o que estiver em uso agora, incluindo uma câmara trocada a meio
+    var pc = new RTCPeerConnection(ICE), c0 = ch;
+    if (c0.pc) { try { c0.pc.onconnectionstatechange = null; c0.pc.close(); } catch (e) {} }
+    c0.pc = pc; c0.remoto = new MediaStream();
+    if (c0.local) c0.local.getTracks().forEach(function (t) { pc.addTrack(t, c0.local); });
+    pc.ontrack = function (e) { c0.remoto.addTrack(e.track); ligaRemoto(); };
+    pc.onconnectionstatechange = function () {
+      if (ch !== c0 || c0.pc !== pc) return;
+      var s = pc.connectionState;
+      if (s === "connected") { clearTimeout(tQueda); tQueda = 0; aoLigar(); }
+      else if (s === "failed") aoCair();
+      else if (s === "disconnected") { clearTimeout(tQueda); tQueda = setTimeout(aoCair, 5000); }
+    };
+    pc.ondatachannel = function (e) { ligaDc(e.channel); };
+    return pc;
+  }
+  function ligaDc(dc) { ch.dc = dc; dc.onopen = dizEstado; dc.onmessage = function (e) { try { var x = JSON.parse(e.data); if (!ch || ch.modo !== "video") return; $("ch").classList.toggle("outro-sem-cam", x.cam === false); $("ch-sub").textContent = x.cam === false ? "Câmara desligada" : nomeModo(ch.modo); } catch (y) {} }; }
+  function dizEstado() { try { if (ch && ch.dc && ch.dc.readyState === "open") ch.dc.send(JSON.stringify({ cam: ch.cam && temVideo(), mic: ch.mic })); } catch (e) {} }
+  function temVideo() { return !!(ch && ch.local && ch.local.getVideoTracks().length); }
+  function ligaRemoto() {
+    var el = ch.modo === "video" ? $("ch-outro") : $("ch-audio"); if (el.srcObject !== ch.remoto) el.srcObject = ch.remoto;
+    var p = el.play(); if (p && p.catch) p.catch(function () { $("ch-ouvir").style.display = "block"; });
+  }
+  function ecraChamada() {
+    var b = document.body, e = $("ch"); b.classList.add("em-chamada"); mostra("ch", true); mostra("toca", false); clearInterval(tToque);
+    e.classList.toggle("modo-video", ch.modo === "video"); e.classList.toggle("tem-video", ch.modo === "video"); e.classList.toggle("com-eu", temVideo());
+    $("ch-sub").textContent = nomeModo(ch.modo); $("ch-eu").srcObject = ch.local || null; $("ch-eu").classList.toggle("espelho", ch.frente === "user");
+    if (temVideo() && navigator.maxTouchPoints > 0) { navigator.mediaDevices.enumerateDevices().then(function (l) { e.classList.toggle("pode-virar", l.filter(function (d) { return d.kind === "videoinput"; }).length > 1); }).catch(function () {}); }
+    emChamada = true; aplicarVol(.4); document.title = tituloBase; pintaTempo(); clearInterval(tRelogio); tRelogio = setInterval(pintaTempo, 1000);
+  }
+  function pintaTempo() {
+    if (!ch) return; var s = ch.base ? Math.max(0, Math.floor((Date.now() - ch.base) / 1000)) : 0, t = ("0" + Math.floor(s / 60)).slice(-2) + ":" + ("0" + (s % 60)).slice(-2);
+    $("ch-tempo").textContent = ch.base ? t : "A ligar…"; $("ch-tempo2").textContent = ch.base ? "· " + t : "";
+  }
+  function aoLigar() {
+    var c0 = ch, primeira = !c0.ligou; c0.fase = "ativa"; c0.ligou = true; if (!c0.base) c0.base = Date.now(); notaCh(c0.temNota || ""); proxima(CHAMADA_MS);
+    if (primeira) chPost("ligada").catch(function () {});
+    dizEstado();
+  }
+  function aoCair() {
+    if (!ch) return;
+    if (!ch.ligou) return falhaLigar();
+    if (ch.fase === "caiu") return;
+    ch.fase = "caiu"; notaCh("A ligação caiu. A tentar de novo…"); proxima(0);
+    if (mestre) reoferta(); else chPost("religar").catch(function () {});
+    clearTimeout(tQueda); tQueda = setTimeout(function () { if (ch && ch.fase === "caiu") { var c0 = ch; chPost("desligar").catch(function () {}); fechaChamada(); nota("A chamada caiu e não voltou. Pode continuar aqui, por escrita."); } }, 30000);
+  }
+  function falhaLigar() {
+    chPost("desligar", { motivo: "falhou" }).catch(function () {}); fechaChamada();
+    nota("Não foi possível ligar os dois aparelhos: acontece em algumas redes, sobretudo em dados móveis. Continue aqui por escrita, ou tente outra vez noutra rede, como o Wi-Fi."); proxima(0);
+  }
+  function fechaChamada() {
+    var c0 = ch, b = document.body; ch = null; emChamada = false; clearInterval(tToque); clearInterval(tRelogio); clearTimeout(tQueda);
+    if (c0) { if (c0.pc) { c0.pc.onconnectionstatechange = null; try { c0.pc.close(); } catch (e) {} } if (c0.local) c0.local.getTracks().forEach(function (t) { t.stop(); }); }
+    ["ch-outro", "ch-audio", "ch-eu"].forEach(function (i) { $(i).srcObject = null; }); $("ch-ouvir").style.display = "none"; notaCh("");
+    mostra("ch", false); mostra("toca", false); b.classList.remove("em-chamada", "ch-chat"); $("ch").className = "ecra"; $("ch-mic").classList.remove("off"); $("ch-cam").classList.remove("off"); $("ch-n").classList.remove("on"); chPorLer = 0;
+    if (musG) aplicarVol(.8);
+  }
+  function mensagemFim(m) {
+    return mestre ? { recusada: "A pessoa recusou a chamada.", perdida: "A pessoa não atendeu.", terminada: "", cancelada: "", falhou: "Não foi possível ligar os dois aparelhos. Sugira o chat ou outra rede." }[m] || ""
+      : { perdida: "Tem uma chamada não atendida. O Mestre Alberto volta a ligar ou fala consigo aqui.", terminada: "", recusada: "", cancelada: "O Mestre Alberto cancelou a chamada.", falhou: "Não foi possível ligar os dois aparelhos. Continue aqui por escrita." }[m] || "";
+  }
+  function tocaUI() {
+    var c0 = ch; fase("chat"); mostra("toca", true);
+    $("toca-t").textContent = mestre ? "A ligar…" : "O Mestre Alberto está a ligar"; $("toca-sub").textContent = nomeModo(c0.modo);
+    $("toca-nota").textContent = mestre ? "A chamada corta ao fim de 60 segundos sem atender." : "Esta chamada não é gravada. O navegador só pede " + (c0.modo === "video" ? "a câmara e o microfone" : "o microfone") + " depois de atender.";
+    $("ch-sim").style.display = mestre ? "none" : ""; $("ch-nao").textContent = mestre ? "Cancelar" : "Recusar";
+    if (!mestre && dentroApp) { avisoApp("toca-app"); }
+    clearInterval(tToque); var soa = function () { sinal(mestre ? "chama" : "toca"); if (!mestre && navigator.vibrate) try { navigator.vibrate([300, 200, 300]); } catch (e) {} }; soa(); tToque = setInterval(soa, 3000);
+    if (document.hidden) document.title = "📞 " + $("toca-t").textContent;
+  }
+  // o Mestre liga
+  function ligar(modo) {
+    if (ch || grav) return;
+    if (!window.RTCPeerConnection) return nota("Este navegador não faz chamadas.");
+    nota("A preparar a chamada…"); $("lig-voz").disabled = $("lig-video").disabled = true;
+    var acaba = function () { $("lig-voz").disabled = $("lig-video").disabled = false; };
+    pedeMedia(modo).then(function (s) {
+      ch = novaCh(0, modo, "chama"); ch.local = s; tocaUI(); var pc = novoPc(); ligaDc(pc.createDataChannel("estado"));
+      return pc.createOffer().then(function (o) { return pc.setLocalDescription(o); }).then(function () { return esperaIce(pc); }).then(function () { return post("chamada", { acao: "ligar", modo: modo, sdp: pc.localDescription.sdp }); }).then(function (r) {
+        if (!r.ok) throw { fala: r.erro === "ocupado" ? "Já há uma chamada em curso." : "A chamada não seguiu." };
+        ch.id = r.id; ch.ver = r.ver; nota(""); acaba(); proxima(0);
+      });
+    }).catch(function (e) { acaba(); fechaChamada(); nota(e && e.fala || (explica(e, modo) + (modo === "video" ? " Pode usar «Ligar», só com voz, ou escrever." : " Pode continuar por escrita."))); });
+  }
+  function reoferta() {
+    if (!ch || ch.aOferecer) return; ch.aOferecer = true; var c0 = ch; c0.ver = 0; var pc = novoPc();   // ver a 0: uma resposta antiga não pode entrar nesta ligação nova ligaDc(pc.createDataChannel("estado"));
+    pc.createOffer({ iceRestart: true }).then(function (o) { return pc.setLocalDescription(o); }).then(function () { return esperaIce(pc); }).then(function () { return chPost("oferta", { sdp: pc.localDescription.sdp }); }).then(function (r) { c0.aOferecer = false; if (r.ok) { c0.ver = r.ver; } proxima(0); }).catch(function () { c0.aOferecer = false; });
+  }
+  // a pessoa atende
+  function responder(ver, sdp) {
+    if (!ch) return; var c0 = ch, pc = novoPc(); c0.cv = ver;
+    pc.setRemoteDescription({ type: "offer", sdp: sdp }).then(function () { return pc.createAnswer(); }).then(function (a) { return pc.setLocalDescription(a); }).then(function () { return esperaIce(pc); }).then(function () {
+      var l = c0.local; return chPost("resposta", { ver: ver, sdp: pc.localDescription.sdp, tem: (l && l.getAudioTracks().length ? "a" : "") + (l && l.getVideoTracks().length ? "v" : "") });
+    }).catch(function () { if (ch === c0) falhaLigar(); });
+  }
+  function comFallback(modo, feito) {   // sem câmara segue só com voz; sem microfone segue a ouvir e a escrever
+    pedeMedia(modo).then(function (s) { feito(s, ""); }).catch(function (e) {
+      var msg = explica(e, modo);
+      if (modo !== "video") return feito(null, msg + " Pode ouvir o Mestre Alberto e responder por escrita.");
+      pedeMedia("voz").then(function (s) { feito(s, msg + " A chamada segue só com voz."); }).catch(function (e2) { feito(null, explica(e2, "voz") + " Pode ouvir e ver o Mestre Alberto e responder por escrita."); });
+    });
+  }
+  $("ch-sim").onclick = function () {
+    if (!ch || ch.fase !== "toque") return; var c0 = ch; if (grav) pararGravacao(false);
+    if (!window.RTCPeerConnection) { nota("Este navegador não faz chamadas. Continue aqui por escrita."); return chPost("desligar").catch(function () {}); }
+    c0.fase = "liga"; mostra("toca", false); clearInterval(tToque); chPost("atender").catch(function () {}); proxima(CHAMADA_MS);
+    var t0 = Date.now(); $("ch-sub").textContent = nomeModo(c0.modo); ecraChamada(); notaCh("A ligar…");
+    comFallback(c0.modo, function (s, msg) {
+      if (ch !== c0) { if (s) s.getTracks().forEach(function (t) { t.stop(); }); return; }
+      c0.local = s; c0.temNota = msg; ecraChamada(); notaCh(msg);
+      responder(c0.cv, c0.oferta);
+      setTimeout(function () { if (ch === c0 && !c0.ligou) falhaLigar(); }, 30000);
+    });
+  };
+  $("ch-nao").onclick = function () { if (!ch) return; chPost("desligar").catch(function () {}); fechaChamada(); proxima(0); };
+  $("ch-fim").onclick = function () { if (!ch) return; chPost("desligar").catch(function () {}); fechaChamada(); proxima(0); };
+  $("lig-voz").onclick = function () { ligar("voz"); };
+  $("lig-video").onclick = function () { ligar("video"); };
+  $("ch-ouvir").onclick = function () { this.style.display = "none"; ligaRemoto(); };
+  $("ch-txt").onclick = function () { var on = document.body.classList.toggle("ch-chat"); chPorLer = 0; $("ch-n").classList.remove("on"); if (on) setTimeout(rolar, 60); };
+  $("ch-mic").onclick = function () { if (!ch || !ch.local) return; ch.mic = !ch.mic; ch.local.getAudioTracks().forEach(function (t) { t.enabled = ch.mic; }); this.classList.toggle("off", !ch.mic); this.setAttribute("aria-pressed", !ch.mic); dizEstado(); };
+  $("ch-cam").onclick = function () { if (!temVideo()) return notaCh("Esta chamada não tem câmara deste lado.", 4); ch.cam = !ch.cam; ch.local.getVideoTracks().forEach(function (t) { t.enabled = ch.cam; }); this.classList.toggle("off", !ch.cam); this.setAttribute("aria-pressed", !ch.cam); dizEstado(); };
+  $("ch-virar").onclick = function () {
+    if (!temVideo()) return; var c0 = ch, velha = c0.local.getVideoTracks()[0], nova = c0.frente === "user" ? "environment" : "user", b = this; b.disabled = true;
+    var pede = function (c) { return navigator.mediaDevices.getUserMedia({ audio: false, video: c }); };
+    var abre = function () {
+      return pede({ facingMode: { exact: nova }, width: { ideal: 1280 }, height: { ideal: 720 } }).catch(function (e) {
+        if (e && e.name === "NotReadableError") throw e;
+        return navigator.mediaDevices.enumerateDevices().then(function (l) { var v = l.filter(function (d) { return d.kind === "videoinput"; }), i = v.findIndex(function (d) { return d.label && d.label === velha.label; }); return pede({ deviceId: { exact: v[(i + 1) % v.length].deviceId }, width: { ideal: 1280 }, height: { ideal: 720 } }); });
+      });
+    };
+    // com as duas abertas a imagem não pára; há telemóveis que só abrem uma de cada vez, e aí larga-se a primeira antes de pedir a outra
+    abre().catch(function () { velha.stop(); return abre(); }).then(function (s) {
+      var t = s.getVideoTracks()[0], snd = c0.pc.getSenders().filter(function (x) { return x.track && x.track.kind === "video"; })[0];
+      t.enabled = c0.cam; return (snd ? snd.replaceTrack(t) : Promise.resolve()).then(function () { c0.local.removeTrack(velha); c0.local.addTrack(t); velha.stop(); c0.frente = nova; $("ch-eu").classList.toggle("espelho", nova === "user"); });
+    }).catch(function () { notaCh("Não foi possível virar a câmara.", 4); }).then(function () { b.disabled = false; });
+  };
+  // o que vem do servidor
+  function tratarChamada(s, agoraSrv) {
+    if (!s) {
+      $("ch-volta").classList.remove("on"); chVoltaS = null;
+      if (ch && ch.id) { var m = fimVisto; fechaChamada(); var t = mensagemFim(m); if (t) nota(t); proxima(); }
+      fimVisto = ""; if (!mestre && document.title.charAt(0) === "📞") document.title = tituloBase;
+      return;
+    }
+    if (ch && ch.id && ch.id !== s.id) fechaChamada();
+    if (!ch) {
+      if (!mestre && s.estado === "toca") { ch = novaCh(s.id, s.modo, "toque"); ch.cv = s.ver; ch.oferta = s.oferta || ""; $("ch-volta").classList.remove("on"); tocaUI(); proxima(CHAMADA_MS); return; }
+      chVoltaS = s; $("ch-volta-t").textContent = nomeModo(s.modo) + " em curso."; $("ch-volta").classList.add("on"); return;   // recarregou-se a página a meio
+    }
+    if (!ch.id) return;
+    if (!ch.base && s.ligada && agoraSrv) ch.base = Date.now() - (agoraSrv - s.ligada);
+    if (mestre) {
+      if (ch.fase === "chama" && s.estado !== "toca") { ch.fase = "liga"; ecraChamada(); notaCh("A pessoa atendeu. A ligar…"); proxima(CHAMADA_MS); }
+      if (s.resposta && s.ver === ch.ver && ch.pc && !ch.pc.remoteDescription) {
+        var c0 = ch; c0.cv = s.ver; ch.pc.setRemoteDescription({ type: "answer", sdp: s.resposta }).catch(function () { if (ch === c0) falhaLigar(); });
+        setTimeout(function () { if (ch === c0 && !c0.ligou) falhaLigar(); }, 30000);
+      }
+      if (s.tem !== null && s.tem !== undefined) {
+        if (ch.modo === "video") $("ch").classList.toggle("outro-sem-cam", s.tem.indexOf("v") < 0);
+        if (s.tem !== ch.temVisto) { ch.temVisto = s.tem; if (s.tem === "") notaCh(ch.temNota = "A pessoa não tem microfone: ouve-o e responde por escrita."); else if (ch.modo === "video" && s.tem.indexOf("v") < 0) { $("ch-sub").textContent = "A pessoa está sem câmara"; notaCh(ch.temNota = "A pessoa está sem câmara: segue só com voz."); } }
+      }
+      if (s.pede && !ch.aOferecer && s.ver === ch.ver) reoferta();
+    } else if (s.oferta && s.ver > ch.cv && ch.fase === "toque") { ch.cv = s.ver; ch.oferta = s.oferta;
+    } else if (s.oferta && s.ver > ch.cv) {
+      if (ch.fase === "ativa" && ch.pc && ch.pc.connectionState === "connected") ch.fase = "liga";
+      responder(s.ver, s.oferta);
+    }
+  }
+  $("ch-voltar").onclick = function () {
+    var s = chVoltaS; if (!s || ch) return; $("ch-volta").classList.remove("on");
+    var c0 = novaCh(s.id, s.modo, "liga"); c0.ligou = !!s.ligada; c0.ver = c0.cv = s.ver; ch = c0; ecraChamada(); notaCh("A voltar à chamada…");
+    comFallback(s.modo, function (l, msg) {
+      if (ch !== c0) { if (l) l.getTracks().forEach(function (t) { t.stop(); }); return; }
+      c0.local = l; c0.temNota = msg; ecraChamada(); notaCh(msg);
+      if (mestre) { c0.cv = 0; reoferta(); } else chPost("religar").catch(function () {});
+      proxima(0); setTimeout(function () { if (ch === c0 && c0.fase !== "ativa") { c0.ligou = false; falhaLigar(); } }, 30000);
+    });
+  };
+  $("ch-largar").onclick = function () { var s = chVoltaS; if (!s) return; $("ch-volta").classList.remove("on"); post("chamada", { acao: "desligar", id: s.id }).then(function () { proxima(0); }); };
+
   // ---------- botões ----------
   $("aceito").onchange = function () { $("entrar").disabled = !this.checked; };
   $("entrar").onclick = function () {
@@ -767,8 +1110,8 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     estado = r.estado;
     if (["invalido", "fechado", "expirado"].indexOf(estado) >= 0) { fimDe(estado); if (estado !== "invalido") proxima(); return; }
     if (r.max_audio_s) maxAudio = r.max_audio_s;
-    if (mestre) { botaoSomMestre(); (r.msgs || []).forEach(novaMsg); if (r.etiqueta) $("chat-nome").textContent = r.etiqueta; if (estado === "conversa") abrirPortas(true); else verEspera(); proxima(); return; }
-    if (estado === "conversa") { (r.msgs || []).forEach(novaMsg); abrirPortas(true); somLigado = false; botaoSom(); proxima(); return; }
+    if (mestre) { botaoSomMestre(); (r.msgs || []).forEach(novaMsg); fimVisto = ""; if (r.etiqueta) $("chat-nome").textContent = r.etiqueta; if (estado === "conversa") abrirPortas(true); else verEspera(); proxima(); return; }
+    if (estado === "conversa") { (r.msgs || []).forEach(novaMsg); fimVisto = ""; abrirPortas(true); somLigado = false; botaoSom(); proxima(); return; }
     verEntrada(estado === "espera" || !!r.aceite);
   }).catch(function () { $("t-ent").textContent = "A ligação falhou"; $("ent-tx").textContent = "Confirme a internet e recarregue a página."; $("ent-aceito").style.display = "none"; $("entrar").style.display = "none"; fase("entrada"); mostra("entrada", true); });
   function botaoSomMestre() { somLigado = false; $("som1").style.display = "none"; $("som2").style.display = "none"; }

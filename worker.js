@@ -676,7 +676,7 @@ export default {
     if (/^\/consultorio\/[a-hjkmnp-z2-9]{20}\/?$/.test(url.pathname) && (request.method === "GET" || request.method === "HEAD")) {
       const folha = await env.ASSETS.fetch(new Request(new URL("/consultorio-sala", url), { method: "GET" }));
       return new Response(request.method === "HEAD" ? null : folha.body, { status: folha.status, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store",
-        "X-Robots-Tag": "noindex, nofollow", "Referrer-Policy": "no-referrer", "Permissions-Policy": "microphone=(self)" } });
+        "X-Robots-Tag": "noindex, nofollow", "Referrer-Policy": "no-referrer", "Permissions-Policy": "microphone=(self), camera=(self)" } });
     }
     if (url.pathname.startsWith("/api/consultorio/")) {
       if (!env.CONSULTORIO) return new Response("{}", { status: 503 });
@@ -1869,6 +1869,10 @@ const CONSULTORIO = {
   AUDIOS_MAX: 80,            // por conversa e por pessoa: para um link esquecido não encher o armazenamento
   ANEXO_MAX_BYTES: 3 << 20,  // fotos (já reduzidas no navegador) e PDF
   ANEXOS_MAX: 40,            // por conversa e por lado
+  CHAMADA_TOCA_MS: 60000,    // sem atender, a chamada corta aqui
+  CHAMADA_LIGAR_MS: 60000,   // depois de atender, tempo máximo até os dois aparelhos se ligarem
+  CHAMADA_SOZINHA_MS: 90000, // chamada ligada de que um dos lados deixou de perguntar
+  SDP_MAX: 32768,            // oferta ou resposta, com todos os candidatos lá dentro
   ESPERA_MIN: 5,             // contador da sala de espera, se ele não escolher outro tempo
   ESPERA_OCUPADO_MIN: 15,    // com outra pessoa no consultório, a contagem nunca começa abaixo disto
   ESPERA_MAX_MIN: 180,       // tecto da soma de minutos no painel
@@ -1906,6 +1910,11 @@ export class Consultorio extends DurableObject {
     try { this.sql.exec("ALTER TABLE consultas ADD COLUMN fim_espera INTEGER"); } catch (e) { /* já existe */ }
     try { this.sql.exec("ALTER TABLE consultas ADD COLUMN anexos_p INTEGER DEFAULT 0"); } catch (e) { /* já existe */ }
     try { this.sql.exec("ALTER TABLE consultas ADD COLUMN anexos_m INTEGER DEFAULT 0"); } catch (e) { /* já existe */ }
+    // 05/11: chamadas de voz e vídeo (WebRTC, um para um). Só a sinalização passa por aqui; o som e a imagem vão directamente entre os
+    // dois aparelhos e NÃO são gravados. Uma linha por conversa, com a oferta e a resposta já com todos os candidatos: são duas escritas
+    // por chamada em vez de uma por candidato. A linha apaga-se no fim da chamada, com os endereços de rede que lá vinham.
+    this.sql.exec(`CREATE TABLE IF NOT EXISTS chamadas (codigo TEXT PRIMARY KEY, id INTEGER, modo TEXT, estado TEXT, criada INTEGER, atendida INTEGER, ligada INTEGER,
+      ver INTEGER DEFAULT 1, pede INTEGER DEFAULT 0, oferta TEXT, resposta TEXT, tem TEXT)`);
     this.sql.exec("CREATE INDEX IF NOT EXISTS msgs_cod ON msgs(codigo, id)");
     this.sql.exec("CREATE INDEX IF NOT EXISTS msgs_q ON msgs(quando)");
     this.sql.exec("CREATE INDEX IF NOT EXISTS cons_estado ON consultas(estado)");
@@ -1918,6 +1927,7 @@ export class Consultorio extends DurableObject {
     const lim = agora - CONSULTORIO.RETENCAO_DIAS * 864e5;
     this.sql.exec("DELETE FROM audio WHERE msg IN (SELECT id FROM msgs WHERE quando < ? AND tipo IN ('audio','anexo'))", lim);
     this.sql.exec("DELETE FROM msgs WHERE quando < ?", lim);
+    this.sql.exec("DELETE FROM chamadas WHERE criada < ?", agora - 864e5);   // sobra de uma chamada abandonada; os endereços de rede não ficam
     this.sql.exec("DELETE FROM consultas WHERE criado < ? AND NOT EXISTS (SELECT 1 FROM msgs m WHERE m.codigo = consultas.codigo)", lim);
     for (const [k, v] of this.visto) if (agora - v > 864e5) this.visto.delete(k);
     for (const [k, v] of this.vistoM) if (agora - v > 864e5) this.vistoM.delete(k);
@@ -1936,6 +1946,23 @@ export class Consultorio extends DurableObject {
       this.sql.exec("UPDATE consultas SET estado='expirado' WHERE codigo=?", c); r.estado = "expirado";
     }
     return r || null;
+  }
+  // A chamada em curso, com os limites de tempo aplicados aqui, para não dependerem de nenhum navegador.
+  chamadaViva(c, agora) {
+    const ch = this.linhas("SELECT * FROM chamadas WHERE codigo=?", c)[0];
+    if (!ch) return null;
+    const v = this.visto.get(c), m = this.vistoM.get(c), so = CONSULTORIO.CHAMADA_SOZINHA_MS;
+    if (ch.estado === "toca" && agora - ch.criada > CONSULTORIO.CHAMADA_TOCA_MS) return this.fimChamada(c, ch, "perdida", agora);
+    if (ch.estado === "atendeu" && agora - ch.atendida > CONSULTORIO.CHAMADA_LIGAR_MS) return this.fimChamada(c, ch, "falhou", agora);
+    if (ch.estado === "ligada" && ((v && agora - v > so) || (m && agora - m > so))) return this.fimChamada(c, ch, "terminada", agora);
+    return ch;
+  }
+  fimChamada(c, ch, motivo, agora) {
+    const nome = ch.modo === "video" ? "Videochamada" : "Chamada de voz", dur = ch.ligada ? Math.round((agora - ch.ligada) / 1000) : 0;
+    const t = { terminada: nome + " terminada", recusada: nome + " recusada", perdida: nome + " sem resposta", cancelada: nome + " cancelada", falhou: nome + ": não foi possível ligar" }[motivo];
+    this.sql.exec("DELETE FROM chamadas WHERE codigo=?", c);
+    this.novaMsg(c, agora, "sistema", "chamada", dur ? t + " · " + Math.floor(dur / 60) + ":" + String(dur % 60).padStart(2, "0") : t, motivo, dur);   // mime leva o motivo
+    return null;
   }
   novaMsg(c, agora, de, tipo, texto, mime, dur, tam) {
     return this.linhas("INSERT INTO msgs (codigo, quando, de, tipo, texto, mime, dur, tam) VALUES (?,?,?,?,?,?,?,?) RETURNING id", c, agora, de, tipo, texto, mime || "", dur || 0, tam || 0)[0].id;
@@ -1985,9 +2012,13 @@ export class Consultorio extends DurableObject {
       const base = { ok: true, estado: r.estado, papel: de, agora, max_audio_s: CONSULTORIO.AUDIO_MAX_S, aceite: !!r.aceitou, fim_espera: r.estado === "espera" ? r.fim_espera : undefined };
       // conversa fechada ou expirada: à pessoa já não se mostra nada, mesmo com o link
       if (!mestre && !["espera", "conversa"].includes(r.estado)) return J(base);
+      // antes das mensagens: uma chamada que acabe aqui deixa logo a sua linha na conversa
+      const ch = r.estado === "conversa" ? this.chamadaViva(c, agora) : null, cv = Number(url.searchParams.get("cv")) || 0;
+      const chamada = ch ? { id: ch.id, modo: ch.modo, estado: ch.estado, criada: ch.criada, ligada: ch.ligada, ver: ch.ver, pede: ch.pede, tem: ch.tem,
+        oferta: !mestre && cv < ch.ver ? ch.oferta : undefined, resposta: mestre && ch.resposta && cv < ch.ver ? ch.resposta : undefined } : null;
       const msgs = this.linhas("SELECT id, quando, de, tipo, texto, dur, mime, tam FROM msgs WHERE codigo=? AND id>? ORDER BY id LIMIT 200", c, Number(url.searchParams.get("desde")) || 0);
       const outro = mestre ? "pessoa" : "mestre";
-      return J({ ...base, msgs, escreve: agora - (this.escreve.get(c + "|" + outro) || 0) < 5000,
+      return J({ ...base, msgs, chamada, escreve: agora - (this.escreve.get(c + "|" + outro) || 0) < 5000,
         presente: mestre ? agora - (this.visto.get(c) || 0) < 45000 : undefined, etiqueta: mestre ? r.etiqueta : undefined });
     }
     if (p === "entrar" && request.method === "POST") {
@@ -2070,10 +2101,46 @@ export class Consultorio extends DurableObject {
       return J({ ok: true, id });
     }
 
+    // ---------- a chamada: só com a conversa aberta. Só ele liga; só a pessoa atende ou recusa ----------
+    if (p === "chamada" && request.method === "POST") {
+      const a = String(d.acao || ""), sdp = String(d.sdp || "");
+      if (!viva) return J({ ok: false, estado: r.estado }, 409);
+      if (sdp.length > CONSULTORIO.SDP_MAX) return J({ ok: false, erro: "grande" }, 413);
+      const ch = this.chamadaViva(c, agora);
+      if (a === "ligar") {
+        if (!mestre) return J({ ok: false }, 403);
+        if (ch) return J({ ok: false, erro: "ocupado", id: ch.id }, 409);
+        if (!["voz", "video"].includes(d.modo) || !sdp) return J({ ok: false }, 400);
+        this.sql.exec("INSERT INTO chamadas (codigo, id, modo, estado, criada, oferta) VALUES (?,?,?,'toca',?,?)", c, agora, d.modo, agora, sdp);
+        return J({ ok: true, id: agora, ver: 1 });
+      }
+      if (!ch || Number(d.id) !== ch.id) return J({ ok: false, erro: "acabou" }, 410);
+      if (a === "desligar") {
+        const motivo = ch.estado === "toca" ? (mestre ? "cancelada" : "recusada") : d.motivo === "falhou" && !ch.ligada ? "falhou" : ch.ligada ? "terminada" : "cancelada";
+        this.fimChamada(c, ch, motivo, agora); return J({ ok: true });
+      }
+      if (a === "ligada") { if (!ch.ligada) this.sql.exec("UPDATE chamadas SET estado='ligada', ligada=? WHERE codigo=?", agora, c); return J({ ok: true }); }
+      if (mestre) {
+        if (a !== "oferta" || !sdp) return J({ ok: false }, 400);
+        this.sql.exec("UPDATE chamadas SET ver=ver+1, pede=0, oferta=?, resposta=NULL WHERE codigo=?", sdp, c);   // voltar a ligar sem desligar: recarregar, ou mudar de rede
+        return J({ ok: true, ver: ch.ver + 1 });
+      }
+      if (a === "atender") { if (ch.estado !== "toca") return J({ ok: false }, 409); this.sql.exec("UPDATE chamadas SET estado='atendeu', atendida=? WHERE codigo=?", agora, c); return J({ ok: true }); }
+      if (a === "resposta") {
+        if (!sdp || Number(d.ver) !== ch.ver) return J({ ok: false }, 409);
+        this.sql.exec("UPDATE chamadas SET resposta=?, tem=? WHERE codigo=?", sdp, String(d.tem || "").slice(0, 20), c);
+        return J({ ok: true });
+      }
+      if (a === "religar") { this.sql.exec("UPDATE chamadas SET pede=1 WHERE codigo=?", c); return J({ ok: true }); }
+      return J({ ok: false }, 400);
+    }
+
     // ---------- só ele (pela chave, ou pelo mtoken desta conversa) ----------
     // Fechar a consulta é dos dois lados (botão no cabeçalho do chat); reabrir, só dele
     if (p === "fechar") {
       if (!["criado", "espera", "conversa"].includes(r.estado)) return J({ ok: true, estado: r.estado });
+      const ch = this.linhas("SELECT * FROM chamadas WHERE codigo=?", c)[0];
+      if (ch) this.fimChamada(c, ch, ch.ligada ? "terminada" : "cancelada", agora);
       this.sql.exec("UPDATE consultas SET estado='fechado', fechado=? WHERE codigo=?", agora, c);
       return J({ ok: true, estado: "fechado" });
     }

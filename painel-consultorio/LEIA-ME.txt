@@ -2,11 +2,12 @@ Consultório Virtual: aplicar no cerebro (só depois de publicar o worker; ver a
 Tudo isto fica FORA do site publicado: a pasta está no .assetsignore.
 
 1. Copiar para ~/site-painel/
-     cp consultorio_rotas.py consultorio_ficha.py consultorio.html consultorio-vigia.py ~/site-painel/
+     cp consultorio_rotas.py consultorio_ficha.py consultorio_clientes.py consultorio-fichas.py consultorio.html consultorio-vigia.py ~/site-painel/
 
 2. Em ~/site-painel/servidor.py, fazer uma cópia e acrescentar 3 coisas:
      cp ~/site-painel/servidor.py ~/site-painel/servidor.py.antes-consultorio
 
+   (Se o servidor.py já tiver estas três linhas, passa ao passo 3: só se copiam os ficheiros.)
    a) Depois da definição de pede() (antes de «# 01/11 (ele): «Sempre»»):
         import consultorio_rotas; consultorio_rotas.liga(pede, chave, SITE, UA)   # 05/11: Consultório Virtual
 
@@ -22,7 +23,8 @@ Tudo isto fica FORA do site publicado: a pasta está no .assetsignore.
 
 3. Em ~/ha-painel-site.py, acrescentar em VISTAS (a seguir a «Site ao vivo») e correr o guião:
      {"title": "Consultório", "path": "consultorio", "icon": "mdi:door-open", "panel": True,   # 05/11/2026: Consultório Virtual
-      "cards": [{"type": "iframe", "allow_open_top_navigation": True, "aspect_ratio": "150%", "url": "http://100.100.77.18:8768/consultorio.html"}]},
+      "cards": [{"type": "iframe", "allow_open_top_navigation": True, "aspect_ratio": "190%", "url": "/local/consultorio/index.html?v=1"}]},
+   (Se a vista já existir, muda-se só o url e o aspect_ratio. É o /local que dá acesso ao token do HA.)
 
 4. O vigia do Telegram:
      cp consultorio-vigia.service ~/.config/systemd/user/
@@ -32,6 +34,23 @@ Tudo isto fica FORA do site publicado: a pasta está no .assetsignore.
 
 Para desfazer: parar o vigia, voltar ao servidor.py.antes-consultorio e reiniciar site-painel.
 
-Porque há «Abrir com microfone»: o painel é http://100.100.77.18:8768, e em http o navegador não dá microfone
+Porque há «Ligar, videochamada e microfone» (antes «Abrir com microfone»): o painel é http://100.100.77.18:8768, e em http o navegador não dá microfone
 (e o HA também não o autoriza dentro do iframe). O botão abre a mesma conversa em https://genialtarot.com,
 com um passe (mtoken) que só serve para esta conversa e morre com ela.
+
+Ficha ligada à lista de clientes (substitui os campos Nome/Data):
+5. Migrar uma vez, ANTES de reiniciar site-painel e o vigia (faz cópia em .antes-clientes e só imprime contagens):
+     cd ~/site-painel && python3 consultorio_clientes.py migrar
+   As conversas com ficha criada pelo botão antigo ficam associadas a ela. «Com nome e sem ficha» já não criam nada ao fechar:
+   essas ligam-se à mão, na própria conversa.
+6. A página e o serviço (só sessão do HA + cofre aberto, escuta em 100.100.77.18:8811):
+     mkdir -p ~/homeassistant/www/consultorio && cp index.html ~/homeassistant/www/consultorio/
+     cp consultorio-fichas.service ~/.config/systemd/user/
+     systemctl --user daemon-reload && systemctl --user enable --now consultorio-fichas
+     systemctl --user restart site-painel consultorio-vigia
+   Confirmar que recusa sem sessão, e que a 8768 já não dá fichas:
+     curl -s -o /dev/null -w "%{http_code}\n" "http://100.100.77.18:8811/procurar?q=ab"   → 401
+     curl -s -o /dev/null -w "%{http_code}\n" "http://100.100.77.18:8768/api/consultorio/ficha?c=aaaaaaaaaaaaaaaaaaaa"   → 404
+
+Chamadas no renko (nada a instalar): no OBS, carregar em «Iniciar câmara virtual»; no Chrome, abrir «Ligar, videochamada e microfone»,
+tocar no botão dos reguladores e escolher «OBS Virtual Camera» e o microfone do estúdio. Fica guardado nesse navegador.

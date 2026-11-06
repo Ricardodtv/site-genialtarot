@@ -12,8 +12,8 @@ ACORDAR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "consultorio-
 AUDIO_MAX = 3 << 20
 TIPOS = {"audio/mp4", "audio/webm", "audio/ogg", "audio/aac", "audio/mpeg", "audio/x-m4a", "audio/mp3"}
 pede = chave = SITE = UA = None
-try: import consultorio_ficha as ficha   # nome e nascimento ficam no cerebro: nunca passam pelo worker nem pelo pede()
-except Exception: ficha = None
+try: import consultorio_clientes as clientes   # só para escrever a linha do Histórico ao fechar; a lista e as fichas NÃO saem por esta porta
+except Exception: clientes = None
 _cache = {}
 def liga(pede_, chave_, site, ua):
     global pede, chave, SITE, UA
@@ -50,7 +50,6 @@ def get(h, u, q):
         for x in o.get("consultas", []): x["link"] = SITE + "/consultorio/" + x["codigo"]
         return h.responde(st, o)
     if via == "vigia": return h.responde(*pede("/api/consultorio/vigia" + ("?f=1" if q.get("f") else "")))
-    if via == "ficha" and c: return h.responde(200, ficha.ver(c) if ficha else {"nome": "", "nasc": "", "codigo": "", "pendente": False})
     if via == "conversa" and c: return h.responde(*pede("/api/consultorio/estado?c=%s&desde=%d" % (c, int(q.get("desde") or 0))))
     if via == "audio" and c:
         st, b, tipo = binario("/api/consultorio/audio?c=%s&id=%d" % (c, int(q.get("id") or 0)))
@@ -95,8 +94,6 @@ def post(h, u):
             except OSError: pass
         return h.responde(st, o)
     c = codigo(d.get("c"))
-    if via == "ficha" and c:
-        return h.responde(200, ficha.guardar(c, d.get("nome"), d.get("nasc")) if ficha else {"ok": False, "erro": "Falta o consultorio_ficha.py."})
     if via == "tempo" and c:
         _cache.pop("lista", None)
         return h.responde(*pede("/api/consultorio/tempo", {"c": c, "minutos": d.get("minutos")}))
@@ -108,7 +105,7 @@ def post(h, u):
             except OSError: pass
         if via == "fechar" and o.get("ok"):   # só depois de o worker confirmar; uma falha aqui nunca impede o fecho
             try:
-                f = ficha.ao_fechar(c); o["codigo"] = f.get("codigo", ""); o["pendente"] = bool(f.get("pendente"))
+                f = clientes.ao_fechar(c); o["codigo"] = f.get("codigo", ""); o["pendente"] = bool(f.get("pendente"))
             except Exception as e: o["codigo"] = ""; o["pendente"] = False; print("ficha ao fechar falhou:", type(e).__name__, flush=True)
         return h.responde(st, o)
     return h.responde(404, {"ok": False})
