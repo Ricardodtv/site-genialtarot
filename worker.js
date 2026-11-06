@@ -2329,8 +2329,16 @@ export class Contas extends DurableObject {
     this.limpar(agora);
 
     // ---------- só com a chave (o vigia do cerebro) ----------
-    if (p === "campainha" || p === "fila" || p === "feito") {
+    if (p === "campainha" || p === "fila" || p === "feito" || p === "painel") {
       if (!this.env.STATS_KEY || request.headers.get("X-Chave") !== this.env.STATS_KEY) return J({ ok: false, erro: "chave" }, 403);
+      if (p === "painel") {   // 06/11/2026: lista só para o painel protegido do HA. Entrar no site não cria ficha.
+        const meia = new Date(agora); meia.setUTCHours(0, 0, 0, 0);
+        const conta1 = (q, ...a) => (this.linhas(q, ...a)[0] || {}).n || 0;
+        return J({ ok: true, total: conta1("SELECT COUNT(*) n FROM contas"), google: conta1("SELECT COUNT(*) n FROM contas WHERE google IS NOT NULL AND google<>''"),
+          promo: conta1("SELECT COUNT(*) n FROM contas WHERE marketing=1"), novas_hoje: conta1("SELECT COUNT(*) n FROM contas WHERE criado>=?", meia.getTime()),
+          entraram_hoje: conta1("SELECT COUNT(DISTINCT conta) n FROM sessoes WHERE criado>=?", meia.getTime()),
+          contas: this.linhas("SELECT id, nome, email, nasc, hora, local, marketing, criado, CASE WHEN google IS NOT NULL AND google<>'' THEN 1 ELSE 0 END g FROM contas ORDER BY criado DESC LIMIT 500") });
+      }
       if (p === "campainha") {
         if (request.headers.get("Upgrade") !== "websocket") return J({ ok: false }, 426);
         for (const v of this.ctx.getWebSockets("vigia")) { try { v.close(1000, "outro"); } catch (e) {} }   // só há um vigia
