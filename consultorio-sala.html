@@ -213,10 +213,11 @@ input[hidden] { display: none; }
 #cartas video { display: block; width: 100%; height: clamp(190px, 42vh, 460px); object-fit: contain; background: #000; }
 #cartas.grande { position: fixed; inset: 0; z-index: 90; margin: 0; border: 0; border-radius: 0; }
 #cartas.grande video { height: 100%; }
+#cartas-ouvir { display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); min-height: 44px; padding: 0 16px; border: 0; border-radius: 22px; background: #f5b95f; color: #241433; font: inherit; font-weight: 700; cursor: pointer; } #cartas-mic.on { background: #2e8b57 !important; border-color: #3ddc84 !important; }
 #cartas-t { position: absolute; left: 8px; top: 8px; right: 92px; color: #fff; font-size: 13px; line-height: 1.3; text-shadow: 0 1px 3px #000; pointer-events: none; }
 #cartas-amp { position: absolute; right: 8px; top: 8px; min-height: 36px; padding: 0 10px; border-radius: 9px; border: 1px solid rgba(255,255,255,.4); background: rgba(0,0,0,.55); color: #fff; font: inherit; font-size: 13px; cursor: pointer; }
 #cartas-bt { display: none; align-items: center; gap: 8px; flex-wrap: wrap; padding: 8px; background: rgba(0,0,0,.65); }
-body.mestre #cartas-bt { display: flex; } #cartas.grande #cartas-bt { position: absolute; left: 0; right: 0; bottom: 0; }
+#cartas.on #cartas-bt { display: flex; } body:not(.mestre) #cartas-cam, body:not(.mestre) #cartas-foto, body:not(.mestre) #cartas-ok, body:not(.mestre) #cartas-sair { display: none !important; } #cartas.grande #cartas-bt { position: absolute; left: 0; right: 0; bottom: 0; }
 #cartas-cam { flex: 1 1 170px; min-width: 0; min-height: 40px; padding: 0 8px; border-radius: 9px; border: 1px solid var(--borda); background: #1b1028; color: #fff; font: inherit; font-size: 14px; }
 #cartas-bt button { min-height: 40px; padding: 0 14px; border-radius: 9px; border: 1px solid var(--borda); background: rgba(255,255,255,.08); color: #fff; font: inherit; font-size: 14px; cursor: pointer; }
 #cartas-ok, #cartas-foto { background: #f5b95f !important; color: #241433 !important; font-weight: 700; }
@@ -251,6 +252,7 @@ body.mestre #cartas-bt { display: flex; } #cartas.grande #cartas-bt { position: 
 .ch-b.off { background: #f3e7fb; color: #2b1147; } #ch-fim { background: #d6333f; }
 #disp { z-index: 10; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(420px, calc(100vw - 24px)); padding: 18px; } #disp h2 { font-size: 23px; margin-bottom: 10px; } #disp label { display: block; font-size: 13.5px; color: var(--apagado); margin-top: 10px; }
 #disp select { display: block; width: 100%; margin-top: 3px; padding: 10px; border-radius: 11px; border: 1px solid var(--borda); background: #140826; color: var(--texto); font: 15px Inter, system-ui, sans-serif; } #disp .grande { margin-top: 14px; padding: 11px; }
+#ch-ligacam { display: none; position: absolute; left: 50%; bottom: 196px; transform: translateX(-50%); z-index: 4; min-height: 48px; padding: 0 20px; border: 0; border-radius: 24px; background: #f5b95f; color: #241433; font: inherit; font-size: 16px; font-weight: 700; white-space: nowrap; cursor: pointer; } #ch.sem-cam #ch-ligacam { display: block; }
 #ch-cam, #ch-virar { display: none; } #ch.modo-video #ch-cam { display: grid; } #ch.pode-virar #ch-virar { display: grid; }
 #ch-n { position: absolute; right: -2px; top: -2px; min-width: 20px; height: 20px; border-radius: 10px; background: var(--ouro); color: #2b1147; font-size: 12px; font-weight: 700; line-height: 20px; display: none; } #ch-n.on { display: block; }
 /* o chat continua à mão: ao lado no computador, por baixo no telemóvel; por cima enquanto se escreve */
@@ -373,8 +375,8 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     <button class="terminar" id="terminar" type="button" aria-label="Fechar esta consulta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg><span class="l">Fechar esta consulta</span><span class="c">Fechar</span></button>
   </header>
   <div id="ch-volta"><span id="ch-volta-t">A chamada continua.</span><button type="button" id="ch-voltar">Voltar à chamada</button><button type="button" id="ch-largar">Terminar</button></div>
-  <div id="cartas" aria-label="Cartas em direto"><video id="cartas-v" autoplay playsinline muted></video><div id="cartas-t"></div><button type="button" id="cartas-amp">Ampliar</button>
-    <div id="cartas-bt"><select id="cartas-cam" aria-label="Câmara das cartas"></select><button type="button" id="cartas-foto">📷 Tirar foto e enviar</button><button type="button" id="cartas-ok">Mostrar à pessoa</button><button type="button" id="cartas-sair">Cancelar</button></div></div>
+  <div id="cartas" aria-label="Cartas em direto"><video id="cartas-v" autoplay playsinline muted></video><div id="cartas-t"></div><button type="button" id="cartas-amp">Ampliar</button><button type="button" id="cartas-ouvir">🔊 Toque para ouvir</button>
+    <div id="cartas-bt"><select id="cartas-cam" aria-label="Câmara das cartas"></select><button type="button" id="cartas-mic">🎙️ Ligar microfone</button><button type="button" id="cartas-foto">📷 Tirar foto e enviar</button><button type="button" id="cartas-ok">Mostrar à pessoa</button><button type="button" id="cartas-sair">Cancelar</button></div></div>
   <div id="msgs" role="log" aria-live="polite"><div class="esc" id="esc"><i></i><i></i><i></i></div></div>
   <div id="nota"></div>
   <div id="previa"></div>
@@ -414,6 +416,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   <video id="ch-eu" autoplay playsinline muted></video>
   <div id="ch-topo">Esta chamada não é gravada. <span id="ch-tempo2"></span></div>
   <button type="button" id="ch-ouvir">Toque para ouvir</button>
+  <button type="button" id="ch-ligacam">📷 Ligar a minha câmara</button>
   <div id="ch-nota" role="status"></div>
   <div id="ch-bt">
     <button class="ch-b" id="ch-mic" type="button" aria-label="Desligar o microfone" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
@@ -953,6 +956,7 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     if (c0.pc) { try { c0.pc.onconnectionstatechange = null; c0.pc.close(); } catch (e) {} }
     c0.pc = pc; c0.remoto = new MediaStream();
     if (c0.local) c0.local.getTracks().forEach(function (t) { pc.addTrack(t, c0.local); });
+    if (c0.modo === "cartas" && mestre) { c0.sndMic = pc.addTransceiver("audio", { direction: "sendrecv" }).sender; if (micCartas) c0.sndMic.replaceTrack(micCartas); }
     pc.ontrack = function (e) { c0.remoto.addTrack(e.track); ligaRemoto(); };
     pc.onconnectionstatechange = function () {
       if (ch !== c0 || c0.pc !== pc) return;
@@ -968,23 +972,43 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   function dizEstado() { try { if (ch && ch.dc && ch.dc.readyState === "open") ch.dc.send(JSON.stringify({ cam: ch.cam && temVideo(), mic: ch.mic })); } catch (e) {} }
   function temVideo() { return !!(ch && ch.local && ch.local.getVideoTracks().length); }
   function ligaRemoto() {
+    if (ch.modo === "cartas" && mestre) { var a0 = $("ch-audio"); if (a0.srcObject !== ch.remoto) a0.srcObject = ch.remoto; a0.play().catch(function () {}); return; }   // ele vê a sua própria câmara e ouve a pessoa
     var el = ch.modo === "cartas" ? $("cartas-v") : ch.modo === "video" ? $("ch-outro") : $("ch-audio"); if (el.srcObject !== ch.remoto) el.srcObject = ch.remoto;
+    if (ch.modo === "cartas") {   // o navegador pode exigir um toque para dar som; a imagem continua sempre
+      el.muted = false; var pc1 = el.play(); if (pc1 && pc1.catch) pc1.catch(function () { el.muted = true; el.play().catch(function () {}); $("cartas-ouvir").style.display = "block"; });
+      return;
+    }
     var p = el.play(); if (p && p.catch) p.catch(function () { $("ch-ouvir").style.display = "block"; });
   }
   // ---------- mostrar as cartas (06/11, ordem dele) ----------
   // Usa a mesma ligação das chamadas, mas a imagem só vai do Mestre para a pessoa: não toca, não se atende, à pessoa não se pede câmara nem microfone,
   // e o chat e os áudios continuam. O Mestre vê primeiro a sua câmara, escolhe-a e só depois a mostra. Nada é gravado.
-  var cartasPrev = null, soFoto = false;
+  var cartasPrev = null, soFoto = false, micCartas = null;
+  // 06/11 (ele): o Mestre pode falar enquanto mostra as cartas. O lugar do som fica reservado desde o início, por isso ligar o microfone não interrompe a imagem.
+  function pintaMicCartas() { var b = $("cartas-mic"), on = !!(micCartas && micCartas.enabled); b.classList.toggle("on", on); b.textContent = on ? "🎙️ A falar: desligar" : "🎙️ Ligar microfone"; }
+  function largaMicCartas() { if (micCartas) { micCartas.stop(); micCartas = null; } pintaMicCartas(); }
+  $("cartas-mic").onclick = function () {
+    if (micCartas) { micCartas.enabled = !micCartas.enabled; return pintaMicCartas(); }
+    var b = this, a = {}, k, id = guardado("gt_mic"); for (k in AUD) a[k] = AUD[k]; if (id) a.deviceId = { ideal: id };
+    b.disabled = true;
+    navigator.mediaDevices.getUserMedia({ audio: a, video: false }).then(function (s) {
+      b.disabled = false; micCartas = s.getAudioTracks()[0];
+      if (!$("cartas").classList.contains("on")) return largaMicCartas();
+      if (ch && ch.sndMic) ch.sndMic.replaceTrack(micCartas);
+      pintaMicCartas();
+    }).catch(function (e) { b.disabled = false; nota(explica(e, "voz")); });
+  };
+  $("cartas-ouvir").onclick = function () { this.style.display = "none"; var v = $("cartas-v"); v.muted = false; v.play().catch(function () {}); };
   function pedeCartas(id) {
     var v = { width: { ideal: 1920 }, height: { ideal: 1080 } }; if (id) v.deviceId = { exact: id };
     return navigator.mediaDevices.getUserMedia({ audio: false, video: v }).catch(function (e) { if (id && e && (e.name === "OverconstrainedError" || e.name === "NotFoundError")) return pedeCartas(""); throw e; })
       .then(function (s) { s.getVideoTracks().forEach(function (t) { t.contentHint = "detail"; }); return s; });
   }
   function largaPrev() { if (cartasPrev) { cartasPrev.getTracks().forEach(function (t) { t.stop(); }); cartasPrev = null; } }
-  function fechaCartas() { largaPrev(); var c = $("cartas"), v = $("cartas-v"); c.classList.remove("on", "grande"); v.srcObject = null; $("cartas-amp").textContent = "Ampliar"; }
+  function fechaCartas() { largaPrev(); largaMicCartas(); $("cartas-ouvir").style.display = "none"; if (!mestre) $("cartas-v").muted = true; var c = $("cartas"), v = $("cartas-v"); c.classList.remove("on", "grande"); v.srcObject = null; $("cartas-amp").textContent = "Ampliar"; }
   function painelCartas(fase) {   // fase: "ver" (só ele vê), "liga" ou "direto"
     var ao = fase === "direto" || (ch && ch.fase === "ativa");
-    $("cartas").classList.add("on"); $("cartas-ok").style.display = fase === "ver" && !soFoto ? "" : "none"; $("cartas-sair").textContent = fase === "ver" ? "Fechar a câmara" : "Parar de mostrar";
+    $("cartas").classList.add("on"); $("cartas-mic").style.display = soFoto ? "none" : ""; $("cartas-ok").style.display = fase === "ver" && !soFoto ? "" : "none"; $("cartas-sair").textContent = fase === "ver" ? "Fechar a câmara" : "Parar de mostrar";
     $("cartas-t").textContent = mestre ? (fase === "ver" ? (soFoto ? "Só você vê esta imagem. Aponte às cartas e tire a foto." : "Só você vê esta imagem. Escolha a câmara e carregue em Mostrar.") : ao ? "A pessoa está a ver as cartas." : "A ligar à pessoa…") : (ao ? "O Mestre Alberto está a mostrar as cartas." : "O Mestre Alberto vai mostrar as cartas…");
     if (mestre) $("cartas-v").srcObject = cartasPrev || (ch && ch.local) || null;
     setTimeout(rolar, 60);
@@ -1030,9 +1054,9 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   $("cartas-sair").onclick = function () { if (ch && ch.modo === "cartas") { chPost("desligar").catch(function () {}); fechaChamada(); proxima(0); } else fechaCartas(); };
   $("cartas-amp").onclick = function () { this.textContent = $("cartas").classList.toggle("grande") ? "Reduzir" : "Ampliar"; };
   function ecraChamada() {
-    if (ch.modo === "cartas") return painelCartas(ch.fase === "ativa" ? "direto" : "liga");
+    if (ch.modo === "cartas") { if (!mestre) { emChamada = true; aplicarVol(.4); } return painelCartas(ch.fase === "ativa" ? "direto" : "liga"); }
     var b = document.body, e = $("ch"); b.classList.add("em-chamada"); mostra("ch", true); mostra("toca", false); clearInterval(tToque);
-    e.classList.toggle("modo-video", ch.modo === "video"); e.classList.toggle("tem-video", ch.modo === "video"); e.classList.toggle("com-eu", temVideo());
+    e.classList.toggle("modo-video", ch.modo === "video"); e.classList.toggle("tem-video", ch.modo === "video"); e.classList.toggle("com-eu", temVideo()); e.classList.toggle("sem-cam", ch.modo === "video" && !temVideo() && ch.fase !== "toque");
     $("ch-sub").textContent = nomeModo(ch.modo); $("ch-eu").srcObject = ch.local || null; $("ch-eu").classList.toggle("espelho", ch.frente === "user");
     if (temVideo() && navigator.maxTouchPoints > 0) { navigator.mediaDevices.enumerateDevices().then(function (l) { e.classList.toggle("pode-virar", l.filter(function (d) { return d.kind === "videoinput"; }).length > 1); }).catch(function () {}); }
     emChamada = true; aplicarVol(.4); document.title = tituloBase; pintaTempo(); clearInterval(tRelogio); tRelogio = setInterval(pintaTempo, 1000);
@@ -1094,13 +1118,17 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
     }).catch(function (e) { acaba(); fechaChamada(); if (modo === "cartas") return nota(e && e.fala || "Não foi possível mostrar as cartas. Tente outra vez."); nota(e && e.fala || (explica(e, modo) + (modo === "video" ? " Pode usar «Ligar», só com voz, ou escrever." : " Pode continuar por escrita."))); });
   }
   function reoferta() {
-    if (!ch || ch.aOferecer) return; ch.aOferecer = true; var c0 = ch; c0.ver = 0; var pc = novoPc();   // ver a 0: uma resposta antiga não pode entrar nesta ligação nova ligaDc(pc.createDataChannel("estado"));
+    if (!ch || ch.aOferecer) return; ch.aOferecer = true; var c0 = ch; c0.ver = 0; var pc = novoPc();   // ver a 0: uma resposta antiga não pode entrar nesta ligação nova
+    ligaDc(pc.createDataChannel("estado"));
     pc.createOffer({ iceRestart: true }).then(function (o) { return pc.setLocalDescription(o); }).then(function () { return esperaIce(pc); }).then(function () { return chPost("oferta", { sdp: pc.localDescription.sdp }); }).then(function (r) { c0.aOferecer = false; if (r.ok) { c0.ver = r.ver; } proxima(0); }).catch(function () { c0.aOferecer = false; });
   }
   // a pessoa atende
   function responder(ver, sdp) {
     if (!ch) return; var c0 = ch, pc = novoPc(); c0.cv = ver;
-    pc.setRemoteDescription({ type: "offer", sdp: sdp }).then(function () { return pc.createAnswer(); }).then(function (a) { return pc.setLocalDescription(a); }).then(function () { return esperaIce(pc); }).then(function () {
+    pc.setRemoteDescription({ type: "offer", sdp: sdp }).then(function () {
+      if (c0.modo === "cartas") pc.getTransceivers().forEach(function (t) { if (t.receiver.track.kind === "audio") { t.direction = "sendrecv"; c0.sndMic = t.sender; if (micCartas) t.sender.replaceTrack(micCartas); } });   // a pessoa fica pronta a falar: o microfone só se pede quando ela carregar
+      return pc.createAnswer();
+    }).then(function (a) { return pc.setLocalDescription(a); }).then(function () { return esperaIce(pc); }).then(function () {
       var l = c0.local; return chPost("resposta", { ver: ver, sdp: pc.localDescription.sdp, tem: (l && l.getAudioTracks().length ? "a" : "") + (l && l.getVideoTracks().length ? "v" : "") });
     }).catch(function () { if (ch === c0) falhaLigar(); });
   }
@@ -1137,7 +1165,22 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
   $("ch-ouvir").onclick = function () { this.style.display = "none"; ligaRemoto(); };
   $("ch-txt").onclick = function () { var on = document.body.classList.toggle("ch-chat"); chPorLer = 0; $("ch-n").classList.remove("on"); if (on) setTimeout(rolar, 60); };
   $("ch-mic").onclick = function () { if (!ch || !ch.local) return; ch.mic = !ch.mic; ch.local.getAudioTracks().forEach(function (t) { t.enabled = ch.mic; }); this.classList.toggle("off", !ch.mic); this.setAttribute("aria-pressed", !ch.mic); dizEstado(); };
-  $("ch-cam").onclick = function () { if (!temVideo()) return notaCh("Esta chamada não tem câmara deste lado.", 4); ch.cam = !ch.cam; ch.local.getVideoTracks().forEach(function (t) { t.enabled = ch.cam; }); this.classList.toggle("off", !ch.cam); this.setAttribute("aria-pressed", !ch.cam); dizEstado(); };
+  // 06/11 (ele): quem entrou sem câmara pode ligá-la a meio. A ligação refaz-se pelo mesmo caminho de quando cai, já com a câmara.
+  function ligaMinhaCam() {
+    var c0 = ch, b = $("ch-ligacam"); if (!c0 || c0.modo !== "video" || temVideo()) return;
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return notaCh(explica(null, "video"), 8);
+    var cam = guardado("gt_cam"), v = { width: { ideal: 1280 }, height: { ideal: 720 } }; if (cam) v.deviceId = { ideal: cam }; else v.facingMode = "user";
+    b.disabled = true; notaCh("A pedir a câmara…");
+    navigator.mediaDevices.getUserMedia({ audio: false, video: v }).then(function (s) {
+      b.disabled = false; if (ch !== c0) { s.getTracks().forEach(function (t) { t.stop(); }); return; }
+      if (!c0.local) c0.local = new MediaStream();
+      c0.local.addTrack(s.getVideoTracks()[0]); c0.cam = true; c0.temNota = ""; $("ch-cam").classList.remove("off"); ecraChamada(); notaCh("A ligar a sua câmara…", 5);
+      if (mestre) reoferta(); else chPost("religar").catch(function () {});
+      proxima(0);
+    }).catch(function (e) { b.disabled = false; notaCh(explica(e, "video"), 10); });
+  }
+  $("ch-ligacam").onclick = ligaMinhaCam;
+  $("ch-cam").onclick = function () { if (!temVideo()) return ligaMinhaCam(); ch.cam = !ch.cam; ch.local.getVideoTracks().forEach(function (t) { t.enabled = ch.cam; }); this.classList.toggle("off", !ch.cam); this.setAttribute("aria-pressed", !ch.cam); dizEstado(); };
   $("ch-virar").onclick = function () {
     if (!temVideo()) return; var c0 = ch, velha = c0.local.getVideoTracks()[0], nova = c0.frente === "user" ? "environment" : "user", b = this; b.disabled = true;
     var pede = function (c) { return navigator.mediaDevices.getUserMedia({ audio: false, video: c }); };
@@ -1185,8 +1228,8 @@ body:not(.fase-espera):not(.fase-chat) #titulo-m { opacity: 0; }
         setTimeout(function () { if (ch === c0 && !c0.ligou) falhaLigar(); }, 30000);
       }
       if (ch.modo !== "cartas" && s.tem !== null && s.tem !== undefined) {
-        if (ch.modo === "video") $("ch").classList.toggle("outro-sem-cam", s.tem.indexOf("v") < 0);
-        if (s.tem !== ch.temVisto) { ch.temVisto = s.tem; if (s.tem === "") notaCh(ch.temNota = "A pessoa não tem microfone: ouve-o e responde por escrita."); else if (ch.modo === "video" && s.tem.indexOf("v") < 0) { $("ch-sub").textContent = "A pessoa está sem câmara"; notaCh(ch.temNota = "A pessoa está sem câmara: segue só com voz."); } }
+        if (ch.modo === "video" && s.tem !== ch.temVisto) $("ch").classList.toggle("outro-sem-cam", s.tem.indexOf("v") < 0);   // só quando muda: a meio, o estado vem pela ligação directa
+        if (s.tem !== ch.temVisto) { ch.temVisto = s.tem; if (s.tem === "") notaCh(ch.temNota = "A pessoa não tem microfone: ouve-o e responde por escrita."); else if (ch.modo === "video" && s.tem.indexOf("v") < 0) { $("ch-sub").textContent = "A pessoa está sem câmara"; notaCh(ch.temNota = "A pessoa está sem câmara: segue só com voz."); } else if (ch.modo === "video") { $("ch-sub").textContent = nomeModo(ch.modo); notaCh(ch.temNota = ""); } }
       }
       if (s.pede && !ch.aOferecer && s.ver === ch.ver) reoferta();
     } else if (s.oferta && s.ver > ch.cv && ch.fase === "toque") { ch.cv = s.ver; ch.oferta = s.oferta;
