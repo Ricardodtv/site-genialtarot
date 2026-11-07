@@ -57,7 +57,10 @@
       "#gtc-dlg .gtc-ok{display:block;box-sizing:border-box;width:100%;margin:1rem 0 0;padding:.8rem 1rem;border:0;border-radius:12px;background:linear-gradient(135deg,#ffe49a,#f0b440);color:#2a1300;font:800 16px/1.2 Inter,system-ui,sans-serif;cursor:pointer}#gtc-dlg .gtc-ok:disabled{opacity:.6;cursor:wait}" +
       "#gtc-dlg .gtc-2{display:block;width:100%;margin:.5rem 0 0;padding:.6rem;border:0;background:none;color:#cdb8e6;font:500 14.5px Inter,system-ui,sans-serif;cursor:pointer;text-decoration:underline}" +
       "#gtc-dlg .gtc-ou{display:flex;align-items:center;gap:.7rem;margin:1rem 0 .1rem;color:#a893bd;font-size:.85rem}#gtc-dlg .gtc-ou::before,#gtc-dlg .gtc-ou::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.14)}" +
-      "#gtc-dlg #gtc-g{display:flex;justify-content:center;min-height:44px;margin-top:.9rem}#gtc-dlg .gtc-er{min-height:1.2em;margin:.6rem 0 0;color:#ff9d9d;font-size:.9rem}" +
+      "#gtc-dlg #gtc-g{display:flex;justify-content:center;align-items:center;min-height:64px;margin:1.1rem 0 .4rem}" +
+      "#gtc-dlg .gtc-mail{margin:.6rem 0 0}#gtc-dlg .gtc-mail summary{display:block;width:max-content;max-width:100%;margin:0 auto;padding:.5rem .6rem;list-style:none;color:#cdb8e6;font-size:.85rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer}#gtc-dlg .gtc-mail summary::-webkit-details-marker{display:none}" +
+      "#gtc-dlg .gtc-mail label.gtc-c{margin-top:.5rem;font-size:.82rem}#gtc-dlg .gtc-mail input.gtc-i{padding:.5rem .7rem;font-size:.9rem}#gtc-dlg .gtc-mail .gtc-ok{margin-top:.7rem;padding:.55rem .8rem;border:1px solid rgba(242,201,107,.55);background:transparent;color:#f2c96b;font-size:.88rem}" +
+      " #gtc-dlg .gtc-er{min-height:1.2em;margin:.6rem 0 0;color:#ff9d9d;font-size:.9rem}" +
       "#gtc-dlg .gtc-peq{margin-top:.8rem;color:#b9a6cf;font-size:.8rem}#gtc-dlg a{color:#f2c96b}#gtc-dlg .gtc-msg{min-height:1.2em;margin:.2rem 0 0;color:#e8cf95;font-size:.82rem}" +
       "#gtc-dlg label.gtc-mkt{display:flex;gap:.6em;align-items:flex-start;margin:1rem 0 0;font-size:.88rem;line-height:1.4;color:#e5d8f2;cursor:pointer}#gtc-dlg label.gtc-mkt input{flex:none;width:1.15em;height:1.15em;margin:.15em 0 0;accent-color:#f2c96b}" +
       "@media (max-width:520px){#gtc-btn{height:2.75rem;top:1.12rem;padding:0 .75rem;max-width:7.6rem;font-size:14px}html.vip-on #gtc-btn{top:calc(1.12rem + 54px)}}" +
@@ -145,13 +148,18 @@
 
   function abrirEntrar() {
     var d = janela('<h2 id="gtc-t">Entrar</h2><p>Entre uma vez e deixa de preencher o nome e a data de nascimento nos formulários do site.</p>' +
-      '<div id="gtc-gz" hidden><div id="gtc-g"></div><div class="gtc-ou">ou</div></div>' +
+      '<div id="gtc-gz"><div id="gtc-g"></div></div>' +
+      '<details class="gtc-mail"><summary>Prefiro entrar com o email</summary>' +
       '<form novalidate><label class="gtc-c">Nome<input class="gtc-i" name="nome" autocomplete="name" maxlength="80" required></label>' +
       '<label class="gtc-c">Email<input class="gtc-i" name="email" type="email" autocomplete="email" maxlength="254" required></label>' +
       '<input name="site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">' +
       '<button class="gtc-ok" type="submit">Enviar ligação para entrar</button><p class="gtc-er" role="alert"></p></form>' +
-      '<p class="gtc-peq">Sem palavra-passe: enviamos-lhe uma ligação para confirmar o email. Saiba como tratamos os seus dados na <a href="/privacidade">Política de Privacidade</a>.</p>');
-    var f = d.querySelector("form"), er = d.querySelector(".gtc-er");
+      '<p class="gtc-peq">Sem palavra-passe: enviamos-lhe uma ligação para confirmar o email.</p></details>' +
+      '<p class="gtc-peq">Saiba como tratamos os seus dados na <a href="/privacidade">Política de Privacidade</a>.</p>');
+    var f = d.querySelector("form"), er = d.querySelector(".gtc-er"), mail = d.querySelector(".gtc-mail");
+    // 07/11 (ele): o Google vem primeiro, grande, por ser mais rápido; o email fica recolhido. Sem Google, o email abre sozinho.
+    function soEmail() { var z = d.querySelector("#gtc-gz"); if (z) z.hidden = true; mail.open = true; f.nome.focus(); }
+    mail.addEventListener("toggle", function () { if (mail.open) f.nome.focus(); });
     f.onsubmit = function (e) {
       e.preventDefault(); er.textContent = "";
       var b = f.querySelector("button"), email = f.email.value.trim(); b.disabled = true;
@@ -162,8 +170,7 @@
         aEspera(email);
       }).catch(function () { b.disabled = false; er.textContent = erroDe(); });
     };
-    f.nome.focus();
-    pedirConfig().then(function (c) { if (c && c.google && dlg.open) google(c.google); });
+    pedirConfig().then(function (c) { if (!dlg.open) return; if (c && c.google) google(c.google, soEmail); else soEmail(); }, soEmail);
   }
   function aEspera(email) {
     var d = janela('<h2 id="gtc-t">Veja o seu email</h2><p>Vamos enviar uma ligação para <b></b>. Deve chegar dentro de segundos e é válida durante 15 minutos.</p>' +
@@ -172,16 +179,17 @@
     d.querySelector(".gtc-ok").onclick = function () { d.close(); };
     d.querySelector(".gtc-2").onclick = abrirEntrar;
   }
-  function google(id) {
+  function google(id, falhou) {
     function mostra() {
-      if (!window.google || !google_id() || !dlg.open) return;
+      if (!window.google || !google_id() || !dlg.open) return falhou && falhou();
       var z = dlg.querySelector("#gtc-gz"), g = dlg.querySelector("#gtc-g"); if (!z) return;
       google_id().initialize({ client_id: id, callback: credencial, ux_mode: "popup", auto_select: false, context: "signin" });
-      z.hidden = false;
-      google_id().renderButton(g, { theme: "filled_black", size: "large", text: "continue_with", shape: "pill", locale: "pt-PT", width: Math.min(320, g.clientWidth || 300) });
+      var esc = 1.22;   // o Google não faz botões maiores que «large»: aumenta-se por fora
+      g.innerHTML = '<div id="gtc-g2"></div>'; g.firstChild.style.transform = "scale(" + esc + ")";
+      google_id().renderButton(g.firstChild, { theme: "filled_blue", size: "large", text: "continue_with", shape: "pill", locale: "pt-PT", width: Math.min(400, Math.round((g.clientWidth || 300) / esc)) });
     }
     if (window.google && google_id()) return mostra();
-    var s = document.createElement("script"); s.src = "https://accounts.google.com/gsi/client"; s.async = true; s.onload = mostra; document.head.appendChild(s);
+    var s = document.createElement("script"); s.src = "https://accounts.google.com/gsi/client"; s.async = true; s.onload = mostra; s.onerror = function () { if (falhou) falhou(); }; document.head.appendChild(s);
   }
   function google_id() { return window.google && window.google.accounts && window.google.accounts.id; }
   function credencial(r) {
