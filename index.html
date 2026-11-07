@@ -836,6 +836,24 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .cigano-txt small { display: block; opacity: .85; margin: .3rem 0 .8rem; }
 .cigano-txt .botoes-cg { display: flex; gap: .5rem; flex-wrap: wrap; }
 @media (prefers-reduced-motion: reduce) { .leque .lc, .leque .lc-in { transition: none; } }
+
+/* 07/11/2026 (pedido dele): três caminhos claros no topo e destaques recolhidos */
+.caminhos { display:grid; grid-template-columns:1fr; gap:.7rem; max-width:60rem; margin:1.2rem auto 1.4rem; text-align:left; position:relative; z-index:5; }
+@media (min-width:760px){ .caminhos { grid-template-columns:repeat(3,1fr); gap:1rem; } }
+.caminho { display:flex; align-items:center; gap:.85rem; padding:1rem 1.1rem; border-radius:1.1rem; text-decoration:none; color:#fff; border:1.5px solid oklch(0.85 0.13 88 / .65);
+  background:linear-gradient(135deg, oklch(0.36 0.15 305 / .92), oklch(0.26 0.11 285 / .92)); box-shadow:0 8px 26px -10px oklch(0.75 0.17 310 / .6); transition:transform .15s, box-shadow .15s; }
+.caminho:hover { transform:translateY(-2px); box-shadow:0 10px 32px -8px oklch(0.85 0.13 88 / .55); }
+.caminho i { font-style:normal; font-size:1.9rem; line-height:1; flex:none; }
+.caminho b { display:block; font-family:"Cinzel", var(--font-display); font-size:1.02rem; line-height:1.2; }
+.caminho small { display:block; font-size:.82rem; opacity:.85; margin-top:.15rem; }
+.caminho.mestre { background:linear-gradient(135deg, oklch(0.88 0.12 90), oklch(0.74 0.15 75)); color:oklch(0.22 0.07 300); border-color:oklch(0.92 0.09 92); }
+@media (min-width:760px){ .caminho { flex-direction:column; text-align:center; } }
+.hero-avatar-wrap { zoom:.72; }
+.hero h1 { zoom:.8; }
+@media (min-width:760px){ .hero-avatar-wrap { zoom:.56; } .hero h1 { zoom:.62; } }
+.recolhida { overflow:hidden; position:relative; }
+.recolhida::after { content:""; position:absolute; left:0; right:0; bottom:0; height:4.5rem; background:linear-gradient(transparent, oklch(0.16 0.07 290 / .92)); pointer-events:none; z-index:6; }
+.ver-mais { display:block; margin:1rem auto 0; padding:.75rem 1.5rem; border-radius:999px; border:1.5px solid oklch(0.85 0.13 88 / .7); background:oklch(0.26 0.09 290 / .9); color:#fff; font:700 .98rem Inter,system-ui,sans-serif; cursor:pointer; position:relative; z-index:7; }
 </style>
 <script type="application/ld+json">
 {
@@ -1011,6 +1029,12 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <span class="line line3 text-gold-gradient">vida.</span>
     </h1>
 
+    <!-- 🧭 07/11/2026 (pedido dele): os três caminhos, logo no primeiro ecrã -->
+    <nav class="caminhos animate-fade-up" aria-label="Por onde quer começar?">
+      <a class="caminho" href="/tarot-gratis"><i>🃏</i><span><b>Quero uma resposta agora</b><small>Tire as cartas, é grátis</small></span></a>
+      <a class="caminho" href="/horoscopo-do-dia"><i>✨</i><span><b>Quero saber do meu signo</b><small>O horóscopo de hoje</small></span></a>
+      <a class="caminho mestre" href="#marcacao"><i>🔮</i><span><b>Quero falar com o Mestre</b><small>Marcar uma consulta</small></span></a>
+    </nav>
     <p class="animate-fade-up hero-sub">
       Orientação espiritual sincera, intuitiva e acolhedora. Encontre clareza
       no amor, no trabalho e na sua jornada — através da sabedoria milenar
@@ -1031,7 +1055,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 
     <!-- MAQUETA: as 4 portas principais, todas no mesmo cartão lilás -->
     <div class="kicker portas-kicker">
-      <span><span class="rule"></span>Por onde quer começar?<span class="rule"></span></span>
+      <span><span class="rule"></span>Em destaque<span class="rule"></span></span>
     </div>
     <div class="portas">
 
@@ -2123,7 +2147,13 @@ document.addEventListener("DOMContentLoaded", function () {
 })();
 </script>
 <script src="/vip-faixa.js" defer></script><!-- 29/10/2026: faixa da Lista VIP -->
-<script src="/cartoes-dia.js" defer></script><!-- 06/11/2026: ordem dos cartões por dia e período -->
+<script src="/cartoes-dia.js"></script>
+<script>/* 07/11/2026 (pedido dele): destaques e atalhos recolhidos; continuam todos na página para o Google e para quem abre */
+(function(){function recolhe(box,n,txt){if(!box)return;var b=document.createElement("button");b.type="button";b.className="ver-mais";b.textContent=txt;box.after(b);var aberto=false;
+function mede(){if(aberto)return;var r=[].slice.call(box.children).filter(function(e){return e.offsetParent!==null}).map(function(e){return e.offsetTop+e.offsetHeight}).sort(function(x,y){return x-y});if(r.length<=n){box.classList.remove("recolhida");box.style.maxHeight="";b.hidden=true;return}box.classList.add("recolhida");box.style.maxHeight=r[n-1]+"px"}
+var pos=getComputedStyle(box).position;if(pos==="static")box.style.position="relative";mede();setTimeout(mede,1500);addEventListener("resize",mede);b.addEventListener("click",function(){aberto=true;box.classList.remove("recolhida");box.style.maxHeight="";b.remove()})}
+recolhe(document.querySelector(".portas"),innerWidth<860?4:6,"Ver todos os destaques");recolhe(document.querySelector(".atalhos"),6,"Ver todos os atalhos")})();</script>
+<!-- 06/11/2026: ordem dos cartões por dia e período -->
 <script src="/vivo.js" defer></script>
 <script src="/data-facil.js" defer></script>
 </body>
