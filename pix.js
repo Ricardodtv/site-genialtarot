@@ -99,30 +99,6 @@ const PIX_PRODUTOS = {
    "qr": "pix/GP08.png"
   }
  },
- "💰 Ritual de Prosperidade Financeira – Pelo Mestre Alberto ✨": {
-  "normal": {
-   "valor": 5020,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654075020.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GT096304727F",
-   "qr": "pix/GT09.png"
-  },
-  "promo": {
-   "valor": 3510,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654073510.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GP0963042109",
-   "qr": "pix/GP09.png"
-  }
- },
- "🛡️ Ritual de Proteção e Limpeza – Pelo Mestre Alberto ✨": {
-  "normal": {
-   "valor": 4460,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654074460.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GT106304919C",
-   "qr": "pix/GT10.png"
-  },
-  "promo": {
-   "valor": 3120,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654073120.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GP1063041389",
-   "qr": "pix/GP10.png"
-  }
- },
  "🕯️ Vela Guia, Oração e Proteção – Com o Mestre Alberto 🙏": {
   "normal": {
    "valor": 535,
@@ -135,18 +111,6 @@ const PIX_PRODUTOS = {
    "qr": "pix/GP11.png"
   }
  },
- "🌕 Ritual de Lua Cheia para Atrair Dinheiro – Feito pelo Mestre Alberto 💰": {
-  "normal": {
-   "valor": 1260,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654071260.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GT1263043677",
-   "qr": "pix/GT12.png"
-  },
-  "promo": {
-   "valor": 880,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa95204000053039865406880.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GP1263044ADA",
-   "qr": "pix/GP12.png"
-  }
- },
  "🕯️ Incenso + Oração para Destino e Proteção – Pelo Mestre Alberto 🙏": {
   "normal": {
    "valor": 700,
@@ -157,42 +121,6 @@ const PIX_PRODUTOS = {
    "valor": 490,
    "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa95204000053039865406490.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GP1363047A92",
    "qr": "pix/GP13.png"
-  }
- },
- "🚪 Ritual de Abertura de Caminhos – Pelo Mestre Alberto ✨": {
-  "normal": {
-   "valor": 3140,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654073140.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GT146304C57B",
-   "qr": "pix/GT14.png"
-  },
-  "promo": {
-   "valor": 2200,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654072200.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GP1463043AEC",
-   "qr": "pix/GP14.png"
-  }
- },
- "💖 Ritual de Atração Forte para o Amor – Pelo Mestre Alberto ❤️": {
-  "normal": {
-   "valor": 5580,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654075580.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GT156304FEDF",
-   "qr": "pix/GT15.png"
-  },
-  "promo": {
-   "valor": 3910,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654073910.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GP1563044F6C",
-   "qr": "pix/GP15.png"
-  }
- },
- "💼 Ritual de Prosperidade para Empresas e Negócios 💰": {
-  "normal": {
-   "valor": 5580,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654075580.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GT166304100D",
-   "qr": "pix/GT16.png"
-  },
-  "promo": {
-   "valor": 3910,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa952040000530398654073910.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GP166304A1BE",
-   "qr": "pix/GP16.png"
   }
  },
  "🚨 Consulta de Emergência com Mestre Alberto (Resposta em Máx. 1h) ⏰ – Duração: 40 Minutos": {

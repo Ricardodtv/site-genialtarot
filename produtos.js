@@ -214,20 +214,20 @@ const PRODUTOS = [
   {
     nome: "💰 Ritual de Prosperidade Financeira – Pelo Mestre Alberto ✨",
     categoria: "Rituais",
-    preco: "895 €",
+    preco: "",
     foto: "prosperidade-financeira.jpg",
     descricao: "O grande ritual da abundância pessoal: um trabalho completo para desbloquear a sua vida financeira e atrair dinheiro e oportunidades, realizado com Buda dourado, velas e oferendas. Inclui registo do processo.",
-    link: "https://mypos.com/vmp/btn/BGBNMQV89HH04",
+    pedirInfo: true,   // 07/11/2026 (ele): sem preço à vista, «Pedir informações» pelo WhatsApp
     destaque: true,
   },
 
   {
     nome: "🛡️ Ritual de Proteção e Limpeza – Pelo Mestre Alberto ✨",
     categoria: "Rituais",
-    preco: "795 €",
+    preco: "",
     foto: "protecao-limpeza.jpg",
     descricao: "Limpeza espiritual profunda seguida de selamento de proteção: remove energias pesadas, inveja e mau-olhado, e ergue um escudo à sua volta. O passo essencial antes de qualquer novo começo.",
-    link: "https://mypos.com/vmp/btn/BOIQ5HO2K6G26",
+    pedirInfo: true,   // 07/11/2026 (ele): sem preço à vista, «Pedir informações» pelo WhatsApp
     destaque: true,
   },
 
@@ -243,10 +243,10 @@ const PRODUTOS = [
   {
     nome: "🌕 Ritual de Lua Cheia para Atrair Dinheiro – Feito pelo Mestre Alberto 💰",
     categoria: "Rituais",
-    preco: "225 €",
+    preco: "",
     foto: "ritual-lua-cheia.jpg",
     descricao: "Realizado na noite exata de Lua Cheia — o momento mais poderoso para a abundância: moedas, sal e velas trabalham a favor da sua prosperidade. Inclui relatório com fotografias do ritual.",
-    link: "https://mypos.com/vmp/btn/BVSDFYHECEI85",
+    pedirInfo: true,   // 07/11/2026 (ele): sem preço à vista, «Pedir informações» pelo WhatsApp
   },
 
   {
@@ -261,28 +261,28 @@ const PRODUTOS = [
   {
     nome: "🚪 Ritual de Abertura de Caminhos – Pelo Mestre Alberto ✨",
     categoria: "Rituais",
-    preco: "560 €",
+    preco: "",
     foto: "abertura-caminhos.jpg",
     descricao: "Quando tudo parece travado — trabalho, amor, dinheiro — este ritual profundo, apoiado na tradição de São Cipriano, destranca as portas e devolve o movimento à sua vida. Trabalho completo com registo do processo.",
-    link: "https://mypos.com/vmp/btn/BJVR1FZMNW472",
+    pedirInfo: true,   // 07/11/2026 (ele): sem preço à vista, «Pedir informações» pelo WhatsApp
   },
 
   {
     nome: "💖 Ritual de Atração Forte para o Amor – Pelo Mestre Alberto ❤️",
     categoria: "Rituais",
-    preco: "995 €",
+    preco: "",
     foto: "atracao-amor.jpg",
     descricao: "O trabalho mais poderoso do Mestre Alberto para o amor: um ritual intenso de atração, feito com dedicação absoluta ao seu caso, para aproximar quem está destinado a si. Acompanhamento pessoal durante todo o processo.",
-    link: "https://mypos.com/vmp/btn/B54ARU9RI3645",
+    pedirInfo: true,   // 07/11/2026 (ele): sem preço à vista, «Pedir informações» pelo WhatsApp
   },
 
   {
     nome: "💼 Ritual de Prosperidade para Empresas e Negócios 💰",
     categoria: "Rituais",
-    preco: "995 €",
+    preco: "",
     foto: "ritual-prosperidade.jpg",
     descricao: "Para empresários e negócios: um trabalho energético dedicado à sua empresa, para atrair clientes, destravar vendas e sustentar o crescimento. Energia, discrição e acompanhamento do Mestre.",
-    link: "https://mypos.com/vmp/btn/BRUEKAEBD7X05",
+    pedirInfo: true,   // 07/11/2026 (ele): sem preço à vista, «Pedir informações» pelo WhatsApp
   },
 
   /* ================= EMERGÊNCIAS ================= */

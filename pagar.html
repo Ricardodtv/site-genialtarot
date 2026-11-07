@@ -68,14 +68,14 @@ const SERVICOS = {
     "consulta-de-terapia-de-casais-online-1": { nome: "Consulta de Terapia de Casais Online – 1 Hora com Mestre Alberto", preco: "185 €", link: "https://mypos.com/vmp/btn/B1CMBQSYWEW69" },
     "parecer-sobre-qualquer-assunto-pelas-c": { nome: "Parecer sobre Qualquer Assunto pelas Cartas – Escrito pelo Mestre Alberto", preco: "125 €", link: "https://mypos.com/vmp/btn/BLQ1NIUDJ2K11" },
     "leitura-da-sua-mao-por-quiromancia-onl": { nome: "Leitura da Sua Mão por Quiromancia Online – Pelo Mestre Alberto", preco: "80 €", link: "https://mypos.com/vmp/btn/BG2QB2ADANJ52" },
-    "ritual-de-prosperidade-financeira-pelo": { nome: "Ritual de Prosperidade Financeira – Pelo Mestre Alberto", preco: "895 €", link: "https://mypos.com/vmp/btn/BGBNMQV89HH04" },
-    "ritual-de-protecao-e-limpeza-pelo-mest": { nome: "Ritual de Proteção e Limpeza – Pelo Mestre Alberto", preco: "795 €", link: "https://mypos.com/vmp/btn/BOIQ5HO2K6G26" },
+    "ritual-de-prosperidade-financeira-pelo": { nome: "Ritual de Prosperidade Financeira – Pelo Mestre Alberto", preco: "", pedirInfo: true },
+    "ritual-de-protecao-e-limpeza-pelo-mest": { nome: "Ritual de Proteção e Limpeza – Pelo Mestre Alberto", preco: "", pedirInfo: true },
     "vela-guia-oracao-e-protecao-com-o-mest": { nome: "Vela Guia, Oração e Proteção – Com o Mestre Alberto", preco: "95 €", link: "https://mypos.com/vmp/btn/BL5R83HROAB31" },
-    "ritual-de-lua-cheia-para-atrair-dinhei": { nome: "Ritual de Lua Cheia para Atrair Dinheiro – Feito pelo Mestre Alberto", preco: "225 €", link: "https://mypos.com/vmp/btn/BVSDFYHECEI85" },
+    "ritual-de-lua-cheia-para-atrair-dinhei": { nome: "Ritual de Lua Cheia para Atrair Dinheiro – Feito pelo Mestre Alberto", preco: "", pedirInfo: true },
     "incenso-oracao-para-destino-e-protecao": { nome: "Incenso + Oração para Destino e Proteção – Pelo Mestre Alberto", preco: "125 €", link: "https://mypos.com/vmp/btn/BX27E8EEOBJ38" },
-    "ritual-de-abertura-de-caminhos-pelo-me": { nome: "Ritual de Abertura de Caminhos – Pelo Mestre Alberto", preco: "560 €", link: "https://mypos.com/vmp/btn/BJVR1FZMNW472" },
-    "ritual-de-atracao-forte-para-o-amor-pe": { nome: "Ritual de Atração Forte para o Amor – Pelo Mestre Alberto", preco: "995 €", link: "https://mypos.com/vmp/btn/B54ARU9RI3645" },
-    "ritual-de-prosperidade-para-empresas-e": { nome: "Ritual de Prosperidade para Empresas e Negócios", preco: "995 €", link: "https://mypos.com/vmp/btn/BRUEKAEBD7X05" },
+    "ritual-de-abertura-de-caminhos-pelo-me": { nome: "Ritual de Abertura de Caminhos – Pelo Mestre Alberto", preco: "", pedirInfo: true },
+    "ritual-de-atracao-forte-para-o-amor-pe": { nome: "Ritual de Atração Forte para o Amor – Pelo Mestre Alberto", preco: "", pedirInfo: true },
+    "ritual-de-prosperidade-para-empresas-e": { nome: "Ritual de Prosperidade para Empresas e Negócios", preco: "", pedirInfo: true },
     "emergencia": { nome: "Consulta de Emergência com Mestre Alberto (Resposta em Máx. 1h) ⏰ – Duração: 40 Minutos", preco: "110 €", link: "https://mypos.com/vmp/btn/BKXKXFVMT7M49" },
     "amuleto-cruz-da-boa-energia-e-sucesso": { nome: "Amuleto Cruz da Boa Energia e Sucesso – Envio para Todo o Mundo, Feito pelo Mestre Alberto", preco: "145 €", link: "https://mypos.com/vmp/btn/B5588K5PTFM42" },
     "amuleto-pentagrama-de-equilibrio-com-r": { nome: "Amuleto Pentagrama de Equilíbrio com Ritual – Envio para Todo o Mundo, Pelo Mestre Alberto", preco: "165 €", link: "https://mypos.com/vmp/btn/B2PA7QQ3QA346" },
@@ -101,7 +101,13 @@ const nome = document.getElementById("nome");
 const preco = document.getElementById("preco");
 const zona = document.getElementById("zona");
 
-if (!s) {
+if (s && s.pedirInfo) {
+  /* 07/11/2026 (ele): rituais sem preço; ligações antigas vão para a conversa no WhatsApp */
+  nome.textContent = s.nome;
+  preco.textContent = "";
+  zona.innerHTML = '<a class="btn" href="https://wa.me/351914920427?text=' +
+    encodeURIComponent("Olá Mestre Alberto, gostaria de pedir informações sobre: " + s.nome) + '">Pedir informações</a>';
+} else if (!s) {
   nome.textContent = "Serviço não encontrado";
   preco.textContent = "";
   zona.innerHTML = '<a class="btn" href="/loja">Ver a Loja do Mestre Alberto</a>';
