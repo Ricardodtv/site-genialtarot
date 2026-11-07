@@ -99,30 +99,6 @@ const PIX_PRODUTOS = {
    "qr": "pix/GP08.png"
   }
  },
- "🕯️ Vela Guia, Oração e Proteção – Com o Mestre Alberto 🙏": {
-  "normal": {
-   "valor": 535,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa95204000053039865406535.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GT11630462D1",
-   "qr": "pix/GT11.png"
-  },
-  "promo": {
-   "valor": 375,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa95204000053039865406375.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GP11630418BC",
-   "qr": "pix/GP11.png"
-  }
- },
- "🕯️ Incenso + Oração para Destino e Proteção – Pelo Mestre Alberto 🙏": {
-  "normal": {
-   "valor": 700,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa95204000053039865406700.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GT136304E611",
-   "qr": "pix/GT13.png"
-  },
-  "promo": {
-   "valor": 490,
-   "codigo": "00020126580014br.gov.bcb.pix013675671126-b1db-4afb-85d9-787fc8270aa95204000053039865406490.005802BR5924INGRID EVELYN C DE PAULA6009GUARAPARI62080504GP1363047A92",
-   "qr": "pix/GP13.png"
-  }
- },
  "🚨 Consulta de Emergência com Mestre Alberto (Resposta em Máx. 1h) ⏰ – Duração: 40 Minutos": {
   "normal": {
    "valor": 615,

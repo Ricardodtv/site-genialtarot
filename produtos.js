@@ -234,10 +234,10 @@ const PRODUTOS = [
   {
     nome: "🕯️ Vela Guia, Oração e Proteção – Com o Mestre Alberto 🙏",
     categoria: "Rituais",
-    preco: "95 €",
+    preco: "",
     foto: "vela-guia.jpg",
     descricao: "Durante 5 dias, o Mestre Alberto acende uma vela consagrada e reza uma oração dedicada ao seu nome e à sua intenção — proteção, saúde ou gratidão. Receberá o registo do ritual realizado.",
-    link: "https://mypos.com/vmp/btn/BL5R83HROAB31",
+    pedirInfo: true,   // 07/11/2026 (ele): sem preço à vista, «Pedir informações» pelo WhatsApp
   },
 
   {
@@ -252,10 +252,10 @@ const PRODUTOS = [
   {
     nome: "🕯️ Incenso + Oração para Destino e Proteção – Pelo Mestre Alberto 🙏",
     categoria: "Rituais",
-    preco: "125 €",
+    preco: "",
     foto: "incenso-oracao.jpg",
     descricao: "Incensos consagrados e a Oração do Destino, queimados em seu nome para limpar bloqueios e proteger o seu caminho. Um trabalho silencioso que abre espaço ao que está destinado a chegar.",
-    link: "https://mypos.com/vmp/btn/BX27E8EEOBJ38",
+    pedirInfo: true,   // 07/11/2026 (ele): sem preço à vista, «Pedir informações» pelo WhatsApp
   },
 
   {

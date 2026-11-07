@@ -13,7 +13,7 @@ FAQ = {
  ],
  "loja": [
   ("O que se pode encontrar na Loja do Genial Tarot?",
-   "Consultas de Tarot online, perguntas respondidas em áudio ou por escrito, mapas astrais e numerológicos enviados por email, rituais, amuletos e um curso de Tarot. Cada produto tem a sua descrição na própria página da loja, com o preço ou, no caso dos rituais, um botão para pedir informações."),
+   "Consultas de Tarot online, perguntas respondidas em áudio ou por escrito, mapas astrais e numerológicos enviados por email, rituais, amuletos e um curso de Tarot. Cada produto tem a sua descrição na própria página da loja, com o preço ou, no caso dos rituais, velas e incensos, um botão para pedir informações."),
   ("Como posso pagar na Loja do Mestre Alberto?",
    "Cada produto tem o botão de compra com o seu pagamento. Há também a opção de pagar por MB WAY ou por transferência bancária, pedindo os dados pelo WhatsApp. Para quem está no Brasil, vários produtos aceitam pagamento por PIX."),
   ("Tenho dúvidas antes de comprar. A quem pergunto?",
