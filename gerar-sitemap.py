@@ -9,10 +9,25 @@ SITE = "https://genialtarot.com"
 FORA = {"pagar.html", "o-teu-ceu.html", "30-dias.html", "30-dias-autorizacao.html"}   # pagamento e a app: não são para pesquisa
 import datetime
 PREPARADOS = set(subprocess.run(["git", "diff", "--cached", "--name-only"], capture_output=True, text=True).stdout.split())
+# 07/11/2026 (pedido dele): datas reais. Um commit que mexe em muitas páginas (ronda de SEO, retoque geral) não conta como
+# atualização de cada uma: senão 592 páginas ficavam com o mesmo dia. Vale o último commit pequeno; sem nenhum, o da criação.
+LIMITE = 40
+HTML_PREP = [x for x in PREPARADOS if x.endswith(".html")]
+_real, _criada = {}, {}
+_d, _fs = None, []
+def _fecha():
+    if _d is None: return
+    h = [x for x in _fs if x.endswith(".html")]
+    for x in h:
+        _criada[x] = _d                     # o log vem do mais novo para o mais velho: fica o mais antigo
+        if len(h) <= LIMITE: _real.setdefault(x, _d)
+for _l in subprocess.run(["git", "log", "--format=@%cs", "--name-only"], capture_output=True, text=True).stdout.split("\n"):
+    if _l.startswith("@"): _fecha(); _d, _fs = _l[1:], []
+    elif _l.strip(): _fs.append(_l.strip().strip('"'))
+_fecha()
 def data(f):
-    if f in PREPARADOS: return datetime.date.today().isoformat()   # vai entrar neste commit
-    d = subprocess.run(["git", "log", "-1", "--format=%cs", "--", f], capture_output=True, text=True).stdout.strip()
-    return d or None
+    if f in PREPARADOS and len(HTML_PREP) <= LIMITE: return datetime.date.today().isoformat()   # vai entrar neste commit
+    return _real.get(f) or _criada.get(f)
 urls = []
 for f in sorted(glob.glob("*.html") + glob.glob("sonho/*.html") + glob.glob("signo/*.html") + glob.glob("noticias/*.html") + glob.glob("anjo/*.html")):
     if f in FORA: continue

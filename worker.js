@@ -663,9 +663,13 @@ const H_MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "ju
 const H_SEMANA = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
 const hEsc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const hHora = (ms) => new Intl.DateTimeFormat("pt-PT", { timeZone: "Europe/Lisbon", hour: "2-digit", minute: "2-digit" }).format(new Date(ms));
-const hPor = (t) => hEsc(t).replace(/\{S:(\d+)\}/g, (_, n) => H_NOMES[+n]).replace(/\{H:(\d+)\}/g, (_, ms) => hHora(+ms));
+const hDw = (ms) => { const d = new Date(new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Lisbon" }).format(new Date(ms)) + "T12:00:00Z"); return d.getUTCDay(); };
+const hPor = (t) => hEsc(t).replace(/\{S:(\d+)\}/g, (_, n) => H_NOMES[+n]).replace(/\{H:(\d+)\}/g, (_, ms) => hHora(+ms))
+  .replace(/\{D:(\d+)\}/g, (_, ms) => { const w = hDw(+ms); return (w === 0 || w === 6 ? "no " : "na ") + H_SEMANA[w]; }).replace(/\{W:(\d+)\}/g, (_, ms) => H_SEMANA[hDw(+ms)]);
 function horoscopoNoHtmlAlvo(url) {
   if (url.pathname === "/horoscopo-do-dia") return -1;
+  if (url.pathname === "/horoscopo-de-amanha") return -3;
+  if (url.pathname === "/horoscopo-semanal") return -4;
   const m = url.pathname.match(/^\/signo\/([a-z]+)$/);
   const i = m ? H_SLUGS.indexOf(m[1]) : -2;
   return i >= 0 ? i : -2;
@@ -674,30 +678,38 @@ async function horoscopoNoHtml(url, env, alvo) {
   // sem If-None-Match: o ficheiro estático não muda, mas o que sai daqui muda todos os dias (senão a resposta seria um 304 velho)
   const resp = await env.ASSETS.fetch(new Request(url.toString(), { method: "GET" }));
   if (!resp.ok || !(resp.headers.get("content-type") || "").includes("text/html")) return resp;
-  let x = null, iso = "";
+  const hoje = new Date(new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Lisbon" }).format(new Date()) + "T12:00:00Z");
+  const semana_ = alvo === -4;
+  const base = new Date(hoje);
+  if (alvo === -3) base.setUTCDate(base.getUTCDate() + 1);
+  if (semana_) base.setUTCDate(base.getUTCDate() - ((base.getUTCDay() + 6) % 7));
+  const iso = base.toISOString().slice(0, 10);
+  let x = null;
   try {
-    iso = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Lisbon" }).format(new Date());
-    const j = await env.ASSETS.fetch(new Request(new URL(`/horoscopo-dia/${iso}.json`, url), { method: "GET" }));
+    const j = await env.ASSETS.fetch(new Request(new URL(`/horoscopo-${semana_ ? "semana" : "dia"}/${iso}.json`, url), { method: "GET" }));
     if (j.ok) x = await j.json();
   } catch (e) { x = null; }
   if (!x || !Array.isArray(x.s) || x.s.length !== 12) return resp;
-  const [a, m, d] = iso.split("-").map(Number);
-  const dia = `${d} de ${H_MESES[m - 1]}`, semana = H_SEMANA[new Date(Date.UTC(a, m - 1, d)).getUTCDay()];
-  const ld = JSON.stringify({ "@context": "https://schema.org", "@type": "WebPage", url: url.origin + url.pathname, inLanguage: "pt", dateModified: iso,
-    name: alvo < 0 ? `Horóscopo do Dia, ${dia}` : `Horóscopo de ${H_NOMES[alvo]}, ${dia}`, author: { "@type": "Person", name: "Mestre Alberto", url: url.origin + "/sobre" } }).replace(/</g, "\\u003c");
+  const fd = (d) => `${d.getUTCDate()} de ${H_MESES[d.getUTCMonth()]}`;
+  const dia = fd(base), semana = H_SEMANA[base.getUTCDay()], fim = new Date(base); fim.setUTCDate(fim.getUTCDate() + 6);
+  const nome = alvo === -1 ? `Horóscopo do Dia, ${dia}` : alvo === -3 ? `Horóscopo de Amanhã, ${dia}` : semana_ ? `Horóscopo Semanal, ${dia} a ${fd(fim)}` : `Horóscopo de ${H_NOMES[alvo]}, ${dia}`;
+  const ld = JSON.stringify({ "@context": "https://schema.org", "@type": "WebPage", url: url.origin + url.pathname, inLanguage: "pt", dateModified: hoje.toISOString().slice(0, 10),
+    name: nome, author: { "@type": "Person", name: "Mestre Alberto", url: url.origin + "/sobre" } }).replace(/</g, "\\u003c");
   const rw = new HTMLRewriter().on("head", { element(e) { e.append(`<script type="application/ld+json">${ld}</script>`, { html: true }); } });
-  const corpo = (y) => `<div class="chave">${hPor(y.k)}</div>${y.t.map((t) => `<p>${hPor(t)}</p>`).join("")}<div class="dica"><b>👉 A dica de hoje</b> ${hPor(y.d)}</div>`;
+  const corpo = (y, tit) => `<div class="chave">${hPor(y.k)}</div>${y.t.map((t) => `<p>${hPor(t)}</p>`).join("")}<div class="dica"><b>👉 ${tit}</b> ${hPor(y.d)}</div>`;
+  const est = (e) => "★".repeat(Math.round(e)) + "☆".repeat(5 - Math.round(e));
   if (alvo < 0) {
-    const titulo = `Horóscopo do Dia, ${dia}: os 12 signos · Mestre Alberto`;
+    const titulo = semana_ ? `Horóscopo Semanal, ${dia} a ${fd(fim)} · Mestre Alberto` : alvo === -3 ? `Horóscopo de Amanhã, ${dia}: os 12 signos · Mestre Alberto` : `Horóscopo do Dia, ${dia}: os 12 signos · Mestre Alberto`;
     const ceu = (x.ceu || []).map((l) => `<li>${hPor(l)}</li>`).join("");
-    const grelha = x.s.map((y, s) => `<article class="signo" id="s${s}"><div class="cab"><img class="gli" src="signos/${String(s).padStart(2, "0")}.webp" alt="${H_NOMES[s]}" width="72" height="72" loading="lazy"><div><div class="nome">${H_NOMES[s]}</div><div class="ene" aria-label="Energia ${y.e} de 5">${"★".repeat(y.e)}${"☆".repeat(5 - y.e)}<span>energia</span></div></div></div>${corpo(y)}</article>`).join("");
+    const dc = (i) => { const d = new Date(i + "T12:00:00Z"); return `${H_SEMANA[d.getUTCDay()].toLowerCase()}, ${d.getUTCDate()}`; };
+    const grelha = x.s.map((y, s) => `<article class="signo" id="s${s}"><div class="cab"><img class="gli" src="signos/${String(s).padStart(2, "0")}.webp" alt="${H_NOMES[s]}" width="72" height="72" loading="lazy"><div><div class="nome">${H_NOMES[s]}</div><div class="ene" aria-label="Energia ${y.e} de 5">${est(y.e)}<span>${semana_ ? "energia da semana" : "energia"}</span></div></div></div>${corpo(y, semana_ ? "A dica da semana" : alvo === -3 ? "A dica de amanhã" : "A dica de hoje").replace('<div class="dica">', semana_ && y.melhor ? `<div class="dias"><span class="bom">✨ Melhor dia: ${dc(y.melhor.d)}</span>${y.cuidado ? `<span>⚠️ Mais cuidado: ${dc(y.cuidado.d)}</span>` : ""}</div><div class="dica">` : '<div class="dica">')}</article>`).join("");
     rw.on("title", { element(e) { e.setInnerContent(titulo); } })
-      .on("#data", { element(e) { e.setInnerContent(`<small>Hoje · ${semana}</small>${dia}`, { html: true }); } })
+      .on("#data", { element(e) { e.setInnerContent(semana_ ? `<small>Esta semana</small>${dia} a ${fd(fim)}` : `<small>${alvo === -3 ? "Amanhã" : "Hoje"} · ${semana}</small>${dia}`, { html: true }); } })
       .on("#ceu", { element(e) { e.setInnerContent(ceu, { html: true }); } })
       .on("#grelha", { element(e) { e.setInnerContent(grelha, { html: true }); } });
   } else {
     const y = x.s[alvo];
-    rw.on("#hoje", { element(e) { e.setInnerContent(`<p style="margin:.2rem 0;color:var(--suave)">${semana}, ${dia}</p><div class="ene">${"★".repeat(y.e)}${"☆".repeat(5 - y.e)} energia</div>${corpo(y)}`, { html: true }); } });
+    rw.on("#hoje", { element(e) { e.setInnerContent(`<p style="margin:.2rem 0;color:var(--suave)">${semana}, ${dia}</p><div class="ene">${est(y.e)} energia</div>${corpo(y, "A dica de hoje")}`, { html: true }); } });
   }
   const r = new Response(resp.body, resp);
   r.headers.delete("etag"); r.headers.delete("last-modified");

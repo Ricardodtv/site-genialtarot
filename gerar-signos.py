@@ -1004,6 +1004,8 @@ import subprocess as _sp; _sp.run(["python3", "ecossistema-signos.py"], check=Fa
 # 01/11/2026: o texto a mais das páginas que estavam abaixo das 300 palavras (SEO)
 _sp.run(["python3", "seo-texto-extra.py"], check=False)
 _sp.run(["python3", "seo-descricoes.py"], check=False)
+_sp.run(["python3", "titulos-brasil.py"], check=False)   # 07/11/2026: nomes do Brasil nos títulos
+_sp.run(["python3", "datas-artigos.py"], check=False)    # 07/11/2026: datas reais nos artigos
 
 # 02/11/2026: as imagens de destaque voltam a entrar nas páginas que este gerador reescreveu (imagens-destaque.py)
 import subprocess as _sp

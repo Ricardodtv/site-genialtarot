@@ -25,6 +25,19 @@ Conteúdo em português (Portugal), com os nomes dos signos também na forma bra
 - [Calendário Lunar](https://genialtarot.com/lua): fases da Lua, Lua em cada signo, eclipses
 - [Notícias do Céu](https://genialtarot.com/noticias-do-ceu): mudanças de signo, retrógrados e eclipses das próximas semanas
 
+## Áreas novas
+- [Quiromancia](https://genialtarot.com/quiromancia): leitura da mão, com mapa interativo das linhas e dos montes
+- [Como ler a mão](https://genialtarot.com/como-ler-a-mao): guia passo a passo
+- [Linhas da mão](https://genialtarot.com/linhas-da-mao): vida, coração, cabeça e destino
+- [Pêndulo](https://genialtarot.com/pendulo): o que é, como funciona e o que diz a ciência
+- [Radiestesia](https://genialtarot.com/radiestesia): história, instrumentos e testes científicos
+- [Consulta de Pêndulo](https://genialtarot.com/consulta-de-pendulo): consultas de 30 e de 50 minutos com o Mestre Alberto
+- [Guia do Sistema Solar Astrológico](https://genialtarot.com/guia-sistema-solar): guia grátis em PDF sobre os dez astros
+- [Podcast de Tarot e Horóscopo](https://genialtarot.com/podcast): uma lista de episódios para cada signo
+- [Livro O Derradeiro Curso de Tarot](https://genialtarot.com/livro): o livro do Mestre Alberto, escrito em 2015 e publicado em 2026
+- [Horóscopo Semanal](https://genialtarot.com/horoscopo-semanal): os 12 signos na semana atual
+- [Horóscopo de Amanhã](https://genialtarot.com/horoscopo-de-amanha): os 12 signos no dia seguinte
+
 ## Tarot
 - [Tarot grátis](https://genialtarot.com/tarot-gratis): tiragem online
 - [Os 22 Arcanos Maiores](https://genialtarot.com/arcanos): significado de cada carta, com o baralho do Mestre Alberto
