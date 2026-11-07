@@ -25,7 +25,15 @@ for _l in subprocess.run(["git", "log", "--format=@%cs", "--name-only"], capture
     if _l.startswith("@"): _fecha(); _d, _fs = _l[1:], []
     elif _l.strip(): _fs.append(_l.strip().strip('"'))
 _fecha()
+# 07/11/2026 (O-176): páginas que o worker reescreve sozinho (o ficheiro não muda, o texto servido sim). O Google leu
+# /horoscopo-semanal a 02/11, antes de o texto estar no HTML, e o lastmod parado não o chamava de volta.
+_hoje = datetime.date.today()
+DIARIAS = {"horoscopo-do-dia.html", "horoscopo-de-amanha.html", "aniversarios.html"} | {x for x in glob.glob("signo/*.html")}
+SEMANAIS = {"horoscopo-semanal.html"}
 def data(f):
+    if f in DIARIAS: return _hoje.isoformat()
+    if f in SEMANAIS:   # a mais recente: segunda-feira desta semana, o último commit, ou 07/11 (o texto passou a vir no HTML)
+        return max((_hoje - datetime.timedelta(days=_hoje.weekday())).isoformat(), _real.get(f) or _criada.get(f) or "", "2026-11-07")
     if f in PREPARADOS and len(HTML_PREP) <= LIMITE: return datetime.date.today().isoformat()   # vai entrar neste commit
     return _real.get(f) or _criada.get(f)
 urls = []
