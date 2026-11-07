@@ -717,6 +717,35 @@ async function horoscopoNoHtml(url, env, alvo) {
   return rw.transform(r);
 }
 
+// 07/11/2026 (O-137, O-138): /aniversarios chegava ao Google sem nenhum nome, porque só o JavaScript enchia a lista. O
+// JavaScript da página redesenha por cima, com o fuso escolhido. Se os dados falharem fica a página de sempre.
+const hDiaMes = (iso) => `${+iso.slice(8)} de ${H_MESES[+iso.slice(5, 7) - 1]}`;
+async function aniversariosNoHtml(url, env) {
+  const resp = await env.ASSETS.fetch(new Request(url.toString(), { method: "GET" }));
+  if (!resp.ok || !(resp.headers.get("content-type") || "").includes("text/html")) return resp;
+  let L = null;
+  const iso = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Lisbon" }).format(new Date());
+  try {
+    const j = await env.ASSETS.fetch(new Request(new URL("/aniversarios-dados.js", url), { method: "GET" }));
+    if (j.ok) { const t = await j.text(); L = JSON.parse(t.slice(t.indexOf("{", t.indexOf("window.ANIVERSARIOS"))).trim().replace(/;$/, ""))[iso.slice(5)]; }
+  } catch (e) { L = null; }
+  if (!Array.isArray(L) || !L.length) return resp;
+  const dia = hDiaMes(iso), ano = +iso.slice(0, 4);
+  const sigs = [...new Set(L.map((p) => H_NOMES[p.s]))].join(" ou ");
+  const pessoas = L.map((p) => `<article class="pessoa"><div class="topo-p"><span class="nome">${hEsc(p.n)}</span><span class="bandeira" title="${hEsc(p.p)}">${p.p === "PT" ? "🇵🇹" : p.p === "BR" ? "🇧🇷" : "🇧🇷🇵🇹"}</span></div>`
+    + `<div class="desc">${hEsc(p.d)}</div><div class="idade">Nasceu a ${dia} de ${p.a} · <b>faz hoje ${ano - p.a} anos</b></div>`
+    + `<div class="signo"><b>${H_NOMES[p.s]}</b>${p.c ? " <small>(na cúspide)</small>" : ""}</div>`
+    + `<a class="lig" href="/signo/${H_SLUGS[p.s]}">Ver o horóscopo de ${H_NOMES[p.s]} →</a></article>`).join("");
+  const rw = new HTMLRewriter()
+    .on("#data", { element(e) { e.setInnerContent(`<small>hoje</small>${dia}`, { html: true }); } })
+    .on("#frase-dia", { element(e) { e.setInnerContent(`Quem faz anos hoje, ${dia}, é de <b>${sigs}</b>.`, { html: true }); } })
+    .on("#pessoas", { element(e) { e.setInnerContent(pessoas, { html: true }); } });
+  const r = new Response(resp.body, resp);
+  r.headers.delete("etag"); r.headers.delete("last-modified");
+  r.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+  return rw.transform(r);
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -1271,7 +1300,9 @@ export default {
 
     // Tudo o resto: servir o site normalmente
     const hAlvo = request.method === "GET" ? horoscopoNoHtmlAlvo(url) : -2;
-    const resp = hAlvo === -2 ? await env.ASSETS.fetch(request) : await horoscopoNoHtml(url, env, hAlvo);
+    const resp = hAlvo !== -2 ? await horoscopoNoHtml(url, env, hAlvo)
+      : request.method === "GET" && url.pathname === "/aniversarios" ? await aniversariosNoHtml(url, env)
+      : await env.ASSETS.fetch(request);
     // 01/11/2026: endereço de PÁGINA que não existe → a 404.html do site (com ligações de volta), sempre com código 404.
     // (Não pelo not_found_handling do wrangler: esse apanhava também /notify, /e/a, /api/vivo… e calava o worker.)
     // 02/11/2026: endereço do site antigo → 301 para a página nova equivalente (redirecoes-antigas.js)

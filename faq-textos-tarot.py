@@ -254,6 +254,8 @@ FAQ = {
  "aniversarios": [
   ("Qual é o signo de quem faz anos hoje?",
    "É o signo onde o Sol está no dia de hoje, e é o mesmo para todos os aniversariantes do dia, de qualquer ano. Se hoje for dia de mudança de signo, quem nasce depende da hora. As datas completas dos 12 signos estão na página Datas dos Signos."),
+  ("Quem faz anos hoje em Portugal?",
+   "Veja na lista os aniversariantes com a bandeira 🇵🇹: são personalidades nascidas em Portugal, com a idade e o signo de cada uma. A lista muda sozinha todos os dias e junta também os famosos do Brasil, com a bandeira 🇧🇷."),
   ("Que famosos fazem anos hoje?",
    "A página mostra todos os dias os artistas e personalidades do Brasil e de Portugal que fazem anos nesse dia, com o signo de cada um. Pode alternar entre os dois países e andar para os dias seguintes ou anteriores."),
   ("De onde vem a lista de aniversários?",
