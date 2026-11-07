@@ -840,10 +840,13 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 /* 07/11/2026 (pedido dele): três caminhos claros no topo e destaques recolhidos */
 .caminhos { display:grid; grid-template-columns:1fr; gap:.7rem; max-width:60rem; margin:1.2rem auto 1.4rem; text-align:left; position:relative; z-index:5; }
 @media (min-width:760px){ .caminhos { grid-template-columns:repeat(3,1fr); gap:1rem; } }
-.caminho { display:flex; align-items:center; gap:.85rem; padding:1rem 1.1rem; border-radius:1.1rem; text-decoration:none; color:#fff; border:1.5px solid oklch(0.85 0.13 88 / .65);
+.caminho { display:flex; align-items:center; gap:.85rem; padding:.65rem 1rem; border-radius:1.1rem; text-decoration:none; color:#fff; border:1.5px solid oklch(0.85 0.13 88 / .65);
   background:linear-gradient(135deg, oklch(0.36 0.15 305 / .92), oklch(0.26 0.11 285 / .92)); box-shadow:0 8px 26px -10px oklch(0.75 0.17 310 / .6); transition:transform .15s, box-shadow .15s; }
 .caminho:hover { transform:translateY(-2px); box-shadow:0 10px 32px -8px oklch(0.85 0.13 88 / .55); }
-.caminho i { font-style:normal; font-size:1.9rem; line-height:1; flex:none; }
+.caminho-img { width:4.6rem; height:4.6rem; flex:none; object-fit:contain; filter:drop-shadow(0 4px 12px rgba(0,0,0,.45)); transition:transform .2s; }
+.caminho:hover .caminho-img { transform:scale(1.07); }
+@media (max-width:759px){ .caminho-img { width:4rem; height:4rem; } .caminho b { font-size:.9rem; } .caminho small { font-size:.78rem; } .caminho.mestre { padding-right:4.4rem; } }
+@media (min-width:760px){ .caminho-img { width:6.6rem; height:6.6rem; } }
 .caminho b { display:block; font-family:"Cinzel", var(--font-display); font-size:1.02rem; line-height:1.2; }
 .caminho small { display:block; font-size:.82rem; opacity:.85; margin-top:.15rem; }
 .caminho.mestre { background:linear-gradient(135deg, oklch(0.88 0.12 90), oklch(0.74 0.15 75)); color:oklch(0.22 0.07 300); border-color:oklch(0.92 0.09 92); }
@@ -1031,9 +1034,9 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 
     <!-- 🧭 07/11/2026 (pedido dele): os três caminhos, logo no primeiro ecrã -->
     <nav class="caminhos animate-fade-up" aria-label="Por onde quer começar?">
-      <a class="caminho" href="/tarot-gratis"><i>🃏</i><span><b>Quero uma resposta agora</b><small>Tire as cartas, é grátis</small></span></a>
-      <a class="caminho" href="/horoscopo-do-dia"><i>✨</i><span><b>Quero saber do meu signo</b><small>O horóscopo de hoje</small></span></a>
-      <a class="caminho mestre" href="#marcacao"><i>🔮</i><span><b>Quero falar com o Mestre</b><small>Marcar uma consulta</small></span></a>
+      <a class="caminho" href="/tarot-gratis"><img class="caminho-img" src="/caminho-cartas.webp" alt="Cartas de Tarot do Mestre Alberto" width="240" height="240" decoding="async"/><span><b>Quero uma resposta agora</b><small>Tire as cartas, é grátis</small></span></a>
+      <a class="caminho" href="/horoscopo-do-dia"><img class="caminho-img" src="/caminho-signos.webp" alt="Roda do zodíaco com os signos" width="240" height="240" decoding="async"/><span><b>Quero saber do meu signo</b><small>O horóscopo de hoje</small></span></a>
+      <a class="caminho mestre" href="#marcacao"><img class="caminho-img" src="/caminho-mestre.webp" alt="Mestre Alberto" width="240" height="240" decoding="async"/><span><b>Quero falar com o Mestre</b><small>Marcar uma consulta</small></span></a>
     </nav>
     <p class="animate-fade-up hero-sub">
       Orientação espiritual sincera, intuitiva e acolhedora. Encontre clareza
