@@ -236,8 +236,8 @@ print("13 páginas", "(aprovadas)" if APROVADO else "(noindex: por aprovar)")
 #    «Genialtarot - Mestre Alberto»). Nome, morada e telefone IGUAIS aos do Maps (o Google cruza-os).
 MAPS = "https://maps.google.com/?cid=17405932589735170894"
 url = SITE + "/tarologo-fafe"
-titulo = "Tarólogo em Fafe: consultas de Tarot com o Mestre Alberto"
-desc = "Consultas de Tarot e astrologia no consultório do Mestre Alberto em Fafe (Golães) ou à distância, para Portugal e Brasil. 18 anos de prática. Marcações por WhatsApp."
+titulo = "Tarot em Fafe: consultas com o Mestre Alberto, há 18 anos"
+desc = "Consulta de Tarot e cartas em Fafe (Golães), no consultório ou à distância. 18 anos de prática com o Mestre Alberto. Marque pelo WhatsApp."
 NEGOCIO = {"@type": "ProfessionalService", "@id": SITE + "/#consultorio", "name": "Genialtarot - Mestre Alberto", "url": SITE + "/",
            "image": SITE + "/mestre-r13.jpg", "telephone": "+351914920427", "hasMap": MAPS,
            "address": {"@type": "PostalAddress", "streetAddress": "Rua da Barreira, 92", "addressLocality": "Fafe", "postalCode": "4820-459", "addressRegion": "Braga", "addressCountry": "PT"},
