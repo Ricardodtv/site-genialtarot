@@ -1,6 +1,6 @@
 # Genial Tarot — Mestre Alberto
 
-> Site do Mestre Alberto, tarólogo e astrólogo português com 18 anos de prática de Tarot e astrologia, consultório em Fafe (Portugal) e consultas à distância para Portugal, Brasil e o mundo. Publica o horóscopo diário no canal de YouTube «Tarot e Horóscopo» (@Genialtarot). Os horóscopos do site são calculados a partir do céu real do dia (Swiss Ephemeris), não escritos de memória.
+> Site do Mestre Alberto (Alberto Freitas), tarólogo, astrólogo e hipnoterapeuta português, com 18 anos de prática de Tarot e astrologia, consultório em Fafe (Portugal) e consultas à distância para Portugal, Brasil e o mundo. Publica o horóscopo diário no canal de YouTube «Tarot e Horóscopo» (@Genialtarot). Os horóscopos do site são calculados a partir do céu real do dia (Swiss Ephemeris), não escritos de memória.
 
 Conteúdo em português (Portugal), com os nomes dos signos também na forma brasileira (Câncer, Libra, Gêmeos, Áries).
 
@@ -50,8 +50,9 @@ Conteúdo em português (Portugal), com os nomes dos signos também na forma bra
 - [Horóscopo Chinês](https://genialtarot.com/horoscopo-chines)
 
 ## Consultas e loja
-- [Sobre o Mestre Alberto](https://genialtarot.com/sobre)
-- [Consultório em Fafe](https://genialtarot.com/tarologo-fafe): Rua da Barreira, 92, 4820-474 Golães, Fafe, Portugal
+- [Sobre o Mestre Alberto](https://genialtarot.com/sobre): quem é, percurso e datas
+- [Na imprensa](https://genialtarot.com/na-imprensa): aparições nos media, nota biográfica e fotografia para jornalistas
+- [Consultório em Fafe](https://genialtarot.com/tarologo-fafe): Rua da Barreira, 92, 4820-459 Golães, Fafe, Portugal
 - [Consultas à distância](https://genialtarot.com/consultas-a-distancia): por WhatsApp, áudio, escrito ou videochamada
 - [Loja online](https://genialtarot.com/loja): consultas, mapas astrais e produtos
 
