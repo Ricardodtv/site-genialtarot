@@ -24,6 +24,7 @@
       "/aniversarios",
       "/amor-do-dia",
       "/horoscopo-do-dia",
+      "/signo/*",
       "/horoscopo-semanal",
       "/horoscopo-de-amanha",
       "/tarot-cigano",
