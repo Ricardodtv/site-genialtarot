@@ -143,8 +143,15 @@ input:focus{outline:none;border-color:var(--ouro);box-shadow:0 0 0 3px rgba(242,
     const [a, m, d] = nasc.split("-");
     const b = $("f").querySelector("button"); b.disabled = true; b.textContent = "A entrar…";
     try {
+      // 09/11/2026 (ele): a origem da visita vai para a ficha, para a lista de Promoções saber quem veio dos grupos (como em lista-signo.js).
+      // A ligação lê-se aqui também: o vivo.js é «defer» e pode ainda não a ter guardado.
+      let origem = "";
+      try {
+        const q = new URLSearchParams(location.search), g = q.get("de") ? [q.get("de"), q.get("c") || ""] : JSON.parse(sessionStorage.getItem("gt_marca") || "null");
+        if (g) origem = String(g[0]).slice(0, 20) + (g[1] ? "/" + String(g[1]).slice(0, 40) : "");
+      } catch (e) {}
       const r = await fetch("/notify", { method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "vip", data: { name: nome, email, date_of_birth: `${d}/${m}/${a}`, area: "👑 Lista VIP", novidades: true } }) });
+        body: JSON.stringify({ type: "vip", data: { name: nome, email, date_of_birth: `${d}/${m}/${a}`, area: "👑 Lista VIP", novidades: true, origem } }) });
       if (!r.ok) throw new Error(r.status);
     } catch (e) {
       b.disabled = false; b.textContent = "✨ Quero entrar na Lista VIP";
