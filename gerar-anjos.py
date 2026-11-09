@@ -35,8 +35,9 @@ def sol(d):
 
 DIAS = {}
 _d = datetime.date(2027, 3, 21)
-for _ in range(366):
-    DIAS.setdefault(int(sol(_d) // 5), []).append(_d); _d += datetime.timedelta(days=1)
+for _ in range(365):  # 09/11/2026: até 19/03/2028; os 366 dias davam «21 a 20 de Março» ao 1.º anjo
+    if (_d.month, _d.day) != (2, 29): DIAS.setdefault(int(sol(_d) // 5), []).append(_d)  # 2027 não tem 29 de Fevereiro
+    _d += datetime.timedelta(days=1)
 def periodo(i):
     a, b = DIAS[i][0], DIAS[i][-1]
     if a.month == b.month: return f"{a.day} a {b.day} de {MESES[a.month-1]}"
@@ -201,7 +202,7 @@ CORPO_K = f"""{heroi("Anjo da Guarda das crianças e dos bebés", "Orações par
     <ol class="passos"><li><b>Escolha um só momento.</b> Antes de dormir é o mais fácil, porque faz parte do ritual da noite.</li><li><b>Rezem juntos.</b> As crianças aprendem por imitação: diga a oração com ela, sem a corrigir.</li><li><b>Deixe-a falar com o anjo.</b> Pergunte por quem quer rezar hoje e deixe-a dizer por palavras suas.</li><li><b>Nunca use o anjo para assustar.</b> Frases como «o anjo está a ver o que fazes» transformam a companhia em vigilância.</li></ol></section>
   <section class="cartao texto"><h2>Uma lembrança para o batizado</h2><p>Uma das lembranças mais simples é escrever à mão a oração do berço num cartão, com o nome da criança e a data, assinada pelos pais e padrinhos. Guardada, um dia será ela a lê-la. E se quiser, procure o anjo da data de nascimento e escreva o nome no verso, como curiosidade da tradição dos 72 Nomes.</p></section>
   <section class="cartao texto"><h2>Perguntas frequentes</h2>{"".join(f"<h3>{q}</h3><p>{a}</p>" for q, a in FAQ_K)}<p><small>⚠️ As orações são práticas espirituais e não substituem o médico nem outros profissionais.</small></p></section>
-  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/rezas-para-criancas">Rezas para Crianças</a><a href="/carta-do-anjo">Carta do Anjo</a></div></section>"""
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/os-72-anjos">Os 72 Anjos</a><a href="/rezas-para-criancas">Rezas para Crianças</a><a href="/carta-do-anjo">Carta do Anjo</a></div></section>"""
 LD_K = {"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Anjo da Guarda das crianças: orações para o berço e o batizado", "inLanguage": "pt-PT", "mainEntityOfPage": SITE + "/anjo-da-guarda-criancas", "author": {"@type": "Person", "name": "Mestre Alberto"}},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ_K]}]}
 grava("anjo-da-guarda-criancas.html", pagina("/anjo-da-guarda-criancas", "Anjo da Guarda das crianças: orações para o berço", "Orações do Anjo da Guarda para crianças e bebés: junto ao berço, no batizado, à noite e à saída para a escola, e como criar o hábito em casa.", CORPO_K, LD_K))
@@ -219,7 +220,7 @@ CORPO_O = f"""{heroi("Dia do Anjo da Guarda", "2 de Outubro, festa dos Santos An
     <p>Na festa de 2014, o Papa Francisco falou do anjo como companheiro de viagem e deixou perguntas para cada um fazer a si próprio: como é a minha relação com o meu anjo? Dou-lhe os bons-dias de manhã? Peço-lhe que me guarde enquanto durmo?</p></section>
   <section class="cartao texto"><h2>Como viver este dia</h2><ol class="passos"><li><b>De manhã,</b> reze uma das orações tradicionais, antes de pegar no telemóvel.</li><li><b>Ao longo do dia,</b> agradeça por uma vez em que se sentiu protegido.</li><li><b>Com as crianças,</b> ensine-lhes a <a href="/anjo-da-guarda-criancas">primeira oração do Anjo da Guarda</a>.</li><li><b>À noite,</b> entregue ao seu anjo o que ficou por resolver.</li></ol>
     <blockquote class="ora-c">Santo Anjo do Senhor, meu zeloso guardador,<br>se a ti me confiou a piedade divina,<br>sempre me rege, guarda, governa e ilumina.<br>Amém.<footer>Oração tradicional</footer></blockquote></section>
-  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/anjo-de-portugal">Anjo de Portugal</a><a href="/carta-do-anjo">Carta do Anjo</a></div></section>"""
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/os-72-anjos">Os 72 Anjos</a><a href="/anjo-de-portugal">Anjo de Portugal</a><a href="/carta-do-anjo">Carta do Anjo</a></div></section>"""
 grava("dia-do-anjo-da-guarda.html", pagina("/dia-do-anjo-da-guarda", "Dia do Anjo da Guarda: 2 de Outubro e como o viver", "Porque se celebra o Dia do Anjo da Guarda a 2 de Outubro, o que diz o Catecismo, e como viver a data com orações e gestos simples.", CORPO_O, fim=CONTA % (10, 2)))
 
 # ─── Anjo de Portugal ───
@@ -230,7 +231,7 @@ CORPO_P = f"""{heroi("Anjo de Portugal", "O Anjo Custódio, celebrado a 10 de Ju
     <h2>O Anjo da Paz em Fátima</h2><p>Lúcia dos Santos e os primos Francisco e Jacinta Marto contaram que, em 1916, um ano antes das aparições de Nossa Senhora, um anjo os visitou três vezes. Apresentou-se como o Anjo da Paz e, segundo as memórias da Irmã Lúcia, ensinou-lhes orações. Esta é uma delas:</p>
     <blockquote class="ora-c">Meu Deus, eu creio, adoro, espero e amo-Vos.<br>Peço-Vos perdão para os que não creem, não adoram, não esperam e não Vos amam.<footer>Oração do Anjo, Fátima</footer></blockquote></section>
   <section class="cartao texto"><h2>Como viver o 10 de Junho</h2><ol class="passos"><li><b>Reze a oração do Anjo</b> três vezes, devagar.</li><li><b>Peça pelo país</b> e por quem vive longe dele: Portugal também é a sua diáspora.</li><li><b>Lembre-se de uma pessoa</b> de quem tem saudades e diga-lhe isso.</li></ol></section>
-  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/dia-do-anjo-da-guarda">Dia do Anjo da Guarda</a><a href="/sao-miguel-arcanjo">São Miguel Arcanjo</a></div></section>"""
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/os-72-anjos">Os 72 Anjos</a><a href="/dia-do-anjo-da-guarda">Dia do Anjo da Guarda</a><a href="/sao-miguel-arcanjo">São Miguel Arcanjo</a></div></section>"""
 grava("anjo-de-portugal.html", pagina("/anjo-de-portugal", "Anjo de Portugal: a história do Anjo Custódio e da oração", "O Anjo de Portugal: a festa de 10 de Junho, D. Manuel I, Pio XII, o Anjo da Paz em Fátima em 1916, e a oração que ensinou aos pastorinhos.", CORPO_P, fim=CONTA % (6, 10)))
 # ─── Os 72 anjos, por signo (pedido dele, 05/11/2026: lista com ligações, mini resumo e o anjo de cada signo) ───
 def resumo(a):
@@ -260,10 +261,19 @@ function acha(q){q=n(q);if(!q)return[];var a=A.filter(function(x){return n(x[0])
 i.addEventListener("input",function(){var q=i.value,l=acha(q);r.innerHTML=!q.trim()?"":l.length?l.map(function(x){return'<a href="'+x[3]+'"><b>'+e(x[0])+'</b><span>'+e(x[1])+' · '+e(x[2])+'</span></a>'}).join(""):'<p>Não encontrei esse anjo. Veja se o nome está bem escrito, ou procure na lista abaixo.</p>'});
 document.getElementById("bf").addEventListener("submit",function(v){v.preventDefault();var l=acha(i.value);if(l.length)location.href=l[0][3]})})();</script>
 """
+FAQ_L = [("O que são os 72 anjos?", "São 72 nomes que a Cabala tirou de três versículos do Êxodo (14,19-21). Mais tarde, cada nome foi ligado a um anjo e a 5 graus do zodíaco."),
+         ("Como sei qual é o meu anjo?", "Pela data de nascimento: procure o seu signo nesta lista e veja em que datas cai o seu dia. Na página do Anjo da Guarda, a data de nascimento mostra-lhe o anjo diretamente."),
+         ("Quantos anjos tem cada signo?", "Seis. Cada signo tem 30 graus e a cada 5 graus corresponde um anjo."),
+         ("As datas de cada anjo são sempre as mesmas?", "Não exatamente. As datas seguem o grau real do Sol e podem mudar um dia de ano para ano, sobretudo perto do início e do fim de cada intervalo."),
+         ("A Igreja Católica reconhece os 72 anjos?", "Não. Pertencem à tradição da Cabala e da angelologia. A Igreja desaconselha dar aos anjos nomes além de Miguel, Gabriel e Rafael, e quem segue a fé católica pode rezar ao seu Anjo da Guarda sem lhe saber o nome.")]
+LD_L = {"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Os 72 Anjos: lista completa e o anjo de cada signo", "description": "Os 72 anjos da tradição, organizados por signo: nome, tema, datas e um pequeno resumo de cada um, com ligação à sua oração e história.", "inLanguage": "pt-PT", "mainEntityOfPage": f"{SITE}/os-72-anjos",
+          "author": {"@type": "Person", "name": "Mestre Alberto"}, "publisher": {"@type": "Organization", "name": "Genial Tarot", "url": SITE}, "dateModified": datetime.date.today().isoformat()},
+        {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ_L]}]}
 CORPO_L = f"""{EST_L}{heroi("Os 72 Anjos", "A lista completa: o anjo de cada signo, as suas datas e um pequeno resumo").replace(ASA, ASA + BUSCA)}
   <section class="cartao" style="text-align:center"><p>Cada signo tem 30 graus e a cada 5 graus corresponde um anjo, por isso cada signo reúne 6 dos 72. Escolha o seu signo e toque num anjo para ler a história, a oração e um gesto para hoje.</p><div class="chips">{CHIPS}</div><p style="margin:.9rem 0 0"><a class="bt" href="/anjo-da-guarda">Descobrir o meu anjo pela data de nascimento</a></p></section>
-{BLOCOS}  <section class="cartao">{AVISO}</section>
+{BLOCOS}  <section class="cartao texto"><h2>Perguntas frequentes</h2>{"".join(f"<h3>{q}</h3><p>{a}</p>" for q, a in FAQ_L)}</section>
+  <section class="cartao">{AVISO}</section>
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/carta-do-anjo">Carta do Anjo</a><a href="/dia-do-anjo-da-guarda">Dia do Anjo da Guarda</a><a href="/anjo-de-portugal">Anjo de Portugal</a></div></section>
 """
-grava("os-72-anjos.html", pagina("/os-72-anjos", "Os 72 Anjos: lista completa e o anjo de cada signo", "Os 72 anjos da tradição, organizados por signo: nome, tema, datas e um pequeno resumo de cada um, com ligação à sua oração e história.", CORPO_L, fim=JS_L))
+grava("os-72-anjos.html", pagina("/os-72-anjos", "Os 72 Anjos: lista completa e o anjo de cada signo", "Os 72 anjos da tradição, organizados por signo: nome, tema, datas e um pequeno resumo de cada um, com ligação à sua oração e história.", CORPO_L, ld=LD_L, fim=JS_L))
 print("feito")
