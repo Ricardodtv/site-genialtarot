@@ -1,27 +1,27 @@
 {
  "grupos": {
-  "valor": 220192,
-  "data": "2026-11-04",
+  "valor": 220285,
+  "data": "2026-11-09",
   "nota": "12 grupos dos signos"
  },
  "youtube": {
   "valor": 26900,
-  "data": "2026-11-04",
+  "data": "2026-11-09",
   "nota": "a API arredonda"
  },
  "paginas": {
-  "valor": 2696,
-  "data": "2026-11-04",
+  "valor": 2695,
+  "data": "2026-11-09",
   "nota": "Genial Tarot + Genialtarot"
  },
  "instagram": {
-  "valor": 1649,
-  "data": "2026-11-04",
+  "valor": 1776,
+  "data": "2026-11-09",
   "nota": ""
  },
  "tiktok": {
-  "valor": 5703,
-  "data": "2026-11-04",
+  "valor": 5738,
+  "data": "2026-11-09",
   "nota": ""
  },
  "perfil": {
@@ -29,5 +29,5 @@
   "data": "2026-11-04",
   "nota": "6,4 mil (captura dele do perfil, 04/11)"
  },
- "total": 263540
+ "total": 263794
 }
