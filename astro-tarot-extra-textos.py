@@ -334,7 +334,7 @@ CARTAS_TEMA = [
   "nome": "As cartas do Tarot da mudança",
   "titulo": "As cartas do Tarot da mudança: fins, começos e viragens",
   "desc": "As cartas do Tarot que anunciam mudança, fins e recomeços: da Morte à Roda da Fortuna, o que cada uma indica numa tiragem sobre transformação.",
-  "intro": "Há momentos em que a pergunta não é se algo vai mudar, mas como. Algumas cartas do Tarot falam de mudanças súbitas, outras de transições suaves, outras de fins que abrem espaço a começos. Estas são as que mais se associam à transformação.",
+  "intro": "Às vezes já se sabe que algo vai mudar, e a pergunta é como. Algumas cartas do Tarot falam de mudanças súbitas, outras de transições suaves, outras de fins que abrem espaço a começos. Estas são as que mais se associam à transformação.",
   "cartas": [
     ["A Morte", "Apesar do nome, raramente fala de morte física: é a carta do fim de um ciclo e da transformação profunda. Indica que algo termina para que outra coisa possa nascer."],
     ["A Roda da Fortuna", "Representa a viragem do destino e as mudanças que não dependem só de si. Lembra que os ciclos giram e que é tempo de se adaptar."],
@@ -370,7 +370,7 @@ CARTAS_TEMA = [
   "intro": "As perguntas de sim ou não são das mais procuradas no Tarot, e há cartas que tradicionalmente pendem mais para um lado ou para o outro. As de luz, sucesso e abertura costumam indicar sim, e as de bloqueio, perda ou ruptura costumam indicar não. Aqui fica a lista das mais claras de cada lado.",
   "cartas": [
     ["O Sol", "É o sim mais claro do baralho, cheio de luz e sucesso. Indica que o caminho está aberto e que a resposta é favorável."],
-    ["A Estrela", "Pende para o sim, com esperança e protecção. Mostra que vale a pena acreditar e seguir em frente."],
+    ["A Estrela", "Pende para o sim, com esperança e protecção. Mostra que há razões para acreditar e seguir em frente."],
     ["O Mundo", "Indica sim, pela realização e pela conclusão feliz. É a carta do objectivo alcançado."],
     ["Ás de Copas", "Pende para o sim, sobretudo em temas afectivos. Fala de abertura, de começo e de coração disponível."],
     ["Dez de Copas", "Indica sim, com felicidade e harmonia. É uma das cartas mais positivas dos arcanos menores."],

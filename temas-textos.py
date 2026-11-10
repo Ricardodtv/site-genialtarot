@@ -10,7 +10,7 @@ TEMAS = [
  "seccoes": [
   ("O que o Tarot mostra no amor", "O amor é o tema que mais pessoas trazem às cartas. Uma tiragem de amor não decide por si nem prende ninguém: mostra a energia do momento, o que está escondido por baixo das palavras e os caminhos que tem à frente. Ajuda a perceber se está a investir no sítio certo, se há reciprocidade e o que precisa de mudar em si para viver um amor mais tranquilo."),
   ("Relações, separações e reconciliações", "Há quem venha porque está apaixonado e não sabe se é correspondido, há quem esteja numa relação em crise e há quem não consiga esquecer alguém. Em todos os casos, a leitura começa por ouvir. As cartas mostram o que está a bloquear a relação, o que a outra pessoa sente e se faz sentido lutar ou é altura de libertar."),
-  ("O amor e o seu signo", "Os signos também falam de amor: cada um ama à sua maneira. Veja como é o seu signo no amor nas páginas dos <a href=\"/signos-do-zodiaco\">12 Signos</a>, descubra a <a href=\"/compatibilidade\">Compatibilidade</a> entre dois signos ou peça o <a href=\"/mapa-amor\">Mapa do Amor e da Sedução</a>, que lê Vénus e Marte no seu mapa de nascimento."),
+  ("O amor e o seu signo", "Os signos também falam de amor: cada um ama à sua maneira. Veja como é o seu signo no amor nas páginas dos <a href=\"/signos-do-zodiaco\">12 Signos</a>, consulte a <a href=\"/compatibilidade\">Compatibilidade</a> entre dois signos ou peça o <a href=\"/mapa-amor\">Mapa do Amor e da Sedução</a>, que lê Vénus e Marte no seu mapa de nascimento."),
  ],
  "perguntas": ["O que essa pessoa sente por mim?", "A nossa relação tem futuro?", "Vamos voltar a ficar juntos?", "Quando vou encontrar um amor verdadeiro?", "Devo continuar ou seguir em frente?"],
  "produtos": ["Consulta de Tarot Online", "Consulta de Terapia de Casais", "Ritual de Atração Forte para o Amor", "Mapa do Amor e da Sedução"]},
@@ -64,7 +64,7 @@ TEMAS = [
  "sub": "Para quem arrisca, decide e quer ver mais longe.",
  "seccoes": [
   ("As cartas ao serviço do seu negócio", "Empresários e trabalhadores por conta própria tomam decisões todos os dias, muitas vezes sozinhos. Uma leitura de Tarot sobre o negócio ajuda a sentir a energia de um projeto, de um sócio ou de um momento de mercado, e a escolher com mais confiança."),
-  ("Sócios, parcerias e novos projetos", "Antes de assinar com alguém, vale a pena perceber as intenções e a compatibilidade. As cartas mostram pontos fortes e riscos de uma parceria, e o momento certo para lançar algo novo. A <a href=\"/lenda-pedro-sem\">lenda de Pedro Sem</a> lembra o reverso: quem se julga intocável no auge do negócio esquece-se de que uma só tempestade pode levar a frota inteira."),
+  ("Sócios, parcerias e novos projetos", "Antes de assinar com alguém, convém perceber as intenções e a compatibilidade. As cartas mostram pontos fortes e riscos de uma parceria, e o momento certo para lançar algo novo. A <a href=\"/lenda-pedro-sem\">lenda de Pedro Sem</a> lembra o reverso: quem se julga intocável no auge do negócio esquece-se de que uma só tempestade pode levar a frota inteira."),
   ("Prosperidade para empresas", "O Mestre Alberto faz um Ritual de Prosperidade para Empresas e Negócios, para abrir caminhos e atrair clientes. Veja os <a href=\"/rituais\">Rituais</a>."),
  ],
  "perguntas": ["É boa altura para abrir o meu negócio?", "Posso confiar neste sócio?", "Como atrair mais clientes?", "Este projeto vai correr bem?"],
