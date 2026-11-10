@@ -2,6 +2,8 @@
 # Os 78 pares: as 3 amostras aprovadas por ele (01/11) e os outros 75 escritos no mesmo estilo.
 FAQ = {
  "compatibilidade-carneiro-e-carneiro": [
+  ("Carneiro com Carneiro combina?",
+   "Em regra, sim: são dois signos de Fogo, com a mesma pressa, a mesma paixão e a mesma franqueza, e percebem-se sem grandes explicações. O que pede cuidado é a disputa pela liderança e as discussões a quente. Quando combinam quem decide o quê e aprendem a ceder, é uma dupla com muita vida."),
   ("Dois Carneiros dão-se bem num casamento?",
    "Podem dar-se muito bem, desde que haja regras claras sobre quem decide o quê. A paixão e a energia não faltam; o que desgasta é a disputa pela liderança. Casais de dois Carneiros que dividem as áreas da vida, cada um a mandar na sua, costumam durar."),
   ("Porque é que dois Carneiros discutem tanto?",

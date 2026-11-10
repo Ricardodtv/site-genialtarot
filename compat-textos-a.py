@@ -1,7 +1,7 @@
 # Compatibilidades — lote A (pares de número par). 31/10/2026. Lido por gerar-signos.py.
 COMPAT_A = [
  {"i": 0, "j": 0, "nota": 4,   # afinidade 1–5 segundo a astrologia tradicional
-  "titulo": "Carneiro e Carneiro: compatibilidade no amor e na amizade",
+  "titulo": "Carneiro com Carneiro combina? Compatibilidade no amor",
   "desc": "Dois Carneiros juntos: paixão rápida, energia a dobrar e discussões que passam depressa. Saiba como esta dupla de Fogo pode durar.",
   "resumo": "Quando dois Carneiros (Áries) se encontram, a faísca é imediata: os dois gostam de agir, de conquistar e de dizer as coisas na cara. É uma relação com muita vida, desde que nenhum queira mandar sempre.",
   "amor": "No amor, esta dupla vive com o acelerador no fundo. Há desejo, há aventura e há a sensação de que o outro percebe a sua pressa sem precisar de explicações. As zangas surgem depressa, mas também se esquecem depressa, porque nenhum dos dois guarda rancor. O perigo é a relação transformar-se numa competição sobre quem tem razão.",
