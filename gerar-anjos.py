@@ -110,6 +110,7 @@ for i, (n, tema, ped, txt, gesto, ora) in enumerate(ANJOS):
     <h2>Um gesto para hoje</h2><p>{gesto}</p></section>
   <section class="cartao" style="text-align:center"><h2>Os outros anjos de {s}</h2><div class="ligas">{ir}</div>
     <div class="ligas"><a href="/anjo/{slug(ant)}">← {ant}</a><a href="/signo/{sl}">{g} {s}</a><a href="/anjo/{slug(seg)}">{seg} →</a></div>
+    <p style="margin:.8rem 0"><a href="/os-72-anjos">Ver os 72 anjos, signo a signo</a></p>
     <a class="cta" href="/anjo-da-guarda#descobrir">Descobrir o meu anjo</a></section>
   <section class="cartao texto">{AVISO}</section>"""
     ld = {"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": tit, "description": des, "inLanguage": "pt-PT", "mainEntityOfPage": f"{SITE}/anjo/{slug(n)}",

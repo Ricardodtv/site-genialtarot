@@ -964,7 +964,8 @@ GRUPOS = [("✨ Principais", lambda f: "/" not in f and not any(f.startswith(x) 
           ("🃏 Tarot", lambda f: f.startswith(("arcano-", "carta-", "tiragem-", "cartas-do-tarot-"))),
           ("🙏 Rezas, orações e santos", lambda f: f.startswith(("reza-", "oracao-", "responso-", "talhar-", "rezas-", "santo-", "santa-", "sao-", "nossa-", "glossario"))),
           ("📖 Parábolas, histórias, fábulas e contos", lambda f: f.startswith(("parabola", "historia-", "lenda-", "fabula-", "conto-", "contos-", "historias-"))),
-          ("🌙 Sonhos", lambda f: f.startswith("sonho/"))]
+          ("🌙 Sonhos", lambda f: f.startswith("sonho/")),
+          ("😇 Anjos", lambda f: f.startswith("anjo/") or f == "os-72-anjos.html")]
 sm = open("sitemap.xml", encoding="utf-8").read() if os.path.exists("sitemap.xml") else ""
 fich = sorted(set(("index.html" if u == "/" else u.lstrip("/") + ".html") for u in re.findall(r"<loc>https://genialtarot\.com(/[^<]*)</loc>", sm)))
 fich = [f for f in fich if os.path.exists(f) and f != "mapa-do-site.html"]
