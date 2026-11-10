@@ -47,7 +47,7 @@ FAQ = {
  ("Recebo alguma prova de que o ritual foi feito?", "Em vários trabalhos, como a Vela Guia, recebe o registo do ritual realizado. Pergunte ao Mestre Alberto, pelo WhatsApp, como é no ritual que lhe interessa."),
  ("O que é um ritual feito pelo Mestre Alberto?", "É um trabalho espiritual feito em seu nome, com velas, orações e intenção dedicada ao seu caso: amor, prosperidade, proteção ou abertura de caminhos."),
  ("Preciso de estar presente no ritual?", "Não. Os rituais são feitos pelo Mestre Alberto à distância, para qualquer país."),
- ("Um ritual garante resultados?", "Não. Nenhum ritual garante resultados, e quem lho garantir está a vender outra coisa. O ritual é um apoio espiritual, não uma promessa."),
+ ("Um ritual garante resultados?", "Não. Nenhum ritual garante resultados, e quem lho garantir está a vender outra coisa."),
  ("Como sei que ritual escolher?", "Fale primeiro com o Mestre Alberto pelo WhatsApp. Ele ouve o seu caso e diz-lhe com franqueza se um ritual faz sentido ou se precisa de outra coisa."),
 ],
 "consultas-a-distancia": [

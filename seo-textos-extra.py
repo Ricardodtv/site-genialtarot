@@ -66,7 +66,7 @@ EXTRA = {
   "Escolha sem pensar demasiado, pela primeira impressão. As cores que o atraem falam do que procura e do que lhe faz falta; as que o incomodam mostram o que está a evitar ou o que pesa neste momento.",
   "Faça o oráculo noutros dias e compare: as escolhas mudam com o seu estado de espírito. É um exercício simples para se conhecer melhor e perceber como está a sua energia."]),
  "parabolas-sobre-amor": ("Porque contamos parábolas sobre o amor", [
-  "As parábolas são histórias curtas que ensinam sem dar sermões. Cada uma destas fala de uma face do amor: a amizade que perdoa, o cuidado que não aperta, a paciência de quem espera, a coragem de quem se entrega.",
+  "As parábolas são histórias curtas que ensinam sem dar sermões. Cada uma destas fala de um lado do amor: o perdão, a liberdade, a verdade e a calma.",
   "Leia uma de cada vez, com calma, e pense em que momento da sua vida se reconhece nela. Muitas vezes a lição só aparece quando a história toca numa situação concreta que está a viver.",
   "São boas para partilhar em família ou com quem gosta. E se o amor é a sua pergunta neste momento, pode também tirar a carta do Amor do Dia ou fazer uma tiragem no Tarot do Amor."]),
  "parabolas-sobre-honestidade": ("Porque contamos parábolas sobre a honestidade", [

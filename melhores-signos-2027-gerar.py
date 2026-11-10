@@ -74,7 +74,7 @@ def texto(s):
     k = lambda sg: T.CURTA[H.casa(sg, s)]
     c = lambda sg: T.CASA[H.casa(sg, s)]
     t = [f"Júpiter, o planeta das oportunidades, passa por {PT[s_jup0]} até {JD} e abre portas em {k(s_jup0)}; depois muda para {PT[s_jup1]} e o crescimento passa para {c(s_jup1)}.",
-         f"Saturno fica o ano inteiro em {PT[s_sat]} e pede disciplina e paciência em {k(s_sat)}" + (" — no seu próprio signo, o que torna o ano mais sério e mais construtivo." if s == s_sat else "."),
+         f"Saturno fica o ano inteiro em {PT[s_sat]} e pede disciplina e paciência em {k(s_sat)}" + (". Como está no seu próprio signo, o ano fica mais sério e mais construtivo." if s == s_sat else "."),
          f"O eclipse total do Sol de {dt(ECL[0])}, em {PT[ECL[3]]}, marca um recomeço em {k(ECL[3])}."]
     f = melhor_fase(s)
     t.append(f"A sua melhor fase de 2027: {f}." if f else "Sem Júpiter no seu elemento, 2027 recompensa a constância mais do que a sorte: o que construir com calma fica.")
