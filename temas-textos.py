@@ -132,7 +132,7 @@ TEMAS = [
  "desc": "O que é a cartomancia, como funciona uma leitura de cartas e como marcar uma consulta de cartomancia com o Mestre Alberto, presencial em Fafe ou à distância.",
  "sub": "A arte antiga de ler o momento através das cartas.",
  "seccoes": [
-  ("O que é a cartomancia", "Cartomancia é a arte de ler as cartas para compreender o presente e as tendências do futuro. Pode usar-se o Tarot, com os seus 22 Arcanos Maiores e 56 Menores, ou baralhos comuns e oráculos. O Mestre Alberto lê com o seu próprio baralho de Tarot, há 18 anos."),
+  ("O que é a cartomancia", "Cartomancia é a arte de ler as cartas para compreender o presente e as tendências do futuro. Pode usar-se o Tarot, com os seus 22 Arcanos Maiores e 56 Menores, ou baralhos comuns e oráculos. O Mestre Alberto lê com o seu próprio baralho de Tarot, há 18 anos. A cartomancia é um dos ramos do <a href=\"/esoterismo\">esoterismo</a>, a par da astrologia e da numerologia."),
   ("Como é uma consulta", "Começa com a sua pergunta ou com o tema que o preocupa. As cartas são baralhadas e dispostas numa tiragem, e cada posição tem um significado. A leitura junta o significado de cada carta à intuição e à experiência de quem lê, para lhe dar uma resposta clara e honesta."),
   ("Experimente", "Faça uma tiragem no <a href=\"/tarot-gratis\">Tarot Grátis</a>, conheça <a href=\"/arcanos\">os 22 Arcanos</a> ou marque uma consulta."),
  ],
