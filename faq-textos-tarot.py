@@ -5,9 +5,9 @@
 FAQ = {
  "tarot-gratis": [
   ("A leitura de Tarot do site é mesmo grátis?",
-   "Sim. Preenche os seus dados, escolhe a área da vida e revela as cartas sem pagar nada. Pode fazer até duas leituras por dia; depois, as cartas pedem descanso e convida-se a voltar no dia seguinte para uma nova tiragem."),
+   "Sim. Preencha os seus dados, escolha a área da vida e revele as cartas sem pagar nada. Pode fazer até duas leituras por dia. Depois disso, as cartas descansam até ao dia seguinte."),
   ("Como funciona o Tarot grátis do Mestre Alberto?",
-   "Escolhe uma de seis áreas — Trabalho, Amor, Financeiro, Saúde, Família ou Espiritual — e revelam-se 8 cartas do baralho do Mestre Alberto. No fim recebe o veredito da leitura. São leituras simbólicas e realistas, sem promessas mágicas: servem de orientação."),
+   "Escolha uma de seis áreas (Trabalho, Amor, Financeiro, Saúde, Família ou Espiritual) e o site revela 8 cartas do baralho do Mestre Alberto. No fim recebe o veredito da leitura. É uma orientação simbólica e realista, sem promessas de milagres."),
   ("A leitura grátis substitui uma consulta pessoal?",
    "Não. A leitura grátis dá uma orientação geral para a área escolhida. Numa consulta, o Mestre Alberto ouve a sua situação concreta e lê as cartas para si. Para isso, basta falar com ele pelo WhatsApp e marcar."),
  ],
@@ -17,7 +17,7 @@ FAQ = {
   ("Como posso pagar na Loja do Mestre Alberto?",
    "Cada produto tem o botão de compra com o seu pagamento. Há também a opção de pagar por MB WAY ou por transferência bancária, pedindo os dados pelo WhatsApp. Para quem está no Brasil, vários produtos aceitam pagamento por PIX."),
   ("Tenho dúvidas antes de comprar. A quem pergunto?",
-   "Diretamente ao Mestre Alberto, pelo WhatsApp (+351 914 920 427). Cada caso é diferente, e vale a pena esclarecer antes qual é o serviço mais indicado para a sua pergunta ou situação."),
+   "Diretamente ao Mestre Alberto, pelo WhatsApp (+351 914 920 427). Assim fica a saber, antes de pagar, qual é o serviço mais indicado para a sua pergunta."),
  ],
  "fimdesemana": [
   ("Onde vejo o horóscopo de fim de semana do meu signo?",

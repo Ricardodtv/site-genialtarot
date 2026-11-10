@@ -78,8 +78,8 @@ def bloco(pagina):
             'alt="Mestre Alberto, tarólogo e astrólogo do Genial Tarot" loading="lazy" decoding="async">'
             '<div class="gc-sel">✦ Genial Tarot ✦</div>'
             '<p class="gc-tit">Há 18 anos a ler o Tarot e os astros</p>'
-            '<p class="gc-txt">Este é o site do Mestre Alberto. Tire as cartas, leia o seu signo e descubra o que o céu diz de si — '
-            'e quando precisar de uma resposta só sua, fale com ele numa consulta por videochamada.</p>'
+            '<p class="gc-txt">Este é o site do Mestre Alberto. Aqui pode tirar as cartas e ler o seu signo. '
+            'Quando precisar de uma resposta só para si, fale com ele numa consulta por videochamada.</p>'
             + jardim() +
             '<nav class="gc-portas">' + "".join(f'<a href="{u}"><i aria-hidden="true">{ic}</i><b>{t}</b><small>{d}</small></a>' for u, ic, t, d in portas) + '</nav>'
             '<div class="gc-bot"><a class="gc-casa" href="/">✨ Ir para a página inicial</a>'
