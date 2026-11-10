@@ -209,7 +209,7 @@ const PRODUTOS = [
     link: "https://mypos.com/vmp/btn/BG2QB2ADANJ52",
   },
 
-  /* 10/11/2026 — pedido dele: consulta de pêndulo de 30 min, botão myPOS dado por ele. (A de 50 min espera pelo botão.) */
+  /* 10/11/2026 — pedido dele: consulta de pêndulo de 30 min, botão myPOS dado por ele. A de 50 min a seguir, mesmo dia. */
   {
     nome: "🔮 Consulta de Pêndulo – 30 Minutos com o Mestre Alberto",
     categoria: "Consultas",
@@ -217,6 +217,14 @@ const PRODUTOS = [
     foto: "pendulo-radiestesia-og.jpg",
     descricao: "Traga uma ou duas perguntas concretas e trabalhe-as com o Mestre Alberto, numa consulta de pêndulo de 30 minutos, online.",
     link: "https://mypos.com/vmp/btn/BNNCED4W9IU06",
+  },
+  {
+    nome: "🔮 Consulta de Pêndulo – 50 Minutos com o Mestre Alberto",
+    categoria: "Consultas",
+    preco: "65 €",
+    foto: "pendulo-radiestesia-og.jpg",
+    descricao: "Mais tempo para olhar a fundo para um tema com o Mestre Alberto, numa consulta de pêndulo de 50 minutos, online.",
+    link: "https://mypos.com/vmp/btn/BVQ7RWY5ITA62",
   },
 
   /* ================= RITUAIS ================= */
