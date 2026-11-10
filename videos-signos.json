@@ -1,10 +1,10 @@
 {
  "carneiro": {
   "dia": {
-   "id": "bYx2lHW6lOE",
-   "t": "Horóscopo Fim de Semana Áries 7, 8 e 9 Novembro",
-   "d": "2026-11-06T16:10:45Z",
-   "dur": "PT6M"
+   "id": "bRLnpzMqtr4",
+   "t": "Horóscopo Diário Áries 10 e 11 Novembro",
+   "d": "2026-11-10T15:45:31Z",
+   "dur": "PT5M47S"
   },
   "anual": {
    "id": "sYvV52nILsg",
@@ -29,10 +29,10 @@
  },
  "gemeos": {
   "dia": {
-   "id": "kYB4lksoze4",
-   "t": "Horóscopo Fim de Semana Gémeos 7, 8 e 9 Novembro",
-   "d": "2026-11-06T16:12:13Z",
-   "dur": "PT6M58S"
+   "id": "2QpLQ3eovXQ",
+   "t": "Horóscopo Diário Gémeos 10 e 11 Novembro",
+   "d": "2026-11-10T15:46:24Z",
+   "dur": "PT7M59S"
   },
   "anual": {
    "id": "EdzVicTufXw",
@@ -57,10 +57,10 @@
  },
  "leao": {
   "dia": {
-   "id": "I5ngKMBwTOg",
-   "t": "Horóscopo Fim de Semana Leão 7, 8 e 9 Novembro",
-   "d": "2026-11-06T16:14:06Z",
-   "dur": "PT7M58S"
+   "id": "E_09-e1GQ9E",
+   "t": "Horóscopo Diário Leão 10 e 11 Novembro",
+   "d": "2026-11-10T15:47:36Z",
+   "dur": "PT7M51S"
   },
   "anual": {
    "id": "dto1ayURroc",
@@ -71,10 +71,10 @@
  },
  "virgem": {
   "dia": {
-   "id": "x7h75L9DFu4",
-   "t": "Horóscopo Fim de Semana Virgem 7, 8 e 9 Novembro",
-   "d": "2026-11-06T16:13:40Z",
-   "dur": "PT5M4S"
+   "id": "wfzeVw0p_-w",
+   "t": "Horóscopo Diário Virgem 10 e 11 Novembro",
+   "d": "2026-11-10T15:47:49Z",
+   "dur": "PT5M29S"
   },
   "anual": {
    "id": "S63ep0UfuI0",
@@ -85,10 +85,10 @@
  },
  "balanca": {
   "dia": {
-   "id": "DlLz8ztcZdI",
-   "t": "Horóscopo Fim de Semana Balança (Libra) 7, 8 e 9 Novembro",
-   "d": "2026-11-06T16:14:57Z",
-   "dur": "PT5M58S"
+   "id": "-AAe-GQn72Q",
+   "t": "Horóscopo Diário Balança (Libra) 10 e 11 Novembro",
+   "d": "2026-11-10T15:48:34Z",
+   "dur": "PT6M18S"
   },
   "anual": {
    "id": "_596jwAtBl0",
@@ -99,10 +99,10 @@
  },
  "escorpiao": {
   "dia": {
-   "id": "ML1zH0s6EzA",
-   "t": "Horóscopo Fim de Semana Escorpião 7, 8 e 9 Novembro",
-   "d": "2026-11-06T16:16:32Z",
-   "dur": "PT7M17S"
+   "id": "6UuCbuLT-wk",
+   "t": "Horóscopo Diário Escorpião 10 e 11 Novembro",
+   "d": "2026-11-10T15:48:05Z",
+   "dur": "PT5M50S"
   },
   "anual": {
    "id": "vDhtOX8kixs",
@@ -167,5 +167,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-06T16:36"
+ "_": "2026-11-10T15:49"
 }
