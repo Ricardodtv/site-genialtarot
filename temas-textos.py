@@ -20,7 +20,7 @@ TEMAS = [
  "sub": "Clareza para as decisões que mexem com a sua carteira e com a sua tranquilidade.",
  "seccoes": [
   ("As cartas e a vida financeira", "O dinheiro é uma energia que entra e sai da nossa vida. Uma leitura sobre finanças mostra os bloqueios que travam a prosperidade, as oportunidades que se aproximam e os cuidados a ter antes de uma decisão. Não substitui um contabilista nem um banco, mas ajuda a ver o momento com outros olhos e a escolher com mais calma."),
-  ("Dívidas, poupança e novas oportunidades", "Quando as contas apertam, a ansiedade fala mais alto. As cartas ajudam a perceber de onde vem o desequilíbrio, se é tempo de arriscar ou de proteger o que tem, e que portas se podem abrir nos próximos meses."),
+  ("Dívidas, poupança e novas oportunidades", "Quando as contas apertam, a ansiedade fala mais alto. As cartas ajudam a perceber de onde vem o desequilíbrio, se é tempo de arriscar ou de proteger o que tem, e que portas se podem abrir nos próximos meses. Como lembra a <a href=\"/lenda-pedro-sem\">lenda de Pedro Sem</a>, o mercador do Porto que «já teve e agora não tem», a sorte muda depressa: os dias bons são a altura certa para poupar e para tratar bem quem está à sua volta."),
   ("Rituais de prosperidade", "Para quem sente que o dinheiro não flui, o Mestre Alberto faz rituais de prosperidade e o Ritual de Lua Cheia para atrair dinheiro. Veja-os na <a href=\"/rituais\">página dos Rituais</a> ou na <a href=\"/loja\">Loja</a>."),
  ],
  "perguntas": ["Vou conseguir sair desta dificuldade financeira?", "É boa altura para investir ou comprar casa?", "O que está a bloquear a minha prosperidade?", "Este negócio vai dar dinheiro?"],
@@ -64,7 +64,7 @@ TEMAS = [
  "sub": "Para quem arrisca, decide e quer ver mais longe.",
  "seccoes": [
   ("As cartas ao serviço do seu negócio", "Empresários e trabalhadores por conta própria tomam decisões todos os dias, muitas vezes sozinhos. Uma leitura de Tarot sobre o negócio ajuda a sentir a energia de um projeto, de um sócio ou de um momento de mercado, e a escolher com mais confiança."),
-  ("Sócios, parcerias e novos projetos", "Antes de assinar com alguém, vale a pena perceber as intenções e a compatibilidade. As cartas mostram pontos fortes e riscos de uma parceria, e o momento certo para lançar algo novo."),
+  ("Sócios, parcerias e novos projetos", "Antes de assinar com alguém, vale a pena perceber as intenções e a compatibilidade. As cartas mostram pontos fortes e riscos de uma parceria, e o momento certo para lançar algo novo. A <a href=\"/lenda-pedro-sem\">lenda de Pedro Sem</a> lembra o reverso: quem se julga intocável no auge do negócio esquece-se de que uma só tempestade pode levar a frota inteira."),
   ("Prosperidade para empresas", "O Mestre Alberto faz um Ritual de Prosperidade para Empresas e Negócios, para abrir caminhos e atrair clientes. Veja os <a href=\"/rituais\">Rituais</a>."),
  ],
  "perguntas": ["É boa altura para abrir o meu negócio?", "Posso confiar neste sócio?", "Como atrair mais clientes?", "Este projeto vai correr bem?"],

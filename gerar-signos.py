@@ -771,8 +771,8 @@ if os.path.exists("historias-textos.py"):
     <p class="sub">{E(p['tipo'])} · contada pelo Mestre Alberto</p>
   </section>
   <section class="cartao texto">{"".join(f"<p>{E(x)}</p>" for x in p["historia"])}
-    <h2>O que nos ensina</h2><blockquote style="font-family:var(--serifa);font-size:1.3rem;font-style:italic;color:var(--ouro);border-left:3px solid var(--ouro);margin:0;padding:.3rem 0 .3rem 1rem">{E(p['moral'])}</blockquote>
-    <h2>Para a sua vida</h2><p>{E(p['reflexao'])}</p>
+    <h2>{E(p.get('h2_ensina', 'O que nos ensina'))}</h2><blockquote style="font-family:var(--serifa);font-size:1.3rem;font-style:italic;color:var(--ouro);border-left:3px solid var(--ouro);margin:0;padding:.3rem 0 .3rem 1rem">{E(p['moral'])}</blockquote>
+    <h2>{E(p.get('h2_vida', 'Para a sua vida'))}</h2><p>{E(p['reflexao'])}</p>
   </section>
   <section class="cartao" style="text-align:center">
     <h2>Outras histórias</h2><div class="ligas">{"".join(f'<a href="/{v["slug"]}">{E(v["titulo_curto"])}</a>' for v in viz)}<a href="/historias-e-lendas">📜 Histórias e Lendas</a><a href="/parabolas">📖 Parábolas</a></div>

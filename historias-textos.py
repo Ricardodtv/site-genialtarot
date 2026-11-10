@@ -107,8 +107,8 @@ HISTORIAS = [
   "temas": ["escolhas", "fé"]},
 
  {"slug": "lenda-pedro-sem", "titulo_curto": "Pedro Sem", "tipo": "Lenda",
-  "titulo": "A Lenda de Pedro Sem: o rico que já teve e agora não tem",
-  "desc": "Um mercador do Porto, do alto da sua torre, desafia o céu a torná-lo pobre. A resposta chega com a tempestade. Conheça a lenda de Pedro Sem.",
+  "titulo": "Pedro Sem: a lenda do rico do Porto que já teve e agora não tem",
+  "desc": "Quem foi Pedro Sem? O mercador do Porto que, do alto da sua torre, desafiou o céu a torná-lo pobre. A lenda de Pedro Sem e o que ela nos ensina.",
   "historia": [
    "Conta a lenda que, há séculos, vivia no Porto um mercador tão rico que o povo dizia não haver em toda a cidade quem tivesse mais do que ele. Tinha navios que iam e vinham de terras distantes, armazéns cheios, terras, ouro e uma casa com uma torre alta de onde se avistava o rio e a barra.",
    "Mas o dinheiro tinha-lhe subido à cabeça. Tratava mal os criados, desprezava os pobres que lhe batiam à porta e gabava-se a quem o quisesse ouvir de que nada no mundo o podia derrubar.",
@@ -118,6 +118,7 @@ HISTORIAS = [
    "Foi assim que ficou conhecido, e assim chegou a lenda até aos nossos dias, como aviso para quem confunde fortuna com invencibilidade."
   ],
   "moral": "A riqueza pode ir-se num dia; a humildade e a bondade são as únicas posses que nenhuma tempestade leva.",
+  "h2_ensina": "O que nos ensina a lenda de Pedro Sem", "h2_vida": "A lição de Pedro Sem para a sua vida",
   "reflexao": "Quando as coisas lhe correm bem no dinheiro ou no trabalho, é fácil esquecer de onde veio e quem o ajudou. Pedro Sem lembra-lhe que a sorte muda, e que a forma como trata os outros nos dias bons é o que fica quando os dias maus chegam.",
   "temas": ["dinheiro", "humildade"]},
 
