@@ -8,7 +8,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de vivacidade e de franqueza. É comum um andar decidido, gestos rápidos e um olhar directo, e há quem note um rubor que aparece quando se entusiasma. Parece muitas vezes mais novo(a) do que é, porque traz sempre um ar de começo.",
   "personalidade": "Você reage depressa e prefere resolver a ficar a remoer. Diz o que pensa, às vezes antes de pensar no que diz, mas raramente guarda rancor. Gosta de desafios, de competição saudável e de sentir que as coisas dependem de si. Quando se aborrece, perde o interesse com a mesma rapidez com que o ganhou, e por isso precisa de objectivos que o(a) mantenham em movimento.",
   "amor": "No amor, gosta de conquistar e de ser conquistado(a) com coragem, sem jogos demorados. Precisa de alguém que acompanhe o seu ritmo e não leve a peito a sua franqueza. Com o Descendente em Balança (Libra), atrai pessoas diplomáticas, que lhe ensinam a arte de ceder sem perder.",
-  "caminho": "O seu desafio é aprender a liderar sem se queimar e a terminar o que começa. Quando junta paciência à coragem, a sua iniciativa torna-se uma força que abre portas para si e para os outros."},
+  "caminho": "O seu desafio é aprender a liderar sem se queimar e a terminar o que começa. Se juntar paciência à coragem, a sua iniciativa abre portas, a si e aos outros."},
 
  {"slug": "touro",
   "titulo": "Ascendente em Touro: personalidade, aparência e amor",
@@ -17,7 +17,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de serenidade e de confiança. Costuma ter uma presença sólida, uma voz agradável e traços harmoniosos, muitas vezes com destaque para o pescoço, os olhos ou o sorriso. Veste-se com conforto e qualidade, sem precisar de chamar a atenção.",
   "personalidade": "Você age devagar, mas quando decide vai até ao fim. É paciente, leal e prático(a), e as pessoas sentem que podem contar consigo. Não gosta de ser apressado(a) nem de mudanças impostas, e pode resistir só por princípio. Valoriza o que se toca: a boa comida, a natureza, a casa acolhedora e o dinheiro ganho com o seu trabalho.",
   "amor": "No amor, é sensual, fiel e afectuoso(a), e prefere uma relação construída com tempo a uma paixão de uma noite. Precisa de segurança e de gestos concretos. Com o Descendente em Escorpião, atrai pessoas intensas, que o(a) obrigam a sair da zona de conforto.",
-  "caminho": "O seu desafio é largar o que já não lhe serve, mesmo quando é familiar. Quando aceita a mudança como parte da construção, a sua constância torna-se uma riqueza que dura para sempre."},
+  "caminho": "O seu desafio é largar o que já não lhe serve, mesmo quando é familiar. Se aceitar a mudança como parte do que constrói, a sua constância dá-lhe coisas que duram."},
 
  {"slug": "gemeos",
   "titulo": "Ascendente em Gémeos (Gêmeos): personalidade e aparência",
@@ -26,7 +26,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de leveza e de simpatia. Tem um olhar vivo, gestos expressivos, mãos que acompanham a fala e um ar jovem que dura muitos anos. Raramente está quieto(a) e parece sempre ir a meio de uma ideia.",
   "personalidade": "Você adapta-se depressa a pessoas e ambientes, e consegue falar com toda a gente. Aprende num instante, mas aborrece-se com a repetição, por isso gosta de ter vários projectos ao mesmo tempo. O humor é a sua forma de aliviar a tensão. Por vezes muda de opinião com facilidade, não por falta de carácter, mas porque vê sempre o outro lado da questão.",
   "amor": "No amor, precisa de alguém com quem possa conversar sobre tudo e que o(a) faça rir. A rotina apaga-lhe o desejo; a novidade e a cumplicidade mantêm-no aceso. Com o Descendente em Sagitário, atrai pessoas que lhe dão horizonte e sentido.",
-  "caminho": "O seu desafio é aprofundar em vez de dispersar, e escolher em vez de querer experimentar tudo. Quando dá foco à sua inteligência, torna-se uma ponte preciosa entre pessoas e ideias."},
+  "caminho": "O seu desafio é aprofundar em vez de dispersar, e escolher em vez de querer experimentar tudo. Com a inteligência focada, faz muito bem a ponte entre pessoas e ideias."},
 
  {"slug": "caranguejo",
   "titulo": "Ascendente em Caranguejo (Câncer): personalidade e aparência",
@@ -35,7 +35,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de doçura e de alguma reserva. É comum um rosto arredondado, olhos expressivos e uma expressão que muda conforme o que sente por dentro. Pode parecer tímido(a) ao início e revelar-se caloroso(a) assim que se sente em casa.",
   "personalidade": "Você protege-se com uma carapaça, mas por dentro é afectuoso(a) e muito leal. Cuida dos outros quase sem pensar e lembra-se dos aniversários e das pequenas coisas. Reage à crítica de forma emotiva e pode recolher-se quando se sente magoado(a). A família, as raízes e a casa são o seu porto seguro, e é lá que recupera as forças.",
   "amor": "No amor, precisa de se sentir seguro(a) e acolhido(a) antes de se entregar. Dá muito cuidado e espera reciprocidade, mesmo que não a peça. Com o Descendente em Capricórnio, atrai pessoas estáveis e responsáveis, que lhe dão estrutura.",
-  "caminho": "O seu desafio é proteger sem se esconder e cuidar sem sufocar. Quando aprende a dizer o que sente em vez de esperar que adivinhem, a sua sensibilidade torna-se uma força."},
+  "caminho": "O seu desafio é proteger sem se esconder e cuidar sem sufocar. Diga o que sente, em vez de esperar que adivinhem: a sua sensibilidade só ganha com isso."},
 
  {"slug": "leao",
   "titulo": "Ascendente em Leão: personalidade, aparência e amor",
@@ -44,7 +44,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de dignidade e de calor humano. Muitas vezes tem uma postura direita, um porte nobre e um cabelo que chama a atenção, como uma juba. O sorriso é largo e a forma de vestir raramente passa despercebida.",
   "personalidade": "Você é generoso(a), leal e protector(a) com quem ama, e gosta de fazer as coisas em grande. Tem orgulho no que faz e precisa de reconhecimento para se sentir motivado(a). Quando se sente ignorado(a) ou ferido(a) no orgulho, pode reagir com dramatismo. Tem jeito para liderar e para animar um grupo, e a sua alegria é contagiante.",
   "amor": "No amor, é romântico(a), apaixonado(a) e muito leal. Precisa de admiração e de sentir que é especial para o outro. Com o Descendente em Aquário, atrai pessoas independentes, que o(a) amam sem o(a) pôr num pedestal.",
-  "caminho": "O seu desafio é brilhar sem precisar do aplauso e ouvir tanto quanto fala. Quando oferece o seu calor sem esperar troca, o seu coração ilumina tudo à volta."},
+  "caminho": "O seu desafio é brilhar sem precisar do aplauso e ouvir tanto quanto fala. Quando oferece o seu calor sem esperar nada em troca, as pessoas à sua volta sentem-no."},
 
  {"slug": "virgem",
   "titulo": "Ascendente em Virgem: personalidade, aparência e amor",
@@ -53,7 +53,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de elegância discreta e de cuidado. Costuma ter um ar limpo, arrumado e sóbrio, com traços finos e um olhar atento que parece avaliar tudo. Muitas vezes aparenta menos idade do que tem.",
   "personalidade": "Você é responsável, prestável e trabalhador(a), e sente-se bem quando é útil. Gosta de método, de listas e de fazer as coisas bem feitas. A sua exigência, porém, vira-se muitas vezes contra si próprio(a), e pode preocupar-se em excesso com o que ainda não aconteceu. Por trás da reserva há uma grande delicadeza e uma vontade sincera de ajudar.",
   "amor": "No amor, demonstra o que sente com gestos práticos: resolve, cuida, está presente. É prudente a entregar-se e precisa de confiança. Com o Descendente em Peixes, atrai pessoas sensíveis e sonhadoras, que lhe ensinam a soltar o controlo.",
-  "caminho": "O seu desafio é servir com amor sem se exigir a perfeição. Quando aceita que o imperfeito também tem valor, a sua inteligência torna-se cura para si e para os outros."},
+  "caminho": "O seu desafio é servir com amor sem se exigir a perfeição. Se aceitar que o imperfeito também tem valor, a sua inteligência passa a ajudar mais do que a exigir, a si e aos outros."},
 
  {"slug": "balanca",
   "titulo": "Ascendente em Balança (Libra): personalidade e aparência",
@@ -62,7 +62,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é agradável e equilibrada. Tem muitas vezes traços harmoniosos, um sorriso fácil e uma forma de vestir cuidada, com sentido estético. Os modos são educados e a voz costuma ser suave.",
   "personalidade": "Você sabe ouvir, pôr-se no lugar do outro e encontrar o meio-termo, e tem jeito para mediar. Evita conflitos, mas pode ter dificuldade em decidir, porque vê sempre os dois lados. Às vezes cede para manter a paz e só depois percebe que não disse o que queria. A beleza, a arte e as boas companhias recarregam-lhe a energia.",
   "amor": "No amor, é romântico(a) e atencioso(a), e procura uma parceria verdadeira, de igual para igual. Sente-se incompleto(a) quando passa muito tempo sozinho(a). Com o Descendente em Carneiro (Áries), atrai pessoas directas e decididas, que o(a) ajudam a afirmar-se.",
-  "caminho": "O seu desafio é encontrar o equilíbrio dentro de si e não só nas relações. Quando aprende a dizer «não» com a mesma elegância com que diz «sim», torna-se verdadeiramente livre."},
+  "caminho": "O seu desafio é encontrar o equilíbrio dentro de si e não só nas relações. Aprenda a dizer «não» com a mesma elegância com que diz «sim», e as suas escolhas passam a ser suas."},
 
  {"slug": "escorpiao",
   "titulo": "Ascendente em Escorpião: personalidade, aparência e amor",
@@ -71,7 +71,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de mistério e de magnetismo. O olhar é o que mais marca: profundo, penetrante, como se lesse o que os outros escondem. Costuma ter uma presença contida, que atrai e intimida ao mesmo tempo.",
   "personalidade": "Você observa antes de se mostrar e não confia à primeira. Quando se compromete, é leal até ao fim, mas uma traição fica gravada. Tem uma força enorme nas crises: onde os outros desistem, você aguenta e transforma. Pode ser possessivo(a) ou desconfiado(a) quando se sente vulnerável, e a sua intuição raramente se engana.",
   "amor": "No amor, quer tudo ou nada: verdade, entrega e intimidade profunda. Não suporta relações mornas nem meias palavras. Com o Descendente em Touro, atrai pessoas calmas e estáveis, que lhe dão a segurança de que precisa para baixar a guarda.",
-  "caminho": "O seu desafio é largar o controlo e perdoar, para que as feridas se transformem em sabedoria. Quando confia na vida, a sua intensidade torna-se um poder de renascimento."},
+  "caminho": "O seu desafio é largar o controlo e perdoar, para que as feridas se transformem em sabedoria. Quando confia na vida, essa intensidade ajuda-o(a) a recomeçar depois de cada perda."},
 
  {"slug": "sagitario",
   "titulo": "Ascendente em Sagitário: personalidade, aparência e amor",
@@ -80,7 +80,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de alegria e de abertura. Muitas vezes tem uma estatura alta ou um porte atlético, um riso fácil e um ar descontraído. Fala com as mãos e com o corpo todo, e transmite uma liberdade que contagia.",
   "personalidade": "Você é franco(a), generoso(a) e optimista, e acredita que as coisas acabam por correr bem. Gosta de aprender, de viajar, de discutir ideias e de procurar o sentido das coisas. A sua sinceridade pode sair sem filtro e magoar sem querer. Detesta sentir-se preso(a) e foge da rotina sempre que pode.",
   "amor": "No amor, precisa de um(a) companheiro(a) de aventura, que partilhe ideias e lhe dê espaço. O ciúme e o controlo afastam-no(a) depressa. Com o Descendente em Gémeos (Gêmeos), atrai pessoas curiosas e conversadoras, que mantêm a relação viva.",
-  "caminho": "O seu desafio é comprometer-se sem sentir que perde a liberdade, e cumprir o que promete. Quando junta a fé à constância, torna-se um(a) mestre que ensina o que viveu."},
+  "caminho": "O seu desafio é comprometer-se sem sentir que perde a liberdade, e cumprir o que promete. Com fé e constância, chega a ensinar aos outros o que a vida lhe ensinou."},
 
  {"slug": "capricornio",
   "titulo": "Ascendente em Capricórnio: personalidade e aparência",
@@ -89,7 +89,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de maturidade e de reserva. Costuma ter uma estrutura óssea marcada, um rosto sóbrio e uma postura cuidada, e veste-se de forma clássica. Curiosamente, parece mais velho(a) na juventude e mais novo(a) com a idade.",
   "personalidade": "Você é prudente, organizado(a) e de palavra, e os outros confiam em si para as coisas sérias. Prefere provar com resultados a prometer com palavras. Pode ser muito exigente consigo, desconfiar do que parece fácil e ter dificuldade em mostrar as emoções. Por baixo da seriedade existe um humor seco e um coração muito fiel.",
   "amor": "No amor, é reservado(a) no início, mas muito leal quando se compromete. Mostra o amor com presença, estabilidade e responsabilidade. Com o Descendente em Caranguejo (Câncer), atrai pessoas ternas e protectoras, que lhe ensinam a deixar-se cuidar.",
-  "caminho": "O seu desafio é permitir-se descansar e sentir, sem medir tudo pelo que conquista. Quando aprende que a fragilidade também é força, a sua subida torna-se mais leve e mais feliz."},
+  "caminho": "O seu desafio é permitir-se descansar e sentir, sem medir tudo pelo que conquista. Mostrar fragilidade de vez em quando torna a subida mais leve e mais feliz."},
 
  {"slug": "aquario",
   "titulo": "Ascendente em Aquário: personalidade, aparência e amor",
@@ -98,7 +98,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de originalidade e de simpatia com alguma distância. Pode ter um estilo muito próprio, um pormenor que destoa de propósito ou um olhar claro e curioso. As pessoas sentem que é diferente, mesmo sem perceberem bem porquê.",
   "personalidade": "Você é amigável, idealista e independente, e trata toda a gente de igual para igual. Gosta de ideias novas, de tecnologia, de grupos e de causas. Pode parecer frio(a) ou teimoso(a) quando defende aquilo em que acredita, e não gosta que lhe digam o que fazer. Tem intuições súbitas, que o(a) levam a mudar de rumo de um dia para o outro.",
   "amor": "No amor, precisa primeiro de amizade e de espaço para continuar a ser quem é. Sente-se sufocado(a) com ciúmes ou exigências. Com o Descendente em Leão, atrai pessoas calorosas e expressivas, que o(a) ajudam a abrir o coração.",
-  "caminho": "O seu desafio é ligar a cabeça ao coração e deixar que os outros se aproximem de verdade. Quando o faz, a sua originalidade torna-se um presente para todos."},
+  "caminho": "O seu desafio é ligar a cabeça ao coração e deixar que os outros se aproximem de verdade. Quando o faz, a sua originalidade chega às pessoas em vez de as manter à distância."},
 
  {"slug": "peixes",
   "titulo": "Ascendente em Peixes: personalidade, aparência e amor",
@@ -107,7 +107,7 @@ ASCENDENTE = [
   "aparencia": "A primeira impressão é de doçura e de um ar sonhador. Os olhos costumam ser o traço mais marcante, grandes, brilhantes ou distantes, como se vissem mais além. Os gestos são suaves e a presença parece adaptar-se a quem está à frente.",
   "personalidade": "Você é empático(a), criativo(a) e generoso(a), e absorve o ambiente à sua volta como uma esponja. Tem facilidade com a arte, a música e a espiritualidade. Pode fugir dos conflitos ou da realidade quando ela pesa demais, e custa-lhe dizer «não». A sua intuição é um guia precioso quando aprende a confiar nela.",
   "amor": "No amor, é romântico(a), entregue e capaz de grande dedicação. Precisa de ternura e de alguém que respeite a sua sensibilidade. Com o Descendente em Virgem, atrai pessoas práticas e organizadas, que lhe dão chão.",
-  "caminho": "O seu desafio é proteger-se do que não é seu e pôr limites sem culpa. Quando une a compaixão à firmeza, o seu dom de sentir torna-se cura para muitos."},
+  "caminho": "O seu desafio é proteger-se do que não é seu e pôr limites sem culpa. Com compaixão e alguma firmeza, a sua sensibilidade ajuda muita gente sem o(a) esgotar."},
 ]
 
 LUA = [
@@ -127,7 +127,7 @@ LUA = [
   "emocoes": "Você não muda de humor com facilidade, e quando sente, sente para durar. Precisa de segurança, de rotina e de saber com o que pode contar. As emoções processam-se devagar: demora a zangar-se, mas também demora a desfazer uma mágoa. Tem uma paciência que acalma quem está à sua volta.",
   "amor": "No amor, precisa de lealdade, de carinho físico e de gestos concretos. Uma relação estável e sem sobressaltos é o seu maior tesouro. Mostra o amor a cuidar, a cozinhar e a estar presente, dia após dia.",
   "acalma": "Acalma-se com uma boa refeição, a natureza, a música, o toque de quem ama e uma casa confortável. Desequilibra-se com mudanças bruscas, com a instabilidade financeira e quando sente que o chão lhe foge.",
-  "desafio": "O seu desafio é largar o que já não lhe faz bem, mesmo quando é familiar. A segurança verdadeira também sabe mudar, e o que larga abre espaço para algo melhor."},
+  "desafio": "O seu desafio é largar o que já não lhe faz bem, mesmo quando é familiar. Há seguranças que também mudam, e o que larga deixa espaço para algo melhor."},
 
  {"slug": "gemeos",
   "titulo": "Lua em Gémeos (Gêmeos): emoções, amor e o que a acalma",
@@ -136,7 +136,7 @@ LUA = [
   "emocoes": "As suas emoções são rápidas e variadas, e podem mudar várias vezes no mesmo dia. Uma boa conversa transforma o seu humor num instante. Tende a racionalizar o que sente, a explicar em vez de chorar, e por vezes só percebe que estava triste depois de o dizer em voz alta. A curiosidade mantém-no(a) leve e jovem por dentro.",
   "amor": "No amor, precisa de comunicação, de humor e de alguém que lhe estimule a mente. O silêncio prolongado deixa-o(a) inseguro(a). Sente-se amado(a) quando o outro o(a) ouve de verdade e tem sempre algo para lhe contar.",
   "acalma": "Acalma-se a conversar, a ler, a aprender algo novo ou a mudar de ambiente por umas horas. Desequilibra-se com o tédio, com o isolamento e com a sensação de não ser ouvido(a).",
-  "desafio": "O seu desafio é não fugir para a cabeça quando o coração pede silêncio. Às vezes, sentir sem explicar é o que cura."},
+  "desafio": "O seu desafio é não fugir para a cabeça quando o coração pede silêncio. Às vezes, faz-lhe bem sentir sem ter de explicar."},
 
  {"slug": "caranguejo",
   "titulo": "Lua em Caranguejo (Câncer): emoções, amor e o que a acalma",
@@ -145,7 +145,7 @@ LUA = [
   "emocoes": "Você sente com intensidade e lembra-se de tudo: o cheiro de uma casa, uma palavra dita há anos, um gesto de carinho. O seu humor acompanha as marés e é muito sensível ao ambiente. Cuida dos outros de forma instintiva, como uma mãe ou um pai. Quando se sente magoado(a), recolhe-se na sua concha e pode demorar a sair.",
   "amor": "No amor, precisa de se sentir em casa: seguro(a), acolhido(a) e parte de uma família. Dá muito e espera que reparem no que dá. A fidelidade e a ternura do dia-a-dia valem-lhe mais do que grandes declarações.",
   "acalma": "Acalma-se em casa, junto da família, a cozinhar, perto da água ou a rever memórias boas. Desequilibra-se com a rejeição, com a frieza e com a sensação de não pertencer a lado nenhum.",
-  "desafio": "O seu desafio é não se fechar quando se sente ferido(a) e dizer o que precisa em vez de esperar que adivinhem. Pedir também é cuidar de si."},
+  "desafio": "O seu desafio é não se fechar quando se sente ferido(a) e dizer o que precisa em vez de esperar que adivinhem. Pedir o que precisa é uma forma de cuidar de si."},
 
  {"slug": "leao",
   "titulo": "Lua em Leão: emoções, amor e o que a acalma no mapa astral",
@@ -154,7 +154,7 @@ LUA = [
   "emocoes": "Você sente em grande e não gosta de esconder o que sente. A alegria é contagiante, e a tristeza também se nota. Tem um orgulho sensível: uma falta de reconhecimento fere-o(a) mais do que deixa transparecer. É muito leal e protector(a) com quem ama, e dá-se de corpo inteiro.",
   "amor": "No amor, precisa de romance, de atenção e de sentir que é especial. Gosta de surpreender e de ser surpreendido(a), e de celebrar as datas importantes. Um elogio sincero vale-lhe mais do que qualquer presente.",
   "acalma": "Acalma-se a criar, a brincar, a estar com crianças, a celebrar e a fazer algo de que se orgulhe. Desequilibra-se quando se sente ignorado(a), desvalorizado(a) ou posto(a) em segundo plano.",
-  "desafio": "O seu desafio é dar a si mesmo(a) o valor que procura nos outros. Quando o seu brilho não depende do aplauso, ninguém o consegue apagar."},
+  "desafio": "O seu desafio é dar a si mesmo(a) o valor que procura nos outros. Se o seu brilho não depender do aplauso, a falta dele já não o(a) apaga."},
 
  {"slug": "virgem",
   "titulo": "Lua em Virgem: emoções, amor e o que a acalma no mapa astral",
@@ -172,7 +172,7 @@ LUA = [
   "emocoes": "Você é sensível ao ambiente, e um conflito tira-lhe o sono. Procura sempre o equilíbrio e a justiça, e consegue pôr-se no lugar do outro com facilidade. Por isso mesmo, por vezes engole o que sente para manter a paz. Tem um encanto natural que acalma os outros, mesmo quando por dentro está inquieto(a).",
   "amor": "No amor, precisa de parceria, de delicadeza e de cumplicidade. Sente-se bem a dois e gosta de partilhar os pequenos prazeres. A grosseria e a falta de atenção afastam-no(a) mais do que uma discussão.",
   "acalma": "Acalma-se com arte, música, um espaço bonito e uma conversa tranquila com alguém de quem gosta. Desequilibra-se com a tensão, a injustiça, a solidão prolongada e a pressão para escolher depressa.",
-  "desafio": "O seu desafio é reconhecer o que você sente, e não só o que os outros sentem. A verdadeira harmonia começa por ser honesto(a) consigo."},
+  "desafio": "O seu desafio é reconhecer o que você sente, e não só o que os outros sentem. A harmonia com os outros começa por ser honesto(a) consigo."},
 
  {"slug": "escorpiao",
   "titulo": "Lua em Escorpião: emoções, amor e o que a acalma",
@@ -181,7 +181,7 @@ LUA = [
   "emocoes": "Você sente muito e mostra pouco, e guarda para si o que mais lhe dói. É leal até ao fim e não esquece nem o bem nem o mal que lhe fazem. Tem uma intuição forte e percebe depressa o que os outros escondem. Quando sofre, pode fechar-se ou tornar-se desconfiado(a), mas tem uma capacidade enorme de renascer das crises.",
   "amor": "No amor, precisa de intimidade verdadeira, de entrega e de confiança total. Relações superficiais não o(a) satisfazem. Dá-se por inteiro e espera o mesmo do outro.",
   "acalma": "Acalma-se na intimidade, no silêncio, em conversas profundas e a sós com os seus pensamentos. Desequilibra-se com a traição, com a mentira e com a sensação de perder o controlo.",
-  "desafio": "O seu desafio é perdoar e deixar ir, para que a ferida se transforme em força. O que larga deixa de o(a) prender."},
+  "desafio": "O seu desafio é perdoar e deixar ir, para que a ferida se transforme em força. Aquilo que perdoa deixa de o(a) prender."},
 
  {"slug": "sagitario",
   "titulo": "Lua em Sagitário: emoções, amor e o que a acalma",
@@ -190,7 +190,7 @@ LUA = [
   "emocoes": "Você reage às dificuldades com fé e com humor, e acredita que amanhã será melhor. É sincero(a) e generoso(a) com o que sente, às vezes sem filtro. Fica triste quando se sente preso(a), limitado(a) ou sem perspectivas. Tende a fugir das emoções pesadas para a aventura, para o estudo ou para o próximo plano.",
   "amor": "No amor, precisa de espaço, de alegria e de alguém que partilhe a sua visão do mundo. Uma relação que o(a) prende sem razão perde depressa o encanto. Gosta de crescer a dois, a viajar e a aprender.",
   "acalma": "Acalma-se a viajar, a estar ao ar livre, a ler, a aprender e a rir com os amigos. Desequilibra-se com a rotina fechada, com a falta de sentido e com quem lhe corta as asas.",
-  "desafio": "O seu desafio é ficar com as emoções difíceis em vez de fugir delas. Às vezes, a viagem mais importante é para dentro."},
+  "desafio": "O seu desafio é ficar com as emoções difíceis em vez de fugir delas. Às vezes, olhar para dentro leva-o(a) mais longe do que uma viagem."},
 
  {"slug": "capricornio",
   "titulo": "Lua em Capricórnio: emoções, amor e o que a acalma",
@@ -199,7 +199,7 @@ LUA = [
   "emocoes": "Você não gosta de mostrar fragilidade e controla o que sente para dar conta do recado. Sente-se seguro(a) quando tem as coisas organizadas e o futuro planeado. A preocupação com o dever pode ocupar o lugar das emoções. Por baixo da contenção existe uma grande lealdade e uma ternura que só os mais próximos conhecem.",
   "amor": "No amor, precisa de estabilidade, de compromisso e de alguém em quem possa confiar a longo prazo. Mostra o que sente com presença, apoio e actos, mais do que com palavras. A relação fortalece-se com o tempo, como um bom vinho.",
   "acalma": "Acalma-se a trabalhar num objectivo, a pôr ordem na vida ou a caminhar na natureza. Desequilibra-se com a incerteza, com a sensação de falhar e com quem não cumpre a palavra.",
-  "desafio": "O seu desafio é permitir-se ser frágil: pedir colo também é ser forte. A emoção não é fraqueza, é o que dá sentido ao esforço."},
+  "desafio": "O seu desafio é permitir-se ser frágil e pedir colo quando precisa. As emoções dão sentido ao esforço que faz todos os dias."},
 
  {"slug": "aquario",
   "titulo": "Lua em Aquário: emoções, amor e o que a acalma",
@@ -208,7 +208,7 @@ LUA = [
   "emocoes": "Você tende a observar as próprias emoções de fora, como se as estudasse. Não gosta de dramas e prefere compreender a reagir. Os amigos são a sua família escolhida, e sente-se bem em grupo, desde que ninguém lhe exija o que não quer dar. Pode parecer frio(a), mas é profundamente solidário(a) e fiel aos seus ideais.",
   "amor": "No amor, precisa de amizade, de respeito pela sua independência e de conversas que o(a) façam pensar. O ciúme e a dependência afastam-no(a). Ama melhor quando se sente livre para escolher ficar.",
   "acalma": "Acalma-se a pensar, a estar com quem o(a) aceita como é, a envolver-se numa causa ou simplesmente a ficar sozinho(a) por um tempo. Desequilibra-se com a pressão emocional, com regras sem sentido e com quem o(a) quer mudar.",
-  "desafio": "O seu desafio é deixar-se tocar pelas emoções sem as explicar. A proximidade não lhe tira a liberdade."},
+  "desafio": "O seu desafio é deixar-se tocar pelas emoções sem as explicar. Pode ficar perto de alguém e continuar livre."},
 
  {"slug": "peixes",
   "titulo": "Lua em Peixes: emoções, amor e o que a acalma no mapa astral",

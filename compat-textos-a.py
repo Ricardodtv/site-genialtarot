@@ -7,7 +7,7 @@ COMPAT_A = [
   "amor": "No amor, esta dupla vive com o acelerador no fundo. Há desejo, há aventura e há a sensação de que o outro percebe a sua pressa sem precisar de explicações. As zangas surgem depressa, mas também se esquecem depressa, porque nenhum dos dois guarda rancor. O perigo é a relação transformar-se numa competição sobre quem tem razão.",
   "amizade": "Como amigos, são os primeiros a inventar um plano e a arrastar o grupo atrás. Desafiam-se um ao outro e isso faz bem a ambos.",
   "desafios": "Dois líderes no mesmo espaço precisam de regras claras. A impaciência partilhada pode levar a decisões tomadas a quente, que depois custam a desfazer. Quando os dois estão cansados ao mesmo tempo, basta uma palavra mal dita para acender um incêndio.",
-  "conselho": "Combinem quem decide o quê e aprendam a ceder de vez em quando: ceder não é perder. Lembre-se de que o signo solar é só uma parte do mapa."},
+  "conselho": "Combinem quem decide o quê e aprendam a ceder de vez em quando, sem o ver como uma derrota. Lembre-se de que o signo solar é só uma parte do mapa."},
  {"i": 0, "j": 2, "nota": 4,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Carneiro e Gémeos: compatibilidade no amor e na amizade",
   "desc": "Carneiro e Gémeos: uma dupla rápida, divertida e cheia de ideias. Veja o que os une no amor e na amizade e onde tropeçam.",
@@ -15,7 +15,7 @@ COMPAT_A = [
   "amor": "É uma relação que raramente aborrece. Gémeos seduz com a conversa e Carneiro responde com ação, e os dois gostam de surpresas e de mudar de planos à última hora. Carneiro admira a inteligência leve de Gémeos; Gémeos gosta da franqueza de Carneiro, que nunca o deixa a adivinhar. O ponto delicado é a profundidade: às vezes falam de tudo menos do que sentem.",
   "amizade": "Como amigos, são uma dupla imbatível para viagens, projetos e noites que acabam tarde. Riem-se muito e raramente se cansam um do outro; Gémeos dá-lhe as palavras e Carneiro dá-lhe o empurrão.",
   "desafios": "Carneiro pode achar Gémeos disperso e pouco comprometido; Gémeos pode achar Carneiro impulsivo e teimoso. Nenhum dos dois gosta de terminar o que começou. Com tanta pressa, as promessas pequenas esquecem-se, e é aí que nasce a desconfiança.",
-  "conselho": "Reservem tempo para conversas sérias, sem pressa e sem piadas. É aí que esta relação ganha raízes."},
+  "conselho": "Reservem tempo para conversas sérias, sem pressa e sem piadas, porque são elas que seguram esta relação."},
  {"i": 0, "j": 4, "nota": 5,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Carneiro e Leão: compatibilidade no amor e na amizade",
   "desc": "Carneiro e Leão: dois signos de Fogo com paixão, generosidade e orgulho. Descubra porque esta é uma das duplas mais intensas do zodíaco.",
@@ -23,7 +23,7 @@ COMPAT_A = [
   "amor": "Há aqui uma paixão evidente e uma admiração mútua que alimenta a relação. Carneiro gosta de conquistar e Leão adora ser conquistado, e os dois sabem fazer da vida a dois uma festa. Leão traz generosidade e romantismo; Carneiro traz iniciativa e frescura. Quando se apoiam, sentem-se capazes de tudo.",
   "amizade": "Como amigos, são leais e protetores. Defendem-se um ao outro em público e animam qualquer grupo onde entrem; quando um cai, o outro é o primeiro a estender a mão.",
   "desafios": "O orgulho é o ponto fraco: Leão precisa de reconhecimento e Carneiro esquece-se de o dar, porque já está a pensar no passo seguinte. Numa discussão, nenhum dos dois quer ser o primeiro a recuar. Às vezes, a vontade de ganhar a discussão pesa mais do que a vontade de se entenderem, e isso desgasta.",
-  "conselho": "Elogie em voz alta o que admira no outro e peça desculpa sem esperar pela vez dele. Com isso, este fogo aquece em vez de queimar."},
+  "conselho": "Elogie em voz alta o que admira no outro e peça desculpa sem esperar pela vez dele. Assim, o orgulho de um não fere o do outro."},
  {"i": 0, "j": 6, "nota": 3,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Carneiro e Balança combinam? Amor e amizade",
   "desc": "Carneiro e Balança são signos opostos: atração forte, ritmos diferentes. Veja como o impulso e a diplomacia se podem completar.",
@@ -39,7 +39,7 @@ COMPAT_A = [
   "amor": "Esta é uma relação de aventura: viagens, planos inesperados e uma sinceridade que dispensa jogos. Nenhum dos dois sufoca o outro, e é justamente essa liberdade que os mantém juntos. Sagitário traz otimismo e sentido de humor; Carneiro traz determinação. Há paixão e há também uma camaradagem rara.",
   "amizade": "Como amigos, são companheiros perfeitos de estrada. Podem passar meses sem se ver e retomar a conversa como se fosse ontem; a lealdade entre eles é simples e sem cobranças.",
   "desafios": "A franqueza dos dois pode ferir sem querer. E como ambos fogem da rotina, os assuntos práticos, como contas, casa e compromissos, ficam muitas vezes por tratar. Quando surgem dificuldades, a tentação dos dois é partir para outra em vez de ficar e resolver.",
-  "conselho": "Escolham juntos um projeto a longo prazo e cuidem dele com a mesma energia com que planeiam a próxima aventura. A aventura mais bonita pode ser construírem juntos algo que fique."},
+  "conselho": "Escolham juntos um projeto a longo prazo e cuidem dele com a mesma energia com que planeiam a próxima aventura. Construir juntos algo que fique também pode ser uma aventura."},
  {"i": 0, "j": 10, "nota": 4,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Carneiro e Aquário: compatibilidade no amor e na amizade",
   "desc": "Carneiro e Aquário: independência, ideias novas e uma amizade que pode virar amor. Veja o que funciona e o que exige cuidado.",
@@ -71,7 +71,7 @@ COMPAT_A = [
   "amor": "Aqui o amor demonstra-se com gestos concretos. Virgem cuida, organiza e repara nos pormenores; Touro oferece estabilidade, carinho físico e uma calma que acalma a mente inquieta de Virgem. Nenhum dos dois tem pressa, e a confiança cresce passo a passo até se tornar sólida. Partilham o gosto pela natureza, pela boa mesa e pelas rotinas tranquilas, e isso cria uma intimidade serena.",
   "amizade": "Como amigos, são aqueles a quem se pede ajuda para uma mudança ou um conselho sensato. Respeitam-se e raramente se desiludem.",
   "desafios": "Virgem pode criticar mais do que devia, e Touro, quando se sente pressionado, fecha-se. A relação também corre o risco de ficar demasiado prática e pouco romântica. Quando a vida aperta, os dois podem fechar-se no trabalho e esquecer de cuidar um do outro.",
-  "conselho": "Reservem momentos só para o prazer: um jantar sem pressa, um passeio sem objetivo. A ternura também precisa de espaço na agenda."},
+  "conselho": "Reservem momentos só para o prazer: um jantar sem pressa, um passeio sem objetivo. Com tanto trabalho e tantas obrigações, a ternura também precisa de lugar na agenda."},
  {"i": 1, "j": 7, "nota": 3,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Touro e Escorpião: compatibilidade no amor e na amizade",
   "desc": "Touro e Escorpião são signos opostos: paixão intensa, lealdade profunda e muita teimosia. Saiba como esta atração pode durar.",
@@ -87,7 +87,7 @@ COMPAT_A = [
   "amor": "É uma relação assente em respeito e em objetivos comuns. Capricórnio traz ambição e sentido de responsabilidade; Touro traz ternura e o gosto pelo conforto, que ajuda Capricórnio a descansar. Nenhum dos dois é de grandes palavras, mas os atos falam por eles. Com o tempo, a ligação só se aprofunda.",
   "amizade": "Como amigos, são de confiança absoluta. Dão conselhos práticos e estão presentes quando é preciso, sem alarido; muitas vezes, a amizade dura décadas sem perder força.",
   "desafios": "O trabalho e as obrigações podem roubar espaço ao romance. E quando discordam, os dois podem fechar-se no silêncio em vez de conversar. Também podem ser rígidos com o dinheiro e com os planos, e esquecer que a vida às vezes pede improviso.",
-  "conselho": "Celebrem as conquistas e marquem tempo para o lazer, não só para os planos. O futuro também se constrói a rir."},
+  "conselho": "Celebrem as conquistas e marquem tempo para o lazer, não só para os planos. Rir juntos também conta para o futuro que estão a construir."},
  {"i": 1, "j": 11, "nota": 4,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Touro e Peixes: compatibilidade no amor e na amizade",
   "desc": "Touro e Peixes: ternura, romantismo e um porto seguro para os sonhos. Veja como a Terra e a Água se completam no amor. Saiba mais.",
@@ -119,7 +119,7 @@ COMPAT_A = [
   "amor": "O fascínio é real: Escorpião sente-se atraído pela inteligência e pelo humor de Gémeos, e Gémeos fica intrigado com o mistério de Escorpião, que nunca se deixa ler à primeira. Quando corre bem, Gémeos ensina Escorpião a levar a vida com mais leveza, e Escorpião mostra a Gémeos a força de uma entrega profunda. Mas Gémeos tem de aceitar que Escorpião não se abre depressa, e Escorpião tem de aceitar que Gémeos precisa de ar.",
   "amizade": "Como amigos, conversam sobre temas que os outros evitam. Escorpião ouve e Gémeos faz perguntas, e a troca é estimulante.",
   "desafios": "Escorpião precisa de exclusividade e pode desconfiar da sociabilidade de Gémeos. Gémeos detesta ciúmes e controlo, e tende a fugir quando o ambiente fica pesado. Escorpião pode usar o silêncio como castigo, e Gémeos pode responder com ironia, o que só afasta mais os dois.",
-  "conselho": "Construam a confiança com transparência: Gémeos, diga onde está e o que sente; Escorpião, dê espaço sem desconfiar à partida. A confiança é a ponte que este par tem de atravessar todos os dias."},
+  "conselho": "Construam a confiança com transparência: Gémeos, diga onde está e o que sente; Escorpião, dê espaço sem desconfiar à partida. Neste par, a confiança precisa de ser alimentada todos os dias."},
  {"i": 2, "j": 9, "nota": 2,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Gémeos e Capricórnio: compatibilidade no amor e na amizade",
   "desc": "Gémeos e Capricórnio: leveza e seriedade frente a frente. Descubra o que cada um pode ensinar ao outro no amor e na amizade.",
@@ -143,7 +143,7 @@ COMPAT_A = [
   "amor": "Os dois são românticos e gostam de mimar. Leão oferece calor, proteção e generosidade; Caranguejo oferece cuidado, memória e uma casa onde Leão se sente rei. Quando se sentem valorizados, são um casal muito dedicado à família e às pessoas que amam. Leão aquece a casa e Caranguejo cuida para que esse calor não se perca.",
   "amizade": "Como amigos, Leão anima e Caranguejo acolhe. Defendem-se mutuamente e não se esquecem de datas importantes.",
   "desafios": "Leão precisa de admiração e Caranguejo precisa de segurança, e cada um pode sentir que o outro não lhe dá o suficiente. A sensibilidade de Caranguejo e o orgulho de Leão podem transformar pequenas coisas em grandes mágoas. Caranguejo pode ficar ressentido em silêncio, e Leão pode nem dar por isso.",
-  "conselho": "Leão, repare nos sinais silenciosos de Caranguejo; Caranguejo, diga em voz alta o quanto admira Leão. O reconhecimento mútuo é o segredo desta dupla."},
+  "conselho": "Leão, repare nos sinais silenciosos de Caranguejo; Caranguejo, diga em voz alta o quanto admira Leão. Esta dupla vive muito de se sentir reconhecida pelo outro."},
  {"i": 3, "j": 6, "nota": 2,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Caranguejo e Balança: compatibilidade no amor e na amizade",
   "desc": "Caranguejo e Balança: carinho e elegância, mas formas diferentes de amar. Veja o que os aproxima e o que precisam de afinar.",
@@ -151,7 +151,7 @@ COMPAT_A = [
   "amor": "Há gentileza e delicadeza dos dois lados. Balança encanta Caranguejo com gestos elegantes e atenção ao outro; Caranguejo dá a Balança uma intimidade e uma ternura profundas. Ambos detestam conflitos e procuram um ambiente tranquilo, o que torna o dia a dia agradável. Quando se sentem seguros, tornam-se muito cúmplices: Balança traz beleza ao lar e Caranguejo enche-o de afeto.",
   "amizade": "Como amigos, são atenciosos e diplomáticos. Caranguejo oferece ouvido e Balança oferece perspetiva; sabem estar presentes sem invadir o espaço um do outro.",
   "desafios": "Caranguejo precisa de proximidade emocional e Balança, mais racional e social, pode parecer distante. Como os dois evitam discutir, os problemas tendem a ficar escondidos até explodirem. Caranguejo pode sentir ciúmes da vida social de Balança, e Balança pode achar Caranguejo demasiado sensível para os pequenos atritos do dia a dia.",
-  "conselho": "Não confundam paz com silêncio. Uma conversa difícil, feita com calma, protege mais a relação do que muitos dias de cortesia."},
+  "conselho": "Evitar discutir não é o mesmo que estarem em paz: uma conversa difícil, feita com calma, protege mais a relação do que muitos dias de cortesia."},
  {"i": 3, "j": 8, "nota": 2,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Caranguejo e Sagitário: compatibilidade no amor e na amizade",
   "desc": "Caranguejo e Sagitário: o lar e a estrada. Saiba como a ternura e a liberdade podem conviver no amor e na amizade. Veja como.",
@@ -159,7 +159,7 @@ COMPAT_A = [
   "amor": "Sagitário traz otimismo, humor e vontade de conhecer o mundo, e isso pode abrir os olhos de Caranguejo para experiências novas. Caranguejo oferece a Sagitário um lugar para onde voltar, com carinho e atenção que ele raramente encontra. Quando funciona, é uma relação generosa e cheia de aprendizagem. Com tempo, Caranguejo pode descobrir que gosta de viajar e Sagitário pode descobrir que gosta de voltar a casa.",
   "amizade": "Como amigos, Sagitário faz Caranguejo rir e Caranguejo cuida de Sagitário quando a aventura corre mal. É uma amizade de contrastes, que ensina muito aos dois.",
   "desafios": "A franqueza de Sagitário pode magoar a sensibilidade de Caranguejo. E a necessidade de liberdade de um pode parecer abandono ao outro. Caranguejo gosta de planear e de ter rotinas; Sagitário muda de planos sem aviso, e isso gera insegurança.",
-  "conselho": "Sagitário, escolha as palavras com cuidado e dê notícias; Caranguejo, deixe o outro partir sabendo que volta. Liberdade e ternura não são inimigas."},
+  "conselho": "Sagitário, escolha as palavras com cuidado e dê notícias; Caranguejo, deixe o outro partir sabendo que volta. Os dois podem ter liberdade e ternura ao mesmo tempo."},
  {"i": 3, "j": 10, "nota": 2,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Caranguejo e Aquário: compatibilidade no amor e na amizade",
   "desc": "Caranguejo e Aquário: emoção e razão, tradição e novidade. Veja como dois signos tão diferentes podem construir uma ligação real.",
@@ -223,7 +223,7 @@ COMPAT_A = [
   "amor": "Há um respeito profundo entre os dois. Capricórnio admira a dedicação e a inteligência prática de Virgem; Virgem sente-se seguro com a ambição e a estabilidade de Capricórnio. Nenhum precisa de grandes declarações: o amor demonstra-se no apoio diário e nos planos para o futuro. Partilham o gosto pelo trabalho, pela poupança e por uma casa bem cuidada, e isso dá-lhes uma tranquilidade que poucos casais conhecem.",
   "amizade": "Como amigos, são parceiros fiáveis e discretos. Em trabalho, formam uma equipa eficiente e muito organizada; raramente falham um compromisso.",
   "desafios": "A relação pode tornar-se demasiado séria, com pouco espaço para a diversão. Os dois têm dificuldade em mostrar emoções e podem parecer frios um ao outro. Um mau dia no trabalho pode trazer críticas e silêncios para casa, e nenhum dos dois gosta de admitir que precisa de colo.",
-  "conselho": "Permitam-se brincar, descansar e dizer «gosto de ti» sem motivo. A ternura também é uma responsabilidade."},
+  "conselho": "Permitam-se brincar, descansar e dizer «gosto de ti» sem motivo. Cuidar da ternura também faz parte das vossas tarefas."},
  {"i": 5, "j": 11, "nota": 3,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Virgem e Peixes: compatibilidade no amor e na amizade",
   "desc": "Virgem e Peixes são signos opostos: razão e intuição, ordem e sonho. Veja como se podem completar no amor e na amizade. Saiba mais.",
