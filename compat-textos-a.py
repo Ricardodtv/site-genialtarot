@@ -25,7 +25,7 @@ COMPAT_A = [
   "desafios": "O orgulho é o ponto fraco: Leão precisa de reconhecimento e Carneiro esquece-se de o dar, porque já está a pensar no passo seguinte. Numa discussão, nenhum dos dois quer ser o primeiro a recuar. Às vezes, a vontade de ganhar a discussão pesa mais do que a vontade de se entenderem, e isso desgasta.",
   "conselho": "Elogie em voz alta o que admira no outro e peça desculpa sem esperar pela vez dele. Com isso, este fogo aquece em vez de queimar."},
  {"i": 0, "j": 6, "nota": 3,   # afinidade 1–5 segundo a astrologia tradicional
-  "titulo": "Carneiro e Balança: compatibilidade no amor e na amizade",
+  "titulo": "Carneiro e Balança combinam? Amor e amizade",
   "desc": "Carneiro e Balança são signos opostos: atração forte, ritmos diferentes. Veja como o impulso e a diplomacia se podem completar.",
   "resumo": "Carneiro (Áries) e Balança (Libra) estão em lados opostos do zodíaco, e por isso atraem-se. Um vive para si e para a ação; o outro vive para a parceria e para o equilíbrio.",
   "amor": "A atração costuma ser imediata: Balança encanta-se com a ousadia de Carneiro, e Carneiro rende-se ao charme e à elegância de Balança. Juntos, aprendem o que lhes falta: Carneiro aprende a ter em conta o outro, Balança aprende a decidir sem pedir licença. Quando o equilíbrio funciona, é uma relação muito completa. Carneiro dá o primeiro passo e Balança dá-lhe forma, e essa troca pode ser muito bonita de ver.",
