@@ -55,13 +55,13 @@ FAQ = {
   ("O que significa O Louco no Tarot?",
    "O Louco é o começo: o primeiro passo dado sem garantias, com o coração leve. Fala de coragem, confiança e liberdade. Diz que a certeza só chega depois de andar e que a inexperiência, aqui, não é defeito. O conselho é avançar, mas desperto."),
   ("O que significa O Louco invertido?",
-   "Ao contrário, o salto vira queda: decisões sem pensar, dinheiro gasto sem contas, confiança dada depressa de mais. Também pode ser o oposto — o medo que o prende no mesmo sítio, disfarçado de prudência. Vale a pena perceber qual dos dois é o seu caso."),
+   "Ao contrário, o salto vira queda: decisões sem pensar, dinheiro gasto sem contas, confiança dada depressa de mais. Também pode ser o oposto: o medo que o prende no mesmo sítio, disfarçado de prudência. Perceba qual dos dois é o seu caso."),
   ("O Louco é uma carta boa ou má?",
    "É uma carta de abertura e, em geral, favorável a novos começos: uma viagem, um projeto, uma nova fase. O cuidado está em não confundir coragem com imprudência. O número zero lembra que tudo ainda está por escrever."),
  ],
  "arcano-01-o-mago": [
   ("O que significa O Mago no Tarot?",
-   "O Mago mostra que tem em cima da mesa tudo o que precisa: talento, ferramentas e ocasião. É a vontade que se transforma em obra — um negócio que arranca, uma ideia que sai do papel. O poder vem de usar bem o que já tem."),
+   "O Mago mostra que tem em cima da mesa tudo o que precisa: talento, ferramentas e ocasião. É a vontade que se transforma em obra: um negócio que arranca, uma ideia que sai do papel. O poder vem de usar bem o que já tem."),
   ("O que significa O Mago invertido?",
    "Ao contrário, o talento está a ser desperdiçado ou mal usado. Pode ser adiamento, com capacidade a mais e coragem a menos, ou manipulação: alguém que usa as palavras para o levar onde lhe convém. Desconfie de quem promete muito e mostra pouco."),
   ("O que significa O Mago numa leitura de amor?",
@@ -69,7 +69,7 @@ FAQ = {
  ],
  "arcano-02-a-sacerdotisa": [
   ("O que significa A Sacerdotisa no Tarot?",
-   "É a carta da intuição e do saber interior. A Sacerdotisa não manda agir, manda escutar: o que não foi dito, o que se sente sem explicar, o sonho que se repete. Diz que a resposta que procura está mais perto do que pensa."),
+   "É a carta da intuição e do saber interior. A Sacerdotisa manda escutar antes de agir: o que não foi dito, o que se sente sem explicar, o sonho que se repete. Diz que a resposta que procura está mais perto do que pensa."),
   ("O que significa A Sacerdotisa invertida?",
    "Ao contrário, é a voz interior a ser ignorada ou informação escondida de si. Pode estar a fazer o que os outros esperam em vez do que sente, ou haver alguém a guardar-lhe um segredo. O conselho é afastar-se do barulho por um dia."),
   ("A Sacerdotisa responde sim ou não?",
@@ -85,7 +85,7 @@ FAQ = {
  ],
  "arcano-04-o-imperador": [
   ("O que significa O Imperador no Tarot?",
-   "Ordem, limites e responsabilidade assumida. O Imperador é a carta de quem constrói para durar: contratos, casas, empresas, regras claras. Aparece quando falta estrutura — um horário, um orçamento, uma decisão firme — ou uma figura de autoridade na sua vida."),
+   "Ordem, limites e responsabilidade assumida. O Imperador é a carta de quem constrói para durar: contratos, casas, empresas, regras claras. Aparece quando falta estrutura (um horário, um orçamento, uma decisão firme) ou uma figura de autoridade na sua vida."),
   ("O que significa O Imperador invertido?",
    "Ao contrário, a autoridade descamba: ou é rigidez e controlo, ou falta de pulso e vida sem rumo. Pode ainda apontar para alguém que abusa do poder que tem sobre si. A pergunta da carta é onde deixou de mandar na sua própria vida."),
   ("Qual é o signo do Imperador no Tarot?",
@@ -105,7 +105,7 @@ FAQ = {
   ("O que significa Os Enamorados invertido?",
    "Ao contrário, é a escolha adiada ou feita contra si próprio: ficar entre duas pessoas, uma relação sem acordo, dizer sim à espera de se convencer depois. O adiamento também é uma decisão, e costuma ser das piores."),
   ("Os Enamorados é sempre uma carta de amor?",
-   "Não. Muitas vezes fala de uma escolha importante — de trabalho, de casa, de valores. Pela Golden Dawn, é a carta de Gémeos, o signo do dois, das duas vozes e dos dois caminhos possíveis."),
+   "Não. Muitas vezes fala de uma escolha importante, de trabalho, de casa ou de valores. Pela Golden Dawn, é a carta de Gémeos, o signo do dois, das duas vozes e dos dois caminhos possíveis."),
  ],
  "arcano-07-o-carro": [
   ("O que significa O Carro no Tarot?",
@@ -125,7 +125,7 @@ FAQ = {
  ],
  "arcano-09-o-eremita": [
   ("O que significa O Eremita no Tarot?",
-   "É a hora de se afastar do barulho. O Eremita sobe o monte sozinho com a sua lanterna, não para se esconder, mas para pensar. Fala de fases de procura, estudo e fé, e por vezes de alguém mais velho e sábio que entra na sua vida."),
+   "É a hora de se afastar do barulho. O Eremita sobe o monte sozinho com a sua lanterna, para conseguir pensar. Fala de fases de procura, estudo e fé, e por vezes de alguém mais velho e sábio que entra na sua vida."),
   ("O que significa O Eremita invertido?",
    "Ao contrário, o recolhimento passou a isolamento: fechar-se em casa, recusar ajuda por orgulho, uma solidão que já magoa. Ou o oposto: uma agenda tão cheia que você foge de si próprio. Escolher estar só é diferente de não conseguir estar com ninguém."),
   ("O Eremita no amor significa solidão?",
@@ -189,7 +189,7 @@ FAQ = {
  ],
  "arcano-17-a-estrela": [
   ("O que significa A Estrela no Tarot?",
-   "Depois da tempestade, o céu limpo. É a carta da esperança que volta devagar: a ferida que sara, a confiança recuperada, a sensação de que afinal há caminho. Fala também de inspiração e de vocação — aquilo que faz e que faz sentido."),
+   "Depois da tempestade, o céu limpo. É a carta da esperança que volta devagar: a ferida que sara, a confiança recuperada, a sensação de que afinal há caminho. Fala também de inspiração e de vocação: aquilo que faz e que faz sentido."),
   ("O que significa A Estrela invertida?",
    "Ao contrário, é a fé em baixo: desânimo, sonhos postos de lado, cansaço acumulado. A luz não se apagou, você é que está de costas para ela. O conselho é começar por uma coisa pequena que lhe dê gosto e fazê-la nessa mesma semana."),
   ("Qual é o signo da Estrela no Tarot?",
@@ -199,7 +199,7 @@ FAQ = {
   ("O que significa A Lua no Tarot?",
    "Nem tudo é o que parece. A Lua é a carta das dúvidas, dos medos antigos e das coisas ditas pela metade. Aparece quando falta informação e a imaginação preenche os buracos. Preste atenção aos sonhos, mas evite decisões grandes até o nevoeiro levantar."),
   ("O que significa A Lua invertida?",
-   "É das melhores inversões do baralho: o nevoeiro começa a abrir, a verdade aparece e o medo perde tamanho quando se lhe dá nome. Às vezes avisa do contrário — fugir de uma verdade que já bateu à porta. Confrontar é menos assustador do que imaginar."),
+   "É das melhores inversões do baralho: o nevoeiro começa a abrir, a verdade aparece e o medo perde tamanho quando se lhe dá nome. Às vezes avisa do contrário: fugir de uma verdade que já bateu à porta. Confrontar é menos assustador do que imaginar."),
   ("A Lua no amor fala de traição?",
    "Pode falar de engano, mas fala sobretudo de incerteza: coisas por esclarecer, ciúmes alimentados pela imaginação. Antes de tirar conclusões, procure factos. Pela Golden Dawn, A Lua é a carta de Peixes, o signo da intuição."),
  ],
@@ -209,7 +209,7 @@ FAQ = {
   ("O que significa O Sol invertido?",
    "Ao contrário, o sol está tapado, mas continua lá: um êxito que não satisfaz, uma alegria que não se deixa sentir, cansaço que rouba o gosto às coisas boas. Pode ser também otimismo a mais a esconder um problema real. Nada de grave."),
   ("O Sol é um sim no Tarot?",
-   "Na tiragem de Sim ou Não, O Sol é das cartas que mais claramente inclinam para o sim. Mesmo assim, o Tarot dá sempre um conselho sobre o caminho: aproveitar o bom momento com um plano faz toda a diferença."),
+   "Na tiragem de Sim ou Não, O Sol é das cartas que mais claramente inclinam para o sim. Mesmo assim, o Tarot dá sempre um conselho sobre o caminho: o bom momento aproveita-se melhor com um plano."),
  ],
  "arcano-20-o-julgamento": [
   ("O que significa O Julgamento no Tarot?",
@@ -221,11 +221,11 @@ FAQ = {
  ],
  "arcano-21-o-mundo": [
   ("O que significa O Mundo no Tarot?",
-   "Fechou-se o círculo. É a última carta dos Arcanos Maiores e a mais completa: objetivo atingido, curso terminado, etapa concluída com orgulho. Fala também de mundo no sentido literal — estrangeiro, mudança de país, horizontes maiores."),
+   "Fechou-se o círculo. É a última carta dos Arcanos Maiores e a mais completa: objetivo atingido, curso terminado, etapa concluída com orgulho. Fala também de mundo no sentido literal: estrangeiro, mudança de país, horizontes maiores."),
   ("O que significa O Mundo invertido?",
    "Ao contrário, falta pouco e esse pouco custa: o projeto a 90% que não se acaba, o assunto que se arrasta, a etapa fechada à pressa. Normalmente o que falta é um pormenor pequeno, adiado há muito tempo."),
   ("O Mundo é a melhor carta do Tarot?",
-   "É uma das mais positivas, porque fala de conclusão e recompensa. Mas fechar um ciclo significa que outro vai começar — tal como depois do Mundo o caminho dos Arcanos recomeça no Louco. Antes do próximo passo, vale a pena celebrar."),
+   "É uma das mais positivas, porque fala de conclusão e recompensa. Mas fechar um ciclo significa que outro vai começar, tal como depois do Mundo o caminho dos Arcanos recomeça no Louco. Antes do próximo passo, celebre."),
  ],
  "amor-do-dia": [
   ("O que é O Amor do Dia?",
@@ -485,7 +485,7 @@ FAQ = {
   ("A Carta do Dia prevê o que vai acontecer?",
    "Não. A Carta do Dia mostra a energia do dia: o tema, a atitude que convém ter ou a lição que o dia traz. É uma orientação, não uma previsão de acontecimentos."),
   ("A Carta do Dia ajuda a aprender Tarot?",
-   "Muito. Feita todos os dias, ensina mais sobre as cartas do que muitos livros. À noite, vale a pena voltar à carta e ver como se refletiu no dia; apontar num caderno ajuda a fixar os significados."),
+   "Muito. Feita todos os dias, ensina mais sobre as cartas do que muitos livros. À noite, volte à carta e veja como se refletiu no dia; apontar num caderno ajuda a fixar os significados."),
  ],
  "tiragem-do-amor": [
   ("Como fazer a tiragem do amor com 5 cartas?",

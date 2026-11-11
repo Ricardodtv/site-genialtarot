@@ -31,8 +31,8 @@ EXTRA = {
   "Ao contrário, a carta pede para olhar para o que ficou por acabar: um ciclo que se arrasta, uma decisão adiada, a falta de um último passo. A mensagem é a mesma, só muda o momento: terminar bem para poder começar de novo."]),
  "arcanos": ("Como usar os Arcanos Maiores", [
   "Os 22 Arcanos Maiores são as cartas mais fortes do Tarot. Contam uma viagem, do Louco ao Mundo, com as grandes etapas da vida: o começo, as escolhas, as provas, as perdas, o renascimento e a realização. Quando aparecem numa leitura, falam de assuntos de fundo e não de pormenores do dia a dia.",
-  "Para conhecer as cartas, abra cada uma e leia o significado direito e invertido. Vale a pena olhar para a imagem com calma: os símbolos, as cores e a posição das figuras dizem muito antes de qualquer explicação.",
-  "Se quiser ver as cartas a trabalhar, faça uma tiragem no Tarot Grátis ou descubra a sua Carta de Tarot de nascimento, que sai da sua data de nascimento e o acompanha a vida toda."]),
+  "Para conhecer as cartas, abra cada uma e leia o significado direito e invertido. Olhe para a imagem com calma: os símbolos, as cores e a posição das figuras dizem muito antes de qualquer explicação.",
+  "Se quiser ver as cartas a trabalhar, faça uma tiragem no Tarot Grátis ou veja qual é a sua Carta de Tarot de nascimento, que sai da sua data de nascimento e o acompanha a vida toda."]),
  "arvore": ("Como funciona a Árvore da Vida", [
   "A Árvore da Vida vem da tradição da Cabala. São dez esferas, as Sefirot, ligadas entre si, que vão da vida material, em Malkuth, até à parte mais espiritual, em Kether. Nesta tiragem, cada esfera recebe um Arcano Maior e lê-se como uma área da sua vida.",
   "Comece por respirar e pensar na pergunta ou no momento que está a viver. Depois lance as cartas e leia-as posição a posição, de baixo para cima: primeiro o que é concreto e prático, depois as emoções e as decisões, e por fim o sentido mais profundo do caminho.",

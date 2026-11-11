@@ -333,12 +333,12 @@ TIRAGENS = [
         "nome": "A Carta do Dia",
         "titulo": "A Carta do Dia no Tarot: como tirar e como interpretar",
         "desc": "Como tirar a Carta do Dia no Tarot, o que ela representa, quando é o melhor momento para a usar e um exemplo de leitura para levar consigo ao longo do dia.",
-        "intro": "A Carta do Dia é o hábito mais simples e mais transformador para quem quer conhecer o Tarot. Uma só carta, tirada de manhã, dá o tom do dia e um conselho para levar consigo. Com o tempo, este pequeno ritual ensina mais sobre as cartas do que muitos livros.",
+        "intro": "A Carta do Dia é o hábito mais simples para quem quer conhecer o Tarot. Uma só carta, tirada de manhã, dá o tom do dia e um conselho para levar consigo. Com o tempo, este pequeno ritual ensina mais sobre as cartas do que muitos livros.",
         "posicoes": [
             ["1. A energia do dia", "O tema que vai marcar o dia, a atitude que convém ter ou a lição que o dia traz. Não é uma previsão de acontecimentos, é uma orientação."],
         ],
         "como": "De manhã, num momento de sossego, respire fundo e baralhe a pensar no dia que começa. Pode perguntar simplesmente «O que preciso de saber hoje?». Tire uma carta, observe a imagem com atenção, as cores e os gestos das figuras, e guarde uma palavra ou frase que ela lhe inspire.",
-        "quando": "Use-a todos os dias, como ritual de começo. À noite, vale a pena voltar à carta e ver como ela se reflectiu no que viveu; apontar num caderno ajuda muito a aprender.",
+        "quando": "Use-a todos os dias, como ritual de começo. À noite, volte à carta e veja como ela se reflectiu no que viveu; apontar num caderno ajuda muito a aprender.",
         "exemplo": "Imagine que de manhã sai o Quatro de Espadas, a figura em repouso. A mensagem do dia é abrandar: não forçar decisões, dar descanso ao corpo e à mente. À noite, percebe que foi precisamente ao parar um bocado que encontrou a solução para um problema. A carta não adivinhou nada: lembrou-lhe o que precisava.",
     },
     {
