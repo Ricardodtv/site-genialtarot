@@ -53,10 +53,10 @@ EXTRA = {
   "O Horóscopo do Dia é escrito a partir do céu real de cada dia: a posição da Lua, os aspetos entre os planetas e os retrógrados. Não é um texto genérico repetido: muda todos os dias porque o céu também muda.",
   "Leia primeiro o seu signo solar e depois o seu Ascendente. O signo solar fala de quem é por dentro; o Ascendente fala da forma como vive o dia a dia e de como os outros o veem. Juntos dão uma imagem mais certa.",
   "Cada signo tem uma dica prática para o dia. São gestos simples, pensados para o ajudar a viver melhor o tom de cada dia. Se quiser saber mais sobre o seu signo, abra a página dele: tem a personalidade, o amor e a compatibilidade com os outros."]),
- "horoscopo": ("Onde encontrar cada previsão", [
+ "horoscopo": ("Previsões dos signos: onde encontrar cada uma", [
   "Aqui estão reunidas as previsões do Mestre Alberto: o horóscopo diário, gravado em directo de segunda a sexta-feira, a previsão do fim de semana e a previsão anual, todas por signo e com o minuto certo de cada um.",
   "Se tem pouco tempo, escolha o seu signo e vá directo à sua parte do vídeo. Se gosta de acompanhar o céu, veja o vídeo completo, onde o Mestre Alberto explica os movimentos dos planetas antes de falar de cada signo.",
-  "Há também previsões escritas no site: o Horóscopo do Dia, feito com o céu verdadeiro de cada dia, o Amor do Dia e o Horóscopo 2027 de cada signo. E no canal do YouTube encontra todos os vídeos anteriores."]),
+  "No site há também previsões escritas, feitas com o céu verdadeiro: o Horóscopo do Dia, o Horóscopo de Amanhã, o Horóscopo Semanal, o Amor do Dia e o Horóscopo 2027 de cada signo. Os vídeos anteriores estão todos no canal do YouTube."]),
  "noticias-do-ceu": ("Para que servem as notícias do céu", [
   "As Notícias do Céu mostram o que vem aí nas próximas semanas: os planetas que mudam de signo, os retrógrados que começam e acabam, as Luas Novas, as Luas Cheias e os eclipses. Tudo calculado com as posições reais dos planetas.",
   "Saber com antecedência ajuda a organizar a vida. Um Mercúrio retrógrado pede cuidado com contratos, viagens e conversas importantes. Uma Lua Nova é boa para começar. Um eclipse costuma marcar viragens que se sentem durante meses.",

@@ -3,6 +3,8 @@
 # Datas de 2027 só as que já estão na própria página; o resto é dito de forma geral.
 FAQ = {
  "horoscopo": [
+  ("Onde posso ver as previsões dos signos para hoje, amanhã e a semana?",
+   "Aqui no site, sem pagar nada. O Horóscopo do Dia e o Horóscopo de Amanhã partem das posições reais dos planetas, e o Horóscopo Semanal mostra as Luas e os planetas que mudam de signo durante a semana. Para o ano inteiro, abra o Horóscopo 2027 do seu signo."),
   ("O horóscopo deve ler-se pelo signo solar ou pelo Ascendente?",
    "Pelos dois. O signo solar fala da sua essência e o Ascendente mostra como as previsões tocam as áreas concretas da sua vida. Quem sabe o Ascendente pode ler também o horóscopo desse signo e costuma reconhecer-se ainda melhor."),
   ("Qual é a diferença entre o horóscopo diário e a previsão anual?",
