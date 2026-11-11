@@ -32,7 +32,7 @@
       ten: "O Sol de um e o Marte do outro chocam às vezes: discussões rápidas, orgulhos feridos. É energia a mais; posta num objetivo comum, vira motor.",
     },
     "sol|asc": {
-      conj: "O Sol de um cai no Ascendente do outro: há atração à primeira vista e a sensação de que o outro revela quem você é. Um laço forte de identificação.",
+      conj: "O Sol de um cai no Ascendente do outro: há atração à primeira vista e a sensação de que o outro revela quem você é, o que cria um laço forte de identificação.",
       har: "O Sol de um favorece o Ascendente do outro: vocês sentem-se à vontade juntos e apresentam-se bem como casal.",
       ten: "O Sol de um e o Ascendente do outro estranham-se no início: maneiras diferentes de estar no mundo. Com o tempo, a diferença pode virar complemento.",
     },
@@ -44,10 +44,10 @@
     "lua|venus": {
       conj: "A Lua de um e a Vénus do outro juntas: ternura pura. É um aspecto de carinho, de mimo e de vontade de cuidar.",
       har: "A Lua e a Vénus de vocês entendem-se bem: afeto fácil, gestos de cuidado e uma doçura que se nota.",
-      ten: "A Lua de um e a Vénus do outro pedem afinação: a forma de um mostrar carinho nem sempre é a que o outro reconhece. Aprender a «língua» do outro faz toda a diferença.",
+      ten: "A Lua de um e a Vénus do outro pedem afinação: a forma de um mostrar carinho nem sempre é a que o outro reconhece. Ajuda muito aprender a «língua» do outro.",
     },
     "lua|marte": {
-      conj: "A Lua de um e o Marte do outro juntos: paixão e intensidade emocional. Há desejo, mas também sensibilidade à flor da pele; a palavra-chave é delicadeza.",
+      conj: "A Lua de um e o Marte do outro juntos: paixão e intensidade emocional. Há desejo, mas também sensibilidade à flor da pele, e isso pede delicadeza.",
       har: "A Lua e o Marte de vocês dão calor à relação: o desejo e o carinho andam juntos, e há coragem para enfrentar o que vier.",
       ten: "A Lua de um e o Marte do outro podem magoar-se sem querer: uma palavra brusca cai fundo. Com cuidado, esta faísca vira paixão em vez de mágoa.",
     },
@@ -74,7 +74,7 @@
     "marte|marte": {
       conj: "Os dois Martes juntos: a mesma garra e o mesmo ritmo. Juntos têm muita força, mas convém combinar quem decide o quê.",
       har: "Os Martes de vocês fazem uma boa dupla: energias que se somam e iniciativas que se apoiam.",
-      ten: "Os Martes de vocês chocam: duas vontades fortes, com pressa em direções diferentes. As discussões podem surgir depressa; o segredo é escolher as batalhas.",
+      ten: "Os Martes de vocês chocam: duas vontades fortes, com pressa em direções diferentes. As discussões podem surgir depressa, por isso convém escolher as batalhas.",
     },
     "marte|asc": {
       conj: "O Marte de um no Ascendente do outro: há impacto, atração física e uma energia que desperta. Às vezes é intenso demais; o equilíbrio vem com o tempo.",
@@ -94,7 +94,7 @@
     [70, "Uma ligação forte", "Há mais harmonia do que tensão entre os céus de vocês, e os encontros importantes estão lá. Os desafios que aparecem são do tamanho certo para os dois crescerem."],
     [55, "Uma boa base, com contrastes", "Os céus de vocês têm pontos de encontro e também diferenças claras. É um casal que se completa quando aprende a respeitar o ritmo de cada um."],
     [40, "Um encontro que pede trabalho a dois", "Há tensões marcadas entre os céus de vocês, ao lado de alguns pontos de harmonia. Não é um mau sinal: muitas relações fortes nascem de diferenças que os dois decidem compreender."],
-    [0, "Dois céus muito diferentes", "Os mapas de vocês falam línguas diferentes, e isso pede paciência e conversa. A diferença também atrai e ensina; o céu mostra o terreno, não decide o caminho."],
+    [0, "Dois céus muito diferentes", "Os mapas de vocês falam línguas diferentes, e isso pede paciência e conversa. A diferença também atrai e ensina, e o caminho são vocês que o decidem."],
   ];
   const HONESTA = "A nota é um retrato simbólico do encontro dos dois céus, não uma sentença: há casais felizes com notas modestas e casais com notas altas que não se entendem. O que faz uma relação é o que os dois constroem.";
   const POUCOS = "Os céus de vocês fazem poucos aspectos fortes entre si. Quando isso acontece, a relação depende menos dos astros e mais das escolhas de cada dia.";

@@ -12,13 +12,13 @@
   // O planeta de hoje × a natureza do aspecto (10 × 3 = 30 textos)
   const PLANETA = {
     lua: {
-      conj: "A Lua passa hoje por cima de um ponto sensível do seu mapa, e as emoções ficam mais à flor da pele. O que sentir hoje vem com força: vale a pena escutar antes de decidir.",
+      conj: "A Lua passa hoje por cima de um ponto sensível do seu mapa, e as emoções ficam mais à flor da pele. O que sentir hoje vem com força: escute-o antes de decidir.",
       har: "A Lua de hoje conversa bem com o seu céu. É um dia de humor mais leve, em que as pessoas e as situações tendem a colaborar sem grande esforço.",
       ten: "A Lua de hoje cria algum atrito no seu céu: pequenas irritações, cansaço ou uma sensibilidade maior do que o costume. Passa depressa, porque a Lua muda de lugar em poucas horas, por isso não leve tudo a peito.",
     },
     sol: {
       conj: "O Sol de hoje ilumina em cheio este ponto do seu mapa. É um dia de destaque: o que você fizer fica mais à vista, tanto o que já está bom como o que ainda pede ajuste.",
-      har: "O Sol de hoje lhe dá um empurrão de vitalidade e de confiança. Bom momento para dar a cara, pedir o que precisa e avançar com um plano.",
+      har: "O Sol de hoje dá-lhe um empurrão de vitalidade e de confiança. Bom momento para dar a cara, pedir o que precisa e avançar com um plano.",
       ten: "O Sol de hoje pede mais esforço do que o habitual. Pode sentir que tem de provar o seu valor, ou que a energia rende menos. Dose as forças e escolha bem as batalhas.",
     },
     mercurio: {
@@ -37,14 +37,14 @@
       ten: "Marte de hoje deixa o pavio mais curto, em você ou à sua volta. Respire antes de responder e evite a pressa, ao volante e nas decisões.",
     },
     jupiter: {
-      conj: "Júpiter passa por este ponto do seu mapa, um encontro que só acontece a cada doze anos. Traz confiança, vontade de crescer e portas que se entreabrem: vale a pena reparar nelas.",
+      conj: "Júpiter passa por este ponto do seu mapa, um encontro que só acontece a cada doze anos. Traz confiança, vontade de crescer e portas que se entreabrem, e convém reparar nelas.",
       har: "Júpiter sopra a seu favor: mais otimismo, mais boa vontade à sua volta e mais vontade de aprender. Aproveite para semear algo que queira ver crescer.",
-      ten: "Júpiter em tensão convida ao exagero: prometer demais, gastar demais, esperar demais. Nestes dias, a medida certa é a sua melhor aliada.",
+      ten: "Júpiter em tensão convida ao exagero: prometer demais, gastar demais, esperar demais. Nestes dias, procure a medida certa.",
     },
     saturno: {
       conj: "Saturno pousa neste ponto do seu mapa, um encontro que se repete mais ou menos a cada 29 anos. É tempo de assumir responsabilidades e construir com paciência. Pesa, mas o que se faz agora fica sólido.",
       har: "Saturno dá estrutura e constância. Bom momento para organizar, cumprir prazos e dar um passo sério num projeto de longo prazo.",
-      ten: "Saturno em tensão pode trazer a sensação de que tudo anda devagar, ou de que há obstáculos no caminho. Não desista: é um teste de persistência, não um muro.",
+      ten: "Saturno em tensão pode trazer a sensação de que tudo anda devagar, ou de que há obstáculos no caminho. Não desista: o obstáculo pode ser ultrapassado, e Saturno está só a testar a sua persistência.",
     },
     urano: {
       conj: "Urano, o planeta das surpresas, passa por este ponto do seu mapa. Algo pede renovação: uma rotina, uma ideia sobre si mesmo(a), uma forma de viver. Esteja aberto(a) ao inesperado.",
@@ -59,7 +59,7 @@
     plutao: {
       conj: "Plutão, o planeta da transformação profunda, trabalha este ponto do seu mapa durante uma longa temporada. Algo antigo vai dando lugar a algo novo, e você sai disto mais forte e mais verdadeiro(a).",
       har: "Plutão dá força interior e vontade de ir ao fundo das questões. Bom momento para largar um hábito, resolver uma pendência antiga ou recomeçar com mais verdade.",
-      ten: "Plutão em tensão traz à superfície o que estava escondido: medos, ciúmes, disputas de poder. Olhe para isso com coragem e sem dramatismo: é assim que se cura.",
+      ten: "Plutão em tensão traz à superfície o que estava escondido: medos, ciúmes, disputas de poder. Olhe para isso com coragem e sem dramatismo, para que possa sarar.",
     },
   };
 

@@ -50,7 +50,7 @@
     "Um encanto suave, quase de sonho.",
   ];
   // Sem a hora de nascimento não há Ascendente
-  const SEM_ASC = "Com a hora de nascimento, descubra o seu Ascendente.";
+  const SEM_ASC = "Indique a hora de nascimento para ver o seu Ascendente.";
 
   raiz.TextosTrio = { SOL, LUA, ASC, SEM_ASC };
 })(typeof window !== "undefined" ? window : globalThis);

@@ -13,10 +13,10 @@
   const CORES = [
     // ── quentes
     { nome: "Carmim", hex: "#B0105A", fam: "q",
-      agrada: { tema: "Paixão pela vida", texto: "Procura intensidade: sentir de verdade, viver com o coração aberto e dar cor aos dias. Há em si um desejo de entrega e de prazer que não quer ser adiado.", pergunta: "Onde é que a sua paixão está a ser vivida — e onde está apenas a ser imaginada?" },
+      agrada: { tema: "Paixão pela vida", texto: "Procura intensidade: sentir de verdade, viver com o coração aberto e dar cor aos dias. Há em si um desejo de entrega e de prazer que não quer ser adiado.", pergunta: "Onde é que a sua paixão está a ser vivida, e onde está apenas a ser imaginada?" },
       incomoda: { tema: "Cansaço das emoções fortes", texto: "Neste momento as emoções intensas pesam-lhe. Prefere calma a drama, e afasta-se de quem exige demasiado do seu coração." } },
     { nome: "Vermelho", hex: "#CC1A1A", fam: "q",
-      agrada: { tema: "Força para agir", texto: "Tem energia para avançar e vontade de conquistar. Quer resultados, quer movimento, e não gosta de ficar à espera que as coisas aconteçam sozinhas.", pergunta: "Essa força está a abrir caminho — ou a empurrar quem está à sua volta?" },
+      agrada: { tema: "Força para agir", texto: "Tem energia para avançar e vontade de conquistar. Quer resultados, quer movimento, e não gosta de ficar à espera que as coisas aconteçam sozinhas.", pergunta: "Essa força está a abrir caminho ou a empurrar quem está à sua volta?" },
       incomoda: { tema: "Pressão a mais", texto: "Sente que lhe pedem demasiado e demasiado depressa. A competição e a pressa cansam-no(a); o que precisa agora é de recuperar fôlego." } },
     { nome: "Laranja", hex: "#FF6A10", fam: "q",
       agrada: { tema: "Alegria de partilhar", texto: "Procura gente, conversa, movimento e boa disposição. Há em si vontade de celebrar, de criar e de sair da rotina para respirar ar novo.", pergunta: "Com quem gostaria de partilhar mais a sua alegria nestes dias?" },
@@ -36,7 +36,7 @@
       incomoda: { tema: "Esperança cansada", texto: "Tem desconfiado das boas notícias e das promessas fáceis. Depois de algumas desilusões, prefere ver para crer." } },
     { nome: "Amarelo", hex: "#FFEA10", fam: "a",
       agrada: { tema: "Mente aberta e liberdade", texto: "Quer novidade, aprender, mudar de ares. A sua mente está desperta e curiosa, e sente que o mundo tem muito mais para lhe mostrar.", pergunta: "O que é que gostaria de aprender ou experimentar pela primeira vez?" },
-      incomoda: { tema: "Cautela com a mudança", texto: "As mudanças repentinas inquietam-no(a). Precisa de estabilidade antes de abrir portas novas, e isso é sabedoria, não medo." } },
+      incomoda: { tema: "Cautela com a mudança", texto: "As mudanças repentinas inquietam-no(a). Precisa de estabilidade antes de abrir portas novas, e isso é prudência." } },
     { nome: "Verde-lima", hex: "#A8CF1E", fam: "a",
       agrada: { tema: "Renovação", texto: "Sente o impulso de começar de novo: um hábito, um projeto, uma forma diferente de olhar para si. É energia de primavera, fresca e cheia de vontade.", pergunta: "O que é que já está pronto para nascer na sua vida?" },
       incomoda: { tema: "Impaciência com começos", texto: "Recomeçar outra vez cansa-o(a). Prefere aprofundar o que já tem a abrir mais frentes novas." } },
@@ -54,13 +54,13 @@
       agrada: { tema: "Crescimento firme", texto: "Quer evoluir passo a passo, com raízes fortes. Tem paciência para construir e confiança de que o que planta com cuidado vai dar fruto.", pergunta: "O que está a cultivar neste momento que precisa de mais paciência sua?" },
       incomoda: { tema: "Cansaço de esperar", texto: "Os processos lentos deixam-no(a) inquieto(a). Gostaria de ver resultados já, e custa-lhe aceitar o tempo natural das coisas." } },
     { nome: "Verde-floresta", hex: "#0B5C28", fam: "v",
-      agrada: { tema: "Autonomia e firmeza", texto: "Quer decidir por si e manter a sua posição. Não aceita bem que lhe digam o que fazer, e sente que a sua independência é um tesouro a proteger.", pergunta: "A sua firmeza está a protegê-lo(a) — ou a afastá-lo(a) de quem o(a) quer ajudar?" },
+      agrada: { tema: "Autonomia e firmeza", texto: "Quer decidir por si e manter a sua posição. Não aceita bem que lhe digam o que fazer, e sente que a sua independência é um tesouro a proteger.", pergunta: "A sua firmeza está a protegê-lo(a) ou a afastá-lo(a) de quem o(a) quer ajudar?" },
       incomoda: { tema: "Rigidez à sua volta", texto: "A teimosia e as regras sem sentido irritam-no(a). Precisa de mais flexibilidade, nas outras pessoas e talvez também em si." } },
     { nome: "Turquesa", hex: "#00828F", fam: "v",
       agrada: { tema: "Proteção e clareza", texto: "Está atento(a) e protege o seu espaço com calma. Escolhe bem com quem partilha a sua energia e procura relações limpas e sinceras.", pergunta: "Há alguém de quem precisa de pôr um limite com mais clareza?" },
       incomoda: { tema: "Desconfiança da distância", texto: "A frieza e o distanciamento dos outros magoam-no(a). Quer proximidade verdadeira e não apenas boas maneiras." } },
     { nome: "Oliva", hex: "#686600", fam: "v",
-      agrada: { tema: "Paz com o que é", texto: "Aceita a vida como ela vem, com maturidade. Não precisa de provar nada a ninguém: procura apenas viver em paz com as suas escolhas.", pergunta: "O que é que já fez as pazes consigo — e o que ainda espera por isso?" },
+      agrada: { tema: "Paz com o que é", texto: "Aceita a vida como ela vem, com maturidade. Não precisa de provar nada a ninguém: procura apenas viver em paz com as suas escolhas.", pergunta: "O que é que já fez as pazes consigo, e o que ainda espera por isso?" },
       incomoda: { tema: "Recusa da resignação", texto: "Não aceita conformar-se. Sente que merece mais do que o «é assim mesmo», e isso dá-lhe vontade de mudar." } },
     { nome: "Prateado", hex: "#B9BFC8", fundo: PRATA, fam: "v",
       agrada: { tema: "Intuição desperta", texto: "A sua intuição está afinada: sente as coisas antes de as ver. Há uma ligação forte com a Lua, com os sonhos e com o lado invisível da vida.", pergunta: "Que sinal a sua intuição lhe tem dado e que ainda não escutou?" },
@@ -70,7 +70,7 @@
       incomoda: { tema: "Impaciência com a fragilidade", texto: "Não tem paciência para tratar das feridas devagar. Quer seguir em frente, mesmo que ainda não esteja totalmente recuperado(a)." } },
     // ── profundas
     { nome: "Azul-real", hex: "#0A2E9C", fam: "z",
-      agrada: { tema: "Lealdade e confiança", texto: "Valoriza a palavra dada e as relações que duram. Quer à sua volta pessoas em quem possa confiar de olhos fechados, e oferece o mesmo em troca.", pergunta: "Em quem confia de verdade — e já lhe disse isso?" },
+      agrada: { tema: "Lealdade e confiança", texto: "Valoriza a palavra dada e as relações que duram. Quer à sua volta pessoas em quem possa confiar de olhos fechados, e oferece o mesmo em troca.", pergunta: "Em quem confia de verdade? Já lhe disse isso?" },
       incomoda: { tema: "Desilusão com promessas", texto: "Sente que alguém não cumpriu o que prometeu. A confiança está ferida e precisa de tempo para voltar." } },
     { nome: "Azul-noite", hex: "#04066A", fam: "z",
       agrada: { tema: "Calma profunda", texto: "Precisa de silêncio, de descanso e de tempo para estar consigo. É no sossego que encontra as suas respostas e recupera a energia.", pergunta: "O que é que a sua alma lhe diz quando, finalmente, faz silêncio?" },
@@ -82,14 +82,14 @@
       agrada: { tema: "Necessidade de abrigo", texto: "Quer sentir-se seguro(a), aconchegado(a) e protegido(a). O corpo pede descanso, boa comida e um lugar onde possa simplesmente ser.", pergunta: "O que é que o seu corpo lhe está a pedir e ainda não lhe deu?" },
       incomoda: { tema: "Recusa do que é pesado", texto: "O que é pesado, lento ou demasiado material está a cansá-lo(a). Procura leveza e um pouco mais de alegria." } },
     { nome: "Preto", hex: "#0A0A0A", fam: "z",
-      agrada: { tema: "Proteção e limites", texto: "Neste momento precisa de se proteger e de dizer «não». Fecha-se para guardar a sua energia, e isso pode ser exatamente o que precisa.", pergunta: "Do que é que se está a proteger — e até quando vai precisar dessa proteção?" },
+      agrada: { tema: "Proteção e limites", texto: "Neste momento precisa de se proteger e de dizer «não». Fecha-se para guardar a sua energia, e isso pode ser exatamente o que precisa.", pergunta: "Do que é que se está a proteger, e até quando vai precisar dessa proteção?" },
       incomoda: { tema: "Vontade de luz", texto: "Recusa a tristeza e o fechamento. Quer sair de um período escuro e abrir as janelas da sua vida." } },
     { nome: "Azul-céu", hex: "#C6DAFF", fam: "z",
       agrada: { tema: "Leveza e sonho", texto: "Quer respirar, sonhar e sentir-se livre de preocupações. A sua imaginação está viva e procura horizontes largos e tranquilos.", pergunta: "Que sonho tem guardado e merece voltar a ver a luz?" },
       incomoda: { tema: "Desconfiança da ingenuidade", texto: "Os sonhos demasiado distantes da realidade não o(a) convencem agora. Prefere o que pode ver e tocar." } },
     // ── neutra
     { nome: "Cinzento", hex: "#6B6B6B", fam: "n",
-      agrada: { tema: "Distância que protege", texto: "Precisa de se manter um pouco à parte, observar sem se envolver e não tomar partido. É uma pausa para perceber o que realmente sente.", pergunta: "De que é que se está a manter à distância — e porquê?" },
+      agrada: { tema: "Distância que protege", texto: "Precisa de se manter um pouco à parte, observar sem se envolver e não tomar partido. É uma pausa para perceber o que realmente sente.", pergunta: "De que é que se está a manter à distância, e porquê?" },
       incomoda: { tema: "Vontade de se envolver", texto: "Não quer ficar em cima do muro. Quer participar, decidir e viver as coisas por inteiro, sem meias-tintas." } },
   ];
 
@@ -114,10 +114,10 @@
 
   // ⚖️ o VEREDITO FINAL (pedido dele, 28/10): o conselho pela família das cores preferidas
   const CONSELHO = {
-    q: "O seu fogo está aceso: use-o num objetivo concreto e escolha bem as batalhas. Nem tudo merece a sua energia; o que merece, merece-a toda.",
+    q: "O seu fogo está aceso: use-o num objetivo concreto e escolha bem as batalhas.",
     a: "A sua luz está a pedir espaço: dê-lhe um projeto, uma viagem, uma conversa nova. Abra uma janela por dia e veja o que entra.",
     v: "As suas raízes pedem tempo: construa devagar, proteja o seu espaço e confie que o que é seu está a crescer, mesmo quando não se vê.",
-    z: "A sua alma pede silêncio: reserve um momento só seu, sem ruído, para ouvir o que já sabe. As respostas que procura estão mais perto do que pensa.",
+    z: "A sua alma pede silêncio: reserve um momento só seu, sem ruído, para ouvir o que já sabe.",
     n: "Está a observar antes de decidir: dê-se esse tempo, mas marque uma data para escolher. A pausa só é sábia enquanto não se torna espera.",
   };
 
