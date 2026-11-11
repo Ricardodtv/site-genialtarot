@@ -9,7 +9,7 @@ FAQ = {
   ("Porque é que dois Carneiros discutem tanto?",
    "Porque os dois reagem primeiro e pensam depois. A boa notícia é que nenhum guarda rancor: a zanga sobe depressa e desce depressa. Ajuda muito combinarem uma pausa de alguns minutos antes de responder quando o tom aquece."),
   ("O que é preciso para um casal Carneiro e Carneiro durar?",
-   "Projetos em comum que gastem a energia dos dois — desporto, viagens, um negócio — e momentos de calma combinados. Quando a relação tem um objetivo partilhado, a competição entre os dois transforma-se em parceria."),
+   "Projetos em comum que gastem a energia dos dois (desporto, viagens, um negócio) e momentos de calma combinados. Quando a relação tem um objetivo partilhado, a competição entre os dois transforma-se em parceria."),
  ],
  "compatibilidade-carneiro-e-leao": [
   ("Carneiro e Leão são um bom par no amor?",
@@ -158,7 +158,7 @@ FAQ = {
  ],
  "compatibilidade-touro-e-balanca": [
   ("Touro e Balança combinam?",
-   "Combinam em muita coisa, porque ambos são regidos por Vénus e partilham o gosto pela harmonia, pela beleza e pelo conforto. Vivem esse gosto de maneiras diferentes: Touro mais caseiro, Balança mais social. Respeitar essa diferença é a chave deste par."),
+   "Combinam em muita coisa, porque ambos são regidos por Vénus e partilham o gosto pela harmonia, pela beleza e pelo conforto. Vivem esse gosto de maneiras diferentes: Touro mais caseiro, Balança mais social. Correm bem quando cada um respeita a maneira do outro."),
   ("Touro tem ciúmes de Balança?",
    "Pode ter, porque Balança é sociável e gosta de agradar, e Touro valoriza a exclusividade. O ciúme acalma quando Balança dá sinais claros de compromisso e Touro aceita que a simpatia de Balança com os outros não é uma ameaça à relação."),
   ("Como é que Touro e Balança tomam decisões juntos?",
@@ -258,7 +258,7 @@ FAQ = {
   ("Capricórnio acha Gémeos pouco sério?",
    "Muitas vezes, sim, e Gémeos acha Capricórnio rígido e frio. Capricórnio quer saber para onde vai a relação, e Gémeos prefere viver o momento. Conversar abertamente sobre o futuro, sem pressão, ajuda os dois a encontrarem um ritmo comum."),
   ("Gémeos e Capricórnio trabalham bem juntos?",
-   "Podem complementar-se bem: Gémeos traz ideias, contactos e facilidade em comunicar; Capricórnio traz método, disciplina e visão de longo prazo. O segredo é Capricórnio não abafar a criatividade de Gémeos e Gémeos respeitar os prazos de Capricórnio."),
+   "Podem complementar-se bem: Gémeos traz ideias, contactos e facilidade em comunicar; Capricórnio traz método, disciplina e visão de longo prazo. Resulta quando Capricórnio não abafa a criatividade de Gémeos e Gémeos respeita os prazos de Capricórnio."),
  ],
  "compatibilidade-gemeos-e-aquario": [
   ("Gémeos e Aquário são o par ideal?",
@@ -621,7 +621,7 @@ FAQ = {
   ("Dois Aquários podem afastar-se?",
    "Podem, porque a independência a dobrar pode virar distância. Cada um pode viver tão focado nos seus projetos que se esquece do outro. Marcar tempo juntos e partilhar os projetos, em vez de os viverem em paralelo, mantém a ligação."),
   ("Dois Aquários discutem muito?",
-   "Mais debates do que discussões, mas podem ser intermináveis, porque ambos defendem as suas ideias com teimosia. Aceitar que podem pensar de maneira diferente sem que isso afete o afeto é o segredo deste par."),
+   "Mais debates do que discussões, mas podem ser intermináveis, porque ambos defendem as suas ideias com teimosia. Ajuda muito aceitarem que podem pensar de maneira diferente sem que isso afete o afeto."),
  ],
  "compatibilidade-aquario-e-peixes": [
   ("Aquário e Peixes são compatíveis?",
