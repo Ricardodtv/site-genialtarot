@@ -15,7 +15,7 @@ VENUS = [
   "desc": "Vénus em Touro: o amor sensual, fiel e paciente. Como ama, o que a atrai, como seduz e o desafio de quem tem Vénus no seu próprio domicílio.",
   "intro": "Vénus é o planeta do amor e da harmonia: mostra a forma como você ama, o que acha belo, o que lhe dá prazer e até a maneira como lida com os afectos no dia-a-dia. Em Touro, Vénus está em casa, no seu domicílio, e expressa-se com toda a naturalidade. O seu amor é feito de presença, de gestos concretos e de tempo.",
   "ama": "Você ama devagar e para durar. Não se entrega à primeira, porque precisa de sentir segurança, mas quando escolhe alguém é leal, afectuoso(a) e muito constante. Mostra o que sente através do toque, da boa mesa, dos pequenos cuidados e da casa acolhedora. Para si, o amor é um lugar onde se descansa.",
-  "atrai": "Atraem-no(a) pessoas serenas, estáveis e com os pés na terra, que cuidam de si e da sua aparência sem exageros. Uma voz agradável, um perfume bom e uma pessoa que cumpre o que promete valem mais do que mil promessas. Também lhe agradam as pessoas que sabem apreciar a vida sem pressa e que não fogem quando é preciso assumir um compromisso.",
+  "atrai": "Atraem-no(a) pessoas serenas, estáveis e com os pés na terra, que cuidam de si e da sua aparência sem exageros. Uma voz agradável, um bom perfume e uma pessoa que cumpre o que diz contam mais do que as grandes declarações. Também lhe agradam as pessoas que sabem apreciar a vida sem pressa e que não fogem quando é preciso assumir um compromisso.",
   "seduz": "Seduz pela calma, pela sensualidade e por uma presença que transmite conforto. Gosta de ser seduzido(a) com paciência e com prazeres simples: um jantar bem escolhido, um passeio na natureza, um presente pensado, um abraço que não tem pressa.",
   "desafio": "O seu desafio é não confundir amor com posse nem estabilidade com rotina. Se aceitar que as relações também mudam e crescem, a sua fidelidade dá segurança sem prender ninguém."},
 
@@ -89,12 +89,12 @@ VENUS = [
   "ama": "Você ama com seriedade e com os olhos postos no futuro. Antes de se entregar, avalia, observa e quer perceber se a pessoa é de confiança. Quando escolhe, compromete-se de verdade e trabalha pela relação como trabalha por tudo o que valoriza. Mostra o amor através da presença constante, da protecção e dos planos que faz a dois.",
   "atrai": "Atraem-no(a) pessoas maduras, ambiciosas e com objectivos claros, que tenham palavra e respeito pelo trabalho. A elegância discreta e uma certa autoridade natural dizem-lhe mais do que o charme fácil. Também lhe agradam as pessoas um pouco mais velhas ou mais experientes, que já sabem o que querem da vida.",
   "seduz": "Seduz pela solidez, pela calma e por um humor seco que surpreende quem o(a) conhece melhor. Gosta de ser seduzido(a) com paciência, consistência e provas de que a pessoa leva a sério o que diz.",
-  "desafio": "O seu desafio é baixar a guarda e mostrar a ternura que guarda por dentro, sem esperar pelo momento perfeito. Quando se permite ser vulnerável, o amor deixa de ser mais uma responsabilidade e passa a ser também descanso."},
+  "desafio": "O seu desafio é baixar a guarda e mostrar a ternura que guarda por dentro, sem esperar pelo momento perfeito. Quando se permite ser vulnerável, o amor também lhe dá descanso."},
 
  {"slug": "aquario",
   "titulo": "Vénus em Aquário: como ama, o que a atrai e como seduz",
   "desc": "Vénus em Aquário: o amor livre, original e de amizade. Como ama, o que a atrai, como seduz e o desafio de quem tem Vénus neste signo de ar.",
-  "intro": "Vénus é o planeta do amor e da harmonia: mostra a forma como você ama, o que acha belo, o que lhe dá prazer e até a maneira como lida com os afectos no dia-a-dia. Em Aquário, Vénus torna-se independente, original e muito amiga. Para si, o amor só vale a pena se houver liberdade e respeito.",
+  "intro": "Vénus é o planeta do amor e da harmonia: mostra a forma como você ama, o que acha belo, o que lhe dá prazer e até a maneira como lida com os afectos no dia-a-dia. Em Aquário, Vénus torna-se independente, original e muito amiga. Para si, só há amor onde houver liberdade e respeito.",
   "ama": "Você ama de uma forma pouco convencional. Precisa de ser primeiro amigo(a) e só depois amante, e valoriza a cumplicidade intelectual acima do romance tradicional. Dá espaço ao outro e pede o mesmo, porque não suporta ciúmes nem cobranças. Quando ama, é fiel aos seus princípios e muito leal à pessoa que escolheu.",
   "atrai": "Atraem-no(a) pessoas diferentes, inteligentes e com ideias próprias, que não sigam a multidão. Uma mente original, uma causa partilhada ou um lado excêntrico despertam-lhe mais interesse do que a beleza óbvia. Sente-se especialmente atraído(a) por quem defende aquilo em que acredita e não tem medo de ser diferente diante dos outros.",
   "seduz": "Seduz pela autenticidade, pela conversa estimulante e por uma certa imprevisibilidade. Gosta de ser seduzido(a) sem pressões nem jogos de posse, por alguém que respeite a sua independência e o(a) surpreenda com algo fora do comum.",
@@ -118,7 +118,7 @@ MARTE = [
   "energia": "Você age por impulso e quase sempre com coragem. Quando algo o(a) incomoda, reage de imediato, e uma discussão consigo é intensa mas passa depressa. Gosta de competir, de pôr-se à prova e de resolver as coisas de frente. A espera e a burocracia são, para si, um verdadeiro castigo.",
   "desejo": "No desejo, é directo(a), ardente e espontâneo(a). Gosta de tomar a iniciativa e sente-se atraído(a) por quem lhe oferece um pouco de desafio. A paixão acende-se num instante e precisa de novidade para continuar viva.",
   "trabalho": "No trabalho, brilha a arrancar projectos, a liderar em momentos de crise e a abrir caminhos que outros não se atrevem. Rende mais com autonomia e objectivos claros, e menos quando tem de esperar autorizações. O desporto e o exercício físico são, para si, uma excelente forma de gastar o excesso de energia antes que ela se transforme em impaciência.",
-  "desafio": "O seu desafio é canalizar a pressa e a fúria para aquilo que vale a pena e aprender a terminar o que começa. Com paciência ao lado da coragem, chega muito mais longe."},
+  "desafio": "O seu desafio é canalizar a pressa e a fúria para aquilo que merece o esforço e aprender a terminar o que começa. Com paciência ao lado da coragem, chega muito mais longe."},
 
  {"slug": "touro",
   "titulo": "Marte em Touro: energia, desejo, trabalho e acção",
@@ -145,7 +145,7 @@ MARTE = [
   "energia": "Você age conforme aquilo que sente, e o seu ânimo sobe e desce com as marés interiores. Evita o confronto directo e prefere contornar, mas quando a família ou o seu território são ameaçados, defende-os com uma tenacidade surpreendente. Guarda as mágoas e pode reagir com amuos em vez de dizer o que o(a) incomodou.",
   "desejo": "No desejo, precisa de segurança e de intimidade emocional antes de se soltar. A paixão nasce do carinho e da confiança, e cresce num ambiente acolhedor. Quando se sente amado(a), é terno(a) e muito dedicado(a).",
   "trabalho": "No trabalho, dá o seu melhor quando sente que está a cuidar de alguém ou a construir algo para os seus. Tem bom instinto, memória e capacidade de criar equipas que funcionam como uma família. Trabalhar a partir de casa, num negócio familiar ou em áreas ligadas ao cuidado, à alimentação ou ao imobiliário costuma trazer-lhe bons resultados.",
-  "desafio": "O seu desafio é dizer directamente o que sente em vez de se fechar ou atacar de lado. Quando diz o que sente, protege melhor os seus e a si próprio(a)."},
+  "desafio": "O seu desafio é dizer directamente o que sente em vez de se fechar ou atacar de lado. Assim protege melhor os seus e a si próprio(a)."},
 
  {"slug": "leao",
   "titulo": "Marte em Leão: energia, desejo, trabalho e acção",

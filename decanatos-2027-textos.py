@@ -8,7 +8,7 @@ DECANATOS = [
   "decs": [
    ["1.º decanato", "21 a 30 de março (aprox.)", "Carneiro e Marte", "É o Carneiro em estado puro: rápido, frontal e cheio de coragem. Você decide depressa e prefere errar a ficar parado. Tem uma energia que arrasta os outros, mas precisa de aprender a acabar o que começa. A paciência é a sua grande lição."],
    ["2.º decanato", "31 de março a 9 de abril (aprox.)", "Leão e o Sol", "O fogo de Carneiro ganha brilho e orgulho. Você gosta de liderar, de ser reconhecido(a) e tem um coração generoso para quem lhe é leal. Há aqui um lado criativo e teatral que não passa despercebido. O cuidado é não confundir dignidade com teimosia."],
-   ["3.º decanato", "10 a 19 de abril (aprox.)", "Sagitário e Júpiter", "É o Carneiro mais idealista e aventureiro. Você luta por causas, por ideias, por uma vida com sentido, e não apenas por vitórias pessoais. Gosta de viajar, de aprender e de dizer a verdade, às vezes sem filtro. Com o tempo, torna-se um Carneiro sábio, que inspira em vez de impor."]]},
+   ["3.º decanato", "10 a 19 de abril (aprox.)", "Sagitário e Júpiter", "É o Carneiro mais idealista e aventureiro. As causas, as ideias e uma vida com sentido movem-no(a) mais do que as vitórias pessoais. Gosta de viajar, de aprender e de dizer a verdade, às vezes sem filtro. Com o tempo, torna-se um Carneiro sábio, que inspira em vez de impor."]]},
 
  {"slug": "touro",
   "titulo": "Decanatos de Touro: os três tipos de Touro e as suas datas",
@@ -114,7 +114,7 @@ PAGINAS_2027 = [
  {"slug": "mercurio-retrogrado-2027",
   "titulo": "Mercúrio retrógrado em 2027: as três datas e o que fazer",
   "desc": "Mercúrio retrógrado em 2027: as datas dos três períodos, os signos por onde passa e conselhos práticos para atravessar cada fase com calma e bom senso.",
-  "intro": "Três vezes por ano, Mercúrio parece andar para trás no céu. Não anda, claro: é um efeito de perspectiva, porque a Terra o ultrapassa na sua órbita. Mas na tradição astrológica estes períodos pedem revisão, paciência e atenção redobrada à comunicação, aos contratos, às viagens e à tecnologia. Em 2027, Mercúrio fica retrógrado três vezes, e em cada uma recua de um signo para o anterior, o que dá a cada período dois tons diferentes. É altura para rever, sem medo.",
+  "intro": "Três vezes por ano, Mercúrio parece andar para trás no céu. Não anda, claro: é um efeito de perspectiva, porque a Terra o ultrapassa na sua órbita. Mas na tradição astrológica estes períodos pedem revisão, paciência e atenção redobrada à comunicação, aos contratos, às viagens e à tecnologia. Em 2027, Mercúrio fica retrógrado três vezes, e em cada uma recua de um signo para o anterior, o que dá a cada período dois tons diferentes.",
   "periodos": [
    ["9 de fevereiro a 3 de março", "Peixes → Aquário", "Começa em Peixes, o que pede atenção aos mal-entendidos, às promessas vagas e àquilo que se diz por meias palavras. Ao recuar para Aquário, o foco passa para os amigos, os grupos e os projectos colectivos. É uma boa altura para retomar contactos antigos e rever planos a longo prazo."],
    ["11 de junho a 5 de julho", "Caranguejo → Gémeos", "Em Caranguejo, voltam assuntos de família, da casa e do passado, e as conversas emotivas pedem delicadeza. Ao recuar para Gémeos, o movimento passa para os papéis, as mensagens, as deslocações curtas e os irmãos ou vizinhos. Confirme moradas, horários e reservas antes de sair."],
@@ -142,7 +142,7 @@ PAGINAS_2027 = [
  {"slug": "retrogrados-2027",
   "titulo": "Planetas retrógrados em 2027: Marte, Saturno e Vénus",
   "desc": "Planetas retrógrados em 2027: Marte retrógrado entre Virgem e Leão, Saturno retrógrado em Carneiro, e porque Vénus não fica retrógrada este ano.",
-  "intro": "Não é só Mercúrio que recua no céu. Os outros planetas também têm os seus períodos retrógrados, e cada um mexe numa área diferente da vida. Em 2027, os mais importantes são Marte, que abre o ano retrógrado, e Saturno, que recua na segunda metade do ano. E há uma boa notícia para os assuntos do coração: Vénus não fica retrógrada em 2027. Para as três datas de Mercúrio retrógrado, veja a página própria.",
+  "intro": "Além de Mercúrio, os outros planetas também têm os seus períodos retrógrados, e cada um mexe numa área diferente da vida. Em 2027, os mais importantes são Marte, que abre o ano retrógrado, e Saturno, que recua na segunda metade do ano. Vénus, o planeta do amor, não fica retrógrada em 2027. Para as três datas de Mercúrio retrógrado, veja a página própria.",
   "periodos": [
    ["10 de janeiro a 1 de abril", "Marte retrógrado: Virgem → Leão", "Marte é a energia, a acção e a vontade. Retrógrado, pede que reveja a forma como gasta as suas forças. Em Virgem, o tema é o trabalho, a saúde e os métodos; ao recuar para Leão, passa para o orgulho, a criatividade e o amor. Pode haver cansaço, impaciência ou projectos que empancam: é melhor ajustar do que forçar."],
    ["9 de agosto a 24 de dezembro", "Saturno retrógrado em Carneiro", "Saturno é a estrutura, a disciplina e o tempo. Retrógrado em Carneiro, convida a rever a forma como toma a iniciativa e assume a responsabilidade pelos seus próprios caminhos. É uma fase para consolidar, corrigir o que ficou mal feito e ganhar maturidade, mais do que para arrancar com coisas novas."],
