@@ -226,7 +226,7 @@ corpo = f"""  <section class="heroi">
     <h2>Os quatro elementos</h2>
     <p>Os signos dividem-se em quatro elementos. <b>Fogo</b> (Carneiro, Leão, Sagitário): entusiasmo e ação. <b>Terra</b> (Touro, Virgem, Capricórnio): estabilidade e sentido prático. <b>Ar</b> (Gémeos, Balança, Aquário): ideias e comunicação. <b>Água</b> (Caranguejo, Escorpião, Peixes): emoção e intuição.</p>
     <p>No Brasil, alguns signos têm outro nome: Carneiro é Áries, Gémeos é Gêmeos, Caranguejo é Câncer e Balança é Libra.</p>
-    <div class="ligas"><a href="/horoscopo-do-dia">Horóscopo de hoje</a><a href="/ascendente">Calcular o Ascendente</a><a href="/compatibilidade">Compatibilidade</a><a href="/lua">A Lua de hoje</a></div>
+    <div class="ligas"><a href="/horoscopo-do-dia">Horóscopo de hoje</a><a href="/horoscopo-de-amanha">Horóscopo de amanhã</a><a href="/ascendente">Calcular o Ascendente</a><a href="/compatibilidade">Compatibilidade</a><a href="/lua">A Lua de hoje</a></div>
   </section>
 """
 open("signos-do-zodiaco.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
