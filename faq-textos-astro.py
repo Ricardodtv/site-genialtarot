@@ -76,7 +76,7 @@ FAQ = {
  ],
  "ascendente-em-escorpiao": [
   ("Que planetas regem o mapa com Ascendente em Escorpião?",
-   "Marte, o regente tradicional, e Plutão, o regente moderno. A casa onde Marte está mostra onde gasta a sua força e onde luta; a casa de Plutão mostra onde a vida lhe pede transformações profundas. Os dois juntos dão a leitura completa deste Ascendente."),
+   "Marte, o regente tradicional, e Plutão, o regente moderno. A casa onde Marte está mostra onde gasta a sua força e onde luta; a casa de Plutão mostra onde a vida lhe pede transformações profundas."),
   ("Como lidar com alguém de Ascendente em Escorpião?",
    "Com verdade e paciência. Este Ascendente testa antes de confiar e percebe depressa uma meia verdade. Dê-lhe tempo, respeite os seus silêncios e cumpra o que promete. Quando sente que pode confiar, torna-se um aliado leal e protetor."),
   ("Ascendente em Escorpião é ciumento?",
@@ -110,7 +110,7 @@ FAQ = {
   ("Porque é que o Ascendente em Peixes é pouco comum?",
    "Porque, em Portugal, Peixes atravessa o horizonte depressa, em cerca de uma hora, enquanto outros signos demoram duas ou três. Quem tem este Ascendente nasceu numa janela curta do dia, e por isso a hora exata é ainda mais importante para o confirmar."),
   ("Quem tem Ascendente em Peixes é influenciável?",
-   "Absorve com facilidade o ambiente e o estado de espírito dos outros, e pode deixar-se levar. Não é fraqueza, é sensibilidade. Ajuda muito ter rotinas próprias, momentos a sós e pessoas de confiança a quem perguntar antes de decidir."),
+   "Absorve com facilidade o ambiente e o estado de espírito dos outros e, por ser tão sensível, pode deixar-se levar. Ajuda muito ter rotinas próprias, momentos a sós e pessoas de confiança a quem perguntar antes de decidir."),
   ("Que profissões combinam com Ascendente em Peixes?",
    "As que usam a imaginação e a compaixão: artes, música, fotografia, áreas de apoio e acompanhamento, espiritualidade ou trabalhos ligados ao mar. Precisa de sentir que o que faz tem alma. Júpiter, Neptuno e a Casa 10 completam a leitura."),
  ],
@@ -196,7 +196,7 @@ FAQ = {
  ],
  "casa-11": [
   ("Qual é a diferença entre a Casa 11 e a Casa 5?",
-   "São casas opostas. A Casa 5 é aquilo que você cria sozinho(a) e com o coração: os filhos, os amores, os passatempos. A Casa 11 é aquilo que constrói com os outros: os amigos, os grupos e os projetos de futuro. Uma é o «eu» a brilhar, a outra é o «nós»."),
+   "São casas opostas. A Casa 5 é aquilo que você cria sozinho(a) e com o coração: os filhos, os amores, os passatempos. A Casa 11 é aquilo que constrói com os outros: os amigos, os grupos e os projetos de futuro."),
   ("A Casa 11 fala de dinheiro?",
    "Na astrologia tradicional, sim: era chamada a casa dos «bons espíritos» e dos ganhos que vêm da carreira e dos contactos. Planetas bem colocados aqui costumam trazer apoio de amigos e oportunidades através de redes de pessoas."),
   ("O que significa ter a Casa 11 vazia?",
@@ -320,7 +320,7 @@ FAQ = {
   ("Que casas do mapa astral são de Fogo?",
    "As Casas 1, 5 e 9, as casas naturais de Carneiro, Leão e Sagitário. Falam da identidade, da criatividade e da procura de sentido. Quem tem muitos planetas nestas casas costuma viver com o espírito do Fogo, mesmo sem ter o Sol num signo de Fogo."),
   ("Fogo e Água são incompatíveis?",
-   "Não são incompatíveis, são diferentes. O Fogo é rápido e direto, a Água é sensível e precisa de tempo. Pode haver choques, mas também uma atração forte: o Fogo aquece a Água e a Água ensina o Fogo a sentir. Funciona quando há respeito pelo ritmo de cada um."),
+   "Não, mas são muito diferentes. O Fogo é rápido e direto, a Água é sensível e precisa de tempo. Pode haver choques, mas também uma atração forte: o Fogo aquece a Água e a Água ensina o Fogo a sentir. Funciona quando há respeito pelo ritmo de cada um."),
  ],
  "elemento-terra": [
   ("Que casas do mapa astral são de Terra?",
@@ -438,7 +438,7 @@ FAQ = {
  ],
  "lua-em-virgem": [
   ("Quem tem Lua em Virgem preocupa-se demais?",
-   "Tende a pensar muito no que pode correr mal e a querer ter tudo controlado, porque é assim que se sente seguro(a). A preocupação é a outra face do cuidado. Ajuda ter rotinas, listas e momentos em que se dá autorização para não fazer nada."),
+   "Tende a pensar muito no que pode correr mal e a querer ter tudo controlado, porque é assim que se sente seguro(a). Ajuda ter rotinas, listas e momentos em que se dá autorização para não fazer nada."),
   ("O que fazer nos dias de Lua em Virgem?",
    "Na tradição, são dias bons para arrumar, organizar, limpar, tratar de papéis e cuidar dos pequenos hábitos do dia a dia. A mente fica mais crítica e atenta ao pormenor, o que é ótimo para rever trabalho, mas pede cuidado com as palavras."),
   ("Como é a Lua em Virgem no amor?",
@@ -446,7 +446,7 @@ FAQ = {
  ],
  "lua-em-balanca": [
   ("Quem tem Lua em Balança não sabe estar sozinho(a)?",
-   "Sente-se mais equilibrado(a) quando partilha a vida, e por isso pode ter dificuldade em passar muito tempo só. Não é dependência, é a sua forma de sentir: as emoções ficam mais claras quando há alguém do outro lado. Aprender a estar bem consigo também faz parte do caminho."),
+   "Sente-se mais equilibrado(a) quando partilha a vida, e por isso pode ter dificuldade em passar muito tempo só. Tem a ver com a forma como sente: as emoções ficam-lhe mais claras quando há alguém do outro lado. Aprender a estar bem consigo também faz parte do caminho."),
   ("O que fazer nos dias de Lua em Balança?",
    "A tradição associa-os às relações, à diplomacia, aos encontros, à arte e à beleza. São bons para conversas delicadas, acordos e reconciliações. A indecisão aumenta um pouco, por isso não são os dias ideais para escolhas rápidas."),
   ("Como é uma mãe ou um pai com Lua em Balança?",
@@ -462,7 +462,7 @@ FAQ = {
  ],
  "lua-em-sagitario": [
   ("Quem tem Lua em Sagitário foge do compromisso?",
-   "Não foge do compromisso, foge da prisão. Precisa de sentir que a relação lhe dá espaço para crescer, viajar e continuar a aprender. Com alguém que partilhe essa vontade de horizonte, a Lua em Sagitário é leal, alegre e muito generosa."),
+   "Aceita o compromisso, desde que não se sinta preso(a). Precisa de sentir que a relação lhe dá espaço para crescer, viajar e continuar a aprender. Com alguém que partilhe essa vontade de horizonte, a Lua em Sagitário é leal, alegre e muito generosa."),
   ("O que fazer nos dias de Lua em Sagitário?",
    "A tradição associa-os às viagens, aos estudos, às conversas sobre a vida e aos planos de futuro. O otimismo sobe e dá vontade de dizer a verdade sem filtro, por isso convém pensar duas vezes antes de prometer demais ou de falar a quente."),
   ("Com que signos combina quem tem Lua em Sagitário?",
@@ -470,7 +470,7 @@ FAQ = {
  ],
  "lua-em-capricornio": [
   ("O que significa a Lua estar em exílio em Capricórnio?",
-   "Na astrologia clássica, exílio é o signo oposto ao domicílio. A Lua rege Caranguejo, que pede colo e emoção, e em Capricórnio fica num signo que pede contenção. Não é azar: é uma Lua que sente muito por dentro e mostra o amor pela responsabilidade."),
+   "Na astrologia clássica, exílio é o signo oposto ao domicílio. A Lua rege Caranguejo, que pede colo e emoção, e em Capricórnio fica num signo que pede contenção. É uma Lua que sente muito por dentro e mostra o amor pela responsabilidade."),
   ("Como é a infância de quem tem Lua em Capricórnio?",
    "A tradição associa esta Lua a crianças que crescem cedo, com responsabilidades, regras firmes ou um ambiente em que era preciso ser forte. Por isso, em adulto, custa-lhe pedir ajuda. Com o tempo, aprende que também merece ser cuidado(a)."),
   ("O que fazer nos dias de Lua em Capricórnio?",
@@ -502,7 +502,7 @@ FAQ = {
  ],
  "marte-em-touro": [
   ("O que significa Marte em exílio em Touro?",
-   "Na astrologia clássica, Marte está em exílio no signo oposto a um dos que rege, e Touro é o oposto de Escorpião. Não é um mau Marte: troca a rapidez pela resistência. Demora a arrancar, mas quando decide, raramente desiste."),
+   "Na astrologia clássica, Marte está em exílio no signo oposto a um dos que rege, e Touro é o oposto de Escorpião. Este Marte troca a rapidez pela resistência: demora a arrancar, mas quando decide, raramente desiste."),
   ("Como lida com a raiva quem tem Marte em Touro?",
    "Aguenta muito tempo calado(a), com uma paciência que parece infinita. O problema é que vai acumulando, e quando finalmente explode, é difícil de travar. Dizer o que incomoda logo no início, com calma, evita essas grandes tempestades."),
   ("Que desporto combina com Marte em Touro?",
@@ -542,7 +542,7 @@ FAQ = {
  ],
  "marte-em-balanca": [
   ("O que significa Marte em exílio em Balança?",
-   "Na astrologia clássica, Balança é o signo oposto a Carneiro, que Marte rege. Aqui, a energia de luta passa pela diplomacia e pela negociação. Não é um Marte fraco: é um Marte que prefere ganhar pela razão e pelo acordo do que pela força."),
+   "Na astrologia clássica, Balança é o signo oposto a Carneiro, que Marte rege. Aqui, a energia de luta passa pela diplomacia e pela negociação. É um Marte que prefere ganhar pela razão e pelo acordo do que pela força."),
   ("Como lida com a raiva quem tem Marte em Balança?",
    "Evita o conflito o mais que pode, e por isso a raiva pode ficar guardada e sair de forma indireta, com sarcasmo ou distância. Defende com força as causas justas, sobretudo as dos outros. Aprender a dizer o que quer, sem medo de desagradar, é o seu grande passo."),
   ("Que desporto combina com Marte em Balança?",
@@ -566,7 +566,7 @@ FAQ = {
  ],
  "marte-em-capricornio": [
   ("Porque se diz que Marte está exaltado em Capricórnio?",
-   "Na astrologia clássica, a exaltação é o signo onde um planeta dá o melhor de si. Em Capricórnio, a energia de Marte ganha disciplina, estratégia e resistência: deixa de ser só impulso e passa a ser ação com plano. É um Marte de grandes realizações."),
+   "Na astrologia clássica, a exaltação é o signo onde um planeta dá o melhor de si. Em Capricórnio, a energia de Marte ganha disciplina, estratégia e resistência: deixa de ser só impulso e passa a ser ação com plano."),
   ("Como lida com a raiva quem tem Marte em Capricórnio?",
    "Controla-a, muitas vezes com uma frieza que impressiona. Prefere responder com resultados do que com gritos. O risco é engolir demasiado e endurecer. Ter uma válvula de escape, como o exercício ou uma conversa franca, evita que a tensão se acumule."),
   ("Que desporto combina com Marte em Capricórnio?",
@@ -630,7 +630,7 @@ FAQ = {
  ],
  "venus-em-virgem": [
   ("O que significa Vénus em queda em Virgem?",
-   "Na astrologia clássica, queda é o signo oposto ao da exaltação, que para Vénus é Peixes. Em Virgem, o amor perde o lado sonhador e ganha pudor, cuidado e sentido prático. Não é um amor menor: é um amor que se prova nos gestos do dia a dia."),
+   "Na astrologia clássica, queda é o signo oposto ao da exaltação, que para Vénus é Peixes. Em Virgem, o amor perde o lado sonhador e ganha pudor, cuidado e sentido prático. É um amor que se prova nos gestos do dia a dia."),
   ("Com que signos combina quem tem Vénus em Virgem?",
    "Sente-se bem com signos de Terra e de Água, que valorizam a lealdade, a discrição e os cuidados concretos. Precisa de alguém paciente, que não leve a mal a sua franqueza e que perceba que a crítica, muitas vezes, é uma forma de querer o melhor."),
   ("Que presentes agradam a quem tem Vénus em Virgem?",
@@ -656,7 +656,7 @@ FAQ = {
   ("Com que signos combina quem tem Vénus em Sagitário?",
    "Entende-se bem com signos de Fogo e de Ar, que partilham a vontade de aventura, o humor e o gosto pela liberdade. Precisa de alguém que queira crescer, viajar e aprender ao seu lado. Pessoas muito ciumentas ou caseiras podem fazê-la sentir-se presa."),
   ("Vénus em Sagitário tem medo do compromisso?",
-   "Não tem medo do compromisso, tem medo de uma vida pequena. Precisa de uma relação que lhe dê espaço e horizonte. Quando sente que pode continuar a ser livre e a crescer a dois, compromete-se de coração e é muito generosa."),
+   "Aceita o compromisso; o que a assusta é uma vida pequena. Precisa de uma relação que lhe dê espaço e horizonte. Quando sente que pode continuar a ser livre e a crescer a dois, compromete-se de coração e é muito generosa."),
   ("Que tipo de encontro agrada a Vénus em Sagitário?",
    "Uma viagem, mesmo curta, um restaurante de outro país, um passeio pela natureza ou uma conversa sobre a vida e o mundo. Gosta de rir e de descobrir coisas novas. A rotina e os encontros sempre iguais aborrecem-na depressa."),
  ],
@@ -670,7 +670,7 @@ FAQ = {
  ],
  "venus-em-aquario": [
   ("Com que signos combina quem tem Vénus em Aquário?",
-   "Entende-se bem com signos de Ar e de Fogo, que respeitam a sua independência e gostam de ideias novas. Precisa de alguém que seja também amigo(a) e que não tenha ciúmes dos seus outros amigos e projetos. A liberdade mútua é essencial."),
+   "Entende-se bem com signos de Ar e de Fogo, que respeitam a sua independência e gostam de ideias novas. Precisa de alguém que seja também amigo(a) e que não tenha ciúmes dos seus outros amigos e projetos. Cada um precisa de manter a sua liberdade."),
   ("Vénus em Aquário é fiel?",
    "Pode ser muito leal, mas à sua maneira: precisa de sentir que fica por escolha e não por obrigação. Uma relação com espaço, conversa e amizade é a que melhor a prende. O controlo e as cenas de ciúme têm o efeito contrário."),
   ("Que tipo de encontro agrada a Vénus em Aquário?",
@@ -704,7 +704,7 @@ FAQ = {
   ("Quanto tempo dura Mercúrio retrógrado?",
    "Cerca de três semanas, três ou quatro vezes por ano. Muitos astrólogos contam também uns dias antes e depois, a chamada sombra, em que o planeta abranda e retoma a velocidade. Na tradição, é tempo de rever, confirmar e reler, mais do que de começar."),
   ("O que não se deve fazer com Mercúrio retrógrado?",
-   "A tradição desaconselha assinar contratos à pressa, comprar aparelhos eletrónicos sem verificar bem ou marcar compromissos importantes sem confirmar. Não é proibido viver: é preciso mais atenção aos pormenores, aos papéis e às mensagens, e reler tudo duas vezes antes de enviar."),
+   "A tradição desaconselha assinar contratos à pressa, comprar aparelhos eletrónicos sem verificar bem ou marcar compromissos importantes sem confirmar. O dia a dia continua; só pede mais atenção aos pormenores, aos papéis e às mensagens, e o hábito de reler tudo duas vezes antes de enviar."),
   ("Em que signo pode estar o meu Mercúrio?",
    "Como Mercúrio nunca se afasta mais de 28 graus do Sol, está sempre no seu signo solar ou num dos signos vizinhos. Um Carneiro, por exemplo, tem Mercúrio em Peixes, Carneiro ou Touro. Para saber ao certo, calcula-se o mapa com a data de nascimento."),
  ],
@@ -738,7 +738,7 @@ FAQ = {
   ("Em que signos Saturno está mais forte?",
    "Na astrologia clássica, Saturno está em domicílio em Capricórnio e em Aquário, e exaltado em Balança, onde a disciplina se põe ao serviço da justiça. Em Caranguejo e em Leão está em exílio, e em Carneiro em queda, onde a pressa e a regra se chocam."),
   ("Quanto tempo fica Saturno retrógrado?",
-   "Cerca de quatro meses e meio, uma vez por ano. A tradição diz que é tempo de rever compromissos, responsabilidades e estruturas, e de terminar o que ficou a meio. Não é um período de castigo, mas de balanço."),
+   "Cerca de quatro meses e meio, uma vez por ano. A tradição vê-o como um tempo de balanço: rever compromissos, responsabilidades e estruturas, e terminar o que ficou a meio."),
  ],
  "planeta-urano": [
   ("Quem descobriu Úrano?",
