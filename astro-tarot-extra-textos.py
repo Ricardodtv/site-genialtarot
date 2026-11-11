@@ -38,7 +38,7 @@ CASAS = [
   "desc": "Casa 4 na Astrologia: o lar, a família, as raízes e a infância. O que o mapa diz sobre o seu porto seguro e aquilo que herdou dos seus.",
   "significado": "A Casa 4 começa no Fundo do Céu, o ponto mais baixo do mapa, e fala das suas raízes. É a casa do lar, da família de origem, da infância e da memória que traz no corpo sem dar por isso. Mostra o que precisa para se sentir em casa, seja um lugar, uma pessoa ou uma rotina. Fala também do fim de vida e da casa que você vai construindo para si ao longo dos anos.",
   "na_vida": "Nota-se na relação com os pais, sobretudo com quem lhe deu cuidado, e na forma como arruma e vive a sua casa. Aparece também nos momentos em que precisa de recolher, de voltar às origens ou de criar raízes num sítio novo. Quando esta casa está em paz, a pessoa sente que tem um sítio para onde voltar, mesmo nos dias mais difíceis.",
-  "planetas": "A Lua ou Vénus aqui tornam o lar muito importante e acolhedor, enquanto Úrano pode trazer mudanças de casa ou uma família pouco convencional. Planetas nesta casa mostram heranças emocionais que valem a pena ser olhadas com carinho e sem culpas.",
+  "planetas": "A Lua ou Vénus aqui tornam o lar muito importante e acolhedor, enquanto Úrano pode trazer mudanças de casa ou uma família pouco convencional. Planetas nesta casa mostram heranças emocionais que merecem ser olhadas com carinho e sem culpas.",
   "signo_natural": "O signo natural da Casa 4 é Caranguejo (Câncer), regido pela Lua, o astro das emoções, da memória e do cuidado."},
 
  {"slug": "casa-5",
@@ -47,7 +47,7 @@ CASAS = [
   "titulo": "Casa 5 na Astrologia: o amor, a criatividade e os filhos",
   "desc": "Casa 5 na Astrologia: a criatividade, o romance, o prazer, os filhos e a alegria de viver. O que o seu mapa diz sobre aquilo que o(a) faz brilhar.",
   "significado": "A Casa 5 é a casa da alegria e da expressão pessoal. Fala de tudo o que você cria com o coração: arte, projectos, hobbies e também os filhos. É a casa do namoro, da paixão que começa e do jogo da sedução, mais leve do que o compromisso da Casa 7. Mostra ainda o lado criança que nunca devia perder, aquele que brinca, arrisca e se diverte. Na tradição, é também a casa dos jogos, da especulação e dos riscos que se correm por gosto.",
-  "na_vida": "Nota-se naquilo que lhe dá prazer genuíno, na forma como se apaixona e no tipo de passatempos que o(a) fazem esquecer as horas. Aparece também na relação com os filhos e na coragem de mostrar o seu talento aos outros. Quando esta casa está apagada, a vida fica pesada, e vale a pena recuperar aquilo que lhe dava alegria em criança.",
+  "na_vida": "Nota-se naquilo que lhe dá prazer genuíno, na forma como se apaixona e no tipo de passatempos que o(a) fazem esquecer as horas. Aparece também na relação com os filhos e na coragem de mostrar o seu talento aos outros. Quando esta casa está apagada, a vida fica pesada, e ajuda recuperar aquilo que lhe dava alegria em criança.",
   "planetas": "O Sol ou Júpiter aqui dão vontade de brilhar, de criar e de viver com generosidade, e Vénus torna o romance especialmente importante. Saturno nesta casa pode tornar mais difícil a descontracção, mas dá obras sólidas e amores levados a sério.",
   "signo_natural": "O signo natural da Casa 5 é Leão, regido pelo Sol, o centro do sistema e a fonte da vontade de se expressar."},
 
@@ -57,8 +57,8 @@ CASAS = [
   "titulo": "Casa 6 na Astrologia: o trabalho diário, a saúde e a rotina",
   "desc": "Casa 6 na Astrologia: o trabalho do dia-a-dia, os hábitos, a saúde e o serviço aos outros. Como o mapa natal mostra a organização da sua vida.",
   "significado": "A Casa 6 fala da vida de todos os dias: o trabalho que faz, as rotinas que segue e os cuidados que tem com o corpo. Não é tanto a carreira, que pertence à Casa 10, mas o ofício, as tarefas e o ambiente com os colegas. É também a casa da saúde, dos hábitos que a protegem e dos sinais que o corpo dá quando algo não está bem. Tem ainda um lado de serviço, de ser útil e de aperfeiçoar o que se faz.",
-  "na_vida": "Nota-se na forma como organiza o tempo, na relação com os colegas e chefias e na disciplina, ou falta dela, com a alimentação e o descanso. Aparece também nos animais de estimação, que a tradição também coloca nesta casa. Pequenas mudanças na rotina costumam ter aqui um efeito muito maior do que se espera.",
-  "planetas": "Planetas aqui dão muita energia ao trabalho: Mercúrio torna-o(a) metódico(a), Marte dá capacidade de esforço e Neptuno pede atenção para não se deixar consumir pelos outros. Esta casa lembra que a saúde não depende só de sorte, mas de pequenos gestos repetidos.",
+  "na_vida": "Nota-se na forma como organiza o tempo, na relação com os colegas e chefias e na disciplina, ou falta dela, com a alimentação e o descanso. Aparece também nos animais de estimação, que a tradição coloca nesta casa. Pequenas mudanças na rotina costumam ter aqui um efeito muito maior do que se espera.",
+  "planetas": "Planetas aqui dão muita energia ao trabalho: Mercúrio torna-o(a) metódico(a), Marte dá capacidade de esforço e Neptuno pede atenção para não se deixar consumir pelos outros. Nesta casa, a saúde depende muito de pequenos gestos repetidos.",
   "signo_natural": "O signo natural da Casa 6 é Virgem, regido por Mercúrio, que aqui se volta para o detalhe, a análise e o serviço."},
 
  {"slug": "casa-7",
@@ -67,7 +67,7 @@ CASAS = [
   "titulo": "Casa 7 na Astrologia: o casamento, as parcerias e os outros",
   "desc": "Casa 7 na Astrologia: o casamento, as relações a dois, as sociedades e os contratos. O que o Descendente diz sobre quem você atrai e procura.",
   "significado": "A Casa 7 começa no Descendente, o ponto exactamente oposto ao Ascendente, e fala do «outro». É a casa do casamento, das relações sérias e das parcerias de trabalho e de negócios. Mostra o tipo de pessoa que você atrai e aquilo que procura fora de si para se sentir completo(a). Fala também dos contratos, dos acordos e até dos adversários declarados. Na Astrologia, aquilo que procuramos no outro é muitas vezes uma qualidade que ainda não desenvolvemos em nós.",
-  "na_vida": "Nota-se nas pessoas por quem se apaixona e com quem decide ficar, e nos padrões que se repetem de relação para relação. Muitas vezes, o que vê no outro é uma parte de si que ainda está a aprender a reconhecer. Aparece também nas sociedades de trabalho, nos acordos assinados e na forma como negoceia quando há interesses diferentes em jogo.",
+  "na_vida": "Nota-se nas pessoas por quem se apaixona e com quem decide ficar, e nos padrões que se repetem de relação para relação. Aparece também nas sociedades de trabalho, nos acordos assinados e na forma como negoceia quando há interesses diferentes em jogo.",
   "planetas": "Vénus ou Júpiter aqui costumam favorecer as uniões e trazer parceiros generosos, enquanto Saturno pode atrasar o compromisso mas torná-lo duradouro. Úrano nesta casa pede relações com espaço e liberdade, e tudo depende de como o resto do mapa acompanha.",
   "signo_natural": "O signo natural da Casa 7 é Balança (Libra), regido por Vénus, o planeta da harmonia, do amor e do equilíbrio a dois."},
 
@@ -77,8 +77,8 @@ CASAS = [
   "titulo": "Casa 8 na Astrologia: a transformação, a intimidade e heranças",
   "desc": "Casa 8 na Astrologia: a intimidade, a sexualidade, as crises que transformam, o dinheiro partilhado e as heranças. O que o seu mapa revela.",
   "significado": "A Casa 8 é uma das mais profundas do mapa e fala daquilo que se partilha com outra pessoa a fundo. É a casa da intimidade, da sexualidade, da confiança e também do dinheiro comum, das dívidas, dos impostos e das heranças. Fala das crises e das perdas que nos obrigam a mudar e a renascer. Apesar da fama, não é uma casa de desgraça: é a casa da transformação e da força que se descobre quando tudo parece acabar. Mostra também a forma como você lida com aquilo que não controla.",
-  "na_vida": "Nota-se na forma como lida com o controlo, com o ciúme e com a vulnerabilidade de se mostrar por inteiro. Aparece também em assuntos de dinheiro partilhado, créditos e partilhas de família, que pedem clareza e honestidade. Com o tempo, esta casa ensina que largar o controlo pode ser a maior das forças.",
-  "planetas": "Plutão ou Marte aqui dão intensidade e capacidade de recomeçar, e Júpiter pode trazer apoio financeiro de outras pessoas. Planetas nesta casa costumam dar um interesse natural pelo oculto, pela psicologia e por tudo o que está escondido à superfície.",
+  "na_vida": "Nota-se na forma como lida com o controlo, com o ciúme e com a vulnerabilidade de se mostrar por inteiro. Aparece também em assuntos de dinheiro partilhado, créditos e partilhas de família, que pedem clareza e honestidade. Com o tempo, esta casa ensina que largar o controlo também dá força.",
+  "planetas": "Plutão ou Marte aqui dão intensidade e capacidade de recomeçar, e Júpiter pode trazer apoio financeiro de outras pessoas. Planetas nesta casa costumam dar um interesse natural pelo oculto, pela psicologia e por tudo o que está escondido sob a superfície.",
   "signo_natural": "O signo natural da Casa 8 é Escorpião, regido por Plutão e, na tradição antiga, por Marte, ambos ligados à intensidade e ao poder de transformação."},
 
  {"slug": "casa-9",
@@ -86,8 +86,8 @@ CASAS = [
   "tema": "a filosofia e as viagens",
   "titulo": "Casa 9 na Astrologia: as viagens, os estudos e a fé",
   "desc": "Casa 9 na Astrologia: as viagens longas, os estudos superiores, a fé, a filosofia de vida e o estrangeiro. Como o mapa mostra o seu horizonte.",
-  "significado": "A Casa 9 é a casa do horizonte largo e da procura de sentido. Fala das viagens longas, do estrangeiro, das outras culturas e de tudo o que o(a) leva para além do conhecido. É também a casa dos estudos superiores, da religião, da filosofia e das crenças que orientam a sua vida. Mostra a forma como você procura a verdade e aquilo em que escolhe acreditar. Quanto mais aberta esta casa, mais a vida se torna uma escola sem fim.",
-  "na_vida": "Nota-se na vontade de viajar, de aprender mais e de dar um significado ao que vive. Aparece também na relação com professores, mestres, livros e até com processos legais, que a tradição também coloca nesta casa. Em muitas pessoas, é por aqui que chegam as grandes viragens de pensamento, depois de uma viagem, de um curso ou de um encontro com alguém de outra cultura.",
+  "significado": "A Casa 9 é a casa do horizonte largo e da procura de sentido. Fala das viagens longas, do estrangeiro, das outras culturas e de tudo o que o(a) leva para além do conhecido. É também a casa dos estudos superiores, da religião, da filosofia e das crenças que orientam a sua vida. Mostra a forma como você procura a verdade e aquilo em que escolhe acreditar.",
+  "na_vida": "Nota-se na vontade de viajar, de aprender mais e de dar um significado ao que vive. Aparece também na relação com professores, mestres, livros e até com processos legais, que a tradição coloca nesta casa. Em muitas pessoas, é por aqui que chegam as grandes viragens de pensamento, depois de uma viagem, de um curso ou de um encontro com alguém de outra cultura.",
   "planetas": "Júpiter aqui é especialmente feliz e traz oportunidades através do estudo e das viagens, enquanto Saturno torna a fé mais exigente e pede crenças bem pensadas. Planetas nesta casa costumam dar uma vida em que o «longe», seja geográfico ou interior, tem muito peso.",
   "signo_natural": "O signo natural da Casa 9 é Sagitário, regido por Júpiter, o planeta da expansão, do optimismo e da sabedoria."},
 
@@ -97,7 +97,7 @@ CASAS = [
   "titulo": "Casa 10 na Astrologia: a carreira, a vocação e a reputação",
   "desc": "Casa 10 na Astrologia: a carreira, a vocação, a reputação e o lugar que você ocupa no mundo. O que o Meio do Céu do seu mapa tem para dizer.",
   "significado": "A Casa 10 começa no Meio do Céu, o ponto mais alto do mapa, e fala do seu lugar no mundo. É a casa da carreira, da vocação, das ambições e da reputação que vai construindo. Mostra aquilo pelo qual gostaria de ser reconhecido(a) e o tipo de autoridade que exerce ou procura. Fala também das figuras de autoridade da sua vida, incluindo um dos pais. É, por isso, uma das casas mais importantes quando se pensa em mudar de profissão ou em dar um rumo novo à vida.",
-  "na_vida": "Nota-se nas escolhas profissionais, na forma como lida com chefias e responsabilidades e naquilo que os outros dizem de si em público. Aparece também nos momentos em que sente que tem de subir mais um degrau, ou mudar de escada. Não fala só de dinheiro ou de cargos, mas do legado que gostaria de deixar.",
+  "na_vida": "Nota-se nas escolhas profissionais, na forma como lida com chefias e responsabilidades e naquilo que os outros dizem de si em público. Aparece também nos momentos em que sente que tem de subir mais um degrau, ou mudar de escada. Fala também do legado que gostaria de deixar, para lá do dinheiro e dos cargos.",
   "planetas": "O Sol ou Júpiter aqui dão visibilidade e vontade de chegar longe, e Saturno dá uma carreira construída com esforço e que dura. Neptuno nesta casa pode trazer vocações artísticas ou de ajuda, mas também algumas dúvidas sobre o caminho a seguir.",
   "signo_natural": "O signo natural da Casa 10 é Capricórnio, regido por Saturno, o planeta da estrutura, do tempo e da maturidade."},
 
@@ -106,7 +106,7 @@ CASAS = [
   "tema": "os amigos e os projectos de futuro",
   "titulo": "Casa 11 na Astrologia: os amigos, os grupos e os sonhos",
   "desc": "Casa 11 na Astrologia: as amizades, os grupos, as causas e os projectos de futuro. O que o seu mapa diz sobre os seus sonhos e quem o(a) apoia.",
-  "significado": "A Casa 11 é a casa dos amigos, dos grupos e das esperanças. Fala das pessoas com quem partilha ideais, das associações, das redes e das comunidades a que pertence. É também a casa dos projectos de futuro e dos sonhos que gostaria de ver realizados. Mostra a forma como você contribui para algo maior do que si próprio(a). É, em suma, a casa do «nós», onde aquilo que você sonha encontra outras pessoas que sonham o mesmo.",
+  "significado": "A Casa 11 é a casa dos amigos, dos grupos e das esperanças. Fala das pessoas com quem partilha ideais, das associações, das redes e das comunidades a que pertence. É também a casa dos projectos de futuro e dos sonhos que gostaria de ver realizados. Mostra a forma como você contribui para algo maior do que si próprio(a). É a casa do «nós», onde aquilo que você sonha encontra outras pessoas que sonham o mesmo.",
   "na_vida": "Nota-se no tipo de amizades que cultiva, nos grupos onde se sente bem e nas causas que o(a) movem. Aparece também na ajuda inesperada que chega através de contactos e no gosto por ideias novas e diferentes. Mostra também o que espera do futuro e a forma como reage quando os planos de longo prazo tardam a concretizar-se.",
   "planetas": "Vénus ou Júpiter aqui costumam trazer amigos generosos e muito apoio da comunidade, e Úrano dá amizades originais e projectos fora do comum. Saturno nesta casa tende a dar poucos amigos, mas fiéis e para a vida.",
   "signo_natural": "O signo natural da Casa 11 é Aquário, regido por Úrano e, na tradição antiga, por Saturno, que juntam a inovação ao sentido de responsabilidade colectiva."},
@@ -118,7 +118,7 @@ CASAS = [
   "desc": "Casa 12 na Astrologia: o inconsciente, os medos escondidos, a intuição, o retiro e a espiritualidade. O que a última casa do mapa lhe quer dizer.",
   "significado": "A Casa 12 é a última do mapa e fala daquilo que não se vê à primeira. É a casa do inconsciente, dos sonhos, dos medos guardados e das memórias que parecem vir de longe. Fala também do retiro, do silêncio, dos hospitais, dos mosteiros e de todos os lugares onde nos afastamos do mundo. Tem fama de casa difícil, mas é também a casa da compaixão, da intuição e da ligação ao sagrado.",
   "na_vida": "Nota-se na necessidade de estar sozinho(a) para recarregar, nos sonhos que se repetem e nos padrões que voltam sem saber porquê. Aparece também na vontade de ajudar quem sofre e numa sensibilidade que nem sempre se sabe explicar. Quando se lhe dá atenção, através do silêncio, da oração ou da meditação, esta casa torna-se uma fonte de paz.",
-  "planetas": "Planetas aqui trabalham muitas vezes nos bastidores: Neptuno ou a Lua dão uma intuição forte, e Júpiter é tradicionalmente visto como um «anjo da guarda» escondido. Com Saturno ou Marte nesta casa, vale a pena olhar para o que se reprime, porque o que se reconhece deixa de pesar tanto.",
+  "planetas": "Planetas aqui trabalham muitas vezes nos bastidores: Neptuno ou a Lua dão uma intuição forte, e Júpiter é tradicionalmente visto como um «anjo da guarda» escondido. Com Saturno ou Marte nesta casa, convém olhar para o que se reprime, porque o que se reconhece deixa de pesar tanto.",
   "signo_natural": "O signo natural da Casa 12 é Peixes, regido por Neptuno e, na tradição antiga, por Júpiter, ambos ligados à fé, à imaginação e à entrega."},
 ]
 
