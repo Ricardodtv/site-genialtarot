@@ -1,10 +1,10 @@
 {
  "carneiro": {
   "dia": {
-   "id": "bRLnpzMqtr4",
-   "t": "Horóscopo Diário Áries 10 e 11 Novembro",
-   "d": "2026-11-10T15:45:31Z",
-   "dur": "PT5M47S"
+   "id": "1cSiO3Httvw",
+   "t": "Horóscopo Diário Áries 11 e 12 Novembro",
+   "d": "2026-11-11T15:33:32Z",
+   "dur": "PT6M41S"
   },
   "anual": {
    "id": "sYvV52nILsg",
@@ -23,10 +23,10 @@
  },
  "gemeos": {
   "dia": {
-   "id": "2QpLQ3eovXQ",
-   "t": "Horóscopo Diário Gémeos 10 e 11 Novembro",
-   "d": "2026-11-10T15:46:24Z",
-   "dur": "PT7M59S"
+   "id": "pDa8OsZOZMY",
+   "t": "Horóscopo Diário Gémeos 11 e 12 Novembro",
+   "d": "2026-11-11T15:34:00Z",
+   "dur": "PT5M35S"
   },
   "anual": {
    "id": "EdzVicTufXw",
@@ -45,10 +45,10 @@
  },
  "leao": {
   "dia": {
-   "id": "E_09-e1GQ9E",
-   "t": "Horóscopo Diário Leão 10 e 11 Novembro",
-   "d": "2026-11-10T15:47:36Z",
-   "dur": "PT7M51S"
+   "id": "eFjHZgTeDgI",
+   "t": "Horóscopo Diário Leão 11 e 12 Novembro",
+   "d": "2026-11-11T15:34:37Z",
+   "dur": "PT5M27S"
   },
   "anual": {
    "id": "dto1ayURroc",
@@ -59,10 +59,10 @@
  },
  "virgem": {
   "dia": {
-   "id": "wfzeVw0p_-w",
-   "t": "Horóscopo Diário Virgem 10 e 11 Novembro",
-   "d": "2026-11-10T15:47:49Z",
-   "dur": "PT5M29S"
+   "id": "VesZDNcGpzA",
+   "t": "Horóscopo Diário Virgem 11 e 12 Novembro",
+   "d": "2026-11-11T15:34:40Z",
+   "dur": "PT4M26S"
   },
   "anual": {
    "id": "S63ep0UfuI0",
@@ -73,10 +73,10 @@
  },
  "balanca": {
   "dia": {
-   "id": "-AAe-GQn72Q",
-   "t": "Horóscopo Diário Balança (Libra) 10 e 11 Novembro",
-   "d": "2026-11-10T15:48:34Z",
-   "dur": "PT6M18S"
+   "id": "9IVn-XoT-tw",
+   "t": "Horóscopo Diário Balança (Libra) 11 e 12 Novembro",
+   "d": "2026-11-11T15:35:05Z",
+   "dur": "PT4M11S"
   },
   "anual": {
    "id": "_596jwAtBl0",
@@ -87,10 +87,10 @@
  },
  "escorpiao": {
   "dia": {
-   "id": "6UuCbuLT-wk",
-   "t": "Horóscopo Diário Escorpião 10 e 11 Novembro",
-   "d": "2026-11-10T15:50:07Z",
-   "dur": "PT5M50S"
+   "id": "LhFAm0SJJ8E",
+   "t": "Horóscopo Diário Escorpião 11 e 12 Novembro",
+   "d": "2026-11-11T15:35:19Z",
+   "dur": "PT5M25S"
   },
   "anual": {
    "id": "vDhtOX8kixs",
@@ -100,12 +100,6 @@
   }
  },
  "sagitario": {
-  "dia": {
-   "id": "uwZg3dT0O5Q",
-   "t": "Horóscopo Fim de Semana Sagitário 7, 8 e 9 Novembro",
-   "d": "2026-11-06T16:15:22Z",
-   "dur": "PT8M1S"
-  },
   "anual": {
    "id": "SPco2eROtps",
    "t": "Previsão Sagitário, ano 2026 Todos os Meses",
@@ -114,12 +108,6 @@
   }
  },
  "capricornio": {
-  "dia": {
-   "id": "8VinSyl5eQw",
-   "t": "Horóscopo Fim de Semana Capricórnio 7, 8 e 9 Novembro",
-   "d": "2026-11-06T16:16:14Z",
-   "dur": "PT7M25S"
-  },
   "anual": {
    "id": "hrTjuSE8VmM",
    "t": "Previsão 2026 Signo Capricórnio, 12 Meses",
@@ -128,12 +116,6 @@
   }
  },
  "aquario": {
-  "dia": {
-   "id": "tNm0FzOfh-Y",
-   "t": "Horóscopo Fim de Semana Aquário 7, 8 e 9 Novembro",
-   "d": "2026-11-06T16:16:31Z",
-   "dur": "PT6M17S"
-  },
   "anual": {
    "id": "iXnf_orBfDs",
    "t": "Previsão Anual 2026 Aquário 12 Meses",
@@ -142,12 +124,6 @@
   }
  },
  "peixes": {
-  "dia": {
-   "id": "1UAmA3lben0",
-   "t": "Horóscopo Fim de Semana Peixes 7, 8 e 9 Novembro",
-   "d": "2026-11-06T16:17:08Z",
-   "dur": "PT5M51S"
-  },
   "anual": {
    "id": "60VId99VP8Y",
    "t": "Previsão Anual 2026, Signo Peixes, 12 Meses",
@@ -155,5 +131,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-11T12:10"
+ "_": "2026-11-11T15:36"
 }
