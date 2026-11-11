@@ -277,15 +277,15 @@ TIRAGENS = [
     {
         "slug": "tiragem-sim-ou-nao",
         "nome": "Tarot Sim ou Não",
-        "titulo": "Tarot Sim ou Não: como fazer e como interpretar a resposta",
-        "desc": "Como fazer uma tiragem de Tarot Sim ou Não, que cartas tendem para o sim ou para o não, quando faz sentido usá-la e um exemplo de leitura simples.",
+        "titulo": "Tarot Sim ou Não: como tirar e ler a resposta (1 ou 3 cartas)",
+        "desc": "Faça a tiragem de Tarot Sim ou Não com 1 ou 3 cartas: como pôr a pergunta, que cartas inclinam para o sim e para o não, e um exemplo de leitura.",
         "intro": "A tiragem de Sim ou Não é a mais directa de todas: uma pergunta clara, uma resposta clara. Pode fazer-se com uma só carta ou com três, para dar mais nuance. Convém lembrar que o Tarot não é uma moeda ao ar: mesmo um «sim» vem sempre com um conselho sobre o caminho.",
         "posicoes": [
             ["1. A resposta", "Com uma só carta, ela dá a tendência: cartas luminosas e de avanço inclinam para o sim, cartas de bloqueio ou perda para o não."],
             ["2. O que ajuda", "Na versão de três cartas, a segunda mostra o que favorece o resultado desejado."],
             ["3. O que trava", "A terceira mostra o obstáculo ou o cuidado a ter. Duas cartas favoráveis em três dão um sim; duas desfavoráveis, um não."],
         ],
-        "como": "Formule a pergunta de modo a que só possa ter resposta sim ou não, por exemplo «Devo aceitar esta proposta?». Baralhe concentrado na pergunta, corte e tire uma ou três cartas. Leia primeiro a tendência geral e depois os pormenores.",
+        "como": "Formule a pergunta de modo a que só possa ter resposta sim ou não, por exemplo «Devo aceitar esta proposta?». Baralhe concentrado na pergunta, corte e tire uma ou três cartas. Leia primeiro a tendência geral e depois os pormenores. Para saber o que responde cada uma das 78 cartas, veja <a href=\"/cartas-do-tarot-sim-ou-nao\">as cartas do Tarot no sim ou não</a>.",
         "quando": "Use-a para decisões concretas e próximas, quando precisa de uma orientação rápida. Evite fazer a mesma pergunta várias vezes seguidas à procura da resposta que quer ouvir: a primeira é a que conta.",
         "exemplo": "Alguém pergunta: «Devo mudar de casa este ano?». Sai O Sol como resposta, uma carta claramente positiva, que inclina para o sim. Como ajuda aparece o Seis de Copas, a família e as boas memórias. O que trava é o Quatro de Ouros: o medo de gastar. A leitura seria um sim, com o conselho de planear bem o dinheiro.",
     },
