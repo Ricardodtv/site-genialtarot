@@ -316,6 +316,8 @@ FAQ = {
    "É a arte de ler as cartas para compreender o presente e as tendências do futuro. Pode usar-se o Tarot, com 22 Arcanos Maiores e 56 Menores, baralhos comuns ou oráculos. O Mestre Alberto lê com o seu próprio baralho de Tarot há 18 anos."),
   ("Como é uma consulta de cartomancia?",
    "Começa com a sua pergunta ou o tema que o preocupa. As cartas são baralhadas e dispostas numa tiragem, em que cada posição tem um significado. A leitura junta o sentido de cada carta à intuição e à experiência de quem lê."),
+  ("Como escolher uma cartomante de confiança?",
+   "Veja se explica as cartas que saem e se aceita as suas perguntas. Uma consulta séria tem o preço dito à partida. Desconfie de quem promete resultados certos, fala em desgraças para assustar ou pede mais dinheiro por trabalhos que não estavam combinados."),
   ("Posso fazer uma consulta de cartomancia à distância?",
    "Pode. A consulta faz-se no consultório em Fafe ou à distância, a partir de Portugal, do Brasil ou de qualquer país, e marca-se pelo WhatsApp. Para experimentar primeiro, há o Tarot Grátis no site."),
  ],

@@ -128,11 +128,12 @@ TEMAS = [
  "produtos": ["Ritual de Proteção e Limpeza", "Vela Guia, Oração e Proteção"],
  "aviso": "As benzeduras são uma tradição espiritual e cultural e não substituem o médico. Dores, paralisia da cara, febre ou mal-estar devem ser sempre vistos por um profissional de saúde."},
 {"slug": "cartomancia", "menu": "🃏 Cartomancia", "h1": "Cartomancia",
- "titulo": "Cartomancia: a arte de ler as cartas, com o Mestre Alberto",
+ "titulo": "Cartomante e cartomancia: ler as cartas com o Mestre Alberto",
  "desc": "O que é a cartomancia, como funciona uma leitura de cartas e como marcar uma consulta de cartomancia com o Mestre Alberto, presencial em Fafe ou à distância.",
  "sub": "A arte antiga de ler o momento através das cartas.",
  "seccoes": [
   ("O que é a cartomancia", "Cartomancia é a arte de ler as cartas para compreender o presente e as tendências do futuro. Pode usar-se o Tarot, com os seus 22 Arcanos Maiores e 56 Menores, ou baralhos comuns e oráculos. O Mestre Alberto lê com o seu próprio baralho de Tarot, há 18 anos. A cartomancia é um dos ramos do <a href=\"/esoterismo\">esoterismo</a>, a par da astrologia e da numerologia."),
+  ("O que faz uma cartomante", "Cartomante é a pessoa que lê as cartas. Uma boa cartomante ouve primeiro a sua pergunta, explica cada carta que sai e diz com clareza o que a tiragem mostra e o que fica em aberto. Não promete resultados certos nem pede dinheiro extra para afastar males. O Mestre Alberto é cartomante e tarólogo há 18 anos e dá consultas em Fafe e à distância."),
   ("Como é uma consulta", "Começa com a sua pergunta ou com o tema que o preocupa. As cartas são baralhadas e dispostas numa tiragem, e cada posição tem um significado. A leitura junta o significado de cada carta à intuição e à experiência de quem lê, para lhe dar uma resposta clara e honesta."),
   ("Experimente", "Faça uma tiragem no <a href=\"/tarot-gratis\">Tarot Grátis</a>, conheça <a href=\"/arcanos\">os 22 Arcanos</a> ou marque uma consulta."),
  ],
