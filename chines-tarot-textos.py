@@ -160,7 +160,7 @@ SIGNO_TAROT = [
     {
         "slug": "touro",
         "arcano": "O Hierofante",
-        "titulo": "Touro no Tarot: a carta O Hierofante e o seu significado",
+        "titulo": "Qual é a carta de Touro no Tarot? O Hierofante e o significado",
         "desc": "Porque O Hierofante é a carta do Touro no Tarot, o que ensina sobre valores, tradição e paciência, e o conselho do Mestre Alberto para este signo.",
         "ligacao": "Na correspondência da Golden Dawn, o Touro está ligado ao Hierofante, o mestre que guarda e transmite o saber. O Touro é um signo de terra, fixo, que valoriza o que é sólido e provado pelo tempo, e o Hierofante é precisamente o guardião daquilo que tem raízes. Ambos aprendem devagar e só confiam no que foi vivido. Na carta, a figura sentada entre duas colunas, com as chaves aos pés, lembra a estabilidade e a ordem que o Touro procura em tudo o que faz.",
         "licao": "Para quem é Touro, O Hierofante ensina que a verdadeira segurança vem dos valores em que se acredita, e não apenas das coisas que se possuem ou do dinheiro que se junta. A carta convida a honrar o que se herdou: a família, os mestres, as tradições que dão sentido à vida. Mas pede também que se distinga o que ainda serve do que é só hábito. A paciência do Touro torna-se sabedoria quando se transforma em ensinamento, e o que aprendeu com tanto cuidado passa a dar fruto também na vida dos outros.",
