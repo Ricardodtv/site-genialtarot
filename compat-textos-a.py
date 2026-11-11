@@ -155,7 +155,7 @@ COMPAT_A = [
  {"i": 3, "j": 8, "nota": 2,   # afinidade 1–5 segundo a astrologia tradicional
   "titulo": "Caranguejo e Sagitário: compatibilidade no amor e na amizade",
   "desc": "Caranguejo e Sagitário: o lar e a estrada. Saiba como a ternura e a liberdade podem conviver no amor e na amizade. Veja como.",
-  "resumo": "Caranguejo (Câncer) procura um ninho e Sagitário procura o horizonte. São necessidades muito diferentes, mas cada um tem algo valioso para dar ao outro.",
+  "resumo": "Caranguejo (Câncer) procura um ninho e Sagitário procura o horizonte. São necessidades muito diferentes, mas cada um tem muito para dar ao outro.",
   "amor": "Sagitário traz otimismo, humor e vontade de conhecer o mundo, e isso pode abrir os olhos de Caranguejo para experiências novas. Caranguejo oferece a Sagitário um lugar para onde voltar, com carinho e atenção que ele raramente encontra. Quando funciona, é uma relação generosa e cheia de aprendizagem. Com tempo, Caranguejo pode descobrir que gosta de viajar e Sagitário pode descobrir que gosta de voltar a casa.",
   "amizade": "Como amigos, Sagitário faz Caranguejo rir e Caranguejo cuida de Sagitário quando a aventura corre mal. É uma amizade de contrastes, que ensina muito aos dois.",
   "desafios": "A franqueza de Sagitário pode magoar a sensibilidade de Caranguejo. E a necessidade de liberdade de um pode parecer abandono ao outro. Caranguejo gosta de planear e de ter rotinas; Sagitário muda de planos sem aviso, e isso gera insegurança.",
