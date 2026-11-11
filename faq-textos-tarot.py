@@ -105,7 +105,7 @@ FAQ = {
   ("O que significa Os Enamorados invertido?",
    "Ao contrário, é a escolha adiada ou feita contra si próprio: ficar entre duas pessoas, uma relação sem acordo, dizer sim à espera de se convencer depois. O adiamento também é uma decisão, e costuma ser das piores."),
   ("Os Enamorados é sempre uma carta de amor?",
-   "Não. Muitas vezes fala de uma escolha importante — de trabalho, de casa, de valores. Pela Golden Dawn, é a carta de Gémeos, o signo do dois, das duas vozes e dos dois caminhos possíveis."),
+   "Não. Muitas vezes fala de uma escolha importante, de trabalho, de casa ou de valores. Pela Golden Dawn, é a carta de Gémeos, o signo do dois, das duas vozes e dos dois caminhos possíveis."),
  ],
  "arcano-07-o-carro": [
   ("O que significa O Carro no Tarot?",
@@ -485,7 +485,7 @@ FAQ = {
   ("A Carta do Dia prevê o que vai acontecer?",
    "Não. A Carta do Dia mostra a energia do dia: o tema, a atitude que convém ter ou a lição que o dia traz. É uma orientação, não uma previsão de acontecimentos."),
   ("A Carta do Dia ajuda a aprender Tarot?",
-   "Muito. Feita todos os dias, ensina mais sobre as cartas do que muitos livros. À noite, vale a pena voltar à carta e ver como se refletiu no dia; apontar num caderno ajuda a fixar os significados."),
+   "Muito. Feita todos os dias, ensina mais sobre as cartas do que muitos livros. À noite, volte à carta e veja como se refletiu no dia; apontar num caderno ajuda a fixar os significados."),
  ],
  "tiragem-do-amor": [
   ("Como fazer a tiragem do amor com 5 cartas?",
