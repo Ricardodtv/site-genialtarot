@@ -1,2 +1,3 @@
 *.antes-*
 parabolas-textos.py
+__pycache__/
