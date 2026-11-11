@@ -33,7 +33,7 @@ CHINES = [
         "elemento_fixo": "Madeira",
         "personalidade": "O Tigre vive com o coração à frente. É corajoso, magnético e não suporta injustiças, e muitas vezes é o primeiro a levantar a voz por quem não pode. Tem uma energia que contagia e uma necessidade grande de liberdade. Quando acredita numa causa, entrega-se por inteiro. O lado mais difícil é a impaciência: o Tigre quer tudo agora e custa-lhe esperar pelo tempo das coisas.",
         "amor": "No amor, o Tigre é intenso e generoso, capaz de grandes gestos e de paixões que marcam. Precisa de admiração, mas também de espaço para respirar. Uma relação que o prende demasiado acaba por o afastar, enquanto a confiança e a liberdade o fazem ficar de livre vontade.",
-        "trabalho": "No trabalho, é um líder natural, dado a desafios e a projectos que pedem coragem. Arranca com uma força enorme, e o segredo está em manter o fôlego até ao fim, sem largar o projecto quando a novidade passa. Dá-se melhor onde tem autonomia do que onde tem de pedir licença para tudo.",
+        "trabalho": "No trabalho, é um líder natural, dado a desafios e a projectos que pedem coragem. Arranca com uma força enorme; o difícil é manter o fôlego até ao fim e não largar o projecto quando a novidade passa. Dá-se melhor onde tem autonomia do que onde tem de pedir licença para tudo.",
         "afinidades": "Pela tradição, o Tigre forma trino com o Cavalo e o Cão, que partilham o seu idealismo e o seu gosto pela acção. O seu oposto é o Macaco, cuja astúcia e ironia o irritam e o põem à prova.",
         "conselho": "Antes de saltar, respire uma vez. A sua coragem vale ainda mais quando escolhe bem onde a pôr.",
     },

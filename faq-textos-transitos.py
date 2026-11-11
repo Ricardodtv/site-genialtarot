@@ -57,7 +57,7 @@ FAQ = {
  ("Que signos sentem mais a conjunção de 2032?", "Sobretudo quem tem planetas ou o Ascendente perto dos 28° de Gémeos, Virgem, Sagitário ou Peixes. Para todos, sente-se na casa do mapa onde cai o fim de Gémeos."),
 ],
 "transitos-lentos": [
- ("O que é um trânsito lento?", "É a passagem de um planeta lento — Júpiter, Saturno, Úrano, Neptuno ou Plutão — por um signo ou sobre um ponto do mapa de nascimento. Como andam devagar, os seus efeitos sentem-se durante meses ou anos."),
+ ("O que é um trânsito lento?", "É a passagem de um planeta lento (Júpiter, Saturno, Úrano, Neptuno ou Plutão) por um signo ou sobre um ponto do mapa de nascimento. Como andam devagar, os seus efeitos sentem-se durante meses ou anos."),
  ("Porque é que um planeta entra e sai do mesmo signo?", "Por causa do movimento retrógrado: visto da Terra, o planeta parece parar e andar para trás durante alguns meses. Se isso acontece perto da fronteira de um signo, o planeta entra, volta atrás e só depois entra de vez."),
  ("As datas são para Portugal ou para o Brasil?", "As horas estão em hora de Lisboa. No Brasil, a hora é diferente (em Brasília, normalmente três ou quatro horas mais cedo), e um evento perto da meia-noite pode cair no dia anterior."),
  ("Preciso da hora de nascimento?", "Para saber em que casa do seu mapa cai cada trânsito, sim. Sem ela, pode ler o trânsito a partir do seu signo solar, como fazemos nestas páginas, que já dá uma boa orientação."),

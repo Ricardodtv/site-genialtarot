@@ -329,7 +329,7 @@ FAQ = {
  ],
  "compatibilidade": [
   ("Como ver a compatibilidade entre dois signos?",
-   "Escolha o seu signo e o da pessoa amada. A página mostra o que vos une, o que pede cuidado e a carta do Tarot para esse par. A leitura baseia-se nos elementos — Fogo, Terra, Ar e Água — e nos modos de cada signo."),
+   "Escolha o seu signo e o da pessoa amada. A página mostra o que vos une, o que pede cuidado e a carta do Tarot para esse par. A leitura baseia-se nos elementos (Fogo, Terra, Ar e Água) e nos modos de cada signo."),
   ("Há signos incompatíveis no amor?",
    "Nenhum par é impossível: todos os amores se constroem. Os signos dão o tom da relação, mostrando onde é fácil e onde é preciso mais paciência, mas não decidem por si se uma relação vai durar."),
   ("A compatibilidade dos signos solares chega?",

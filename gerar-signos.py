@@ -124,7 +124,7 @@ for i, s in enumerate(S):
   <section class="heroi heroi-signo">
     <img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="Signo {E(nome)}" width="120" height="120" />
     <div class="heroi-txt"><h1><span class="az">{GLIFO[i]}︎ Signo {E(nome)}</span></h1>
-    <p class="sub">{E(s['datas'])} · signo de {el} · regido por {E(s['regente'])}</p></div>
+    <p class="sub">{E(s['datas'])} · signo de {el} · regido {E(re.sub(r'^a ', 'pela ', re.sub(r'^o ', 'pelo ', s['regente'])) if re.match(r'^[ao] ', s['regente']) else 'por ' + s['regente'])}</p></div>
   </section>
   <section class="cartao hoje">
     <p class="ja-viu" id="ja-viu" hidden>🎬 Já viu o vídeo? Aqui está o que não coube nele 👇</p>

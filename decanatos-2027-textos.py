@@ -80,7 +80,7 @@ DECANATOS = [
   "decs": [
    ["1.º decanato", "22 de novembro a 1 de dezembro (aprox.)", "Sagitário e Júpiter", "É o Sagitário mais livre, optimista e filosófico. Você precisa de horizontes largos, de viagens, de estudo e de uma vida com sentido. Tem uma fé natural de que tudo se resolve. A lição é aprender a assumir compromissos sem sentir que perde a liberdade."],
    ["2.º decanato", "2 a 11 de dezembro (aprox.)", "Carneiro e Marte", "O Sagitário ganha garra e espírito pioneiro. Você é directo(a), corajoso(a) e gosta de ser o primeiro a experimentar. Luta pelas suas convicções com entusiasmo. O cuidado é medir as palavras, porque a sua franqueza pode ferir sem querer."],
-   ["3.º decanato", "12 a 21 de dezembro (aprox.)", "Leão e o Sol", "É o Sagitário mais generoso, criativo e carismático. Você tem presença, gosta de inspirar os outros e de ser reconhecido(a) pelo que faz. Tem talento para ensinar, liderar ou estar em palco. A sua prova é manter a humildade quando as coisas correm bem e lembrar-se de quem o(a) ajudou a chegar lá, porque é nessa gratidão que o seu fogo se torna verdadeiramente nobre."]]},
+   ["3.º decanato", "12 a 21 de dezembro (aprox.)", "Leão e o Sol", "É o Sagitário mais generoso, criativo e carismático. Você tem presença, gosta de inspirar os outros e de ser reconhecido(a) pelo que faz. Tem talento para ensinar, liderar ou estar em palco. A sua prova é manter a humildade quando as coisas correm bem e lembrar-se de quem o(a) ajudou a chegar lá."]]},
 
  {"slug": "capricornio",
   "titulo": "Decanatos de Capricórnio: os três tipos de Capricórnio",
@@ -89,7 +89,7 @@ DECANATOS = [
   "decs": [
    ["1.º decanato", "22 a 31 de dezembro (aprox.)", "Capricórnio e Saturno", "É o Capricórnio mais ambicioso, sério e determinado. Você sobe a montanha passo a passo e raramente desiste. Tem um sentido de dever muito forte e uma maturidade precoce. A lição é permitir-se a leveza e mostrar mais o afecto que sente."],
    ["2.º decanato", "1 a 10 de janeiro (aprox.)", "Touro e Vénus", "O Capricórnio fica mais sereno, afectuoso e ligado ao prazer das coisas boas. Você gosta de estabilidade, de beleza e de construir um conforto sólido para si e para os seus. É fiel e paciente. O cuidado é não resistir à mudança só por hábito."],
-   ["3.º decanato", "11 a 19 de janeiro (aprox.)", "Virgem e Mercúrio", "É o Capricórnio mais metódico, inteligente e prestável. Você planeia ao pormenor, resolve problemas com lógica e gosta de ser útil. É exigente consigo e com o trabalho. A sua prova é aceitar que o bom feito vale mais do que o perfeito por fazer, e que pedir ajuda também é uma forma de competência."]]},
+   ["3.º decanato", "11 a 19 de janeiro (aprox.)", "Virgem e Mercúrio", "É o Capricórnio mais metódico, inteligente e prestável. Você planeia ao pormenor, resolve problemas com lógica e gosta de ser útil. É exigente consigo e com o trabalho. A sua prova é aceitar que o bom feito vale mais do que o perfeito por fazer, e pedir ajuda quando precisa."]]},
 
  {"slug": "aquario",
   "titulo": "Decanatos de Aquário: os três tipos de Aquário e as datas",
@@ -107,14 +107,14 @@ DECANATOS = [
   "decs": [
    ["1.º decanato", "19 a 28 de fevereiro (aprox.)", "Peixes e Júpiter (Neptuno)", "É o Peixes mais sonhador, compassivo e espiritual. Você sente o que se passa à sua volta como uma esponja e tem uma imaginação sem limites. A arte, a música e a fé alimentam-lhe a alma. A lição é pôr os pés na terra sem deixar de sonhar."],
    ["2.º decanato", "1 a 10 de março (aprox.)", "Caranguejo e a Lua", "O Peixes fica mais familiar, protector e emotivo. Você cuida dos outros com uma ternura rara e precisa de um lar onde se sinta seguro(a). A sua intuição é muito apurada. O cuidado é não se deixar levar pela nostalgia nem pelas mágoas do passado."],
-   ["3.º decanato", "11 a 20 de março (aprox.)", "Escorpião e Marte (Plutão)", "É o Peixes mais intenso, profundo e magnético. Você tem uma força emocional que surpreende quem o(a) julga frágil e uma capacidade enorme de se transformar. Interessa-se pelos mistérios da vida. A sua prova é usar essa intensidade para curar, e não para se fechar, confiando que a sua sensibilidade é uma força e não uma fraqueza."]]},
+   ["3.º decanato", "11 a 20 de março (aprox.)", "Escorpião e Marte (Plutão)", "É o Peixes mais intenso, profundo e magnético. Você tem uma força emocional que surpreende quem o(a) julga frágil e uma capacidade enorme de se transformar. Interessa-se pelos mistérios da vida. A sua prova é usar essa intensidade para curar, e não para se fechar, e confiar na sua sensibilidade."]]},
 ]
 
 PAGINAS_2027 = [
  {"slug": "mercurio-retrogrado-2027",
   "titulo": "Mercúrio retrógrado em 2027: as três datas e o que fazer",
   "desc": "Mercúrio retrógrado em 2027: as datas dos três períodos, os signos por onde passa e conselhos práticos para atravessar cada fase com calma e bom senso.",
-  "intro": "Três vezes por ano, Mercúrio parece andar para trás no céu. Não anda, claro: é um efeito de perspectiva, porque a Terra o ultrapassa na sua órbita. Mas na tradição astrológica estes períodos pedem revisão, paciência e atenção redobrada à comunicação, aos contratos, às viagens e à tecnologia. Em 2027, Mercúrio fica retrógrado três vezes, e em cada uma recua de um signo para o anterior, o que dá a cada período dois tons diferentes. Não é altura para ter medo, é altura para rever.",
+  "intro": "Três vezes por ano, Mercúrio parece andar para trás no céu. Não anda, claro: é um efeito de perspectiva, porque a Terra o ultrapassa na sua órbita. Mas na tradição astrológica estes períodos pedem revisão, paciência e atenção redobrada à comunicação, aos contratos, às viagens e à tecnologia. Em 2027, Mercúrio fica retrógrado três vezes, e em cada uma recua de um signo para o anterior, o que dá a cada período dois tons diferentes. Não há razão para medo: é uma altura para rever.",
   "periodos": [
    ["9 de fevereiro a 3 de março", "Peixes → Aquário", "Começa em Peixes, o que pede atenção aos mal-entendidos, às promessas vagas e àquilo que se diz por meias palavras. Ao recuar para Aquário, o foco passa para os amigos, os grupos e os projectos colectivos. É uma boa altura para retomar contactos antigos e rever planos a longo prazo."],
    ["11 de junho a 5 de julho", "Caranguejo → Gémeos", "Em Caranguejo, voltam assuntos de família, da casa e do passado, e as conversas emotivas pedem delicadeza. Ao recuar para Gémeos, o movimento passa para os papéis, as mensagens, as deslocações curtas e os irmãos ou vizinhos. Confirme moradas, horários e reservas antes de sair."],

@@ -37,7 +37,7 @@ H2027 = [
   "titulo": "Horóscopo 2027 Gémeos (Gêmeos): amor, dinheiro e trabalho",
   "desc": "Horóscopo 2027 para Gémeos (Gêmeos): Úrano no seu signo, Júpiter a favor da comunicação e depois do lar. Amizades sérias e datas-chave do ano.",
   "resumo": "Ano de ideias novas e raízes renovadas. Úrano continua no seu signo e mantém-no inquieto e original. Júpiter favorece contactos, estudos e viagens curtas até Julho, e depois a casa e a família; Saturno pede amizades e planos com os pés no chão.",
-  "amor": "A comunicação é a chave do seu amor em 2027: com Júpiter na casa 3 até 26 de Julho, conversas, mensagens e encontros perto de casa abrem portas. Os eclipses no eixo Aquário–Leão, a 6 de Fevereiro e 2 de Agosto, tocam a casa 9 e a casa 3, e podem trazer um amor de longe ou uma mudança de visão sobre a relação. A partir de 26 de Julho, Júpiter na casa 4 favorece a vida a dois em casa, mudanças de morada e laços familiares. Saturno na casa 11 separa as amizades verdadeiras das de ocasião, e às vezes um amigo pode tornar-se algo mais sério. Não confunda liberdade com fuga.",
+  "amor": "No amor, 2027 é um ano de muita conversa: com Júpiter na casa 3 até 26 de Julho, conversas, mensagens e encontros perto de casa abrem portas. Os eclipses no eixo Aquário–Leão, a 6 de Fevereiro e 2 de Agosto, tocam a casa 9 e a casa 3, e podem trazer um amor de longe ou uma mudança de visão sobre a relação. A partir de 26 de Julho, Júpiter na casa 4 favorece a vida a dois em casa, mudanças de morada e laços familiares. Saturno na casa 11 separa as amizades verdadeiras das de ocasião, e às vezes um amigo pode tornar-se algo mais sério. Não confunda liberdade com fuga.",
   "dinheiro": "O eclipse lunar de 18 de Julho, em Capricórnio, toca a sua casa 8: dívidas, partilhas e dinheiro em comum pedem revisão. Depois de 26 de Julho, questões de casa e família podem pesar no orçamento, mas também trazer estabilidade. Evite assinar sem ler bem, sobretudo nos períodos de Mercúrio retrógrado.",
   "trabalho": "Este é um ano excelente para aprender, escrever, ensinar e negociar. Saturno na casa 11 pede que escolha bem os grupos e as parcerias com quem trabalha. Mercúrio, o seu regente, fica retrógrado três vezes, e a de 11 de Junho a 5 de Julho termina no seu signo: reveja projectos e documentos antes de os lançar. Marte retrógrado no início do ano pede paciência com assuntos de casa que interferem no trabalho.",
   "saude_bemestar": "A mente corre depressa e o corpo nem sempre acompanha. Caminhadas, pausas sem ecrãs e horários regulares ajudam a gastar a energia de Úrano sem se esgotar.",
@@ -112,7 +112,7 @@ H2027 = [
    ["2 de agosto", "Eclipse total do Sol em Leão, na casa 11: novas amizades e projectos de grupo."],
    ["9 de agosto", "Saturno fica retrógrado na casa 7: as relações e os acordos são revistos com calma."],
    ["28 de outubro", "Mercúrio fica directo no seu signo: clareza nas conversas e nas decisões adiadas."]],
-  "conselho": "Um bom compromisso não é o que agrada a todos, é o que é justo para si também."},
+  "conselho": "Um bom compromisso tem de ser justo também para si, mesmo que não agrade a todos."},
 
  {"slug": "escorpiao",
   "titulo": "Horóscopo 2027 Escorpião: amor, dinheiro e trabalho",
@@ -150,7 +150,7 @@ H2027 = [
   "titulo": "Horóscopo 2027 Capricórnio: amor, dinheiro e trabalho",
   "desc": "Horóscopo 2027 para Capricórnio: Júpiter transforma e depois expande, eclipse lunar no seu signo, Saturno na casa e família. Datas-chave do ano.",
   "resumo": "Ano de transformação profunda e de horizontes novos. Júpiter em Leão mexe nas finanças partilhadas e na intimidade até Julho, e em Virgem abre viagens e estudos. Saturno, o seu regente, pede atenção à casa e às raízes.",
-  "amor": "O eclipse lunar de 18 de Julho, no seu signo, é um ponto de viragem emocional: mostra o que você precisa, o que já não aceita e quem está realmente ao seu lado. Com Júpiter na casa 8 até Julho, a intimidade aprofunda-se e as relações podem ficar mais fortes. Saturno na casa 4 traz responsabilidades familiares, e o lar pode precisar de mais atenção. A partir de 26 de Julho, Júpiter na casa 9 favorece amores com alguém de outra cultura ou viagens a dois. Mostre o seu lado sensível; é aí que mora o amor.",
+  "amor": "O eclipse lunar de 18 de Julho, no seu signo, é um ponto de viragem emocional: mostra o que você precisa, o que já não aceita e quem está realmente ao seu lado. Com Júpiter na casa 8 até Julho, a intimidade aprofunda-se e as relações podem ficar mais fortes. Saturno na casa 4 traz responsabilidades familiares, e o lar pode precisar de mais atenção. A partir de 26 de Julho, Júpiter na casa 9 favorece amores com alguém de outra cultura ou viagens a dois. Mostre o seu lado sensível: é por aí que o amor chega.",
   "dinheiro": "Os eclipses no eixo Aquário–Leão tocam a casa 2 e a casa 8: rendimentos, dívidas e bens partilhados passam por mudanças, e é tempo de reorganizar. Júpiter na casa 8 pode trazer apoios, créditos ou heranças, mas convém ler tudo com atenção. Marte entra no seu signo a 26 de Novembro e dá energia para pôr ordem nas contas.",
   "trabalho": "A segunda metade do ano favorece formações, estudos superiores, publicações e contactos com o estrangeiro. Saturno na casa 4 pode pedir que equilibre melhor a carreira com a vida privada. Marte retrógrado, entre 10 de Janeiro e 1 de Abril, convida a rever projectos em vez de os forçar.",
   "saude_bemestar": "Saturno na casa 4 pede um lar que seja refúgio: descanso e sono de qualidade são prioridade. Com Marte no seu signo no fim do ano, a energia sobe; use-a com moderação.",
@@ -192,5 +192,5 @@ H2027 = [
    ["26 de julho", "Júpiter entra em Virgem, na casa 7: amor, compromissos e parcerias favorecidos."],
    ["2 de agosto", "Eclipse total do Sol em Leão, na casa 6: nova fase no trabalho e nos hábitos."],
    ["9 de agosto", "Saturno fica retrógrado na casa 2: revisão das finanças e do que é essencial."]],
-  "conselho": "Dê forma aos seus sonhos com passos práticos. A estrutura não lhe tira magia, dá-lhe chão."},
+  "conselho": "Dê forma aos seus sonhos com passos práticos. Ter uma estrutura dá-lhes chão sem lhes tirar a magia."},
 ]
