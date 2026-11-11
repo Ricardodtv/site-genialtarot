@@ -200,7 +200,7 @@ TEMAS = [
  "desc": "Aconselhamento espiritual e orientação de vida com o Mestre Alberto: ouvir, compreender e encontrar um caminho no amor, na família, no trabalho e nos negócios.",
  "sub": "Às vezes, o que mais precisamos é de alguém que nos ouça e nos ajude a ver claro.",
  "seccoes": [
-  ("Um espaço para ser ouvido", "Nem sempre se procura uma previsão. Muitas vezes procura-se alguém que oiça sem julgar e ajude a pôr ordem nos pensamentos. O aconselhamento junta a experiência de 18 anos de consultas, a leitura das cartas e uma conversa franca sobre o momento que está a viver."),
+  ("Um espaço para ser ouvido", "Nem sempre se procura uma previsão. Muitas vezes procura-se alguém que oiça sem julgar e ajude a pôr ordem nos pensamentos. O aconselhamento junta a experiência de 18 anos de consultas, a leitura das cartas e uma conversa franca sobre o momento que está a viver. Se quiser começar por ler, veja o que é a <a href=\"/espiritualidade\">espiritualidade</a> e como se vive no dia a dia."),
   ("Para pessoas e para empresas", "O aconselhamento serve para decisões pessoais (relações, família, mudanças de vida) e também para quem gere um negócio ou uma empresa e precisa de olhar para uma decisão com outra perspetiva. Veja também <a href=\"/tarot-negocios\">Tarot para Negócios e Empresas</a> e a <a href=\"/consultas-a-distancia\">consulta à distância</a>."),
   ("Para casais", "Para os casais em crise ou que querem reforçar a relação, há a Consulta de Terapia de Casais, de uma hora, feita à distância."),
  ],
