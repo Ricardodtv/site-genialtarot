@@ -28,6 +28,8 @@
    pagina    → (opcional) o botão leva a esta página do site em vez do
                pagamento directo (ex.: "/mapa-amor", que pede os dados)
    pagamentos→ (opcional) com "pagina", a linha das formas de pagamento
+   fotoBrasil→ (opcional) a foto que a loja do Brasil mostra em vez da
+               "foto" — para fotos com o preço em euros desenhado
    topvendas → true mostra o selo DOURADO "✦ Top Vendas ✦" com
                ⭐⭐⭐ por cima (opcional; também põe o produto à frente)
 
@@ -66,6 +68,7 @@ const PRODUTOS = [
     categoria: "Promoção",
     preco: "19 €",
     foto: "astrologia-2027-guia-loja.jpg",
+    fotoBrasil: "astrologia-2027-guia-loja-br.jpg",
     descricao: "O seu 2027 signo a signo, com o céu real calculado ao minuto: os cinco eclipses, os retrógrados, o calendário lunar completo e, para cada signo, o amor, o dinheiro, o trabalho, a saúde, as datas do amor, os meses mais favoráveis e os de cautela, e a tabela do ano mês a mês. Escrito pelo Mestre Alberto e enviado para o seu email em PDF.",
     link: "https://mypos.com/vmp/btn/BTY99VSJMLA69",
     etiqueta: "NOVIDADE",
@@ -132,6 +135,7 @@ const PRODUTOS = [
     categoria: "Consultas",
     preco: "15 €",
     foto: "pergunta-audio.jpg",
+    fotoBrasil: "pergunta-audio-br.jpg",
     descricao: "Envie a sua pergunta pelo WhatsApp como preferir — por áudio, por escrito ou em vídeo. O Mestre Alberto tira as cartas para a sua pergunta e responde-lhe com um áudio da leitura, feito só para si. Pessoal, simples e ao alcance de todos — a forma mais fácil de experimentar uma leitura com o Mestre.",
     link: "",
     destaque: true,

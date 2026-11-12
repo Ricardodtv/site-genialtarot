@@ -516,7 +516,8 @@ function montarLoja() {
   zona.innerHTML = cats.map(c => {
     const id = "cat-" + c.toLowerCase().replace(/\s+/g, "-");
     const cartas = porCat[c].map(p => {
-      const srcFoto = p.foto + (/^https?:/i.test(p.foto) ? "" : (p.foto.includes("?") ? "&" : "?") + "v=" + VERSAO_FOTOS);
+      const fF = (LOJA === "brasil" && p.fotoBrasil) || p.foto;   // 12/11/2026: na loja do Brasil, a foto sem o preço em euros desenhado
+      const srcFoto = fF + (/^https?:/i.test(fF) ? "" : (fF.includes("?") ? "&" : "?") + "v=" + VERSAO_FOTOS);
       const foto = p.foto
         ? `<img class="foto" src="${esc(srcFoto)}" alt="${esc(p.nome)}" loading="lazy" onerror="this.outerHTML='<div class=&quot;foto-simbolo&quot;>${ICONES_CAT[c] || "✦"}</div>'" />`
         : `<div class="foto-simbolo">${ICONES_CAT[c] || "✦"}</div>`;
