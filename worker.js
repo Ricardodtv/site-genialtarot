@@ -544,6 +544,9 @@ const PAGINAS = new Set([
   "/curso-de-tarot", "/na-imprensa",
   // 04/11/2026 (ideia dele): a comunidade dos 12 grupos de signos, com os membros contados
   "/comunidade",
+  // 12/11/2026 (análise da concorrência «Cartas da Maya»): consulta de tarot com preços, canais oficiais, tarot terapêutico e autoconhecimento,
+  // e o horóscopo semanal de cada signo (horoscopo-semanal-signos.py, renova às segundas)
+  "/consulta-de-tarot", "/canais-oficiais", "/tarot-terapeutico", "/tarot-e-autoconhecimento", "/horoscopo-semanal-carneiro", "/horoscopo-semanal-touro", "/horoscopo-semanal-gemeos", "/horoscopo-semanal-caranguejo", "/horoscopo-semanal-leao", "/horoscopo-semanal-virgem", "/horoscopo-semanal-balanca", "/horoscopo-semanal-escorpiao", "/horoscopo-semanal-sagitario", "/horoscopo-semanal-capricornio", "/horoscopo-semanal-aquario", "/horoscopo-semanal-peixes",
 ]);
 
 function contarVisita(request, url, env, ctx) {
