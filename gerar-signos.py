@@ -93,9 +93,15 @@ os.makedirs("signo", exist_ok=True)
 for i, s in enumerate(S):
     url = f"{SITE}/signo/{s['slug']}"; img = f"{SITE}/signos/{SIGIMG[i]}"
     nome = s["pt"] if s["pt"] == s["br"] else f"{s['pt']} ({s['br']})"
-    titulo = f"Signo {nome}: características, amor e horóscopo de hoje"
-    if len(titulo) > 65: titulo = f"Signo {nome}: características, amor e horóscopo"   # 01/11: o Google corta acima de ~65 (Caranguejo (Câncer))
-    desc = f"O signo {nome} ({s['datas']}): personalidade, amor, trabalho e dinheiro, compatibilidades e o horóscopo de hoje, pelo Mestre Alberto."
+    # 12/11/2026 (O-354): as pesquisas que trazem /signo/touro ao Google são quase todas sobre DATAS («quem nasce a 6 de maio
+    # é que signo», «signo de touro qual mês») e havia 0 cliques — as datas passam para o título e a descrição responde logo.
+    _dd = lambda d: "/".join(f"{int(x):02d}" for x in d)
+    _m = {"janeiro":1,"fevereiro":2,"março":3,"abril":4,"maio":5,"junho":6,"julho":7,"agosto":8,"setembro":9,"outubro":10,"novembro":11,"dezembro":12}
+    _a, _b = [re.match(r"(\d+) de (\w+)", p).groups() for p in s["datas"].split(" a ")]
+    titulo = f"Signo {nome} ({_dd((_a[0], _m[_a[1]]))} a {_dd((_b[0], _m[_b[1]]))}): datas, amor e horóscopo de hoje"
+    if len(titulo) > 65: titulo = f"Signo {nome} ({_dd((_a[0], _m[_a[1]]))} a {_dd((_b[0], _m[_b[1]]))}): amor e horóscopo de hoje"
+    if len(titulo) > 65: titulo = f"Signo {nome}: datas, amor e horóscopo de hoje"   # o Google corta acima de ~65
+    desc = f"Nasceu entre {s['datas'].replace(' a ', ' e ')}? É do signo {nome}. Veja a personalidade, o amor, o dinheiro, com quem combina e o horóscopo de hoje."
     el = ELEM[i % 4]; md = MOD[i % 3]; op = S[(i + 6) % 12]
     afins = [S[j] for j in range(12) if j != i and (j % 4 == i % 4 or (i % 4 in (0, 2) and j % 4 in (0, 2)) or (i % 4 in (1, 3) and j % 4 in (1, 3)))]
     nm = lambda x: x["pt"] if x["pt"] == x["br"] else f"{x['pt']} ({x['br']})"
