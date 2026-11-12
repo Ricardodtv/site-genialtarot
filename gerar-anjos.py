@@ -278,3 +278,5 @@ CORPO_L = f"""{EST_L}{heroi("Os 72 Anjos", "A lista completa: o anjo de cada sig
 """
 grava("os-72-anjos.html", pagina("/os-72-anjos", "Os 72 Anjos: lista completa e o anjo de cada signo", "Os 72 anjos da tradição, organizados por signo: nome, tema, datas e um pequeno resumo de cada um, com ligação à sua oração e história.", CORPO_L, ld=LD_L, fim=JS_L))
 print("feito")
+# 12/11/2026: o texto próprio de cada anjo (bloco anjo-mais) volta a entrar depois de as 72 páginas serem refeitas
+import subprocess as _sp; _sp.run(["python3", "anjos-mais.py"], check=False)
