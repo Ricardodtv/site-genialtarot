@@ -870,6 +870,8 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 @media (min-width:760px) { .amanha { padding:1.6rem 1.8rem; gap:1rem 1.8rem; } .amanha-lua { width:6.4rem; height:6.4rem; grid-row:span 3; } .amanha-lua span { width:4.8rem; height:4.8rem; box-shadow: inset -1.3rem -0.3rem 0 0 oklch(0.90 0.12 88); }
   .amanha-data { font-size:1.9rem; } .amanha-signos, .amanha-btn { grid-column:2; } }
 @media (max-width:420px) { .amanha-lua { width:4.2rem; height:4.2rem; } .amanha-lua span { width:3.1rem; height:3.1rem; box-shadow: inset -.85rem -.2rem 0 0 oklch(0.90 0.12 88); } .amanha-data { font-size:1.3rem; } }
+.amanha.dia .amanha-lua span { box-shadow:none; background: radial-gradient(circle at 40% 38%, oklch(0.97 0.08 95), oklch(0.85 0.15 80) 60%, oklch(0.72 0.16 60)); filter: drop-shadow(0 0 18px oklch(0.88 0.15 85 / .9)); }
+.amanha.dia { background: radial-gradient(120% 140% at 0% 0%, oklch(0.50 0.15 320 / .9), transparent 60%), linear-gradient(140deg, oklch(0.30 0.12 300), oklch(0.19 0.08 280)); }
 @media (prefers-reduced-motion: reduce) { .amanha::before, .amanha-lua span, .amanha-lua::after { animation:none; } }
 /* 07/11/2026 (pedido dele): três caminhos claros no topo e destaques recolhidos */
 .caminhos { display:grid; grid-template-columns:1fr; gap:.7rem; max-width:60rem; margin:1.2rem auto 1.4rem; text-align:left; position:relative; z-index:5; }
@@ -1087,29 +1089,62 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
     </a>
     <script>
     (function () {
+      // 12/11/2026 (regra dele, todos os dias, hora de Lisboa): até às 16:00 o Horóscopo do Dia por escrito;
+      // das 16:00 à meia-noite a Antevisão de amanhã (depois das 17:50, a antevisão do Mestre das notícias).
       var NOMES = ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
       var SEMANA = ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"];
       var MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
       var $ = function (id) { return document.getElementById(id); };
-      // o dia conta-se em Lisboa, como as notícias (17:50) e o horóscopo do dia
-      var p = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Lisbon", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()).split("-");
-      var hoje = p.join("-"), d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + 1)), iso = d.toISOString().slice(0, 10);
-      $("amanha-data").innerHTML = "<small>Amanhã · " + SEMANA[d.getUTCDay()] + "</small>" + d.getUTCDate() + " de " + MESES[d.getUTCMonth()];
-      $("amanha").setAttribute("aria-label", "Antevisão de amanhã, " + SEMANA[d.getUTCDay()] + ", " + d.getUTCDate() + " de " + MESES[d.getUTCMonth()]);
-      fetch("/horoscopo-dia/" + iso + ".json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (x) {
-        var ord = x.s.map(function (y, i) { return { i: i, e: y.e }; }).filter(function (o) { return o.e >= 4; }).sort(function (a, b) { return b.e - a.e; }).slice(0, 3);
-        if (!ord.length) return;
-        $("amanha-signos").innerHTML = "<b>Em alta</b>" + ord.map(function (o) {
-          var n = String(o.i).padStart(2, "0");
-          return '<i><img src="/signos/' + n + '.webp" alt="" width="58" height="58" loading="lazy" decoding="async">' + NOMES[o.i] + "</i>"; }).join("");
-      }).catch(function () {});
-      fetch("/noticias/lista.json", { cache: "no-cache" }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (l) {
-        var n = l.filter(function (a) { return a.slug === hoje + "-tarde"; })[0];
-        if (!n) return;   // antes das 17:50 ainda não há: fica o horóscopo de amanhã
-        $("amanha").href = "/noticias/" + n.slug;
-        $("amanha-eti").textContent = "Nova · Antevisão do Mestre";
-        $("amanha-titulo").textContent = n.titulo.replace(/^Antevisão de [^:]+:\s*/, "");
-      }).catch(function () {});
+      var HORA_ANTEVISAO = 16, modo = "";
+      function agora() {
+        var q = {}; new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Lisbon", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", hourCycle: "h23" })
+          .formatToParts(new Date()).forEach(function (x) { q[x.type] = x.value; });
+        return { hoje: q.year + "-" + q.month + "-" + q.day, a: +q.year, m: +q.month, d: +q.day, h: +q.hour };
+      }
+      function signos(iso) {
+        $("amanha-signos").innerHTML = "";
+        fetch("/horoscopo-dia/" + iso + ".json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (x) {
+          var ord = x.s.map(function (y, i) { return { i: i, e: y.e }; }).filter(function (o) { return o.e >= 4; }).sort(function (a, b) { return b.e - a.e; }).slice(0, 3);
+          if (!ord.length) return;
+          $("amanha-signos").innerHTML = "<b>Em alta</b>" + ord.map(function (o) {
+            return '<i><img src="/signos/' + String(o.i).padStart(2, "0") + '.webp" alt="" width="58" height="58" loading="lazy" decoding="async">' + NOMES[o.i] + "</i>"; }).join("");
+        }).catch(function () {});
+      }
+      function desenhar() {
+        var t = agora(), tarde = t.h >= HORA_ANTEVISAO, novo = (tarde ? "amanha:" : "hoje:") + t.hoje;
+        if (novo === modo) return; modo = novo;
+        var d = new Date(Date.UTC(t.a, t.m - 1, t.d + (tarde ? 1 : 0))), iso = d.toISOString().slice(0, 10);
+        var quando = SEMANA[d.getUTCDay()], data = d.getUTCDate() + " de " + MESES[d.getUTCMonth()];
+        var el = $("amanha"); el.classList.toggle("dia", !tarde);
+        $("amanha-data").innerHTML = "<small>" + (tarde ? "Amanhã · " : "Hoje · ") + quando + "</small>" + data;
+        if (tarde) {
+          el.href = "/horoscopo-de-amanha";
+          $("amanha-eti").textContent = "Antevisão de amanhã";
+          $("amanha-titulo").textContent = "Os 12 signos para amanhã: quem aproveita e quem deve ir com calma, com o céu calculado pelo Mestre Alberto.";
+          $("amanha-btn").textContent = "Ver a antevisão →";
+          el.setAttribute("aria-label", "Antevisão de amanhã, " + quando + ", " + data);
+        } else {
+          el.href = "/horoscopo-do-dia";
+          $("amanha-eti").textContent = "Horóscopo do Dia";
+          $("amanha-titulo").textContent = "Os 12 signos para hoje, por escrito: o céu do dia, a energia de cada signo e a dica do Mestre Alberto.";
+          $("amanha-btn").textContent = "Ler o horóscopo de hoje →";
+          el.setAttribute("aria-label", "Horóscopo do Dia, " + quando + ", " + data);
+        }
+        signos(iso);
+        fetch("/noticias/lista.json", { cache: "no-cache" }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (l) {
+          var n = l.filter(function (a) { return a.slug === t.hoje + (tarde ? "-tarde" : "-manha"); })[0];
+          if (!n || modo !== novo) return;
+          if (tarde) {   // antes das 17:50 ainda não há: fica o horóscopo de amanhã
+            el.href = "/noticias/" + n.slug;
+            $("amanha-eti").textContent = "Nova · Antevisão do Mestre";
+            $("amanha-titulo").textContent = n.titulo.replace(/^Antevisão de [^:]+:\s*/, "");
+          } else {       // o título da notícia das 08:50 diz o tema do dia; o cartão continua a levar ao texto escrito
+            $("amanha-titulo").textContent = n.titulo.replace(/^Horóscopo de hoje[^:]*:\s*/, "") + ". Leia o seu signo por escrito.";
+          }
+        }).catch(function () {});
+      }
+      desenhar();
+      setInterval(desenhar, 60000);   // quem deixa a página aberta vê a troca às 16:00 e à meia-noite
     })();
     </script>
     <p class="animate-fade-up hero-sub">
