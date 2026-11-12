@@ -361,6 +361,26 @@ async function fetchAnnualZodiac(debug, env) {
 }
 // ==================================================================
 
+// 🛟 12/11/2026: a quota da API do YouTube esgotou-se (quotaExceeded, 403) e os botões dos signos no /horoscopo
+// morreram até à meia-noite do Pacífico. Agora cada resultado bom fica guardado no KV (só se mudou, para não gastar
+// escritas); quando o YouTube falha, serve-se o último bom em vez de nada. Um vídeo de ontem é melhor que botões mortos.
+async function comReserva(env, nome, fn) {
+  const chave = "reserva-video:" + nome;
+  let data = null;
+  try { data = await fn(); } catch (e) { data = null; }
+  try {
+    if (data) {
+      const novo = JSON.stringify(data);
+      const velho = await env.CAPTURAS.get(chave);
+      if (velho !== novo) await env.CAPTURAS.put(chave, novo);
+      return data;
+    }
+    const guardado = await env.CAPTURAS.get(chave);
+    if (guardado) return { ...JSON.parse(guardado), reserva: true };
+  } catch (e) { /* o KV nunca pode derrubar a rota */ }
+  return data;
+}
+
 async function fetchLatestDailyZodiac(debug, env, playlistId = ZODIAC_PLAYLIST_ID) {
   const diag = { candidatos: [] };
   let best = null;
@@ -862,7 +882,7 @@ export default {
       const cached = await cache.match(cacheKey);
       if (cached) return cached;
       try {
-        const data = await fetchLatestDailyZodiac(false, env);
+        const data = await comReserva(env, "zodiac", () => fetchLatestDailyZodiac(false, env));
         const response = new Response(JSON.stringify({ ok: true, data }), {
           headers: {
             "Content-Type": "application/json",
@@ -902,7 +922,7 @@ export default {
       const cached = await cache.match(cacheKey);
       if (cached) return cached;
       try {
-        const data = await fetchLatestDailyZodiac(false, env, WEEKEND_PLAYLIST_ID);
+        const data = await comReserva(env, "fimsemana", () => fetchLatestDailyZodiac(false, env, WEEKEND_PLAYLIST_ID));
         const response = new Response(JSON.stringify({ ok: true, data }), {
           headers: {
             "Content-Type": "application/json",
@@ -942,7 +962,7 @@ export default {
       const cached = await cache.match(cacheKey);
       if (cached) return cached;
       try {
-        const data = await fetchAnnualZodiac(false, env);
+        const data = await comReserva(env, "anual", () => fetchAnnualZodiac(false, env));
         const response = new Response(JSON.stringify({ ok: true, data }), {
           headers: {
             "Content-Type": "application/json",

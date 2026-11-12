@@ -837,6 +837,40 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .cigano-txt .botoes-cg { display: flex; gap: .5rem; flex-wrap: wrap; }
 @media (prefers-reduced-motion: reduce) { .leque .lc, .leque .lc-in { transition: none; } }
 
+/* 🌙 12/11/2026 (pedido dele): a antevisão de amanhã sempre em destaque, logo a seguir aos três caminhos.
+   Depois das 17:50 liga à antevisão do dia (noticias/lista.json); antes, aos signos de amanhã já calculados (horoscopo-dia/). */
+.amanha { position:relative; z-index:5; display:grid; grid-template-columns:auto 1fr; align-items:center; gap:1rem 1.3rem; max-width:60rem; margin:0 auto 1.6rem;
+  padding:1.3rem 1.3rem 1.2rem; border-radius:1.5rem; text-decoration:none; color:#fff; text-align:left; overflow:hidden;
+  background: radial-gradient(120% 140% at 0% 0%, oklch(0.42 0.16 300 / .95), transparent 60%), linear-gradient(140deg, oklch(0.26 0.11 285), oklch(0.17 0.07 270));
+  border:1.5px solid oklch(0.85 0.13 88 / .75); box-shadow:0 22px 60px #0008, 0 0 40px oklch(0.70 0.16 305 / .30), inset 0 1px 0 #ffffff1c; transition:transform .25s, box-shadow .25s; }
+.amanha:hover { transform:translateY(-3px); box-shadow:0 26px 64px #0009, 0 0 52px oklch(0.80 0.14 88 / .40); }
+.amanha::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.55;
+  background-image: radial-gradient(1.5px 1.5px at 12% 22%, #fff, transparent), radial-gradient(1px 1px at 72% 18%, #fff, transparent), radial-gradient(1.5px 1.5px at 88% 64%, #fff, transparent),
+    radial-gradient(1px 1px at 40% 80%, #fff, transparent), radial-gradient(1px 1px at 58% 40%, #fffc, transparent), radial-gradient(1.5px 1.5px at 94% 12%, #fff, transparent), radial-gradient(1px 1px at 26% 60%, #fffa, transparent);
+  animation: amanha-estrelas 4s ease-in-out infinite alternate; }
+@keyframes amanha-estrelas { from { opacity:.35 } to { opacity:.75 } }
+.amanha-lua { position:relative; width:5.2rem; height:5.2rem; display:grid; place-items:center; }
+.amanha-lua span { width:3.9rem; height:3.9rem; border-radius:50%; box-shadow: inset -1.05rem -0.25rem 0 0 oklch(0.90 0.12 88); filter: drop-shadow(0 0 14px oklch(0.85 0.14 85 / .85)); transform:rotate(-18deg); animation: amanha-lua 5s ease-in-out infinite; }
+.amanha-lua::after { content:""; position:absolute; inset:0; border-radius:50%; border:1px dashed oklch(0.85 0.13 88 / .45); animation: mini-roda-gira 30s linear infinite; }
+@keyframes amanha-lua { 0%,100% { transform:rotate(-18deg) scale(1); } 50% { transform:rotate(-10deg) scale(1.07); } }
+.amanha-txt { display:flex; flex-direction:column; gap:.3rem; min-width:0; }
+.amanha-eti { align-self:flex-start; font-size:.66rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:oklch(0.22 0.06 300); background:var(--m-grad-ouro); border-radius:999px; padding:.22rem .7rem; }
+.amanha-data { font-family:"Cinzel", var(--font-display); font-size:1.5rem; line-height:1.15; font-weight:600; }
+.amanha-data small { display:block; font-family:inherit; font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; color:oklch(0.86 0.12 88); }
+.amanha-titulo { font-size:.95rem; line-height:1.4; color:oklch(0.93 0.03 310); }
+.amanha-signos { grid-column:1 / -1; display:flex; flex-wrap:wrap; align-items:center; gap:.5rem .6rem; }
+.amanha-signos:empty { display:none; }
+.amanha-signos b { font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:oklch(0.86 0.12 88); margin-right:.2rem; }
+.amanha-signos i { font-style:normal; display:inline-flex; align-items:center; gap:.4rem; padding:.25rem .75rem .25rem .3rem; border-radius:999px; font-size:.88rem; font-weight:600;
+  background:oklch(1 0 0 / .08); border:1px solid oklch(0.85 0.13 88 / .45); }
+.amanha-signos img { width:1.8rem; height:1.8rem; border-radius:50%; }
+.amanha-btn { grid-column:1 / -1; justify-self:start; display:inline-flex; align-items:center; gap:.4rem; font-weight:800; font-size:.95rem; color:oklch(0.22 0.06 300);
+  background:var(--m-grad-ouro); border-radius:999px; padding:.65rem 1.3rem; box-shadow:0 6px 20px #0006; }
+.amanha.porta-brilho::after { animation-delay:1.2s; }
+@media (min-width:760px) { .amanha { padding:1.6rem 1.8rem; gap:1rem 1.8rem; } .amanha-lua { width:6.4rem; height:6.4rem; grid-row:span 3; } .amanha-lua span { width:4.8rem; height:4.8rem; box-shadow: inset -1.3rem -0.3rem 0 0 oklch(0.90 0.12 88); }
+  .amanha-data { font-size:1.9rem; } .amanha-signos, .amanha-btn { grid-column:2; } }
+@media (max-width:420px) { .amanha-lua { width:4.2rem; height:4.2rem; } .amanha-lua span { width:3.1rem; height:3.1rem; box-shadow: inset -.85rem -.2rem 0 0 oklch(0.90 0.12 88); } .amanha-data { font-size:1.3rem; } }
+@media (prefers-reduced-motion: reduce) { .amanha::before, .amanha-lua span, .amanha-lua::after { animation:none; } }
 /* 07/11/2026 (pedido dele): três caminhos claros no topo e destaques recolhidos */
 .caminhos { display:grid; grid-template-columns:1fr; gap:.7rem; max-width:60rem; margin:1.2rem auto 1.4rem; text-align:left; position:relative; z-index:5; }
 @media (min-width:760px){ .caminhos { grid-template-columns:repeat(3,1fr); gap:1rem; } }
@@ -1040,6 +1074,44 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a class="caminho" href="/horoscopo-do-dia"><img class="caminho-img" src="/caminho-signos.webp" alt="Roda do zodíaco com os signos" width="240" height="240" decoding="async"/><span><b>Quero saber do meu signo</b><small>O horóscopo de hoje</small></span></a>
       <a class="caminho mestre" href="#marcacao"><img class="caminho-img" src="/caminho-mestre.webp" alt="Mestre Alberto" width="240" height="240" decoding="async"/><span><b>Quero falar com o Mestre</b><small>Marcar uma consulta</small></span></a>
     </nav>
+    <!-- 🌙 12/11/2026 (pedido dele): a antevisão de amanhã, sempre em destaque. Sem JavaScript fica a ligação ao horóscopo de amanhã. -->
+    <a class="amanha porta-brilho animate-fade-up" id="amanha" href="/horoscopo-de-amanha">
+      <span class="amanha-lua" aria-hidden="true"><span></span></span>
+      <span class="amanha-txt">
+        <span class="amanha-eti" id="amanha-eti">Antevisão de amanhã</span>
+        <span class="amanha-data" id="amanha-data"><small>O dia de amanhã</small>Horóscopo de amanhã</span>
+        <span class="amanha-titulo" id="amanha-titulo">Os 12 signos para amanhã: quem aproveita e quem deve ir com calma, com o céu calculado pelo Mestre Alberto.</span>
+      </span>
+      <span class="amanha-signos" id="amanha-signos"></span>
+      <span class="amanha-btn" id="amanha-btn">Ver a antevisão →</span>
+    </a>
+    <script>
+    (function () {
+      var NOMES = ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+      var SEMANA = ["domingo","segunda-feira","terça-feira","quarta-feira","quinta-feira","sexta-feira","sábado"];
+      var MESES = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+      var $ = function (id) { return document.getElementById(id); };
+      // o dia conta-se em Lisboa, como as notícias (17:50) e o horóscopo do dia
+      var p = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Lisbon", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()).split("-");
+      var hoje = p.join("-"), d = new Date(Date.UTC(+p[0], +p[1] - 1, +p[2] + 1)), iso = d.toISOString().slice(0, 10);
+      $("amanha-data").innerHTML = "<small>Amanhã · " + SEMANA[d.getUTCDay()] + "</small>" + d.getUTCDate() + " de " + MESES[d.getUTCMonth()];
+      $("amanha").setAttribute("aria-label", "Antevisão de amanhã, " + SEMANA[d.getUTCDay()] + ", " + d.getUTCDate() + " de " + MESES[d.getUTCMonth()]);
+      fetch("/horoscopo-dia/" + iso + ".json").then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (x) {
+        var ord = x.s.map(function (y, i) { return { i: i, e: y.e }; }).filter(function (o) { return o.e >= 4; }).sort(function (a, b) { return b.e - a.e; }).slice(0, 3);
+        if (!ord.length) return;
+        $("amanha-signos").innerHTML = "<b>Em alta</b>" + ord.map(function (o) {
+          var n = String(o.i).padStart(2, "0");
+          return '<i><img src="/signos/' + n + '.webp" alt="" width="58" height="58" loading="lazy" decoding="async">' + NOMES[o.i] + "</i>"; }).join("");
+      }).catch(function () {});
+      fetch("/noticias/lista.json", { cache: "no-cache" }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (l) {
+        var n = l.filter(function (a) { return a.slug === hoje + "-tarde"; })[0];
+        if (!n) return;   // antes das 17:50 ainda não há: fica o horóscopo de amanhã
+        $("amanha").href = "/noticias/" + n.slug;
+        $("amanha-eti").textContent = "Nova · Antevisão do Mestre";
+        $("amanha-titulo").textContent = n.titulo.replace(/^Antevisão de [^:]+:\s*/, "");
+      }).catch(function () {});
+    })();
+    </script>
     <p class="animate-fade-up hero-sub">
       Orientação espiritual sincera e acolhedora. As cartas do Tarot ajudam a ver com clareza o amor, o trabalho e as decisões que tem pela frente.
     </p>
