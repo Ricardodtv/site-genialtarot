@@ -33,8 +33,8 @@ def bloco(i, n):
         c, v = d["cv"].split(":", 1)
         if d["livro"] == "Salmos":
             verso = (f"Na tradição dos 72 Nomes, cada anjo tem um versículo que se lê ao invocá-lo. Para {n} é o Salmo {c}, "
-                     f"{'versículos' if '-' in v else 'versículo'} {v.replace('-', ' e ')}, na numeração das Bíblias que seguem o texto hebraico, como a de Almeida. "
-                     f"Nas edições que seguem a numeração antiga da Vulgata, o número do salmo pode vir um abaixo.")
+                     f"{'versículos' if '-' in v else 'versículo'} {v.replace('-', ' e ')}, na numeração da Bíblia de Almeida. "
+                     f"Noutras edições, sobretudo nas que seguem a numeração antiga da Vulgata, o número do salmo ou do versículo pode mudar um pouco.")
         else:
             verso = (f"Na tradição dos 72 Nomes, cada anjo tem um versículo que se lê ao invocá-lo. {n} é o único da lista "
                      f"que não tem um salmo: o seu versículo é o primeiro da Bíblia, Génesis {c}, {v}, «No princípio».")
