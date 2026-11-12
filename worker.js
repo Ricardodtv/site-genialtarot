@@ -504,7 +504,7 @@ function origemVivo(d) {
 // ela contar. Se so entrar num, ou nao conta ou nem chega ca.
 const PAGINAS = new Set([
   "/", "/index", "/anual", "/arcanos", "/arvore", "/fimdesemana", "/horoscopo",
-  "/ascendente", "/loja", "/lua", "/mapa-amor", "/mapa-astral", "/numerologia-2027", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos", "/vip",
+  "/ascendente", "/loja", "/loja-brasil", "/loja-portugal", "/ir-loja", "/lua", "/mapa-amor", "/mapa-astral", "/numerologia-2027", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos", "/vip",
   "/arcano-00-o-louco", "/arcano-01-o-mago", "/arcano-02-a-sacerdotisa",
   "/arcano-03-a-imperatriz", "/arcano-04-o-imperador", "/arcano-05-o-hierofante",
   "/arcano-06-os-enamorados", "/arcano-07-o-carro", "/arcano-08-a-forca",
@@ -1316,6 +1316,35 @@ export default {
 
     if (url.pathname === "/Estataomp8") {
       return new Response(PAGINA_ESTATISTICAS, { headers: { "Content-Type": "text/html; charset=utf-8" } });
+    }
+
+    // 🌍🇧🇷🇵🇹 12/11/2026 (ele): três lojas sincronizadas — a mesma loja.html e o mesmo catálogo, muda só a forma de pagar.
+    // A etiqueta «Loja Online» vai a /ir-loja: Brasil → /loja-brasil (só PIX), Portugal → /loja-portugal (sem PIX),
+    // qualquer outro país ou origem desconhecida → /loja (Mundo, tudo).
+    if (url.pathname === "/ir-loja") {
+      const c = (request.cf && request.cf.country) || "";
+      const alvo = c === "BR" ? "/loja-brasil" : c === "PT" ? "/loja-portugal" : "/loja";
+      return new Response(null, { status: 302, headers: { Location: alvo + url.search, "Cache-Control": "private, no-store" } });
+    }
+    if ((url.pathname === "/loja-brasil" || url.pathname === "/loja-portugal") && (request.method === "GET" || request.method === "HEAD")) {
+      const br = url.pathname === "/loja-brasil";
+      const base = await env.ASSETS.fetch(new Request(new URL("/loja", url).toString(), { method: "GET" }));
+      if (base.ok) {
+        const tit = br ? "Loja Genial Tarot Brasil — pague com PIX · Mestre Alberto" : "Loja Genial Tarot Portugal — Cartão e MB WAY · Mestre Alberto";
+        const des = br ? "A loja do Mestre Alberto para o Brasil: consultas de tarot, mapas astrais e rituais, com pagamento por PIX e preços em reais."
+                       : "A loja do Mestre Alberto em Portugal: consultas de tarot, mapas astrais, rituais e amuletos, com pagamento por cartão, MB WAY ou transferência.";
+        const can = "https://genialtarot.com" + url.pathname;
+        const r = new Response(base.body, base);
+        r.headers.delete("etag"); r.headers.delete("last-modified");
+        return new HTMLRewriter()
+          .on("html", { element(e) { e.setAttribute("data-loja", br ? "brasil" : "portugal"); } })
+          .on("title", { element(e) { e.setInnerContent(tit); } })
+          .on('meta[name="description"]', { element(e) { e.setAttribute("content", des); } })
+          .on('link[rel="canonical"]', { element(e) { e.setAttribute("href", can); } })
+          .on('meta[property="og:url"]', { element(e) { e.setAttribute("content", can); } })
+          .on("h1", { element(e) { e.setInnerContent(br ? "A Loja do Genial Tarot · Brasil" : "A Loja do Genial Tarot · Portugal"); } })
+          .transform(r);
+      }
     }
 
     // Tudo o resto: servir o site normalmente

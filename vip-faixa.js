@@ -92,7 +92,7 @@ html.vip-on #loja-etq{top:calc(1rem + 54px + 3.9rem)}
 @media (prefers-reduced-motion:reduce){#loja-etq,#loja-etq .le,#loja-etq .lb,#loja-etq .lv,#loja-etq .lo{animation:none}}`;
   const st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
   const a = document.createElement("a");
-  a.id = "loja-etq"; a.href = "/loja"; a.setAttribute("aria-label", "Loja Online");
+  a.id = "loja-etq"; a.href = "/ir-loja";   /* 12/11/2026 (ele): a loja do país de quem visita — o worker escolhe */ a.setAttribute("aria-label", "Loja Online");
   a.innerHTML = '<span class="lo" aria-hidden="true"></span><span class="lfio" aria-hidden="true"></span>' +
     '<span class="lc"><span class="lf" aria-hidden="true"></span><span class="le" aria-hidden="true">🛍️</span><span class="lt"><b>Loja</b> Online</span><span class="lb" aria-hidden="true"></span></span>' +
     [[-70, 18, 0], [-55, 70, .9], [-80, 95, 1.6]].map(([x, y, d]) => `<span class="lv" aria-hidden="true" style="left:${x}%;top:${y}%;animation-delay:${d}s">✦</span>`).join("");

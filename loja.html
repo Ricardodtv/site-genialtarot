@@ -393,6 +393,11 @@ const FRASES_CAT = {
   "Mapas Astrais": "o céu que o desenhou, interpretado para si",
   "Cursos": "aprenda com quem lê as cartas há uma vida",
 };
+/* 🌍🇧🇷🇵🇹 12/11/2026 (pedido dele): TRÊS lojas sempre sincronizadas — a mesma página e o mesmo catálogo (produtos.js + pix.js);
+   só muda a forma de pagar. /loja = Mundo (tudo) · /loja-brasil = só PIX · /loja-portugal = tudo menos PIX.
+   O worker serve /loja-brasil e /loja-portugal com este ficheiro e marca <html data-loja>; a etiqueta «Loja Online» vai a /ir-loja,
+   que escolhe pelo país (BR → Brasil, PT → Portugal, outro ou desconhecido → Mundo). */
+const LOJA = document.documentElement.dataset.loja || ((location.pathname.replace(/\.html$/, "").match(/loja-(brasil|portugal)$/) || [])[1]) || "mundo";
 const ORDEM_CAT = ["Promoção", "Consultas", "Rituais", "Emergências", "Amuletos", "Mapas Astrais", "Cursos"];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
@@ -416,6 +421,7 @@ const pixPromo = () => typeof PIX_PROMO_FIM !== "undefined" && Date.now() < PIX_
 const brl = v => "R$ " + Number(v).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 function pixDados(p) { return (typeof PIX_PRODUTOS !== "undefined") ? PIX_PRODUTOS[p.nome] : null; }
 function pixHtml(p) {
+  if (LOJA === "portugal") return "";
   const d = pixDados(p);
   if (!d) return "";
   const promo = pixPromo();
@@ -497,6 +503,9 @@ function montarLoja() {
   const previstas = LINHAS_NAV.flat();
   const filas = LINHAS_NAV.map(l => l.filter(c => porCat[c]));
   filas[2] = [...filas[2], ...cats.filter(c => !previstas.includes(c))];
+  if (!document.getElementById("lojas-3")) nav.insertAdjacentHTML("beforebegin", `<div id="lojas-3" style="display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;margin:.2rem auto .9rem;font-size:.9rem">`
+    + [["mundo", "/loja", "🌍 Loja Mundo"], ["brasil", "/loja-brasil", "🇧🇷 Brasil · PIX"], ["portugal", "/loja-portugal", "🇵🇹 Portugal"]].map(([k, u, n]) =>
+      `<a href="${u}" style="text-decoration:none;padding:.35rem .85rem;border-radius:999px;font-weight:700;${k === LOJA ? "background:linear-gradient(135deg,#ffe2a0,#f2c96b);color:#2a1245" : "color:#f2c96b;border:1px solid rgba(242,201,107,.5)"}">${n}</a>`).join("") + `</div>`);
   nav.innerHTML = filas.filter(l => l.length).map(linha =>
     `<div class="nav-linha">` + linha.map(c => {
       const classes = c === "Promoção" ? "nav-promo" : c === "Emergências" ? "nav-emerg" : c === "Consultas" ? "nav-consultas" : "";
@@ -524,6 +533,7 @@ function montarLoja() {
           </div>
         </div>
       </article>`;
+      if (LOJA === "brasil") return cartaBrasil(p, foto);
       if (p.pagina) return `<article class="produto ${p.cor === "azul" ? "produto-astral" : p.cor === "verde" ? "produto-ano" : "produto-amor"}">
         <span class="selo-wrap"><span class="estrelas-top">${"⭐".repeat(Math.max(0, Math.min(5, Number(p.estrelas) || 0)))}</span><span class="selo-pop selo-${p.cor === "azul" ? "azul" : p.cor === "verde" ? "verde" : "rosa"}">✦ ${esc(p.etiqueta || "Promoção")} ✦</span></span>
         ${foto}
@@ -534,7 +544,7 @@ function montarLoja() {
             <span class="preco">${esc(p.preco)}</span>
             <a class="btn-adquirir ${p.cor === "azul" ? "btn-astral" : p.cor === "verde" ? "btn-ano" : "btn-amor"}" href="${esc(p.pagina)}">${p.cor === "azul" ? "✨" : p.cor === "verde" ? "🔢" : "💗"} Comprar Aqui</a>
           </div>
-          ${temCaixa(p) ? caixaPaginaHtml(p) : (p.pagamentos ? `<p class="pag-amor">${esc(p.pagamentos)}</p>` : "")}
+          ${temCaixa(p) ? caixaPaginaHtml(p) : (p.pagamentos ? `<p class="pag-amor">${esc(LOJA === "portugal" ? p.pagamentos.replace(/\s*·\s*🇧🇷[^·]*/g, "") : p.pagamentos)}</p>` : "")}
         </div>
       </article>`;
       return `<article class="produto">
@@ -567,6 +577,20 @@ function montarLoja() {
       <div class="grelha">${cartas}</div>`;
   }).join("");
 }
+// 🇧🇷 12/11/2026: na loja do Brasil cada produto paga-se só por PIX, com o preço em reais.
+function cartaBrasil(p, foto) {
+  const d = pixDados(p), promo = pixPromo(), e = d && (promo ? d.promo : d.normal);
+  const rs = d ? brl(e.valor) : ((String(p.pagamentos || "").match(/R\$\s?[\d.,]+/) || [""])[0]);
+  const selo = p.topvendas ? '<span class="selo-wrap"><span class="estrelas-top">⭐⭐⭐</span><span class="selo-pop selo-top">✦ Top Vendas ✦</span></span>'
+    : p.etiqueta ? `<span class="selo-pop selo-${["verde","violeta","vermelho","azul","laranja","rosa","dourado"].includes(p.cor) ? p.cor : "violeta"}">✦ ${esc(p.etiqueta)} ✦</span>` : p.destaque ? '<span class="selo-pop">✦ Popular ✦</span>' : "";
+  const botao = p.pagina
+    ? `<a class="btn-pix" href="${esc(p.pagina)}" style="text-decoration:none"><span class="pf-l1">${PIX_SVG} Comprar com PIX</span>${rs ? `<span class="pf-l2"><span class="valor-pix">${rs}</span></span>` : ""}</a><p class="pf-dica">Primeiro preencha os seus dados na página; o PIX aparece no fim${rs ? "" : " (ou peça o código pelo WhatsApp)"}.</p>`
+    : d ? `<button type="button" class="btn-pix" data-pix="${esc(p.nome)}"><span class="pf-l1">${PIX_SVG} Pagar com PIX</span><span class="pf-l2">${promo ? `<span class="riscado">${brl(d.normal.valor)}</span> ` : ""}<span class="valor-pix">${rs}</span></span></button><p class="pf-dica">abre o código PIX para pagar na hora</p>`
+    : `<a class="btn-pix" href="https://wa.me/351914920427?text=${encodeURIComponent("Olá Mestre Alberto, estou no Brasil e quero pagar por PIX: " + p.nome)}" target="_blank" rel="noopener noreferrer" style="text-decoration:none"><span class="pf-l1">${PIX_SVG} Pagar com PIX</span><span class="pf-l2">peça o código pelo WhatsApp</span></a>`;
+  return `<article class="produto">${selo}${foto}<div class="corpo"><h3>${esc(p.nome)}</h3><p class="desc">${esc(p.descricao)}</p>
+    ${rs ? `<div class="rodape-p" style="justify-content:center"><span class="preco">${rs}</span></div>` : ""}
+    <div class="pix-zona pix-forte">${botao}</div></div></article>`;
+}
 // 01/11/2026 (ele): a caixa de pagamento à vista — o «Comprar Aqui» leva ao cartão / Google Pay / Apple Pay (myPOS);
 // por baixo, as alternativas com o valor: MB WAY (mostra o número e o botão do comprovante) e transferência bancária.
 // 01/11/2026 (ele: «coloca igual em todos os produtos que têm pagamentos»): a caixa é a regra; só fica de fora um produto
@@ -580,7 +604,7 @@ function caixaPaginaHtml(p) {
       <div class="cp-tit">Formas de pagamento · <span>${v}</span></div>
       <a class="cp-btn cp-cartao" href="${u}">💳 Cartão, Google Pay ou Apple Pay · ${v}</a>
       <a class="cp-btn cp-mbway-l" href="${u}">📱 MB WAY · ${v}</a>
-      <a class="cp-btn cp-pixv" href="${u}">🇧🇷 PIX (Brasil)</a>
+      ${LOJA === "portugal" ? "" : `<a class="cp-btn cp-pixv" href="${u}">🇧🇷 PIX (Brasil)</a>`}
       <p class="cp-nota">Primeiro preencha os seus dados na página do mapa; o pagamento escolhe-se no fim.</p>
     </div>`;
 }
