@@ -126,12 +126,30 @@ for i, s in enumerate(S):
   font-weight: 700; font-size: .85rem; line-height: 1.2; color: oklch(0.96 0.02 300); background: linear-gradient(160deg, oklch(0.4 0.13 300 / .75), oklch(0.25 0.08 290 / .85)); border: 1px solid oklch(0.85 0.13 88 / .5); }}
 .portas-signo a i {{ font-style: normal; font-size: 1.6rem; }}
 .portas-signo a:hover {{ border-color: oklch(0.85 0.13 88); }}
+/* 12/11/2026 (Oportunidades: 11 páginas dos signos com ~100% a sair logo): quem vem do Google procura as DATAS, lê-as e sai.
+   O passo seguinte fica colado às datas e é pessoal: confirmar o signo ao minuto (as pontas) e o Ascendente. */
+.asc-signo {{ margin: 0 0 1rem; padding: .9rem 1rem; border-radius: 1rem; text-align: left; background: linear-gradient(150deg, oklch(0.36 0.13 300 / .85), oklch(0.22 0.08 285 / .9)); border: 1.5px solid oklch(0.85 0.13 88 / .7); }}
+.asc-signo p {{ margin: 0 0 .6rem; font-size: .93rem; line-height: 1.45; }}
+.asc-signo b {{ color: oklch(0.88 0.13 88); }}
+.asc-signo .linha {{ display: flex; gap: .5rem; flex-wrap: wrap; }}
+.asc-signo input {{ flex: 1 1 12rem; min-width: 0; font-size: 1rem; padding: .6rem .75rem; border-radius: .7rem; border: 1px solid oklch(0.85 0.13 88 / .5); background: oklch(0.18 0.05 290); color: #fff; }}
+.asc-signo button {{ flex: 1 1 12rem; font: inherit; font-weight: 800; font-size: .95rem; padding: .62rem 1rem; border: 0; border-radius: 999px; cursor: pointer; color: oklch(0.22 0.06 300); background: linear-gradient(135deg, oklch(0.9 0.12 90), oklch(0.78 0.15 70)); }}
+.seguir-grid {{ display: grid; grid-template-columns: 1fr; gap: .6rem; margin-top: .6rem; }}
+@media (min-width: 640px) {{ .seguir-grid {{ grid-template-columns: repeat(3, 1fr); }} }}
+.seguir-grid a {{ display: flex; flex-direction: column; gap: .25rem; padding: .85rem .95rem; border-radius: 1rem; text-decoration: none; text-align: left; color: oklch(0.96 0.02 300);
+  background: linear-gradient(160deg, oklch(0.4 0.13 300 / .7), oklch(0.24 0.08 290 / .85)); border: 1px solid oklch(0.85 0.13 88 / .45); }}
+.seguir-grid a:hover {{ border-color: oklch(0.85 0.13 88); }}
+.seguir-grid b {{ font-size: 1rem; }} .seguir-grid small {{ font-size: .84rem; opacity: .85; line-height: 1.35; }} .seguir-grid i {{ font-style: normal; font-size: 1.5rem; }}
 </style>
   <section class="heroi heroi-signo">
     <img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="Signo {E(nome)}" width="120" height="120" />
     <div class="heroi-txt"><h1><span class="az">{GLIFO[i]}︎ Signo {E(nome)}</span></h1>
     <p class="sub">{E(s['datas'])} · signo de {el} · regido {E(re.sub(r'^a ', 'pela ', re.sub(r'^o ', 'pelo ', s['regente'])) if re.match(r'^[ao] ', s['regente']) else 'por ' + s['regente'])}</p></div>
   </section>
+  <form class="asc-signo" action="/ascendente" method="get">
+    <p><b>Nasceu perto de {E(s['datas'].split(' a ')[0])} ou de {E(s['datas'].split(' a ')[1])}?</b> O dia da mudança de signo varia de ano para ano. Confirme o seu signo ao minuto e descubra o seu Ascendente, grátis.</p>
+    <div class="linha"><input name="data" inputmode="numeric" autocomplete="bday" maxlength="22" placeholder="Dia de nascimento: DD/MM/AAAA" aria-label="A sua data de nascimento" required><button type="submit">🔮 Ver o meu signo e Ascendente</button></div>
+  </form>
   <section class="cartao hoje">
     <p class="ja-viu" id="ja-viu" hidden>🎬 Já viu o vídeo? Aqui está o que não coube nele 👇</p>
     <h2>✨ Hoje para {E(s['pt'])}</h2>
@@ -160,6 +178,14 @@ for i, s in enumerate(S):
     <h2>Com que signos combina {E(s['pt'])}?</h2>
     <p>Pela tradição dos elementos, {E(s['pt'])} entende-se naturalmente com {", ".join(f'<a href="/signo/{x["slug"]}">{E(nm(x))}</a>' for x in afins)}. Mas um casal é muito mais do que o signo solar: para ver a ligação a sério, use a <a href="/compatibilidade">Compatibilidade</a> ou o <a href="/mapa-do-casal">Mapa do Casal</a>.</p>
     <p>Nasceu perto do início ou do fim destas datas? O dia exato da mudança de signo varia de ano para ano. E o seu <a href="/ascendente">Ascendente</a> diz tanto sobre si como o signo solar.</p>
+  </section>
+  <section class="cartao">
+    <h2>Continue a ler sobre {E(s['pt'])}</h2>
+    <div class="seguir-grid">
+      <a href="/ascendente-em-{s['slug']}"><i>🌅</i><b>Ascendente em {E(s['pt'])}</b><small>Como se mostra ao mundo quem tem {E(s['pt'])} a nascer no horizonte.</small></a>
+      <a href="/horoscopo-2027-{s['slug']}"><i>📅</i><b>{E(s['pt'])} em 2027</b><small>O ano mês a mês: amor, dinheiro e os momentos que contam.</small></a>
+      <a href="/compatibilidade-{(s if i < (i + 6) % 12 else op)['slug']}-e-{(op if i < (i + 6) % 12 else s)['slug']}"><i>💞</i><b>{E(s['pt'])} e {E(op['pt'])}</b><small>O signo oposto: a atração que mais ensina, e o que a faz durar.</small></a>
+    </div>
   </section>
   <section class="cartao" style="text-align:center">
     <h2>Quer saber o que as cartas dizem para si?</h2>
