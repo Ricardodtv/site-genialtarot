@@ -23,10 +23,10 @@
  },
  "gemeos": {
   "dia": {
-   "id": "pDa8OsZOZMY",
-   "t": "Horóscopo Diário Gémeos 11 e 12 Novembro",
-   "d": "2026-11-11T15:34:00Z",
-   "dur": "PT5M35S"
+   "id": "enXUNC9hjUo",
+   "t": "Horóscopo Diário Gémeos 12 e 13 Novembro",
+   "d": "2026-11-12T13:47:11Z",
+   "dur": "PT6M22S"
   },
   "anual": {
    "id": "EdzVicTufXw",
@@ -45,10 +45,10 @@
  },
  "leao": {
   "dia": {
-   "id": "eFjHZgTeDgI",
-   "t": "Horóscopo Diário Leão 11 e 12 Novembro",
-   "d": "2026-11-11T15:34:37Z",
-   "dur": "PT5M27S"
+   "id": "LPfKY1VUOy0",
+   "t": "Horóscopo Diário Leão 12 e 13 Novembro",
+   "d": "2026-11-12T13:47:19Z",
+   "dur": "PT7M20S"
   },
   "anual": {
    "id": "dto1ayURroc",
@@ -87,10 +87,10 @@
  },
  "escorpiao": {
   "dia": {
-   "id": "LhFAm0SJJ8E",
-   "t": "Horóscopo Diário Escorpião 11 e 12 Novembro",
-   "d": "2026-11-11T15:35:19Z",
-   "dur": "PT5M25S"
+   "id": "1n6uje5S3yE",
+   "t": "Horóscopo Diário Escorpião 12 e 13 Novembro",
+   "d": "2026-11-12T13:48:20Z",
+   "dur": "PT7M58S"
   },
   "anual": {
    "id": "vDhtOX8kixs",
@@ -131,5 +131,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-11T15:36"
+ "_": "2026-11-12T13:48"
 }
