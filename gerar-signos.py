@@ -790,7 +790,7 @@ if os.path.exists("historias-textos.py"):
     corpo = f"""  <section class="heroi"><h1><span class="az">Histórias e Lendas</span></h1>
     <p class="sub">As lendas de Portugal e as histórias de fé que passam de geração em geração, contadas pelo Mestre Alberto.</p></section>
   <section><div class="doze">{grelha}</div></section>
-  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/parabolas">📖 Parábolas</a><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a><a href="/tarologo-fafe">📍 Fafe</a></div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/lendas-brasileiras">🇧🇷 Lendas Brasileiras</a><a href="/parabolas">📖 Parábolas</a><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a><a href="/tarologo-fafe">📍 Fafe</a></div></section>
 """
     pagina("historias-e-lendas", "Histórias e Lendas de Portugal: fé, tradição e sabedoria", "Lendas portuguesas e histórias de fé — a Justiça de Fafe, o Galo de Barcelos, o Milagre das Rosas, Fátima — contadas pelo Mestre Alberto.", SITE + "/og-image.jpg", [], corpo)
     s = open("parabolas.html", encoding="utf-8").read()
