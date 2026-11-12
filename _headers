@@ -1,0 +1,5 @@
+# 12/11/2026 («travão» ao SEO, medida 4): os ficheiros de dados não são para o Google.
+# Ficam a funcionar para quem os lê no navegador (fetch das páginas); só se pede aos motores que não os indexem.
+# Vale para os ficheiros servidos directamente pelo Cloudflare (os .json não passam pelo worker).
+/*.json
+  X-Robots-Tag: noindex
