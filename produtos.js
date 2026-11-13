@@ -233,6 +233,17 @@ const PRODUTOS = [
 
   /* ================= RITUAIS ================= */
 
+  /* 13/11/2026 — O-392 (sim dele pelo botão Resolver): a hipnose, que só se vendia na página /hipnose, entra na loja.
+     Mesmo preço da página (125 €); compra pelo WhatsApp (sem link de pagamento próprio). */
+  {
+    nome: "🌀 Sessão de Hipnose – Presencial em Fafe ou Online, com o Mestre Alberto",
+    categoria: "Consultas",
+    preco: "125 €",
+    foto: "",
+    descricao: "Uma sessão de hipnose guiada pelo Mestre Alberto, presencial em Fafe ou online por videochamada, para trabalhar bloqueios, medos e hábitos com calma e em segurança. Mais informação em genialtarot.com/hipnose.",
+    link: "",
+  },
+
   {
     nome: "💰 Ritual de Prosperidade Financeira – Pelo Mestre Alberto ✨",
     categoria: "Rituais",
@@ -340,6 +351,20 @@ const PRODUTOS = [
   },
 
   /* ================= MAPAS ASTRAIS ================= */
+
+  /* 13/11/2026 — O-392 (sim dele pelo botão Resolver): a Revolução Solar, que só se vendia na página própria, entra na loja.
+     Leva à /revolucao-solar (lá ficam os dados de nascimento e o pagamento): 10 € cartão/MB WAY · R$ 49,90 PIX. */
+  {
+    nome: "☀️ Revolução Solar – O Seu Ano de Aniversário a Aniversário",
+    categoria: "Mapas Astrais",
+    preco: "10 €",
+    foto: "",
+    descricao: "O céu do momento exato em que o Sol volta ao lugar onde estava quando nasceu: os temas do seu ano pessoal, de aniversário a aniversário. Calculado a partir dos seus dados de nascimento.",
+    link: "",
+    pagina: "/revolucao-solar",
+    pagamentos: "💳 Cartão · 📱 MB WAY · 🇧🇷 PIX R$ 49,90",
+    cor: "azul",
+  },
 
   {
     nome: "🔮 Análise ao Seu Signo e Personalidade – Escrita pelo Mestre Alberto ✨",
