@@ -67,6 +67,7 @@ h2{font-family:var(--titulo);font-weight:700;font-size:clamp(1.35rem,3.6vw,1.9re
 .lenda p{margin:0;color:var(--suave);font-size:.95rem}
 .etq{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.1rem .5rem;border-radius:999px;border:1px solid currentColor;margin-left:.3rem;vertical-align:middle}
 .etq.facto{color:oklch(0.8 0.13 150)}.etq.lenda-e{color:oklch(0.8 0.1 300)}
+.etq.ano{color:#ffd978}.nota-ano{opacity:.85;margin:-.4rem 0 1rem}
 .arcano{display:grid;grid-template-columns:minmax(0,12rem) 1fr;gap:1.4rem;align-items:center}
 .arcano img{width:100%;height:auto;aspect-ratio:480/804;object-fit:contain;border-radius:.8rem;box-shadow:0 0 0 2px var(--borda),0 18px 40px #000a;transform:rotate(-3deg)}
 @media (max-width:560px){.arcano{grid-template-columns:1fr;text-align:center}.arcano img{width:11rem;margin:0 auto}}
@@ -170,6 +171,19 @@ footer a{color:var(--suave)}
         <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" fill="#f3d58e"/><circle cx="40" cy="28" r="19" fill="#1a0915"/><g fill="#ffe9a6"><circle cx="18" cy="14" r="1.5"/><circle cx="52" cy="50" r="1.5"/><circle cx="12" cy="46" r="1"/></g></svg>
         <h3>O 13 das Luas <span class="etq facto">facto</span></h3>
         <p>Nas tradições antigas o 13 era um número sagrado e feminino: em certos anos há <b>13 Luas cheias</b> em vez de 12. Quando isso acontece, uma delas é a famosa <a href="/lua-azul">Lua Azul</a>. Para muitos povos o 13 não era azar, era plenitude.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cada-ano">
+    <h2>Uma curiosidade nova em cada sexta-feira 13</h2>
+    <p class="nota-ano">Sempre que há uma sexta-feira 13, acrescentamos aqui uma curiosidade que ainda não tinha sido contada.</p>
+    <div class="lendas">
+      <!-- CURIOSIDADES-ANO: a rotina ~/sexta13/rotina.py acrescenta aqui a nova, no topo (uma por sexta-feira 13) -->
+      <div class="lenda" data-ano="2026-11-13">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="12" width="48" height="44" rx="6" fill="#f4efe6"/><rect x="8" y="12" width="48" height="12" rx="6" fill="#c0392b"/><text x="32" y="48" text-anchor="middle" font-family="Cinzel,Georgia,serif" font-weight="900" font-size="22" fill="#1a0915">13</text></svg>
+        <h3>Três num só ano, duas seguidas <span class="etq facto">facto</span> <span class="etq ano">13/11/2026</span></h3>
+        <p>O ano de 2026 teve o máximo possível: <b>três sextas-feiras 13</b>, em fevereiro, março e novembro. E fevereiro e março calharam seguidas. Isso só acontece quando fevereiro tem 28 dias e começa a um domingo: março começa então no mesmo dia da semana, e o dia 13 volta a cair numa sexta-feira.</p>
       </div>
     </div>
   </section>
