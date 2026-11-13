@@ -979,7 +979,7 @@ if os.path.exists("decanatos-2027-textos.py"):
         cons = "".join(f"<li>{E(c)}</li>" for c in t.get("conselhos", []))
         corpo = f"""  <section class="heroi"><h1><span class="az">{E(t['titulo'].split(':')[0])}</span></h1></section>
   <section class="cartao texto"><p>{E(t['intro'])}</p>{per}{f"<h2>Conselhos</h2><ul>{cons}</ul>" if cons else ""}<p style="color:var(--suave);font-size:.9rem">Datas calculadas com o Swiss Ephemeris (hora de Portugal pode mudar o dia em eventos perto da meia-noite).</p></section>
-  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/noticias-do-ceu">Notícias do Céu: as próximas semanas</a><a href="/horoscopo-2027">Horóscopo 2027</a><a href="/melhores-signos-2027">Melhores signos de 2027</a>{"".join(f'<a href="/{x["slug"]}">{E(x["titulo"].split(":")[0])}</a>' for x in D7["PAGINAS_2027"] if x is not t)}<a href="/retrogrados">Os retrógrados agora</a></div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/noticias-do-ceu">Notícias do Céu: as próximas semanas</a><a href="/alinhamento-dos-planetas">Alinhamento dos planetas</a><a href="/horoscopo-2027">Horóscopo 2027</a><a href="/melhores-signos-2027">Melhores signos de 2027</a>{"".join(f'<a href="/{x["slug"]}">{E(x["titulo"].split(":")[0])}</a>' for x in D7["PAGINAS_2027"] if x is not t)}<a href="/retrogrados">Os retrógrados agora</a></div></section>
 """
         pagina(t["slug"], t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Horóscopo 2027", "/horoscopo-2027")], corpo)
     print("12 decanatos + 3 páginas de 2027")
