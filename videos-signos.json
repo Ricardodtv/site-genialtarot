@@ -1,10 +1,10 @@
 {
  "carneiro": {
   "dia": {
-   "id": "R7-wqqf45ao",
-   "t": "Horóscopo Diário Áries 12 e 13 Novembro",
-   "d": "2026-11-12T15:58:33Z",
-   "dur": "PT7M22S"
+   "id": "F_GeOzXOpXc",
+   "t": "Horóscopo Fim de Semana Áries 13 a 16 Novembro",
+   "d": "2026-11-13T14:18:58Z",
+   "dur": "PT5M22S"
   },
   "anual": {
    "id": "sYvV52nILsg",
@@ -23,10 +23,10 @@
  },
  "gemeos": {
   "dia": {
-   "id": "enXUNC9hjUo",
-   "t": "Horóscopo Diário Gémeos 12 e 13 Novembro",
-   "d": "2026-11-12T13:47:11Z",
-   "dur": "PT6M22S"
+   "id": "en-FDzqfMvY",
+   "t": "Horóscopo Fim de Semana Gémeos 13 a 16 Novembro",
+   "d": "2026-11-13T14:27:59Z",
+   "dur": "PT7M6S"
   },
   "anual": {
    "id": "EdzVicTufXw",
@@ -45,10 +45,10 @@
  },
  "leao": {
   "dia": {
-   "id": "LPfKY1VUOy0",
-   "t": "Horóscopo Diário Leão 12 e 13 Novembro",
-   "d": "2026-11-12T13:47:19Z",
-   "dur": "PT7M20S"
+   "id": "_xx_AB1D1Hs",
+   "t": "Horóscopo Fim de Semana Leão 13 a 16 Novembro",
+   "d": "2026-11-13T14:28:06Z",
+   "dur": "PT5M20S"
   },
   "anual": {
    "id": "dto1ayURroc",
@@ -59,10 +59,10 @@
  },
  "virgem": {
   "dia": {
-   "id": "DaC6XQn3B0w",
-   "t": "Horóscopo Diário Virgem 12 e 13 Novembro",
-   "d": "2026-11-12T15:58:37Z",
-   "dur": "PT6M14S"
+   "id": "iMPK3peURWE",
+   "t": "Horóscopo Fim de Semana Virgem 13 a 16 Novembro",
+   "d": "2026-11-13T14:28:26Z",
+   "dur": "PT5M49S"
   },
   "anual": {
    "id": "S63ep0UfuI0",
@@ -73,10 +73,10 @@
  },
  "balanca": {
   "dia": {
-   "id": "dBmX0L2da4o",
-   "t": "Horóscopo Diário Balança (Libra) 12 e 13 Novembro",
-   "d": "2026-11-12T15:58:43Z",
-   "dur": "PT8M27S"
+   "id": "4TjlVmQFp-o",
+   "t": "Horóscopo Fim de Semana Balança (Libra) 13 a 16 Novembro",
+   "d": "2026-11-13T14:28:48Z",
+   "dur": "PT7M11S"
   },
   "anual": {
    "id": "_596jwAtBl0",
@@ -87,10 +87,10 @@
  },
  "escorpiao": {
   "dia": {
-   "id": "1n6uje5S3yE",
-   "t": "Horóscopo Diário Escorpião 12 e 13 Novembro",
-   "d": "2026-11-12T13:48:20Z",
-   "dur": "PT7M58S"
+   "id": "cLVq6h14WiU",
+   "t": "Horóscopo Fim de Semana Escorpião 13 a 16 Novembro",
+   "d": "2026-11-13T14:29:12Z",
+   "dur": "PT6M44S"
   },
   "anual": {
    "id": "vDhtOX8kixs",
@@ -131,5 +131,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-12T16:00"
+ "_": "2026-11-13T14:30"
 }
