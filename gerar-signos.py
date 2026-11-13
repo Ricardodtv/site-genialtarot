@@ -630,7 +630,7 @@ if os.path.exists("ascendente-lua-textos.py"):
   </section>
   <section class="cartao texto"><p>{E(t['intro'])}</p>{secs}</section>
   <section class="cartao" style="text-align:center">
-    <div class="ligas"><a href="{liga[0]}">{liga[1]}</a><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a><a href="/{'lua-em' if tipo == 'ascendente-em' else 'ascendente-em'}-{s0['slug']}">{'Lua' if tipo == 'ascendente-em' else 'Ascendente'} em {E(s0['pt'])}</a></div>
+    <div class="ligas"><a href="{liga[0]}">{liga[1]}</a><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a><a href="/{'lua-em' if tipo == 'ascendente-em' else 'ascendente-em'}-{s0['slug']}">{'Lua' if tipo == 'ascendente-em' else 'Ascendente'} em {E(s0['pt'])}</a>{'<a href="/venus-em-caranguejo">Vénus em Caranguejo</a>' if tipo == 'lua-em' and s0['slug'] == 'caranguejo' else ''}</div>
     <h2>{nome_t} nos outros signos</h2><div class="ligas">{"".join(f'<a href="/{tipo}-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div>
   </section>
 """
@@ -716,7 +716,7 @@ if os.path.exists("venus-marte-textos.py"):
             s0 = S[i]; outro = "marte-em" if tipo == "venus-em" else "venus-em"
             corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="" width="120" height="120" />
     <h1><span class="az">{E(nome_t)} em {E(nm(s0))}</span></h1></section>
-  <section class="cartao texto"><p>{E(t['intro'])}</p>{"".join(f"<h2>{E(h)}</h2><p>{E(t[c])}</p>" for h, c in campos)}</section>
+  <section class="cartao texto"><p>{E(t['intro'])}</p>{"".join(f"<h2>{E(h)}</h2><p>{E(t[c])}</p>" for h, c in campos)}{VM.get("EXTRA", {}).get(f"{tipo}-{s0['slug']}", "")}</section>
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/mapa-amor">Descobrir a sua Vénus e o seu Marte</a><a href="/{outro}-{s0['slug']}">{'Marte' if tipo == 'venus-em' else 'Vénus'} em {E(s0['pt'])}</a><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a></div>
     <h2>{nome_t} nos outros signos</h2><div class="ligas">{"".join(f'<a href="/{tipo}-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div></section>
 """
@@ -979,7 +979,7 @@ if os.path.exists("decanatos-2027-textos.py"):
         cons = "".join(f"<li>{E(c)}</li>" for c in t.get("conselhos", []))
         corpo = f"""  <section class="heroi"><h1><span class="az">{E(t['titulo'].split(':')[0])}</span></h1></section>
   <section class="cartao texto"><p>{E(t['intro'])}</p>{per}{f"<h2>Conselhos</h2><ul>{cons}</ul>" if cons else ""}<p style="color:var(--suave);font-size:.9rem">Datas calculadas com o Swiss Ephemeris (hora de Portugal pode mudar o dia em eventos perto da meia-noite).</p></section>
-  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/horoscopo-2027">Horóscopo 2027</a><a href="/melhores-signos-2027">Melhores signos de 2027</a>{"".join(f'<a href="/{x["slug"]}">{E(x["titulo"].split(":")[0])}</a>' for x in D7["PAGINAS_2027"] if x is not t)}<a href="/retrogrados">Os retrógrados agora</a></div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/noticias-do-ceu">Notícias do Céu: as próximas semanas</a><a href="/horoscopo-2027">Horóscopo 2027</a><a href="/melhores-signos-2027">Melhores signos de 2027</a>{"".join(f'<a href="/{x["slug"]}">{E(x["titulo"].split(":")[0])}</a>' for x in D7["PAGINAS_2027"] if x is not t)}<a href="/retrogrados">Os retrógrados agora</a></div></section>
 """
         pagina(t["slug"], t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Horóscopo 2027", "/horoscopo-2027")], corpo)
     print("12 decanatos + 3 páginas de 2027")
