@@ -947,7 +947,7 @@ if os.path.exists("horoscopo-2027-textos.py"):
   <section class="cartao texto"><h2>Amor</h2><p>{E(t['amor'])}</p><h2>Dinheiro</h2><p>{E(t['dinheiro'])}</p><h2>Trabalho</h2><p>{E(t['trabalho'])}</p>
     <h2>Bem-estar</h2><p>{E(t['saude_bemestar'])}</p><h2>As datas que contam em 2027</h2><ul>{datas}</ul><h2>O conselho do ano</h2><p>{E(t['conselho'])}</p>
     <p style="color:var(--suave);font-size:.9rem">O céu de 2027 foi calculado com o Swiss Ephemeris. As casas contam-se a partir do signo solar; para uma leitura feita ao seu mapa, peça a Previsão Anual ou o Mapa Astral.</p></section>
-  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/loja">Previsão Anual personalizada</a><a href="/numerologia-2027">Numerologia 2027</a><a href="/eclipses-2027">Eclipses de 2027</a><a href="/mercurio-retrogrado-2027">Mercúrio retrógrado 2027</a></div>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/loja">Previsão Anual personalizada</a><a href="/melhores-signos-2027">Melhores signos de 2027</a><a href="/numerologia-2027">Numerologia 2027</a><a href="/eclipses-2027">Eclipses de 2027</a><a href="/mercurio-retrogrado-2027">Mercúrio retrógrado 2027</a></div>
     <h2>2027 nos outros signos</h2><div class="ligas">{"".join(f'<a href="/horoscopo-2027-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div>
     <a class="cta" href="{WA}">Falar com o Mestre Alberto</a></section>
 """
@@ -979,7 +979,7 @@ if os.path.exists("decanatos-2027-textos.py"):
         cons = "".join(f"<li>{E(c)}</li>" for c in t.get("conselhos", []))
         corpo = f"""  <section class="heroi"><h1><span class="az">{E(t['titulo'].split(':')[0])}</span></h1></section>
   <section class="cartao texto"><p>{E(t['intro'])}</p>{per}{f"<h2>Conselhos</h2><ul>{cons}</ul>" if cons else ""}<p style="color:var(--suave);font-size:.9rem">Datas calculadas com o Swiss Ephemeris (hora de Portugal pode mudar o dia em eventos perto da meia-noite).</p></section>
-  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/horoscopo-2027">Horóscopo 2027</a>{"".join(f'<a href="/{x["slug"]}">{E(x["titulo"].split(":")[0])}</a>' for x in D7["PAGINAS_2027"] if x is not t)}<a href="/retrogrados">Os retrógrados agora</a></div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/horoscopo-2027">Horóscopo 2027</a><a href="/melhores-signos-2027">Melhores signos de 2027</a>{"".join(f'<a href="/{x["slug"]}">{E(x["titulo"].split(":")[0])}</a>' for x in D7["PAGINAS_2027"] if x is not t)}<a href="/retrogrados">Os retrógrados agora</a></div></section>
 """
         pagina(t["slug"], t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Horóscopo 2027", "/horoscopo-2027")], corpo)
     print("12 decanatos + 3 páginas de 2027")
