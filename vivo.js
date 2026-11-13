@@ -14,6 +14,32 @@
     try { localStorage.setItem("gt_vivo", sid); } catch (e) {}
   }
   var aberto = false, desde = 0, el = null, ctx = null, tEsc = 0;
+  // 13/11/2026 O-401/O-404 (OK dele): DE ONDE VEIO, num cookie gt_o de 30 dias, para o worker o juntar a todos os formulários
+  // (/notify) e aos cliques nos botões de pagamento. A ligação marcada (?de=youtube&c=fds-touro-0111) manda sempre e
+  // substitui a anterior; sem marca, um site de fora (Google, ChatGPT…) só entra se ainda não houver nada guardado;
+  // entrar direto não apaga nada. Só letras, números, / e - (nunca o endereço completo nem nada da pessoa).
+  (function () {
+    try {
+      var lim = function (x, n) { return String(x || "").toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, n); };
+      var q = new URLSearchParams(location.search), v = "";
+      if (q.get("de")) { var m = lim(q.get("de"), 20), c = lim(q.get("c"), 40); v = m + (c ? "/" + c : ""); }
+      else if (!/(?:^|;\s*)gt_o=/.test(document.cookie) && document.referrer) {
+        var h = new URL(document.referrer).hostname.replace(/^www\./, "");
+        if (!/genialtarot\.com$/.test(h)) v = "site/" + lim(h.replace(/\./g, "-"), 40);
+      }
+      if (v) document.cookie = "gt_o=" + v + "; Max-Age=2592000; Path=/; SameSite=Lax; Secure";
+    } catch (e) {}
+  })();
+  // 13/11/2026 O-404: conta o clique nos botões de pagamento (myPOS e PIX). O worker junta-lhe a origem do cookie.
+  document.addEventListener("click", function (e) {
+    try {
+      var b = e.target.closest && e.target.closest('a[href*="mypos.com"], a[href^="/pagar"], .btn-pix, .m-pix, .pix-copiar, #copiar-pix');
+      if (!b) return;
+      var t = /pix/i.test((b.className || "") + " " + (b.id || "")) ? "pix" : "mypos";
+      fetch("/api/vivo/pagar", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
+        body: JSON.stringify({ sid: sid, tipo: t, pagina: location.pathname }) }).catch(function () {});
+    } catch (x) {}
+  }, true);
   function post(u, d) { return fetch(A + u, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(d), keepalive: true }); }
   function ola() {
     if (document.visibilityState !== "visible") return;

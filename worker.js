@@ -468,7 +468,8 @@ function origemDe(referer, proprio) {
 // lhe apetecesse nas estatisticas dele so por abrir o site com ?de=<lixo>.
 const MARCAS = new Set(["tiktok", "youtube", "instagram", "facebook", "fb-grupo", "whatsapp",
                         "telegram", "email", "cartao", "bio",
-                        "maps"]);   // 04/11/2026: as ligações do Google Maps (ficha, publicações, produtos) já usavam ?de=maps
+                        "maps",
+                        "noticias", "partilha"]);   // 13/11/2026 O-403 (OK dele): ?de=noticias (Notícias do dia) e ?de=partilha (53 ligações) caíam em «marca:?»   // 04/11/2026: as ligações do Google Maps (ficha, publicações, produtos) já usavam ?de=maps
 
 // 01/11/2026 (ele: «passo 1 — trazer o público do canal para o site»): além da marca (?de=youtube), a ligação pode
 // levar o CÓDIGO da peça (?c=fds-touro-0111), para se saber QUE vídeo trouxe quem. Fica «marca:youtube/fds-touro-0111».
@@ -1011,6 +1012,25 @@ export default {
     }
 
     // 31/10/2026: quem está no site agora + o chat dele com essa pessoa (ver a classe Sala, no fim)
+    // 13/11/2026 O-404 (OK dele): clique num botão de pagamento (myPOS ou PIX), mandado pelo vivo.js com a origem da pessoa.
+    // Fica no mesmo contador, mas com blob1 = «/clique-pagamento» e blob5 = «clique»: está fora da lista PAGINAS e não é
+    // «pessoa», por isso não entra em nenhuma conta de visitas. blob6 = mypos|pix, blob9 = a página onde carregou.
+    if (url.pathname === "/api/vivo/pagar" && request.method === "POST") {
+      try {
+        const ref = request.headers.get("origin") || request.headers.get("referer") || "";
+        const d = await request.json();
+        const tipo = d.tipo === "pix" ? "pix" : "mypos";
+        const pg = String(d.pagina || "").replace(/\.html$/, "");
+        const ck = (request.headers.get("cookie") || "").match(/(?:^|;\s*)gt_o=([a-z0-9/-]{1,64})(?:;|$)/);
+        if (env.VISITAS && /genialtarot\.com/.test(ref) && /^\/[a-z0-9-]*(\/[a-z0-9-]+)?$/.test(pg)) {
+          const ua = request.headers.get("user-agent") || "";
+          env.VISITAS.writeDataPoint({ indexes: ["/clique-pagamento"], doubles: [1], blobs: ["/clique-pagamento", ck ? "marca:" + ck[1] : "(sem origem)",
+            (request.cf && request.cf.country) || "?", aparelhoDe(ua), "clique", tipo, servidorAlugado(request.cf),
+            String(d.sid || "").replace(/[^a-z0-9]/g, "").slice(0, 40), pg.slice(0, 120)] });
+        }
+      } catch (e) { /* contar nunca estraga o pagamento */ }
+      return new Response("{}", { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
+    }
     if (url.pathname === "/api/vivo" || url.pathname.startsWith("/api/vivo/")) {
       if (!env.SALA) return new Response("{}", { status: 503 });
       // 01/11/2026: as ~500 páginas novas do SEO são servidas sem passar pelo worker, por isso o contarVisita não as vê.
@@ -1281,6 +1301,15 @@ export default {
       }
       try {
         const { type, data } = await request.json();
+        // 13/11/2026 O-401/O-404 (OK dele): o vivo.js guarda no cookie gt_o de onde a pessoa veio (marca e código da ligação,
+        // ou o site que a trouxe), até 30 dias. Todos os formulários passam por aqui, por isso a origem entra em todas as
+        // capturas sem mexer em cada formulário. Só letras, números, / e - (o mesmo crivo do fila-capturas.py); nada da pessoa.
+        try {
+          if (data && typeof data === "object" && !/^[a-z0-9/-]{1,64}$/.test(String(data.origem || ""))) {
+            const ck = (request.headers.get("cookie") || "").match(/(?:^|;\s*)gt_o=([a-z0-9/-]{1,64})(?:;|$)/);
+            if (ck) data.origem = ck[1];
+          }
+        } catch (e) { /* a origem nunca estraga a captura */ }
 
         // ── REDE DE SEGURANCA (16/08/2026) ───────────────────────────────
         // Guarda a captura numa fila da Cloudflare ANTES de qualquer outra
