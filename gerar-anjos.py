@@ -206,7 +206,7 @@ CORPO_K = f"""{heroi("Anjo da Guarda das crianças e dos bebés", "Orações par
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/os-72-anjos">Os 72 Anjos</a><a href="/rezas-para-criancas">Rezas para Crianças</a><a href="/carta-do-anjo">Carta do Anjo</a></div></section>"""
 LD_K = {"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Anjo da Guarda das crianças: orações para o berço e o batizado", "inLanguage": "pt-PT", "mainEntityOfPage": SITE + "/anjo-da-guarda-criancas", "author": {"@type": "Person", "name": "Mestre Alberto"}},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ_K]}]}
-grava("anjo-da-guarda-criancas.html", pagina("/anjo-da-guarda-criancas", "Anjo da Guarda das crianças: orações para o berço", "Orações do Anjo da Guarda para crianças e bebés: junto ao berço, no batizado, à noite e à saída para a escola, e como criar o hábito em casa.", CORPO_K, LD_K))
+grava("anjo-da-guarda-criancas.html", pagina("/anjo-da-guarda-criancas", "Oração do Anjo da Guarda para Crianças: «Santo Anjo do Senhor»", "«Santo Anjo do Senhor», «Anjo da Guarda, minha companhia» e orações curtas para rezar com as crianças: no berço, no batizado, ao deitar e à saída para a escola.", CORPO_K, LD_K))
 
 # ─── 2 de Outubro ───
 CONTA = """<script>
