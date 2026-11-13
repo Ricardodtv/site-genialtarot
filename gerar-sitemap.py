@@ -28,7 +28,7 @@ _fecha()
 # 07/11/2026 (O-176): páginas que o worker reescreve sozinho (o ficheiro não muda, o texto servido sim). O Google leu
 # /horoscopo-semanal a 02/11, antes de o texto estar no HTML, e o lastmod parado não o chamava de volta.
 _hoje = datetime.date.today()
-DIARIAS = {"horoscopo-do-dia.html", "horoscopo-de-amanha.html", "aniversarios.html"} | {x for x in glob.glob("signo/*.html")}
+DIARIAS = {"horoscopo-do-dia.html", "horoscopo-de-amanha.html", "aniversarios.html"} | {x for x in glob.glob("signo/*.html")} | {x for x in glob.glob("horoscopo-de-amanha/*.html")}   # 13/11: amanhã por signo
 SEMANAIS = {"horoscopo-semanal.html"}
 def data(f):
     if f in DIARIAS: return _hoje.isoformat()
@@ -37,12 +37,12 @@ def data(f):
     if f in PREPARADOS and len(HTML_PREP) <= LIMITE: return datetime.date.today().isoformat()   # vai entrar neste commit
     return _real.get(f) or _criada.get(f)
 urls = []
-for f in sorted(glob.glob("*.html") + glob.glob("sonho/*.html") + glob.glob("signo/*.html") + glob.glob("noticias/*.html") + glob.glob("anjo/*.html")):
+for f in sorted(glob.glob("*.html") + glob.glob("sonho/*.html") + glob.glob("signo/*.html") + glob.glob("horoscopo-de-amanha/*.html") + glob.glob("noticias/*.html") + glob.glob("anjo/*.html")):
     if f in FORA: continue
     s = open(f, encoding="utf-8", errors="ignore").read()
     if re.search(r'<meta[^>]+name="robots"[^>]+noindex', s, re.I): continue
     caminho = "/" if f == "index.html" else "/" + f[:-5]
-    prio = "1.0" if f == "index.html" else "0.8" if ("/" not in f or f.startswith("signo/")) and not f.startswith("arcano-") else "0.6"
+    prio = "1.0" if f == "index.html" else "0.8" if ("/" not in f or f.startswith(("signo/", "horoscopo-de-amanha/"))) and not f.startswith("arcano-") else "0.6"
     urls.append((caminho, data(f), prio))
 linhas = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for c, d, p in urls:

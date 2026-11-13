@@ -32,6 +32,8 @@
       "/tarot-terapeutico",
       "/tarot-e-autoconhecimento",
       "/horoscopo-de-amanha",
+      // 13/11/2026: o horóscopo de amanhã de cada signo (12 endereços fixos, o worker escreve o dia)
+      "/horoscopo-de-amanha/*",
       "/tarot-cigano",
       "/consulta-de-tarot-online",
       "/datas-dos-signos",

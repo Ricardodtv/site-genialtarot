@@ -160,7 +160,7 @@ for i, s in enumerate(S):
       <a href="/vip"><i>🎁</i><span>Lista VIP grátis</span></a>
     </nav>
     <div class="video" id="v-dia" hidden></div>
-    <div class="ligas"><a href="/horoscopo-do-dia#s{i}">Ver os 12 signos de hoje</a><a href="/fimdesemana">Fim de semana</a><a href="/anual">Previsão anual</a></div>
+    <div class="ligas"><a href="/horoscopo-do-dia#s{i}">Ver os 12 signos de hoje</a><a href="/horoscopo-de-amanha/{s['slug']}">Amanhã para {E(s['pt'])}</a><a href="/fimdesemana">Fim de semana</a><a href="/anual">Previsão anual</a></div>
   </section>
   <section class="cartao" id="c-anual" hidden>
     <h2>📅 Previsão anual para {E(s['pt'])}</h2>

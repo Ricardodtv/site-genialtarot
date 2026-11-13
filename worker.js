@@ -547,6 +547,8 @@ const PAGINAS = new Set([
   // 12/11/2026 (análise da concorrência «Cartas da Maya»): consulta de tarot com preços, canais oficiais, tarot terapêutico e autoconhecimento,
   // e o horóscopo semanal de cada signo (horoscopo-semanal-signos.py, renova às segundas)
   "/consulta-de-tarot", "/canais-oficiais", "/tarot-terapeutico", "/tarot-e-autoconhecimento", "/horoscopo-semanal-carneiro", "/horoscopo-semanal-touro", "/horoscopo-semanal-gemeos", "/horoscopo-semanal-caranguejo", "/horoscopo-semanal-leao", "/horoscopo-semanal-virgem", "/horoscopo-semanal-balanca", "/horoscopo-semanal-escorpiao", "/horoscopo-semanal-sagitario", "/horoscopo-semanal-capricornio", "/horoscopo-semanal-aquario", "/horoscopo-semanal-peixes",
+  // 13/11/2026: o horóscopo de amanhã de cada signo (o worker escreve o dia a partir do horoscopo-dia/<amanhã>.json)
+  "/horoscopo-de-amanha/carneiro", "/horoscopo-de-amanha/touro", "/horoscopo-de-amanha/gemeos", "/horoscopo-de-amanha/caranguejo", "/horoscopo-de-amanha/leao", "/horoscopo-de-amanha/virgem", "/horoscopo-de-amanha/balanca", "/horoscopo-de-amanha/escorpiao", "/horoscopo-de-amanha/sagitario", "/horoscopo-de-amanha/capricornio", "/horoscopo-de-amanha/aquario", "/horoscopo-de-amanha/peixes",
 ]);
 
 function contarVisita(request, url, env, ctx) {
@@ -722,14 +724,23 @@ async function horoscopoNoHtml(url, env, alvo) {
   const corpo = (y, tit) => `<div class="chave">${hPor(y.k)}</div>${y.t.map((t) => `<p>${hPor(t)}</p>`).join("")}<div class="dica"><b>👉 ${tit}</b> ${hPor(y.d)}</div>`;
   const est = (e) => "★".repeat(Math.round(e)) + "☆".repeat(5 - Math.round(e));
   if (alvo < 0) {
-    const titulo = semana_ ? `Horóscopo Semanal, ${dia} a ${fd(fim)} · Mestre Alberto` : alvo === -3 ? `Horóscopo de Amanhã, ${dia}: os 12 signos · Mestre Alberto` : `Horóscopo do Dia, ${dia}: os 12 signos · Mestre Alberto`;
+    // 13/11/2026 (SEO «horóscopo de amanhã», aprovado por ele): o título começa pela pesquisa e leva a data
+    const titulo = semana_ ? `Horóscopo Semanal, ${dia} a ${fd(fim)} · Mestre Alberto` : alvo === -3 ? `Horóscopo de Amanhã (${dia}) para os 12 signos | Mestre Alberto` : `Horóscopo do Dia, ${dia}: os 12 signos · Mestre Alberto`;
     const ceu = (x.ceu || []).map((l) => `<li>${hPor(l)}</li>`).join("");
     const dc = (i) => { const d = new Date(i + "T12:00:00Z"); return `${H_SEMANA[d.getUTCDay()].toLowerCase()}, ${d.getUTCDate()}`; };
-    const grelha = x.s.map((y, s) => `<article class="signo" id="s${s}"><div class="cab"><img class="gli" src="signos/${String(s).padStart(2, "0")}.webp" alt="${H_NOMES[s]}" width="72" height="72" loading="lazy"><div><div class="nome">${H_NOMES[s]}</div><div class="ene" aria-label="Energia ${y.e} de 5">${est(y.e)}<span>${semana_ ? "energia da semana" : "energia"}</span></div></div></div>${corpo(y, semana_ ? "A dica da semana" : alvo === -3 ? "A dica de amanhã" : "A dica de hoje").replace('<div class="dica">', semana_ && y.melhor ? `<div class="dias"><span class="bom">✨ Melhor dia: ${dc(y.melhor.d)}</span>${y.cuidado ? `<span>⚠️ Mais cuidado: ${dc(y.cuidado.d)}</span>` : ""}</div><div class="dica">` : '<div class="dica">')}</article>`).join("");
+    const grelha = x.s.map((y, s) => `<article class="signo" id="s${s}"><div class="cab"><img class="gli" src="signos/${String(s).padStart(2, "0")}.webp" alt="${H_NOMES[s]}" width="72" height="72" loading="lazy"><div><div class="nome">${H_NOMES[s]}</div><div class="ene" aria-label="Energia ${y.e} de 5">${est(y.e)}<span>${semana_ ? "energia da semana" : "energia"}</span></div></div></div>${corpo(y, semana_ ? "A dica da semana" : alvo === -3 ? "A dica de amanhã" : "A dica de hoje").replace('<div class="dica">', semana_ && y.melhor ? `<div class="dias"><span class="bom">✨ Melhor dia: ${dc(y.melhor.d)}</span>${y.cuidado ? `<span>⚠️ Mais cuidado: ${dc(y.cuidado.d)}</span>` : ""}</div><div class="dica">` : '<div class="dica">')}${alvo === -3 ? `<a class="mais" href="/horoscopo-de-amanha/${H_SLUGS[s]}">${H_NOMES[s]} amanhã, em detalhe →</a>` : ""}</article>`).join("");
     rw.on("title", { element(e) { e.setInnerContent(titulo); } })
       .on("#data", { element(e) { e.setInnerContent(semana_ ? `<small>Esta semana</small>${dia} a ${fd(fim)}` : `<small>${alvo === -3 ? "Amanhã" : "Hoje"} · ${semana}</small>${dia}`, { html: true }); } })
       .on("#ceu", { element(e) { e.setInnerContent(ceu, { html: true }); } })
       .on("#grelha", { element(e) { e.setInnerContent(grelha, { html: true }); } });
+    if (alvo === -3) {   // 13/11/2026: os trânsitos datados, o ranking dos 12 signos e o elemento do dia (+ ItemList dos trânsitos)
+      try {   // se algo falhar aqui, a página sai como antes (sem esta parte), nunca com erro
+        const C = await lerCeu(url, env);
+        const d = amanhaDia(x, C, base, semana, dia);
+        rw.on("#am-dia", { element(e) { e.setInnerContent(d.html, { html: true }); } });
+        if (d.ld) rw.on("head", { element(e) { e.append(`<script type="application/ld+json">${d.ld}</script>`, { html: true }); } });
+      } catch (e) { /* fica a página de sempre */ }
+    }
   } else {
     const y = x.s[alvo];
     rw.on("#hoje", { element(e) { e.setInnerContent(`<p style="margin:.2rem 0;color:var(--suave)">${semana}, ${dia}</p><div class="ene">${est(y.e)} energia</div>${corpo(y, "A dica de hoje")}`, { html: true }); } });
@@ -738,6 +749,190 @@ async function horoscopoNoHtml(url, env, alvo) {
   r.headers.delete("etag"); r.headers.delete("last-modified");
   r.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
   return rw.transform(r);
+}
+
+// ── 13/11/2026 (SEO «horóscopo de amanhã», aprovado por ele): o dia de amanhã por signo, /horoscopo-de-amanha/<signo>,
+// e mais «dia» na página geral. 12 endereços FIXOS, o texto muda à meia-noite de Portugal (Travão ao SEO: a família não cresce).
+// Nada inventado: o resumo é o mesmo horoscopo-dia/<amanhã>.json da página geral; onde está cada planeta vem do ceu-dados.js
+// (Swiss Ephemeris, renovado todos os meses pelo ~/site-ceu-rolante.sh); a Lua é a casa «h» do JSON; as frases de «planeta
+// na casa N» são as do horóscopo semanal por signo (amanha-textos.js, feito pelo gerar-amanha-signos.py).
+import AM from "./amanha-textos.js";
+const AM_P = [["Sol", "sol", "☉"], ["Mercúrio", "mercurio", "☿"], ["Vénus", "venus", "♀"], ["Marte", "marte", "♂"], ["Júpiter", "jupiter", "♃"],
+  ["Saturno", "saturno", "♄"], ["Úrano", "urano", "♅"], ["Neptuno", "neptuno", "♆"], ["Plutão", "plutao", "♇"]];
+const AM_ART = { "Sol": "o Sol", "Lua": "a Lua" };
+const amHoraBR = (ms) => new Intl.DateTimeFormat("pt-PT", { timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit" }).format(new Date(ms));
+const amDiaEm = (ms, tz) => new Intl.DateTimeFormat("en-CA", { timeZone: tz }).format(new Date(ms));
+const amDoisFusos = (ms) => `${hHora(ms)} em Portugal (${amHoraBR(ms)}${amDiaEm(ms, "Europe/Lisbon") !== amDiaEm(ms, "America/Sao_Paulo") ? " da véspera" : ""} em Brasília)`;
+const amJunta = (l) => l.length === 1 ? l[0] : l.slice(0, -1).join(", ") + " e " + l[l.length - 1];
+// o papel de cada planeta, para o leitor perceber porque é que ele aparece nessa área
+const AM_PAPEL = { "Vénus": "o planeta do amor", "Júpiter": "o planeta da abundância", "Sol": "a vontade", "Mercúrio": "as palavras e os papéis", "Saturno": "o dever", "Marte": "a força" };
+const amCap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+const amEst = (e) => "★".repeat(Math.round(e)) + "☆".repeat(5 - Math.round(e));
+const amCasa = (sAstro, sLeitor) => ((sAstro - sLeitor + 12) % 12) + 1;
+function amSemente(t) { let h = 2166136261; for (const c of t) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; }   // o mesmo da app O Teu Céu
+async function lerCeu(url, env) {
+  try {
+    const r = await env.ASSETS.fetch(new Request(new URL("/ceu-dados.js", url), { method: "GET" }));
+    if (!r.ok) return null;
+    const t = await r.text();
+    return JSON.parse(t.slice(t.indexOf("{", t.indexOf("window.CEU"))).trim().replace(/;$/, ""));
+  } catch (e) { return null; }
+}
+// signo e sentido de cada planeta no instante t (ms): o estado do início mais os ingressos e as estações até lá
+function amCeuEm(C, t) {
+  if (!C || !C.estado_inicio || t < C.inicio_t || t > Date.parse(C.ate + "T23:59:59Z")) return null;
+  const st = {};
+  for (const k in C.estado_inicio) st[k] = { s: C.estado_inicio[k].s, r: !!C.estado_inicio[k].r };
+  const ev = (C.ingressos || []).map((e) => ({ t: e.t, p: e.p, s: e.s, r: !!e.r }))
+    .concat((C.estacoes || []).map((e) => ({ t: e.t, p: e.p, s: e.s, r: e.tipo === "R" })))
+    .filter((e) => e.t > C.inicio_t && e.t <= t).sort((a, b) => a.t - b.t);
+  for (const e of ev) st[e.p] = { s: e.s, r: e.r };
+  return st;
+}
+// o que muda durante o dia (ingressos e estações entre a meia-noite e a meia-noite de Portugal, aproximadas por 00:00–24:00 UTC±1)
+function amMudancas(C, base) {
+  if (!C) return [];
+  const ini = Date.parse(base.toISOString().slice(0, 10) + "T00:00:00Z") - 3600000, fim = ini + 86400000;
+  const lx = (t) => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Lisbon" }).format(new Date(t)) === base.toISOString().slice(0, 10);
+  const out = [];
+  for (const e of C.ingressos || []) if (e.t >= ini && e.t < fim + 7200000 && lx(e.t)) out.push({ t: e.t, p: e.p, s: e.s, tipo: "I" });
+  for (const e of C.estacoes || []) if (e.t >= ini && e.t < fim + 7200000 && lx(e.t)) out.push({ t: e.t, p: e.p, s: e.s, tipo: e.tipo });
+  return out.sort((a, b) => a.t - b.t);
+}
+const amNomeP = (k) => (AM_P.find((p) => p[1] === k) || [k])[0];
+
+// a parte nova da página geral: os trânsitos datados, o ranking dos 12 signos e o elemento do dia
+function amanhaDia(x, C, base, semana, dia) {
+  const st = amCeuEm(C, base.getTime());
+  const sLua = (x.s[0].h - 1 + 12) % 12;          // a casa da Lua para Carneiro dá o signo da Lua
+  const sem = semana.toLowerCase();
+  const itens = (x.ceu || []).map((l) => hPor(l));
+  let h = `<h2>Os trânsitos de ${sem}, ${dia}</h2>`;
+  h += `<ul class="ceu">${itens.map((l) => `<li>${l}</li>`).join("")}`
+    + (x.melhor ? `<li class="mom">✨ Melhor momento: por volta das ${amDoisFusos(x.melhor.t)} · ${hEsc(x.melhor.txt)}</li>` : "")
+    + (x.cuidado ? `<li class="mom">⚠️ Mais cuidado por volta das ${amDoisFusos(x.cuidado.t)} · ${hEsc(x.cuidado.txt)}</li>` : "") + "</ul>";
+  if (st) {
+    const pos = [`☽ a Lua em ${H_NOMES[sLua]}`].concat(AM_P.map(([n, k, g]) => `${g} ${AM_ART[n] || n} em ${H_NOMES[st[k].s]}${st[k].r ? " ℞" : ""}`));
+    h += `<p class="am-pos">Onde estão os astros amanhã ao meio-dia: ${pos.join(" · ")}. <small>℞ = retrógrado.</small></p>`;
+  }
+  // o ranking: a energia de cada signo (as estrelas, de 2 a 5); em empate fica a ordem do zodíaco
+  const ord = x.s.map((y, s) => ({ s, e: y.e, k: y.k })).sort((a, b) => b.e - a.e || a.s - b.s);
+  h += `<h2>Ranking dos 12 signos amanhã</h2><ol class="am-rank">${ord.map((o) => `<li><a href="/horoscopo-de-amanha/${H_SLUGS[o.s]}">${H_NOMES[o.s]}</a> <span class="est" aria-label="Energia ${o.e} de 5">${amEst(o.e)}</span> <i>${hPor(o.k)}</i></li>`).join("")}</ol>`
+    + `<p class="am-nota">Ordenados pela energia que o céu de ${sem} dá a cada signo (as estrelas de cada um, de 2 a 5, as mesmas da grelha acima). Em empate, fica a ordem do zodíaco.</p>`;
+  // o elemento do dia: quantos dos 10 astros (Sol a Plutão e a Lua) estão em signos de cada elemento
+  if (st) {
+    const conta = { "Fogo": [], "Terra": [], "Ar": [], "Água": [] };
+    conta[AM.ELEM_SIGNO[sLua]].push("a Lua");
+    for (const [n, k] of AM_P) conta[AM.ELEM_SIGNO[st[k].s]].push(AM_ART[n] || n);
+    const ELS = ["Fogo", "Terra", "Ar", "Água"];
+    const max = Math.max(...ELS.map((el) => conta[el].length));
+    const fortes = ELS.filter((el) => conta[el].length === max);
+    const quem = (el) => H_NOMES.filter((_, s) => AM.ELEM_SIGNO[s] === el);
+    const junta = (l) => l.length === 1 ? l[0] : l.slice(0, -1).join(", ") + " e " + l[l.length - 1];
+    const art = (el) => el === "Fogo" ? "o Fogo" : el === "Terra" ? "a Terra" : el === "Ar" ? "o Ar" : "a Água";
+    h += `<h2>O elemento do dia</h2>`;
+    h += fortes.length === 1
+      ? `<p>${(base.getUTCDay() % 6 === 0) ? "No" : "Na"} ${sem}, ${dia}, o elemento com mais astros é ${art(fortes[0])}: ${junta(conta[fortes[0]])} (${max} de 10). É o elemento de ${junta(quem(fortes[0]))}, e quem é de ${fortes[0]} ${hEsc(AM.ELEMENTO[fortes[0]])}.</p>`
+      : `<p>${(base.getUTCDay() % 6 === 0) ? "No" : "Na"} ${sem}, ${dia}, ${junta(fortes.map(art))} empatam, com ${max} astros cada. ${fortes.map((el) => `${amCap(art(el))}: ${junta(conta[el])}.`).join(" ")}</p>`;
+    h += `<p class="am-nota">Todos os elementos: ${ELS.map((el) => `${el} ${conta[el].length}`).join(" · ")}. Contam o Sol, a Lua e os planetas de Mercúrio a Plutão, pelo signo em que estão ao meio-dia.</p>`;
+  }
+  const ld = itens.length ? JSON.stringify({ "@context": "https://schema.org", "@type": "ItemList", name: `Os trânsitos de ${sem}, ${dia}`,
+    itemListElement: itens.map((t, i) => ({ "@type": "ListItem", position: i + 1, name: t.replace(/&amp;/g, "&").replace(/^[^A-Za-zÀ-ÿ]+/, "") })) }).replace(/</g, "\\u003c") : "";
+  return { html: h, ld };
+}
+
+async function amanhaSignoNoHtml(url, env, s) {
+  const resp = await env.ASSETS.fetch(new Request(url.toString(), { method: "GET" }));
+  if (!resp.ok || !(resp.headers.get("content-type") || "").includes("text/html")) return resp;
+  const hoje = new Date(new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Lisbon" }).format(new Date()) + "T12:00:00Z");
+  const base = new Date(hoje); base.setUTCDate(base.getUTCDate() + 1);
+  const iso = base.toISOString().slice(0, 10);
+  let x = null;
+  try {
+    const j = await env.ASSETS.fetch(new Request(new URL(`/horoscopo-dia/${iso}.json`, url), { method: "GET" }));
+    if (j.ok) x = await j.json();
+  } catch (e) { x = null; }
+  if (!x || !Array.isArray(x.s) || x.s.length !== 12) return resp;
+  const C = await lerCeu(url, env);
+  let rw;
+  try { rw = amanhaSignoRw(url, x, C, s, hoje, base, iso); } catch (e) { return resp; }   // erro nos dados → o molde, com a ligação para a página geral
+  const r = new Response(resp.body, resp);
+  r.headers.delete("etag"); r.headers.delete("last-modified");
+  r.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+  return rw.transform(r);
+}
+function amanhaSignoRw(url, x, C, s, hoje, base, iso) {
+  const st = amCeuEm(C, base.getTime());
+  const y = x.s[s], nm = H_NOMES[s], sl = H_SLUGS[s], br = AM.COM_BR[s] ? AM.COM_BR[s].slice(nm.length + 2, -1) : "";
+  const dia = `${base.getUTCDate()} de ${H_MESES[base.getUTCMonth()]}`, semana = H_SEMANA[base.getUTCDay()], sem = semana.toLowerCase();
+  const sLua = (s + y.h - 1) % 12;
+  const titulo = `${nm} amanhã: horóscopo de ${dia}${br ? ` (${br})` : ""} · Mestre Alberto`;
+  const desc = `${nm}${br ? ` (${br})` : ""} amanhã, ${sem}, ${dia}: ${hPor(y.k)} Amor, dinheiro, trabalho, energia, o melhor momento e a carta do dia, no céu calculado.`;
+  // a leitura de um planeta pela casa solar deste signo
+  const pl = (n) => {
+    const k = AM_P.find((p) => p[0] === n)[1], q = st[k], hc = amCasa(q.s, s);
+    const ret = q.r ? (n === "Vénus" ? " · retrógrada" : " · retrógrado") : "";
+    return `<span class="pl">${AM_ART[n] ? amCap(AM_ART[n]) : n} (${AM_PAPEL[n]}) em ${H_NOMES[q.s]} · casa ${hc}${ret}</span>`
+      + `<p>${hEsc(amCap(AM.PC[n][hc]))}${AM.LONGO[n] ? " " + hEsc(AM.LONGO[n][hc]) : ""}${q.r && AM.RETRO[n] ? " " + hEsc(AM.RETRO[n]) : ""}</p>`;
+  };
+  // quem passa amanhã por uma casa (a Lua incluída): factos do céu calculado, sem leitura
+  const ocup = (hc, rot) => {
+    const q = (s + hc - 1) % 12;
+    const l = (sLua === q ? ["a Lua"] : []).concat(AM_P.filter(([, k]) => st[k].s === q).map(([pn]) => AM_ART[pn] || pn));
+    return `<p>A sua casa ${hc}, ${rot}, fica em ${H_NOMES[q]}: ${l.length ? `amanhã ${l.length === 1 ? "está" : "estão"} lá ${amJunta(l)}` : "amanhã não tem nenhum astro de passagem"}.</p>`;
+  };
+  const muda = amMudancas(C, base).map((m) => {
+    const n = amNomeP(m.p), hc = amCasa(m.s, s);
+    if (m.tipo === "I") return `Às ${amDoisFusos(m.t)}, ${AM_ART[n] || n} entra em ${H_NOMES[m.s]}: para ${nm}, passa a tocar ${hEsc(AM.CASA[hc])} (casa ${hc}).`;
+    return `Às ${amDoisFusos(m.t)}, ${n} ${m.tipo === "R" ? (n === "Vénus" ? "fica retrógrada" : "fica retrógrado") : "volta a andar para a frente"} na sua casa ${hc}: ${m.tipo === "R" ? "é tempo de rever" : "desbloqueia"} o que toca ${hEsc(AM.CASA[hc])}.`;
+  });
+  // o resumo: o mesmo texto da página geral, mais a Lua e o regente lidos para este signo
+  const [reg] = AM.REGENTE[s];
+  let regTxt = "";
+  if (reg === "Lua") regTxt = `O seu regente é a Lua: amanhã está em ${H_NOMES[sLua]}, na sua casa ${y.h}, e é ${hEsc(AM.CASA[y.h])} que dá o tom ao dia de ${nm}.`;
+  else if (st) {
+    const k = AM_P.find((p) => p[0] === reg)[1], hc = amCasa(st[k].s, s);
+    regTxt = `O seu planeta regente, ${AM_ART[reg] || reg}, está em ${H_NOMES[st[k].s]}, na sua casa ${hc}${st[k].r ? (reg === "Vénus" ? " e retrógrada" : " e retrógrado") : ""}: é ${hEsc(AM.CASA[hc])} que recebe a força maior de ${nm} amanhã.`;
+  }
+  const resumo = `<h2>${nm} amanhã, ${sem}, ${dia}</h2><div class="ene" aria-label="Energia de amanhã: ${y.e} em 5">${amEst(y.e)}<span>energia de amanhã</span></div>`
+    + `<div class="chave">${hPor(y.k)}</div>${y.t.map((t) => `<p>${hPor(t)}</p>`).join("")}`
+    + (regTxt ? `<p>${regTxt}</p>` : "")
+    + `<div class="dica"><b>👉 A dica de amanhã</b>${hPor(y.d)}</div>`;
+  const areas = st ? `<h2>Amor, dinheiro, trabalho e energia</h2>`
+    + `<h3>❤️ Amor</h3>${pl("Vénus")}${ocup(7, "a das relações")}`
+    + `<h3>💶 Dinheiro</h3>${pl("Júpiter")}${ocup(2, "a do dinheiro")}`
+    + `<h3>💼 Trabalho</h3>${pl("Sol")}${pl("Mercúrio")}${pl("Saturno")}${ocup(10, "a da carreira")}`
+    + `<h3>⚡ Energia</h3><p>A energia de ${nm} amanhã: <b style="color:var(--ouro)">${amEst(y.e)}</b> (${y.e} em 5). Com a Lua na sua casa ${y.h}: ${hEsc(AM.LUA[y.h])}</p>${pl("Marte")}`
+    + (muda.length ? `<h3>🔄 O que muda amanhã</h3>${muda.map((m) => `<p>${m}</p>`).join("")}` : "")
+    + `<p class="nota">As áreas leem-se pelas casas solares de ${nm}: Vénus no amor, Júpiter no dinheiro, o Sol, Mercúrio e Saturno no trabalho, Marte na energia. Leituras simbólicas: nada aqui substitui o médico, o advogado ou o contabilista.</p>` : null;
+  const mom = `<h2>O melhor momento de amanhã</h2><ul class="am-mom">`
+    + (x.melhor ? `<li><b>✨ Por volta das ${amDoisFusos(x.melhor.t)}</b><br>${hEsc(x.melhor.txt)}: o aspeto da Lua mais favorável do dia, para pedir, propor ou começar.</li>` : `<li>Amanhã a Lua não faz nenhum aspeto favorável exato: escolha o momento pelo seu ritmo.</li>`)
+    + (x.cuidado ? `<li><b>⚠️ Mais cuidado por volta das ${amDoisFusos(x.cuidado.t)}</b><br>${hEsc(x.cuidado.txt)}: deixe as decisões grandes para outra hora.</li>` : "")
+    + `</ul>`;
+  const n = amSemente(`amanha|${sl}|${iso}`) % 22, c = AM.CARTAS[n], cn = AM.ARC_NOMES[n];
+  const carta = `<h2>A carta de amanhã para ${nm}</h2><div class="am-carta"><a href="/arcano-${c}"><img src="/cartas/${c}.webp" alt="${cn}, carta do baralho do Mestre Alberto" width="969" height="1624" loading="lazy"></a>`
+    + `<div><h3>${cn}</h3><p>${hEsc(AM.CARTA_DIA[n])}</p><p class="nota" style="text-align:left">Um Arcano Maior do baralho do Mestre Alberto, tirado para ${nm} e para ${sem}, ${dia}. <a href="/arcano-${c}">O significado de ${cn}</a> · <a href="/tarot-gratis">Tirar as suas cartas</a></p></div></div>`;
+  let ceu = `<h2>O céu de ${sem}, ${dia}</h2><ul class="ceu">${(x.ceu || []).map((l) => `<li>${hPor(l)}</li>`).join("")}</ul>`;
+  if (st) ceu += `<div class="rolar" style="margin-top:1rem"><table class="tabela"><thead><tr><th>Astro</th><th>Signo</th><th>Casa para ${nm}</th></tr></thead><tbody>`
+    + `<tr><td><b>Lua</b></td><td>${H_NOMES[sLua]}</td><td>casa ${y.h} <small>${hEsc(AM.CURTA[y.h])}</small></td></tr>`
+    + AM_P.map(([pn, k]) => { const hc = amCasa(st[k].s, s); return `<tr><td><b>${pn}</b>${st[k].r ? " ℞" : ""}</td><td>${H_NOMES[st[k].s]}</td><td>casa ${hc} <small>${hEsc(AM.CURTA[hc])}</small></td></tr>`; }).join("")
+    + `</tbody></table></div><p class="nota">Posições ao meio-dia de amanhã. ℞ = retrógrado. Veja também <a href="/ceu-de-hoje">o Céu de Hoje</a> e <a href="/lua">a Lua</a>.</p>`;
+  const ld = JSON.stringify({ "@context": "https://schema.org", "@type": "WebPage", url: url.origin + url.pathname, inLanguage: "pt", dateModified: hoje.toISOString().slice(0, 10),
+    name: `${nm} amanhã: horóscopo de ${dia}`, author: { "@type": "Person", name: "Mestre Alberto", url: url.origin + "/sobre" } }).replace(/</g, "\\u003c");
+  const rw = new HTMLRewriter()
+    .on("head", { element(e) { e.append(`<script type="application/ld+json">${ld}</script>`, { html: true }); } })
+    .on("title", { element(e) { e.setInnerContent(titulo); } })
+    .on('meta[name="description"]', { element(e) { e.setAttribute("content", desc.replace(/&amp;/g, "&").replace(/&quot;/g, "")); } })
+    .on('meta[property="og:title"]', { element(e) { e.setAttribute("content", titulo); } })
+    .on('meta[property="og:description"]', { element(e) { e.setAttribute("content", desc.replace(/&amp;/g, "&").replace(/&quot;/g, "")); } })
+    .on("#am-selo", { element(e) { e.setInnerContent(`Amanhã · ${sem}, ${dia}`); } })
+    .on("#am-h1", { element(e) { e.setInnerContent(`<span class="az">${nm}</span> amanhã <small>${br ? `(${br}) · ` : ""}${sem}, ${dia}</small>`, { html: true }); } })
+    .on("#am-resumo", { element(e) { e.setInnerContent(resumo, { html: true }); } })
+    .on("#am-momento", { element(e) { e.setInnerContent(mom, { html: true }); } })
+    .on("#am-carta", { element(e) { e.setInnerContent(carta, { html: true }); } })
+    .on("#am-ceu", { element(e) { e.setInnerContent(ceu, { html: true }); } });
+  if (areas) rw.on("#am-areas", { element(e) { e.setInnerContent(areas, { html: true }); } });
+  return rw;
 }
 
 // 07/11/2026 (O-137, O-138): /aniversarios chegava ao Google sem nenhum nome, porque só o JavaScript enchia a lista. O
@@ -1354,6 +1549,7 @@ export default {
     const hAlvo = request.method === "GET" ? horoscopoNoHtmlAlvo(url) : -2;
     const resp = hAlvo !== -2 ? await horoscopoNoHtml(url, env, hAlvo)
       : request.method === "GET" && url.pathname === "/aniversarios" ? await aniversariosNoHtml(url, env)
+      : request.method === "GET" && /^\/horoscopo-de-amanha\/[a-z]+$/.test(url.pathname) && H_SLUGS.includes(url.pathname.slice(21)) ? await amanhaSignoNoHtml(url, env, H_SLUGS.indexOf(url.pathname.slice(21)))
       : await env.ASSETS.fetch(request);
     // 01/11/2026: endereço de PÁGINA que não existe → a 404.html do site (com ligações de volta), sempre com código 404.
     // (Não pelo not_found_handling do wrangler: esse apanhava também /notify, /e/a, /api/vivo… e calava o worker.)
