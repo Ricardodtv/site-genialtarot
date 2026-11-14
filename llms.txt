@@ -24,6 +24,7 @@ Conteúdo em português (Portugal), com os nomes dos signos também na forma bra
 - [Calcular o Ascendente](https://genialtarot.com/ascendente)
 - [Calendário Lunar](https://genialtarot.com/lua): fases da Lua, Lua em cada signo, eclipses
 - [Notícias do Céu](https://genialtarot.com/noticias-do-ceu): mudanças de signo, retrógrados e eclipses das próximas semanas
+- [Quíron na Astrologia](https://genialtarot.com/quiron-astrologia): o curador ferido, o signo de Quíron por data de nascimento (calculado), Quíron hoje
 
 ## Áreas novas
 - [Quiromancia](https://genialtarot.com/quiromancia): leitura da mão, com mapa interativo das linhas e dos montes

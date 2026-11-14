@@ -91,12 +91,15 @@ def grava(f, s):
     open(f, "w", encoding="utf8").write(s)
 
 # ─── 72 anjos ───
+# 14/11/2026 (O-422): «anjo da guarda hariel» no Google (pos. 5–9) → título com as palavras da pesquisa
+TIT_ESPECIAL = {"Hariel": "Anjo da Guarda Hariel: purificação, datas e oração"}
 AVISO = ('<p><small>Os 72 anjos pertencem à tradição da Cabala e da angelologia, não à doutrina da Igreja, que desaconselha dar aos anjos nomes além de Miguel, Gabriel e Rafael. '
          'Quem segue a fé católica pode rezar ao seu <a href="/anjo-da-guarda">Anjo da Guarda</a> sem lhe saber o nome. É uma leitura simbólica: não promete resultados nem substitui o médico ou outros profissionais.</small></p>')
 tamanhos = []
 for i, (n, tema, ped, txt, gesto, ora) in enumerate(ANJOS):
     s, g, sl = SIG[i // 6]; coro = COROS[i // 8]; g0 = (i % 6) * 5
     tit = f"Anjo {n}: {tema}, datas e oração"
+    tit = TIT_ESPECIAL.get(n, tit)   # 14/11/2026 (O-422): títulos com a pesquisa real
     des = f"{n}, anjo n.º {i+1} dos 72 Nomes: {tema[0].lower()+tema[1:]}. Veja as datas em {s}, o coro e uma oração para {ped}."
     if len(des) > 158: des = f"{n}, anjo n.º {i+1} dos 72 Nomes: {tema[0].lower()+tema[1:]}. Veja as datas em {s}, o coro e uma oração."
     tamanhos.append((len(tit), len(des)))

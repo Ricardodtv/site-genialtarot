@@ -89,7 +89,7 @@ GRUPOS = [
                            ("/lua-azul", "Lua Azul", "A próxima e porque é rara"), ("/cor-do-ano-2027", "Cor do Ano 2027", "O regente do ano"),
                            ("/horoscopo-chines", "Horóscopo Chinês", "Os 12 animais"), ("/calendarios", "Calendários", "Luas, eclipses e retrógrados no seu telemóvel")]),
     ("Aprender astrologia", [("/aprender-astrologia", "Como aprender astrologia", "Guia grátis passo a passo"), ("/planeta-sol", "Os Planetas", "O que cada planeta representa"), ("/casa-1", "As 12 Casas", "As áreas da vida no mapa"),
-                             ("/elemento-fogo", "Os 4 Elementos", "Fogo, Terra, Ar e Água"), ("/efemerides", "Efemérides", "As posições dos planetas dia a dia"),
+                             ("/elemento-fogo", "Os 4 Elementos", "Fogo, Terra, Ar e Água"), ("/efemerides", "Efemérides", "As posições dos planetas dia a dia"), ("/quiron-astrologia", "Quíron", "O curador ferido no seu mapa"),
                              ("/famosos-ceu", "Famosos e o seu céu", "O mapa de pessoas conhecidas")]),
 ]
 for g in GRUPOS:
