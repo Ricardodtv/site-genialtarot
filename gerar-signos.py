@@ -585,7 +585,7 @@ if os.path.exists("arcanos-menores-textos.py"):
     <h2>No amor</h2><p>{E(c['amor'])}</p>
     <h2>No trabalho e no dinheiro</h2><p>{E(c['trabalho'])}</p>
     <h2>Invertida</h2><p>{E(c['invertida'])}</p>
-    <h2>O conselho da carta</h2><p>{E(c['conselho'])}</p>
+    <h2>O conselho da carta</h2><p>{E(c['conselho'])}</p>{"".join(f"<h2>{E(h)}</h2><p>{p}</p>" for h, p in AM.get("EXTRA", {}).get(c["slug"], []))}
     <p style="color:var(--suave)">{E(NAI[c['naipe']])}</p>
   </section>
   <section class="cartao" style="text-align:center">

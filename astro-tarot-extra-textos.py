@@ -327,6 +327,7 @@ CARTAS_TEMA = [
     ["Seis de Paus", "Mostra o reconhecimento público e o sucesso depois de uma luta. Fala de mérito visto pelos outros, de uma boa notícia ou de uma promoção."],
     ["Três de Paus", "Representa a expansão e o olhar para o horizonte. Indica projectos que crescem, negócios com o estrangeiro ou oportunidades que estão a chegar."],
     ["Oito de Paus", "É a carta da rapidez e do movimento. Fala de respostas que chegam, de propostas e de assuntos profissionais que avançam depressa."],
+    ["Seis de Espadas", "Mostra a passagem para uma situação mais calma: mudança de emprego, de departamento ou de área, quase sempre para melhor. Pede paciência no início."],
   ],
   "nota": "Uma carta de trabalho nunca se lê isolada: a posição na tiragem e as cartas à volta podem mudar bastante a mensagem. O Tarot ajuda a ver o momento com mais clareza, mas as escolhas profissionais continuam a ser suas."},
 
@@ -374,6 +375,7 @@ CARTAS_TEMA = [
     ["O Mundo", "Indica sim, pela realização e pela conclusão feliz. É a carta do objectivo alcançado."],
     ["Ás de Copas", "Pende para o sim, sobretudo em temas afectivos. Fala de abertura, de começo e de coração disponível."],
     ["Dez de Copas", "Indica sim, com felicidade e harmonia. É uma das cartas mais positivas dos arcanos menores."],
+    ["Dois de Copas", "Pende para o sim, sobretudo no amor, nas amizades e nos acordos. Indica que há reciprocidade e vontade dos dois lados."],
     ["A Torre", "Pende para o não, ou para uma mudança súbita que altera os planos. Mostra que aquilo que se pergunta pode não se sustentar."],
     ["Dez de Espadas", "Indica não, pelo fim de uma situação. Lembra, ainda assim, que depois do fundo só se pode subir."],
     ["Três de Espadas", "Pende para o não, com desilusão ou mágoa. Pede que proteja o coração antes de avançar."],

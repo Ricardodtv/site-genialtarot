@@ -553,4 +553,22 @@ FAQ = {
   ("Qual é o conselho do Tarot para Virgem?",
    "Reservar um tempo só seu, longe de exigências e listas. A resposta que procura talvez já esteja na sua lanterna, à espera de um pouco de silêncio para se mostrar."),
  ],
+ # 14/11/2026 (O-419)
+ "carta-dois-de-copas": [
+  ("O Dois de Copas é uma carta de amor?",
+   "Sim, é uma das cartas mais favoráveis ao amor no Tarot: fala de atracção correspondida, de namoro, de compromisso e de reconciliação. Mas também pode falar de amizade profunda ou de uma sociedade, porque o tema central é a reciprocidade."),
+  ("O Dois de Copas invertido quer dizer que acabou?",
+   "Não necessariamente. Invertido, mostra desequilíbrio: um dá mais do que o outro, falta comunicação ou há uma distância a resolver. Muitas vezes pede que a relação seja conversada e renegociada, mais do que terminada."),
+  ("Qual a diferença entre o Dois de Copas e Os Enamorados?",
+   "Os Enamorados falam sobretudo de escolha e de valores, de decidir com o coração e com a cabeça. O Dois de Copas é mais concreto e próximo: o encontro entre duas pessoas, a troca, o sentimento que vai e volta."),
+ ],
+ # 14/11/2026 (O-419)
+ "carta-seis-de-espadas": [
+  ("O Seis de Espadas anuncia uma viagem?",
+   "Pode anunciar: é uma das cartas do Tarot mais ligadas a viagens, mudanças de casa, de cidade ou de país. Mas também fala de uma travessia interior, quando se deixa para trás uma fase difícil rumo a dias mais calmos."),
+  ("O Seis de Espadas é uma carta positiva ou negativa?",
+   "É sobretudo uma carta de alívio. Há alguma tristeza no ar, porque se deixa algo para trás, mas a direcção é boa: das águas agitadas para as águas calmas. A pior parte costuma já ter passado."),
+  ("O que significa o Seis de Espadas no amor?",
+   "Num casal, mostra os dois a ultrapassar uma crise e a procurar paz. Para quem está só, indica que está a afastar-se de uma relação ou de um passado doloroso para se preparar para algo mais sereno."),
+ ],
 }

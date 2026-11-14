@@ -572,3 +572,28 @@ MENORES = [
      "invertida": "Invertida, a solidez torna-se rigidez, avareza ou materialismo: tudo se mede pelo dinheiro. Pode também indicar má gestão, riscos desnecessários, dependência financeira de alguém ou a obsessão pelo estatuto. O que se tem não define quem se é.",
      "conselho": "Use o que construiu para criar segurança para si e para os seus. A verdadeira riqueza também se mede pelo bem que faz."},
 ]
+
+# 14/11/2026 (O-419, «lida pelo Google mas não aceite»): secções extra de texto próprio, em HTML (podem levar ligações).
+# Lido por gerar-signos.py e posto depois do «conselho». As perguntas frequentes destas cartas estão em faq-textos-tarot.py.
+EXTRA = {
+ "carta-dois-de-copas": [
+  ("Dois de Copas como sim ou não",
+   'Nas perguntas de sim ou não, o Dois de Copas pende claramente para o <b>sim</b>, sobretudo quando a pergunta é sobre amor, amizade ou um acordo a dois. A condição é a que a própria carta mostra: o sim vale quando há vontade dos dois lados. Se a pergunta depende só de si, ou de alguém que ainda não deu sinais, leia-a como «sim, se houver reciprocidade». Veja também <a href="/cartas-do-tarot-sim-ou-nao">as outras cartas do sim ou não</a>.'),
+  ("O que a pessoa sente por si, segundo o Dois de Copas",
+   "É uma das perguntas mais feitas ao Tarot, e esta é uma das respostas mais doces: o Dois de Copas fala de interesse verdadeiro, de vontade de proximidade e de um sentimento que procura ser correspondido. Não descreve uma paixão de um só lado nem um jogo de conquista; descreve duas pessoas que se olham de igual para igual. Ainda assim, uma carta mostra a tendência do momento, não substitui uma conversa franca."),
+  ("O Dois de Copas ao lado de outras cartas",
+   'Com <a href="/arcano-06-os-enamorados">Os Enamorados</a>, reforça a união e pede uma escolha consciente. Com o <a href="/carta-as-de-copas">Ás de Copas</a>, um sentimento novo que começa. Com o <a href="/carta-dez-de-copas">Dez de Copas</a>, a relação a caminhar para uma vida em comum. Com o <a href="/carta-tres-de-espadas">Três de Espadas</a> ou <a href="/arcano-16-a-torre">A Torre</a>, o laço existe mas atravessa uma prova, e o diálogo passa a ser o mais importante. Numa <a href="/cartas-do-tarot-reconciliacao">tiragem de reconciliação</a>, é das cartas que mais indicam reaproximação.'),
+  ("A imagem e os símbolos",
+   "Na versão clássica do baralho Rider-Waite-Smith (desenhado por Pamela Colman Smith e publicado em 1909), o caduceu que sobe entre os dois é o bastão de Hermes, símbolo de troca, mensagem e equilíbrio entre forças opostas. A cabeça de leão com asas junta paixão e espírito: o desejo é bem-vindo, desde que eleve a relação. As grinaldas nas cabeças lembram uma promessa. Tudo na carta é em pares, para dizer que a união só é inteira quando os dois lados pesam o mesmo."),
+ ],
+ "carta-seis-de-espadas": [
+  ("Seis de Espadas como sim ou não",
+   'Nas perguntas de sim ou não, o Seis de Espadas costuma ser um <b>sim, mas devagar</b>. Indica que a situação está a mudar para melhor, mas pelo caminho da paciência e não do salto. Se pergunta se deve mudar, sair ou partir, a carta tende a apoiar a travessia. Se pergunta se algo do passado vai voltar como era, tende para o não: o barco segue para a outra margem. Veja também <a href="/cartas-do-tarot-sim-ou-nao">as outras cartas do sim ou não</a>.'),
+  ("O que a pessoa sente, segundo o Seis de Espadas",
+   "Quando a pergunta é sobre os sentimentos de alguém, o Seis de Espadas mostra uma pessoa cansada de conflitos e a precisar de paz. Pode estar a afastar-se para se recompor, ou a querer levar a relação para um sítio mais calmo. Não é frieza: é a necessidade de silêncio depois de águas agitadas. O melhor que se pode oferecer, nessa fase, é tranquilidade e não pressão."),
+  ("O Seis de Espadas ao lado de outras cartas",
+   'Com <a href="/arcano-13-a-morte">A Morte</a>, um ciclo que fecha e uma vida nova do outro lado. Com o <a href="/carta-oito-de-copas">Oito de Copas</a>, a decisão de partir em busca de algo com mais sentido. Com <a href="/arcano-17-a-estrela">A Estrela</a>, a calma e a esperança que chegam depois da tempestade. Com <a href="/arcano-07-o-carro">O Carro</a>, uma mudança de casa, de cidade ou uma viagem que avança. Com o <a href="/carta-dez-de-espadas">Dez de Espadas</a>, o pior já passou e começa a recuperação. Veja mais em <a href="/cartas-do-tarot-mudanca">as cartas do Tarot da mudança</a>.'),
+  ("A imagem e os símbolos",
+   "As seis espadas vão cravadas no próprio barco: a pessoa não larga tudo, leva consigo as lições e as memórias, e é por isso que a viagem pede cuidado. O barqueiro representa a ajuda que aparece na hora certa, alguém ou alguma coisa que conduz quando não se tem força para remar. A água agitada de um lado e lisa do outro mostra que a mudança já começou. A mulher vai de costas para nós e de cara para o futuro."),
+ ],
+}
