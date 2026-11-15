@@ -318,6 +318,8 @@ h2 { font-family: var(--serifa); font-weight: 600; font-size: 24px; color: var(-
   };
   if (temPush) reg().catch(function () {});
 
+  // 15/11/2026 (O-450): vindo do convite «Amanhã para o seu signo» (?s=<slug>), o signo já vem escolhido — só se ainda não houver um
+  try { var qs = SLUGS.indexOf(new URLSearchParams(location.search).get("s") || ""); if (E.signo == null && qs >= 0) { E.signo = qs; gravar(); } } catch (e) {}
   if (E.signo == null) $("escolher").hidden = false; else { mostrarDia(); guardarSignoParaAviso(); }
 })();
 </script>

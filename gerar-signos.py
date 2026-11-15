@@ -84,6 +84,7 @@ RODAPE = """<footer>
 </div>
 <script src="/vip-faixa.js" defer></script>
 <script src="/vivo.js" defer></script>
+<script src="/amanha-convite.js" defer></script>
 </body>
 </html>
 """
