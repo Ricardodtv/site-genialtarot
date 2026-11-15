@@ -271,12 +271,12 @@ MAPS = "https://maps.google.com/?cid=17405932589735170894"
 url = SITE + "/tarologo-fafe"
 titulo = "Tarot em Fafe: consultas com o Mestre Alberto, há 18 anos"
 desc = "Consulta de Tarot e cartas em Fafe (Golães), no consultório ou à distância. 18 anos de prática com o Mestre Alberto. Marque pelo WhatsApp."
-NEGOCIO = {"@type": "ProfessionalService", "@id": SITE + "/#consultorio", "name": "Genialtarot - Mestre Alberto", "url": SITE + "/",
+NEGOCIO = {"@type": "ProfessionalService", "@id": SITE + "/#consultorio", "name": "Genialtarot - Mestre Alberto", "alternateName": ["Mestre Alberto — Genial Tarot", "Genial Tarot", "Mestre Alberto"], "url": SITE + "/",
            "image": SITE + "/mestre-r13.jpg", "telephone": "+351914920427", "hasMap": MAPS,
            "address": {"@type": "PostalAddress", "streetAddress": "Rua da Barreira, 92", "addressLocality": "Fafe", "postalCode": "4820-459", "addressRegion": "Braga", "addressCountry": "PT"},
            "geo": {"@type": "GeoCoordinates", "latitude": 41.4682778, "longitude": -8.1984452},
            "founder": AUTOR, "areaServed": ["Fafe", "Guimarães", "Braga", "Portugal", "Brasil"],
-           "sameAs": ["https://www.youtube.com/@Genialtarot", "https://www.facebook.com/genial.tarot", "https://www.facebook.com/Mestre.Alberto", "https://www.facebook.com/LojaEspiritualbr", "https://www.instagram.com/genialtarot/", "https://www.tiktok.com/@genialtarot"]}
+           "sameAs": ["https://maps.google.com/?cid=17405932589735170894", "https://www.youtube.com/@Genialtarot", "https://www.facebook.com/genial.tarot", "https://www.facebook.com/Mestre.Alberto", "https://www.facebook.com/LojaEspiritualbr", "https://www.instagram.com/genialtarot/", "https://www.tiktok.com/@genialtarot"]}
 ld = {"@context": "https://schema.org", "@graph": [NEGOCIO,
       {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Tarólogo em Fafe", "item": url}]}]}
 corpo = f"""  <section class="heroi">

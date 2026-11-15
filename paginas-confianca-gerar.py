@@ -379,8 +379,8 @@ def pagina_canais():
                "As contas oficiais do Mestre Alberto e do Genial Tarot. Atenção: ele nunca pede pagamentos nem dados por mensagem privada; consultas só pelo site.",
                'Os <span class="az">canais oficiais</span>', "Onde encontrar o Mestre Alberto de verdade, e como não cair nos perfis falsos.",
                "mestre-r11.jpg", corpo, faq, "Canais oficiais", "O Mestre Alberto de braços abertos, no consultório, a dar as boas-vindas", tipo="WebPage")
-    org = json.dumps({"@context": "https://schema.org", "@type": "Organization", "@id": f"{SITE}/#organizacao", "name": "Genial Tarot", "url": f"{SITE}/",
-                      "logo": f"{SITE}/og-image.jpg", "sameAs": sameas,
+    org = json.dumps({"@context": "https://schema.org", "@type": "Organization", "@id": f"{SITE}/#org", "name": "Genial Tarot", "alternateName": "Mestre Alberto — Genial Tarot", "url": f"{SITE}/",
+                      "logo": f"{SITE}/og-image.jpg", "sameAs": ["https://maps.google.com/?cid=17405932589735170894"] + sameas,
                       "contactPoint": {"@type": "ContactPoint", "telephone": "+351914920427", "contactType": "customer service", "availableLanguage": ["pt-PT", "pt-BR"]}}, ensure_ascii=False)
     return p.replace("<style>", f'<script type="application/ld+json">\n{org}\n</script>\n<style>', 1)
 
