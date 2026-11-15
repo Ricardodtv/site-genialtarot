@@ -843,6 +843,19 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
   padding:1.3rem 1.3rem 1.2rem; border-radius:1.5rem; text-decoration:none; color:#fff; text-align:left; overflow:hidden;
   background: radial-gradient(120% 140% at 0% 0%, oklch(0.42 0.16 300 / .95), transparent 60%), linear-gradient(140deg, oklch(0.26 0.11 285), oklch(0.17 0.07 270));
   border:1.5px solid oklch(0.85 0.13 88 / .75); box-shadow:0 22px 60px #0008, 0 0 40px oklch(0.70 0.16 305 / .30), inset 0 1px 0 #ffffff1c; transition:transform .25s, box-shadow .25s; }
+/* ✨ 15/11/2026: a porta para O Meu Dia (por cima da antevisão de amanhã) */
+.meudia { position:relative; z-index:5; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:.6rem 1.1rem; max-width:60rem; margin:0 auto 1rem;
+  padding:1rem 1.2rem; border-radius:1.5rem; text-decoration:none; color:#fff; text-align:left;
+  background: linear-gradient(140deg, oklch(0.34 0.13 300 / .95), oklch(0.22 0.09 285 / .95)); border:1.5px solid oklch(0.85 0.13 88 / .55);
+  box-shadow:0 16px 44px #0007; transition:transform .25s, box-shadow .25s; }
+.meudia:hover { transform:translateY(-3px); box-shadow:0 22px 56px #0009, 0 0 40px oklch(0.80 0.14 88 / .35); }
+.meudia-ico { width:64px; height:64px; border-radius:16px; }
+.meudia-txt { display:flex; flex-direction:column; gap:.15rem; min-width:0; }
+.meudia-eti { font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:oklch(0.88 0.10 90); }
+.meudia-txt b { font-family:var(--font-serif); font-size:1.45rem; line-height:1.2; font-weight:600; }
+.meudia-txt span:last-child { color:oklch(0.97 0.01 320 / .78); font-size:.98rem; }
+.meudia-btn { background:var(--gradient-gold); color:#1a0d26; font-weight:700; border-radius:.9rem; padding:.7rem 1.1rem; white-space:nowrap; }
+@media (max-width: 640px) { .meudia { grid-template-columns:auto 1fr; } .meudia-btn { grid-column:1 / -1; text-align:center; } }
 .amanha:hover { transform:translateY(-3px); box-shadow:0 26px 64px #0009, 0 0 52px oklch(0.80 0.14 88 / .40); }
 .amanha::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.55;
   background-image: radial-gradient(1.5px 1.5px at 12% 22%, #fff, transparent), radial-gradient(1px 1px at 72% 18%, #fff, transparent), radial-gradient(1.5px 1.5px at 88% 64%, #fff, transparent),
@@ -1076,6 +1089,36 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <a class="caminho" href="/horoscopo-do-dia"><img class="caminho-img" src="/caminho-signos.webp" alt="Roda do zodíaco com os signos" width="240" height="240" decoding="async"/><span><b>Quero saber do meu signo</b><small>O horóscopo de hoje</small></span></a>
       <a class="caminho mestre" href="#marcacao"><img class="caminho-img" src="/caminho-mestre.webp" alt="Mestre Alberto" width="240" height="240" decoding="async"/><span><b>Quero falar com o Mestre</b><small>Marcar uma consulta</small></span></a>
     </nav>
+    <!-- ✨ 15/11/2026 (pedido dele: «colocar isso na primeira página sempre»): a porta para O Meu Dia. Quem já escolheu o signo
+         vê o nome dele, se a carta de hoje está por virar e os dias seguidos (localStorage «gt_meudia», escrito em /o-meu-dia). -->
+    <a class="meudia animate-fade-up" id="meudia" href="/o-meu-dia">
+      <img class="meudia-ico" id="meudia-ico" src="/o-meu-dia-icone-192.png" alt="" width="64" height="64" decoding="async">
+      <span class="meudia-txt">
+        <span class="meudia-eti">O Meu Dia</span>
+        <b id="meudia-tit">O seu signo, a sua carta e a Lua de hoje</b>
+        <span id="meudia-sub">Escolha o seu signo uma vez e encontre o seu dia aqui, todas as manhãs.</span>
+      </span>
+      <span class="meudia-btn" id="meudia-btn">Abrir o meu dia →</span>
+    </a>
+    <script>
+    (function () {
+      try {
+        var E = JSON.parse(localStorage.getItem("gt_meudia") || "null"); if (!E || E.signo == null) return;
+        var PT = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").indexOf("Europe") === 0;
+        var N = PT ? ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"]
+                   : ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+        var f = function (d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+        var d = new Date(), hoje = E.dias && E.dias[f(d)], n = 0;
+        if (!hoje) d.setDate(d.getDate() - 1);
+        while (E.dias && E.dias[f(d)]) { n++; d.setDate(d.getDate() - 1); }
+        document.getElementById("meudia-ico").src = "/signos/" + String(E.signo).padStart(2, "0") + ".webp";
+        document.getElementById("meudia-tit").textContent = N[E.signo] + ", o seu dia está pronto";
+        document.getElementById("meudia-sub").textContent = (hoje && hoje.c != null ? "A carta de hoje já está virada." : "A sua carta de hoje está por virar.") +
+          (n > 1 ? " " + n + " dias seguidos." : "");
+        document.getElementById("meudia-btn").textContent = hoje && hoje.c != null ? "Ver o meu dia →" : "Virar a carta →";
+      } catch (e) {}
+    })();
+    </script>
     <!-- 🌙 12/11/2026 (pedido dele): a antevisão de amanhã, sempre em destaque. Sem JavaScript fica a ligação ao horóscopo de amanhã. -->
     <a class="amanha porta-brilho animate-fade-up" id="amanha" href="/horoscopo-de-amanha">
       <span class="amanha-lua" aria-hidden="true"><span></span></span>

@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>O Meu Dia — o seu signo, a sua carta e a Lua de hoje | Genial Tarot</title>
+<meta name="description" content="Escolha o seu signo uma vez e encontre aqui, todos os dias, o seu horóscopo, a sua carta de Tarot do dia e a Lua, com o Mestre Alberto." />
+<meta name="theme-color" content="#2a1640" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/o-meu-dia-icone-180.png" />
+<link rel="manifest" href="/o-meu-dia.webmanifest" />
+<link rel="canonical" href="https://genialtarot.com/o-meu-dia" />
+<meta property="og:title" content="O Meu Dia — Genial Tarot" />
+<meta property="og:description" content="O seu horóscopo, a sua carta do dia e a Lua, todos os dias, com o Mestre Alberto." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://genialtarot.com/o-meu-dia" />
+<meta property="og:image" content="https://genialtarot.com/og-image.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!--
+  15/11/2026 (pedido dele: «um site mais viciante para as pessoas visitarem mais vezes e que fiquem»).
+  O RITUAL DIÁRIO: escolhe-se o signo UMA vez (fica neste aparelho, localStorage «gt_meudia», sem cookie e sem conta)
+  e a página mostra o horóscopo dele, a carta do dia (a mesma o dia todo), a Lua, os dias seguidos, as cartas do mês
+  e a primeira frase de amanhã. O aviso das 8h (Web Push) é o o-meu-dia-sw.js + /api/aviso/* no worker.
+  Dados: os mesmos da app «O Teu Céu» (horoscopo-dia/<data>.json, carta-de-tarot-textos.js, o-teu-ceu-linguas.js).
+  Regra: hábito sim, pressão não — nada de contagens falsas nem «vai perder a sorte».
+-->
+<style>
+:root {
+  --fundo: oklch(0.18 0.05 300);
+  --texto: oklch(0.97 0.01 320);
+  --suave: oklch(0.97 0.01 320 / 0.72);
+  --linha: oklch(0.55 0.10 305 / 0.30);
+  --cartao: oklch(0.24 0.07 300 / 0.75);
+  --ouro: oklch(0.82 0.14 85);
+  --ouro-claro: oklch(0.88 0.10 90);
+  --mistico: oklch(0.62 0.18 305);
+  --serifa: "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: radial-gradient(ellipse at top, oklch(0.42 0.16 300) 0%, oklch(0.18 0.06 295) 50%, oklch(0.10 0.04 290) 100%) fixed, var(--fundo);
+  color: var(--texto); font-family: "Inter", system-ui, sans-serif; font-size: 17px; line-height: 1.6; min-height: 100vh; }
+a { color: var(--ouro); }
+.caixa { max-width: 640px; margin: 0 auto; padding: 20px 16px 60px; }
+.topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; font-size: 15px; }
+.topo a { text-decoration: none; color: var(--suave); }
+h1 { font-family: var(--serifa); font-weight: 600; font-size: 34px; line-height: 1.15; color: var(--ouro-claro); }
+h2 { font-family: var(--serifa); font-weight: 600; font-size: 24px; color: var(--ouro); margin-bottom: 8px; }
+.data { color: var(--suave); text-transform: capitalize; margin: 4px 0 18px; }
+.bloco { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 20px; margin-bottom: 16px; }
+.rot { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--suave); }
+.grelha { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+.grelha button { background: oklch(0.28 0.08 300 / 0.8); border: 1px solid var(--linha); border-radius: 14px; color: var(--texto);
+  padding: 10px 4px; font: inherit; font-size: 15px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.grelha button:hover, .grelha button:focus-visible { border-color: var(--ouro); outline: none; }
+.grelha img { width: 56px; height: 56px; }
+.cab { display: flex; align-items: center; gap: 14px; }
+.cab img { width: 64px; height: 64px; flex: none; }
+.estrelas { color: var(--ouro); font-size: 20px; letter-spacing: 2px; }
+.chave { font-family: var(--serifa); font-size: 23px; line-height: 1.3; margin: 10px 0; color: var(--ouro-claro); }
+.horo p { margin-top: 10px; }
+.dica { margin-top: 14px; padding: 12px 14px; border-left: 3px solid var(--ouro); background: oklch(0.30 0.08 300 / 0.5); border-radius: 0 10px 10px 0; }
+.mais { display: inline-block; margin-top: 14px; font-weight: 600; text-decoration: none; }
+.carta-zona { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.carta { width: 130px; height: 216px; cursor: pointer; flex: none; transition: transform .28s ease-in; }
+.carta.meio { transform: scaleX(0); }
+.carta.virada { cursor: default; }
+.carta img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; box-shadow: 0 10px 28px -8px #000a; display: block; }
+.carta-txt { flex: 1; min-width: 200px; }
+.carta-txt h3 { font-family: var(--serifa); font-size: 24px; color: var(--ouro); margin: 2px 0 6px; }
+.carta-txt .frase { font-family: var(--serifa); font-size: 20px; line-height: 1.35; }
+.numeros { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.numero { text-align: center; }
+.numero b { display: block; font-family: var(--serifa); font-size: 40px; color: var(--ouro); line-height: 1.1; }
+.mes { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.mes img { width: 38px; height: 63px; border-radius: 4px; object-fit: cover; }
+.mes .vazio { width: 38px; height: 63px; border-radius: 4px; border: 1px dashed var(--linha); }
+.repete { margin-top: 10px; color: var(--suave); }
+.amanha .frase { font-family: var(--serifa); font-size: 21px; line-height: 1.35; margin: 8px 0; }
+.amanha .frase span { opacity: .45; filter: blur(3px); user-select: none; }
+.btn { display: inline-block; background: linear-gradient(135deg, oklch(0.88 0.12 90), oklch(0.72 0.16 75)); color: #1a0d26; border: 0;
+  border-radius: 14px; padding: 13px 22px; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; }
+.btn.sec { background: none; color: var(--suave); border: 1px solid var(--linha); font-weight: 500; padding: 9px 14px; font-size: 15px; }
+.aviso-ok { color: oklch(0.80 0.15 150); font-weight: 600; }
+.breve { color: var(--suave); font-size: 15px; margin-top: 8px; }
+.caminhos { display: grid; gap: 10px; }
+.caminhos a { display: block; padding: 14px 16px; border: 1px solid var(--linha); border-radius: 14px; text-decoration: none; background: oklch(0.26 0.07 300 / 0.6); }
+.caminhos small { display: block; color: var(--suave); }
+[hidden] { display: none !important; }
+@media (max-width: 420px) { h1 { font-size: 29px; } .carta { width: 110px; height: 183px; } }
+</style>
+</head>
+<body>
+<div class="caixa">
+  <div class="topo"><a href="/">← Genial Tarot</a><button class="btn sec" id="trocar" hidden>Trocar de signo</button></div>
+
+  <!-- 1.ª vez: escolher o signo -->
+  <section id="escolher" hidden>
+    <h1>O Meu Dia</h1>
+    <p class="data">Escolha o seu signo. Fica guardado neste aparelho e, a partir de amanhã, o seu dia está à sua espera aqui.</p>
+    <div class="bloco">
+      <div class="rot">Qual é o seu signo?</div>
+      <div class="grelha" id="grelha"></div>
+      <p class="breve">Não sabe? <a href="/datas-dos-signos">Veja as datas dos signos</a>.</p>
+    </div>
+  </section>
+
+  <!-- todos os dias -->
+  <section id="dia" hidden>
+    <h1 id="ola">O seu dia</h1>
+    <p class="data" id="data"></p>
+
+    <div class="bloco horo" id="horo"><p class="breve">A ler o céu de hoje…</p></div>
+
+    <div class="bloco">
+      <h2>🃏 A sua carta de hoje</h2>
+      <div class="carta-zona">
+        <div class="carta" id="carta" role="button" tabindex="0" aria-label="Virar a carta do dia">
+          <img id="carta-img" src="/cartas/verso-gt.webp" alt="Verso da carta" width="130" height="216" />
+        </div>
+        <div class="carta-txt" id="carta-txt"><p class="frase">Toque na carta para a virar.</p><p class="breve">É a mesma o dia todo. Amanhã sai outra.</p></div>
+      </div>
+    </div>
+
+    <div class="bloco" id="lua-bloco" hidden><h2>🌙 A Lua de hoje</h2><p id="lua"></p></div>
+
+    <div class="bloco">
+      <div class="numeros">
+        <div class="numero"><b id="seguidos">1</b><span id="seguidos-rot">dia seguido</span></div>
+        <div class="numero"><b id="no-mes">0</b><span id="no-mes-rot">cartas este mês</span></div>
+      </div>
+      <div class="mes" id="mes" aria-label="As cartas que lhe saíram este mês"></div>
+      <p class="repete" id="repete" hidden></p>
+    </div>
+
+    <div class="bloco amanha" id="amanha" hidden>
+      <div class="rot">Amanhã, para <span id="amanha-signo"></span></div>
+      <p class="frase" id="amanha-frase"></p>
+      <p class="breve">A leitura completa abre aqui amanhã de manhã.</p>
+    </div>
+
+    <div class="bloco" id="aviso-bloco">
+      <h2>🔔 Avisar-me de manhã</h2>
+      <p id="aviso-txt">Receba às 8h, no telemóvel ou no computador, a frase do seu signo para o dia. Um aviso por dia, nada mais, e desliga-se quando quiser.</p>
+      <p style="margin-top:12px"><button class="btn" id="aviso-sim">Quero o aviso das 8h</button> <button class="btn sec" id="aviso-nao" hidden>Desligar o aviso</button></p>
+      <p class="breve" id="aviso-estado"></p>
+    </div>
+
+    <div class="bloco">
+      <h2>Para continuar</h2>
+      <div class="caminhos" id="caminhos"></div>
+    </div>
+  </section>
+</div>
+
+<script src="/carta-de-tarot-textos.js"></script>
+<script src="/o-teu-ceu-linguas.js"></script>
+<script>
+(function () {
+  "use strict";
+  var VAPID = "BOKQdb4SoY_EquNqS0Y5tk-1O8wSkEfiQKL_xzLZd9w-22-Lxr1C95GOlVT8NTk3uElReFJrNOLqhyo4HIO1ip0";
+  var $ = function (id) { return document.getElementById(id); };
+  var ESC = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var LG = window.LinguasTeuCeu.pt;
+  // nomes do Brasil fora da Europa (como no resto do site): Áries, Câncer, Libra
+  var PT = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").indexOf("Europe") === 0;
+  var NOMES = PT ? LG.signos_pt : LG.signos;
+  var SLUGS = ["carneiro", "touro", "gemeos", "caranguejo", "leao", "virgem", "balanca", "escorpiao", "sagitario", "capricornio", "aquario", "peixes"];
+  var GLIFOS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
+  var A = window.TextosCarta.ARCANOS, ARC = LG.arcanos, DIA_CARTA = LG.carta_dia;
+
+  // o que fica guardado neste aparelho
+  var E = {};
+  try { E = JSON.parse(localStorage.getItem("gt_meudia") || "{}") || {}; } catch (e) {}
+  E.dias = E.dias || {};
+  var gravar = function () { try { localStorage.setItem("gt_meudia", JSON.stringify(E)); } catch (e) {} };
+
+  var iso = function (desvio) { var d = new Date(); d.setDate(d.getDate() + (desvio || 0));
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+  var hora = function (ms) { return new Date(ms).toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" }); };
+  var por = function (t) { return ESC(t).replace(/\{S:(\d+)\}/g, function (_, n) { return NOMES[+n]; }).replace(/\{H:(\d+)\}/g, function (_, ms) { return hora(+ms); }); };
+  var img = function (n) { return "/cartas/" + A[n][3].slice(7, -5) + ".webp"; };
+  // a carta do dia: estável por aparelho e por dia (o mesmo número do vivo.js; sem ele, um próprio)
+  function semente(txt) { var h = 2166136261; for (var i = 0; i < txt.length; i++) { h ^= txt.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  var id = ""; try { id = localStorage.getItem("gt_vivo") || ""; } catch (e) {}
+  if (!id) { if (!E.id) { E.id = Math.random().toString(36).slice(2); gravar(); } id = E.id; }
+
+  // ---------- escolher o signo ----------
+  $("grelha").innerHTML = NOMES.map(function (n, i) {
+    return '<button data-s="' + i + '"><img src="/signos/' + String(i).padStart(2, "0") + '.webp" alt="" width="56" height="56" loading="lazy">' + n + "</button>"; }).join("");
+  $("grelha").onclick = function (e) { var b = e.target.closest("button"); if (!b) return;
+    E.signo = +b.dataset.s; gravar(); guardarSignoParaAviso(); mostrarDia(); scrollTo(0, 0); };
+  $("trocar").onclick = function () { $("dia").hidden = true; $("trocar").hidden = true; $("escolher").hidden = false; scrollTo(0, 0); };
+
+  function busca(u) { return fetch(u).then(function (r) { if (!r.ok) throw r.status; return r.json(); }); }
+
+  // ---------- o dia ----------
+  function mostrarDia() {
+    var s = E.signo, hoje = iso(0);
+    $("escolher").hidden = true; $("dia").hidden = false; $("trocar").hidden = false;
+    var h = new Date().getHours();
+    $("ola").textContent = (h < 12 ? "Bom dia" : h < 20 ? "Boa tarde" : "Boa noite") + ", " + NOMES[s] + " " + GLIFOS[s] + "︎";
+    $("data").textContent = new Intl.DateTimeFormat("pt-PT", { weekday: "long", day: "numeric", month: "long" }).format(new Date());
+
+    // marcar a visita de hoje (dias seguidos)
+    var d = E.dias[hoje] = E.dias[hoje] || {};
+    gravar();
+
+    busca("/horoscopo-dia/" + hoje + ".json").then(function (x) {
+      var y = x.s[s];
+      $("horo").innerHTML = '<div class="cab"><img src="/signos/' + String(s).padStart(2, "0") + '.webp" alt="' + NOMES[s] + '" width="64" height="64"><div>' +
+        '<div class="rot">' + NOMES[s] + ' · hoje</div><div class="estrelas" aria-label="Energia ' + y.e + ' de 5">' + "★".repeat(y.e) + "☆".repeat(5 - y.e) + "</div></div></div>" +
+        '<div class="chave">' + por(y.k) + "</div>" + y.t.map(function (t) { return "<p>" + por(t) + "</p>"; }).join("") +
+        '<div class="dica"><b>A dica de hoje:</b> ' + por(y.d) + "</div>";
+      if (x.ceu && x.ceu[0]) { $("lua").innerHTML = por(x.ceu[0]).replace(/^☽\s*/, ""); $("lua-bloco").hidden = false; }
+    }).catch(function () {
+      $("horo").innerHTML = '<p>Não consegui ler o céu de hoje. <a href="/horoscopo-do-dia">Abra o Horóscopo do Dia</a>.</p>';
+    });
+
+    // amanhã: só a primeira metade da frase-chave (o resto abre amanhã)
+    busca("/horoscopo-dia/" + iso(1) + ".json").then(function (x) {
+      var k = por(x.s[s].k).split(" "), meio = Math.max(2, Math.ceil(k.length / 2));
+      $("amanha-signo").textContent = NOMES[s];
+      $("amanha-frase").innerHTML = "«" + k.slice(0, meio).join(" ") + " <span>" + k.slice(meio).join(" ").replace(/./g, function (c) { return c === " " ? " " : "•"; }) + "</span>»";
+      $("amanha").hidden = false;
+    }).catch(function () {});
+
+    // a carta
+    var n = semente(id + hoje) % 22;
+    new Image().src = img(n);   // já carregada quando se vira
+    var virar = function (devagar) {
+      var c = $("carta"), troca = function () { $("carta-img").src = img(n); $("carta-img").alt = ARC[n]; c.classList.remove("meio"); };
+      if (devagar === true) { c.classList.add("meio"); setTimeout(troca, 280); } else troca();
+      c.classList.add("virada"); c.onclick = c.onkeydown = null;
+      $("carta-txt").innerHTML = '<div class="rot">' + A[n][1] + " · Arcano Maior</div><h3>" + ARC[n] + '</h3><p class="frase">' + DIA_CARTA[n] +
+        '</p><a class="mais" href="/' + A[n][3].replace(".html", "") + '">O que diz ' + ARC[n] + " →</a>";
+      var dd = E.dias[hoje] = E.dias[hoje] || {}; if (dd.c == null) { dd.c = n; gravar(); } contas();
+    };
+    $("carta").classList.remove("virada"); $("carta-img").src = "/cartas/verso-gt.webp"; $("carta-img").alt = "Verso da carta";
+    if (d.c != null) virar(); else { $("carta").onclick = function () { virar(true); };
+      $("carta").onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); virar(true); } }; }
+    contas();
+
+    $("caminhos").innerHTML =
+      '<a href="/horoscopo-de-amanha/' + SLUGS[s] + '">🌙 ' + NOMES[s] + ' amanhã, em detalhe<small>A antevisão completa sai à tarde</small></a>' +
+      '<a href="/signo/' + SLUGS[s] + '">' + GLIFOS[s] + "︎ " + "Tudo sobre " + NOMES[s] + "<small>O signo, o regente e o vídeo da semana</small></a>" +
+      '<a href="/tarot-gratis">🔮 Uma pergunta ao Tarot<small>Tiragem grátis com o baralho do Mestre Alberto</small></a>' +
+      '<a href="/horoscopo-semanal">📅 A sua semana<small>O horóscopo semanal dos 12 signos</small></a>';
+    estadoAviso();
+  }
+
+  // dias seguidos e as cartas do mês
+  function contas() {
+    var n = 0, d = new Date();
+    for (;;) { var k = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+      if (!E.dias[k]) break; n++; d.setDate(d.getDate() - 1); }
+    $("seguidos").textContent = n; $("seguidos-rot").textContent = n === 1 ? "dia seguido" : "dias seguidos";
+    var mes = iso(0).slice(0, 7), lista = Object.keys(E.dias).filter(function (k) { return k.slice(0, 7) === mes && E.dias[k].c != null; }).sort();
+    $("no-mes").textContent = lista.length; $("no-mes-rot").textContent = lista.length === 1 ? "carta este mês" : "cartas este mês";
+    var hojeDia = new Date().getDate(), html = "";
+    for (var i = 1; i <= hojeDia; i++) { var k2 = mes + "-" + String(i).padStart(2, "0"), c = E.dias[k2] && E.dias[k2].c;
+      html += c != null ? '<img src="' + img(c) + '" alt="Dia ' + i + ": " + ARC[c] + '" title="Dia ' + i + ": " + ARC[c] + '" loading="lazy">' : '<span class="vazio" title="Dia ' + i + '"></span>'; }
+    $("mes").innerHTML = html;
+    var conta = {}; lista.forEach(function (k) { var c = E.dias[k].c; conta[c] = (conta[c] || 0) + 1; });
+    var mais = Object.keys(conta).sort(function (a, b) { return conta[b] - conta[a]; })[0];
+    if (mais != null && conta[mais] >= 2) { $("repete").textContent = ARC[mais] + " saiu-lhe " + conta[mais] + " vezes este mês. Quando uma carta insiste, tem alguma coisa para lhe dizer."; $("repete").hidden = false; }
+    else $("repete").hidden = true;
+  }
+
+  // ---------- o aviso das 8h (Web Push) ----------
+  var temPush = "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+  var iOS = /iPhone|iPad|iPod/.test(navigator.userAgent), instalada = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+  function b64(u) { var p = "=".repeat((4 - u.length % 4) % 4), r = atob((u + p).replace(/-/g, "+").replace(/_/g, "/")), a = new Uint8Array(r.length);
+    for (var i = 0; i < r.length; i++) a[i] = r.charCodeAt(i); return a; }
+  function reg() { return navigator.serviceWorker.register("/o-meu-dia-sw.js", { scope: "/o-meu-dia" }); }
+  // o service worker não lê o localStorage: o signo vai para a Cache Storage, que ele lê
+  function guardarSignoParaAviso() {
+    if (!("caches" in window) || E.signo == null) return;
+    caches.open("gt-meudia").then(function (c) { return c.put("/o-meu-dia/signo", new Response(String(E.signo))); }).catch(function () {});
+    if (E.aviso) navigator.serviceWorker && navigator.serviceWorker.getRegistration("/o-meu-dia").then(function (r) { return r && r.pushManager.getSubscription(); })
+      .then(function (sub) { if (sub) enviar("assinar", sub); }).catch(function () {});
+  }
+  function enviar(o, sub) {
+    var tz = ""; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+    return fetch("/api/aviso/" + o, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ endpoint: sub.endpoint, signo: E.signo, tz: tz }) }).then(function (r) { if (!r.ok) throw r.status; return r.json(); });
+  }
+  function estadoAviso() {
+    if (!temPush) {
+      $("aviso-sim").hidden = true;
+      $("aviso-estado").textContent = iOS && !instalada
+        ? "No iPhone e no iPad: toque em Partilhar (o quadrado com a seta) → «Adicionar ao ecrã principal». Abra «O Meu Dia» a partir do ecrã principal e o botão do aviso aparece aqui."
+        : "Este navegador não recebe avisos. Pode guardar esta página nos favoritos e voltar todos os dias.";
+      return;
+    }
+    if (Notification.permission === "denied") { $("aviso-sim").hidden = true; $("aviso-estado").textContent = "Os avisos estão bloqueados nas definições do navegador para este site."; return; }
+    navigator.serviceWorker.getRegistration("/o-meu-dia").then(function (r) { return r && r.pushManager.getSubscription(); }).then(function (sub) {
+      $("aviso-sim").hidden = !!sub; $("aviso-nao").hidden = !sub;
+      $("aviso-estado").innerHTML = sub ? '<span class="aviso-ok">✓ Aviso ligado.</span> Todas as manhãs às 8h, na hora do seu país.' : "";
+    }).catch(function () {});
+  }
+  $("aviso-sim").onclick = function () {
+    $("aviso-estado").textContent = "A ligar…";
+    Notification.requestPermission().then(function (p) {
+      if (p !== "granted") throw "recusado";
+      return reg().then(function () { return navigator.serviceWorker.ready; });
+    }).then(function (r) {
+      return r.pushManager.getSubscription().then(function (s) { return s || r.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64(VAPID) }); });
+    }).then(function (sub) { guardarSignoParaAviso(); return enviar("assinar", sub); })
+      .then(function () { E.aviso = 1; gravar(); estadoAviso(); })
+      .catch(function (e) { $("aviso-estado").textContent = e === "recusado" ? "Sem autorização do navegador não consigo avisar. Pode mudar isso nas definições do site." : "Não consegui ligar o aviso agora. Tente daqui a pouco."; });
+  };
+  $("aviso-nao").onclick = function () {
+    navigator.serviceWorker.getRegistration("/o-meu-dia").then(function (r) { return r && r.pushManager.getSubscription(); }).then(function (sub) {
+      if (!sub) return; return enviar("sair", sub).catch(function () {}).then(function () { return sub.unsubscribe(); });
+    }).then(function () { E.aviso = 0; gravar(); estadoAviso(); });
+  };
+  if (temPush) reg().catch(function () {});
+
+  if (E.signo == null) $("escolher").hidden = false; else { mostrarDia(); guardarSignoParaAviso(); }
+})();
+</script>
+<script src="/vivo.js" defer></script>
+</body>
+</html>

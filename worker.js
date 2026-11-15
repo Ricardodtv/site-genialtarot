@@ -469,7 +469,9 @@ function origemDe(referer, proprio) {
 const MARCAS = new Set(["tiktok", "youtube", "instagram", "facebook", "fb-grupo", "whatsapp",
                         "telegram", "email", "cartao", "bio",
                         "maps",
-                        "noticias", "partilha"]);   // 13/11/2026 O-403 (OK dele): ?de=noticias (Notícias do dia) e ?de=partilha (53 ligações) caíam em «marca:?»   // 04/11/2026: as ligações do Google Maps (ficha, publicações, produtos) já usavam ?de=maps
+                        "noticias", "partilha",
+                        "aviso", "atalho"]);   // 15/11/2026: ?de=aviso (quem abre o aviso das 8h do /o-meu-dia) e ?de=atalho (quem abre pelo ícone no ecrã do telemóvel)
+   // 13/11/2026 O-403 (OK dele): ?de=noticias (Notícias do dia) e ?de=partilha (53 ligações) caíam em «marca:?»   // 04/11/2026: as ligações do Google Maps (ficha, publicações, produtos) já usavam ?de=maps
 
 // 01/11/2026 (ele: «passo 1 — trazer o público do canal para o site»): além da marca (?de=youtube), a ligação pode
 // levar o CÓDIGO da peça (?c=fds-touro-0111), para se saber QUE vídeo trouxe quem. Fica «marca:youtube/fds-touro-0111».
@@ -661,6 +663,9 @@ async function estatisticasVisitas(env, dias) {
     consultas["u_" + k] = "SELECT " + campo + " AS nome, count(DISTINCT blob8) AS n FROM visitas_site WHERE " + janela + comSid + " GROUP BY nome";
     consultas["r_" + k] = "SELECT " + campo + " AS nome, sum(_sample_interval) AS n FROM visitas_site WHERE " + janela + semSid + " GROUP BY nome";
   }
+  // 15/11/2026 (ele: «visitem mais vezes e que fiquem»): QUEM VOLTA. Cada aparelho (sid do vivo.js, localStorage, sem cookie)
+  // e em quantos dias diferentes apareceu na janela. Ponto de partida medido: 30 dias até 15/11 → 805 aparelhos, 24 voltaram (3%).
+  consultas.regresso = "SELECT blob8 AS sid, count(DISTINCT toDate(timestamp)) AS d FROM visitas_site WHERE " + janela + comSid + " GROUP BY sid LIMIT 20000";
   const nomes = Object.keys(consultas);
   const res = await Promise.all(nomes.map(k =>
     perguntarSQL(env, consultas[k]).catch(e => ({ erro: String(e).slice(0, 120) }))));
@@ -675,6 +680,14 @@ async function estatisticasVisitas(env, dias) {
     if (Array.isArray(fora.dias)) fora.dias = fora.dias.filter((x) => x.quem !== "pessoa").concat(pd.map((x) => ({ dia: x.nome, quem: "pessoa", n: x.n })))
       .sort((a, b) => String(a.dia).localeCompare(String(b.dia)));
   } catch (e) { /* se falhar, ficam os números antigos */ }
+  try {
+    if (Array.isArray(fora.regresso)) {
+      const por = { "1": 0, "2": 0, "3": 0, "4-6": 0, "7+": 0 }; let volt = 0;
+      for (const x of fora.regresso) { const d = Number(x.d || 0); if (d >= 2) volt++;
+        por[d <= 1 ? "1" : d === 2 ? "2" : d === 3 ? "3" : d <= 6 ? "4-6" : "7+"]++; }
+      fora.regresso = { aparelhos: fora.regresso.length, voltaram: volt, por_dias: por };
+    }
+  } catch (e) { fora.regresso = { erro: "regresso" }; }
   return fora;
 }
 
@@ -1398,6 +1411,8 @@ export default {
       return j({ ok: true, canal: await env.CAPTURAS.get("youtube-publico", "json") });
     }
 
+    // 15/11/2026 (ele: «visitem mais vezes e que fiquem»): o aviso das 8h do /o-meu-dia (Web Push, ver avisoEnviar).
+    if (url.pathname.startsWith("/api/aviso/")) return avisoRota(request, url, env);
     if (url.pathname === "/api/stats") {
       const jsonResp = (obj, status) => new Response(JSON.stringify(obj), {
         status: status || 200, headers: { "Content-Type": "application/json" },
@@ -1595,6 +1610,10 @@ export default {
       if (p404.ok) return new Response(p404.body, { status: 404, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
     }
     return resp;
+  },
+  // 15/11/2026: o cron de 10 em 10 minutos (wrangler.jsonc → triggers). Só manda o aviso das 8h do /o-meu-dia.
+  async scheduled(evento, env, ctx) {
+    ctx.waitUntil(avisoEnviar(env).catch(() => {}));
   },
 };
 
@@ -2896,4 +2915,116 @@ export class Contas extends DurableObject {
     }
     return J({ ok: false }, 404);
   }
+}
+
+
+// =====================================================================================================
+// 🔔 O AVISO DAS 8H DO /o-meu-dia (15/11/2026)
+// Web Push SEM conteúdo: o servidor só "toca à campainha" (assinatura VAPID, ES256) e o o-meu-dia-sw.js
+// vai buscar o texto do signo ao horoscopo-dia/<data>.json. Assim não há nada para cifrar aqui.
+// Cada assinatura é uma chave no KV CAPTURAS: «aviso:<32 hex do sha-256 do endpoint>», e TUDO o que é
+// preciso para enviar vai nos METADADOS (endpoint, signo, fuso, minuto) — um só list() por envio, sem get().
+// O minuto (0–59) é sorteado à entrada: cada pessoa recebe às 8h<minuto> da sua hora local e o envio fica
+// espalhado pelos 6 crons dessa hora (limite de pedidos por invocação). O cron corre a cada 10 minutos.
+// Segredo: VAPID_PRIVADA (JWK). A pública está na página. Cópia das duas no cofre: Chaves/vapid-site.json.
+// Conta-se no mesmo contador (visitas_site) com blob5 = «aviso» — fora da lista PAGINAS, não entra nas visitas.
+// =====================================================================================================
+const AVISO_PUB = "BOKQdb4SoY_EquNqS0Y5tk-1O8wSkEfiQKL_xzLZd9w-22-Lxr1C95GOlVT8NTk3uElReFJrNOLqhyo4HIO1ip0";
+const AVISO_HOSTS = /^(fcm\.googleapis\.com|android\.googleapis\.com|updates\.push\.services\.mozilla\.com|push\.services\.mozilla\.com|web\.push\.apple\.com|[a-z0-9.-]+\.notify\.windows\.com|[a-z0-9.-]+\.push\.apple\.com)$/;
+const AVISO_HORA = 8;
+
+function avisoConta(env, evento, n, extra) {
+  try { if (env.VISITAS) env.VISITAS.writeDataPoint({ indexes: ["/aviso-" + evento], doubles: [n || 0, (extra && extra.falhas) || 0, (extra && extra.removidos) || 0, (extra && extra.lote) || 0],
+    blobs: ["/aviso-" + evento, "", (extra && extra.pais) || "", "", "aviso", evento, "", "", (extra && extra.signo != null) ? String(extra.signo) : ""] }); } catch (e) {}
+}
+
+async function avisoChave(endpoint) {
+  const h = new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(endpoint)));
+  return "aviso:" + Array.from(h.slice(0, 16), (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function avisoRota(request, url, env) {
+  const J = (o, st) => new Response(JSON.stringify(o), { status: st || 200, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
+  if (!env.CAPTURAS) return J({ ok: false }, 503);
+  // o painel do HA: quantos avisos estão ligados, por signo e por fuso (chave das estatísticas)
+  if (url.pathname === "/api/aviso/estado" && request.method === "GET") {
+    if (!env.STATS_KEY || url.searchParams.get("chave") !== env.STATS_KEY) return J({ ok: false, erro: "chave errada" }, 403);
+    let cursor, total = 0; const signos = Array(12).fill(0), fusos = {};
+    do { const l = await env.CAPTURAS.list({ prefix: "aviso:", cursor });
+      for (const k of l.keys) { total++; const m = k.metadata || {}; if (m.s >= 0 && m.s < 12) signos[m.s]++; fusos[m.z || "?"] = (fusos[m.z || "?"] || 0) + 1; }
+      cursor = l.list_complete ? null : l.cursor; } while (cursor);
+    return J({ ok: true, ativos: total, signos, fusos, privada: !!env.VAPID_PRIVADA });
+  }
+  // teste: manda JÁ o aviso a uma assinatura (?so=aviso:<hex>) ou corre o envio como o cron (?so=cron). Chave das estatísticas.
+  if (url.pathname === "/api/aviso/testar" && request.method === "GET") {
+    if (!env.STATS_KEY || url.searchParams.get("chave") !== env.STATS_KEY) return J({ ok: false, erro: "chave errada" }, 403);
+    const so = url.searchParams.get("so") || "";
+    return J(await avisoEnviar(env, so === "cron" ? undefined : so));
+  }
+  if (request.method !== "POST") return J({ ok: false }, 405);
+  const ref = request.headers.get("origin") || "";
+  if (!/^https:\/\/(www\.)?genialtarot\.com$/.test(ref)) return J({ ok: false, erro: "origem" }, 403);
+  let d; try { d = await request.json(); } catch (e) { return J({ ok: false, erro: "json" }, 400); }
+  let ep; try { ep = new URL(String(d.endpoint || "")); } catch (e) { return J({ ok: false, erro: "endpoint" }, 400); }
+  if (ep.protocol !== "https:" || !AVISO_HOSTS.test(ep.hostname) || ep.href.length > 600) return J({ ok: false, erro: "endpoint" }, 400);
+  const chave = await avisoChave(ep.href);
+  const pais = (request.cf && request.cf.country) || "";
+  if (url.pathname === "/api/aviso/sair") { await env.CAPTURAS.delete(chave); avisoConta(env, "sair", 1, { pais }); return J({ ok: true }); }
+  if (url.pathname !== "/api/aviso/assinar") return J({ ok: false }, 404);
+  const s = Number(d.signo);
+  if (!(Number.isInteger(s) && s >= 0 && s < 12)) return J({ ok: false, erro: "signo" }, 400);
+  let z = String(d.tz || "Europe/Lisbon").slice(0, 40);
+  try { new Intl.DateTimeFormat("en", { timeZone: z }); } catch (e) { z = "Europe/Lisbon"; }
+  const velho = await env.CAPTURAS.getWithMetadata(chave);
+  const m = (velho && velho.metadata) || {};
+  const meta = { e: ep.href, s, z, m: Number.isInteger(m.m) ? m.m : Math.floor(Math.random() * 60), d: m.d || new Date().toISOString().slice(0, 10) };
+  await env.CAPTURAS.put(chave, "1", { metadata: meta });
+  if (!velho || velho.value == null) avisoConta(env, "assinar", 1, { pais, signo: s });
+  return J({ ok: true });
+}
+
+const b64u = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+async function avisoJWT(env, aud, cacheJWT) {
+  if (cacheJWT[aud]) return cacheJWT[aud];
+  const k = await crypto.subtle.importKey("jwk", JSON.parse(env.VAPID_PRIVADA), { name: "ECDSA", namedCurve: "P-256" }, false, ["sign"]);
+  const enc = (o) => b64u(new TextEncoder().encode(JSON.stringify(o)));
+  const corpo = enc({ typ: "JWT", alg: "ES256" }) + "." + enc({ aud, exp: Math.floor(Date.now() / 1000) + 12 * 3600, sub: "https://genialtarot.com/o-meu-dia" });
+  const sig = await crypto.subtle.sign({ name: "ECDSA", hash: "SHA-256" }, k, new TextEncoder().encode(corpo));
+  return (cacheJWT[aud] = corpo + "." + b64u(sig));
+}
+
+// a hora e o minuto agora, no fuso da pessoa
+function avisoAgora(z, agora) {
+  const q = {}; new Intl.DateTimeFormat("en-GB", { timeZone: z, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(agora).forEach((x) => { q[x.type] = x.value; });
+  return { h: +q.hour, m: +q.minute };
+}
+
+async function avisoEnviar(env, so) {
+  if (!env.CAPTURAS || !env.VAPID_PRIVADA) return { ok: false, erro: "sem KV ou sem VAPID_PRIVADA" };
+  const agora = new Date(), cacheJWT = {}, cacheHora = {};
+  let cursor, enviados = 0, falhas = 0, removidos = 0;
+  const lote = [];
+  do {
+    const l = await env.CAPTURAS.list({ prefix: "aviso:", cursor });
+    for (const k of l.keys) {
+      const m = k.metadata; if (!m || !m.e) continue;
+      if (so) { if (k.name === so) lote.push([k.name, m]); continue; }
+      const a = cacheHora[m.z] || (cacheHora[m.z] = avisoAgora(m.z, agora));
+      // esta pessoa recebe no cron cujo bloco de 10 minutos contém o minuto dela, às 8h locais
+      if (a.h === AVISO_HORA && Math.floor(a.m / 10) === Math.floor((m.m || 0) / 10)) lote.push([k.name, m]);
+    }
+    cursor = l.list_complete ? null : l.cursor;
+  } while (cursor);
+  for (const [nome, m] of lote.slice(0, 40)) {   // limite de pedidos por invocação: 40 envios + o list e os delete
+    try {
+      const u = new URL(m.e);
+      const jwt = await avisoJWT(env, u.origin, cacheJWT);
+      const r = await fetch(m.e, { method: "POST", headers: { "Authorization": "vapid t=" + jwt + ", k=" + AVISO_PUB, "TTL": "14400", "Urgency": "normal", "Content-Length": "0" } });
+      if (r.status === 404 || r.status === 410) { await env.CAPTURAS.delete(nome); removidos++; }
+      else if (r.ok) enviados++;
+      else falhas++;
+    } catch (e) { falhas++; }
+  }
+  if (lote.length) avisoConta(env, "envio", enviados, { falhas, removidos, lote: lote.length });
+  return { ok: true, no_lote: lote.length, enviados, falhas, removidos };
 }

@@ -116,6 +116,9 @@
       "/hipnose"
     ]
   },
+  // 15/11/2026: o aviso das 8h do /o-meu-dia (avisoEnviar no worker.js). De 10 em 10 minutos, porque cada pessoa
+  // recebe às 8h<minuto sorteado> da SUA hora local (Portugal, Brasil, Suíça…).
+  "triggers": { "crons": ["*/10 * * * *"] },
   "kv_namespaces": [
     { "binding": "CAPTURAS", "id": "2290d2931e8d4eaf986272a410a2f3ef" }
   ],
