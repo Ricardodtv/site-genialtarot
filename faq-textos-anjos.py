@@ -11,4 +11,14 @@ FAQ = {
   ("A que horas se reza a Hariel?",
    "Numa tradição muito divulgada, cada um dos 72 anjos guarda vinte minutos do dia, e a Hariel cabem os das 04:40 às 05:00. Pode rezar-lhe a qualquer hora; esses minutos são só uma sugestão da tradição."),
  ],
+ "anjo/yeiazel": [
+  ("Quem é o anjo Yeiazel?",
+   "Yeiazel é o 40.º dos 72 anjos da tradição cabalística e pertence ao coro das Potestades. É o anjo do consolo: pede-se-lhe conforto nos dias tristes, depois de uma perda, de uma separação ou de uma mudança difícil."),
+  ("Quem tem Yeiazel como Anjo da Guarda?",
+   "Na tradição dos 72 Nomes, Yeiazel é o anjo de quem nasceu com o Sol entre os 15° e os 20° de Balança (Libra), por volta de 9 a 13 de outubro. As datas seguem o grau real do Sol e podem mudar um dia de ano para ano, por isso vale a pena confirmar pela data de nascimento em «Descobrir o meu anjo»."),
+  ("O que significa o nome Yeiazel?",
+   "Em hebraico escreve-se ייזאל. As três primeiras letras (Yod, Yod e Zayin) saem dos versículos do Êxodo de onde vêm os 72 Nomes, e a terminação «-el» quer dizer Deus. A tradição liga o nome ao consolo, mas não há uma tradução palavra a palavra aceite por todos."),
+  ("Como se reza ao anjo Yeiazel?",
+   "Com calma e sem fórmulas difíceis: conte-lhe o que lhe pesa e leia o versículo da tradição, o Salmo 88, versículo 14, na numeração da Bíblia de Almeida. Numa tradição muito divulgada, a Yeiazel cabem os minutos das 13:00 às 13:20, mas pode rezar-lhe a qualquer hora. A oração acompanha, não substitui o médico ou o psicólogo quando a tristeza se arrasta."),
+ ],
 }

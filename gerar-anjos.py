@@ -92,7 +92,9 @@ def grava(f, s):
 
 # ─── 72 anjos ───
 # 14/11/2026 (O-422): «anjo da guarda hariel» no Google (pos. 5–9) → título com as palavras da pesquisa
-TIT_ESPECIAL = {"Hariel": "Anjo da Guarda Hariel: purificação, datas e oração"}
+TIT_ESPECIAL = {"Hariel": "Anjo da Guarda Hariel: purificação, datas e oração",
+                "Yeiazel": "Anjo Yeiazel: o anjo do consolo, datas e oração"}   # 15/11/2026 (O-461): «anjo yeiazel» pos. 7
+H2_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel"}   # 15/11/2026 (O-461): a pesquisa real num H2
 AVISO = ('<p><small>Os 72 anjos pertencem à tradição da Cabala e da angelologia, não à doutrina da Igreja, que desaconselha dar aos anjos nomes além de Miguel, Gabriel e Rafael. '
          'Quem segue a fé católica pode rezar ao seu <a href="/anjo-da-guarda">Anjo da Guarda</a> sem lhe saber o nome. É uma leitura simbólica: não promete resultados nem substitui o médico ou outros profissionais.</small></p>')
 tamanhos = []
@@ -108,7 +110,7 @@ for i, (n, tema, ped, txt, gesto, ora) in enumerate(ANJOS):
     corpo = f"""{heroi("Anjo " + n, f"{tema} · n.º {i+1} dos 72 Nomes")}
   <section class="cartao"><dl class="fic"><div><dt>Coro</dt><dd>{coro}</dd></div><div><dt>Signo</dt><dd>{g} {s}, {g0}° a {g0+5}°</dd></div><div><dt>Datas em 2027</dt><dd>{periodo(i)}</dd></div></dl>
     <p class="sub" style="font-size:.92rem;text-align:center;margin-top:.8rem">As datas seguem o grau real do Sol e podem mudar um dia de ano para ano.</p></section>
-  <section class="cartao texto"><h2>Quem é {n}</h2><p>{txt}</p><p>Na tradição dos 72 Nomes, pede-se a {n} ajuda para {ped}.</p>
+  <section class="cartao texto"><h2>{H2_ESPECIAL.get(n, "Quem é " + n)}</h2><p>{txt}</p><p>Na tradição dos 72 Nomes, pede-se a {n} ajuda para {ped}.</p>
     <h2>Oração a {n}</h2><blockquote class="ora-c">{ora}<br>Amém.<footer>Oração simbólica, da tradição dos 72 Nomes</footer></blockquote>
     <h2>Um gesto para hoje</h2><p>{gesto}</p></section>
   <section class="cartao" style="text-align:center"><h2>Os outros anjos de {s}</h2><div class="ligas">{ir}</div>

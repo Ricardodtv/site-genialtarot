@@ -586,6 +586,15 @@ EXTRA = {
   ("A imagem e os símbolos",
    "Na versão clássica do baralho Rider-Waite-Smith (desenhado por Pamela Colman Smith e publicado em 1909), o caduceu que sobe entre os dois é o bastão de Hermes, símbolo de troca, mensagem e equilíbrio entre forças opostas. A cabeça de leão com asas junta paixão e espírito: o desejo é bem-vindo, desde que eleve a relação. As grinaldas nas cabeças lembram uma promessa. Tudo na carta é em pares, para dizer que a união só é inteira quando os dois lados pesam o mesmo."),
  ],
+ # 15/11/2026 (O-461): uma ligação de consolo ao anjo Yeiazel nas duas cartas da perda
+ "carta-tres-de-espadas": [
+  ("O Três de Espadas nos dias de luto",
+   'Quando o Três de Espadas aparece depois de uma perda, de uma separação ou de uma notícia que magoou, a carta não pede que finja estar forte. Pede tempo e companhia. Na tradição dos 72 Nomes, o <a href="/anjo/yeiazel">anjo Yeiazel</a> é o anjo do consolo, e há quem lhe reze nestes dias, com uma oração simples e uma bebida quente nas mãos. Se a tristeza durar semanas e lhe tirar o sono ou a vontade de comer, procure também um médico ou um psicólogo.'),
+ ],
+ "carta-cinco-de-copas": [
+  ("Consolo para o Cinco de Copas",
+   'O Cinco de Copas mostra alguém a olhar para as taças caídas, sem ver as duas que ainda estão de pé atrás de si. É a carta do desgosto que precisa de ser chorado antes de se seguir em frente. Para quem procura um apoio espiritual nesse caminho, a tradição dos 72 Nomes tem o <a href="/anjo/yeiazel">anjo Yeiazel</a>, ligado ao consolo nos dias tristes. Rezar-lhe não apaga a perda, mas ajuda a atravessá-la com menos solidão.'),
+ ],
  "carta-seis-de-espadas": [
   ("Seis de Espadas como sim ou não",
    'Nas perguntas de sim ou não, o Seis de Espadas costuma ser um <b>sim, mas devagar</b>. Indica que a situação está a mudar para melhor, mas pelo caminho da paciência e não do salto. Se pergunta se deve mudar, sair ou partir, a carta tende a apoiar a travessia. Se pergunta se algo do passado vai voltar como era, tende para o não: o barco segue para a outra margem. Veja também <a href="/cartas-do-tarot-sim-ou-nao">as outras cartas do sim ou não</a>.'),
