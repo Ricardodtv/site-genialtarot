@@ -45,7 +45,7 @@ a { color: var(--ouro); }
 .caixa { max-width: 640px; margin: 0 auto; padding: 20px 16px 60px; }
 .topo { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; font-size: 15px; }
 .topo a { text-decoration: none; color: var(--suave); }
-h1 { font-family: var(--serifa); font-weight: 600; font-size: 34px; line-height: 1.15; color: var(--ouro-claro); }
+h1, .h1 { font-family: var(--serifa); font-weight: 600; font-size: 34px; line-height: 1.15; color: var(--ouro-claro); }
 h2 { font-family: var(--serifa); font-weight: 600; font-size: 24px; color: var(--ouro); margin-bottom: 8px; }
 .data { color: var(--suave); text-transform: capitalize; margin: 4px 0 18px; }
 .bloco { background: var(--cartao); border: 1px solid var(--linha); border-radius: 18px; padding: 20px; margin-bottom: 16px; }
@@ -88,7 +88,7 @@ h2 { font-family: var(--serifa); font-weight: 600; font-size: 24px; color: var(-
 .caminhos a { display: block; padding: 14px 16px; border: 1px solid var(--linha); border-radius: 14px; text-decoration: none; background: oklch(0.26 0.07 300 / 0.6); }
 .caminhos small { display: block; color: var(--suave); }
 [hidden] { display: none !important; }
-@media (max-width: 420px) { h1 { font-size: 29px; } .carta { width: 110px; height: 183px; } }
+@media (max-width: 420px) { h1, .h1 { font-size: 29px; } .carta { width: 110px; height: 183px; } }
 </style>
 </head>
 <body>
@@ -108,7 +108,7 @@ h2 { font-family: var(--serifa); font-weight: 600; font-size: 24px; color: var(-
 
   <!-- todos os dias -->
   <section id="dia" hidden>
-    <h1 id="ola">O seu dia</h1>
+    <h2 class="h1" id="ola">O seu dia</h2>
     <p class="data" id="data"></p>
 
     <div class="bloco horo" id="horo"><p class="breve">A ler o céu de hoje…</p></div>
