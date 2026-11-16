@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Gerar Pix — uso interno</title>
+<!--
+  GERADOR DE PIX (uso do Mestre Alberto) — genialtarot.com/gerar-pix.html
+  16/11/2026, pedido dele: «uma página onde eu possa colocar apenas o valor e
+  geras o pix que eu envio para a pessoa no WhatsApp».
+  Escreve-se o valor → sai o link genialtarot.com/pagar-pix.html?v=… para a
+  pessoa abrir, copiar o código e colar no banco. Privada: noindex, sem ligações.
+-->
+<style>
+  body{margin:0;background:#faf8ff;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+       color:#2e2a3d;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;box-sizing:border-box}
+  .cartao{background:#fff;border-radius:18px;padding:26px 22px;max-width:400px;width:100%;
+          box-shadow:0 8px 30px rgba(60,30,110,.10);text-align:center}
+  h1{font-size:19px;margin:6px 0 16px;font-weight:600}
+  label{display:block;text-align:left;font-size:14px;color:#5a5470;margin:10px 0 4px}
+  input{width:100%;box-sizing:border-box;font-size:22px;padding:12px;border:1px solid #d9d2ea;border-radius:10px}
+  #ref{font-size:16px}
+  .btn{display:block;background:#5b2c9e;color:#fff;padding:16px;border-radius:12px;font-size:17px;
+       font-weight:700;border:0;width:100%;cursor:pointer;margin-top:12px;text-decoration:none;box-sizing:border-box}
+  .wa{background:#1f8a4c}.sec{background:#efe9fb;color:#5b2c9e}
+  #res{display:none;margin-top:18px}
+  .link{font-family:monospace;font-size:13px;word-break:break-all;background:#f6f2ff;border-radius:10px;padding:10px;color:#4a4560}
+  .apagado{color:#8a849c;font-size:13px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="cartao">
+  <div style="font-size:34px">🇧🇷</div>
+  <h1>Gerar Pix para enviar</h1>
+  <label for="v">Valor em reais (R$)</label>
+  <input id="v" inputmode="decimal" placeholder="300" autofocus>
+  <label for="ref">Referência (opcional, ex.: CONSULTA30)</label>
+  <input id="ref" placeholder="aparece no extrato da Ingrid">
+  <button class="btn" id="gerar">Gerar Pix</button>
+
+  <div id="res">
+    <div class="link" id="link"></div>
+    <a class="btn wa" id="wa" target="_blank" rel="noopener">📲 Enviar pelo WhatsApp</a>
+    <button class="btn sec" id="copiar">📋 Copiar a mensagem</button>
+    <a class="btn sec" id="ver" target="_blank" rel="noopener">👁️ Ver a página que a pessoa recebe</a>
+    <div class="apagado">O link leva a pessoa a uma página com o botão «Copiar código Pix» e o QR.</div>
+  </div>
+</div>
+<script>
+(function () {
+  var msg = "";
+  function gerar() {
+    var v = parseFloat(document.getElementById("v").value.replace(/\s/g, "").replace(/\.(?=\d{3}(\D|$))/g, "").replace(",", "."));
+    if (!(v > 0 && v < 100000)) { alert("Escreva um valor válido, por exemplo 300"); return; }
+    var ref = document.getElementById("ref").value.replace(/[^A-Za-z0-9]/g, "").slice(0, 25);
+    var url = "https://genialtarot.com/pagar-pix.html?v=" + v.toFixed(2) + (ref ? "&r=" + ref : "");
+    var vs = "R$ " + v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    msg = "Pagamento por Pix de " + vs + ".\nAbra o link, toque em «Copiar código Pix» e cole na app do seu banco em Pix Copia e Cola:\n" + url;
+    document.getElementById("link").textContent = url;
+    document.getElementById("wa").href = "https://wa.me/?text=" + encodeURIComponent(msg);
+    document.getElementById("ver").href = url;
+    document.getElementById("res").style.display = "block";
+  }
+  document.getElementById("gerar").onclick = gerar;
+  document.getElementById("v").onkeydown = function (e) { if (e.key === "Enter") gerar(); };
+  document.getElementById("copiar").onclick = function () {
+    var b = this;
+    navigator.clipboard.writeText(msg).then(function () { b.textContent = "✅ Mensagem copiada"; });
+  };
+})();
+</script>
+</body>
+</html>
