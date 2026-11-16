@@ -272,7 +272,7 @@ url = SITE + "/tarologo-fafe"
 titulo = "Tarot em Fafe: consultas com o Mestre Alberto, há 18 anos"
 desc = "Consulta de Tarot e cartas em Fafe (Golães), no consultório ou à distância. 18 anos de prática com o Mestre Alberto. Marque pelo WhatsApp."
 NEGOCIO = {"@type": "ProfessionalService", "@id": SITE + "/#consultorio", "name": "Genialtarot - Mestre Alberto", "alternateName": ["Mestre Alberto — Genial Tarot", "Genial Tarot", "Mestre Alberto"], "url": SITE + "/",
-           "image": SITE + "/mestre-r13.jpg", "telephone": "+351914920427", "hasMap": MAPS,
+           "image": SITE + "/mestre-fafe.jpg", "telephone": "+351914920427", "hasMap": MAPS,
            "address": {"@type": "PostalAddress", "streetAddress": "Rua da Barreira, 92", "addressLocality": "Fafe", "postalCode": "4820-459", "addressRegion": "Braga", "addressCountry": "PT"},
            "geo": {"@type": "GeoCoordinates", "latitude": 41.4682778, "longitude": -8.1984452},
            "founder": AUTOR, "areaServed": ["Fafe", "Guimarães", "Braga", "Portugal", "Brasil"],
@@ -280,7 +280,7 @@ NEGOCIO = {"@type": "ProfessionalService", "@id": SITE + "/#consultorio", "name"
 ld = {"@context": "https://schema.org", "@graph": [NEGOCIO,
       {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": "Tarólogo em Fafe", "item": url}]}]}
 corpo = f"""  <section class="heroi">
-    <img class="foto-mestre" src="/mestre-r13.jpg" alt="Mestre Alberto, tarólogo em Fafe" width="120" height="120" />
+    <img class="foto-mestre" src="/mestre-fafe.jpg" alt="Mestre Alberto, tarólogo em Fafe" width="120" height="120" />
     <h1><span class="az">Tarólogo em Fafe</span></h1>
     <p class="sub">Consultas de Tarot com o Mestre Alberto, no consultório em Fafe ou à distância.</p>
     <a class="cta" href="https://wa.me/351914920427">Marcar pelo WhatsApp</a>
@@ -302,7 +302,8 @@ corpo = f"""  <section class="heroi">
     <a class="cta" href="https://wa.me/351914920427">Marcar consulta</a>
   </section>
 """
-open("tarologo-fafe.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+POPUP_FAFE = open("popup-duvidas-wa.html", encoding="utf-8").read()   # 16/11/2026: janela «Tire as suas Dúvidas»
+open("tarologo-fafe.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + POPUP_FAFE + RODAPE)
 print("tarologo-fafe", "(aprovada)" if APROVADO else "(noindex: por aprovar)")
 
 # ── Tarot por tema (31/10/2026, pedido dele): Amor, Dinheiro, Trabalho, Família, Heranças, Negócios, Medos e Receios,

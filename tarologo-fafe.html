@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <script type="application/ld+json">
-{"@context": "https://schema.org", "@graph": [{"@type": "ProfessionalService", "@id": "https://genialtarot.com/#consultorio", "name": "Genialtarot - Mestre Alberto", "alternateName": ["Mestre Alberto — Genial Tarot", "Genial Tarot", "Mestre Alberto"], "url": "https://genialtarot.com/", "image": "https://genialtarot.com/mestre-r13.jpg", "telephone": "+351914920427", "hasMap": "https://maps.google.com/?cid=17405932589735170894", "address": {"@type": "PostalAddress", "streetAddress": "Rua da Barreira, 92", "addressLocality": "Fafe", "postalCode": "4820-459", "addressRegion": "Braga", "addressCountry": "PT"}, "geo": {"@type": "GeoCoordinates", "latitude": 41.4682778, "longitude": -8.1984452}, "founder": {"@type": "Person", "name": "Mestre Alberto", "url": "https://genialtarot.com/sobre"}, "areaServed": ["Fafe", "Guimarães", "Braga", "Portugal", "Brasil"], "sameAs": ["https://maps.google.com/?cid=17405932589735170894", "https://www.youtube.com/@Genialtarot", "https://www.facebook.com/genial.tarot", "https://www.facebook.com/Mestre.Alberto", "https://www.facebook.com/LojaEspiritualbr", "https://www.instagram.com/genialtarot/", "https://www.tiktok.com/@genialtarot"]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://genialtarot.com/"}, {"@type": "ListItem", "position": 2, "name": "Tarólogo em Fafe", "item": "https://genialtarot.com/tarologo-fafe"}]}]}
+{"@context": "https://schema.org", "@graph": [{"@type": "ProfessionalService", "@id": "https://genialtarot.com/#consultorio", "name": "Genialtarot - Mestre Alberto", "alternateName": ["Mestre Alberto — Genial Tarot", "Genial Tarot", "Mestre Alberto"], "url": "https://genialtarot.com/", "image": "https://genialtarot.com/mestre-fafe.jpg", "telephone": "+351914920427", "hasMap": "https://maps.google.com/?cid=17405932589735170894", "address": {"@type": "PostalAddress", "streetAddress": "Rua da Barreira, 92", "addressLocality": "Fafe", "postalCode": "4820-459", "addressRegion": "Braga", "addressCountry": "PT"}, "geo": {"@type": "GeoCoordinates", "latitude": 41.4682778, "longitude": -8.1984452}, "founder": {"@type": "Person", "name": "Mestre Alberto", "url": "https://genialtarot.com/sobre"}, "areaServed": ["Fafe", "Guimarães", "Braga", "Portugal", "Brasil"], "sameAs": ["https://maps.google.com/?cid=17405932589735170894", "https://www.youtube.com/@Genialtarot", "https://www.facebook.com/genial.tarot", "https://www.facebook.com/Mestre.Alberto", "https://www.facebook.com/LojaEspiritualbr", "https://www.instagram.com/genialtarot/", "https://www.tiktok.com/@genialtarot"]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Início", "item": "https://genialtarot.com/"}, {"@type": "ListItem", "position": 2, "name": "Tarólogo em Fafe", "item": "https://genialtarot.com/tarologo-fafe"}]}]}
 </script>
 <style>
 /* ============ O Horóscopo do Dia — os 12 signos com o céu real do dia — azul-noite e ouro (25/10/2026) ============ */
@@ -144,7 +144,7 @@ footer a { color: inherit; }
     <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
   </header>
   <section class="heroi">
-    <img class="foto-mestre" src="/mestre-r13.jpg" alt="Mestre Alberto, tarólogo em Fafe" width="120" height="120" />
+    <img class="foto-mestre" src="/mestre-fafe.jpg" alt="Mestre Alberto, tarólogo em Fafe" width="120" height="120" />
     <h1><span class="az">Tarólogo em Fafe</span></h1>
     <p class="sub">Consultas de Tarot com o Mestre Alberto, no consultório em Fafe ou à distância.</p>
     <a class="cta" href="https://wa.me/351914920427">Marcar pelo WhatsApp</a>
@@ -165,6 +165,33 @@ footer a { color: inherit; }
     <p>Conheça o <a href="/sobre">Mestre Alberto</a>, veja os <a href="/loja">tipos de consulta</a>, ou experimente o <a href="/tarot-gratis">Tarot Grátis</a> e o <a href="/horoscopo-do-dia">Horóscopo do Dia</a>.</p>
     <a class="cta" href="https://wa.me/351914920427">Marcar consulta</a>
   </section>
+  <!-- 16/11/2026, pedido dele: ao fim de 5 s, janela chamativa «Tire as suas Dúvidas» com ligação directa ao WhatsApp (1 vez por visita). -->
+  <style>
+    #duvidas-wa{display:none;position:fixed;left:50%;bottom:20px;z-index:9999;width:calc(100% - 32px);max-width:370px;box-sizing:border-box;
+      transform:translateX(-50%);background:radial-gradient(circle at 50% 0,#4a2a8a 0,#1b1235 70%);color:#fff;border:3px solid #f3c64a;border-radius:22px;
+      padding:22px 18px 18px;text-align:center;font-family:inherit;box-shadow:0 0 0 4px rgba(243,198,74,.25),0 14px 50px rgba(0,0,0,.55),0 0 40px rgba(243,198,74,.55);
+      animation:dwa-entra .7s cubic-bezier(.2,1.6,.4,1) both,dwa-brilho 2.2s ease-in-out .7s infinite}
+    #duvidas-wa .dwa-fecha{position:absolute;top:6px;right:10px;background:none;border:0;color:#e9dcff;font-size:26px;line-height:1;cursor:pointer}
+    #duvidas-wa .dwa-topo{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:8px}
+    #duvidas-wa img{border-radius:50%;border:3px solid #f3c64a;box-shadow:0 0 16px rgba(243,198,74,.7)}
+    #duvidas-wa .dwa-t{font-size:1.5rem;font-weight:800;line-height:1.1;background:linear-gradient(90deg,#ffe9a3,#f3c64a,#ffe9a3);
+      -webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 18px rgba(243,198,74,.35)}
+    #duvidas-wa p{margin:0 0 14px;font-size:1rem;line-height:1.5;color:#efe8ff}
+    #duvidas-wa .dwa-btn{display:block;background:linear-gradient(180deg,#2fe27a,#1faa55);color:#fff;text-decoration:none;font-weight:800;padding:15px;
+      border-radius:14px;font-size:1.12rem;box-shadow:0 6px 18px rgba(37,211,102,.5);animation:dwa-pulsa 1.4s ease-in-out infinite}
+    @keyframes dwa-entra{0%{opacity:0;transform:translate(-50%,120%) scale(.8)}100%{opacity:1;transform:translate(-50%,0) scale(1)}}
+    @keyframes dwa-brilho{0%,100%{box-shadow:0 0 0 4px rgba(243,198,74,.25),0 14px 50px rgba(0,0,0,.55),0 0 30px rgba(243,198,74,.45)}
+      50%{box-shadow:0 0 0 7px rgba(243,198,74,.4),0 14px 50px rgba(0,0,0,.55),0 0 60px rgba(243,198,74,.85)}}
+    @keyframes dwa-pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+    @media (prefers-reduced-motion:reduce){#duvidas-wa,#duvidas-wa .dwa-btn{animation:none}}
+  </style>
+  <div id="duvidas-wa" role="dialog" aria-labelledby="duvidas-t">
+    <button type="button" class="dwa-fecha" aria-label="Fechar" onclick="document.getElementById('duvidas-wa').style.display='none'">×</button>
+    <div class="dwa-topo"><img src="/mestre-fafe.jpg" alt="" width="58" height="58"><span id="duvidas-t" class="dwa-t">✨ Tire as suas Dúvidas ✨</span></div>
+    <p>Fale directamente com o Mestre Alberto pelo WhatsApp.</p>
+    <a class="dwa-btn" href="https://wa.me/351914920427?text=Ol%C3%A1%20Mestre%20Alberto%2C%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">💬 Falar agora pelo WhatsApp</a>
+  </div>
+  <script>(function(){try{if(sessionStorage.getItem("duvidasWa"))return;}catch(e){}setTimeout(function(){var d=document.getElementById("duvidas-wa");if(d)d.style.display="block";try{sessionStorage.setItem("duvidasWa","1");}catch(e){}},5000);})();</script>
 <section class="faq-genial" style="max-width:760px;margin:2rem auto;padding:1.2rem 1.4rem;border:1px solid rgba(212,175,55,.35);border-radius:16px;background:rgba(255,255,255,.04);line-height:1.6"><h2 style="margin-top:0">Perguntas frequentes</h2><h3 style="font-size:1.05rem;margin:1rem 0 .3rem">Onde fica o consultório de Tarot em Fafe?</h3><p style="margin:0">O consultório do Mestre Alberto fica na Rua da Barreira, 92, 4820-459 Golães, Fafe. Atende quem vem de Fafe, Guimarães, Felgueiras, Cabeceiras de Basto, Póvoa de Lanhoso, Braga e de todo o Norte do país.</p><h3 style="font-size:1.05rem;margin:1rem 0 .3rem">Como marcar uma consulta de Tarot em Fafe?</h3><p style="margin:0">A marcação é sempre pelo WhatsApp, para o +351 914 920 427. Cada consulta é feita pelo próprio Mestre Alberto, com o seu baralho: não é uma plataforma com vários tarólogos.</p><h3 style="font-size:1.05rem;margin:1rem 0 .3rem">Se não morar perto de Fafe, posso fazer consulta?</h3><p style="margin:0">Pode. A consulta também se faz à distância, a partir de qualquer ponto de Portugal, do Brasil ou do mundo. O Mestre Alberto lê as cartas há 18 anos, presencialmente e online.</p></section>
 <!-- 07/11/2026: ligações reforço -->
   <section class="cartao" style="text-align:center;max-width:60rem;margin:1.5rem auto;padding:1rem"><h2>Veja também</h2><p><a href="/ascendente-em-leao">Ascendente em Leão</a> · <a href="/ascendente-em-peixes">Ascendente em Peixes</a> · <a href="/ascendente-em-sagitario">Ascendente em Sagitário</a> · <a href="/ascendente-em-touro">Ascendente em Touro</a></p></section>

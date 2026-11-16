@@ -1,0 +1,27 @@
+  <!-- 16/11/2026, pedido dele: ao fim de 5 s, janela chamativa «Tire as suas Dúvidas» com ligação directa ao WhatsApp (1 vez por visita). -->
+  <style>
+    #duvidas-wa{display:none;position:fixed;left:50%;bottom:20px;z-index:9999;width:calc(100% - 32px);max-width:370px;box-sizing:border-box;
+      transform:translateX(-50%);background:radial-gradient(circle at 50% 0,#4a2a8a 0,#1b1235 70%);color:#fff;border:3px solid #f3c64a;border-radius:22px;
+      padding:22px 18px 18px;text-align:center;font-family:inherit;box-shadow:0 0 0 4px rgba(243,198,74,.25),0 14px 50px rgba(0,0,0,.55),0 0 40px rgba(243,198,74,.55);
+      animation:dwa-entra .7s cubic-bezier(.2,1.6,.4,1) both,dwa-brilho 2.2s ease-in-out .7s infinite}
+    #duvidas-wa .dwa-fecha{position:absolute;top:6px;right:10px;background:none;border:0;color:#e9dcff;font-size:26px;line-height:1;cursor:pointer}
+    #duvidas-wa .dwa-topo{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:8px}
+    #duvidas-wa img{border-radius:50%;border:3px solid #f3c64a;box-shadow:0 0 16px rgba(243,198,74,.7)}
+    #duvidas-wa .dwa-t{font-size:1.5rem;font-weight:800;line-height:1.1;background:linear-gradient(90deg,#ffe9a3,#f3c64a,#ffe9a3);
+      -webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 18px rgba(243,198,74,.35)}
+    #duvidas-wa p{margin:0 0 14px;font-size:1rem;line-height:1.5;color:#efe8ff}
+    #duvidas-wa .dwa-btn{display:block;background:linear-gradient(180deg,#2fe27a,#1faa55);color:#fff;text-decoration:none;font-weight:800;padding:15px;
+      border-radius:14px;font-size:1.12rem;box-shadow:0 6px 18px rgba(37,211,102,.5);animation:dwa-pulsa 1.4s ease-in-out infinite}
+    @keyframes dwa-entra{0%{opacity:0;transform:translate(-50%,120%) scale(.8)}100%{opacity:1;transform:translate(-50%,0) scale(1)}}
+    @keyframes dwa-brilho{0%,100%{box-shadow:0 0 0 4px rgba(243,198,74,.25),0 14px 50px rgba(0,0,0,.55),0 0 30px rgba(243,198,74,.45)}
+      50%{box-shadow:0 0 0 7px rgba(243,198,74,.4),0 14px 50px rgba(0,0,0,.55),0 0 60px rgba(243,198,74,.85)}}
+    @keyframes dwa-pulsa{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+    @media (prefers-reduced-motion:reduce){#duvidas-wa,#duvidas-wa .dwa-btn{animation:none}}
+  </style>
+  <div id="duvidas-wa" role="dialog" aria-labelledby="duvidas-t">
+    <button type="button" class="dwa-fecha" aria-label="Fechar" onclick="document.getElementById('duvidas-wa').style.display='none'">×</button>
+    <div class="dwa-topo"><img src="/mestre-fafe.jpg" alt="" width="58" height="58"><span id="duvidas-t" class="dwa-t">✨ Tire as suas Dúvidas ✨</span></div>
+    <p>Fale directamente com o Mestre Alberto pelo WhatsApp.</p>
+    <a class="dwa-btn" href="https://wa.me/351914920427?text=Ol%C3%A1%20Mestre%20Alberto%2C%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">💬 Falar agora pelo WhatsApp</a>
+  </div>
+  <script>(function(){try{if(sessionStorage.getItem("duvidasWa"))return;}catch(e){}setTimeout(function(){var d=document.getElementById("duvidas-wa");if(d)d.style.display="block";try{sessionStorage.setItem("duvidasWa","1");}catch(e){}},5000);})();</script>
