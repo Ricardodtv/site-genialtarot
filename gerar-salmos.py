@@ -439,17 +439,18 @@ def ligacoes():
              '<a href="/salmos">Veja o salmo de hoje</a>.</p></div><p class="fonte">Tradição dos 72 Anjos, leitura simbólica. Texto bíblico: Bíblia Livre, '
              '<a href="https://creativecommons.org/licenses/by/3.0/br/" rel="license noopener">CC BY 3.0 Brasil</a>.</p></section>\n'
              '<script src="/salmo-do-dia.js" defer></script>\n<!-- salmo-dia:fim -->\n')
-    def fh(x):
+    def fh(x, a="  <!-- 13/11/2026: o horóscopo de amanhã de cada signo -->", f="horoscopo-do-dia.html"):
         x = re.sub(r"<!-- salmo-dia:inicio -->.*?<!-- salmo-dia:fim -->\n", "", x, flags=re.S)
-        a = "  <!-- 13/11/2026: o horóscopo de amanhã de cada signo -->"
-        if a not in x: raise SystemExit("horoscopo-do-dia.html: não encontrei onde pôr o salmo do dia")
+        if a not in x: raise SystemExit(f + ": não encontrei onde pôr o salmo do dia")
         x = x.replace(a, caixa + a, 1)
         q = "    const q = diaISO();\n"
         if "gt-dia" not in x:
-            if q not in x: raise SystemExit("horoscopo-do-dia.html: não encontrei diaISO()")
+            if q not in x: raise SystemExit(f + ": não encontrei diaISO()")
             x = x.replace(q, '    const q = diaISO();\n    window.GT_DIA = q.iso; document.dispatchEvent(new CustomEvent("gt-dia", { detail: q.iso }));   // 16/11/2026: o salmo do dia segue o dia mostrado\n', 1)
         return x
     if _troca("horoscopo-do-dia.html", fh): mud.append("horoscopo-do-dia.html")
+    # 16/11/2026 (pedido dele): a mesma caixa no Horóscopo de Amanhã (o worker escreve o salmo de amanhã no HTML)
+    if _troca("horoscopo-de-amanha.html", lambda x: fh(x, "  <!-- 13/11/2026: o dia de amanhã em H2 datados", "horoscopo-de-amanha.html")): mud.append("horoscopo-de-amanha.html")
     # novidades.html (lista à mão: uma linha no topo)
     def fn(x):
         if 'href="/salmos"' in x: return x

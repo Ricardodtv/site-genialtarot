@@ -748,7 +748,7 @@ async function horoscopoNoHtml(url, env, alvo) {
       .on("#data", { element(e) { e.setInnerContent(semana_ ? `<small>Esta semana</small>${dia} a ${fd(fim)}` : `<small>${alvo === -3 ? "Amanhã" : "Hoje"} · ${semana}</small>${dia}`, { html: true }); } })
       .on("#ceu", { element(e) { e.setInnerContent(ceu, { html: true }); } })
       .on("#grelha", { element(e) { e.setInnerContent(grelha, { html: true }); } });
-    if (alvo === -1) {   // 16/11/2026 (pedido dele): o salmo do dia já no HTML, para o Google; o salmo-do-dia.js redesenha por cima
+    if (alvo === -1 || alvo === -3) {   // 16/11/2026 (pedido dele): o salmo do dia (de amanhã, no -3) já no HTML, para o Google; o salmo-do-dia.js redesenha por cima
       try { const sd = salmoDoDiaHtml(iso); rw.on("#salmo-dia-caixa", { element(e) { e.setInnerContent(sd, { html: true }); } }); } catch (e) { /* fica o texto de sempre */ }
     }
     if (alvo === -3) {   // 13/11/2026: os trânsitos datados, o ranking dos 12 signos e o elemento do dia (+ ItemList dos trânsitos)
