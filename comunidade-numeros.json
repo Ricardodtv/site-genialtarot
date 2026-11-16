@@ -5,18 +5,18 @@
   "nota": "12 grupos dos signos"
  },
  "youtube": {
-  "valor": 26900,
-  "data": "2026-11-09",
-  "nota": "a API arredonda"
+  "valor": 27000,
+  "data": "2026-11-16",
+  "nota": "exacto (Analytics, atrasa ~3 dias)"
  },
  "paginas": {
-  "valor": 2695,
-  "data": "2026-11-09",
+  "valor": 2692,
+  "data": "2026-11-16",
   "nota": "Genial Tarot + Genialtarot"
  },
  "instagram": {
-  "valor": 1776,
-  "data": "2026-11-09",
+  "valor": 2591,
+  "data": "2026-11-16",
   "nota": ""
  },
  "tiktok": {
@@ -25,9 +25,9 @@
   "nota": ""
  },
  "perfil": {
-  "valor": 6400,
-  "data": "2026-11-04",
-  "nota": "6,4 mil (captura dele do perfil, 04/11)"
+  "valor": 6500,
+  "data": "2026-11-16",
+  "nota": "o Facebook mostra arredondado (6,5 mil seguidores)"
  },
- "total": 263850
+ "total": 264862
 }
