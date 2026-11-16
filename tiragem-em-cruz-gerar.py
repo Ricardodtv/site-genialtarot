@@ -209,7 +209,7 @@ PAGINA = f"""<!doctype html>
       <div class="c2"><b>Carta 2 · à direita</b>Contra: o obstáculo, o que trava, às vezes um receio que ainda não quer ver.</div>
       <div class="c4"><b>Carta 4 · em baixo</b>O resultado: para onde a questão tende se seguir o caminho da carta 3.</div>
     </div>
-    <p class="nota"><b>Há mais do que uma forma de ler a cruz.</b> Na mais comum, que é a que uso aqui, a esquerda é o que está a favor e a direita o que está contra. Há tarólogos que a leem no tempo: o centro é o presente, a esquerda o passado, a direita o futuro próximo, em cima o que ajuda e em baixo o que trava. E no método antigo, só com os 22 Arcanos Maiores, a quinta carta não se tira do baralho: calcula-se pela soma das outras quatro. Na tiragem grátis desta página pode escolher esse método.</p>
+    <p class="nota"><b>Há mais do que uma forma de ler a cruz.</b> Na mais comum, que é a que uso aqui, a esquerda é o que está a favor e a direita o que está contra. Há tarólogos que a leem no tempo: o centro é o presente, a esquerda o passado, a direita o futuro próximo, em cima o que ajuda e em baixo o que trava. E no método antigo, só com os 22 Arcanos Maiores, a quinta carta não se tira do baralho: calcula-se pela soma das outras quatro. Mais abaixo, na tiragem desta página, pode escolher esse método.</p>
     <h2>Para que perguntas serve</h2>
     <ul>
       <li>Uma decisão com prós e contras: aceitar um emprego, mudar de casa, começar um projeto.</li>
