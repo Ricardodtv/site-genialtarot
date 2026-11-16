@@ -93,8 +93,10 @@ def grava(f, s):
 # ─── 72 anjos ───
 # 14/11/2026 (O-422): «anjo da guarda hariel» no Google (pos. 5–9) → título com as palavras da pesquisa
 TIT_ESPECIAL = {"Hariel": "Anjo da Guarda Hariel: purificação, datas e oração",
-                "Yeiazel": "Anjo Yeiazel: o anjo do consolo, datas e oração"}   # 15/11/2026 (O-461): «anjo yeiazel» pos. 7
-H2_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel"}   # 15/11/2026 (O-461): a pesquisa real num H2
+                "Yeiazel": "Anjo Yeiazel: o anjo do consolo, datas e oração",   # 15/11/2026 (O-461): «anjo yeiazel» pos. 7
+                "Lecabel": "Anjo Lecabel: o anjo do talento, datas e oração",   # 16/11/2026 (ronda SEO): «anjo lecabel» pos. 9,4, 0 cliques
+                "Haamiah": "Oração ao Anjo Haamiah: o anjo do ritual diário e datas"}   # 16/11/2026 (ronda SEO): «anjo haamiah oração» pos. 8; o padrão dava «Oração, datas e oração»
+H2_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel", "Lecabel": "Quem é o anjo Lecabel", "Haamiah": "Quem é o anjo Haamiah"}   # + 16/11/2026   # 15/11/2026 (O-461): a pesquisa real num H2
 AVISO = ('<p><small>Os 72 anjos pertencem à tradição da Cabala e da angelologia, não à doutrina da Igreja, que desaconselha dar aos anjos nomes além de Miguel, Gabriel e Rafael. '
          'Quem segue a fé católica pode rezar ao seu <a href="/anjo-da-guarda">Anjo da Guarda</a> sem lhe saber o nome. É uma leitura simbólica: não promete resultados nem substitui o médico ou outros profissionais.</small></p>')
 tamanhos = []
