@@ -42,6 +42,7 @@ Conteúdo em português (Portugal), com os nomes dos signos também na forma bra
 
 ## Tarot
 - [Tarot grátis](https://genialtarot.com/tarot-gratis): tiragem online
+- [Tiragem em Cruz](https://genialtarot.com/tiragem-em-cruz): tiragem grátis de 5 cartas em cruz (a favor, contra, o caminho, o resultado e a síntese), com o método antigo da soma
 - [Os 22 Arcanos Maiores](https://genialtarot.com/arcanos): significado de cada carta, com o baralho do Mestre Alberto
 - [Arcanos Menores](https://genialtarot.com/arcanos-menores)
 - [Tarot por tema](https://genialtarot.com/tarot-por-tema): amor, dinheiro, trabalho, família, negócios
