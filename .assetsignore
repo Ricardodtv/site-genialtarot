@@ -11,3 +11,4 @@ painel-consultorio
 conta-painel
 # 13/11/2026: o banco de frases do horóscopo de amanhã por signo é do worker (importado), não é para servir
 amanha-textos.js
+salmo-dia-dados.js

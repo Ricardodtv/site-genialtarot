@@ -748,6 +748,9 @@ async function horoscopoNoHtml(url, env, alvo) {
       .on("#data", { element(e) { e.setInnerContent(semana_ ? `<small>Esta semana</small>${dia} a ${fd(fim)}` : `<small>${alvo === -3 ? "Amanhã" : "Hoje"} · ${semana}</small>${dia}`, { html: true }); } })
       .on("#ceu", { element(e) { e.setInnerContent(ceu, { html: true }); } })
       .on("#grelha", { element(e) { e.setInnerContent(grelha, { html: true }); } });
+    if (alvo === -1) {   // 16/11/2026 (pedido dele): o salmo do dia já no HTML, para o Google; o salmo-do-dia.js redesenha por cima
+      try { const sd = salmoDoDiaHtml(iso); rw.on("#salmo-dia-caixa", { element(e) { e.setInnerContent(sd, { html: true }); } }); } catch (e) { /* fica o texto de sempre */ }
+    }
     if (alvo === -3) {   // 13/11/2026: os trânsitos datados, o ranking dos 12 signos e o elemento do dia (+ ItemList dos trânsitos)
       try {   // se algo falhar aqui, a página sai como antes (sem esta parte), nunca com erro
         const C = await lerCeu(url, env);
@@ -772,6 +775,7 @@ async function horoscopoNoHtml(url, env, alvo) {
 // (Swiss Ephemeris, renovado todos os meses pelo ~/site-ceu-rolante.sh); a Lua é a casa «h» do JSON; as frases de «planeta
 // na casa N» são as do horóscopo semanal por signo (amanha-textos.js, feito pelo gerar-amanha-signos.py).
 import AM from "./amanha-textos.js";
+import { salmoDoDiaHtml } from "./salmo-dia-dados.js";   // 16/11/2026: o salmo do dia no HTML (gerar-salmos.py)
 const AM_P = [["Sol", "sol", "☉"], ["Mercúrio", "mercurio", "☿"], ["Vénus", "venus", "♀"], ["Marte", "marte", "♂"], ["Júpiter", "jupiter", "♃"],
   ["Saturno", "saturno", "♄"], ["Úrano", "urano", "♅"], ["Neptuno", "neptuno", "♆"], ["Plutão", "plutao", "♇"]];
 const AM_ART = { "Sol": "o Sol", "Lua": "a Lua" };

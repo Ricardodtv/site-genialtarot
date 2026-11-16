@@ -339,6 +339,26 @@ document.addEventListener("gt-dia", function (v) { desenha(el, v.detail); });
 """ % tuple(json.dumps(x, ensure_ascii=False, separators=(",", ":")) for x in (J_AN, J_SIG, J_CAR))
 grava("salmo-do-dia.js", JS)
 
+# 16/11/2026 (pedido dele): o mesmo salmo do dia já no HTML para o Google. Módulo para o worker.js, que o escreve em
+# #salmo-dia-caixa no /horoscopo-do-dia (dia de Portugal); o salmo-do-dia.js redesenha por cima no navegador.
+MOD = """// Gerado por gerar-salmos.py — não editar à mão. Usado pelo worker.js (salmo do dia no HTML do /horoscopo-do-dia).
+const A = %s, S = %s, C = %s;
+const M = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+function sol(iso) { const p = iso.split("-").map(Number), n = Math.round((Date.UTC(p[0], p[1] - 1, p[2]) - Date.UTC(2000, 0, 1)) / 864e5);
+  const g = (357.528 + .9856003 * n) * Math.PI / 180, L = 280.46 + .9856474 * n; return ((L + 1.915 * Math.sin(g) + .02 * Math.sin(2 * g)) %% 360 + 360) %% 360; }
+const e = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+export function salmoDoDiaHtml(iso) {
+  const x = sol(iso), i = Math.floor(x / 5), a = A[i], k = a[1], c = C[k * 3 + Math.floor((i %% 6) / 2)], p = iso.split("-").map(Number);
+  let h = '<p class="sd-sol">' + p[2] + " de " + M[p[1] - 1] + ": o Sol está a " + Math.floor(x %% 30) + "° de " + e(S[k][0]) + ". O anjo destes dias é <b>" + e(a[0]) + "</b>, n.º " + (i + 1) + " dos 72.</p>";
+  if (a[2]) h += '<blockquote class="ora-c sd-q">«' + e(a[4]) + '»<footer>' + e(a[3]) + "</footer></blockquote>"
+    + '<p class="ligas"><a href="/salmos/salmo-' + a[2] + "#v" + a[5] + '">Ler o Salmo ' + a[2] + " completo</a>";
+  else h += "<p>" + (a[3] ? e(a[0]) + " é o único dos 72 sem salmo: o seu versículo é o primeiro da Bíblia, Génesis 1:1, «No princípio»." : "Para " + e(a[0]) + " as listas não concordam no salmo, e por isso não o indicamos: a oração do anjo serve no lugar dele.") + '</p><p class="ligas">';
+  h += '<a href="/anjo/' + a[0].toLowerCase() + '">Conhecer ' + e(a[0]) + '</a><a href="/salmos/' + S[k][1] + '">Os salmos de ' + e(S[k][0]) + '</a><a href="/' + c[1] + '">Carta do decanato: ' + e(c[0]) + "</a></p>";
+  return h;
+}
+""" % tuple(json.dumps(x, ensure_ascii=False, separators=(",", ":")) for x in (J_AN, J_SIG, J_CAR))
+grava("salmo-dia-dados.js", MOD)
+
 # ─── /salmos ───
 FAQ = [("Qual é o salmo do dia?", "Na tradição dos 72 Nomes, é o versículo do anjo que rege o grau em que o Sol está hoje. Cada anjo cobre 5 graus, cerca de cinco dias, por isso o salmo do dia muda mais ou menos de cinco em cinco dias. A caixa no topo desta página calcula-o para hoje."),
        ("Qual é o salmo do meu signo?", "Cada signo tem seis anjos e, por isso, seis versículos, um para cada 5 graus. O salmo mais seu é o do anjo do grau em que o Sol estava no dia em que nasceu: escolha o seu signo na lista e procure as suas datas."),
