@@ -261,6 +261,10 @@ IMAGENS = [
     ('H01', 'lenda-justica-de-fafe', 'justica-de-fafe-monumento',
      'Justiça de Fafe: estátua de bronze de um homem do Minho a erguer o varapau contra um fidalgo de casaca, em Fafe, sob o céu azul',
      'O monumento à Justiça de Fafe, na cidade de Fafe: o varapau erguido que deu nome à lenda.'),
+    # 16/11/2026 (O-475): Lendas de Lisboa — gerada no renko (Realistic Vision, gerar-lendas.py, semente 2201)
+    ("LX01", "lendas-de-lisboa", "lendas-de-lisboa-corvos-sao-vicente",
+     "Lendas de Lisboa: corvo pousado na proa de um barco de madeira no Tejo, com a cidade antiga nas colinas ao fundo",
+     "O corvo de São Vicente: segundo a lenda, dois corvos acompanharam o barco que trouxe as relíquias do santo para Lisboa em 1173."),
     # 03/11/2026: os grandes trânsitos (gerar-transitos.py) — reaproveitam imagens que já existem
     ("P09", "neptuno-em-carneiro", "neptuno-na-astrologia", "Neptuno na astrologia: o planeta Neptuno azul profundo com nuvens brancas",
      "Neptuno em Carneiro: as datas exatas e o que muda para cada um dos 12 signos."),
