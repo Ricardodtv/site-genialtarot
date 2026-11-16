@@ -302,8 +302,7 @@ corpo = f"""  <section class="heroi">
     <a class="cta" href="https://wa.me/351914920427">Marcar consulta</a>
   </section>
 """
-POPUP_FAFE = open("popup-duvidas-wa.html", encoding="utf-8").read()   # 16/11/2026: janela «Tire as suas Dúvidas»
-open("tarologo-fafe.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + POPUP_FAFE + RODAPE)
+open("tarologo-fafe.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
 print("tarologo-fafe", "(aprovada)" if APROVADO else "(noindex: por aprovar)")
 
 # ── Tarot por tema (31/10/2026, pedido dele): Amor, Dinheiro, Trabalho, Família, Heranças, Negócios, Medos e Receios,
