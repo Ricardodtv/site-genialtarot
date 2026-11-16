@@ -37,7 +37,7 @@ def data(f):
     if f in PREPARADOS and len(HTML_PREP) <= LIMITE: return datetime.date.today().isoformat()   # vai entrar neste commit
     return _real.get(f) or _criada.get(f)
 urls = []
-for f in sorted(glob.glob("*.html") + glob.glob("sonho/*.html") + glob.glob("signo/*.html") + glob.glob("horoscopo-de-amanha/*.html") + glob.glob("noticias/*.html") + glob.glob("anjo/*.html")):
+for f in sorted(glob.glob("*.html") + glob.glob("sonho/*.html") + glob.glob("signo/*.html") + glob.glob("horoscopo-de-amanha/*.html") + glob.glob("noticias/*.html") + glob.glob("anjo/*.html") + glob.glob("salmos/*.html")):   # 16/11: salmos/
     if f in FORA: continue
     s = open(f, encoding="utf-8", errors="ignore").read()
     if re.search(r'<meta[^>]+name="robots"[^>]+noindex', s, re.I): continue

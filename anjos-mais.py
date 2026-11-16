@@ -23,6 +23,20 @@ A, B = "<!-- anjo-mais:inicio -->", "<!-- anjo-mais:fim -->"
 def hora(m): return f"{m // 60:02d}:{m % 60:02d}"
 
 
+SLUGS = ["carneiro", "touro", "gemeos", "caranguejo", "leao", "virgem", "balanca", "escorpiao", "sagitario", "capricornio", "aquario", "peixes"]
+SIGNOS = ["Carneiro", "Touro", "Gémeos", "Caranguejo", "Leão", "Virgem", "Balança", "Escorpião", "Sagitário", "Capricórnio", "Aquário", "Peixes"]
+
+
+def salmo_lig(i, n):
+    """16/11/2026: ligação às páginas /salmos (gerar-salmos.py) junto ao versículo"""
+    d, k = MAIS[n], i // 6
+    sg = f'<a href="/salmos/{SLUGS[k]}">Os salmos dos anjos de {SIGNOS[k]}</a>'
+    if d["livro"] == "Salmos":
+        c, v = d["cv"].split(":", 1)
+        return f'<p><a href="/salmos/salmo-{c}#v{v.split("-")[0]}">Ler o Salmo {c} completo</a> · {sg}</p>'
+    return f'<p>{sg}</p>'
+
+
 def bloco(i, n):
     d = MAIS[n]
     fim = n[-2:].lower()
@@ -48,7 +62,7 @@ def bloco(i, n):
             f'<h2>O nome e o versículo de {n}</h2>'
             f'<p>Os 72 Nomes saem de três versículos seguidos do Êxodo (14, 19 a 21), com 72 letras hebraicas cada um. Lidos em conjunto, '
             f'dão 72 grupos de três letras. O de {n}, o n.º {i + 1}, escreve-se <span lang="he" dir="rtl">{E(d["heb"])}</span>, e {suf}.</p>'
-            f'<p>{E(verso)}</p>'
+            f'<p>{E(verso)}</p>{salmo_lig(i, n)}'
             f'<h2>Quando pedir a ajuda de {n}</h2><p>{E(d["quando"])}</p>'
             f'<h2>Como invocar {n}</h2><p>{E(d["invocar"])}</p><p>{E(reg)}</p>'
             f'<h2>Uma reflexão para esta semana</h2><p>{E(d["reflexao"])}</p></section>\n{B}')

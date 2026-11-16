@@ -248,7 +248,7 @@ CHIPS = "".join(f'<a href="#{s[2]}">{s[1]} {s[0]}</a>' for s in SIG)
 BLOCOS = ""
 for n, (sg, sim, sl) in enumerate(SIG):
     its = "".join(f'<a class="an" href="/anjo/{slug(a[0])}"><span class="nr">{n * 6 + j + 1}</span><span class="tx"><b>{a[0]}</b><i>{a[1]} · {periodo(n * 6 + j)}</i><span>{resumo(a)}</span></span></a>' for j, a in enumerate(ANJOS[n * 6:n * 6 + 6]))
-    BLOCOS += f'<section class="cartao" id="{sl}"><h2>{sim} Anjos de {sg}</h2><div class="anl">{its}</div><p style="text-align:center;margin:.8rem 0 0"><a href="/signo/{sl}">Ver o signo de {sg}</a></p></section>\n'
+    BLOCOS += f'<section class="cartao" id="{sl}"><h2>{sim} Anjos de {sg}</h2><div class="anl">{its}</div><p style="text-align:center;margin:.8rem 0 0"><a href="/signo/{sl}">Ver o signo de {sg}</a> · <a href="/salmos/{sl}">Os salmos de {sg}</a></p></section>\n'
 EST_L = """<style>
 .chips{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center}.chips a{padding:.42rem .75rem;border-radius:99px;border:1px solid var(--borda);background:var(--vidro);color:inherit;text-decoration:none;font-weight:600;font-size:.92rem}.chips a:hover{border-color:var(--ouro);color:var(--ouro)}
 .anl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr));gap:.7rem}.an{display:flex;gap:.7rem;padding:.8rem;border-radius:.9rem;background:var(--vidro);border:1px solid var(--borda);color:inherit;text-decoration:none}.an:hover{border-color:var(--ouro)}
@@ -287,3 +287,4 @@ grava("os-72-anjos.html", pagina("/os-72-anjos", "Os 72 Anjos: lista completa e 
 print("feito")
 # 12/11/2026: o texto próprio de cada anjo (bloco anjo-mais) volta a entrar depois de as 72 páginas serem refeitas
 import subprocess as _sp; _sp.run(["python3", "anjos-mais.py"], check=False)
+_sp.run(["python3", "gerar-salmos.py", "--ligacoes"], check=False)   # 16/11/2026: o bloco «Os salmos dos anjos» volta a entrar em os-72-anjos.html
