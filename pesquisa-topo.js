@@ -5,7 +5,8 @@
   if (window.__gtpTopo || /^\/(pesquisa|consultorio|o-teu-ceu|pagar)(\/|\.html|-sala|$)/.test(location.pathname)) return;
   window.__gtpTopo = 1;
   function por() {
-    var b = document.querySelector(".topo .backlink");
+    // 16/11/2026 (ele): também nos sonhos (.voltar-barra .voltar) e nos arcanos (a.voltar), que têm outro botão de voltar.
+    var b = document.querySelector(".topo .backlink") || document.querySelector(".voltar-barra .voltar") || document.querySelector("a.voltar");
     if (!b || document.querySelector(".gtp-topo")) return;
     var s = document.createElement("style");
     s.textContent = ".gtp-topo{display:inline-flex;align-items:center;gap:.375rem;margin:0 auto 0 .5rem;border-radius:9999px;padding:.5rem .875rem;background:oklch(0.23 0.06 270 / .7);border:1px solid oklch(0.82 0.13 85 / .4);font:inherit;font-size:.8rem;line-height:inherit;color:inherit;text-decoration:none;white-space:nowrap}" +
