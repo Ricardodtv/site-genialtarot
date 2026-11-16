@@ -919,6 +919,14 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
    "inLanguage": "pt",
    "publisher": {
     "@id": "https://genialtarot.com/#org"
+   },
+   "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+     "@type": "EntryPoint",
+     "urlTemplate": "https://genialtarot.com/pesquisa?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
    }
   },
   {
@@ -1028,6 +1036,7 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .gmaps-btn{display:inline-flex;align-items:center;gap:.8rem;margin-top:1.1rem;padding:.7rem 1.3rem .7rem 1rem;border-radius:999px;background:#fff;color:#202124;text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.35);text-align:left;transition:transform .15s}
 .gmaps-btn:hover{transform:translateY(-2px)} .gmaps-btn b{display:block;font-size:1.02rem} .gmaps-btn small{display:block;color:#5f6368;font-size:.8rem}
 </style>
+<link rel="stylesheet" href="/pesquisa.css" /><!-- 16/11/2026: a caixa de pesquisa -->
 </head>
 <body>
 
@@ -1087,6 +1096,18 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       <span class="line line3 text-gold-gradient">vida.</span>
     </h1>
 
+    <!-- 🔍 16/11/2026 (pedido dele): pesquisa no site inteiro. pesquisa.js mostra os resultados por secção; o índice
+         (pesquisa-indice.json, gerar-pesquisa.py) só se carrega quando a pessoa toca na caixa. Sem JS, vai para /pesquisa. -->
+    <form class="gtp animate-fade-up" role="search" action="/pesquisa" method="get" autocomplete="off">
+      <label class="gtp-rot" for="gtp-q">Pesquisar no site</label>
+      <div class="gtp-campo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="gtp-q" name="q" type="search" enterkeyhint="search" maxlength="100" placeholder="Signo, sonho, anjo, salmo, reza, carta…" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="gtp-lista" aria-describedby="gtp-estado" />
+        <button type="button" class="gtp-limpa" aria-label="Limpar a pesquisa" hidden>×</button>
+      </div>
+      <div class="gtp-lista" id="gtp-lista" role="listbox" aria-label="Resultados da pesquisa" hidden></div>
+      <p class="gtp-estado" id="gtp-estado" aria-live="polite"></p>
+    </form>
     <!-- 🧭 07/11/2026 (pedido dele): os três caminhos, logo no primeiro ecrã -->
     <nav class="caminhos animate-fade-up" aria-label="Por onde quer começar?">
       <a class="caminho" href="/tarot-gratis"><img class="caminho-img" src="/caminho-cartas.webp" alt="Cartas de Tarot do Mestre Alberto" width="240" height="240" decoding="async"/><span><b>Quero uma resposta agora</b><small>Tire as cartas, é grátis</small></span></a>
@@ -2303,5 +2324,6 @@ recolhe(document.querySelector(".portas"),innerWidth<860?4:6,"Ver todos os desta
 <!-- 06/11/2026: ordem dos cartões por dia e período -->
 <script src="/vivo.js" defer></script>
 <script src="/data-facil.js" defer></script>
+<script src="/pesquisa.js" defer></script>
 </body>
 </html>

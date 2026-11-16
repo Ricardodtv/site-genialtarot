@@ -8,6 +8,7 @@
   if (!/^\/(consultorio|o-teu-ceu|pagar)(\/|\.html|-sala|$)/.test(location.pathname)) { var gtc = document.createElement("script"); gtc.src = "/conta.js"; gtc.async = true; document.head.appendChild(gtc); }
   if (!/^\/(consultorio|o-teu-ceu|pagar)(\/|\.html|-sala|$)/.test(location.pathname)) { var gts = document.createElement("script"); gts.src = "/signos-imagem.js"; gts.async = true; document.head.appendChild(gts); }   // 06/11 (ele): imagem do signo em vez do símbolo, em todo o site
   if (!/^\/(consultorio|o-teu-ceu|pagar)(\/|\.html|-sala|$)/.test(location.pathname)) { var g13 = document.createElement("script"); g13.src = "/destaque.js"; g13.async = true; document.head.appendChild(g13); }   // 13/11 (ele): os destaques do site (destaque.js; o 1.º é a sexta-feira 13: véspera e dia), 8 s ao abrir cada página
+  if (!/^\/(consultorio|o-teu-ceu|pagar|pesquisa)(\/|\.html|-sala|$)/.test(location.pathname) && document.querySelector(".topo .backlink")) { var gtp = document.createElement("script"); gtp.src = "/pesquisa-topo.js"; gtp.async = true; document.head.appendChild(gtp); }   // 16/11 (ele): «Pesquisar» no topo, ao lado do «genialtarot.com» (pesquisa-topo.js)
   var A = "/api/vivo", sid;
   try { sid = localStorage.getItem("gt_vivo"); } catch (e) {}
   if (!sid || !/^[a-z0-9]{12,40}$/.test(sid)) {

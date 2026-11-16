@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pesquisar no site · Genial Tarot</title>
+<meta name="description" content="Pesquise em todo o Genial Tarot: signos, horóscopo, Tarot e cartas, anjos, salmos, rezas, sonhos, lendas e astrologia." />
+<!-- 16/11/2026 (pedido dele): a página de resultados da pesquisa. Não é para o Google a guardar (cada pesquisa seria uma
+     página diferente e vazia sem JavaScript), mas os robôs podem seguir as ligações. -->
+<meta name="robots" content="noindex,follow" />
+<meta name="theme-color" content="#1d2350" />
+<link rel="icon" href="/favicon.ico" />
+<link rel="canonical" href="https://genialtarot.com/pesquisa" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="preload" href="/pesquisa-indice.json" as="fetch" crossorigin="anonymous" />
+<link rel="stylesheet" href="/pesquisa.css" />
+<style>
+:root {
+  --fundo: oklch(0.17 0.06 270); --texto: oklch(0.97 0.012 265); --suave: oklch(0.84 0.04 265);
+  --azul: oklch(0.72 0.13 255); --azul-claro: oklch(0.86 0.08 255); --lavanda: oklch(0.92 0.04 265);
+  --ouro: oklch(0.85 0.13 88); --borda: oklch(0.75 0.10 260 / 0.35); --vidro: oklch(0.30 0.08 268 / 0.55);
+  --grad-azul: linear-gradient(135deg, oklch(0.78 0.11 245), oklch(0.62 0.17 265) 55%, oklch(0.52 0.18 280));
+  --grad-ouro: linear-gradient(135deg, oklch(0.90 0.11 92), oklch(0.75 0.15 75));
+  --serifa: "Cormorant Garamond", Georgia, serif; --titulo: "Cinzel", "Cormorant Garamond", Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--texto); font-family: Inter, system-ui, sans-serif; line-height: 1.55;
+  background: radial-gradient(ellipse at top, oklch(0.38 0.14 262) 0%, oklch(0.20 0.08 268) 45%, oklch(0.12 0.05 275) 100%) fixed, var(--fundo);
+  min-height: 100vh; overflow-x: hidden; }
+a { color: var(--azul-claro); }
+.estrelas { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image: radial-gradient(1.5px 1.5px at 12% 18%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff9, transparent),
+    radial-gradient(1.5px 1.5px at 65% 70%, #fff7, transparent), radial-gradient(1px 1px at 30% 85%, #fff8, transparent),
+    radial-gradient(1px 1px at 92% 55%, #fff6, transparent), radial-gradient(1.5px 1.5px at 45% 40%, #fff5, transparent);
+  animation: cintila 6s ease-in-out infinite alternate; }
+@keyframes cintila { from { opacity: .55; } to { opacity: 1; } }
+.caixa { position: relative; z-index: 1; width: min(72rem, 100% - 2rem); margin: 0 auto; }
+section { margin: 0 0 2rem; }
+.topo { display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; }
+.backlink { display: inline-flex; align-items: center; gap: .375rem; border-radius: 9999px; padding: .5rem .875rem; background: oklch(0.23 0.06 270 / 0.7); border: 1px solid oklch(0.82 0.13 85 / 0.4); font-size: .8rem; color: var(--texto); text-decoration: none; }
+.backlink svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.backlink:hover { color: var(--ouro); }
+h1 { font-family: var(--titulo); font-weight: 700; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.08; margin: .8rem 0 .6rem; }
+.az { background: var(--grad-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sub { font-family: var(--serifa); font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--lavanda); max-width: 36rem; margin: 0 auto 1rem; }
+.heroi { text-align: center; padding: .5rem 0 1.5rem; }
+.aviso { text-align: center; color: var(--suave); padding: 2rem 0; }
+.fonte { text-align: center; font-size: .76rem; color: var(--suave); margin-top: 1rem; }
+footer { position: relative; z-index: 1; text-align: center; font-size: .8rem; color: var(--suave); padding: 2rem 1rem 3rem; }
+footer a { color: inherit; }
+</style>
+<style>
+.gtp.gtp-pagina { max-width: 46rem; margin-top: 0; }
+.gtp-pagina .gtp-rot { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.gtp-pagina .gtp-op b { font-size: 1.05rem; }
+</style>
+</head>
+<body>
+<div class="estrelas" aria-hidden="true"></div>
+<div class="caixa">
+  <header class="topo">
+    <a class="backlink" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>genialtarot.com</a>
+  </header>
+  <section class="heroi"><h1><span class="az">Pesquisar no site</span></h1><p class="sub">Escreva uma ou mais palavras: mostramos tudo o que o site tem sobre isso, por secção.</p></section>
+  <section>
+    <form class="gtp gtp-pagina" role="search" action="/pesquisa" method="get" autocomplete="off">
+      <label class="gtp-rot" for="gtp-q">Pesquisar no site</label>
+      <div class="gtp-campo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="gtp-q" name="q" type="search" enterkeyhint="search" maxlength="100" placeholder="Signo, sonho, anjo, salmo, reza, carta…" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="gtp-lista" aria-describedby="gtp-estado" autofocus />
+        <button type="button" class="gtp-limpa" aria-label="Limpar a pesquisa" hidden>×</button>
+      </div>
+      <nav class="gtp-dicas" aria-label="Pesquisas de exemplo"><a href="/pesquisa?q=touro">Touro</a><a href="/pesquisa?q=sonhar%20com%20%C3%A1gua">sonhar com água</a><a href="/pesquisa?q=salmo%2091">salmo 91</a><a href="/pesquisa?q=anjo%20da%20guarda">anjo da guarda</a><a href="/pesquisa?q=mau%20olhado">mau olhado</a><a href="/pesquisa?q=carta%20do%20amor">carta do amor</a><a href="/pesquisa?q=lua">Lua</a></nav>
+      <div class="gtp-lista" id="gtp-lista" role="listbox" aria-label="Resultados da pesquisa" hidden></div>
+      <p class="gtp-estado" id="gtp-estado" aria-live="polite"></p>
+    </form>
+    <noscript><p class="aviso">A pesquisa precisa de JavaScript. Pode ver todas as páginas no <a href="/mapa-do-site">mapa do site</a>.</p></noscript>
+  </section>
+  <p class="fonte">Não encontra o que procura? Veja o <a href="/mapa-do-site">mapa do site</a>, com todas as páginas.</p>
+<footer>
+  Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.<br>
+  <a href="/privacidade">Política de Privacidade</a> · <a href="/termos">Termos de Serviço</a>
+</footer>
+</div>
+<script src="/pesquisa.js" defer></script>
+<script src="/vip-faixa.js" defer></script>
+<script src="/vivo.js" defer></script>
+</body>
+</html>
