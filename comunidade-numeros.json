@@ -1,7 +1,7 @@
 {
  "grupos": {
-  "valor": 220285,
-  "data": "2026-11-09",
+  "valor": 220316,
+  "data": "2026-11-16",
   "nota": "12 grupos dos signos"
  },
  "youtube": {
@@ -20,8 +20,8 @@
   "nota": ""
  },
  "tiktok": {
-  "valor": 5738,
-  "data": "2026-11-09",
+  "valor": 5763,
+  "data": "2026-11-16",
   "nota": ""
  },
  "perfil": {
@@ -29,5 +29,5 @@
   "data": "2026-11-04",
   "nota": "6,4 mil (captura dele do perfil, 04/11)"
  },
- "total": 263794
+ "total": 263850
 }
