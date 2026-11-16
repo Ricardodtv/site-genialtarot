@@ -42,6 +42,8 @@
   <div id="res">
     <div class="link" id="link"></div>
     <a class="btn wa" id="wa" target="_blank" rel="noopener">📲 Enviar pelo WhatsApp</a>
+    <a class="btn wa" id="wab" style="background:#0b6b3a">💼 Enviar pelo WhatsApp Business</a>
+    <button class="btn sec" id="partilhar" style="display:none">📤 Partilhar… (escolher a app)</button>
     <button class="btn sec" id="copiar">📋 Copiar a mensagem</button>
     <a class="btn sec" id="ver" target="_blank" rel="noopener">👁️ Ver a página que a pessoa recebe</a>
     <div class="apagado">O link leva a pessoa a uma página com o botão «Copiar código Pix» e o QR.</div>
@@ -60,10 +62,18 @@
     document.getElementById("link").textContent = url;
     document.getElementById("wa").href = "https://wa.me/?text=" + encodeURIComponent(msg);
     document.getElementById("ver").href = url;
+    // Android: abre directamente a app WhatsApp Business (pacote com.whatsapp.w4b).
+    document.getElementById("wab").href = "intent://send?text=" + encodeURIComponent(msg) +
+      "#Intent;scheme=whatsapp;package=com.whatsapp.w4b;S.browser_fallback_url=" +
+      encodeURIComponent("https://wa.me/?text=" + encodeURIComponent(msg)) + ";end";
+    if (navigator.share) document.getElementById("partilhar").style.display = "block";
     document.getElementById("res").style.display = "block";
   }
   document.getElementById("gerar").onclick = gerar;
   document.getElementById("v").onkeydown = function (e) { if (e.key === "Enter") gerar(); };
+  document.getElementById("partilhar").onclick = function () {
+    navigator.share({ text: msg }).catch(function () {});
+  };
   document.getElementById("copiar").onclick = function () {
     var b = this;
     navigator.clipboard.writeText(msg).then(function () { b.textContent = "✅ Mensagem copiada"; });
