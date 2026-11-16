@@ -18,7 +18,8 @@
     a.style.color = getComputedStyle(b).color;
     a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Pesquisar</span>';
     b.insertAdjacentElement("afterend", a);
-    try { dispatchEvent(new Event("resize")); } catch (e) {}
+    // O conta.js arruma o «Entrar» ao ouvir o resize; repete-se porque às vezes ele ainda não estava a ouvir (visto nos sonhos, 16/11).
+    [0, 400, 1500, 3500].forEach(function (t) { setTimeout(function () { try { dispatchEvent(new Event("resize")); } catch (e) {} }, t); });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", por); else por();
 })();
