@@ -9,7 +9,7 @@
   GERADOR DE PIX (uso do Mestre Alberto) — genialtarot.com/gerar-pix.html
   16/11/2026, pedido dele: «uma página onde eu possa colocar apenas o valor e
   geras o pix que eu envio para a pessoa no WhatsApp».
-  Escreve-se o valor → sai o link genialtarot.com/pagar-pix.html?v=… para a
+  Escreve-se o valor → sai o link genialtarot.com/pagar-pix?v=… para a
   pessoa abrir, copiar o código e colar no banco. Privada: noindex, sem ligações.
 -->
 <style>
@@ -54,7 +54,7 @@
     var v = parseFloat(document.getElementById("v").value.replace(/\s/g, "").replace(/\.(?=\d{3}(\D|$))/g, "").replace(",", "."));
     if (!(v > 0 && v < 100000)) { alert("Escreva um valor válido, por exemplo 300"); return; }
     var ref = document.getElementById("ref").value.replace(/[^A-Za-z0-9]/g, "").slice(0, 25);
-    var url = "https://genialtarot.com/pagar-pix.html?v=" + v.toFixed(2) + (ref ? "&r=" + ref : "");
+    var url = "https://genialtarot.com/pagar-pix?v=" + v.toFixed(2) + (ref ? "&r=" + ref : "");
     var vs = "R$ " + v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     msg = "Pagamento por Pix de " + vs + ".\nAbra o link, toque em «Copiar código Pix» e cole na app do seu banco em Pix Copia e Cola:\n" + url;
     document.getElementById("link").textContent = url;
