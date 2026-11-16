@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Pagamento por Pix — Mestre Alberto</title>
+<meta property="og:title" content="Pagamento por Pix — Mestre Alberto">
+<meta property="og:description" content="Toque para copiar o código Pix e pagar na app do seu banco.">
+<!--
+  PIX PARA ENVIAR PELO WHATSAPP — genialtarot.com/pagar-pix.html
+  Escrita a 16/11/2026, a pedido dele: «quero uma forma de a pessoa poder copiar
+  a chave pix e colar no banco dela, e para eu enviar pelo whatsapp».
+
+  COMO SE USA
+    genialtarot.com/pagar-pix.html?v=300              (R$ 300,00)
+    genialtarot.com/pagar-pix.html?v=365&r=CONSULTA30 (com referência no extrato)
+  Página privada: noindex, fora do sitemap, sem ligações a partir do site.
+  O código é feito aqui, no telemóvel de quem abre, com a mesma receita do
+  ~/pix/brcode.py (chave aleatória da conta da Ingrid). Nada é guardado.
+-->
+<style>
+  body{margin:0;background:#faf8ff;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+       color:#2e2a3d;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;box-sizing:border-box}
+  .cartao{background:#fff;border-radius:18px;padding:28px 22px;max-width:400px;width:100%;
+          box-shadow:0 8px 30px rgba(60,30,110,.10);text-align:center}
+  h1{font-size:19px;margin:6px 0 4px;font-weight:600}
+  .preco{font-size:34px;font-weight:700;color:#5b2c9e;margin:6px 0 4px}
+  .quem{color:#8a849c;font-size:14px;margin-bottom:18px}
+  .btn{display:block;background:#5b2c9e;color:#fff;padding:17px;border-radius:12px;font-size:17px;
+       font-weight:700;border:0;width:100%;cursor:pointer}
+  .btn.ok{background:#1f8a4c}
+  .codigo{width:100%;box-sizing:border-box;font-family:monospace;font-size:12px;color:#5a5470;
+          border:1px solid #e3def0;border-radius:10px;padding:10px;margin:14px 0 4px;resize:none;height:84px;word-break:break-all}
+  .passos{background:#f6f2ff;border-radius:12px;padding:14px 16px;font-size:14.5px;line-height:1.6;
+          color:#4a4560;margin:16px 0;text-align:left}
+  .passos ol{margin:0;padding-left:20px}
+  #qr{margin:10px auto 4px;width:220px}
+  #qr img,#qr canvas{width:220px;height:220px;image-rendering:pixelated}
+  .apagado{color:#8a849c;font-size:13px;margin-top:6px}
+  .erro{color:#b3261e}
+</style>
+</head>
+<body>
+<div class="cartao" id="c">
+  <div style="font-size:34px">🇧🇷</div>
+  <h1>Pagamento por Pix</h1>
+  <div class="preco" id="valor"></div>
+  <div class="quem">Para: Ingrid Evelyn C. de Paula · Mestre Alberto</div>
+
+  <button class="btn" id="copiar">📋 Copiar código Pix</button>
+  <textarea class="codigo" id="codigo" readonly></textarea>
+
+  <div class="passos"><ol>
+    <li>Toque em <b>Copiar código Pix</b>.</li>
+    <li>Abra a app do seu banco e escolha <b>Pix → Pix Copia e Cola</b>.</li>
+    <li>Cole o código. O valor já aparece preenchido.</li>
+    <li>Confirme e envie o comprovante pelo WhatsApp.</li>
+  </ol></div>
+
+  <div class="apagado">Ou leia este QR com a app do banco noutro aparelho:</div>
+  <div id="qr"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+(function () {
+  var CHAVE = "75671126-b1db-4afb-85d9-787fc8270aa9";
+  var NOME = "INGRID EVELYN C DE PAULA";
+  var CIDADE = "GUARAPARI";
+  function c(i, v) { return i + (v.length < 10 ? "0" : "") + v.length + v; }
+  function crc16(s) {
+    var crc = 0xFFFF;
+    var b = new TextEncoder().encode(s);
+    for (var k = 0; k < b.length; k++) {
+      crc ^= b[k] << 8;
+      for (var j = 0; j < 8; j++) { crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1); crc &= 0xFFFF; }
+    }
+    return ("000" + crc.toString(16).toUpperCase()).slice(-4);
+  }
+  var q = new URLSearchParams(location.search);
+  var v = parseFloat(String(q.get("v") || "").replace(",", "."));
+  var ref = String(q.get("r") || "").replace(/[^A-Za-z0-9]/g, "").slice(0, 25) || "***";
+  if (!(v > 0 && v < 100000)) {
+    document.getElementById("c").innerHTML = '<h1 class="erro">Link incompleto</h1><p>Peça um novo link de pagamento pelo WhatsApp.</p>';
+    return;
+  }
+  var s = c("00", "01") + c("26", c("00", "br.gov.bcb.pix") + c("01", CHAVE)) +
+          c("52", "0000") + c("53", "986") + c("54", v.toFixed(2)) +
+          c("58", "BR") + c("59", NOME) + c("60", CIDADE) + c("62", c("05", ref)) + "6304";
+  var codigo = s + crc16(s);
+  document.getElementById("valor").textContent = "R$ " + v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var ta = document.getElementById("codigo");
+  ta.value = codigo;
+  var bt = document.getElementById("copiar");
+  function feito() { bt.textContent = "✅ Código copiado! Agora cole no seu banco"; bt.className = "btn ok"; }
+  bt.onclick = function () {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(codigo).then(feito, function () { ta.select(); document.execCommand("copy"); feito(); });
+    } else { ta.focus(); ta.select(); ta.setSelectionRange(0, 9999); document.execCommand("copy"); feito(); }
+  };
+  try {
+    var qr = qrcode(0, "M"); qr.addData(codigo); qr.make();
+    document.getElementById("qr").innerHTML = qr.createImgTag(6, 8);
+  } catch (e) { document.getElementById("qr").style.display = "none"; }
+})();
+</script>
+</body>
+</html>
