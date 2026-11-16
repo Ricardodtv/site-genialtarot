@@ -414,12 +414,22 @@ def _bloco_antes_casa(s, marca, bloco):
     return s[:k] + f"<!-- {HOJE}: {marca} -->\n{bloco}\n" + s[k:]
 
 
+SD_ESTILO = ('<style>#salmo-dia .ora-c{font-family:var(--serifa,Georgia,serif);font-style:italic;font-size:1.15rem;margin:.7rem auto;max-width:40rem;padding:.8rem 1rem;border-left:3px solid var(--ouro);background:var(--vidro);border-radius:.6rem;text-align:left}'
+             '#salmo-dia .ora-c footer{font-style:normal;font-size:.85rem;color:var(--suave);margin-top:.3rem;padding:0;text-align:left}#salmo-dia .ligas{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center}'
+             '#salmo-dia .ligas a{padding:.35rem .8rem;border:1px solid var(--borda);border-radius:999px;background:var(--vidro);color:inherit;text-decoration:none;font-size:.88rem}#salmo-dia .ligas a:hover{border-color:var(--ouro)}</style>')
+
+
 def ligacoes():
     mud = []
     # signo/*.html
     for k, (s, g, sl) in enumerate(SIG):
-        b = (f'  <section class="cartao" style="text-align:center"><h2>📖 Os salmos de {s}</h2><p>Na tradição dos 72 Anjos, cada 5 graus de {s} têm um anjo e um versículo dos Salmos, '
-             f'e cada decanato uma carta dos Arcanos Menores.</p><div class="ligas"><a href="/salmos/{sl}">Os salmos de {s}</a><a href="/salmos">O salmo de hoje</a></div></section>')
+        # 16/11/2026 (pedido dele): o salmo do dia também aqui; o worker escreve-o no HTML e o salmo-do-dia.js redesenha.
+        # O <script> fica DENTRO da secção: o gerar-signos.py guarda o bloco só até ao primeiro </section>.
+        b = (f'  <section class="cartao" id="salmo-dia" style="text-align:center">{SD_ESTILO}<h2>📖 O salmo do dia</h2><div id="salmo-dia-caixa"><p>O salmo do dia é o versículo do anjo que rege o grau do Sol. '
+             f'<a href="/salmos">Veja o salmo de hoje</a>.</p></div><h3>Os salmos de {s}</h3><p>Na tradição dos 72 Anjos, cada 5 graus de {s} têm um anjo e um versículo dos Salmos, '
+             f'e cada decanato uma carta dos Arcanos Menores.</p><div class="ligas"><a href="/salmos/{sl}">Os salmos de {s}</a><a href="/salmos">Os salmos dos 72 anjos</a></div>'
+             f'<p class="fonte">Tradição dos 72 Anjos, leitura simbólica. Texto bíblico: Bíblia Livre, <a href="https://creativecommons.org/licenses/by/3.0/br/" rel="license noopener">CC BY 3.0 Brasil</a>.</p>'
+             f'<script src="/salmo-do-dia.js" defer></script></section>')
         if _troca(f"signo/{sl}.html", lambda x: _bloco_antes_casa(x, "ligações aos salmos", b)): mud.append(f"signo/{sl}.html")
     # os-72-anjos.html: um bloco + «Os salmos de X» ao lado de «Ver o signo de X» (o mesmo que o gerar-anjos.py já escreve)
     def f72(x):

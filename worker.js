@@ -761,6 +761,7 @@ async function horoscopoNoHtml(url, env, alvo) {
     }
   } else {
     const y = x.s[alvo];
+    try { const sd = salmoDoDiaHtml(iso); rw.on("#salmo-dia-caixa", { element(e) { e.setInnerContent(sd, { html: true }); } }); } catch (e) { /* 16/11/2026: o salmo do dia nas páginas dos signos; sem ele fica o texto de sempre */ }
     rw.on("#hoje", { element(e) { e.setInnerContent(`<p style="margin:.2rem 0;color:var(--suave)">${semana}, ${dia}</p><div class="ene">${est(y.e)} energia</div>${corpo(y, "A dica de hoje")}`, { html: true }); } });
   }
   const r = new Response(resp.body, resp);
