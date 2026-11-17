@@ -856,6 +856,15 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
 .meudia-txt span:last-child { color:oklch(0.97 0.01 320 / .78); font-size:.98rem; }
 .meudia-btn { background:var(--gradient-gold); color:#1a0d26; font-weight:700; border-radius:.9rem; padding:.7rem 1.1rem; white-space:nowrap; }
 @media (max-width: 640px) { .meudia { grid-template-columns:auto 1fr; } .meudia-btn { grid-column:1 / -1; text-align:center; } }
+/* ✨ 17/11/2026 (O-511): os 12 signos logo na página principal — um toque abre o dia da pessoa (?s=<signo>), em vez de dois */
+.meudia-signos { position:relative; z-index:4; max-width:60rem; margin:-1.6rem auto 1rem; padding:1.9rem 1rem 1rem; border-radius:0 0 1.5rem 1.5rem;
+  background:oklch(0.22 0.09 285 / .92); border:1.5px solid oklch(0.85 0.13 88 / .55); border-top:0; display:grid; grid-template-columns:repeat(6, 1fr); gap:.5rem; }
+.meudia-signos[hidden] { display:none; }
+.meudia-signos a { display:flex; flex-direction:column; align-items:center; gap:.25rem; padding:.45rem .2rem; border-radius:.9rem; text-decoration:none; color:#fff; font-size:.82rem; font-weight:600;
+  background:oklch(1 0 0 / .06); border:1px solid oklch(0.85 0.13 88 / .25); transition:background .2s, transform .2s; }
+.meudia-signos a:hover, .meudia-signos a:focus-visible { background:oklch(0.85 0.13 88 / .22); transform:translateY(-2px); }
+.meudia-signos img { width:44px; height:44px; border-radius:50%; }
+@media (max-width: 640px) { .meudia-signos { grid-template-columns:repeat(4, 1fr); } }
 .amanha:hover { transform:translateY(-3px); box-shadow:0 26px 64px #0009, 0 0 52px oklch(0.80 0.14 88 / .40); }
 .amanha::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.55;
   background-image: radial-gradient(1.5px 1.5px at 12% 22%, #fff, transparent), radial-gradient(1px 1px at 72% 18%, #fff, transparent), radial-gradient(1.5px 1.5px at 88% 64%, #fff, transparent),
@@ -1125,13 +1134,36 @@ footer { position: relative; z-index: 10; border-top: 1px solid oklch(0.55 0.10 
       </span>
       <span class="meudia-btn" id="meudia-btn">Abrir o meu dia →</span>
     </a>
+    <nav class="meudia-signos animate-fade-up" id="meudia-signos" aria-label="Escolha o seu signo para abrir o seu dia">
+      <a href="/o-meu-dia?s=carneiro&amp;de=inicio&amp;c=signo"><img src="/signos/00.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Carneiro</span></a>
+      <a href="/o-meu-dia?s=touro&amp;de=inicio&amp;c=signo"><img src="/signos/01.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Touro</span></a>
+      <a href="/o-meu-dia?s=gemeos&amp;de=inicio&amp;c=signo"><img src="/signos/02.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Gémeos</span></a>
+      <a href="/o-meu-dia?s=caranguejo&amp;de=inicio&amp;c=signo"><img src="/signos/03.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Caranguejo</span></a>
+      <a href="/o-meu-dia?s=leao&amp;de=inicio&amp;c=signo"><img src="/signos/04.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Leão</span></a>
+      <a href="/o-meu-dia?s=virgem&amp;de=inicio&amp;c=signo"><img src="/signos/05.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Virgem</span></a>
+      <a href="/o-meu-dia?s=balanca&amp;de=inicio&amp;c=signo"><img src="/signos/06.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Balança</span></a>
+      <a href="/o-meu-dia?s=escorpiao&amp;de=inicio&amp;c=signo"><img src="/signos/07.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Escorpião</span></a>
+      <a href="/o-meu-dia?s=sagitario&amp;de=inicio&amp;c=signo"><img src="/signos/08.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Sagitário</span></a>
+      <a href="/o-meu-dia?s=capricornio&amp;de=inicio&amp;c=signo"><img src="/signos/09.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Capricórnio</span></a>
+      <a href="/o-meu-dia?s=aquario&amp;de=inicio&amp;c=signo"><img src="/signos/10.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Aquário</span></a>
+      <a href="/o-meu-dia?s=peixes&amp;de=inicio&amp;c=signo"><img src="/signos/11.webp" alt="" width="44" height="44" loading="lazy" decoding="async"><span>Peixes</span></a>
+    </nav>
     <script>
     (function () {
       try {
-        var E = JSON.parse(localStorage.getItem("gt_meudia") || "null"); if (!E || E.signo == null) return;
+        var E = JSON.parse(localStorage.getItem("gt_meudia") || "null");
         var PT = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").indexOf("Europe") === 0;
         var N = PT ? ["Carneiro","Touro","Gémeos","Caranguejo","Leão","Virgem","Balança","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"]
                    : ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+        var G = document.getElementById("meudia-signos");
+        // 17/11/2026 (O-511): sem signo guardado, a grelha dos 12 fica à vista (um toque); com signo, sai e fica só a porta
+        if (!E || E.signo == null) {
+          if (!PT) [].forEach.call(G.querySelectorAll("span"), function (x, i) { x.textContent = N[i]; });
+          document.getElementById("meudia-sub").textContent = "Toque no seu signo: fica guardado neste aparelho e o seu dia abre logo.";
+          document.getElementById("meudia-btn").textContent = "Escolher o signo ↓";
+          return;
+        }
+        G.hidden = true;
         var f = function (d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
         var d = new Date(), hoje = E.dias && E.dias[f(d)], n = 0;
         if (!hoje) d.setDate(d.getDate() - 1);
