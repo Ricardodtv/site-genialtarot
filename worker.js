@@ -2173,7 +2173,22 @@ if (localStorage.getItem("stats_chave")) { document.getElementById("chave").valu
 // página diz «estou aqui» de 20 em 20 s; o painel dele (no cerebro, pelo HA)
 // lê com a chave das estatísticas (STATS_KEY). Os IPs só se guardam 24 h; as conversas 30 dias.
 // =====================================================================
-export class Sala extends DurableObject {
+export // 17/11 (ele): o tempo de ESTA visita, não desde a primeira vez que o telemóvel apareceu (dava «193 h no site»).
+const PAUSA_SESSAO = 30 * 60000;
+function inicioSessao(ps, fim) {   // para as linhas antigas sem «sessao»: a última página e as anteriores sem pausa > 30 min entre elas
+  if (!ps.length) return fim;
+  let ini = ps[ps.length - 1][0];
+  for (let i = ps.length - 2; i >= 0; i--) { if (ini - ps[i][0] > PAUSA_SESSAO) break; ini = ps[i][0]; }
+  return ini;
+}
+function daSessao(v, paginas) {
+  let ps = []; try { ps = JSON.parse(paginas || "[]"); } catch (e) {}
+  let ini = v.sessao || inicioSessao(ps, v.visto), incerto = false;
+  // linha antiga (sem «sessao») em que a pessoa voltou à mesma página noutro dia: não há como saber quando entrou
+  if (!v.sessao && v.visto - ini > 3 * 3600000) { ini = v.visto; incerto = true; }
+  return { sessao: ini, incerto, ns: Math.max(1, ps.filter((x) => x[0] >= ini).length), voltou: v.primeiro < ini - PAUSA_SESSAO };
+}
+class Sala extends DurableObject {
   constructor(ctx, env) {
     super(ctx, env);
     this.sql = ctx.storage.sql;
@@ -2181,6 +2196,9 @@ export class Sala extends DurableObject {
     this.sql.exec(`CREATE TABLE IF NOT EXISTS vis (sid TEXT PRIMARY KEY, ip TEXT, pais TEXT, cidade TEXT, regiao TEXT,
       aparelho TEXT, ua TEXT, pagina TEXT, titulo TEXT, origem TEXT, primeiro INTEGER, visto INTEGER, n INTEGER, paginas TEXT)`);
     try { this.sql.exec("ALTER TABLE vis ADD COLUMN humano INTEGER DEFAULT 0"); } catch (e) { /* já existe */ }   // 01/11: confirmou ser pessoa
+    // 17/11 (ele): «193 h no site» — o sid fica no telemóvel dias a fio e o painel contava desde a 1.ª visita de sempre.
+    // «sessao» = quando começou ESTA visita (recomeça se a pessoa esteve mais de 30 min sem sinal).
+    try { this.sql.exec("ALTER TABLE vis ADD COLUMN sessao INTEGER"); } catch (e) { /* já existe */ }
     this.sql.exec(`CREATE TABLE IF NOT EXISTS chat (id INTEGER PRIMARY KEY AUTOINCREMENT, sid TEXT, quando INTEGER, de TEXT, texto TEXT)`);
     this.sql.exec(`CREATE TABLE IF NOT EXISTS aberto (sid TEXT PRIMARY KEY, aberto INTEGER)`);
     // 03/11/2026 20h: a quota grátis de LEITURAS do Durable Object esgotou («Exceeded allowed rows read»). O painel do HA
@@ -2210,10 +2228,12 @@ export class Sala extends DurableObject {
       if (!sidOk) return J({ ok: false }, 400);
       const cf = request.cf || {}, ua = request.headers.get("user-agent") || "";
       const pagina = String(d.pagina || "/").slice(0, 120), titulo = String(d.titulo || "").slice(0, 120);
-      const r = this.linhas("SELECT paginas, n, pagina FROM vis WHERE sid=?", sid)[0];
+      const r = this.linhas("SELECT paginas, n, pagina, visto, sessao FROM vis WHERE sid=?", sid)[0];
       if (r) {
         let ps = []; try { ps = JSON.parse(r.paginas || "[]"); } catch (e) {}
-        if (r.pagina !== pagina) { ps.push([agora, pagina]); ps = ps.slice(-30); }
+        const nova = agora - (r.visto || 0) > PAUSA_SESSAO;   // voltou depois de uma pausa: é outra visita
+        if (r.pagina !== pagina || nova) { ps.push([agora, pagina]); ps = ps.slice(-30); }
+        this.sql.exec("UPDATE vis SET sessao=? WHERE sid=?", nova ? agora : (r.sessao || inicioSessao(ps, agora)), sid);
         this.sql.exec("UPDATE vis SET ip=?, pais=?, cidade=?, regiao=?, pagina=?, titulo=?, visto=?, n=?, paginas=? WHERE sid=?",
           request.headers.get("CF-Connecting-IP") || "?", cf.country || "?", cf.city || "", cf.region || "", pagina, titulo, agora,
           (r.n || 0) + (r.pagina !== pagina ? 1 : 0), JSON.stringify(ps), sid);
@@ -2225,6 +2245,7 @@ export class Sala extends DurableObject {
           this.sql.exec("INSERT INTO vis (sid, ip, pais, cidade, regiao, aparelho, ua, pagina, titulo, origem, primeiro, visto, n, paginas) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", sid, request.headers.get("CF-Connecting-IP") || "?",
             cf.country || "?", cf.city || "", cf.region || "", aparelhoDe(ua), ua.slice(0, 160), pagina, titulo,
             String(d.origem || "").slice(0, 80), agora, agora, 1, JSON.stringify([[agora, pagina]]));
+          this.sql.exec("UPDATE vis SET sessao=? WHERE sid=?", agora, sid);
         } catch (e) { return J({ ok: false, erro: String(e && e.message || e).slice(0, 200) }, 500); }   // 01/11: o erro à vista, em vez do 1101 mudo
       }
       if (d.confirma) this.sql.exec("UPDATE vis SET humano=1 WHERE sid=?", sid);
@@ -2254,15 +2275,16 @@ export class Sala extends DurableObject {
     if (!this.env.STATS_KEY || request.headers.get("X-Chave") !== this.env.STATS_KEY) return J({ ok: false, erro: "chave" }, 403);
     if (p === "/api/vivo/painel") {
       const dias = Math.min(30, Math.max(1, parseInt(url.searchParams.get("dias")) || 1));
-      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, ua, humano, pagina, titulo, origem, primeiro, visto, n, paginas FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
+      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, ua, humano, pagina, titulo, origem, primeiro, visto, n, paginas, sessao FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
         agora - dias * 864e5, dias === 1 ? 600 : 5000);
       const abertos = new Set(this.linhas("SELECT sid FROM aberto WHERE aberto=1").map((r) => r.sid));
       const ult = {}; for (const r of this.linhas("SELECT sid, MAX(id) AS id, MAX(quando) AS q FROM chat WHERE de='pessoa' GROUP BY sid")) ult[r.sid] = r.q;
       const entrada = (t) => { try { return JSON.parse(t || "[]")[0][1]; } catch (e) { return ""; } };   // 01/11: a página onde a visita entrou
-      return J({ agora, vis: vis.map(({ paginas, ...v }) => ({ ...v, entrada: entrada(paginas), online: agora - v.visto < 45000, chat: abertos.has(v.sid), respondeu: ult[v.sid] || 0 })) });
+      return J({ agora, vis: vis.map(({ paginas, ...v }) => ({ ...v, ...daSessao(v, paginas), entrada: entrada(paginas), online: agora - v.visto < 45000, chat: abertos.has(v.sid), respondeu: ult[v.sid] || 0 })) });
     }
     if (p === "/api/vivo/pessoa") {
-      const v = this.linhas("SELECT * FROM vis WHERE sid=?", sid)[0] || null;
+      let v = this.linhas("SELECT * FROM vis WHERE sid=?", sid)[0] || null;
+      if (v) v = { ...v, ...daSessao(v, v.paginas) };
       const ab = this.linhas("SELECT aberto FROM aberto WHERE sid=?", sid)[0];
       return J({ v, aberto: !!(ab && ab.aberto), chat: this.linhas("SELECT id, quando, de, texto FROM chat WHERE sid=? ORDER BY id", sid),
         escreve: agora - (this.escreve.get(sid + "|pessoa") || 0) < 4000 });
