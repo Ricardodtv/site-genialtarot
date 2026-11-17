@@ -103,6 +103,9 @@ for i, s in enumerate(S):
     if len(titulo) > 65: titulo = f"Signo {nome} ({_dd((_a[0], _m[_a[1]]))} a {_dd((_b[0], _m[_b[1]]))}): amor e horóscopo de hoje"
     if len(titulo) > 65: titulo = f"Signo {nome}: datas, amor e horóscopo de hoje"   # o Google corta acima de ~65
     desc = f"Nasceu entre {s['datas'].replace(' a ', ' e ')}? É do signo {nome}. Veja a personalidade, o amor, o dinheiro, com quem combina e o horóscopo de hoje."
+    if s["slug"] == "leao":   # 17/11/2026 (O-509): as pesquisas são «leão horoscopo», «signo leão datas» (Brasil quase todas)
+        titulo = "Signo de Leão (23/07 a 22/08): horóscopo de hoje e perfil"
+        desc = "Quem nasce entre 23 de julho e 22 de agosto é de Leão. Leia o horóscopo de hoje para Leão, como é este signo no amor e no dinheiro, e com quem combina."
     el = ELEM[i % 4]; md = MOD[i % 3]; op = S[(i + 6) % 12]
     afins = [S[j] for j in range(12) if j != i and (j % 4 == i % 4 or (i % 4 in (0, 2) and j % 4 in (0, 2)) or (i % 4 in (1, 3) and j % 4 in (1, 3)))]
     nm = lambda x: x["pt"] if x["pt"] == x["br"] else f"{x['pt']} ({x['br']})"
