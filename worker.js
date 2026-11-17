@@ -2173,7 +2173,7 @@ if (localStorage.getItem("stats_chave")) { document.getElementById("chave").valu
 // página diz «estou aqui» de 20 em 20 s; o painel dele (no cerebro, pelo HA)
 // lê com a chave das estatísticas (STATS_KEY). Os IPs só se guardam 24 h; as conversas 30 dias.
 // =====================================================================
-export // 17/11 (ele): o tempo de ESTA visita, não desde a primeira vez que o telemóvel apareceu (dava «193 h no site»).
+// 17/11 (ele): o tempo de ESTA visita, não desde a primeira vez que o telemóvel apareceu (dava «193 h no site»).
 const PAUSA_SESSAO = 30 * 60000;
 function inicioSessao(ps, fim) {   // para as linhas antigas sem «sessao»: a última página e as anteriores sem pausa > 30 min entre elas
   if (!ps.length) return fim;
@@ -2188,7 +2188,7 @@ function daSessao(v, paginas) {
   if (!v.sessao && v.visto - ini > 3 * 3600000) { ini = v.visto; incerto = true; }
   return { sessao: ini, incerto, ns: Math.max(1, ps.filter((x) => x[0] >= ini).length), voltou: v.primeiro < ini - PAUSA_SESSAO };
 }
-class Sala extends DurableObject {
+export class Sala extends DurableObject {
   constructor(ctx, env) {
     super(ctx, env);
     this.sql = ctx.storage.sql;
