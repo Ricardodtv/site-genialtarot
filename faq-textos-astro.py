@@ -766,4 +766,26 @@ FAQ = {
   ("Quanto tempo fica Plutão retrógrado?",
    "Cerca de cinco meses, uma vez por ano. Como é muito lento, quase metade do ano anda para trás no céu. Na tradição, estas fases convidam a olhar para dentro, para os medos e os padrões antigos, antes de os transformar."),
  ],
+ # 17/11/2026 (Search Console: /signo/touro e /signo/capricornio na posição 55; as pesquisas reais são as datas —
+ # «20 de maio qual signo», «22 de maio signo», «qual é o signo de janeiro», «3 janeiro signo»). As datas são as do site.
+ "signo/touro": [
+  ("Quem nasce a 20 de maio é de que signo?",
+   "Na maior parte dos anos, quem nasce a 20 de maio ainda é de Touro: o Sol só passa para Gémeos (Gêmeos) a 21 de maio. Como o dia e a hora da mudança variam de ano para ano, quem nasce a 20 ou a 21 de maio deve confirmar o signo com o ano e a hora de nascimento, no cálculo grátis do Ascendente."),
+  ("Quem nasce em maio é de que signo?",
+   "Depende do dia. De 1 a 20 de maio é Touro, um signo de Terra regido por Vénus. A partir de 21 de maio já é Gémeos (Gêmeos). Quem nasce a 22 ou a 23 de maio, por exemplo, é de Gémeos."),
+  ("Quais são as datas do signo Touro?",
+   "Touro vai de 20 de abril a 20 de maio. Antes vem Carneiro (Áries), até 19 de abril, e depois vem Gémeos (Gêmeos), a partir de 21 de maio. Nos dias de mudança, o signo pode depender do ano e da hora do nascimento."),
+  ("Touro é signo de que elemento?",
+   "Touro é um signo de Terra, de modalidade fixa, regido por Vénus. Partilha o elemento Terra com Virgem e Capricórnio. O signo oposto é Escorpião."),
+ ],
+ "signo/capricornio": [
+  ("Qual é o signo de janeiro?",
+   "Janeiro tem dois signos. Quem nasce de 1 a 19 de janeiro é de Capricórnio; quem nasce a partir de 20 de janeiro já é de Aquário. Nos dias 19 e 20, o signo pode depender do ano e da hora do nascimento."),
+  ("Quem nasce no início de janeiro é de que signo?",
+   "É de Capricórnio. Todos os dias de 1 a 19 de janeiro, como o dia 3 ou o dia 16, pertencem a Capricórnio, que começa a 22 de dezembro."),
+  ("Quais são as datas do signo Capricórnio?",
+   "Capricórnio vai de 22 de dezembro a 19 de janeiro. Antes vem Sagitário, até 21 de dezembro, e depois vem Aquário, a partir de 20 de janeiro. Nos dias de mudança, confirme o seu signo com o ano e a hora de nascimento."),
+  ("Capricórnio é signo de que elemento?",
+   "Capricórnio é um signo de Terra, de modalidade cardinal, regido por Saturno. Partilha o elemento Terra com Touro e Virgem. O signo oposto é Caranguejo (Câncer)."),
+ ],
 }

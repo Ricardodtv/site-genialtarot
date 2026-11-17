@@ -740,7 +740,8 @@ async function horoscopoNoHtml(url, env, alvo) {
   const est = (e) => "★".repeat(Math.round(e)) + "☆".repeat(5 - Math.round(e));
   if (alvo < 0) {
     // 13/11/2026 (SEO «horóscopo de amanhã», aprovado por ele): o título começa pela pesquisa e leva a data
-    const titulo = semana_ ? `Horóscopo Semanal, ${dia} a ${fd(fim)} · Mestre Alberto` : alvo === -3 ? `Horóscopo de Amanhã (${dia}) para os 12 signos | Mestre Alberto` : `Horóscopo do Dia, ${dia}: os 12 signos · Mestre Alberto`;
+    // 17/11/2026 (Search Console: «signos para amanha» pos. 13,5): o de amanhã acaba em «os 12 signos para amanhã»
+    const titulo = semana_ ? `Horóscopo Semanal, ${dia} a ${fd(fim)} · Mestre Alberto` : alvo === -3 ? `Horóscopo de Amanhã (${dia}): os 12 signos para amanhã` : `Horóscopo do Dia, ${dia}: os 12 signos · Mestre Alberto`;
     const ceu = (x.ceu || []).map((l) => `<li>${hPor(l)}</li>`).join("");
     const dc = (i) => { const d = new Date(i + "T12:00:00Z"); return `${H_SEMANA[d.getUTCDay()].toLowerCase()}, ${d.getUTCDate()}`; };
     const grelha = x.s.map((y, s) => `<article class="signo" id="s${s}"><div class="cab"><img class="gli" src="signos/${String(s).padStart(2, "0")}.webp" alt="${H_NOMES[s]}" width="72" height="72" loading="lazy"><div><div class="nome">${H_NOMES[s]}</div><div class="ene" aria-label="Energia ${y.e} de 5">${est(y.e)}<span>${semana_ ? "energia da semana" : "energia"}</span></div></div></div>${corpo(y, semana_ ? "A dica da semana" : alvo === -3 ? "A dica de amanhã" : "A dica de hoje").replace('<div class="dica">', semana_ && y.melhor ? `<div class="dias"><span class="bom">✨ Melhor dia: ${dc(y.melhor.d)}</span>${y.cuidado ? `<span>⚠️ Mais cuidado: ${dc(y.cuidado.d)}</span>` : ""}</div><div class="dica">` : '<div class="dica">')}${alvo === -3 ? `<a class="mais" href="/horoscopo-de-amanha/${H_SLUGS[s]}">${H_NOMES[s]} amanhã, em detalhe →</a>` : ""}</article>`).join("");
@@ -974,7 +975,17 @@ async function aniversariosNoHtml(url, env) {
     + `<div class="desc">${hEsc(p.d)}</div><div class="idade">Nasceu a ${dia} de ${p.a} · <b>faz hoje ${ano - p.a} anos</b></div>`
     + `<div class="signo"><b>${H_NOMES[p.s]}</b>${p.c ? " <small>(na cúspide)</small>" : ""}</div>`
     + `<a class="lig" href="/signo/${H_SLUGS[p.s]}">Ver o horóscopo de ${H_NOMES[p.s]} →</a></article>`).join("");
+  // 17/11/2026 (Search Console: «quem faz anos hoje é de que signo», pos. 4, 0 cliques): o título e a descrição respondem
+  // já com o dia e o signo de hoje, como no Horóscopo de Amanhã. Se algo falhar, ficam os do ficheiro.
+  const BR_ = { "Carneiro": "Áries", "Gémeos": "Gêmeos", "Caranguejo": "Câncer", "Balança": "Libra" };
+  const sigsBr = [...new Set(L.map((p) => H_NOMES[p.s]))].map((n) => BR_[n] ? `${n} (${BR_[n]})` : n).join(" ou ");
+  const titAn = `Quem faz anos hoje (${dia}) é de que signo?`;
+  const descAn = `Quem faz anos hoje, ${dia}, é de ${sigsBr}. Veja os famosos de Portugal e do Brasil que fazem anos hoje, a idade e o signo de cada um.`;
   const rw = new HTMLRewriter()
+    .on("title", { element(e) { e.setInnerContent(titAn); } })
+    .on('meta[name="description"]', { element(e) { e.setAttribute("content", descAn); } })
+    .on('meta[property="og:title"]', { element(e) { e.setAttribute("content", titAn); } })
+    .on('meta[property="og:description"]', { element(e) { e.setAttribute("content", descAn); } })
     .on("#data", { element(e) { e.setInnerContent(`<small>hoje</small>${dia}`, { html: true }); } })
     .on("#frase-dia", { element(e) { e.setInnerContent(`Quem faz anos hoje, ${dia}, é de <b>${sigs}</b>.`, { html: true }); } })
     .on("#pessoas", { element(e) { e.setInnerContent(pessoas, { html: true }); } });
