@@ -1,5 +1,11 @@
 {
  "carneiro": {
+  "dia": {
+   "id": "EQ5327zeEPw",
+   "t": "ÁRIES (CARNEIRO) HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
+   "d": "2026-11-17T15:14:12Z",
+   "dur": "PT6M30S"
+  },
   "anual": {
    "id": "sYvV52nILsg",
    "t": "2026 Carneiro: Tarot Revela Seu Destino Mensal",
@@ -22,6 +28,12 @@
   }
  },
  "gemeos": {
+  "dia": {
+   "id": "eB6e_IqHGHI",
+   "t": "GÊMEOS (GÉMEOS) HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
+   "d": "2026-11-17T15:16:00Z",
+   "dur": "PT8M52S"
+  },
   "anual": {
    "id": "EdzVicTufXw",
    "t": "Previsão Anual 2026 Signo Gémeos, 12 Meses",
@@ -44,6 +56,12 @@
   }
  },
  "leao": {
+  "dia": {
+   "id": "mW4bHJGnGLA",
+   "t": "LEÃO HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
+   "d": "2026-11-17T15:18:41Z",
+   "dur": "PT8M48S"
+  },
   "anual": {
    "id": "dto1ayURroc",
    "t": "Previsão 2026 Signo Leão Todos os meses",
@@ -52,6 +70,12 @@
   }
  },
  "virgem": {
+  "dia": {
+   "id": "x70V0093y7M",
+   "t": "VIRGEM HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
+   "d": "2026-11-17T15:18:45Z",
+   "dur": "PT6M52S"
+  },
   "anual": {
    "id": "S63ep0UfuI0",
    "t": "Previsão Anual 2026, Signo Virgem Todos os Signos",
@@ -60,6 +84,12 @@
   }
  },
  "balanca": {
+  "dia": {
+   "id": "HU1yTEqzvWc",
+   "t": "LIBRA (BALANÇA) HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
+   "d": "2026-11-17T15:18:50Z",
+   "dur": "PT6M45S"
+  },
   "anual": {
    "id": "_596jwAtBl0",
    "t": "Previsão anual 2026, Signo Balança",
@@ -68,6 +98,12 @@
   }
  },
  "escorpiao": {
+  "dia": {
+   "id": "mheQeknwP3c",
+   "t": "ESCORPIÃO HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
+   "d": "2026-11-17T15:18:56Z",
+   "dur": "PT6M58S"
+  },
   "anual": {
    "id": "vDhtOX8kixs",
    "t": "Previsão Anual 2026 Signo Escorpião, 12 Meses",
@@ -131,5 +167,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-17T15:30"
+ "_": "2026-11-17T17:33"
 }
