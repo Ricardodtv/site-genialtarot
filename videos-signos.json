@@ -30,6 +30,12 @@
   }
  },
  "caranguejo": {
+  "dia": {
+   "id": "W42mRvG52ho",
+   "t": "Horóscopo Diário Caranguejo (Câncer) 17 e 18 Novembro",
+   "d": "2026-11-17T15:18:37Z",
+   "dur": "PT8M17S"
+  },
   "anual": {
    "id": "G_Ox4x7wl_M",
    "t": "Signo Caranguejo Previsão anual 2026 Todos os Meses",
@@ -70,6 +76,12 @@
   }
  },
  "sagitario": {
+  "dia": {
+   "id": "RgUfSJyf8yI",
+   "t": "Horóscopo Diário Sagitário 17 e 18 Novembro",
+   "d": "2026-11-17T15:19:00Z",
+   "dur": "PT5M30S"
+  },
   "anual": {
    "id": "SPco2eROtps",
    "t": "Previsão Sagitário, ano 2026 Todos os Meses",
@@ -81,7 +93,7 @@
   "dia": {
    "id": "wx_ADMcOHA0",
    "t": "Horóscopo Diário Capricórnio 17 e 18 Novembro",
-   "d": "2026-11-17T15:17:08Z",
+   "d": "2026-11-17T15:18:29Z",
    "dur": "PT6M22S"
   },
   "anual": {
@@ -92,6 +104,12 @@
   }
  },
  "aquario": {
+  "dia": {
+   "id": "wfGjEu87tPM",
+   "t": "Horóscopo Diário Aquário 17 e 18 Novembro",
+   "d": "2026-11-17T15:19:05Z",
+   "dur": "PT5M9S"
+  },
   "anual": {
    "id": "iXnf_orBfDs",
    "t": "Previsão Anual 2026 Aquário 12 Meses",
@@ -100,6 +118,12 @@
   }
  },
  "peixes": {
+  "dia": {
+   "id": "7nirfHS9m1M",
+   "t": "Horóscopo Diário Peixes 17 e 18 Novembro",
+   "d": "2026-11-17T15:19:36Z",
+   "dur": "PT6M26S"
+  },
   "anual": {
    "id": "60VId99VP8Y",
    "t": "Previsão Anual 2026, Signo Peixes, 12 Meses",
@@ -107,5 +131,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-17T15:18"
+ "_": "2026-11-17T15:30"
 }
