@@ -12,6 +12,23 @@
   // 16/11/2026, pedido dele: a chamada «Tire as suas Dúvidas» (WhatsApp) em todas as páginas, menos consultório, app e pagamento.
   if (!/^\/(consultorio|o-teu-ceu|pagar|gerar-pix)(\/|\.html|-sala|-pix|$)/.test(location.pathname)) { var gdw = document.createElement("script"); gdw.src = "/duvidas-wa.js"; gdw.async = true; document.head.appendChild(gdw); }
   var A = "/api/vivo", sid;
+  // 17/11/2026 (ele: «contar visitas só a partir de um número de segundos aceitável»): medir AO MILISSEGUNDO o tempo com a
+  // página à vista, se a pessoa mexeu (toque, clique, tecla, roda) e até onde desceu. Vai em cada «olá» (o que se juntou
+  // desde o último envio) e num último sinal quando a página se esconde ou fecha (sendBeacon, que sobrevive ao fecho).
+  var mVista = 0, mDesde = document.visibilityState === "visible" ? Date.now() : 0, mMexeu = false, mRolou = 0;
+  function mAcumula() { if (mDesde) mVista += Date.now() - mDesde; mDesde = document.visibilityState === "visible" ? Date.now() : 0; }
+  function mTira() { mAcumula(); var o = { ms: mVista, mexeu: mMexeu, rolou: mRolou }; mVista = 0; return o; }
+  ["pointerdown", "touchstart", "keydown", "wheel"].forEach(function (ev) { addEventListener(ev, function () { mMexeu = true; }, { passive: true }); });
+  addEventListener("scroll", function () {
+    var h = document.documentElement.scrollHeight - innerHeight;
+    if (h > 0) mRolou = Math.max(mRolou, Math.min(100, Math.round(scrollY / h * 100)));
+  }, { passive: true });
+  function mSai() {
+    if (!sid) return; var o = mTira(); o.sid = sid; o.pagina = location.pathname;
+    try { navigator.sendBeacon(A + "/sai", new Blob([JSON.stringify(o)], { type: "application/json" })); } catch (e) {}
+  }
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") mDesde = Date.now(); else mSai(); });
+  addEventListener("pagehide", mSai);
   try { sid = localStorage.getItem("gt_vivo"); } catch (e) {}
   if (!sid || !/^[a-z0-9]{12,40}$/.test(sid)) {
     sid = (Date.now().toString(36) + Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)).replace(/[^a-z0-9]/g, "").slice(0, 32);
@@ -59,7 +76,8 @@
     } catch (e) {}
     // 01/11/2026: «novo» no primeiro sinal desta página aberta — o worker conta-o como visita (as páginas novas do SEO não passam pelo contador)
     var novo = !ola.feito; ola.feito = true;
-    post("", { sid: sid, pagina: location.pathname, titulo: document.title, origem: (mc ? "marca:" + mc : o), marca: md, c: mc0, novo: novo }).then(function (r) { return r.json(); })
+    var mm = mTira();   // 17/11: o tempo à vista desde o último envio
+    post("", { sid: sid, pagina: location.pathname, titulo: document.title, origem: (mc ? "marca:" + mc : o), marca: md, c: mc0, novo: novo, ms: mm.ms, mexeu: mm.mexeu, rolou: mm.rolou }).then(function (r) { return r.json(); })
       .then(function (r) { if (r && r.aberto && !aberto) verChat(); }).catch(function () {});
   }
   // os sons (baixinhos, nunca alto): abrir = sino a subir; fechar = duas notas a descer; mensagem = «plim» curto

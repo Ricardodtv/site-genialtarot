@@ -2199,6 +2199,11 @@ export class Sala extends DurableObject {
     // 17/11 (ele): «193 h no site» — o sid fica no telemóvel dias a fio e o painel contava desde a 1.ª visita de sempre.
     // «sessao» = quando começou ESTA visita (recomeça se a pessoa esteve mais de 30 min sem sinal).
     try { this.sql.exec("ALTER TABLE vis ADD COLUMN sessao INTEGER"); } catch (e) { /* já existe */ }
+    // 17/11 (ele: «contar visitas só a partir de um número de segundos aceitável»): o relógio era o sinal de 20 em 20 s,
+    // e quem ficou 9 s ou 19 s aparecia igual. Agora o vivo.js mede ao milissegundo o tempo COM A PÁGINA À VISTA (tempo,
+    // ms, desta visita), se mexeu (toque, clique, tecla, roda) e até onde desceu (rolou, %). Recomeçam com cada visita nova.
+    for (const c of ["tempo INTEGER DEFAULT 0", "mexeu INTEGER DEFAULT 0", "rolou INTEGER DEFAULT 0"])
+      try { this.sql.exec("ALTER TABLE vis ADD COLUMN " + c); } catch (e) { /* já existe */ }
     this.sql.exec(`CREATE TABLE IF NOT EXISTS chat (id INTEGER PRIMARY KEY AUTOINCREMENT, sid TEXT, quando INTEGER, de TEXT, texto TEXT)`);
     this.sql.exec(`CREATE TABLE IF NOT EXISTS aberto (sid TEXT PRIMARY KEY, aberto INTEGER)`);
     // 03/11/2026 20h: a quota grátis de LEITURAS do Durable Object esgotou («Exceeded allowed rows read»). O painel do HA
@@ -2209,6 +2214,15 @@ export class Sala extends DurableObject {
     this.total = null;
   }
   linhas(q, ...a) { return [...this.sql.exec(q, ...a)]; }
+  // 17/11: soma o tempo à vista que o vivo.js mediu desde o último envio (delta, no máximo 10 min por envio) e guarda
+  // se mexeu e até onde desceu. Só para quem já existe (o «sai» não cria linhas).
+  medida(sid, d) {
+    const ms = Math.min(600000, Math.max(0, Math.round(Number(d.ms) || 0)));
+    const mexeu = d.mexeu ? 1 : 0, rolou = Math.min(100, Math.max(0, Math.round(Number(d.rolou) || 0)));
+    if (!ms && !mexeu && !rolou) return false;
+    this.sql.exec("UPDATE vis SET tempo=COALESCE(tempo,0)+?, mexeu=MAX(COALESCE(mexeu,0),?), rolou=MAX(COALESCE(rolou,0),?) WHERE sid=?", ms, mexeu, rolou, sid);
+    return true;
+  }
   limpar(agora) {
     if (this.ultimaLimpeza && agora - this.ultimaLimpeza < 600000) return;
     this.ultimaLimpeza = agora;
@@ -2234,6 +2248,7 @@ export class Sala extends DurableObject {
         const nova = agora - (r.visto || 0) > PAUSA_SESSAO;   // voltou depois de uma pausa: é outra visita
         if (r.pagina !== pagina || nova) { ps.push([agora, pagina]); ps = ps.slice(-30); }
         this.sql.exec("UPDATE vis SET sessao=? WHERE sid=?", nova ? agora : (r.sessao || inicioSessao(ps, agora)), sid);
+        if (nova) this.sql.exec("UPDATE vis SET tempo=0, mexeu=0, rolou=0 WHERE sid=?", sid);   // 17/11: outra visita, outro relógio
         this.sql.exec("UPDATE vis SET ip=?, pais=?, cidade=?, regiao=?, pagina=?, titulo=?, visto=?, n=?, paginas=? WHERE sid=?",
           request.headers.get("CF-Connecting-IP") || "?", cf.country || "?", cf.city || "", cf.region || "", pagina, titulo, agora,
           (r.n || 0) + (r.pagina !== pagina ? 1 : 0), JSON.stringify(ps), sid);
@@ -2249,8 +2264,15 @@ export class Sala extends DurableObject {
         } catch (e) { return J({ ok: false, erro: String(e && e.message || e).slice(0, 200) }, 500); }   // 01/11: o erro à vista, em vez do 1101 mudo
       }
       if (d.confirma) this.sql.exec("UPDATE vis SET humano=1 WHERE sid=?", sid);
+      this.medida(sid, d);
       const ab = this.linhas("SELECT aberto FROM aberto WHERE sid=?", sid)[0];
       return J({ ok: true, aberto: !!(ab && ab.aberto) });
+    }
+    // 17/11: o último sinal, quando a pessoa sai ou esconde a página (sendBeacon no pagehide/visibilitychange)
+    if (p === "/api/vivo/sai" && request.method === "POST") {
+      if (!sidOk) return J({ ok: false }, 400);
+      if (this.medida(sid, d)) this.sql.exec("UPDATE vis SET visto=MAX(visto, ?) WHERE sid=?", agora, sid);
+      return J({ ok: true });
     }
     if (p === "/api/vivo/chat" && request.method === "GET") {
       if (!sidOk) return J({ ok: false }, 400);
@@ -2275,7 +2297,7 @@ export class Sala extends DurableObject {
     if (!this.env.STATS_KEY || request.headers.get("X-Chave") !== this.env.STATS_KEY) return J({ ok: false, erro: "chave" }, 403);
     if (p === "/api/vivo/painel") {
       const dias = Math.min(30, Math.max(1, parseInt(url.searchParams.get("dias")) || 1));
-      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, ua, humano, pagina, titulo, origem, primeiro, visto, n, paginas, sessao FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
+      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, ua, humano, pagina, titulo, origem, primeiro, visto, n, paginas, sessao, tempo, mexeu, rolou FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
         agora - dias * 864e5, dias === 1 ? 600 : 5000);
       const abertos = new Set(this.linhas("SELECT sid FROM aberto WHERE aberto=1").map((r) => r.sid));
       const ult = {}; for (const r of this.linhas("SELECT sid, MAX(id) AS id, MAX(quando) AS q FROM chat WHERE de='pessoa' GROUP BY sid")) ult[r.sid] = r.q;
