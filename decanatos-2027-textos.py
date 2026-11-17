@@ -11,8 +11,8 @@ DECANATOS = [
    ["3.º decanato", "10 a 19 de abril (aprox.)", "Sagitário e Júpiter", "É o Carneiro mais idealista e aventureiro. As causas, as ideias e uma vida com sentido movem-no(a) mais do que as vitórias pessoais. Gosta de viajar, de aprender e de dizer a verdade, às vezes sem filtro. Com o tempo, torna-se um Carneiro sábio, que inspira em vez de impor."]]},
 
  {"slug": "touro",
-  "titulo": "Decanatos de Touro: os três tipos de Touro e as suas datas",
-  "desc": "Os três decanatos de Touro: datas aproximadas, regentes pela triplicidade e o modo de ser de cada tipo de Touro, do sensual ao prático e ao ambicioso.",
+  "titulo": "Decanatos de Touro: 1.º, 2.º e 3.º decanato, datas e qual é o seu",
+  "desc": "Em que decanato de Touro nasceu? As datas do 1.º, 2.º e 3.º decanato de Touro, o regente de cada um e o modo de ser de cada tipo, do sensual ao ambicioso.",
   "intro": "Os decanatos dividem o signo em três partes de dez graus, cada uma com um tom diferente, e explicam porque há Touros mais sensuais, outros mais práticos e outros mais ambiciosos, embora todos partilhem a mesma terra firme. Neste site seguimos a triplicidade: o 1.º decanato pertence ao próprio signo, o 2.º ao signo seguinte do mesmo elemento e o 3.º ao terceiro; há também o sistema caldeu, que usa outra sequência. As datas são aproximadas e variam um dia conforme o ano.",
   "decs": [
    ["1.º decanato", "20 a 29 de abril (aprox.)", "Touro e Vénus", "É o Touro mais sensual e afectuoso. Você aprecia a boa mesa, a beleza, o conforto e as pessoas que lhe dão segurança. Constrói devagar, mas o que constrói dura. A sua prova é largar o que já não serve sem sentir que perde o chão."],
@@ -20,8 +20,8 @@ DECANATOS = [
    ["3.º decanato", "10 a 20 de maio (aprox.)", "Capricórnio e Saturno", "É o Touro mais ambicioso e resistente. Você pensa a longo prazo, aguenta os tempos difíceis e chega longe por persistência. Pode parecer sério(a) ou reservado(a), mas tem um humor seco e uma lealdade enorme. A lição é permitir-se gozar o que já conquistou."]]},
 
  {"slug": "gemeos",
-  "titulo": "Decanatos de Gémeos (Gêmeos): os três tipos de Gémeos",
-  "desc": "Os três decanatos de Gémeos (Gêmeos): datas aproximadas, regentes pela triplicidade e o feitio de cada tipo de Gémeos, do curioso ao sociável e ao visionário.",
+  "titulo": "Decanatos de Gémeos (Gêmeos): 1.º, 2.º e 3.º decanato e datas",
+  "desc": "Em que decanato de Gémeos (Gêmeos) nasceu? As datas do 1.º, 2.º e 3.º decanato, o regente de cada um e o feitio de cada tipo, do curioso ao visionário.",
   "intro": "Cada signo tem três decanatos de dez graus, e é por isso que dois nativos de Gémeos (Gêmeos) podem ser tão diferentes: um mais curioso, outro mais sociável, outro mais visionário, mas todos com a mesma mente viva. Uso aqui a triplicidade: o 1.º decanato é regido pelo próprio signo, o 2.º pelo signo seguinte do mesmo elemento e o 3.º pelo terceiro; existe ainda o sistema caldeu, com outros regentes. As datas são aproximadas e variam um dia conforme o ano.",
   "decs": [
    ["1.º decanato", "21 a 31 de maio (aprox.)", "Gémeos e Mercúrio", "É o Gémeos mais rápido e curioso. Você quer saber tudo, fala com toda a gente e aprende com uma facilidade que espanta. Muda de interesse com frequência, porque o mundo lhe parece cheio de coisas por descobrir. O desafio é aprofundar em vez de apenas provar."],

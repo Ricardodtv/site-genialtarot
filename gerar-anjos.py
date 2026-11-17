@@ -95,8 +95,11 @@ def grava(f, s):
 TIT_ESPECIAL = {"Hariel": "Anjo da Guarda Hariel: purificação, datas e oração",
                 "Yeiazel": "Anjo Yeiazel: o anjo do consolo, datas e oração",   # 15/11/2026 (O-461): «anjo yeiazel» pos. 7
                 "Lecabel": "Anjo Lecabel: o anjo do talento, datas e oração",   # 16/11/2026 (ronda SEO): «anjo lecabel» pos. 9,4, 0 cliques
-                "Haamiah": "Oração ao Anjo Haamiah: o anjo do ritual diário e datas"}   # 16/11/2026 (ronda SEO): «anjo haamiah oração» pos. 8; o padrão dava «Oração, datas e oração»
-H2_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel", "Lecabel": "Quem é o anjo Lecabel", "Haamiah": "Quem é o anjo Haamiah"}   # + 16/11/2026   # 15/11/2026 (O-461): a pesquisa real num H2
+                "Haamiah": "Oração ao Anjo Haamiah: o anjo do ritual diário e datas",   # 16/11/2026 (ronda SEO): «anjo haamiah oração» pos. 8; o padrão dava «Oração, datas e oração»
+                "Caliel": "Anjo Caliel: o anjo da justiça e da verdade, datas e oração"}   # 17/11/2026 (O-517): «anjo caliel» pos. 8,8, 0 cliques
+H2_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel", "Caliel": "Quem é o anjo Caliel", "Lecabel": "Quem é o anjo Lecabel", "Haamiah": "Quem é o anjo Haamiah"}   # + 16/11/2026   # 15/11/2026 (O-461): a pesquisa real num H2
+DES_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel, n.º 40 dos 72 Nomes: o anjo do consolo. As datas em Balança, o salmo, o coro e uma oração para os dias tristes.",
+               "Caliel": "Quem é o anjo Caliel, n.º 18 dos 72 Nomes: o anjo da justiça. As datas em Gémeos, o salmo, o coro e uma oração para a verdade vir ao de cima."}
 AVISO = ('<p><small>Os 72 anjos pertencem à tradição da Cabala e da angelologia, não à doutrina da Igreja, que desaconselha dar aos anjos nomes além de Miguel, Gabriel e Rafael. '
          'Quem segue a fé católica pode rezar ao seu <a href="/anjo-da-guarda">Anjo da Guarda</a> sem lhe saber o nome. É uma leitura simbólica: não promete resultados nem substitui o médico ou outros profissionais.</small></p>')
 tamanhos = []
@@ -106,6 +109,7 @@ for i, (n, tema, ped, txt, gesto, ora) in enumerate(ANJOS):
     tit = TIT_ESPECIAL.get(n, tit)   # 14/11/2026 (O-422): títulos com a pesquisa real
     des = f"{n}, anjo n.º {i+1} dos 72 Nomes: {tema[0].lower()+tema[1:]}. Veja as datas em {s}, o coro e uma oração para {ped}."
     if len(des) > 158: des = f"{n}, anjo n.º {i+1} dos 72 Nomes: {tema[0].lower()+tema[1:]}. Veja as datas em {s}, o coro e uma oração."
+    des = DES_ESPECIAL.get(n, des)   # 17/11/2026 (O-514/O-517): descrições com «quem é o anjo …» e o salmo
     tamanhos.append((len(tit), len(des)))
     ant, seg = ANJOS[(i + 71) % 72][0], ANJOS[(i + 1) % 72][0]
     ir = "".join(f'<a href="/anjo/{slug(ANJOS[k][0])}">{ANJOS[k][0]}</a>' for k in range(i // 6 * 6, i // 6 * 6 + 6) if k != i)
