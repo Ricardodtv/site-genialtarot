@@ -8,6 +8,12 @@
   }
  },
  "touro": {
+  "dia": {
+   "id": "5yB2BRSAm-M",
+   "t": "Horóscopo Diário Touro 17 e 18 Novembro",
+   "d": "2026-11-17T15:15:43Z",
+   "dur": "PT5M2S"
+  },
   "anual": {
    "id": "PBDNKmuCGjE",
    "t": "Previsão Anual 2026 Signo de Touro, 12 Meses",
@@ -72,6 +78,12 @@
   }
  },
  "capricornio": {
+  "dia": {
+   "id": "wx_ADMcOHA0",
+   "t": "Horóscopo Diário Capricórnio 17 e 18 Novembro",
+   "d": "2026-11-17T15:17:08Z",
+   "dur": "PT6M22S"
+  },
   "anual": {
    "id": "hrTjuSE8VmM",
    "t": "Previsão 2026 Signo Capricórnio, 12 Meses",
@@ -95,5 +107,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-17T09:00"
+ "_": "2026-11-17T15:18"
 }
