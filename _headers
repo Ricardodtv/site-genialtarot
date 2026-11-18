@@ -3,3 +3,11 @@
 # Vale para os ficheiros servidos directamente pelo Cloudflare (os .json não passam pelo worker).
 /*.json
   X-Robots-Tag: noindex
+
+# 18/11/2026 (ele): cabeçalhos de segurança nos ficheiros servidos directamente (as páginas que passam pelo worker levam-nos lá: comSeguranca).
+# Sem X-Frame-Options nem Permissions-Policy: o Consultório Virtual abre o site numa moldura do painel e usa microfone e câmara.
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: frame-ancestors 'self' https://*.genialtarot.com https://cerebro.tail5ae53.ts.net:8443 http://100.100.77.18:8768 http://100.100.77.18:8123

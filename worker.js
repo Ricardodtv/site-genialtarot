@@ -995,7 +995,7 @@ async function aniversariosNoHtml(url, env) {
   return rw.transform(r);
 }
 
-export default {
+const PRINCIPAL = {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
@@ -1632,6 +1632,29 @@ export default {
   async scheduled(evento, env, ctx) {
     ctx.waitUntil(avisoEnviar(env).catch(() => {}));
   },
+};
+
+// 18/11/2026 (ele: «avança com os cabeçalhos»): cabeçalhos de segurança em todas as respostas do worker.
+// O resto (ficheiros servidos directamente) leva-os pelo _headers. ⚠️ NÃO usar X-Frame-Options nem Permissions-Policy
+// fechada como no molde: o Consultório Virtual abre a sala do cliente DENTRO de uma moldura no painel do cerebro
+// (https://cerebro.tail5ae53.ts.net:8443) e usa microfone e câmara. Por isso a moldura controla-se só pelo
+// frame-ancestors, com o próprio site e os endereços do painel. Endereço novo do painel → acrescentar aqui e no _headers.
+const MOLDURA_OK = "frame-ancestors 'self' https://*.genialtarot.com https://cerebro.tail5ae53.ts.net:8443 http://100.100.77.18:8768 http://100.100.77.18:8123";
+const SEGURANCA = {
+  "Strict-Transport-Security": "max-age=31536000",
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+};
+function comSeguranca(r) {
+  if (!r || r.status === 101 || r.webSocket) return r;          // ligações de chat ao vivo: nunca mexer
+  const h = new Headers(r.headers), html = (h.get("content-type") || "").includes("text/html");
+  for (const [k, v] of Object.entries(SEGURANCA)) if (!h.has(k) && (html || k !== "X-Content-Type-Options")) h.set(k, v);
+  if (!h.has("Content-Security-Policy")) h.set("Content-Security-Policy", MOLDURA_OK);   // respeita as CSP próprias (ex.: ficheiros em sandbox)
+  return new Response(r.body, { status: r.status, statusText: r.statusText, headers: h });
+}
+export default {
+  ...PRINCIPAL,
+  async fetch(request, env, ctx) { return comSeguranca(await PRINCIPAL.fetch(request, env, ctx)); },
 };
 
 // ===== Web Analytics (o contador que vive nas paginas) =====
