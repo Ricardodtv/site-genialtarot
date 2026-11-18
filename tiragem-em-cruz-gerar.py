@@ -37,6 +37,8 @@ FAQ = [
      "Serve. A carta 1 mostra o que ajuda a relação, a 2 o que a trava, a 3 o que pode fazer e a 4 para onde vai. Se quer comparar o que você e a outra pessoa pensam e sentem, o Templo de Afrodite foi feito para isso."),
     ("Posso repetir a tiragem se não gostar da resposta?",
      "Pode, mas a leitura perde força. Muitos tarólogos aconselham esperar uns dias antes de voltar à mesma pergunta, ou mudá-la para algo que dependa mais de si."),
+    ("Como se tira o tarot em cruz de 5 cartas online?",
+     "Escreva a pergunta, carregue em «Tirar as minhas 5 cartas» e as cartas aparecem já na cruz: a favor à esquerda, contra à direita, o caminho em cima, o resultado em baixo e a síntese ao centro. Por baixo de cada uma fica o que ela quer dizer nessa posição."),
     ("A tiragem em cruz aqui é mesmo grátis?",
      "É. As cartas são baralhadas no seu aparelho, não precisa de se registar e a tiragem não fica guardada."),
 ]
@@ -190,7 +192,7 @@ PAGINA = f"""<!doctype html>
   </header>
   <section class="heroi">
     <div><span class="selo">✚ Tiragem em cruz ✦ 5 cartas</span></div>
-    <h1>A <span class="az">Tiragem em Cruz</span> de 5 cartas</h1>
+    <h1>O <span class="az">Tarot em Cruz</span>: 5 cartas grátis</h1>
     <p class="sub">Cinco cartas em cruz para uma pergunta concreta: o que joga a seu favor, o que pesa contra, o caminho a seguir e o resultado provável. Tire-as aqui, grátis, com o baralho do Mestre Alberto.</p>
     <img class="destaque" src="/tiragem-em-cruz.webp" alt="Tiragem em cruz com o baralho do Mestre Alberto: Três de Paus à esquerda, Dez de Paus à direita, A Temperança em cima, Seis de Paus em baixo e O Carro ao centro" width="1200" height="675" fetchpriority="high" />
     <div class="botoes"><a class="btn ouro" href="#tirar">✨ Tirar as minhas 5 cartas</a><a class="btn" href="#como-se-faz">Como se faz</a></div>
@@ -230,7 +232,7 @@ PAGINA = f"""<!doctype html>
   </section>
 
   <section class="cartao" id="tirar">
-    <h2>A sua <span class="az">tiragem em cruz</span>, grátis</h2>
+    <h2>Tire o seu <span class="az">tarot em cruz</span> de 5 cartas, grátis</h2>
     <p class="sub" style="text-align:center">Pense na sua pergunta. Quando estiver pronta ou pronto, carregue no botão: as cartas do baralho do Mestre Alberto são baralhadas e cinco viram na cruz.</p>
     <div class="cruz" id="mesa">{LUGARES}</div>
     <label class="metodo"><input type="checkbox" id="antigo"><span>Método antigo: só os 22 Arcanos Maiores, com a carta do centro calculada pela soma das outras quatro.</span></label>

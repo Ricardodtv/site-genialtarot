@@ -414,7 +414,7 @@ def pagina_terapeutico():
     </ul>
     <h2>Como é uma leitura com esta intenção</h2>
     <p>Numa consulta, começamos pela pergunta. Não precisa de ser bonita nem certa: «sinto-me preso no trabalho e não sei porquê» chega. Tiro as cartas e, antes de dizer o que eu leio nelas, pergunto-lhe muitas vezes o que vê. O que lhe salta à vista na imagem? Que sentimento lhe desperta? É dessa troca, entre o que as cartas mostram e o que a pessoa reconhece, que nasce a leitura.</p>
-    <p>Uma tiragem simples, como as <a href="/tiragem-tres-cartas">três cartas</a> (o que pesa, o que ajuda, o próximo passo), costuma chegar. Para temas grandes, a <a href="/tiragem-cruz-celta">Cruz Celta</a> dá mais espaço. Pode experimentar sozinho no <a href="/tarot-gratis">Tarot Grátis</a> e levar as cartas que lhe saíram para a consulta.</p>
+    <p>Uma tiragem simples, como as <a href="/tiragem-tres-cartas">três cartas</a> (o que pesa, o que ajuda, o próximo passo), costuma chegar. Para uma decisão concreta há o <a href="/tiragem-em-cruz">tarot em cruz de 5 cartas</a>. Para temas grandes, a <a href="/tiragem-cruz-celta">Cruz Celta</a> dá mais espaço. Pode experimentar sozinho no <a href="/tarot-gratis">Tarot Grátis</a> e levar as cartas que lhe saíram para a consulta.</p>
     <h2>O que o tarot terapêutico não é</h2>
     <p>Não é psicoterapia. Um psicólogo tem uma formação clínica, segue métodos comprovados e acompanha a pessoa ao longo do tempo; um tarólogo não faz isso, e eu não faço de conta que faço. O tarot também não cura doenças, não resolve sozinho um luto nem tira uma depressão. O que pode fazer é ajudar a pensar, acolher e dar coragem para dar o passo seguinte, que às vezes é precisamente pedir ajuda a um profissional de saúde.</p>
     {NOTA_SAUDE}
