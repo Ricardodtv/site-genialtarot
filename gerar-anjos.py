@@ -96,10 +96,21 @@ TIT_ESPECIAL = {"Hariel": "Anjo da Guarda Hariel: purificação, datas e oraçã
                 "Yeiazel": "Anjo Yeiazel: o anjo do consolo, datas e oração",   # 15/11/2026 (O-461): «anjo yeiazel» pos. 7
                 "Lecabel": "Anjo Lecabel: o anjo do talento, datas e oração",   # 16/11/2026 (ronda SEO): «anjo lecabel» pos. 9,4, 0 cliques
                 "Haamiah": "Oração ao Anjo Haamiah: o anjo do ritual diário e datas",   # 16/11/2026 (ronda SEO): «anjo haamiah oração» pos. 8; o padrão dava «Oração, datas e oração»
-                "Caliel": "Anjo Caliel: o anjo da justiça e da verdade, datas e oração"}   # 17/11/2026 (O-517): «anjo caliel» pos. 8,8, 0 cliques
-H2_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel", "Caliel": "Quem é o anjo Caliel", "Lecabel": "Quem é o anjo Lecabel", "Haamiah": "Quem é o anjo Haamiah"}   # + 16/11/2026   # 15/11/2026 (O-461): a pesquisa real num H2
+                "Caliel": "Anjo Caliel: o anjo da justiça e da verdade, datas e oração",   # 17/11/2026 (O-517): «anjo caliel» pos. 8,8, 0 cliques
+                # 18/11/2026 (O-523/O-524/O-526/O-530): aparições e 0 cliques — «quem é o anjo» e a qualidade no título
+                "Yeialel": "Anjo Yeialel: o anjo da força mental, datas e oração",   # «anjo yeialel» pos. 10
+                "Melahel": "Anjo da Guarda Melahel: o anjo do cuidado, datas e oração",   # «melahel anjo da guarda»
+                "Vehuel": "Anjo Vehuel: o anjo da elevação e da humildade, datas e oração",   # «anjo vehuel (oração)» pos. 8-11
+                "Leuviah": "Anjo Leuviah (Lauviah): memória e alegria, datas e oração"}   # «anjo leuviah» pos. 5, «anjo lauviah» pos. 10
+H2_ESPECIAL = {"Yeialel": "Quem é o anjo Yeialel", "Melahel": "Quem é o anjo Melahel", "Vehuel": "Quem é o anjo Vehuel", "Leuviah": "Quem é o anjo Leuviah", "Yeiazel": "Quem é o anjo Yeiazel", "Caliel": "Quem é o anjo Caliel", "Lecabel": "Quem é o anjo Lecabel", "Haamiah": "Quem é o anjo Haamiah"}   # + 16/11/2026   # 15/11/2026 (O-461): a pesquisa real num H2
 DES_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel, n.º 40 dos 72 Nomes: o anjo do consolo. As datas em Balança, o salmo, o coro e uma oração para os dias tristes.",
-               "Caliel": "Quem é o anjo Caliel, n.º 18 dos 72 Nomes: o anjo da justiça. As datas em Gémeos, o salmo, o coro e uma oração para a verdade vir ao de cima."}
+               "Caliel": "Quem é o anjo Caliel, n.º 18 dos 72 Nomes: o anjo da justiça. As datas em Gémeos, o salmo, o coro e uma oração para a verdade vir ao de cima.",
+               # 18/11/2026 (O-523..O-530)
+               "Yeialel": "Quem é o anjo Yeialel, n.º 58 dos 72 Nomes: o anjo da força mental. As datas em Capricórnio, o salmo, o coro e uma oração para acalmar a mente.",
+               "Melahel": "Quem é o anjo da guarda Melahel, n.º 23 dos 72 Nomes: o anjo do cuidado. As datas em Caranguejo, o salmo, o coro e uma oração pelo corpo e a casa.",
+               "Haamiah": "Uma oração ao anjo Haamiah para rezar todos os dias: quem é o n.º 38 dos 72 Nomes, as datas em Balança, o salmo 91 e o coro.",
+               "Vehuel": "Quem é o anjo Vehuel, n.º 49 dos 72 Nomes: o anjo da elevação. As datas em Sagitário, o salmo, o coro e uma oração para crescer com humildade.",
+               "Leuviah": "Quem é o anjo Leuviah (ou Lauviah), n.º 19 dos 72 Nomes: memória e alegria. As datas em Caranguejo, o salmo, o coro e uma oração."}
 AVISO = ('<p><small>Os 72 anjos pertencem à tradição da Cabala e da angelologia, não à doutrina da Igreja, que desaconselha dar aos anjos nomes além de Miguel, Gabriel e Rafael. '
          'Quem segue a fé católica pode rezar ao seu <a href="/anjo-da-guarda">Anjo da Guarda</a> sem lhe saber o nome. É uma leitura simbólica: não promete resultados nem substitui o médico ou outros profissionais.</small></p>')
 tamanhos = []
