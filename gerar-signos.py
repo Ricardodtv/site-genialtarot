@@ -696,7 +696,14 @@ if os.path.exists("compat-textos-a.py") and os.path.exists("compat-textos-b.py")
     <p>Tem dúvidas sobre a sua relação? <a href="/tarot-do-amor">Tarot do Amor</a> · <a href="{WA}">Falar com o Mestre Alberto</a></p>
   </section>
 """
-        pagina(cslug(i, j), c["titulo"], c["desc"], f"{SITE}/signos/{SIGIMG[i]}", [("Compatibilidade entre signos", "/compatibilidade-entre-signos")], corpo)
+        # 19/11/2026 (pedido dele, aba Google «aparecem mas quase ninguém entra»): título com a pergunta da pesquisa e a nota
+        # de afinidade que a página mostra (♥ 1–5); descrição a prometer o que a página tem. O titulos-brasil.py junta (Áries) etc.
+        _br = lambda x: {"Carneiro": "Carneiro (Áries)", "Gémeos": "Gémeos (Gêmeos)", "Caranguejo": "Caranguejo (Câncer)", "Balança": "Balança (Libra)"}.get(x, x)
+        _tit = (f"{a['pt']} com {a['pt']} combina? Nota {c['nota']}/5 no amor" if i == j else f"{a['pt']} e {b['pt']} combinam? Nota {c['nota']}/5 no amor")
+        _par = f"{_br(a['pt'])} com {a['pt']}" if i == j else f"{_br(a['pt'])} e {_br(b['pt'])}"
+        _des = f"{_par}: afinidade {c['nota']} em 5. Como se dão no amor e na amizade, onde vão discutir e o conselho do Mestre Alberto para ficarem bem."
+        if len(_des) > 158: _des = f"{_par}: afinidade {c['nota']} em 5. O amor, a amizade, onde vão discutir e o conselho do Mestre Alberto."
+        pagina(cslug(i, j), _tit, _des, f"{SITE}/signos/{SIGIMG[i]}", [("Compatibilidade entre signos", "/compatibilidade-entre-signos")], corpo)
     grelha = "".join(f'<section class="cartao" style="margin-bottom:1rem"><h2>{GLIFO[i]}︎ {E(nm(S[i]))}</h2><div class="ligas">' + "".join(f'<a href="/{cslug(i, k)}">{E(S[i]["pt"])} e {E(S[k]["pt"])}</a>' for k in range(12)) + "</div></section>" for i in range(12))
     corpo = f"""  <section class="heroi"><h1><span class="az">Compatibilidade entre Signos</span></h1>
     <p class="sub">Os 78 pares do zodíaco: como se dão no amor e na amizade, os desafios e o conselho para cada casal.</p></section>
@@ -955,7 +962,8 @@ if os.path.exists("horoscopo-2027-textos.py"):
     <h2>2027 nos outros signos</h2><div class="ligas">{"".join(f'<a href="/horoscopo-2027-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div>
     <a class="cta" href="{WA}">Falar com o Mestre Alberto</a></section>
 """
-        pagina(f"horoscopo-2027-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{SIGIMG[i]}", [("Horóscopo 2027", "/horoscopo-2027")], corpo)
+        # 19/11/2026 (pedido dele): «amor, dinheiro e trabalho» não dava motivo para clicar; o número de datas-chave é o da lista da página
+        pagina(f"horoscopo-2027-{s0['slug']}", next(x for x in (f"Horóscopo 2027 {nm(s0)}: amor, dinheiro e {len(t['datas'])} datas-chave", f"Horóscopo 2027 {nm(s0)}: amor, dinheiro e datas-chave", f"Horóscopo 2027 {s0['pt']}: amor, dinheiro e {len(t['datas'])} datas-chave") if len(x) <= 65), t["desc"], f"{SITE}/signos/{SIGIMG[i]}", [("Horóscopo 2027", "/horoscopo-2027")], corpo)
     grelha = "".join(f'<a href="/horoscopo-2027-{x["slug"]}"><img src="/signos/{SIGIMG[j]}" alt="" width="58" height="58" loading="lazy"><span><b>{GLIFO[j]}︎ {E(nm(x))}</b><small>{E(H7[j]["resumo"][:90])}</small></span></a>' for j, x in enumerate(S))
     pagina("horoscopo-2027", "Horóscopo 2027: as previsões para os 12 signos", "O horóscopo de 2027 para os 12 signos — amor, dinheiro e trabalho — com o céu real do ano: Júpiter em Virgem, Saturno em Carneiro e o grande eclipse de agosto.", SITE + "/og-image.jpg", [],
            f"""  <section class="heroi"><h1><span class="az">Horóscopo 2027</span></h1><p class="sub">O ano de cada signo, com o céu real de 2027: Júpiter de Leão para Virgem, Saturno em Carneiro e o eclipse total do Sol de 2 de agosto.</p></section>

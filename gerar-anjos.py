@@ -4,6 +4,7 @@
 import datetime, html, importlib.util, json, math, os, re
 AQUI = os.path.dirname(os.path.abspath(__file__)); os.chdir(AQUI)
 _s = importlib.util.spec_from_file_location("t", "anjos-textos.py"); _m = importlib.util.module_from_spec(_s); _s.loader.exec_module(_m)
+_s2 = importlib.util.spec_from_file_location("t2", "anjos-mais-textos.py"); _m2 = importlib.util.module_from_spec(_s2); _s2.loader.exec_module(_m2); _MAIS = _m2.MAIS   # 19/11/2026: o salmo de cada anjo, para o título
 ANJOS = _m.ANJOS
 BASE = open("anjo-da-guarda.html", encoding="utf8").read()
 HEAD = BASE.split("</head>")[0]
@@ -116,10 +117,20 @@ AVISO = ('<p><small>Os 72 anjos pertencem à tradição da Cabala e da angelolog
 tamanhos = []
 for i, (n, tema, ped, txt, gesto, ora) in enumerate(ANJOS):
     s, g, sl = SIG[i // 6]; coro = COROS[i // 8]; g0 = (i % 6) * 5
-    tit = f"Anjo {n}: {tema}, datas e oração"
-    tit = TIT_ESPECIAL.get(n, tit)   # 14/11/2026 (O-422): títulos com a pesquisa real
-    des = f"{n}, anjo n.º {i+1} dos 72 Nomes: {tema[0].lower()+tema[1:]}. Veja as datas em {s}, o coro e uma oração para {ped}."
-    if len(des) > 158: des = f"{n}, anjo n.º {i+1} dos 72 Nomes: {tema[0].lower()+tema[1:]}. Veja as datas em {s}, o coro e uma oração."
+    # 19/11/2026 (pedido dele, aba Google «aparecem na 1.ª página mas quase ninguém entra»): o título dizia o que a página
+    # é mas não dava motivo para clicar. Agora promete o que a página tem: a oração, o salmo (anjos-mais-textos.py) e as
+    # datas, que dizem se é o anjo de quem pesquisa. Os de TIT_ESPECIAL (mexidos 14–17/11, a medir ~03/12) ficam como estavam.
+    _ma = _MAIS[n]; sal = _ma["cv"].split(":")[0] if _ma["livro"] == "Salmos" else None
+    if n in TIT_ESPECIAL:
+        tit = TIT_ESPECIAL[n]
+        des = f"{n}, anjo n.º {i+1} dos 72 Nomes: {tema[0].lower()+tema[1:]}. Veja as datas em {s}, o coro e uma oração para {ped}."
+        if len(des) > 158: des = f"{n}, anjo n.º {i+1} dos 72 Nomes: {tema[0].lower()+tema[1:]}. Veja as datas em {s}, o coro e uma oração."
+    else:
+        tit = f"Anjo {n}: oração, Salmo {sal} e se é o seu anjo da guarda" if sal else f"Anjo {n}: a oração e se é o seu anjo da guarda"
+        _sl = f", o Salmo {sal}" if sal else ""
+        des = f"É o seu anjo se faz anos de {periodo(i)}. A oração a {n} para {ped}{_sl}, o coro e um gesto simples para hoje."
+        if len(des) > 158: des = f"É o seu anjo se faz anos de {periodo(i)}. A oração a {n} para {ped}{_sl} e um gesto para hoje."
+        if len(des) > 158: des = f"É o seu anjo se faz anos de {periodo(i)}. A oração a {n}{_sl}, o coro e um gesto simples para hoje."
     des = DES_ESPECIAL.get(n, des)   # 17/11/2026 (O-514/O-517): descrições com «quem é o anjo …» e o salmo
     tamanhos.append((len(tit), len(des)))
     ant, seg = ANJOS[(i + 71) % 72][0], ANJOS[(i + 1) % 72][0]
