@@ -94,6 +94,8 @@ h2 { font-family: var(--serifa); font-weight: 600; font-size: 24px; color: var(-
 .btn { display: inline-block; background: linear-gradient(135deg, oklch(0.88 0.12 90), oklch(0.72 0.16 75)); color: #1a0d26; border: 0;
   border-radius: 14px; padding: 13px 22px; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; }
 .btn.sec { background: none; color: var(--suave); border: 1px solid var(--linha); font-weight: 500; padding: 9px 14px; font-size: 15px; }
+.convite { margin-top: 16px; padding: 14px 16px; border: 1px solid var(--ouro); border-radius: 14px; background: oklch(0.30 0.08 300 / 0.55); }
+.convite p { font-family: var(--serifa); font-size: 19px; line-height: 1.35; margin-bottom: 10px; }
 .aviso-ok { color: oklch(0.80 0.15 150); font-weight: 600; }
 .breve { color: var(--suave); font-size: 15px; margin-top: 8px; }
 .caminhos { display: grid; gap: 10px; }
@@ -132,6 +134,12 @@ h2 { font-family: var(--serifa); font-weight: 600; font-size: 24px; color: var(-
           <img id="carta-img" src="/cartas/verso-gt.webp" alt="Verso da carta" width="130" height="216" />
         </div>
         <div class="carta-txt" id="carta-txt"><p class="frase">Toque na carta para a virar.</p><p class="breve">É a mesma o dia todo. Amanhã sai outra.</p></div>
+      </div>
+      <!-- 19/11/2026 (O-559): o pedido do aviso logo a seguir a virar a carta, quando a pessoa está mais envolvida -->
+      <div class="convite" id="convite" hidden>
+        <p>Quer que lhe lembre a carta de amanhã às 8h?</p>
+        <button class="btn" id="convite-sim">Sim, às 8h</button> <button class="btn sec" id="convite-nao">Agora não</button>
+        <p class="breve" id="convite-estado" style="font-family:inherit;font-size:15px;margin:8px 0 0"></p>
       </div>
     </div>
 
@@ -264,6 +272,7 @@ h2 { font-family: var(--serifa); font-weight: 600; font-size: 24px; color: var(-
       $("carta-txt").innerHTML = '<div class="rot">' + A[n][1] + " · Arcano Maior</div><h3>" + ARC[n] + '</h3><p class="frase">' + DIA_CARTA[n] +
         '</p><a class="mais" href="/' + A[n][3].replace(".html", "") + '">O que diz ' + ARC[n] + " →</a>";
       var dd = E.dias[hoje] = E.dias[hoje] || {}; if (dd.c == null) { dd.c = n; gravar(); } contas();
+      if (devagar === true) setTimeout(convite, 700);
     };
     $("carta").classList.remove("virada"); $("carta-img").src = "/cartas/verso-gt.webp"; $("carta-img").alt = "Verso da carta";
     if (d.c != null) virar(); else { $("carta").onclick = function () { virar(true); };
@@ -309,10 +318,10 @@ h2 { font-family: var(--serifa); font-weight: 600; font-size: 24px; color: var(-
     if (E.aviso) navigator.serviceWorker && navigator.serviceWorker.getRegistration("/o-meu-dia").then(function (r) { return r && r.pushManager.getSubscription(); })
       .then(function (sub) { if (sub) enviar("assinar", sub); }).catch(function () {});
   }
-  function enviar(o, sub) {
+  function enviar(o, sub, origem) {
     var tz = ""; try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
     return fetch("/api/aviso/" + o, { method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ endpoint: sub.endpoint, signo: E.signo, tz: tz }) }).then(function (r) { if (!r.ok) throw r.status; return r.json(); });
+      body: JSON.stringify({ endpoint: sub.endpoint, signo: E.signo, tz: tz, origem: origem || "" }) }).then(function (r) { if (!r.ok) throw r.status; return r.json(); });
   }
   function estadoAviso() {
     if (!temPush) {
@@ -328,17 +337,30 @@ h2 { font-family: var(--serifa); font-weight: 600; font-size: 24px; color: var(-
       $("aviso-estado").innerHTML = sub ? '<span class="aviso-ok">✓ Aviso ligado.</span> Todas as manhãs às 8h, na hora do seu país.' : "";
     }).catch(function () {});
   }
-  $("aviso-sim").onclick = function () {
-    $("aviso-estado").textContent = "A ligar…";
+  // o convite depois de virar a carta: só se o navegador recebe avisos, ainda não está ligado
+  // e a pessoa não disse «agora não» nos últimos 7 dias. Hábito sim, pressão não.
+  function convite() {
+    if (!temPush || Notification.permission === "denied" || E.aviso) return;
+    if (E.conviteNao && Date.now() - E.conviteNao < 7 * 864e5) return;
+    navigator.serviceWorker.getRegistration("/o-meu-dia").then(function (r) { return r && r.pushManager.getSubscription(); }).then(function (sub) {
+      if (!sub) $("convite").hidden = false;
+    }).catch(function () {});
+  }
+  $("convite-nao").onclick = function () { E.conviteNao = Date.now(); gravar(); $("convite").hidden = true; };
+  $("convite-sim").onclick = function () { ligar("carta", $("convite-estado")); };
+  $("aviso-sim").onclick = function () { ligar("bloco", $("aviso-estado")); };
+  function ligar(origem, est) {
+    est.textContent = "A ligar…";
     Notification.requestPermission().then(function (p) {
       if (p !== "granted") throw "recusado";
       return reg().then(function () { return navigator.serviceWorker.ready; });
     }).then(function (r) {
       return r.pushManager.getSubscription().then(function (s) { return s || r.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64(VAPID) }); });
-    }).then(function (sub) { guardarSignoParaAviso(); return enviar("assinar", sub); })
-      .then(function () { E.aviso = 1; gravar(); estadoAviso(); })
-      .catch(function (e) { $("aviso-estado").textContent = e === "recusado" ? "Sem autorização do navegador não consigo avisar. Pode mudar isso nas definições do site." : "Não consegui ligar o aviso agora. Tente daqui a pouco."; });
-  };
+    }).then(function (sub) { guardarSignoParaAviso(); return enviar("assinar", sub, origem); })
+      .then(function () { E.aviso = 1; gravar(); estadoAviso();
+        if (origem === "carta") { $("convite").innerHTML = '<p class="aviso-ok" style="font-family:inherit;font-size:16px;margin:0">✓ Combinado. Amanhã às 8h, na hora do seu país, a sua carta espera por si.</p>'; } })
+      .catch(function (e) { est.textContent = e === "recusado" ? "Sem autorização do navegador não consigo avisar. Pode mudar isso nas definições do site." : "Não consegui ligar o aviso agora. Tente daqui a pouco."; });
+  }
   $("aviso-nao").onclick = function () {
     navigator.serviceWorker.getRegistration("/o-meu-dia").then(function (r) { return r && r.pushManager.getSubscription(); }).then(function (sub) {
       if (!sub) return; return enviar("sair", sub).catch(function () {}).then(function () { return sub.unsubscribe(); });

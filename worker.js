@@ -3019,7 +3019,7 @@ const AVISO_HORA = 8;
 
 function avisoConta(env, evento, n, extra) {
   try { if (env.VISITAS) env.VISITAS.writeDataPoint({ indexes: ["/aviso-" + evento], doubles: [n || 0, (extra && extra.falhas) || 0, (extra && extra.removidos) || 0, (extra && extra.lote) || 0],
-    blobs: ["/aviso-" + evento, "", (extra && extra.pais) || "", "", "aviso", evento, "", "", (extra && extra.signo != null) ? String(extra.signo) : ""] }); } catch (e) {}
+    blobs: ["/aviso-" + evento, (extra && extra.origem) || "", (extra && extra.pais) || "", "", "aviso", evento, "", "", (extra && extra.signo != null) ? String(extra.signo) : ""] }); } catch (e) {}
 }
 
 async function avisoChave(endpoint) {
@@ -3063,7 +3063,8 @@ async function avisoRota(request, url, env) {
   const m = (velho && velho.metadata) || {};
   const meta = { e: ep.href, s, z, m: Number.isInteger(m.m) ? m.m : Math.floor(Math.random() * 60), d: m.d || new Date().toISOString().slice(0, 10) };
   await env.CAPTURAS.put(chave, "1", { metadata: meta });
-  if (!velho || velho.value == null) avisoConta(env, "assinar", 1, { pais, signo: s });
+  // 19/11/2026 (O-559): de onde veio o «sim» (carta = convite depois de virar a carta, bloco = botão de baixo) vai no blob2
+  if (!velho || velho.value == null) avisoConta(env, "assinar", 1, { pais, signo: s, origem: ["carta", "bloco"].includes(d.origem) ? d.origem : "" });
   return J({ ok: true });
 }
 
