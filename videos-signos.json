@@ -1,11 +1,5 @@
 {
  "carneiro": {
-  "dia": {
-   "id": "EQ5327zeEPw",
-   "t": "ÁRIES (CARNEIRO) HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
-   "d": "2026-11-17T15:14:12Z",
-   "dur": "PT6M30S"
-  },
   "anual": {
    "id": "sYvV52nILsg",
    "t": "2026 Carneiro: Tarot Revela Seu Destino Mensal",
@@ -14,12 +8,6 @@
   }
  },
  "touro": {
-  "dia": {
-   "id": "5yB2BRSAm-M",
-   "t": "Horóscopo Diário Touro 17 e 18 Novembro",
-   "d": "2026-11-17T15:15:43Z",
-   "dur": "PT5M2S"
-  },
   "anual": {
    "id": "PBDNKmuCGjE",
    "t": "Previsão Anual 2026 Signo de Touro, 12 Meses",
@@ -28,12 +16,6 @@
   }
  },
  "gemeos": {
-  "dia": {
-   "id": "eB6e_IqHGHI",
-   "t": "GÊMEOS (GÉMEOS) HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
-   "d": "2026-11-17T15:16:00Z",
-   "dur": "PT8M52S"
-  },
   "anual": {
    "id": "EdzVicTufXw",
    "t": "Previsão Anual 2026 Signo Gémeos, 12 Meses",
@@ -42,12 +24,6 @@
   }
  },
  "caranguejo": {
-  "dia": {
-   "id": "W42mRvG52ho",
-   "t": "Horóscopo Diário Caranguejo (Câncer) 17 e 18 Novembro",
-   "d": "2026-11-17T15:18:37Z",
-   "dur": "PT8M17S"
-  },
   "anual": {
    "id": "G_Ox4x7wl_M",
    "t": "Signo Caranguejo Previsão anual 2026 Todos os Meses",
@@ -56,12 +32,6 @@
   }
  },
  "leao": {
-  "dia": {
-   "id": "mW4bHJGnGLA",
-   "t": "LEÃO HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
-   "d": "2026-11-17T15:18:41Z",
-   "dur": "PT8M48S"
-  },
   "anual": {
    "id": "dto1ayURroc",
    "t": "Previsão 2026 Signo Leão Todos os meses",
@@ -70,12 +40,6 @@
   }
  },
  "virgem": {
-  "dia": {
-   "id": "x70V0093y7M",
-   "t": "VIRGEM HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
-   "d": "2026-11-17T15:18:45Z",
-   "dur": "PT6M52S"
-  },
   "anual": {
    "id": "S63ep0UfuI0",
    "t": "Previsão Anual 2026, Signo Virgem Todos os Signos",
@@ -126,12 +90,6 @@
   }
  },
  "capricornio": {
-  "dia": {
-   "id": "wx_ADMcOHA0",
-   "t": "Horóscopo Diário Capricórnio 17 e 18 Novembro",
-   "d": "2026-11-17T15:18:29Z",
-   "dur": "PT6M22S"
-  },
   "anual": {
    "id": "hrTjuSE8VmM",
    "t": "Previsão 2026 Signo Capricórnio, 12 Meses",
@@ -167,5 +125,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-17T17:33"
+ "_": "2026-11-19T08:04"
 }
