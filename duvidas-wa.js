@@ -26,7 +26,7 @@
     '<a class="dwa-balao" href="' + WA + '" target="_blank" rel="noopener"><b>Tire as suas Dúvidas</b>Fale comigo no WhatsApp' +
     '<button type="button" class="dwa-x" aria-label="Fechar">×</button></a>') +
     '<a class="dwa-bola" href="' + WA + '" target="_blank" rel="noopener" aria-label="Tire as suas Dúvidas pelo WhatsApp">' +
-    '<img src="/mestre-fafe.jpg" alt="" width="62" height="62"><span>✆</span></a>';
+    '<img src="/mestre-wa-v2.jpg" alt="" width="62" height="62"><span>✆</span></a>';
   var x = d.querySelector(".dwa-x");
   if (x) x.onclick = function (e) { e.preventDefault(); e.stopPropagation(); x.parentNode.style.display = "none"; try { sessionStorage.setItem("dwaFechado", "1"); } catch (er) {} };
   function por() {
