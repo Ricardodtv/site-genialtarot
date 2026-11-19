@@ -609,7 +609,7 @@ if os.path.exists("arcanos-menores-textos.py"):
     corpo = f"""  <section class="heroi"><h1><span class="az">Os 56 Arcanos Menores</span></h1>
     <p class="sub">As cartas do dia a dia: os quatro naipes do Tarot e o que cada carta diz no amor, no trabalho e invertida.</p></section>
   {blocos}
-  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/arcanos">Os 22 Arcanos Maiores</a><a href="/tarot-gratis">🃏 Tarot Grátis</a><a href="/tarot-por-tema">Tarot por tema</a></div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/arcanos">Os 22 Arcanos Maiores</a><a href="/tarot-gratis">🃏 Tarot Grátis</a><a href="/tarot-por-tema">Tarot por tema</a><a href="/combinacoes-de-tarot">Combinações de Tarot</a></div></section>
 """
     open("arcanos-menores.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
     print(len(MEN), "arcanos menores + /arcanos-menores")
@@ -763,7 +763,7 @@ if os.path.exists("chines-tarot-textos.py"):
   <section class="cartao texto"><p>{E(t['intro'])}</p><h2>As posições</h2><ul>{pos}</ul><h2>Como se faz</h2><p>{E(t['como'])}</p>
     <h2>Quando usar</h2><p>{E(t['quando'])}</p><h2>Um exemplo</h2><p>{E(t['exemplo'])}</p></section>
   <section class="cartao" style="text-align:center"><a class="cta" href="/tarot-gratis">Fazer uma tiragem grátis</a>
-    <h2 style="margin-top:1.2rem">Outras tiragens</h2><div class="ligas">{"".join(f'<a href="/{x["slug"]}">{E(x["nome"])}</a>' for x in CT["TIRAGENS"] if x is not t)}<a href="/arcanos">Os Arcanos Maiores</a><a href="/arcanos-menores">Os Arcanos Menores</a></div></section>
+    <h2 style="margin-top:1.2rem">Outras tiragens</h2><div class="ligas">{"".join(f'<a href="/{x["slug"]}">{E(x["nome"])}</a>' for x in CT["TIRAGENS"] if x is not t)}<a href="/arcanos">Os Arcanos Maiores</a><a href="/arcanos-menores">Os Arcanos Menores</a><a href="/combinacoes-de-tarot">Combinações de Tarot</a></div></section>
 """
         pagina(t["slug"], t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Tarot por tema", "/tarot-por-tema")], corpo)
     print("12 animais chineses + 12 signos no Tarot +", len(CT["TIRAGENS"]), "tiragens")
@@ -864,7 +864,7 @@ def junta(f, marca, bloco):
         s = s.replace("<footer>", bloco + "\n<footer>", 1); open(f, "w", encoding="utf-8").write(s)
 L = lambda pares: "".join(f'<a href="/{a}">{E(b)}</a>' for a, b in pares if os.path.exists(a + ".html"))
 junta("signos-do-zodiaco.html", "compatibilidade-entre-signos", '<section class="cartao" style="text-align:center"><h2>Mais astrologia</h2><div class="ligas">' + L([("compatibilidade-entre-signos", "Compatibilidade entre signos"), ("signos-que-combinam", "Signos que combinam"), ("datas-dos-signos", "Datas dos signos"), ("aniversarios", "Quem faz anos hoje"), ("horoscopo-semanal", "Horóscopo semanal"), ("alinhamento-dos-planetas", "Alinhamento dos planetas"), ("astrologia-vedica", "Astrologia Védica"), ("signos-2026", "Signos 2026"), ("melhores-signos-2027", "Melhores signos 2027"), ("astrologia", "Astrologia hoje"), ("lua-azul", "Lua Azul"), ("cor-do-ano-2027", "Cor do Ano 2027"), ("horoscopo-chines", "Horóscopo Chinês"), ("elemento-fogo", "Os 4 elementos"), ("signos-cardinais", "Cardinais, fixos e mutáveis"), ("casa-1", "As 12 casas"), ("planeta-sol", "Os planetas"), ("astrologia-sideral", "Astrologia sideral"), ("astrologia-horaria", "Astrologia horária"), ("stellium-astrologia", "Stellium"), ("quiron-astrologia", "Quíron"), ("astrologia-sistemica", "Astrologia sistémica")]) + "".join(f'<a href="/{x}-no-tarot">{GLIFO[j]}︎ {E(S[j]["pt"])} no Tarot</a>' for j, x in enumerate(s0["slug"] for s0 in S) if os.path.exists(f"{x}-no-tarot.html")) + "</div></section>")
-junta("tarot-por-tema.html", "tiragem-", '<section class="cartao" style="text-align:center"><h2>Mais Tarot</h2><div class="ligas">' + L([("arcanos", "Os 22 Arcanos Maiores"), ("arcanos-menores", "Os 56 Arcanos Menores"), ("tiragem-tres-cartas", "Tiragem de 3 cartas"), ("cartas-do-tarot-amor", "As cartas do amor"), ("cartas-do-tarot-sim-ou-nao", "Sim ou não"), ("historias-e-lendas", "Histórias e Lendas"), ("parabolas", "Parábolas")]) + "</div></section>")
+junta("tarot-por-tema.html", "tiragem-", '<section class="cartao" style="text-align:center"><h2>Mais Tarot</h2><div class="ligas">' + L([("arcanos", "Os 22 Arcanos Maiores"), ("arcanos-menores", "Os 56 Arcanos Menores"), ("combinacoes-de-tarot", "Combinações de Tarot"), ("tiragem-tres-cartas", "Tiragem de 3 cartas"), ("cartas-do-tarot-amor", "As cartas do amor"), ("cartas-do-tarot-sim-ou-nao", "Sim ou não"), ("historias-e-lendas", "Histórias e Lendas"), ("parabolas", "Parábolas")]) + "</div></section>")
 print("montras ligadas")
 
 # ── Ronda 5 (31/10/2026): Parábolas de Jesus, Fábulas de Esopo, Contos tradicionais (mesmo molde das histórias)
