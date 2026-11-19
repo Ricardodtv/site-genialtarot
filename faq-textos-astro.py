@@ -173,6 +173,8 @@ FAQ = {
    "Sim. Na tradição, a Casa 7 é a casa do «outro» em todas as formas: o cônjuge, o sócio, a outra parte num contrato e até o adversário declarado, aquele que se conhece e enfrenta de frente. Os inimigos escondidos, esses, pertencem à Casa 12."),
  ],
  "casa-8": [
+  ("O que significa a Casa 8 no mapa astral?",
+   "É a casa do que se partilha a fundo com os outros: a intimidade, a confiança, o dinheiro comum e as heranças. Fala também das crises que obrigam a mudar e da força que se descobre depois delas. O signo e os planetas que lá estão mostram como você vive tudo isto."),
   ("A Casa 8 é a casa da morte?",
    "Na astrologia antiga era assim chamada, mas não prevê a morte de ninguém. Hoje lê-se sobretudo como a casa dos fins e dos recomeços: as crises que transformam, os ciclos que fecham e a força que se descobre depois. Nenhum planeta nesta casa é motivo de medo."),
   ("Qual é a casa das heranças no mapa astral?",
