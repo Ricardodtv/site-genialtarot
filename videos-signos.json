@@ -16,6 +16,12 @@
   }
  },
  "gemeos": {
+  "dia": {
+   "id": "f0URrFPJUkk",
+   "t": "GÊMEOS (GÉMEOS) HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
+   "d": "2026-11-19T10:57:21Z",
+   "dur": "PT5M23S"
+  },
   "anual": {
    "id": "EdzVicTufXw",
    "t": "Previsão Anual 2026 Signo Gémeos, 12 Meses",
@@ -24,6 +30,12 @@
   }
  },
  "caranguejo": {
+  "dia": {
+   "id": "PQGiFe8hBtg",
+   "t": "Horóscopo Diário Caranguejo (Câncer) 18 e 19 Novembro",
+   "d": "2026-11-19T10:57:24Z",
+   "dur": "PT4M"
+  },
   "anual": {
    "id": "G_Ox4x7wl_M",
    "t": "Signo Caranguejo Previsão anual 2026 Todos os Meses",
@@ -49,10 +61,10 @@
  },
  "balanca": {
   "dia": {
-   "id": "HU1yTEqzvWc",
-   "t": "LIBRA (BALANÇA) HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
-   "d": "2026-11-17T15:18:50Z",
-   "dur": "PT6M45S"
+   "id": "geigjs-G5cE",
+   "t": "LIBRA (BALANÇA) HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
+   "d": "2026-11-19T10:58:07Z",
+   "dur": "PT4M33S"
   },
   "anual": {
    "id": "_596jwAtBl0",
@@ -63,10 +75,10 @@
  },
  "escorpiao": {
   "dia": {
-   "id": "mheQeknwP3c",
-   "t": "ESCORPIÃO HORÓSCOPO DIÁRIO 17 e 18 Novembro | Mestre Alberto",
-   "d": "2026-11-17T15:18:56Z",
-   "dur": "PT6M58S"
+   "id": "njOtXOLNHvk",
+   "t": "ESCORPIÃO HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
+   "d": "2026-11-19T10:58:35Z",
+   "dur": "PT6M46S"
   },
   "anual": {
    "id": "vDhtOX8kixs",
@@ -77,10 +89,10 @@
  },
  "sagitario": {
   "dia": {
-   "id": "RgUfSJyf8yI",
-   "t": "Horóscopo Diário Sagitário 17 e 18 Novembro",
-   "d": "2026-11-17T15:19:00Z",
-   "dur": "PT5M30S"
+   "id": "SoFsGkK6ucQ",
+   "t": "Horóscopo Diário Sagitário 18 e 19 Novembro",
+   "d": "2026-11-19T10:58:01Z",
+   "dur": "PT4M33S"
   },
   "anual": {
    "id": "SPco2eROtps",
@@ -98,12 +110,6 @@
   }
  },
  "aquario": {
-  "dia": {
-   "id": "wfGjEu87tPM",
-   "t": "Horóscopo Diário Aquário 17 e 18 Novembro",
-   "d": "2026-11-17T15:19:05Z",
-   "dur": "PT5M9S"
-  },
   "anual": {
    "id": "iXnf_orBfDs",
    "t": "Previsão Anual 2026 Aquário 12 Meses",
@@ -113,10 +119,10 @@
  },
  "peixes": {
   "dia": {
-   "id": "7nirfHS9m1M",
-   "t": "Horóscopo Diário Peixes 17 e 18 Novembro",
-   "d": "2026-11-17T15:19:36Z",
-   "dur": "PT6M26S"
+   "id": "KVZa2EoQkOE",
+   "t": "Horóscopo Diário Peixes 18 e 19 Novembro",
+   "d": "2026-11-19T10:58:41Z",
+   "dur": "P0D"
   },
   "anual": {
    "id": "60VId99VP8Y",
@@ -125,5 +131,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-19T08:04"
+ "_": "2026-11-19T10:58"
 }
