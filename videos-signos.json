@@ -1,5 +1,11 @@
 {
  "carneiro": {
+  "dia": {
+   "id": "BcrdAG5gyoY",
+   "t": "ÁRIES (CARNEIRO) HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
+   "d": "2026-11-19T10:59:03Z",
+   "dur": "PT4M26S"
+  },
   "anual": {
    "id": "sYvV52nILsg",
    "t": "2026 Carneiro: Tarot Revela Seu Destino Mensal",
@@ -8,6 +14,12 @@
   }
  },
  "touro": {
+  "dia": {
+   "id": "1bTi5DlKdPU",
+   "t": "Horóscopo Diário Touro 18 e 19 Novembro",
+   "d": "2026-11-19T10:59:10Z",
+   "dur": "PT3M33S"
+  },
   "anual": {
    "id": "PBDNKmuCGjE",
    "t": "Previsão Anual 2026 Signo de Touro, 12 Meses",
@@ -44,6 +56,12 @@
   }
  },
  "leao": {
+  "dia": {
+   "id": "_w4ERwwVtPk",
+   "t": "LEÃO HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
+   "d": "2026-11-19T10:59:15Z",
+   "dur": "PT5M33S"
+  },
   "anual": {
    "id": "dto1ayURroc",
    "t": "Previsão 2026 Signo Leão Todos os meses",
@@ -52,6 +70,12 @@
   }
  },
  "virgem": {
+  "dia": {
+   "id": "j-v1cnqfkkk",
+   "t": "VIRGEM HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
+   "d": "2026-11-19T10:59:19Z",
+   "dur": "PT4M22S"
+  },
   "anual": {
    "id": "S63ep0UfuI0",
    "t": "Previsão Anual 2026, Signo Virgem Todos os Signos",
@@ -91,7 +115,7 @@
   "dia": {
    "id": "SoFsGkK6ucQ",
    "t": "Horóscopo Diário Sagitário 18 e 19 Novembro",
-   "d": "2026-11-19T10:58:01Z",
+   "d": "2026-11-19T10:58:59Z",
    "dur": "PT4M33S"
   },
   "anual": {
@@ -102,6 +126,12 @@
   }
  },
  "capricornio": {
+  "dia": {
+   "id": "ibFQDaRsloE",
+   "t": "Horóscopo Diário Capricórnio 18 e 19 Novembro",
+   "d": "2026-11-19T10:59:30Z",
+   "dur": "PT4M20S"
+  },
   "anual": {
    "id": "hrTjuSE8VmM",
    "t": "Previsão 2026 Signo Capricórnio, 12 Meses",
@@ -110,6 +140,12 @@
   }
  },
  "aquario": {
+  "dia": {
+   "id": "3Ur1-747CcE",
+   "t": "Horóscopo Diário Aquário 18 e 19 Novembro",
+   "d": "2026-11-19T10:59:38Z",
+   "dur": "PT3M48S"
+  },
   "anual": {
    "id": "iXnf_orBfDs",
    "t": "Previsão Anual 2026 Aquário 12 Meses",
@@ -121,8 +157,8 @@
   "dia": {
    "id": "KVZa2EoQkOE",
    "t": "Horóscopo Diário Peixes 18 e 19 Novembro",
-   "d": "2026-11-19T10:58:41Z",
-   "dur": "P0D"
+   "d": "2026-11-19T10:59:40Z",
+   "dur": "PT4M43S"
   },
   "anual": {
    "id": "60VId99VP8Y",
@@ -131,5 +167,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-19T10:58"
+ "_": "2026-11-19T11:03"
 }
