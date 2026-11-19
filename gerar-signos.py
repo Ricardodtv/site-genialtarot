@@ -822,7 +822,7 @@ if os.path.exists("historias-textos.py"):
   <section><div class="doze">{grelha}</div></section>
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/lendas-de-lisboa">🏰 Lendas de Lisboa</a><a href="/lendas-brasileiras">🇧🇷 Lendas Brasileiras</a><a href="/sexta-feira-13">🔢 Sexta-feira 13</a><a href="/parabolas">📖 Parábolas</a><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a><a href="/tarologo-fafe">📍 Fafe</a></div></section>
 """
-    pagina("historias-e-lendas", "Histórias e Lendas de Portugal: fé, tradição e sabedoria", "Lendas portuguesas e histórias de fé — a Justiça de Fafe, o Galo de Barcelos, o Milagre das Rosas, Fátima — contadas pelo Mestre Alberto.", SITE + "/og-image.jpg", [], corpo)
+    pagina("historias-e-lendas", "Mitos e Lendas de Portugal: histórias de fé e tradição", "Mitos e lendas de Portugal contados pelo Mestre Alberto: a Justiça de Fafe, o Galo de Barcelos, o Milagre das Rosas e a diferença entre mito e lenda.", SITE + "/og-image.jpg", [], corpo)
     s = open("parabolas.html", encoding="utf-8").read()
     if "historias-e-lendas" not in s:
         s = s.replace('<a href="/rezas-e-oracoes">🙏 Rezas e Orações</a>', '<a href="/historias-e-lendas">📜 Histórias e Lendas</a><a href="/rezas-e-oracoes">🙏 Rezas e Orações</a>', 1); open("parabolas.html", "w", encoding="utf-8").write(s)
