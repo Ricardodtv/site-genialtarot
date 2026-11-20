@@ -2257,9 +2257,13 @@ export class Sala extends DurableObject {
   limpar(agora) {
     if (this.ultimaLimpeza && agora - this.ultimaLimpeza < 600000) return;
     this.ultimaLimpeza = agora;
-    this.sql.exec("DELETE FROM vis WHERE visto < ?", agora - 30 * 864e5);   // 01/11 (ele): histórico de 30 dias (era 24 h); a regra dos 30 dias
+    const del = this.sql.exec("DELETE FROM vis WHERE visto < ?", agora - 30 * 864e5); del.toArray(); const apagadas = del.rowsWritten;   // 01/11 (ele): histórico de 30 dias (era 24 h); a regra dos 30 dias
     this.sql.exec("DELETE FROM chat WHERE quando < ?", agora - 30 * 864e5);
-    this.total = this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c;   // 03/11: contado aqui (de 10 em 10 min), não a cada visitante
+    // 20/11 (ele: «não está a contabilizar as visitas»): a sala esgotava TODOS os dias o limite grátis de 5 milhões de linhas
+    // lidas e o «ao vivo» parava. O COUNT(*) de 10 em 10 min lia a tabela inteira (dezenas de milhares de linhas, a crescer
+    // até aos 30 dias) — ~4 milhões por dia. Agora conta-se UMA vez quando a sala acorda e depois só se soma e subtrai.
+    if (this.total == null) this.total = this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c;
+    else this.total = Math.max(0, this.total - (apagadas || 0));
   }
   async fetch(request) {
     const url = new URL(request.url), p = url.pathname, agora = Date.now();
