@@ -55,6 +55,17 @@ function buildMessage(type, d = {}) {
       "⏳ Confirma se o pagamento entrou e diz «envia» — só então segue o mapa completo.",
     ].join("\n");
   }
+  // 20/11/2026 (R-137): «O Seu 2027» — o guia de um signo, 7 €. Entrega AUTOMÁTICA (decisão dele): o cerebro junta o
+  // email «Pagamento recebido» de 7,00 € ao pedido e envia o PDF; se houver dúvida, avisa-o.
+  if (type === "seu2027-pedido") {
+    return [
+      `🌟 PEDIDO «O SEU 2027» ${clean(d.pedido, 20)} — ${clean(d.signo, 20)} — Genialtarot`,
+      "",
+      `💳 Cartão (myPOS) · ${clean(d.valor, 20)}`,
+      "",
+      "🤖 Entrega automática: quando o pagamento de 7 € entrar, o PDF segue sozinho.",
+    ].join("\n");
+  }
   // 21/10/2026: pedido do Mapa Astral completo (mapa-astral.html) — o mesmo fluxo do Mapa do Amor.
   if (type === "mapa-astral-pedido") {
     const como = { cartao: "💳 Cartão (myPOS)", mbway: "📱 MB WAY", pix: "🇧🇷 PIX (pelo WhatsApp)" }[d.metodo] || clean(d.metodo, 20);
@@ -508,7 +519,7 @@ function origemVivo(d) {
 // ela contar. Se so entrar num, ou nao conta ou nem chega ca.
 const PAGINAS = new Set([
   "/", "/index", "/anual", "/arcanos", "/arvore", "/fimdesemana", "/horoscopo",
-  "/ascendente", "/loja", "/loja-brasil", "/loja-portugal", "/ir-loja", "/lua", "/mapa-amor", "/mapa-astral", "/numerologia-2027", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos", "/vip",
+  "/ascendente", "/loja", "/loja-brasil", "/loja-portugal", "/ir-loja", "/lua", "/mapa-amor", "/mapa-astral", "/numerologia-2027", "/o-seu-2027", "/pagar", "/privacidade", "/sobre", "/tarot-gratis", "/termos", "/vip",
   "/arcano-00-o-louco", "/arcano-01-o-mago", "/arcano-02-a-sacerdotisa",
   "/arcano-03-a-imperatriz", "/arcano-04-o-imperador", "/arcano-05-o-hierofante",
   "/arcano-06-os-enamorados", "/arcano-07-o-carro", "/arcano-08-a-forca",

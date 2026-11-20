@@ -61,6 +61,23 @@ const PRODUTOS = [
     estrelas: 5,
   },
 
+  /* 20/11/2026 — R-137 ponto 1, decisões dele: «O Seu 2027», o guia de UM signo (PDF 12 páginas), 7 €, entrega automática;
+     ligação myPOS dele BR3QBMEV89Y96 (no pagar.html como c=o-seu-2027). Leva à /o-seu-2027 (lá escolhe o signo e põe o email).
+     Pedido «carneiro 2027», «melhores signos 2027»… é o que mais cresce no Google (Search Console 22/10–18/11). */
+  {
+    nome: "🌟 O Seu 2027 – O Guia do Seu Signo (PDF, 12 páginas)",
+    categoria: "Promoção",
+    preco: "7 €",
+    foto: "o-seu-2027-loja.jpg",
+    descricao: "O ano do seu signo, mês a mês, com o céu real calculado ao minuto: o amor e as datas de Vénus, o dinheiro, o trabalho, a saúde, as datas-chave e os eclipses, os meses mais favoráveis e os de cautela, e o conselho do Mestre Alberto. Escolhe o signo, paga com cartão e o PDF chega ao seu email.",
+    link: "",
+    pagina: "/o-seu-2027",
+    pagamentos: "💳 Cartão · Apple Pay · Google Pay",
+    etiqueta: "NOVO",
+    cor: "azul",
+    estrelas: 5,
+  },
+
   /* 04/11/2026 — R-122, decisão dele: guia «Astrologia 2027», PDF completo dos 12 signos, 19 €; ligação myPOS dele.
      Entrega: chega o aviso do pagamento → ele confirma e diz «envia» → segue o PDF (~/guia-2027/) por email. */
   {
