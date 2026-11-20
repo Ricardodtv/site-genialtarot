@@ -745,6 +745,8 @@ FAQ = {
    "Cerca de quatro meses e meio, uma vez por ano. A tradição vê-o como um tempo de balanço: rever compromissos, responsabilidades e estruturas, e terminar o que ficou a meio."),
  ],
  "planeta-urano": [
+  ("O que significa Urano na astrologia?",
+   "Na astrologia, Urano (ou Úrano) é o planeta da mudança súbita, da liberdade e da originalidade. Mostra onde você sente vontade de quebrar rotinas e de fazer as coisas à sua maneira. É o regente moderno de Aquário e, por ser lento, o seu signo marca gerações inteiras: a leitura pessoal faz-se sobretudo pela casa e pelos aspectos."),
   ("Quem descobriu Úrano?",
    "Úrano foi descoberto em 1781 pelo astrónomo William Herschel, e foi o primeiro planeta encontrado com telescópio. Até então, os astrólogos trabalhavam só com os sete astros visíveis a olho nu, do Sol a Saturno. Diz-se Úrano ou Urano, as duas formas estão corretas."),
   ("Quanto tempo fica Úrano retrógrado?",

@@ -188,8 +188,8 @@ PLANETAS = [
 
  {"slug": "planeta-urano",
   "nome": "Úrano",
-  "titulo": "Úrano na Astrologia: a mudança, a liberdade e a originalidade",
-  "desc": "Úrano na Astrologia: as mudanças súbitas, a liberdade e a originalidade no mapa natal, o signo que rege e o ciclo de 84 anos pelo zodíaco.",
+  "titulo": "Planeta Urano (Úrano) na Astrologia: o que significa",
+  "desc": "O que significa o planeta Urano (Úrano) na astrologia: a mudança súbita, a liberdade e a originalidade no mapa astral, o signo que rege e o ciclo de 84 anos.",
   "simbolo": "Úrano é o planeta da mudança súbita, da liberdade e da originalidade. Representa a vontade de quebrar regras que já não servem, de inovar e de ser autêntico(a). Está ligado à tecnologia, à ciência, às revoluções e aos acontecimentos inesperados. Onde Úrano está, a vida raramente segue o caminho previsto, e é aí que você precisa de mais espaço para ser diferente.",
   "no_mapa": "Por ser lento, o signo de Úrano marca gerações inteiras, e a leitura pessoal faz-se sobretudo pela casa e pelos aspectos. Úrano na Casa 10 pode trazer uma carreira pouco convencional ou mudanças de rumo, e na Casa 4 mudanças de casa ou uma família diferente. Em contacto com planetas pessoais, dá um toque de génio e de imprevisibilidade.",
   "rege": "Úrano é o regente moderno de Aquário e está ligado à Casa 11, a casa dos amigos, dos grupos e dos projectos de futuro. Antes da sua descoberta, em 1781, Aquário era regido apenas por Saturno, e muitos astrólogos ainda consideram os dois.",
