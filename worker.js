@@ -470,7 +470,7 @@ const MARCAS = new Set(["tiktok", "youtube", "instagram", "facebook", "fb-grupo"
                         "telegram", "email", "cartao", "bio",
                         "maps",
                         "noticias", "partilha",
-                        "aviso", "atalho", "amanha"]);   // 15/11/2026 O-450: ?de=amanha (o convite «Amanhã para o seu signo», amanha-convite.js; &c=<página>)
+                        "aviso", "atalho", "amanha", "gads"]);   // 20/11/2026: ?de=gads (Google Ads, conta Genial Tarot; &c=online|distancia|casais|pendulo)   // 15/11/2026 O-450: ?de=amanha (o convite «Amanhã para o seu signo», amanha-convite.js; &c=<página>)
      // 15/11/2026: ?de=aviso (quem abre o aviso das 8h do /o-meu-dia) e ?de=atalho (quem abre pelo ícone no ecrã do telemóvel)
    // 13/11/2026 O-403 (OK dele): ?de=noticias (Notícias do dia) e ?de=partilha (53 ligações) caíam em «marca:?»   // 04/11/2026: as ligações do Google Maps (ficha, publicações, produtos) já usavam ?de=maps
 
