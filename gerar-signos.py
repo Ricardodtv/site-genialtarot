@@ -956,7 +956,7 @@ if os.path.exists("horoscopo-2027-textos.py"):
         corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="" width="120" height="120" />
     <h1><span class="az">Horóscopo 2027 · {E(nm(s0))}</span></h1><p class="sub">{E(t['resumo'])}</p></section>
   <section class="cartao texto"><h2>Amor</h2><p>{E(t['amor'])}</p><h2>Dinheiro</h2><p>{E(t['dinheiro'])}</p><h2>Trabalho</h2><p>{E(t['trabalho'])}</p>
-    <h2>Bem-estar</h2><p>{E(t['saude_bemestar'])}</p><h2>As datas que contam em 2027</h2><ul>{datas}</ul><h2>O conselho do ano</h2><p>{E(t['conselho'])}</p>
+    <h2>Bem-estar</h2><p>{E(t['saude_bemestar'])}</p><h2>As datas que contam para {E(s0['pt'])} em 2027</h2><ul>{datas}</ul><h2>O conselho do ano</h2><p>{E(t['conselho'])}</p>
     <p style="color:var(--suave);font-size:.9rem">O céu de 2027 foi calculado com o Swiss Ephemeris. As casas contam-se a partir do signo solar; para uma leitura feita ao seu mapa, peça a Previsão Anual ou o Mapa Astral.</p></section>
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/loja">Previsão Anual personalizada</a><a href="/melhores-signos-2027">Melhores signos de 2027</a><a href="/numerologia-2027">Numerologia 2027</a><a href="/eclipses-2027">Eclipses de 2027</a><a href="/mercurio-retrogrado-2027">Mercúrio retrógrado 2027</a></div>
     <h2>2027 nos outros signos</h2><div class="ligas">{"".join(f'<a href="/horoscopo-2027-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div>

@@ -42,7 +42,7 @@ for slug, pt, br in S:
     </form>
     <div class="ls-feito" aria-live="polite"><p style="font-size:2rem;margin:.2rem">💌✨</p><p>Obrigado, <b></b>! A primeira previsão chega na sexta-feira. Se não a vir, espreite a pasta Promoções ou Spam.</p></div>
   </section>"""
-    pags = [(f"horoscopo-2027-{slug}", f"Horóscopo 2027 de {pt}"), (f"decanatos-{slug}", f"Os decanatos de {pt}"),
+    pags = [(f"horoscopo-2027-{slug}", f"{pt} 2027: horóscopo e previsões"), (f"decanatos-{slug}", f"Os decanatos de {pt}"),
             (f"ascendente-em-{slug}", f"Ascendente em {pt}"), (f"lua-em-{slug}", f"Lua em {pt}"), (f"venus-em-{slug}", f"Vénus em {pt}"),
             (f"marte-em-{slug}", f"Marte em {pt}"), (f"{slug}-no-tarot", f"{pt} no Tarot"), ("compatibilidade-entre-signos", "Compatibilidade"),
             ("tarot-gratis", "Tarot Grátis"), ("carta-de-tarot", "A sua carta de Tarot"), ("mapa-astral", "O seu Mapa Astral")]
