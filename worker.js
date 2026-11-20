@@ -1049,10 +1049,18 @@ const PRINCIPAL = {
       try {
         const ref = request.headers.get("origin") || request.headers.get("referer") || "";
         const d = await request.json();
-        const tipo = d.tipo === "pix" ? "pix" : "mypos";
+        const tipo = d.tipo === "pix" ? "pix" : d.tipo === "whatsapp" ? "whatsapp" : "mypos";
         const pg = String(d.pagina || "").replace(/\.html$/, "");
         const ck = (request.headers.get("cookie") || "").match(/(?:^|;\s*)gt_o=([a-z0-9/-]{1,64})(?:;|$)/);
-        if (env.VISITAS && /genialtarot\.com/.test(ref) && /^\/[a-z0-9-]*(\/[a-z0-9-]+)?$/.test(pg)) {
+        // 20/11/2026 O-591: veio de um anúncio do Google Ads (cookie gt_gclid do vivo.js) → fica na fila «gads-…» (90 dias);
+        // o cerebro (~/ads-sm/conversoes-gt.py) manda-o à Google como conversão: mypos/pix = pagamento, whatsapp = secundária.
+        const gc = (request.headers.get("cookie") || "").match(/(?:^|;\s*)gt_gclid=(gclid|gbraid|wbraid)\.([A-Za-z0-9_-]{10,200})(?:;|$)/);
+        if (gc && env.CAPTURAS && /genialtarot\.com/.test(ref)) {
+          const g = { tipo_id: gc[1], id: gc[2], conv: tipo, quando: new Date().toISOString(), pagina: pg.slice(0, 120) };
+          ctx.waitUntil(env.CAPTURAS.put("gads-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 6),
+            JSON.stringify(g), { expirationTtl: 90 * 864e2 }).catch(() => {}));
+        }
+        if (tipo !== "whatsapp" && env.VISITAS && /genialtarot\.com/.test(ref) && /^\/[a-z0-9-]*(\/[a-z0-9-]+)?$/.test(pg)) {
           const ua = request.headers.get("user-agent") || "";
           env.VISITAS.writeDataPoint({ indexes: ["/clique-pagamento"], doubles: [1], blobs: ["/clique-pagamento", ck ? "marca:" + ck[1] : "(sem origem)",
             (request.cf && request.cf.country) || "?", aparelhoDe(ua), "clique", tipo, servidorAlugado(request.cf),

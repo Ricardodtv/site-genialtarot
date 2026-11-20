@@ -49,8 +49,23 @@
         if (!/genialtarot\.com$/.test(h)) v = "site/" + lim(h.replace(/\./g, "-"), 40);
       }
       if (v) document.cookie = "gt_o=" + v + "; Max-Age=2592000; Path=/; SameSite=Lax; Secure";
+      // 20/11/2026 O-591: quem chega por um anúncio do Google Ads traz o código do clique (?gclid=, ou gbraid/wbraid no iPhone).
+      // Guarda-se 90 dias (a janela da Google) num cookie só do site; o worker junta-o ao clique no pagamento/WhatsApp e o
+      // cerebro manda-o à Google como conversão (~/ads-sm/conversoes-gt.py). Nada da pessoa: só o código do clique.
+      var gk = ["gclid", "gbraid", "wbraid"].filter(function (k) { return q.get(k); })[0];
+      if (gk) { var gv = String(q.get(gk)).replace(/[^A-Za-z0-9_-]/g, "").slice(0, 200);
+        if (gv) document.cookie = "gt_gclid=" + gk + "." + gv + "; Max-Age=7776000; Path=/; SameSite=Lax; Secure"; }
     } catch (e) {}
   })();
+  // 20/11/2026 O-591: o clique no WhatsApp só se manda quando a pessoa veio de um anúncio (conversão secundária no Google Ads).
+  document.addEventListener("click", function (e) {
+    try {
+      if (!/(?:^|;\s*)gt_gclid=/.test(document.cookie)) return;
+      if (!(e.target.closest && e.target.closest('a[href*="wa.me/"], a[href*="api.whatsapp.com"], a[href*="whatsapp://"]'))) return;
+      fetch("/api/vivo/pagar", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
+        body: JSON.stringify({ sid: sid, tipo: "whatsapp", pagina: location.pathname }) }).catch(function () {});
+    } catch (x) {}
+  }, true);
   // 13/11/2026 O-404: conta o clique nos botões de pagamento (myPOS e PIX). O worker junta-lhe a origem do cookie.
   document.addEventListener("click", function (e) {
     try {
