@@ -15,10 +15,10 @@
  },
  "touro": {
   "dia": {
-   "id": "1bTi5DlKdPU",
-   "t": "Horóscopo Diário Touro 18 e 19 Novembro",
-   "d": "2026-11-19T10:59:10Z",
-   "dur": "PT3M33S"
+   "id": "lYQ4orPktpg",
+   "t": "Horóscopo Diário Touro 19 e 20 Novembro",
+   "d": "2026-11-20T10:19:44Z",
+   "dur": "PT4M42S"
   },
   "anual": {
    "id": "PBDNKmuCGjE",
@@ -28,12 +28,6 @@
   }
  },
  "gemeos": {
-  "dia": {
-   "id": "f0URrFPJUkk",
-   "t": "GÊMEOS (GÉMEOS) HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
-   "d": "2026-11-19T10:57:21Z",
-   "dur": "PT5M23S"
-  },
   "anual": {
    "id": "EdzVicTufXw",
    "t": "Previsão Anual 2026 Signo Gémeos, 12 Meses",
@@ -42,12 +36,6 @@
   }
  },
  "caranguejo": {
-  "dia": {
-   "id": "PQGiFe8hBtg",
-   "t": "Horóscopo Diário Caranguejo (Câncer) 18 e 19 Novembro",
-   "d": "2026-11-19T10:57:24Z",
-   "dur": "PT4M"
-  },
   "anual": {
    "id": "G_Ox4x7wl_M",
    "t": "Signo Caranguejo Previsão anual 2026 Todos os Meses",
@@ -71,10 +59,10 @@
  },
  "virgem": {
   "dia": {
-   "id": "j-v1cnqfkkk",
-   "t": "VIRGEM HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
-   "d": "2026-11-19T10:59:19Z",
-   "dur": "PT4M22S"
+   "id": "OE5X8KsPbGs",
+   "t": "VIRGEM HORÓSCOPO DIÁRIO 19 e 20 Novembro | Mestre Alberto",
+   "d": "2026-11-20T10:21:25Z",
+   "dur": "PT4M42S"
   },
   "anual": {
    "id": "S63ep0UfuI0",
@@ -85,10 +73,10 @@
  },
  "balanca": {
   "dia": {
-   "id": "geigjs-G5cE",
-   "t": "LIBRA (BALANÇA) HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
-   "d": "2026-11-19T10:58:07Z",
-   "dur": "PT4M33S"
+   "id": "cALaes_jy6w",
+   "t": "LIBRA (BALANÇA) HORÓSCOPO DIÁRIO 19 e 20 Novembro | Mestre Alberto",
+   "d": "2026-11-20T10:21:36Z",
+   "dur": "PT3M39S"
   },
   "anual": {
    "id": "_596jwAtBl0",
@@ -98,12 +86,6 @@
   }
  },
  "escorpiao": {
-  "dia": {
-   "id": "njOtXOLNHvk",
-   "t": "ESCORPIÃO HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
-   "d": "2026-11-19T10:58:35Z",
-   "dur": "PT6M46S"
-  },
   "anual": {
    "id": "vDhtOX8kixs",
    "t": "Previsão Anual 2026 Signo Escorpião, 12 Meses",
@@ -127,10 +109,10 @@
  },
  "capricornio": {
   "dia": {
-   "id": "ibFQDaRsloE",
-   "t": "Horóscopo Diário Capricórnio 18 e 19 Novembro",
-   "d": "2026-11-19T10:59:30Z",
-   "dur": "PT4M20S"
+   "id": "5C2PKzsWgAc",
+   "t": "Horóscopo Diário Capricórnio 19 e 20 Novembro",
+   "d": "2026-11-20T10:25:21Z",
+   "dur": "PT4M28S"
   },
   "anual": {
    "id": "hrTjuSE8VmM",
@@ -167,5 +149,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-19T11:03"
+ "_": "2026-11-20T10:25"
 }
