@@ -44,6 +44,9 @@ FAQ = {
    "É um diagrama da tradição cabalística com dez esferas, as Sefirot, que vão da vida material (Malkuth) à mais espiritual (Kether). No Tarot, serve de mapa para ler uma situação em vários níveis, do concreto ao interior."),
  ],
  "arcanos": [
+  # 20/11/2026 ronda SEO: «quais os 22 arcanos maiores do tarot» pos. 11, «lista de arcanos» pos. 10
+  ("Quais são os 22 Arcanos Maiores do Tarot?",
+   "Por ordem: 0 O Louco, I O Mago, II A Sacerdotisa, III A Imperatriz, IV O Imperador, V O Hierofante, VI Os Enamorados, VII O Carro, VIII A Força, IX O Eremita, X A Roda da Fortuna, XI A Justiça, XII O Enforcado, XIII A Morte, XIV A Temperança, XV O Diabo, XVI A Torre, XVII A Estrela, XVIII A Lua, XIX O Sol, XX O Julgamento e XXI O Mundo. Cada carta tem nesta página a sua ficha, com o significado direito e invertido."),
   ("Quantos Arcanos Maiores tem o Tarot?",
    "São 22, numerados de 0 (O Louco) a XXI (O Mundo). Juntos contam uma história do princípio ao fim, e cada um marca uma passagem da vida. O resto do baralho são os 56 Arcanos Menores, divididos em Paus, Copas, Espadas e Ouros."),
   ("Qual é a diferença entre Arcanos Maiores e Menores?",
