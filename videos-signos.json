@@ -1,10 +1,10 @@
 {
  "carneiro": {
   "dia": {
-   "id": "BcrdAG5gyoY",
-   "t": "ÁRIES (CARNEIRO) HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
-   "d": "2026-11-19T10:59:03Z",
-   "dur": "PT4M26S"
+   "id": "l0Cj3QbFu38",
+   "t": "ÁRIES (CARNEIRO) HORÓSCOPO DIÁRIO 19 e 20 Novembro | Mestre Alberto",
+   "d": "2026-11-20T10:25:56Z",
+   "dur": "PT4M41S"
   },
   "anual": {
    "id": "sYvV52nILsg",
@@ -28,6 +28,12 @@
   }
  },
  "gemeos": {
+  "dia": {
+   "id": "wdE56CU_pGk",
+   "t": "GÊMEOS (GÉMEOS) HORÓSCOPO DIÁRIO 19 e 20 Novembro | Mestre Alberto",
+   "d": "2026-11-20T10:26:01Z",
+   "dur": "PT4M51S"
+  },
   "anual": {
    "id": "EdzVicTufXw",
    "t": "Previsão Anual 2026 Signo Gémeos, 12 Meses",
@@ -36,6 +42,12 @@
   }
  },
  "caranguejo": {
+  "dia": {
+   "id": "xh-1XekYSpQ",
+   "t": "Horóscopo Diário Caranguejo (Câncer) 19 e 20 Novembro",
+   "d": "2026-11-20T10:26:08Z",
+   "dur": "PT3M33S"
+  },
   "anual": {
    "id": "G_Ox4x7wl_M",
    "t": "Signo Caranguejo Previsão anual 2026 Todos os Meses",
@@ -45,10 +57,10 @@
  },
  "leao": {
   "dia": {
-   "id": "_w4ERwwVtPk",
-   "t": "LEÃO HORÓSCOPO DIÁRIO 18 e 19 Novembro | Mestre Alberto",
-   "d": "2026-11-19T10:59:15Z",
-   "dur": "PT5M33S"
+   "id": "Eg0IRDLQoCg",
+   "t": "LEÃO HORÓSCOPO DIÁRIO 19 e 20 Novembro | Mestre Alberto",
+   "d": "2026-11-20T10:26:16Z",
+   "dur": "PT5M13S"
   },
   "anual": {
    "id": "dto1ayURroc",
@@ -86,6 +98,12 @@
   }
  },
  "escorpiao": {
+  "dia": {
+   "id": "oJaeiO4HR1k",
+   "t": "ESCORPIÃO HORÓSCOPO DIÁRIO 19 e 20 Novembro | Mestre Alberto",
+   "d": "2026-11-20T10:26:20Z",
+   "dur": "PT6M2S"
+  },
   "anual": {
    "id": "vDhtOX8kixs",
    "t": "Previsão Anual 2026 Signo Escorpião, 12 Meses",
@@ -95,10 +113,10 @@
  },
  "sagitario": {
   "dia": {
-   "id": "SoFsGkK6ucQ",
-   "t": "Horóscopo Diário Sagitário 18 e 19 Novembro",
-   "d": "2026-11-19T10:58:59Z",
-   "dur": "PT4M33S"
+   "id": "uzG4ViBN9LA",
+   "t": "Horóscopo Diário Sagitário 19 e 20 Novembro",
+   "d": "2026-11-20T10:26:24Z",
+   "dur": "PT5M37S"
   },
   "anual": {
    "id": "SPco2eROtps",
@@ -123,10 +141,10 @@
  },
  "aquario": {
   "dia": {
-   "id": "3Ur1-747CcE",
-   "t": "Horóscopo Diário Aquário 18 e 19 Novembro",
-   "d": "2026-11-19T10:59:38Z",
-   "dur": "PT3M48S"
+   "id": "jc0lf2G0CS4",
+   "t": "Horóscopo Diário Aquário 19 e 20 Novembro",
+   "d": "2026-11-20T10:26:29Z",
+   "dur": "PT4M44S"
   },
   "anual": {
    "id": "iXnf_orBfDs",
@@ -137,10 +155,10 @@
  },
  "peixes": {
   "dia": {
-   "id": "KVZa2EoQkOE",
-   "t": "Horóscopo Diário Peixes 18 e 19 Novembro",
-   "d": "2026-11-19T10:59:40Z",
-   "dur": "PT4M43S"
+   "id": "6O6xcywD_7A",
+   "t": "Horóscopo Diário Peixes 19 e 20 Novembro",
+   "d": "2026-11-20T10:26:34Z",
+   "dur": "PT6M40S"
   },
   "anual": {
    "id": "60VId99VP8Y",
@@ -149,5 +167,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-20T10:25"
+ "_": "2026-11-20T10:29"
 }
