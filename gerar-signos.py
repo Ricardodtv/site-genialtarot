@@ -393,6 +393,7 @@ for r in REZAS:
   </section>
 """
     open(f"{r['slug']}.html", "w", encoding="utf-8").write(cabeca(r["titulo"], r["desc"], url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
+# 21/11/2026 (O-635): + ligação a /os-72-anjos no fundo da montra
 url = SITE + "/rezas-e-oracoes"; titulo = "Rezas e Orações tradicionais: quebranto, mau olhado, talhar o ar"
 desc = "As rezas e benzeduras da tradição portuguesa: quebranto, mau olhado, inveja, talhar o ar, o sol e o medo, espinhela caída e responsos."
 ld = {"@context": "https://schema.org", "@graph": [
@@ -406,7 +407,7 @@ corpo = f"""  <section class="heroi">
   </section>
   <section><div class="doze">{grelha}</div></section>
   <section class="cartao texto"><p style="font-size:.9rem;color:var(--suave)">⚠️ {E(REZ["CUIDADO"])} Perante qualquer sintoma físico, procure sempre um profissional de saúde.</p>
-  <div class="ligas"><a href="/benzimentos">✝️ Benzimentos</a><a href="/rituais">🕯️ Rituais</a><a href="/tarot-por-tema">🃏 Tarot por tema</a><a href="/tarologo-fafe">📍 Consultório em Fafe</a></div></section>
+  <div class="ligas"><a href="/benzimentos">✝️ Benzimentos</a><a href="/rituais">🕯️ Rituais</a><a href="/tarot-por-tema">🃏 Tarot por tema</a><a href="/tarologo-fafe">📍 Consultório em Fafe</a><a href="/os-72-anjos">👼 Os 72 Anjos: a oração de cada um</a></div></section>
 """
 open("rezas-e-oracoes.html", "w", encoding="utf-8").write(cabeca(titulo, desc, url, SITE + "/og-image.jpg", ld, APROVADO) + corpo + RODAPE)
 print(len(REZAS), "rezas + a montra /rezas-e-oracoes")
@@ -634,7 +635,7 @@ if os.path.exists("ascendente-lua-textos.py"):
   </section>
   <section class="cartao texto"><p>{E(t['intro'])}</p>{secs}</section>
   <section class="cartao" style="text-align:center">
-    <div class="ligas"><a href="{liga[0]}">{liga[1]}</a><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a><a href="/{'lua-em' if tipo == 'ascendente-em' else 'ascendente-em'}-{s0['slug']}">{'Lua' if tipo == 'ascendente-em' else 'Ascendente'} em {E(s0['pt'])}</a>{'<a href="/venus-em-caranguejo">Vénus em Caranguejo</a>' if tipo == 'lua-em' and s0['slug'] == 'caranguejo' else ''}</div>
+    <div class="ligas"><a href="{liga[0]}">{liga[1]}</a><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a><a href="/horoscopo-de-amanha/{s0['slug']}">{E(s0['pt'])} amanhã: o horóscopo</a><a href="/{'lua-em' if tipo == 'ascendente-em' else 'ascendente-em'}-{s0['slug']}">{'Lua' if tipo == 'ascendente-em' else 'Ascendente'} em {E(s0['pt'])}</a>{'<a href="/venus-em-caranguejo">Vénus em Caranguejo</a>' if tipo == 'lua-em' and s0['slug'] == 'caranguejo' else ''}</div>
     <h2>{nome_t} nos outros signos</h2><div class="ligas">{"".join(f'<a href="/{tipo}-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div>
   </section>
 """
@@ -755,12 +756,14 @@ if os.path.exists("chines-tarot-textos.py"):
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/horoscopo-chines">Descobrir o seu animal</a>{"".join(f'<a href="/horoscopo-chines-{x["slug"]}">{E(x["nome"])}</a>' for x in CT["CHINES"] if x is not t)}</div></section>
 """
         pagina(f"horoscopo-chines-{t['slug']}", t["titulo"], t["desc"], SITE + "/og-image.jpg", [("Horóscopo Chinês", "/horoscopo-chines")], corpo)
+    # 21/11/2026 (O-634): «<signo> amanhã: o horóscopo» nas ligações de /ascendente-em, /lua-em, /<signo>-no-tarot e /decanatos-
+    # (ao vivo só nas de Carneiro, mexidas à mão; as dos outros signos entram quando o gerador correr)
     for i, t in enumerate(CT["SIGNO_TAROT"]):
         s0 = S[i]; arc = ARC_SLUG.get(t["arcano"]); img = f"{SITE}/cartas/partilha/" + (arc[7:] + ".jpg" if arc else "") if arc else SITE + "/og-image.jpg"
         corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="" width="110" height="110" />
     <h1><span class="az">{E(nm(s0))} no Tarot</span></h1><p class="sub">A carta do signo: <b>{E(t['arcano'])}</b></p></section>
   <section class="cartao texto"><h2>Porque é a carta de {E(s0['pt'])}</h2><p>{E(t['ligacao'])}</p><h2>A lição da carta</h2><p>{E(t['licao'])}</p><h2>O conselho</h2><p>{E(t['conselho'])}</p></section>
-  <section class="cartao" style="text-align:center"><div class="ligas">{f'<a href="/{arc}">O significado de {E(t["arcano"])}</a>' if arc else ""}<a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a><a href="/carta-de-tarot">A sua carta de nascimento</a></div>
+  <section class="cartao" style="text-align:center"><div class="ligas">{f'<a href="/{arc}">O significado de {E(t["arcano"])}</a>' if arc else ""}<a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a><a href="/horoscopo-de-amanha/{s0['slug']}">{E(s0['pt'])} amanhã: o horóscopo</a><a href="/carta-de-tarot">A sua carta de nascimento</a></div>
     <h2>Os outros signos no Tarot</h2><div class="ligas">{"".join(f'<a href="/{x["slug"]}-no-tarot">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div></section>
 """
         pagina(f"{s0['slug']}-no-tarot", t["titulo"], t["desc"], img, [("Os 12 Signos", "/signos-do-zodiaco")], corpo)
@@ -983,7 +986,7 @@ if os.path.exists("decanatos-2027-textos.py"):
         corpo = f"""  <section class="heroi"><img class="foto-mestre" src="/signos/{SIGIMG[i]}" alt="" width="120" height="120" />
     <h1><span class="az">Decanatos de {E(nm(s0))}</span></h1></section>
   <section class="cartao texto"><p>{E(t['intro'])}</p>{decs}</section>
-  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a>{"".join(f'<a href="/decanatos-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div></section>
+  <section class="cartao" style="text-align:center"><div class="ligas"><a href="/signo/{s0['slug']}">O signo {E(s0['pt'])}</a><a href="/horoscopo-de-amanha/{s0['slug']}">{E(s0['pt'])} amanhã: o horóscopo</a>{"".join(f'<a href="/decanatos-{x["slug"]}">{GLIFO[j]}︎ {E(x["pt"])}</a>' for j, x in enumerate(S) if j != i)}</div></section>
 """
         pagina(f"decanatos-{s0['slug']}", t["titulo"], t["desc"], f"{SITE}/signos/{SIGIMG[i]}", [("Os 12 Signos", "/signos-do-zodiaco")], corpo)
     for t in D7["PAGINAS_2027"]:

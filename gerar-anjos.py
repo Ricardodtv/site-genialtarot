@@ -95,15 +95,23 @@ def grava(f, s):
 # 14/11/2026 (O-422): «anjo da guarda hariel» no Google (pos. 5–9) → título com as palavras da pesquisa
 TIT_ESPECIAL = {"Hariel": "Anjo da Guarda Hariel: purificação, datas e oração",
                 "Yeiazel": "Anjo Yeiazel: o anjo do consolo, datas e oração",   # 15/11/2026 (O-461): «anjo yeiazel» pos. 7
-                "Lecabel": "Anjo Lecabel: o anjo do talento, datas e oração",   # 16/11/2026 (ronda SEO): «anjo lecabel» pos. 9,4, 0 cliques
+                "Lecabel": 'Anjo Lecabel: o anjo do talento, oração e Salmo 71',   # 16/11/2026 (ronda SEO): «anjo lecabel» pos. 9,4, 0 cliques; 21/11/2026 (O-644): + Salmo 71
                 "Haamiah": "Oração ao Anjo Haamiah: o anjo do ritual diário e datas",   # 16/11/2026 (ronda SEO): «anjo haamiah oração» pos. 8; o padrão dava «Oração, datas e oração»
                 "Caliel": "Anjo Caliel: o anjo da justiça e da verdade, datas e oração",   # 17/11/2026 (O-517): «anjo caliel» pos. 8,8, 0 cliques
                 # 18/11/2026 (O-523/O-524/O-526/O-530): aparições e 0 cliques — «quem é o anjo» e a qualidade no título
                 "Yeialel": "Anjo Yeialel: o anjo da força mental, datas e oração",   # «anjo yeialel» pos. 10
                 "Melahel": "Anjo da Guarda Melahel: o anjo do cuidado, datas e oração",   # «melahel anjo da guarda»
                 "Vehuel": "Anjo Vehuel: o anjo da elevação e da humildade, datas e oração",   # «anjo vehuel (oração)» pos. 8-11
-                "Leuviah": "Anjo Leuviah (Lauviah): memória e alegria, datas e oração"}   # «anjo leuviah» pos. 5, «anjo lauviah» pos. 10
-H2_ESPECIAL = {"Yeialel": "Quem é o anjo Yeialel", "Melahel": "Quem é o anjo Melahel", "Vehuel": "Quem é o anjo Vehuel", "Leuviah": "Quem é o anjo Leuviah", "Yeiazel": "Quem é o anjo Yeiazel", "Caliel": "Quem é o anjo Caliel", "Lecabel": "Quem é o anjo Lecabel", "Haamiah": "Quem é o anjo Haamiah"}   # + 16/11/2026   # 15/11/2026 (O-461): a pesquisa real num H2
+                "Leuviah": "Anjo Leuviah (Lauviah): memória e alegria, datas e oração",   # «anjo leuviah» pos. 5, «anjo lauviah» pos. 10
+                # 21/11/2026 (O-637..O-645, ordens dele): aparições e 0 cliques — a pesquisa real («quem é», «significado», «oração», «anjo da guarda») + salmo + datas
+                'Mahasiah': 'Anjo Mahasiah: quem é, oração e Salmo 34 (10 a 14 de abril)',   # «mahasiah» pos. 9,8, «anjo mahasiah» 8,5, «qual salmo» 2
+                'Hahahel': 'Anjo da Guarda Hahahel (Hahael): quem é, oração e Salmo 120',   # «anjo hahahel» pos. 3,5, «anjo da guarda hahahel» 9, «anjo hahael» 8
+                'Aniel': 'Anjo Aniel: significado, oração e Salmo 80 (23 a 27 de setembro)',   # «aniel» pos. 22, «anjo aniel» 10,2, «anjo aniel significado» 17
+                'Lelahel': 'Anjo Lelahel: significado, oração e Salmo 9 (15 a 19 de abril)',   # «lelahel» pos. 17,7, «lelahel significado» 9, «lelahel anjo» 6
+                'Nemamiah': 'Anjo Nemamiah: quem é, oração e Salmo 115 (1 a 5 de janeiro)',   # «anjo nemamiah» pos. 8,5 (12 apar.)
+                'Daniel': 'Oração ao Anjo Daniel: quem é, Salmo 145 e datas (27/11 a 1/12)',   # «anjo daniel oração» pos. 8,2 (10 apar.), «anjo daniel» 11,4 (11)
+                }
+H2_ESPECIAL = {"Yeialel": "Quem é o anjo Yeialel", "Melahel": "Quem é o anjo Melahel", "Vehuel": "Quem é o anjo Vehuel", "Leuviah": "Quem é o anjo Leuviah", "Yeiazel": "Quem é o anjo Yeiazel", "Caliel": "Quem é o anjo Caliel", "Lecabel": "Quem é o anjo Lecabel", "Haamiah": "Quem é o anjo Haamiah", "Mahasiah": "Quem é o anjo Mahasiah", "Hahahel": "Quem é o anjo Hahahel", "Aniel": "Quem é o anjo Aniel", "Lelahel": "Quem é o anjo Lelahel", "Nemamiah": "Quem é o anjo Nemamiah", "Daniel": "Quem é o anjo Daniel"}   # + 16/11/2026   # 15/11/2026 (O-461): a pesquisa real num H2
 DES_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel, n.º 40 dos 72 Nomes: o anjo do consolo. As datas em Balança, o salmo, o coro e uma oração para os dias tristes.",
                "Caliel": "Quem é o anjo Caliel, n.º 18 dos 72 Nomes: o anjo da justiça. As datas em Gémeos, o salmo, o coro e uma oração para a verdade vir ao de cima.",
                # 18/11/2026 (O-523..O-530)
@@ -111,7 +119,15 @@ DES_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel, n.º 40 dos 72 Nomes: o anjo
                "Melahel": "Quem é o anjo da guarda Melahel, n.º 23 dos 72 Nomes: o anjo do cuidado. As datas em Caranguejo, o salmo, o coro e uma oração pelo corpo e a casa.",
                "Haamiah": "Uma oração ao anjo Haamiah para rezar todos os dias: quem é o n.º 38 dos 72 Nomes, as datas em Balança, o salmo 91 e o coro.",
                "Vehuel": "Quem é o anjo Vehuel, n.º 49 dos 72 Nomes: o anjo da elevação. As datas em Sagitário, o salmo, o coro e uma oração para crescer com humildade.",
-               "Leuviah": "Quem é o anjo Leuviah (ou Lauviah), n.º 19 dos 72 Nomes: memória e alegria. As datas em Caranguejo, o salmo, o coro e uma oração."}
+               "Leuviah": "Quem é o anjo Leuviah (ou Lauviah), n.º 19 dos 72 Nomes: memória e alegria. As datas em Caranguejo, o salmo, o coro e uma oração.",
+               # 21/11/2026 (O-637..O-645)
+               'Mahasiah': 'Quem é o anjo Mahasiah, n.º 5 dos 72: o anjo das emendas. É o seu anjo se faz anos de 10 a 14 de abril. A oração, o Salmo 34 e um gesto para hoje.',
+               'Hahahel': 'Hahahel, também escrito Hahael, é o anjo da missão, n.º 41 dos 72. É o seu anjo da guarda se faz anos de 14 a 18 de outubro. A oração e o Salmo 120.',
+               'Aniel': 'O significado do anjo Aniel, n.º 37 dos 72: o anjo que ajuda a quebrar ciclos que se repetem. Para quem faz anos de 23 a 27 de setembro. Oração e Salmo 80.',
+               'Lelahel': 'O significado de Lelahel, anjo n.º 6 dos 72: a luz do entendimento, para ver com clareza. Para quem faz anos de 15 a 19 de abril. Oração e Salmo 9.',
+               'Nemamiah': 'Quem é o anjo Nemamiah, n.º 57 dos 72: o anjo do discernimento, que separa o que convém do que engana. Para quem faz anos de 1 a 5 de janeiro. Salmo 115.',
+               'Lecabel': 'Quem é o anjo Lecabel, n.º 31 dos 72: o anjo do talento e dos dons. É o seu anjo se faz anos de 23 a 28 de agosto. A oração, o Salmo 71 e um gesto.',
+               'Daniel': 'A oração ao anjo Daniel para dizer o que sente sem ferir. Quem é o n.º 50 dos 72 (não é o profeta), o Salmo 145 e as datas: 27 de novembro a 1 de dezembro.'}
 AVISO = ('<p><small>Os 72 anjos pertencem à tradição da Cabala e da angelologia, não à doutrina da Igreja, que desaconselha dar aos anjos nomes além de Miguel, Gabriel e Rafael. '
          'Quem segue a fé católica pode rezar ao seu <a href="/anjo-da-guarda">Anjo da Guarda</a> sem lhe saber o nome. É uma leitura simbólica: não promete resultados nem substitui o médico ou outros profissionais.</small></p>')
 tamanhos = []
@@ -192,7 +208,7 @@ CORPO_C = f"""{heroi("A Carta do Anjo", '<span id="hoje">A carta de hoje</span>'
       <button class="bt" type="submit">Quero receber</button><p class="er" id="er" role="alert"></p></form>
     <p id="ok" style="display:none;text-align:center">Obrigado! Já está na lista do Mestre Alberto.</p>
     <p class="sub" style="font-size:.85rem;text-align:center">Consulte a <a href="/privacidade">Política de Privacidade</a>.</p></section>
-  <section class="cartao texto"><h2>Como funciona</h2><p>Cada dia junta um dos 72 anjos da tradição dos Nomes a um dos 22 Arcanos Maiores do baralho do Mestre Alberto. A combinação é tirada pela data e muda à meia-noite de Lisboa. É um convite à reflexão e não uma previsão.</p>{AVISO}</section>"""
+  <section class="cartao texto"><h2>Como funciona</h2><p>Cada dia junta um dos <a href="/os-72-anjos">72 anjos da tradição dos Nomes</a> a um dos 22 Arcanos Maiores do baralho do Mestre Alberto. A combinação é tirada pela data e muda à meia-noite de Lisboa. É um convite à reflexão e não uma previsão.</p>{AVISO}</section>"""
 JS_C = """<script>
 const AN=%s,AR=%s;
 const $=i=>document.getElementById(i);
@@ -296,11 +312,13 @@ i.addEventListener("input",function(){var q=i.value,l=acha(q);r.innerHTML=!q.tri
 document.getElementById("bf").addEventListener("submit",function(v){v.preventDefault();var l=acha(i.value);if(l.length)location.href=l[0][3]})})();</script>
 """
 FAQ_L = [("O que são os 72 anjos?", "São 72 nomes que a Cabala tirou de três versículos do Êxodo (14,19-21). Mais tarde, cada nome foi ligado a um anjo e a 5 graus do zodíaco."),
+         # 21/11/2026 (O-635): a lista por ordem em texto corrido (as pesquisas «lista dos 72 anjos»; os resumos de IA copiam este formato)
+         ("Quais são os nomes dos 72 anjos, por ordem?", "Do 1.º ao 72.º: " + ", ".join(a[0] for a in ANJOS[:-1]) + " e " + ANJOS[-1][0] + ". Cada signo tem seis, pela ordem do zodíaco: os seis primeiros são os de Carneiro e os seis últimos os de Peixes."),
          ("Como sei qual é o meu anjo?", "Pela data de nascimento: procure o seu signo nesta lista e veja em que datas cai o seu dia. Na página do Anjo da Guarda, a data de nascimento mostra-lhe o anjo diretamente."),
          ("Quantos anjos tem cada signo?", "Seis. Cada signo tem 30 graus e a cada 5 graus corresponde um anjo."),
          ("As datas de cada anjo são sempre as mesmas?", "Não exatamente. As datas seguem o grau real do Sol e podem mudar um dia de ano para ano, sobretudo perto do início e do fim de cada intervalo."),
          ("A Igreja Católica reconhece os 72 anjos?", "Não. Pertencem à tradição da Cabala e da angelologia. A Igreja desaconselha dar aos anjos nomes além de Miguel, Gabriel e Rafael, e quem segue a fé católica pode rezar ao seu Anjo da Guarda sem lhe saber o nome.")]
-LD_L = {"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Os 72 Anjos: lista completa e o anjo de cada signo", "description": "Os 72 anjos da tradição, organizados por signo: nome, tema, datas e um pequeno resumo de cada um, com ligação à sua oração e história.", "inLanguage": "pt-PT", "mainEntityOfPage": f"{SITE}/os-72-anjos",
+LD_L = {"@context": "https://schema.org", "@graph": [{"@type": "Article", "headline": "Os 72 Anjos da Cabala: lista completa, datas e anjo de cada signo", "description": "A lista completa dos 72 anjos da Cabala, por signo e por ordem: o nome, o tema e as datas de cada um, para saber qual é o seu, com a oração de cada anjo.", "inLanguage": "pt-PT", "mainEntityOfPage": f"{SITE}/os-72-anjos",
           "author": {"@type": "Person", "name": "Mestre Alberto"}, "publisher": {"@type": "Organization", "name": "Genial Tarot", "url": SITE}, "dateModified": datetime.date.today().isoformat()},
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ_L]}]}
 CORPO_L = f"""{EST_L}{heroi("Os 72 Anjos", "A lista completa: o anjo de cada signo, as suas datas e um pequeno resumo").replace(ASA, ASA + BUSCA)}
@@ -309,7 +327,8 @@ CORPO_L = f"""{EST_L}{heroi("Os 72 Anjos", "A lista completa: o anjo de cada sig
   <section class="cartao">{AVISO}</section>
   <section class="cartao" style="text-align:center"><div class="ligas"><a href="/anjo-da-guarda">Anjo da Guarda</a><a href="/carta-do-anjo">Carta do Anjo</a><a href="/dia-do-anjo-da-guarda">Dia do Anjo da Guarda</a><a href="/anjo-de-portugal">Anjo de Portugal</a></div></section>
 """
-grava("os-72-anjos.html", pagina("/os-72-anjos", "Os 72 Anjos: lista completa e o anjo de cada signo", "Os 72 anjos da tradição, organizados por signo: nome, tema, datas e um pequeno resumo de cada um, com ligação à sua oração e história.", CORPO_L, ld=LD_L, fim=JS_L))
+# 21/11/2026 (O-635): título/descrição com «da Cabala», «datas» e «por ordem»
+grava("os-72-anjos.html", pagina("/os-72-anjos", "Os 72 Anjos da Cabala: lista completa, datas e anjo de cada signo", "A lista completa dos 72 anjos da Cabala, por signo e por ordem: o nome, o tema e as datas de cada um, para saber qual é o seu, com a oração de cada anjo.", CORPO_L, ld=LD_L, fim=JS_L))
 print("feito")
 # 12/11/2026: o texto próprio de cada anjo (bloco anjo-mais) volta a entrar depois de as 72 páginas serem refeitas
 import subprocess as _sp; _sp.run(["python3", "anjos-mais.py"], check=False)

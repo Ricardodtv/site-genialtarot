@@ -169,8 +169,8 @@ SIGNO_TAROT = [
     {
         "slug": "gemeos",
         "arcano": "Os Enamorados",
-        "titulo": "Gémeos no Tarot: a carta Os Enamorados e o seu significado",
-        "desc": "Porque Os Enamorados são a carta de Gémeos no Tarot, o que ensinam sobre escolhas, ligações e verdade interior, e o conselho do Mestre Alberto.",
+        "titulo": "Gémeos (Gêmeos) no Tarot: a carta Os Enamorados e o significado",   # 21/11/2026 (O-636): 22 aparições, 0 cliques, pos. 7,8 («gêmeos tarot»)
+        "desc": "Qual é a carta de Gémeos (Gêmeos) no Tarot? Os Enamorados: porque é a carta do signo, o que ensina sobre escolhas e ligações, e o conselho para Gémeos.",
         "ligacao": "Segundo a Golden Dawn, Gémeos corresponde aos Enamorados, a carta da escolha e da união. Gémeos é o signo do dois: duas vozes, duas ideias, dois caminhos possíveis, e Os Enamorados mostram exactamente esse momento em que é preciso decidir. A carta fala também de comunicação e de encontro entre pessoas, temas muito queridos a este signo de ar regido por Mercúrio. É a curiosidade que se transforma em compromisso, e a conversa que se torna, por fim, uma escolha de vida.",
         "licao": "Para quem é Gémeos, Os Enamorados ensinam que ver todos os lados é um dom, mas que a vida pede, a certa altura, uma escolha feita com o coração. A carta lembra que escolher não é perder as outras possibilidades: é dar profundidade, tempo e cuidado a uma delas, até ela florescer. Ensina também que as relações verdadeiras nascem quando a palavra e o sentimento dizem a mesma coisa. A leveza de Gémeos, tão encantadora, ganha raiz e sentido quando há entrega verdadeira a uma pessoa, a uma ideia ou a um caminho.",
         "conselho": "Quando estiver dividido, cale por um momento as razões e ouça o que o coração já sabe. Uma escolha feita com verdade liberta mais do que mil hipóteses deixadas em aberto à espera do momento perfeito.",

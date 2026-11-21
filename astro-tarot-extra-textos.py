@@ -94,8 +94,8 @@ CASAS = [
  {"slug": "casa-10",
   "nome": "Casa 10",
   "tema": "a carreira e a vocação",
-  "titulo": "Casa 10 na Astrologia: a carreira, a vocação e a reputação",
-  "desc": "Casa 10 na Astrologia: a carreira, a vocação, a reputação e o lugar que você ocupa no mundo. O que o Meio do Céu do seu mapa tem para dizer.",
+  "titulo": "Casa 10 na Astrologia: significado no mapa astral e na carreira",   # 21/11/2026 (O-642): «significado casa 10 astrologia» pos. 9, «casa 10 (no) mapa astral» 75
+  "desc": "O que significa a Casa 10 na astrologia e no seu mapa astral: a carreira, a vocação, a reputação e o Meio do Céu. Os planetas na Casa 10 e o signo natural.",
   "significado": "A Casa 10 começa no Meio do Céu, o ponto mais alto do mapa, e fala do seu lugar no mundo. É a casa da carreira, da vocação, das ambições e da reputação que vai construindo. Mostra aquilo pelo qual gostaria de ser reconhecido(a) e o tipo de autoridade que exerce ou procura. Fala também das figuras de autoridade da sua vida, incluindo um dos pais. É, por isso, uma das casas mais importantes quando se pensa em mudar de profissão ou em dar um rumo novo à vida.",
   "na_vida": "Nota-se nas escolhas profissionais, na forma como lida com chefias e responsabilidades e naquilo que os outros dizem de si em público. Aparece também nos momentos em que sente que tem de subir mais um degrau, ou mudar de escada. Fala também do legado que gostaria de deixar, para lá do dinheiro e dos cargos.",
   "planetas": "O Sol ou Júpiter aqui dão visibilidade e vontade de chegar longe, e Saturno dá uma carreira construída com esforço e que dura. Neptuno nesta casa pode trazer vocações artísticas ou de ajuda, mas também algumas dúvidas sobre o caminho a seguir.",

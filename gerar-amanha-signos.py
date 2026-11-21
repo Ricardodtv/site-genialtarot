@@ -110,6 +110,19 @@ CSS_MAIS = """<style>
 </style>"""
 
 
+# 21/11/2026 (O-634, ordem dele): «signo carneiro amanhã» pos. 28,5 e «carneiro amanhã» pos. 11 → perguntas frequentes
+# visíveis + FAQPage. Por signo (índice 0 = Carneiro); os que não estão aqui ficam sem FAQ. O worker não mexe nesta secção.
+FAQ_AM = {0: [('Como vai ser o dia do signo Carneiro amanhã?', 'Está nesta página, que muda todos os dias à meia-noite de Portugal: a energia de amanhã, o amor, o dinheiro, o trabalho, o melhor momento do dia e a carta, lidos no céu calculado e nas casas solares de Carneiro. Para os dias seguintes, veja a semana de Carneiro.'), ('Carneiro e Áries são o mesmo signo?', 'Sim. Carneiro é o nome usado em Portugal e Áries o usado no Brasil. É o primeiro signo do zodíaco, de quem nasceu entre 21 de março e 19 de abril, e o horóscopo de amanhã é o mesmo para os dois nomes.')]}
+
+
+def faq_am(s):
+    f = FAQ_AM.get(s)
+    if not f: return "", ""
+    ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in f]}
+    sec = '  <section class="cartao">\n    <h2>Perguntas frequentes</h2>\n' + "".join(f"    <h3>{ESC(q)}</h3><p>{ESC(r)}</p>\n" for q, r in f) + "  </section>\n"
+    return f'<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>\n', sec
+
+
 def pagina(s):
     nm, nb, sl = NOMES[s], COM_BR.get(s, NOMES[s]), SLUG[s]
     url = f"{SITE}/horoscopo-de-amanha/{sl}"
@@ -123,6 +136,7 @@ def pagina(s):
     doze = "".join(f'<a href="/horoscopo-de-amanha/{SLUG[k]}"{" aria-current=\"page\"" if k == s else ""}><img src="/signos/{k:02d}.webp" alt="" width="40" height="40" loading="lazy">{NOMES[k]}</a>' for k in range(12))
     oposto = (s + 6) % 12
     reg, elem, modo = P.REGENTE[s]
+    faq_ld, faq_sec = faq_am(s)
     reserva = f'<p>O texto de amanhã para {ESC(nm)} está na <a href="/horoscopo-de-amanha#s{s}">página do horóscopo de amanhã</a>.</p>'
     return f"""<!doctype html>
 <html lang="pt">
@@ -142,7 +156,7 @@ def pagina(s):
 <meta property="og:image:alt" content="O signo de {ESC(nm)}, ilustração do Genial Tarot" />
 <meta name="twitter:card" content="summary_large_image" />
 <script type="application/ld+json">{json.dumps(migalhas, ensure_ascii=False)}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
+{faq_ld}<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 {CSS}
@@ -180,9 +194,9 @@ def pagina(s):
     <h2>Amanhã para os outros signos</h2>
     <nav class="doze" aria-label="Horóscopo de amanhã dos 12 signos">{doze}</nav>
     <h2 style="margin-top:1.4rem;font-size:1.15rem">Mais sobre {ESC(nm)}</h2>
-    <div class="ligas"><a href="/signo/{sl}">{ESC(nb)}: personalidade e hoje</a><a href="/horoscopo-de-amanha">Horóscopo de amanhã: os 12 signos</a><a href="/horoscopo-do-dia">Horóscopo do dia</a><a href="/horoscopo-semanal-{sl}">A semana de {ESC(nm)}</a><a href="/horoscopo-2027-{sl}">Horóscopo 2027 de {ESC(nm)}</a><a href="/ascendente-em-{sl}">Ascendente em {ESC(nm)}</a><a href="/horoscopo-de-amanha/{SLUG[oposto]}">O signo oposto: {ESC(NOMES[oposto])} amanhã</a></div>
+    <div class="ligas"><a href="/signo/{sl}">{ESC(nb)}: personalidade e hoje</a><a href="/horoscopo-de-amanha">Horóscopo de amanhã: os 12 signos</a><a href="/horoscopo-do-dia">Horóscopo do dia</a><a href="/horoscopo-semanal-{sl}">A semana de {ESC(nm)}</a><a href="/horoscopo-2027-{sl}">{ESC(nm)} 2027: horóscopo e previsões</a><a href="/ascendente-em-{sl}">Ascendente em {ESC(nm)}</a><a href="/horoscopo-de-amanha/{SLUG[oposto]}">O signo oposto: {ESC(NOMES[oposto])} amanhã</a></div>
   </section>
-  <p class="fonte">Céu calculado com o Swiss Ephemeris (zodíaco tropical), para o dia de Portugal; horas de Portugal, com Brasília ao lado. As casas solares contam-se a partir de {ESC(nm)}. A página muda à meia-noite de Portugal: amanhã passa a ser o dia seguinte. São leituras simbólicas, para inspirar o seu dia: não substituem aconselhamento médico, psicológico, jurídico ou financeiro.</p>
+{faq_sec}  <p class="fonte">Céu calculado com o Swiss Ephemeris (zodíaco tropical), para o dia de Portugal; horas de Portugal, com Brasília ao lado. As casas solares contam-se a partir de {ESC(nm)}. A página muda à meia-noite de Portugal: amanhã passa a ser o dia seguinte. São leituras simbólicas, para inspirar o seu dia: não substituem aconselhamento médico, psicológico, jurídico ou financeiro.</p>
 </div>
 {CASA_BLOCO}
 <footer>

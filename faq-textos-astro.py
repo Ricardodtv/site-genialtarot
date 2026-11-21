@@ -191,6 +191,8 @@ FAQ = {
    "Mostra aquilo em que escolhe acreditar e a forma como procura sentido: pela religião, pela filosofia, pelo estudo ou pela experiência. Não diz que crença ter. Diz como vive a fé, se com entusiasmo, com dúvida, com rigor ou com abertura a tudo."),
  ],
  "casa-10": [
+  ('O que significa a Casa 10 no mapa astral?',   # 21/11/2026 (O-642)
+   'A Casa 10 é a casa da carreira, da vocação e da reputação: mostra o seu lugar no mundo e aquilo pelo qual quer ser reconhecido(a). Começa no Meio do Céu, o ponto mais alto do mapa, e lê-se pelo signo que lá está, pelos planetas que a ocupam e pelo planeta que a rege. Para a saber ao certo é precisa a hora de nascimento.'),
   ("O que é o Meio do Céu?",
    "É o ponto mais alto do mapa no momento em que nasceu e marca o início da Casa 10. Representa a carreira, os objetivos e a imagem pública. O signo do Meio do Céu mostra o tipo de reconhecimento que procura e só se calcula com a hora de nascimento."),
   ("A Casa 10 mostra a profissão ideal?",

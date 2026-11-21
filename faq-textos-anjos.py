@@ -41,4 +41,28 @@ FAQ = {
   ("A que horas se reza a Haamiah?",
    "Numa tradição muito divulgada, cada um dos 72 anjos guarda vinte minutos do dia, e a Haamiah cabem os das 12:20 às 12:40. Pode rezar-lhe a qualquer hora; o que a tradição sublinha é voltar à mesma hora todos os dias."),
  ],
+ "anjo/mahasiah": [   # 21/11/2026 (O-6xx): «mahasiah» pos. 9,8, «anjo mahasiah» 8,5, «qual salmo» 2
+  ('Qual é o salmo do anjo Mahasiah?',
+   'É o Salmo 34, versículo 4, na numeração da Bíblia de Almeida. Na tradição dos 72 Nomes lê-se ao invocar Mahasiah, quando se quer emendar um erro sem ficar preso à culpa. Nas edições que seguem a numeração antiga da Vulgata, o mesmo salmo aparece como Salmo 33.'),
+ ],
+ "anjo/hahahel": [   # 21/11/2026 (O-6xx): «anjo hahahel» pos. 3,5, «anjo da guarda hahahel» 9, «anjo hahael» 8
+  ('Quem tem Hahahel como Anjo da Guarda?',
+   'Na tradição dos 72 Nomes, Hahahel (também escrito Hahael) é o anjo de quem nasceu com o Sol entre os 20° e os 25° de Balança (Libra), por volta de 14 a 18 de outubro. As datas seguem o grau real do Sol e podem mudar um dia de ano para ano, por isso vale a pena confirmar pela data de nascimento em «Descobrir o meu anjo».'),
+ ],
+ "anjo/aniel": [   # 21/11/2026 (O-6xx): «aniel» pos. 22, «anjo aniel» 10,2, «anjo aniel significado» 17
+  ('Qual é o significado do anjo Aniel?',
+   'Aniel é o 37.º dos 72 anjos da tradição cabalística e pertence ao coro das Potestades. O seu tema é quebrar ciclos: pede-se-lhe ajuda para ver o padrão que se repete na vida e escolher de outra forma. Em hebraico escreve-se אניאל, e a terminação «-el» quer dizer Deus.'),
+ ],
+ "anjo/lelahel": [   # 21/11/2026 (O-6xx): «lelahel» pos. 17,7, «lelahel significado» 9, «lelahel anjo» 6
+  ('Qual é o significado de Lelahel?',
+   'Lelahel é o 6.º dos 72 anjos da tradição cabalística e pertence ao coro dos Serafins. O seu tema é a luz do entendimento: pede-se-lhe clareza para ver o que está mesmo à sua frente antes de uma decisão. Em hebraico escreve-se ללהאל, e a terminação «-el» quer dizer Deus.'),
+ ],
+ "anjo/nemamiah": [   # 21/11/2026 (O-6xx): «anjo nemamiah» pos. 8,5 (12 apar.)
+  ('Quem é o anjo Nemamiah?',
+   'Nemamiah é o 57.º dos 72 anjos da tradição cabalística e pertence ao coro dos Arcanjos. É o anjo do discernimento: pede-se-lhe ajuda para distinguir o que convém do que engana, perante propostas, pessoas ou promessas que parecem boas demais. É o anjo de quem faz anos por volta de 1 a 5 de janeiro.'),
+ ],
+ "anjo/daniel": [   # 21/11/2026 (O-6xx): «anjo daniel oração» pos. 8,2 (10 apar.), «anjo daniel» 11,4 (11)
+  ('Qual é a oração ao anjo Daniel?',
+   'A oração simbólica da tradição é curta: «Daniel, põe nos meus lábios palavras que unam e não firam. Amém.» Pode juntar-lhe o versículo do anjo, o Salmo 145, versículo 8, na numeração da Bíblia de Almeida. Reza-se antes de uma conversa difícil, para dizer o que sente com doçura.'),
+ ],
 }
