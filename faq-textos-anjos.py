@@ -65,4 +65,8 @@ FAQ = {
   ('Qual é a oração ao anjo Daniel?',
    'A oração simbólica da tradição é curta: «Daniel, põe nos meus lábios palavras que unam e não firam. Amém.» Pode juntar-lhe o versículo do anjo, o Salmo 145, versículo 8, na numeração da Bíblia de Almeida. Reza-se antes de uma conversa difícil, para dizer o que sente com doçura.'),
  ],
+ "anjo/sehaliah": [   # 21/11/2026 (O-650): «sehaliah» pos. 6 (20 apar., 0 cliques)
+  ('Quem é o anjo Sehaliah?',
+   'Sehaliah é o 45.º dos 72 anjos da tradição cabalística e pertence ao coro das Virtudes. É o anjo da motivação: pede-se-lhe ajuda para voltar a ter vontade de fazer, nas fases em que tudo parece igual e sem sabor. É o anjo de quem faz anos por volta de 3 a 7 de novembro.'),
+ ],
 }

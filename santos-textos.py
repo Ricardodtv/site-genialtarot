@@ -68,8 +68,8 @@ SANTOS = [
  "rezas": ["oracao-coragem-e-forca", "oracao-boa-energia", "oracao-decisao-e-atitude"]},
 
 {"slug": "sao-cipriano", "nome": "São Cipriano",
- "titulo": "São Cipriano: a figura histórica e a tradição popular",
- "desc": "São Cipriano na tradição portuguesa: o mago convertido da lenda, o bispo de Cartago, e porque o povo lhe reza para desfazer bloqueios e proteger.",
+ "titulo": "Quem foi São Cipriano? A história, a lenda e a devoção popular",   # 21/11/2026 (O-648): pesquisas reais «quem foi são cipriano» (várias formas), «são cipriano historia», «de antioquia»; 0 cliques
+ "desc": "Quem foi São Cipriano? Houve dois: o bispo de Cartago, mártir em 258, e o mago de Antioquia da lenda, convertido por Santa Justina. E o que o povo lhe pede.",
  "vida": "Há dois São Ciprianos e o povo mistura-os. Um é São Cipriano de Cartago, bispo no Norte de África, grande escritor cristão, morto mártir em 258; esse é histórico. O outro é São Cipriano de Antioquia, que, segundo uma narrativa antiga, foi um mago que se converteu por causa de Santa Justina e morreu mártir com ela. Os historiadores consideram esta segunda história sobretudo lendária, e o célebre «Livro de São Cipriano» foi escrito muitos séculos depois e só lhe usa o nome.",
  "devocao": "A tradição popular reza-lhe para desfazer bloqueios e pedir proteção: como foi, na lenda, alguém que conheceu o mal por dentro e o largou, pede-se-lhe que desate o que está preso na vida, que afaste as más energias e que abra caminho. As orações a São Cipriano são de defesa e de libertação. Rezas para prender, castigar ou fazer mal a outra pessoa não fazem parte da fé nem do trabalho do Mestre Alberto. Quem procura São Cipriano procura, quase sempre, libertar-se de um peso, e é essa a intenção que se respeita.",
  "festa": "São Cipriano de Antioquia e Santa Justina eram lembrados a 26 de Setembro; São Cipriano de Cartago é celebrado a 16 de Setembro, juntamente com o Papa São Cornélio.",
