@@ -267,6 +267,10 @@ IMAGENS = [
     ("LX01", "lendas-de-lisboa", "lendas-de-lisboa-corvos-sao-vicente",
      "Lendas de Lisboa: corvo pousado na proa de um barco de madeira no Tejo, com a cidade antiga nas colinas ao fundo",
      "O corvo de São Vicente: segundo a lenda, dois corvos acompanharam o barco que trouxe as relíquias do santo para Lisboa em 1173."),
+    # 22/11/2026 (Radar «lendas de coimbra»): Lendas de Coimbra — gerada no renko (Realistic Vision, gerar-lendas.py, semente 1355)
+    ("LC01", "lendas-de-coimbra", "lendas-de-coimbra-fonte-das-lagrimas",
+     "Lendas de Coimbra: fonte de pedra antiga com musgo num jardim murado, debaixo de salgueiros, à luz do fim da tarde",
+     "Ilustração de uma fonte antiga num jardim: segundo a lenda, a Fonte das Lágrimas, em Coimbra, nasceu das lágrimas de Inês de Castro."),
     # 03/11/2026: os grandes trânsitos (gerar-transitos.py) — reaproveitam imagens que já existem
     ("P09", "neptuno-em-carneiro", "neptuno-na-astrologia", "Neptuno na astrologia: o planeta Neptuno azul profundo com nuvens brancas",
      "Neptuno em Carneiro: as datas exatas e o que muda para cada um dos 12 signos."),

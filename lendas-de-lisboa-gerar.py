@@ -152,7 +152,7 @@ pagina = f"""<!doctype html>
     <p class="sub">Seis lendas da cidade, de Ulisses a Santo António, com o que é tradição e o que é história, contadas pelo Mestre Alberto.</p>
   </section>
   <section class="cartao texto">{corpo}</section>
-  <section class="cartao" style="text-align:center"><h2>Mais histórias</h2><div class="ligas"><a href="/historias-e-lendas">📜 Lendas de Portugal</a><a href="/lenda-padeira-de-aljubarrota">🍞 A Padeira de Aljubarrota</a><a href="/lenda-nazare-fuas-roupinho">🐎 A Lenda da Nazaré</a><a href="/lenda-moura-encantada">🌊 A Moura Encantada</a><a href="/lenda-milagre-das-rosas">🌹 O Milagre das Rosas</a><a href="/lendas-brasileiras">🇧🇷 Lendas Brasileiras</a></div>
+  <section class="cartao" style="text-align:center"><h2>Mais histórias</h2><div class="ligas"><a href="/historias-e-lendas">📜 Lendas de Portugal</a><a href="/lenda-padeira-de-aljubarrota">🍞 A Padeira de Aljubarrota</a><a href="/lenda-nazare-fuas-roupinho">🐎 A Lenda da Nazaré</a><a href="/lenda-moura-encantada">🌊 A Moura Encantada</a><a href="/lenda-milagre-das-rosas">🌹 O Milagre das Rosas</a><a href="/lendas-de-coimbra">⛲ Lendas de Coimbra</a><a href="/lendas-brasileiras">🇧🇷 Lendas Brasileiras</a></div>
     <a class="cta" href="https://wa.me/351914920427">Falar com o Mestre Alberto</a>
   </section>
 {faq_html}
