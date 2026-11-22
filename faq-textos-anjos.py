@@ -69,4 +69,16 @@ FAQ = {
   ('Quem é o anjo Sehaliah?',
    'Sehaliah é o 45.º dos 72 anjos da tradição cabalística e pertence ao coro das Virtudes. É o anjo da motivação: pede-se-lhe ajuda para voltar a ter vontade de fazer, nas fases em que tudo parece igual e sem sabor. É o anjo de quem faz anos por volta de 3 a 7 de novembro.'),
  ],
+ "anjo/vehuiah": [   # 22/11/2026 (ronda SEO): «anjo vehuiah» pos. 7 (6 apar.), página 38 apar. 0 cliques
+  ('Quem é o anjo Vehuiah?',
+   'Vehuiah é o primeiro dos 72 anjos da tradição cabalística e pertence ao coro dos Serafins. É o anjo dos novos começos: pede-se-lhe ajuda para começar de novo sem medo, quando se adiou um projeto por receio de falhar. É o anjo de quem faz anos por volta de 21 a 25 de março.'),
+ ],
+ "anjo/eyael": [   # 22/11/2026 (ronda SEO): «anjo eyael» pos. 9,6 (7 apar.), «eyael» pos. 7
+  ('Quem é o anjo Eyael?',
+   'Eyael é o 67.º dos 72 anjos da tradição cabalística e pertence ao coro dos Anjos. É o anjo da transformação: pede-se-lhe ajuda para mudar para melhor, com mudanças lentas e verdadeiras, sem desistir a meio. É o anjo de quem faz anos por volta de 19 a 23 de fevereiro.'),
+ ],
+ "anjo/seheiah": [   # 22/11/2026 (ronda SEO): «anjo seheiah» pos. 7,8 (6 apar.)
+  ('Quem é o anjo Seheiah?',
+   'Seheiah é o 28.º dos 72 anjos da tradição cabalística e pertence ao coro das Dominações. É ligado à vida longa: pede-se-lhe ajuda para viver com prudência e paz, com bom senso no dia a dia. Não promete anos de vida; lembra o valor de os viver com cuidado. É o anjo de quem faz anos por volta de 8 a 12 de agosto.'),
+ ],
 }

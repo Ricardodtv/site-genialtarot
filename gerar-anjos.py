@@ -111,8 +111,11 @@ TIT_ESPECIAL = {"Hariel": "Anjo da Guarda Hariel: purificação, datas e oraçã
                 'Nemamiah': 'Anjo Nemamiah: quem é, oração e Salmo 115 (1 a 5 de janeiro)',   # «anjo nemamiah» pos. 8,5 (12 apar.)
                 'Daniel': 'Oração ao Anjo Daniel: quem é, Salmo 145 e datas (27/11 a 1/12)',   # «anjo daniel oração» pos. 8,2 (10 apar.), «anjo daniel» 11,4 (11)
                 'Sehaliah': 'Anjo Sehaliah: quem é, oração e Salmo 94 (3 a 7 de novembro)',   # 21/11/2026 (O-650): «sehaliah» pos. 6 (20 apar., 0 cliques)
+                'Vehuiah': 'Anjo Vehuiah: quem é, oração e Salmo 3 (21 a 25 de março)',   # 22/11/2026 (ronda SEO): «anjo vehuiah» pos. 7 (6 apar.), página 38 apar. 0 cliques
+                'Eyael': 'Anjo Eyael: quem é, oração e Salmo 37 (19 a 23 de fevereiro)',   # 22/11/2026 (ronda SEO): «anjo eyael» pos. 9,6 (7 apar.), «eyael» pos. 7
+                'Seheiah': 'Anjo Seheiah: quem é, oração e Salmo 71 (8 a 12 de agosto)',   # 22/11/2026 (ronda SEO): «anjo seheiah» pos. 7,8 (6 apar.)
                 }
-H2_ESPECIAL = {"Yeialel": "Quem é o anjo Yeialel", "Melahel": "Quem é o anjo Melahel", "Vehuel": "Quem é o anjo Vehuel", "Leuviah": "Quem é o anjo Leuviah", "Yeiazel": "Quem é o anjo Yeiazel", "Caliel": "Quem é o anjo Caliel", "Lecabel": "Quem é o anjo Lecabel", "Haamiah": "Quem é o anjo Haamiah", "Mahasiah": "Quem é o anjo Mahasiah", "Hahahel": "Quem é o anjo Hahahel", "Aniel": "Quem é o anjo Aniel", "Lelahel": "Quem é o anjo Lelahel", "Nemamiah": "Quem é o anjo Nemamiah", "Daniel": "Quem é o anjo Daniel", "Sehaliah": "Quem é o anjo Sehaliah"}   # + 16/11/2026   # 15/11/2026 (O-461): a pesquisa real num H2
+H2_ESPECIAL = {"Seheiah": "Quem é o anjo Seheiah", "Eyael": "Quem é o anjo Eyael", "Vehuiah": "Quem é o anjo Vehuiah", "Yeialel": "Quem é o anjo Yeialel", "Melahel": "Quem é o anjo Melahel", "Vehuel": "Quem é o anjo Vehuel", "Leuviah": "Quem é o anjo Leuviah", "Yeiazel": "Quem é o anjo Yeiazel", "Caliel": "Quem é o anjo Caliel", "Lecabel": "Quem é o anjo Lecabel", "Haamiah": "Quem é o anjo Haamiah", "Mahasiah": "Quem é o anjo Mahasiah", "Hahahel": "Quem é o anjo Hahahel", "Aniel": "Quem é o anjo Aniel", "Lelahel": "Quem é o anjo Lelahel", "Nemamiah": "Quem é o anjo Nemamiah", "Daniel": "Quem é o anjo Daniel", "Sehaliah": "Quem é o anjo Sehaliah"}   # + 16/11/2026   # 15/11/2026 (O-461): a pesquisa real num H2
 DES_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel, n.º 40 dos 72 Nomes: o anjo do consolo. As datas em Balança, o salmo, o coro e uma oração para os dias tristes.",
                "Caliel": "Quem é o anjo Caliel, n.º 18 dos 72 Nomes: o anjo da justiça. As datas em Gémeos, o salmo, o coro e uma oração para a verdade vir ao de cima.",
                # 18/11/2026 (O-523..O-530)
@@ -129,7 +132,10 @@ DES_ESPECIAL = {"Yeiazel": "Quem é o anjo Yeiazel, n.º 40 dos 72 Nomes: o anjo
                'Nemamiah': 'Quem é o anjo Nemamiah, n.º 57 dos 72: o anjo do discernimento, que separa o que convém do que engana. Para quem faz anos de 1 a 5 de janeiro. Salmo 115.',
                'Lecabel': 'Quem é o anjo Lecabel, n.º 31 dos 72: o anjo do talento e dos dons. É o seu anjo se faz anos de 23 a 28 de agosto. A oração, o Salmo 71 e um gesto.',
                'Daniel': 'A oração ao anjo Daniel para dizer o que sente sem ferir. Quem é o n.º 50 dos 72 (não é o profeta), o Salmo 145 e as datas: 27 de novembro a 1 de dezembro.',
-               'Sehaliah': 'Quem é o anjo Sehaliah, n.º 45 dos 72: o anjo da motivação, para voltar a ter vontade de fazer. Para quem faz anos de 3 a 7 de novembro. Salmo 94.'}
+               'Sehaliah': 'Quem é o anjo Sehaliah, n.º 45 dos 72: o anjo da motivação, para voltar a ter vontade de fazer. Para quem faz anos de 3 a 7 de novembro. Salmo 94.',
+               'Vehuiah': 'Quem é o anjo Vehuiah, o 1.º dos 72: o anjo dos novos começos, para começar de novo sem medo. Para quem faz anos de 21 a 25 de março. Salmo 3.',
+               'Eyael': 'Quem é o anjo Eyael, n.º 67 dos 72: o anjo da transformação, para mudar para melhor. Para quem faz anos de 19 a 23 de fevereiro. Salmo 37.',
+               'Seheiah': 'Quem é o anjo Seheiah, n.º 28 dos 72: o anjo da vida longa, para viver com prudência e paz. Para quem faz anos de 8 a 12 de agosto. Salmo 71.'}
 AVISO = ('<p><small>Os 72 anjos pertencem à tradição da Cabala e da angelologia, não à doutrina da Igreja, que desaconselha dar aos anjos nomes além de Miguel, Gabriel e Rafael. '
          'Quem segue a fé católica pode rezar ao seu <a href="/anjo-da-guarda">Anjo da Guarda</a> sem lhe saber o nome. É uma leitura simbólica: não promete resultados nem substitui o médico ou outros profissionais.</small></p>')
 tamanhos = []
