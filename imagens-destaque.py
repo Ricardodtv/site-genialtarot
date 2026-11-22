@@ -72,6 +72,8 @@ IMAGENS = [
     # 02/11/2026: a Lua, os eclipses e o céu (L01–L06)
     ("L01", "lua-azul", "lua-azul", "Lua Azul: Lua cheia azul enorme no céu da noite, entre nuvens iluminadas pelo luar",
      "A Lua Azul: a Lua Cheia «a mais», e quando é a próxima."),
+    ("L07", "lua-nova", "lua-nova", "Lua Nova: a Lua escura com um fio de luz dourada no bordo, sobre colinas num céu estrelado",
+     "A Lua Nova: o começo do ciclo lunar, e quando é a próxima."),
     ("L02", "lua", "fases-da-lua", "Fases da Lua: as oito fases da Lua em linha, da Lua Nova à Lua Cheia e de volta",
      "As fases da Lua e a Lua nos signos, dia a dia, no Calendário Lunar."),
     ("L03", "eclipses-2027", "eclipse-total-do-sol", "Eclipse total do Sol com a coroa solar visível sobre montanhas ao entardecer",
