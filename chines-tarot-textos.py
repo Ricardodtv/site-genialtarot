@@ -214,8 +214,8 @@ SIGNO_TAROT = [
     {
         "slug": "escorpiao",
         "arcano": "A Morte",
-        "titulo": "Escorpião no Tarot: a carta A Morte e o seu significado",
-        "desc": "Porque A Morte é a carta do Escorpião no Tarot, o que ensina sobre transformação, desapego e renascimento, e o conselho do Mestre Alberto.",
+        "titulo": "Escorpião no Tarot: A Morte, o arcano do signo e o significado",   # 23/11/2026 ronda SEO: 45 aparições, 0 cliques, pos. 7,8 («arcano de escorpião», «tarot escorpião»)
+        "desc": "Qual é a carta de Escorpião no Tarot? A Morte, o arcano XIII: porque é o arcano do signo, o que ensina sobre transformação e desapego, e o conselho para Escorpião.",
         "ligacao": "Na correspondência da Golden Dawn, o Escorpião está ligado à carta A Morte, a do arcano XIII. Antes de assustar, convém lembrar que no Tarot esta carta raramente fala de morte física: fala de fins e de recomeços. O Escorpião é o signo da transformação, do que desce ao fundo para renascer, e por isso encaixa nesta carta como em nenhuma outra. Ambos conhecem a intensidade de largar o que já não vive e a força silenciosa que nasce depois de cada perda.",
         "licao": "Para quem é Escorpião, A Morte ensina que não há renascimento sem despedida. A força deste signo está em não ter medo das profundezas, mas a carta pede também que se saiba soltar: mágoas antigas, relações esgotadas, versões de si que já cumpriram o seu tempo. Agarrar-se ao que acabou só prolonga a dor e impede que a vida siga o seu curso natural. Quando o Escorpião deixa ir, descobre que tem dentro de si uma capacidade imensa de se reinventar e de sair de cada crise mais inteiro.",
         "conselho": "Olhe com honestidade para o que já terminou na sua vida e dê-lhe um fim digno. O espaço que fica vazio, por mais que assuste, é precisamente onde o novo vai nascer.",

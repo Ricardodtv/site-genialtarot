@@ -38,8 +38,8 @@ DECANATOS = [
    ["3.º decanato", "13 a 22 de julho (aprox.)", "Peixes e Júpiter (Neptuno)", "É o Caranguejo mais sonhador e intuitivo. Você tem uma imaginação rica, uma enorme compaixão e muitas vezes sabe as coisas antes de lhas contarem. A arte, a espiritualidade e a ajuda aos outros chamam por si. O cuidado é proteger a sua energia e não carregar o mundo às costas."]]},
 
  {"slug": "leao",
-  "titulo": "Decanatos de Leão: os três tipos de Leão e as suas datas",
-  "desc": "Os três decanatos de Leão: datas aproximadas, regentes pela triplicidade e o feitio de cada tipo de Leão, do mais solar ao aventureiro e ao guerreiro.",
+  "titulo": "Decanatos de Leão: 1.º, 2.º e 3.º decanato, datas e qual é o seu",
+  "desc": "Em que decanato de Leão nasceu? As datas do 1.º, 2.º e 3.º decanato de Leão, o regente de cada um e o feitio de cada tipo, do mais solar ao guerreiro.",
   "intro": "Um signo não é igual do princípio ao fim: divide-se em três decanatos de dez graus, e cada um tem o seu regente, o que faz com que o brilho de Leão se mostre como calor, como aventura ou como combate. Uso aqui a triplicidade, em que o 1.º decanato é regido pelo próprio signo, o 2.º pelo signo seguinte do mesmo elemento e o 3.º pelo terceiro; existe também o sistema caldeu, com outros planetas. As datas são aproximadas e variam um dia conforme o ano.",
   "decs": [
    ["1.º decanato", "23 de julho a 1 de agosto (aprox.)", "Leão e o Sol", "É o Leão mais solar, caloroso e orgulhoso. Você gosta de brilhar, de ser apreciado(a) e tem um coração enorme para quem ama. Sabe animar uma sala e dar coragem aos outros. A lição é aceitar que nem sempre precisa de ser o centro para ter valor."],
