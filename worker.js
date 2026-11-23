@@ -2233,7 +2233,11 @@ function daSessao(v, paginas) {
 export class Sala extends DurableObject {
   constructor(ctx, env) {
     super(ctx, env);
-    this.sql = ctx.storage.sql;
+    // 23/11/2026 (ele: «sim ao contador»): a sala continua a gastar ~5 M linhas lidas/dia (o limite grátis) com só 2–3 mil
+    // pedidos, mesmo depois da correcção de 20/11. Cada exec passa por aqui e o cursor diz quantas linhas leu; no fim de cada
+    // pedido soma-se na tabela «gasto», por tipo de pedido (o arranque e a limpeza à parte). Ver em /api/vivo/gasto (chave do painel).
+    const sqlReal = ctx.storage.sql; this.cur = [];
+    this.sql = { exec: (...a) => { const c = sqlReal.exec(...a); this.cur.push(c); return c; } };
     this.escreve = new Map();   // "sid|quem" -> quando escreveu a última tecla (para os «…»)
     this.sql.exec(`CREATE TABLE IF NOT EXISTS vis (sid TEXT PRIMARY KEY, ip TEXT, pais TEXT, cidade TEXT, regiao TEXT,
       aparelho TEXT, ua TEXT, pagina TEXT, titulo TEXT, origem TEXT, primeiro INTEGER, visto INTEGER, n INTEGER, paginas TEXT)`);
@@ -2254,6 +2258,21 @@ export class Sala extends DurableObject {
     this.sql.exec("CREATE INDEX IF NOT EXISTS vis_visto ON vis(visto)");
     this.sql.exec("CREATE INDEX IF NOT EXISTS chat_sid ON chat(sid)");
     this.total = null;
+    this.ctx.storage.sql.exec(`CREATE TABLE IF NOT EXISTS gasto (dia TEXT, chave TEXT, pedidos INTEGER, linhas INTEGER, PRIMARY KEY (dia, chave))`);
+    this.conta("arranque");
+  }
+  // 23/11: soma as linhas lidas pelos cursores desde a última conta e guarda-as em «gasto» (dia UTC, como a quota)
+  conta(chave) {
+    let n = 0; for (const c of this.cur) { try { n += c.rowsRead || 0; } catch (e) {} }
+    this.cur = [];
+    try { this.ctx.storage.sql.exec("INSERT INTO gasto VALUES (?,?,1,?) ON CONFLICT(dia, chave) DO UPDATE SET pedidos=pedidos+1, linhas=linhas+excluded.linhas",
+      new Date().toISOString().slice(0, 10), chave, n); } catch (e) {}
+  }
+  async fetch(request) {
+    const u = new URL(request.url);
+    const chave = request.method + " " + u.pathname + (u.pathname === "/api/vivo/painel" ? "?dias=" + (u.searchParams.get("dias") || "1") : "");
+    this.cur = [];
+    try { return await this.atende(request); } finally { this.conta(chave); }
   }
   linhas(q, ...a) { return [...this.sql.exec(q, ...a)]; }
   // 17/11: soma o tempo à vista que o vivo.js mediu desde o último envio (delta, no máximo 10 min por envio) e guarda
@@ -2268,6 +2287,7 @@ export class Sala extends DurableObject {
   limpar(agora) {
     if (this.ultimaLimpeza && agora - this.ultimaLimpeza < 600000) return;
     this.ultimaLimpeza = agora;
+    this.conta("_antes-limpeza");   // 23/11: o que o pedido leu até aqui fica à parte, para a limpeza contar sozinha
     const del = this.sql.exec("DELETE FROM vis WHERE visto < ?", agora - 30 * 864e5); del.toArray(); const apagadas = del.rowsWritten;   // 01/11 (ele): histórico de 30 dias (era 24 h); a regra dos 30 dias
     this.sql.exec("DELETE FROM chat WHERE quando < ?", agora - 30 * 864e5);
     // 20/11 (ele: «não está a contabilizar as visitas»): a sala esgotava TODOS os dias o limite grátis de 5 milhões de linhas
@@ -2275,8 +2295,9 @@ export class Sala extends DurableObject {
     // até aos 30 dias) — ~4 milhões por dia. Agora conta-se UMA vez quando a sala acorda e depois só se soma e subtrai.
     if (this.total == null) this.total = this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c;
     else this.total = Math.max(0, this.total - (apagadas || 0));
+    this.conta("limpeza");
   }
-  async fetch(request) {
+  async atende(request) {
     const url = new URL(request.url), p = url.pathname, agora = Date.now();
     const J = (o, s) => new Response(JSON.stringify(o), { status: s || 200, headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
     const d = request.method === "POST" ? await request.json().catch(() => ({})) : {};
@@ -2365,6 +2386,7 @@ export class Sala extends DurableObject {
       return J({ ok: true });
     }
     if (p === "/api/vivo/mfechar") { if (sidOk) this.sql.exec("INSERT OR REPLACE INTO aberto VALUES (?,0)", sid); return J({ ok: true }); }
+    if (p === "/api/vivo/gasto") return J({ hoje: new Date().toISOString().slice(0, 10), gasto: [...this.ctx.storage.sql.exec("SELECT * FROM gasto WHERE dia >= ? ORDER BY dia DESC, linhas DESC", new Date(agora - 7 * 864e5).toISOString().slice(0, 10))] });
     if (p === "/api/vivo/mescreve") { if (sidOk) this.escreve.set(sid + "|mestre", agora); return J({ ok: true }); }
     return J({ ok: false }, 404);
   }
