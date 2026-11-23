@@ -5,7 +5,7 @@
 # 08/11: Caranguejo (5 aparições, pos. 9,8) e Touro (4 aparições, pos. 8,8), Search Console até 05/11.
 FAQ = {
  "horoscopo-2027-carneiro": [
-  ("Como vai ser 2027 para Carneiro (Áries)?",
+  ("Quais são as previsões de 2027 para o signo Carneiro (Áries)?",   # 23/11 O-661: «previsoes carneiro 2027» 10,7, «signo carneiro 2027» 10,1
    "É um ano de se construir a si mesmo, com alegria pelo meio. Saturno passa o ano inteiro em Carneiro e pede foco e escolhas claras; Júpiter, em Leão até 26 de julho, favorece o amor e a criatividade, e depois, em Virgem, arruma o trabalho e as rotinas."),
   ("O que significa Saturno em Carneiro em 2027?",
    "Saturno no seu signo pede maturidade: assumir responsabilidades, cortar o que já não faz sentido e trabalhar com constância. Pode pesar no ânimo em certos períodos, mas recompensa o que se começa com seriedade."),

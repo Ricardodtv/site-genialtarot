@@ -2,7 +2,7 @@
 H2027 = [
  {"slug": "carneiro",
   "titulo": "Horóscopo 2027 Carneiro (Áries): amor, dinheiro e trabalho",
-  "desc": "Horóscopo 2027 para Carneiro (Áries): Saturno no seu signo, Júpiter a favor do amor e depois do trabalho. Datas-chave e conselhos do Mestre Alberto.",
+  "desc": "Carneiro 2027: o horóscopo e as previsões do ano para Carneiro (Áries). Saturno no seu signo, Júpiter a favor do amor e depois do trabalho, e 6 datas-chave.",
   "resumo": "Ano de construir-se a si mesmo, com alegria pelo meio. Saturno passa o ano inteiro no seu signo e pede maturidade, foco e escolhas claras. Júpiter, primeiro em Leão e depois em Virgem, abre-lhe o coração até ao fim de Julho e arruma-lhe o trabalho a partir daí.",
   "amor": "Até 26 de Julho, Júpiter atravessa a sua casa 5, a do romance, do prazer e dos filhos: é uma das melhores fases dos últimos anos para se apaixonar, reacender a chama ou viver uma relação com mais leveza. O eclipse solar total de 2 de Agosto, no mesmo sector, pode trazer uma decisão afectiva importante, um começo ou um fim que já se adivinhava. Com Saturno no seu signo, o amor pede verdade: relações sem compromisso real tendem a mostrar os limites. Entre 21 de Fevereiro e 1 de Abril, Marte retrógrado na casa 5 convida a não forçar conquistas nem discussões por orgulho.",
   "dinheiro": "O dinheiro de 2027 vem mais do trabalho bem feito do que da sorte. Saturno em Carneiro favorece orçamentos realistas e decisões pensadas, não compras por impulso. Depois de 26 de Julho, com Júpiter na casa 6, os ganhos ligam-se a serviços, rotinas e competências que você aperfeiçoa.",
