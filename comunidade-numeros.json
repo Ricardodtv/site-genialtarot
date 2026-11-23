@@ -1,33 +1,33 @@
 {
  "grupos": {
-  "valor": 220316,
-  "data": "2026-11-16",
+  "valor": 220371,
+  "data": "2026-11-23",
   "nota": "12 grupos dos signos"
  },
  "youtube": {
-  "valor": 27000,
-  "data": "2026-11-16",
+  "valor": 27036,
+  "data": "2026-11-23",
   "nota": "exacto (Analytics, atrasa ~3 dias)"
  },
  "paginas": {
-  "valor": 2692,
-  "data": "2026-11-16",
+  "valor": 2690,
+  "data": "2026-11-23",
   "nota": "Genial Tarot + Genialtarot"
  },
  "instagram": {
-  "valor": 2591,
-  "data": "2026-11-16",
+  "valor": 2802,
+  "data": "2026-11-23",
   "nota": ""
  },
  "tiktok": {
-  "valor": 5763,
-  "data": "2026-11-16",
+  "valor": 5815,
+  "data": "2026-11-23",
   "nota": ""
  },
  "perfil": {
   "valor": 6500,
-  "data": "2026-11-16",
+  "data": "2026-11-23",
   "nota": "o Facebook mostra arredondado (6,5 mil seguidores)"
  },
- "total": 264862
+ "total": 265214
 }
