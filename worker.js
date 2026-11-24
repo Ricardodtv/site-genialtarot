@@ -2230,6 +2230,8 @@ function daSessao(v, paginas) {
   if (!v.sessao && v.visto - ini > 3 * 3600000) { ini = v.visto; incerto = true; }
   return { sessao: ini, incerto, ns: Math.max(1, ps.filter((x) => x[0] >= ini).length), voltou: v.primeiro < ini - PAUSA_SESSAO };
 }
+// 24/11: acima disto (linhas lidas no dia UTC) a sala poupa; o limite grátis é 5 000 000
+const SALA_ALERTA = 3500000;
 export class Sala extends DurableObject {
   constructor(ctx, env) {
     super(ctx, env);
@@ -2259,12 +2261,22 @@ export class Sala extends DurableObject {
     this.sql.exec("CREATE INDEX IF NOT EXISTS chat_sid ON chat(sid)");
     this.total = null;
     this.ctx.storage.sql.exec(`CREATE TABLE IF NOT EXISTS gasto (dia TEXT, chave TEXT, pedidos INTEGER, linhas INTEGER, PRIMARY KEY (dia, chave))`);
+    // 24/11 (ele: «põe já a proteção na sala»): a quota esgotou outra vez a 23/11. Proteção enquanto o contador não diz
+    // qual é o culpado: (1) o que se leu HOJE fica em memória (this.lido); (2) a lista do painel guarda-se em memória e só
+    // se volta a ler a tabela de 15 em 15 s (era a cada pergunta, de 3 em 3 s); (3) passado o ALERTA do dia, a lista do
+    // painel só se lê de 5 em 5 min e o painel de vários dias recusa-se, para o site (visitas e chat) nunca ficar sem quota.
+    this.painelCache = new Map();
+    try { const h = [...this.ctx.storage.sql.exec("SELECT SUM(linhas) AS n FROM gasto WHERE dia=?", new Date().toISOString().slice(0, 10))][0];
+      this.lido = { dia: new Date().toISOString().slice(0, 10), n: (h && h.n) || 0 }; } catch (e) { this.lido = { dia: "", n: 0 }; }
     this.conta("arranque");
   }
+  apertado() { return this.lido.dia === new Date().toISOString().slice(0, 10) && this.lido.n > SALA_ALERTA; }
   // 23/11: soma as linhas lidas pelos cursores desde a última conta e guarda-as em «gasto» (dia UTC, como a quota)
   conta(chave) {
     let n = 0; for (const c of this.cur) { try { n += c.rowsRead || 0; } catch (e) {} }
     this.cur = [];
+    const dia = new Date().toISOString().slice(0, 10);
+    if (this.lido) { if (this.lido.dia !== dia) this.lido = { dia, n: 0 }; this.lido.n += n; }
     try { this.ctx.storage.sql.exec("INSERT INTO gasto VALUES (?,?,1,?) ON CONFLICT(dia, chave) DO UPDATE SET pedidos=pedidos+1, linhas=linhas+excluded.linhas",
       new Date().toISOString().slice(0, 10), chave, n); } catch (e) {}
   }
@@ -2296,6 +2308,14 @@ export class Sala extends DurableObject {
     if (this.total == null) this.total = this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c;
     else this.total = Math.max(0, this.total - (apagadas || 0));
     this.conta("limpeza");
+  }
+  painel(dias, agora) {
+    const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, ua, humano, pagina, titulo, origem, primeiro, visto, n, paginas, sessao, tempo, mexeu, rolou FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
+      agora - dias * 864e5, dias === 1 ? 600 : 5000);
+    const abertos = new Set(this.linhas("SELECT sid FROM aberto WHERE aberto=1").map((r) => r.sid));
+    const ult = {}; for (const r of this.linhas("SELECT sid, MAX(id) AS id, MAX(quando) AS q FROM chat WHERE de='pessoa' GROUP BY sid")) ult[r.sid] = r.q;
+    const entrada = (t) => { try { return JSON.parse(t || "[]")[0][1]; } catch (e) { return ""; } };   // 01/11: a página onde a visita entrou
+    return { agora, vis: vis.map(({ paginas, ...v }) => ({ ...v, ...daSessao(v, paginas), entrada: entrada(paginas), online: agora - v.visto < 45000, chat: abertos.has(v.sid), respondeu: ult[v.sid] || 0 })) };
   }
   async atende(request) {
     const url = new URL(request.url), p = url.pathname, agora = Date.now();
@@ -2351,7 +2371,7 @@ export class Sala extends DurableObject {
       const t = String(d.texto || "").trim().slice(0, 1000);
       const ab = sidOk && this.linhas("SELECT aberto FROM aberto WHERE sid=?", sid)[0];
       if (!ab || !ab.aberto || !t) return J({ ok: false }, 400);   // só se responde a uma conversa que ELE abriu
-      this.sql.exec("INSERT INTO chat (sid, quando, de, texto) VALUES (?,?,?,?)", sid, agora, "pessoa", t);
+      this.sql.exec("INSERT INTO chat (sid, quando, de, texto) VALUES (?,?,?,?)", sid, agora, "pessoa", t); this.painelCache.clear();
       return J({ ok: true });
     }
     if (p === "/api/vivo/escreve") { if (sidOk) this.escreve.set(sid + "|pessoa", agora); return J({ ok: true }); }
@@ -2364,12 +2384,12 @@ export class Sala extends DurableObject {
     if (!this.env.STATS_KEY || request.headers.get("X-Chave") !== this.env.STATS_KEY) return J({ ok: false, erro: "chave" }, 403);
     if (p === "/api/vivo/painel") {
       const dias = Math.min(30, Math.max(1, parseInt(url.searchParams.get("dias")) || 1));
-      const vis = this.linhas("SELECT sid, ip, pais, cidade, regiao, aparelho, ua, humano, pagina, titulo, origem, primeiro, visto, n, paginas, sessao, tempo, mexeu, rolou FROM vis WHERE visto >= ? ORDER BY visto DESC LIMIT ?",
-        agora - dias * 864e5, dias === 1 ? 600 : 5000);
-      const abertos = new Set(this.linhas("SELECT sid FROM aberto WHERE aberto=1").map((r) => r.sid));
-      const ult = {}; for (const r of this.linhas("SELECT sid, MAX(id) AS id, MAX(quando) AS q FROM chat WHERE de='pessoa' GROUP BY sid")) ult[r.sid] = r.q;
-      const entrada = (t) => { try { return JSON.parse(t || "[]")[0][1]; } catch (e) { return ""; } };   // 01/11: a página onde a visita entrou
-      return J({ agora, vis: vis.map(({ paginas, ...v }) => ({ ...v, ...daSessao(v, paginas), entrada: entrada(paginas), online: agora - v.visto < 45000, chat: abertos.has(v.sid), respondeu: ult[v.sid] || 0 })) });
+      const aperto = this.apertado();
+      if (aperto && dias > 1) return J({ ok: false, erro: "poupança: a sala já leu " + this.lido.n + " linhas hoje; o histórico de vários dias volta às 00:00 UTC" }, 429);
+      const guardado = this.painelCache.get(dias), validade = aperto ? 300000 : (dias === 1 ? 15000 : 120000);
+      if (guardado && agora - guardado.t < validade) return J({ ...guardado.o, guardado: Math.round((agora - guardado.t) / 1000), poupanca: aperto });
+      const o = this.painel(dias, agora); this.painelCache.set(dias, { t: agora, o });
+      return J({ ...o, poupanca: aperto });
     }
     if (p === "/api/vivo/pessoa") {
       let v = this.linhas("SELECT * FROM vis WHERE sid=?", sid)[0] || null;
@@ -2380,12 +2400,12 @@ export class Sala extends DurableObject {
     }
     if (p === "/api/vivo/mestre") {
       if (!sidOk) return J({ ok: false }, 400);
-      this.sql.exec("INSERT OR REPLACE INTO aberto VALUES (?,1)", sid);
+      this.sql.exec("INSERT OR REPLACE INTO aberto VALUES (?,1)", sid); this.painelCache.clear();
       const t = String(d.texto || "").trim().slice(0, 1000);
       if (t) this.sql.exec("INSERT INTO chat (sid, quando, de, texto) VALUES (?,?,?,?)", sid, agora, "mestre", t);
       return J({ ok: true });
     }
-    if (p === "/api/vivo/mfechar") { if (sidOk) this.sql.exec("INSERT OR REPLACE INTO aberto VALUES (?,0)", sid); return J({ ok: true }); }
+    if (p === "/api/vivo/mfechar") { if (sidOk) this.sql.exec("INSERT OR REPLACE INTO aberto VALUES (?,0)", sid); this.painelCache.clear(); return J({ ok: true }); }
     if (p === "/api/vivo/gasto") return J({ hoje: new Date().toISOString().slice(0, 10), gasto: [...this.ctx.storage.sql.exec("SELECT * FROM gasto WHERE dia >= ? ORDER BY dia DESC, linhas DESC", new Date(agora - 7 * 864e5).toISOString().slice(0, 10))] });
     if (p === "/api/vivo/mescreve") { if (sidOk) this.escreve.set(sid + "|mestre", agora); return J({ ok: true }); }
     return J({ ok: false }, 404);
