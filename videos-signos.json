@@ -8,6 +8,12 @@
   }
  },
  "touro": {
+  "dia": {
+   "id": "ESSuUGnYDfY",
+   "t": "TOURO HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
+   "d": "2026-11-24T17:13:37Z",
+   "dur": "PT5M23S"
+  },
   "anual": {
    "id": "PBDNKmuCGjE",
    "t": "Previsão Anual 2026 Signo de Touro, 12 Meses",
@@ -30,6 +36,12 @@
   }
  },
  "caranguejo": {
+  "dia": {
+   "id": "r454LX8wsxQ",
+   "t": "CÂNCER (CARANGUEJO) HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
+   "d": "2026-11-24T17:13:44Z",
+   "dur": "PT5M50S"
+  },
   "anual": {
    "id": "G_Ox4x7wl_M",
    "t": "Signo Caranguejo Previsão anual 2026 Todos os Meses",
@@ -80,6 +92,12 @@
   }
  },
  "escorpiao": {
+  "dia": {
+   "id": "aRtr711qwTQ",
+   "t": "Horóscopo Diário Escorpião 24 e 25 Novembro",
+   "d": "2026-11-24T17:13:56Z",
+   "dur": "PT5M48S"
+  },
   "anual": {
    "id": "vDhtOX8kixs",
    "t": "Previsão Anual 2026 Signo Escorpião, 12 Meses",
@@ -88,6 +106,12 @@
   }
  },
  "sagitario": {
+  "dia": {
+   "id": "fYWAtwey1sU",
+   "t": "SAGITÁRIO HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
+   "d": "2026-11-24T17:13:58Z",
+   "dur": "PT5M54S"
+  },
   "anual": {
    "id": "SPco2eROtps",
    "t": "Previsão Sagitário, ano 2026 Todos os Meses",
@@ -113,7 +137,7 @@
   "dia": {
    "id": "iJzFLNtDKqw",
    "t": "AQUÁRIO HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
-   "d": "2026-11-24T17:12:21Z",
+   "d": "2026-11-24T17:13:11Z",
    "dur": "PT6M21S"
   },
   "anual": {
@@ -124,6 +148,12 @@
   }
  },
  "peixes": {
+  "dia": {
+   "id": "FATyTygvTT8",
+   "t": "PEIXES HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
+   "d": "2026-11-24T17:14:11Z",
+   "dur": "PT5M31S"
+  },
   "anual": {
    "id": "60VId99VP8Y",
    "t": "Previsão Anual 2026, Signo Peixes, 12 Meses",
@@ -131,5 +161,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-24T17:13"
+ "_": "2026-11-24T17:17"
 }
