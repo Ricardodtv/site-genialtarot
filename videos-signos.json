@@ -16,6 +16,12 @@
   }
  },
  "gemeos": {
+  "dia": {
+   "id": "lnnGWER-pWg",
+   "t": "Horóscopo Diário Gémeos 24 e 25 Novembro",
+   "d": "2026-11-24T17:10:15Z",
+   "dur": "PT6M12S"
+  },
   "anual": {
    "id": "EdzVicTufXw",
    "t": "Previsão Anual 2026 Signo Gémeos, 12 Meses",
@@ -32,6 +38,12 @@
   }
  },
  "leao": {
+  "dia": {
+   "id": "4wiIlfNqnFA",
+   "t": "Horóscopo Diário Leão 24 e 25 Novembro",
+   "d": "2026-11-24T17:11:01Z",
+   "dur": "PT4M1S"
+  },
   "anual": {
    "id": "dto1ayURroc",
    "t": "Previsão 2026 Signo Leão Todos os meses",
@@ -40,6 +52,12 @@
   }
  },
  "virgem": {
+  "dia": {
+   "id": "GPc6isf-z2w",
+   "t": "Horóscopo Diário Virgem 24 e 25 Novembro",
+   "d": "2026-11-24T17:11:22Z",
+   "dur": "PT7M36S"
+  },
   "anual": {
    "id": "S63ep0UfuI0",
    "t": "Previsão Anual 2026, Signo Virgem Todos os Signos",
@@ -48,6 +66,12 @@
   }
  },
  "balanca": {
+  "dia": {
+   "id": "Ta19BW1Q6LU",
+   "t": "Horóscopo Diário Balança (Libra) 24 e 25 Novembro",
+   "d": "2026-11-24T17:11:59Z",
+   "dur": "PT5M21S"
+  },
   "anual": {
    "id": "_596jwAtBl0",
    "t": "Previsão anual 2026, Signo Balança",
@@ -64,12 +88,6 @@
   }
  },
  "sagitario": {
-  "dia": {
-   "id": "aGj4_KMWlYI",
-   "t": "Horóscopo Fim de Semana Sagitário 21, 22 e 23 Novembro",
-   "d": "2026-11-20T15:00:30Z",
-   "dur": "PT5M54S"
-  },
   "anual": {
    "id": "SPco2eROtps",
    "t": "Previsão Sagitário, ano 2026 Todos os Meses",
@@ -78,6 +96,12 @@
   }
  },
  "capricornio": {
+  "dia": {
+   "id": "sLxLR3QqKkI",
+   "t": "CAPRICÓRNIO HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
+   "d": "2026-11-24T17:12:51Z",
+   "dur": "PT5M13S"
+  },
   "anual": {
    "id": "hrTjuSE8VmM",
    "t": "Previsão 2026 Signo Capricórnio, 12 Meses",
@@ -86,6 +110,12 @@
   }
  },
  "aquario": {
+  "dia": {
+   "id": "iJzFLNtDKqw",
+   "t": "AQUÁRIO HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
+   "d": "2026-11-24T17:12:21Z",
+   "dur": "PT6M21S"
+  },
   "anual": {
    "id": "iXnf_orBfDs",
    "t": "Previsão Anual 2026 Aquário 12 Meses",
@@ -101,5 +131,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-23T09:00"
+ "_": "2026-11-24T17:13"
 }
