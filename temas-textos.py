@@ -173,6 +173,7 @@ TEMAS = [
   ("O que é a numerologia", "A numerologia estuda o significado simbólico dos números. A partir da data de nascimento e do nome completo calculam-se números que descrevem a personalidade, os talentos, os desafios e os ciclos da vida. A tradição mais conhecida vem de Pitágoras."),
   ("O número do destino e o ano pessoal", "Somando os algarismos da data de nascimento até chegar a um só número (de 1 a 9, ou aos números mestres 11, 22 e 33) obtém-se o número do destino. O ano pessoal mostra a energia de cada ano da sua vida: um ano de começos, de colheita, de mudança ou de descanso."),
   ("O seu 2027", "Veja o que 2027 lhe reserva com o <a href=\"/numerologia-2027\">Mapa Numerológico de 2027</a>, com amostra grátis, ou peça a versão completa com 9 capítulos e a linha do tempo do ano."),
+  ("Os códigos de Grabovoi", "Nas redes fala-se muito dos números de Grabovoi, como o 520 ou o 5197148. Não são numerologia: são listas fixas, iguais para toda a gente, sem efeito comprovado. Explicamos com verdade de onde vêm e quem foi Grabovoi em <a href=\"/codigos-de-grabovoi\">Códigos de Grabovoi: o que são e se funcionam</a>."),   # 24/11/2026 (pedido dele): página nova /codigos-de-grabovoi
  ],
  "perguntas": ["Qual é o meu número do destino?", "Que ano pessoal estou a viver?", "O que me espera em 2027?"],
  "produtos": ["Mapa Numerológico", "Análise ao Seu Signo"]},
