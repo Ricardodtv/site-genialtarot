@@ -2259,6 +2259,9 @@ export class Sala extends DurableObject {
     // e cada visitante novo fazia um COUNT(*) à tabela toda. Índices + contagem guardada em memória.
     this.sql.exec("CREATE INDEX IF NOT EXISTS vis_visto ON vis(visto)");
     this.sql.exec("CREATE INDEX IF NOT EXISTS chat_sid ON chat(sid)");
+    // 24/11 (ele: «corrige a sala»): a limpeza apagava o chat antigo por «quando» sem índice (lia a tabela toda a cada acordar)
+    this.sql.exec("CREATE INDEX IF NOT EXISTS chat_quando ON chat(quando)");
+    this.sql.exec("CREATE TABLE IF NOT EXISTS meta (k TEXT PRIMARY KEY, v INTEGER)");
     this.total = null;
     this.ctx.storage.sql.exec(`CREATE TABLE IF NOT EXISTS gasto (dia TEXT, chave TEXT, pedidos INTEGER, linhas INTEGER, PRIMARY KEY (dia, chave))`);
     // 24/11 (ele: «põe já a proteção na sala»): a quota esgotou outra vez a 23/11. Proteção enquanto o contador não diz
@@ -2305,8 +2308,15 @@ export class Sala extends DurableObject {
     // 20/11 (ele: «não está a contabilizar as visitas»): a sala esgotava TODOS os dias o limite grátis de 5 milhões de linhas
     // lidas e o «ao vivo» parava. O COUNT(*) de 10 em 10 min lia a tabela inteira (dezenas de milhares de linhas, a crescer
     // até aos 30 dias) — ~4 milhões por dia. Agora conta-se UMA vez quando a sala acorda e depois só se soma e subtrai.
-    if (this.total == null) this.total = this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c;
-    else this.total = Math.max(0, this.total - (apagadas || 0));
+    // 24/11 (ele: «corrige a sala»): o «uma vez quando acorda» de 20/11 era a cada ACORDAR — e a sala adormece sempre que
+    // fica uns minutos sem pedidos e reinicia a cada publicação do site (várias por dia). Cada acordar lia as dezenas de
+    // milhares de linhas da tabela. Agora o total fica guardado na tabela «meta» (1 linha) e só se conta se faltar.
+    if (this.total == null) {
+      const m = this.linhas("SELECT v FROM meta WHERE k='total'")[0];
+      this.total = m ? m.v : this.linhas("SELECT COUNT(*) AS c FROM vis")[0].c;
+    }
+    this.total = Math.max(0, this.total - (apagadas || 0));
+    this.sql.exec("INSERT OR REPLACE INTO meta VALUES ('total', ?)", this.total);
     this.conta("limpeza");
   }
   painel(dias, agora) {
@@ -2342,6 +2352,7 @@ export class Sala extends DurableObject {
       } else {
         if ((this.total || 0) > 30000) return J({ ok: false }, 429);
         this.total = (this.total || 0) + 1;
+        if (this.total % 50 === 0) this.sql.exec("INSERT OR REPLACE INTO meta VALUES ('total', ?)", this.total);
         // 01/11: com a lista das colunas — a coluna «humano» acrescentada deixava o INSERT sem colunas a rebentar (erro 1101)
         try {
           this.sql.exec("INSERT INTO vis (sid, ip, pais, cidade, regiao, aparelho, ua, pagina, titulo, origem, primeiro, visto, n, paginas) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", sid, request.headers.get("CF-Connecting-IP") || "?",
