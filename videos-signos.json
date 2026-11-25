@@ -9,10 +9,10 @@
  },
  "touro": {
   "dia": {
-   "id": "ESSuUGnYDfY",
-   "t": "TOURO HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
-   "d": "2026-11-24T17:13:37Z",
-   "dur": "PT5M23S"
+   "id": "uRElA2sRR1k",
+   "t": "TOURO HORÓSCOPO DIÁRIO 25 e 26 Novembro | Mestre Alberto",
+   "d": "2026-11-25T15:14:45Z",
+   "dur": "PT3M40S"
   },
   "anual": {
    "id": "PBDNKmuCGjE",
@@ -22,12 +22,6 @@
   }
  },
  "gemeos": {
-  "dia": {
-   "id": "lnnGWER-pWg",
-   "t": "Horóscopo Diário Gémeos 24 e 25 Novembro",
-   "d": "2026-11-24T17:10:15Z",
-   "dur": "PT6M12S"
-  },
   "anual": {
    "id": "EdzVicTufXw",
    "t": "Previsão Anual 2026 Signo Gémeos, 12 Meses",
@@ -51,10 +45,10 @@
  },
  "leao": {
   "dia": {
-   "id": "4wiIlfNqnFA",
-   "t": "Horóscopo Diário Leão 24 e 25 Novembro",
-   "d": "2026-11-24T17:11:01Z",
-   "dur": "PT4M1S"
+   "id": "mS4H70F1rcU",
+   "t": "Horóscopo Diário Leão 25 e 26 Novembro",
+   "d": "2026-11-25T15:15:42Z",
+   "dur": "PT6M23S"
   },
   "anual": {
    "id": "dto1ayURroc",
@@ -79,10 +73,10 @@
  },
  "balanca": {
   "dia": {
-   "id": "Ta19BW1Q6LU",
-   "t": "Horóscopo Diário Balança (Libra) 24 e 25 Novembro",
-   "d": "2026-11-24T17:11:59Z",
-   "dur": "PT5M21S"
+   "id": "P0cEYGNutVI",
+   "t": "Horóscopo Diário Balança (Libra) 25 e 26 Novembro",
+   "d": "2026-11-25T15:15:37Z",
+   "dur": "P0D"
   },
   "anual": {
    "id": "_596jwAtBl0",
@@ -93,10 +87,10 @@
  },
  "escorpiao": {
   "dia": {
-   "id": "aRtr711qwTQ",
-   "t": "Horóscopo Diário Escorpião 24 e 25 Novembro",
-   "d": "2026-11-24T17:13:56Z",
-   "dur": "PT5M48S"
+   "id": "FKIn5k0tJOU",
+   "t": "Horóscopo Diário Escorpião 25 e 26 Novembro",
+   "d": "2026-11-25T15:16:54Z",
+   "dur": "PT6M50S"
   },
   "anual": {
    "id": "vDhtOX8kixs",
@@ -121,10 +115,10 @@
  },
  "capricornio": {
   "dia": {
-   "id": "sLxLR3QqKkI",
-   "t": "CAPRICÓRNIO HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
-   "d": "2026-11-24T17:12:51Z",
-   "dur": "PT5M13S"
+   "id": "3QI2z5zleZ0",
+   "t": "CAPRICÓRNIO HORÓSCOPO DIÁRIO 25 e 26 Novembro | Mestre Alberto",
+   "d": "2026-11-25T15:17:27Z",
+   "dur": "PT4M52S"
   },
   "anual": {
    "id": "hrTjuSE8VmM",
@@ -135,10 +129,10 @@
  },
  "aquario": {
   "dia": {
-   "id": "iJzFLNtDKqw",
-   "t": "AQUÁRIO HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
-   "d": "2026-11-24T17:13:11Z",
-   "dur": "PT6M21S"
+   "id": "4ScTmK5B-gc",
+   "t": "AQUÁRIO HORÓSCOPO DIÁRIO 25 e 26 Novembro | Mestre Alberto",
+   "d": "2026-11-25T15:17:00Z",
+   "dur": "PT5M32S"
   },
   "anual": {
    "id": "iXnf_orBfDs",
@@ -161,5 +155,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-24T17:17"
+ "_": "2026-11-25T15:17"
 }
