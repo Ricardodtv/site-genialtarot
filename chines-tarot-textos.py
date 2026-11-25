@@ -241,8 +241,8 @@ SIGNO_TAROT = [
     {
         "slug": "aquario",
         "arcano": "A Estrela",
-        "titulo": "Aquário no Tarot: a carta A Estrela e o seu significado",
-        "desc": "Porque A Estrela é a carta do Aquário no Tarot, o que ensina sobre esperança, futuro e liberdade de ser diferente, e o conselho do Mestre Alberto.",
+        "titulo": "Aquário no Tarot: A Estrela, a carta que representa o signo",   # 25/11/2026 ronda SEO: 33 aparições, 0 cliques, pos. 12,1 («qual carta do tarot representa o signo de aquário» 8,9)
+        "desc": "Qual carta do Tarot representa o signo de Aquário? A Estrela, o arcano XVII: porque é a carta do signo, o que ensina sobre esperança e o conselho para Aquário.",
         "ligacao": "Segundo a Golden Dawn, o Aquário corresponde à Estrela, e a imagem fala por si: uma figura despida derrama água sobre a terra e o lago, como o Aguadeiro que dá nome ao signo. A Estrela é a carta da esperança, da inspiração e da fé no futuro. O Aquário é o signo que sonha com um mundo melhor e que quer partilhar com todos aquilo que recebe. Ambos olham para longe, para o que ainda está por vir, com a certeza de que o amanhã pode ser melhor do que o hoje.",
         "licao": "Para quem é Aquário, A Estrela ensina que a esperança é uma forma de acção. A originalidade e o idealismo do signo ganham força quando se põem ao serviço dos outros, com generosidade e sem esperar recompensa. A carta lembra também que é possível ser diferente sem estar sozinho: a autenticidade inspira e atrai, mais cedo ou mais tarde, as pessoas certas. E, depois de tempos difíceis, há sempre uma luz a renovar o caminho, por pequena que pareça no meio da noite.",
         "conselho": "Não guarde as suas ideias só para si: partilhe-as. O futuro que imagina começa com um gesto pequeno, feito hoje, ao lado das pessoas certas.",
