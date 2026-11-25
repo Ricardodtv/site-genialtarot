@@ -1,5 +1,11 @@
 {
  "carneiro": {
+  "dia": {
+   "id": "X3bouQhCeAg",
+   "t": "Horóscopo Diário Áries 25 e 26 Novembro",
+   "d": "2026-11-25T15:17:52Z",
+   "dur": "PT4M29S"
+  },
   "anual": {
    "id": "sYvV52nILsg",
    "t": "2026 Carneiro: Tarot Revela Seu Destino Mensal",
@@ -22,6 +28,12 @@
   }
  },
  "gemeos": {
+  "dia": {
+   "id": "M-y6eTlAGsg",
+   "t": "Horóscopo Diário Gémeos 25 e 26 Novembro",
+   "d": "2026-11-25T15:18:05Z",
+   "dur": "PT4M34S"
+  },
   "anual": {
    "id": "EdzVicTufXw",
    "t": "Previsão Anual 2026 Signo Gémeos, 12 Meses",
@@ -31,10 +43,10 @@
  },
  "caranguejo": {
   "dia": {
-   "id": "r454LX8wsxQ",
-   "t": "CÂNCER (CARANGUEJO) HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
-   "d": "2026-11-24T17:13:44Z",
-   "dur": "PT5M50S"
+   "id": "tL18rw7fIec",
+   "t": "CÂNCER (CARANGUEJO) HORÓSCOPO DIÁRIO 25 e 26 Novembro | Mestre Alberto",
+   "d": "2026-11-25T15:18:15Z",
+   "dur": "PT4M39S"
   },
   "anual": {
    "id": "G_Ox4x7wl_M",
@@ -59,10 +71,10 @@
  },
  "virgem": {
   "dia": {
-   "id": "GPc6isf-z2w",
-   "t": "Horóscopo Diário Virgem 24 e 25 Novembro",
-   "d": "2026-11-24T17:11:22Z",
-   "dur": "PT7M36S"
+   "id": "Ldn7o7XapWw",
+   "t": "Horóscopo Diário Virgem 25 e 26 Novembro",
+   "d": "2026-11-25T15:18:23Z",
+   "dur": "PT5M41S"
   },
   "anual": {
    "id": "S63ep0UfuI0",
@@ -75,8 +87,8 @@
   "dia": {
    "id": "P0cEYGNutVI",
    "t": "Horóscopo Diário Balança (Libra) 25 e 26 Novembro",
-   "d": "2026-11-25T15:15:37Z",
-   "dur": "P0D"
+   "d": "2026-11-25T15:18:23Z",
+   "dur": "PT6M24S"
   },
   "anual": {
    "id": "_596jwAtBl0",
@@ -101,10 +113,10 @@
  },
  "sagitario": {
   "dia": {
-   "id": "fYWAtwey1sU",
-   "t": "SAGITÁRIO HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
-   "d": "2026-11-24T17:13:58Z",
-   "dur": "PT5M54S"
+   "id": "Ab3ea3UjtkA",
+   "t": "SAGITÁRIO HORÓSCOPO DIÁRIO 25 e 26 Novembro | Mestre Alberto",
+   "d": "2026-11-25T15:18:31Z",
+   "dur": "PT5M34S"
   },
   "anual": {
    "id": "SPco2eROtps",
@@ -131,7 +143,7 @@
   "dia": {
    "id": "4ScTmK5B-gc",
    "t": "AQUÁRIO HORÓSCOPO DIÁRIO 25 e 26 Novembro | Mestre Alberto",
-   "d": "2026-11-25T15:17:00Z",
+   "d": "2026-11-25T15:17:56Z",
    "dur": "PT5M32S"
   },
   "anual": {
@@ -143,10 +155,10 @@
  },
  "peixes": {
   "dia": {
-   "id": "FATyTygvTT8",
-   "t": "PEIXES HORÓSCOPO DIÁRIO 24 e 25 Novembro | Mestre Alberto",
-   "d": "2026-11-24T17:14:11Z",
-   "dur": "PT5M31S"
+   "id": "m27xJ51HN2Q",
+   "t": "PEIXES HORÓSCOPO DIÁRIO 25 e 26 Novembro | Mestre Alberto",
+   "d": "2026-11-25T15:18:42Z",
+   "dur": "PT4M28S"
   },
   "anual": {
    "id": "60VId99VP8Y",
@@ -155,5 +167,5 @@
    "dur": "PT9M41S"
   }
  },
- "_": "2026-11-25T15:17"
+ "_": "2026-11-25T15:28"
 }
