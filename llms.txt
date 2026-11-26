@@ -24,6 +24,10 @@ Conteúdo em português (Portugal), com os nomes dos signos também na forma bra
 - [Calcular o Ascendente](https://genialtarot.com/ascendente)
 - [Calendário Lunar](https://genialtarot.com/lua): fases da Lua, Lua em cada signo, eclipses
 - [Lua Nova](https://genialtarot.com/lua-nova): próximas Luas Novas (hora de Portugal e do Brasil), signo de cada uma e significado
+- [Lua Cheia](https://genialtarot.com/lua-cheia): próximas Luas Cheias (hora de Portugal e do Brasil), signo, superluas e eclipses da Lua
+- [Mercúrio retrógrado](https://genialtarot.com/mercurio-retrogrado): se Mercúrio está retrógrado agora, quando termina, e as datas de 2026 e 2027
+- [Tarot de Marselha](https://genialtarot.com/tarot-de-marselha): história, as 78 cartas e diferenças para o Rider-Waite
+- [Signos compatíveis](https://genialtarot.com/signos-compativeis-com-carneiro): com quem combina cada um dos 12 signos, no amor e na amizade
 - [Notícias do Céu](https://genialtarot.com/noticias-do-ceu): mudanças de signo, retrógrados e eclipses das próximas semanas
 - [Quíron na Astrologia](https://genialtarot.com/quiron-astrologia): o curador ferido, o signo de Quíron por data de nascimento (calculado), Quíron hoje
 
