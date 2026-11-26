@@ -88,6 +88,9 @@ _SONHO_PAL = {"agua": "água|águas", "cafe": "café", "caixao": "caixão", "pao
               "arma-de-fogo": "arma de fogo|armas de fogo|pistola|revólver", "casa-de-banho": "casa de banho|casas de banho|banheiro"}
 for _f in glob.glob("sonho/sonhar-com-*.html"):
     _k = _f[len("sonho/sonhar-com-"):-5]
+    if _k not in _SONHO_PAL:   # 26/11 (O-696): sonho novo sem palavra na lista → tira-a do título («Sonhar com águia: …» → «águia»)
+        _t = re.search(r"<title>\s*Sonhar com (?:o |a |os |as |um |uma )?([^:<|(]+?)\s*[:|(<]", open(_f, encoding="utf-8").read(), re.I)
+        if _t and 3 <= len(_t.group(1)) <= 30: _SONHO_PAL[_k] = re.escape(_t.group(1).strip())
     if _k in _SONHO_PAL: TERMOS.append((_I + rf"(?:{_SONHO_PAL[_k]})", f"/sonho/sonhar-com-{_k}", 4))
 TERMOS = [(re.compile(rf"(?<![\w-])(?:{p})(?![\w-])" if not p.startswith(_I) else _I + rf"(?<![\w-])(?:{p[len(_I):]})(?![\w-])"), u, w)
           for p, u, w in TERMOS if os.path.exists(u.lstrip("/") + ".html")]
