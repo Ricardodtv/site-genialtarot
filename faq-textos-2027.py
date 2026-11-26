@@ -22,7 +22,7 @@ FAQ = {
   ("Como está o dinheiro para Capricórnio em 2027?",
    "Os eclipses no eixo Aquário–Leão tocam os rendimentos e os bens partilhados, por isso é um ano para reorganizar contas, créditos e dívidas. Júpiter na casa 8 pode trazer apoios, mas convém ler tudo com atenção antes de assinar."),
   ("Quais são as datas mais importantes de 2027 para Capricórnio?",
-   "6 de fevereiro (eclipse do Sol em Aquário), 18 de julho (eclipse da Lua no seu signo), 26 de julho (Júpiter entra em Virgem), 9 de agosto (Saturno retrógrado) e 26 de novembro (Marte entra em Capricórnio)."),
+   "6 de fevereiro (eclipse do Sol em Aquário), 18 de julho (eclipse da Lua no seu signo), 26 de julho (Júpiter entra em Virgem), 9 de agosto (Saturno retrógrado) e 25 de novembro (Marte entra em Capricórnio)."),
  ],
  "horoscopo-2027-caranguejo": [
   ("Como vai ser 2027 para Caranguejo (Câncer)?",
@@ -32,7 +32,7 @@ FAQ = {
   ("Como está o dinheiro para Caranguejo em 2027?",
    "Até 26 de julho, Júpiter na casa 2 é um bom apoio para aumentar rendimentos e organizar as poupanças. O eclipse total do Sol de 2 de agosto, no mesmo sector, pode marcar uma mudança na forma de ganhar ou de gastar. Entre 21 de fevereiro e 1 de abril, Marte retrógrado desaconselha compras impulsivas."),
   ("Quais são as datas mais importantes de 2027 para Caranguejo?",
-   "11 de junho (Mercúrio fica retrógrado no seu signo), 18 de julho (eclipse da Lua em Capricórnio), 26 de julho (Júpiter entra em Virgem), 2 de agosto (eclipse total do Sol em Leão) e 9 de agosto (Saturno fica retrógrado na casa 10)."),
+   "10 de junho (Mercúrio fica retrógrado no seu signo), 18 de julho (eclipse da Lua em Capricórnio), 26 de julho (Júpiter entra em Virgem), 2 de agosto (eclipse total do Sol em Leão) e 9 de agosto (Saturno fica retrógrado na casa 10)."),
  ],
  "horoscopo-2027-touro": [
   ("Como vai ser 2027 para Touro?",

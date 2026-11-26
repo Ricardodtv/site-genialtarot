@@ -43,8 +43,8 @@ H2027 = [
   "saude_bemestar": "A mente corre depressa e o corpo nem sempre acompanha. Caminhadas, pausas sem ecrãs e horários regulares ajudam a gastar a energia de Úrano sem se esgotar.",
   "datas": [
    ["6 de fevereiro", "Eclipse do Sol em Aquário, na casa 9: vontade de viajar, estudar ou mudar de perspectiva."],
-   ["11 de junho", "Mercúrio fica retrógrado: reveja planos, contas e conversas pendentes antes de avançar."],
-   ["5 de julho", "Mercúrio volta a andar para a frente no seu signo: as ideias amadurecidas podem sair à rua."],
+   ["10 de junho", "Mercúrio fica retrógrado: reveja planos, contas e conversas pendentes antes de avançar."],
+   ["4 de julho", "Mercúrio volta a andar para a frente no seu signo: as ideias amadurecidas podem sair à rua."],
    ["18 de julho", "Eclipse da Lua em Capricórnio, na casa 8: arrumação de dinheiro partilhado e de laços profundos."],
    ["26 de julho", "Júpiter entra em Virgem, na casa 4: crescimento na casa, na família e no sentimento de pertença."]],
   "conselho": "Fale menos de tudo e mais do que importa. A sua palavra, este ano, tem poder para abrir portas."},
@@ -58,7 +58,7 @@ H2027 = [
   "trabalho": "Saturno passa o ano na sua casa 10: chefes, responsabilidades e metas exigentes pedem disciplina, mas o reconhecimento chega a quem mostra consistência. Entre 9 de Agosto e 24 de Dezembro, com Saturno retrógrado, é tempo de rever o rumo profissional e consolidar. Depois de 26 de Julho, cursos, escrita e negociações dão bons resultados.",
   "saude_bemestar": "A pressão no trabalho pode acumular-se no corpo. Respeite os sinais de cansaço, alimente-se com regularidade e guarde tempo para a família e para o descanso emocional.",
   "datas": [
-   ["11 de junho", "Mercúrio fica retrógrado no seu signo: reveja planos pessoais antes de os anunciar."],
+   ["10 de junho", "Mercúrio fica retrógrado no seu signo: reveja planos pessoais antes de os anunciar."],
    ["18 de julho", "Eclipse da Lua em Capricórnio, na casa 7: as relações mostram o que precisa de mudar."],
    ["26 de julho", "Júpiter entra em Virgem, na casa 3: bom período para estudar, escrever e criar contactos."],
    ["2 de agosto", "Eclipse total do Sol em Leão, na casa 2: nova fase nas finanças e na forma como se valoriza."],
@@ -159,7 +159,7 @@ H2027 = [
    ["18 de julho", "Eclipse da Lua no seu signo: viragem emocional e clareza sobre o que precisa."],
    ["26 de julho", "Júpiter entra em Virgem, na casa 9: viagens, estudos e novos horizontes."],
    ["9 de agosto", "Saturno, o seu regente, fica retrógrado na casa 4: revisão de assuntos de casa e família."],
-   ["26 de novembro", "Marte entra no seu signo: energia, iniciativa e determinação para fechar o ano."]],
+   ["25 de novembro", "Marte entra no seu signo: energia, iniciativa e determinação para fechar o ano."]],
   "conselho": "Construa com firmeza, mas deixe espaço para sentir. A sua força vem também das suas raízes."},
 
  {"slug": "aquario",
