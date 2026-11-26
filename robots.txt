@@ -5,6 +5,7 @@
 User-agent: *
 Allow: /
 Disallow: /pagar
+Disallow: /m78/
 Disallow: /api/
 Disallow: /e/
 
@@ -22,6 +23,7 @@ User-agent: PerplexityBot
 User-agent: Perplexity-User
 Allow: /
 Disallow: /pagar
+Disallow: /m78/
 Disallow: /api/
 Disallow: /e/
 
