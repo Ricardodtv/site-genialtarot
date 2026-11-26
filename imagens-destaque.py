@@ -76,6 +76,9 @@ IMAGENS = [
      "A Lua Nova: o começo do ciclo lunar, e quando é a próxima."),
     ("L09", "lua-cheia", "lua-cheia", "Lua Cheia: a Lua inteira e dourada sobre colinas, num céu estrelado de azul-noite",
      "A Lua Cheia: o ponto alto do ciclo lunar, e quando é a próxima."),
+    # 26/11/2026: o laço real de Mercúrio de fev.–mar. de 2027 (Swiss Ephemeris + Pillow; a mercurio-retrogrado.webp é da /retrogrados)
+    ("L08", "mercurio-retrogrado", "mercurio-retrogrado-no-ceu", "Mercúrio retrógrado no céu: o laço que Mercúrio desenha entre as estrelas, visto da Terra",
+     "O laço de Mercúrio retrógrado de fevereiro e março de 2027, calculado: Mercúrio para, recua e volta a avançar."),
     ("L02", "lua", "fases-da-lua", "Fases da Lua: as oito fases da Lua em linha, da Lua Nova à Lua Cheia e de volta",
      "As fases da Lua e a Lua nos signos, dia a dia, no Calendário Lunar."),
     ("L03", "eclipses-2027", "eclipse-total-do-sol", "Eclipse total do Sol com a coroa solar visível sobre montanhas ao entardecer",
