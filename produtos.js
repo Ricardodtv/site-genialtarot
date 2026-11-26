@@ -61,6 +61,24 @@ const PRODUTOS = [
     estrelas: 5,
   },
 
+  /* 26/11/2026 — R-145, decisões dele: «Leia o Tarot Sem Decorar — Os 78 Mapas das Cartas», PDF 80 págs, 14,90 €, fundo «Noite estrelada»,
+     em destaque na loja e na página principal. myPOS dele B325FU28AAM77 (pagar.html?c=mapas-78); leva à /leia-o-tarot-sem-decorar
+     (lá põe o email). Entrega automática: ~/mapas78/mapas78.py (vigia mapas78-vigia, de 5 em 5 min). */
+  {
+    nome: "🗺️ Leia o Tarot Sem Decorar – Os 78 Mapas das Cartas (PDF, 80 páginas)",
+    categoria: "Promoção",
+    preco: "14,90 €",
+    foto: "mapas-78-loja.jpg",
+    descricao: "78 cartas, 78 mapas: olhe, perceba e leia sem decorar nada. Cada carta do Baralho Mestre Alberto com a essência, o significado, os símbolos para olhar, o amor, o trabalho e o dinheiro, a invertida, o conselho, o sim ou não, a astrologia e uma pergunta para refletir. Paga com cartão e o PDF chega ao seu email.",
+    link: "",
+    pagina: "/leia-o-tarot-sem-decorar",
+    pagamentos: "💳 Cartão · Apple Pay · Google Pay",
+    etiqueta: "NOVO",
+    destaque: true,
+    cor: "azul",
+    estrelas: 5,
+  },
+
   /* 20/11/2026 — R-137 ponto 1, decisões dele: «O Seu 2027», o guia de UM signo (PDF 12 páginas), 7 €, entrega automática;
      ligação myPOS dele BR3QBMEV89Y96 (no pagar.html como c=o-seu-2027). Leva à /o-seu-2027 (lá escolhe o signo e põe o email).
      Pedido «carneiro 2027», «melhores signos 2027»… é o que mais cresce no Google (Search Console 22/10–18/11). */
