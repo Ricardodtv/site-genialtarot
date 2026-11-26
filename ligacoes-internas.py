@@ -82,7 +82,10 @@ _SONHO_PAL = {"agua": "água|águas", "cafe": "café", "caixao": "caixão", "pao
               "igreja": "igreja", "velas": "vela|velas", "sangue": "sangue", "fantasma": "fantasma|fantasmas", "bruxa": "bruxa|bruxas", "ovos": "ovo|ovos",
               "unhas": "unhas", "cabelo": "cabelo", "beijo": "beijo", "festa": "festa", "neve": "neve", "rio": "rio", "lama": "lama", "vinho": "vinho",
               "bolo": "bolo", "doces": "doces", "carne": "carne", "fruta": "fruta|frutas", "roupa": "roupa", "sapatos": "sapatos", "anel": "anel",
-              "olhos": "olhos", "carro": "carro", "casa": "casa", "deus": "Deus", "diabo": "diabo"}
+              "olhos": "olhos", "carro": "carro", "casa": "casa", "deus": "Deus", "diabo": "diabo",
+              # 26/11 (O-690…O-696): os sonhos novos de 25-26/11 estavam órfãos por não terem palavra aqui
+              "abelhas": "abelha|abelhas", "abraco": "abraço|abraços", "afogamento": "afogamento|afogar-se|afogar", "aguia": "águia|águias",
+              "arma-de-fogo": "arma de fogo|armas de fogo|pistola|revólver", "casa-de-banho": "casa de banho|casas de banho|banheiro"}
 for _f in glob.glob("sonho/sonhar-com-*.html"):
     _k = _f[len("sonho/sonhar-com-"):-5]
     if _k in _SONHO_PAL: TERMOS.append((_I + rf"(?:{_SONHO_PAL[_k]})", f"/sonho/sonhar-com-{_k}", 4))
