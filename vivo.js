@@ -61,9 +61,10 @@
   document.addEventListener("click", function (e) {
     try {
       if (!/(?:^|;\s*)gt_gclid=/.test(document.cookie)) return;
-      if (!(e.target.closest && e.target.closest('a[href*="wa.me/"], a[href*="api.whatsapp.com"], a[href*="whatsapp://"]'))) return;
+      var tel = e.target.closest && e.target.closest('a[href^="tel:"]');   // 26/11/2026: + o botão «Ligar» (conversão «chamada»)
+      if (!tel && !(e.target.closest && e.target.closest('a[href*="wa.me/"], a[href*="api.whatsapp.com"], a[href*="whatsapp://"]'))) return;
       fetch("/api/vivo/pagar", { method: "POST", headers: { "Content-Type": "application/json" }, keepalive: true,
-        body: JSON.stringify({ sid: sid, tipo: "whatsapp", pagina: location.pathname }) }).catch(function () {});
+        body: JSON.stringify({ sid: sid, tipo: tel ? "chamada" : "whatsapp", pagina: location.pathname }) }).catch(function () {});
     } catch (x) {}
   }, true);
   // 13/11/2026 O-404: conta o clique nos botões de pagamento (myPOS e PIX). O worker junta-lhe a origem do cookie.

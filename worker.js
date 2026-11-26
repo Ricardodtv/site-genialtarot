@@ -141,6 +141,18 @@ function buildMessage(type, d = {}) {
                 : "⏳ Confirma se o pagamento entrou e diz «envia» — só então segue a leitura completa.",
     ].filter((l) => l !== null).join("\n");
   }
+  // 26/11/2026 (sim dele): «Prefere que eu lhe ligue?» nas páginas dos anúncios (contacto-anuncio.js) — é captura (ficha + aviso)
+  if (type === "contacto") {
+    return [
+      `📞 LIGAR — PEDIDO DE CONTACTO — ${clean(d.area, 80)}`,
+      "",
+      `👤 Nome: ${clean(d.name)}`,
+      `📱 Telemóvel: ${clean(d.phone, 40)}`,
+      d.quando ? `📅 Quando: ${clean(d.quando, 80)}` : null,
+      d.mensagem ? `💬 ${clean(d.mensagem, 500)}` : null,
+      `🌐 Página: ${clean(d.pagina, 80)}${d.origem ? " · veio de " + clean(d.origem, 64) : ""}`,
+    ].filter((l) => l !== null).join("\n");
+  }
   if (type === "rating") {
     const stars = "⭐".repeat(Math.max(1, Math.min(5, Number(d.rating) || 0)));
     return `${stars} AVALIAÇÃO — Genialtarot\n\n👤 ${clean(d.name)}\n🎯 Área: ${clean(d.area)}\n Nota: ${clean(d.rating)}/5`;
@@ -1060,7 +1072,7 @@ const PRINCIPAL = {
       try {
         const ref = request.headers.get("origin") || request.headers.get("referer") || "";
         const d = await request.json();
-        const tipo = d.tipo === "pix" ? "pix" : d.tipo === "whatsapp" ? "whatsapp" : "mypos";
+        const tipo = d.tipo === "pix" ? "pix" : d.tipo === "whatsapp" ? "whatsapp" : d.tipo === "chamada" ? "chamada" : "mypos";   // 26/11: + chamada (botão Ligar)
         const pg = String(d.pagina || "").replace(/\.html$/, "");
         const ck = (request.headers.get("cookie") || "").match(/(?:^|;\s*)gt_o=([a-z0-9/-]{1,64})(?:;|$)/);
         // 20/11/2026 O-591: veio de um anúncio do Google Ads (cookie gt_gclid do vivo.js) → fica na fila «gads-…» (90 dias);
@@ -1071,7 +1083,7 @@ const PRINCIPAL = {
           ctx.waitUntil(env.CAPTURAS.put("gads-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 6),
             JSON.stringify(g), { expirationTtl: 90 * 864e2 }).catch(() => {}));
         }
-        if (tipo !== "whatsapp" && env.VISITAS && /genialtarot\.com/.test(ref) && /^\/[a-z0-9-]*(\/[a-z0-9-]+)?$/.test(pg)) {
+        if (tipo !== "whatsapp" && tipo !== "chamada" && env.VISITAS && /genialtarot\.com/.test(ref) && /^\/[a-z0-9-]*(\/[a-z0-9-]+)?$/.test(pg)) {
           const ua = request.headers.get("user-agent") || "";
           env.VISITAS.writeDataPoint({ indexes: ["/clique-pagamento"], doubles: [1], blobs: ["/clique-pagamento", ck ? "marca:" + ck[1] : "(sem origem)",
             (request.cf && request.cf.country) || "?", aparelhoDe(ua), "clique", tipo, servidorAlugado(request.cf),
@@ -1359,6 +1371,16 @@ const PRINCIPAL = {
             if (ck) data.origem = ck[1];
           }
         } catch (e) { /* a origem nunca estraga a captura */ }
+
+        // 26/11/2026: o pedido de contacto de quem veio de um anúncio do Google Ads vira conversão «formulario» (fila «gads-…»)
+        try {
+          const gc = (request.headers.get("cookie") || "").match(/(?:^|;\s*)gt_gclid=(gclid|gbraid|wbraid)\.([A-Za-z0-9_-]{10,200})(?:;|$)/);
+          if (type === "contacto" && gc && env.CAPTURAS) {
+            ctx.waitUntil(env.CAPTURAS.put("gads-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 6),
+              JSON.stringify({ tipo_id: gc[1], id: gc[2], conv: "formulario", quando: new Date().toISOString(),
+                pagina: String((data && data.pagina) || "").slice(0, 120) }), { expirationTtl: 90 * 864e2 }).catch(() => {}));
+          }
+        } catch (e) { /* a conversão nunca estraga a captura */ }
 
         // ── REDE DE SEGURANCA (16/08/2026) ───────────────────────────────
         // Guarda a captura numa fila da Cloudflare ANTES de qualquer outra
