@@ -25,7 +25,7 @@
     + '<text x="60" y="58" text-anchor="middle" font-family="Cinzel,Georgia,serif" font-weight="900" font-size="30" fill="#fff">−30%</text>'
     + '<text x="60" y="80" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="11" letter-spacing="1" fill="#ffd978">BLACK FRIDAY</text></g></svg>';
   var DESTAQUES = [
-    { id: "blackfriday", classe: "dst-bf", antes: "section.hero form.gtp", pagina: /^\/loja(\.html)?$/,
+    { id: "blackfriday", classe: "dst-bf", antes: "section.hero form.gtp", pagina: /^\/(loja|promo)(\.html)?$/,   // 27/11: nem na página do pack (/promo)
       activo: function () { return !!(window.BF && window.BF.ativo); },
       titulo: "Black Friday: −30% em tudo",
       texto: "Consultas, mapas, amuletos e cursos com 30% de desconto. Só até domingo à meia-noite.",

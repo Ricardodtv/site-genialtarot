@@ -90,7 +90,7 @@
       h = h.replace(velho, e.link).replace(encodeURIComponent(velho), encodeURIComponent(e.link)).replace(/([?&]v=)[^&]*/, "" + encodeURIComponent(e.para));
       a.setAttribute("href", h);
     });
-    if (!BF.ativo || /^\/(consultorio|o-teu-ceu|pagar)(\/|\.html|-sala|$)/.test(location.pathname)) return;
+    if (!BF.ativo || /^\/(consultorio|o-teu-ceu|pagar|promo)(\/|\.html|-sala|$)/.test(location.pathname)) return;   // 27/11: a faixa não vai para a página do pack
     var st = document.createElement("style");
     st.textContent = ".bf-faixa{position:sticky;top:0;z-index:9999;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.35rem .9rem;"
       + "padding:.55rem 1rem;background:linear-gradient(90deg,#000,#1a1208 50%,#000);border-bottom:2px solid #e2a93a;color:#fff;text-decoration:none;"
