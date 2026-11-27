@@ -76,6 +76,18 @@ function buildMessage(type, d = {}) {
       "🤖 Entrega automática: quando o pagamento de 14,90 € entrar, o PDF segue sozinho.",
     ].join("\n");
   }
+  // 27/11/2026 (ele): pedido de um PACK de promoção (promo.html). Pagamento pela etiqueta myPOS; o cerebro
+  // (~/promocoes-pack/pack.py) junta a ficha, faz os mapas e envia. Quem vem do email VIP só traz o código (token).
+  if (type === "pack-pedido") {
+    return [
+      `🎁 PEDIDO DE PACK ${clean(d.pack, 20)} — ${clean(d.promo, 40)} — Genialtarot`,
+      "",
+      d.token ? "👑 Veio do email VIP (os dados vêm da ficha)" : "📝 Preencheu os dados na página",
+      "💳 Cartão (myPOS, etiqueta)",
+      "",
+      "🤖 Entrega automática: quando o pagamento entrar, os mapas são feitos e seguem por email.",
+    ].join("\n");
+  }
   // 21/10/2026: pedido do Mapa Astral completo (mapa-astral.html) — o mesmo fluxo do Mapa do Amor.
   if (type === "mapa-astral-pedido") {
     const como = { cartao: "💳 Cartão (myPOS)", mbway: "📱 MB WAY", pix: "🇧🇷 PIX (pelo WhatsApp)" }[d.metodo] || clean(d.metodo, 20);
