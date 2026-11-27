@@ -215,16 +215,23 @@ for f in glob.glob("revista-*-*.html"):
     nm = [x.replace("ç", "c") for x in MESES].index(m.group(1)) + 1 if m.group(1) in [x.replace("ç", "c") for x in MESES] else 0
     if nm: eds.append((int(m.group(2)), nm, f[:-5]))
 eds.sort(reverse=True)
-lista = "".join(f'<a class="ed" href="/{s_}" target="_blank" rel="noopener"><span class="n">N.º {(a_ - 2026) * 12 + m_ - 11}</span><b>{MESES[m_ - 1].capitalize()} {a_}</b><small>Folhear →</small></a>' for a_, m_, s_ in eds)
+lista = "".join(f'<a class="ed" href="/{s_}" target="_blank" rel="noopener"><span class="mini"><span class="mn">N.º {(a_ - 2026) * 12 + m_ - 11} · {MESES[m_ - 1].capitalize()} {a_}</span><img src="/revista-mestre.webp" alt="" class="mf" loading="lazy"></span><span class="n">N.º {(a_ - 2026) * 12 + m_ - 11}</span><b>{MESES[m_ - 1].capitalize()} {a_}</b><small>Folhear a revista →</small></a>' for a_, m_, s_ in eds)
 arq = pagina.split("<body")[0]
 arq = re.sub(r"<title>.*?</title>", "<title>Revista Genial — todas as edições · Mestre Alberto</title>", arq, flags=re.S)
 arq = re.sub(r'<meta name="description" content="[^"]*"', '<meta name="description" content="Todas as edições da Revista Genial, a revista do mês do Genial Tarot: o céu, as luas, os signos e os números de cada mês."', arq)
 arq = arq.replace(f'href="{URL}"', f'href="{SITE}/revista"').replace(f'content="{URL}"', f'content="{SITE}/revista"')
 arq = re.sub(r'<script type="application/ld\+json">.*?</script>', "", arq, flags=re.S)
 arq += f"""<body><div class="estrelas" aria-hidden="true"></div><div class="caixa"><header class="topo"><a class="backlink" href="/">genialtarot.com</a></header>
-<section class="heroi"><span class="selo">Revista do mês</span><h1><span class="az">Revista Genial</span></h1><p class="sub">Uma edição por mês, no dia 1: o céu, as luas, os 12 signos, os números e a carta do Mestre Alberto.</p></section>
+<section class="heroi"><span class="selo">Revista do mês</span><h1><span class="az">Revista Genial</span></h1><p class="sub">Uma edição por mês, três dias antes de o mês começar: o céu, as luas, os 12 signos, os números e a carta do Mestre Alberto. Abre num separador só para ela.</p></section>
 <section class="cartao"><div class="eds">{lista}</div></section>
-<style>.eds{{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr))}}.ed{{display:flex;flex-direction:column;gap:.3rem;text-decoration:none;color:var(--texto);padding:1.4rem 1rem;border-radius:.5rem 1rem 1rem .5rem;border:2px solid var(--ouro);background:radial-gradient(120% 80% at 50% 30%,oklch(0.42 0.17 300),oklch(0.16 0.06 285));box-shadow:inset 10px 0 14px -10px #000a,0 14px 30px #0008}}.ed .n{{font-size:.75rem;letter-spacing:.2em;color:var(--ouro);font-weight:800}}.ed b{{font-family:var(--titulo);font-size:1.5rem}}.ed small{{color:var(--suave)}}</style>
+<style>.eds{{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(13rem,15rem));justify-content:center}}
+.ed{{display:flex;flex-direction:column;gap:.25rem;text-decoration:none;color:var(--texto);padding:.8rem;border-radius:1rem;border:1px solid #f2c96b99;background:linear-gradient(160deg,#2a1245,#160a2c);box-shadow:0 14px 30px #0008;transition:transform .25s}}
+.ed:hover{{transform:translateY(-4px) rotate(-1deg)}}
+.ed .mini{{position:relative;display:block;aspect-ratio:1094/1438;border-radius:.3rem .8rem .8rem .3rem;overflow:hidden;border:2px solid #f2c96b;margin-bottom:.5rem;
+ background:url(/revista-capa-mini.webp) center top/100% auto no-repeat #1a0a33;box-shadow:inset 8px 0 10px -8px #000c,0 10px 24px #000a}}
+.ed .mn{{position:absolute;left:6%;right:6%;top:3%;font:800 .55rem/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#ffe2a0;text-align:center;text-shadow:0 1px 3px #000}}
+.ed .mf{{position:absolute;right:7%;bottom:9%;width:36%;aspect-ratio:3/4;height:auto;object-fit:cover;border-radius:999px 999px .4rem .4rem;border:2px solid #f2c96b;box-shadow:0 6px 14px #000c}}
+.ed .n{{font-size:.72rem;letter-spacing:.2em;color:var(--ouro);font-weight:800}}.ed b{{font-family:var(--titulo);font-size:1.3rem;color:#ffe2a0}}.ed small{{color:var(--suave)}}</style>
 {FIM}"""
 open("revista.html", "w", encoding="utf-8").write(arq)
 print("revista.html ·", len(eds), "edição(ões)")
