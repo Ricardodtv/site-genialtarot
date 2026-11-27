@@ -282,6 +282,13 @@ body.leitura .revista.js ~ .comandos { position: fixed; left: 50%; bottom: .8rem
   background: #160a2ce6; border: 1px solid #f2c96b88; border-radius: 999px; box-shadow: 0 10px 30px #000c; }
 body.leitura .comandos button { width: 2.8rem; height: 2.8rem; font-size: 1.7rem; }
 body.leitura .arquivo { margin-bottom: 5rem; }
+/* 27/11: novidades, grátis e loja com mais vida */
+.cx.novas { grid-template-columns: 1fr 1fr; } .cx .nv, .cx .lj { display: flex; flex-direction: column; gap: .2rem; text-decoration: none; color: var(--texto);
+  background: oklch(0.18 0.06 272 / .75); border: 1px solid var(--borda); border-radius: .9rem; padding: .7rem .75rem; }
+.cx .nv .ic { font-size: 1.6rem; line-height: 1; } .cx .nv b, .cx .lj b { font-family: var(--titulo); color: #ffe2a0; font-size: .95rem; line-height: 1.2; }
+.cx .nv small { color: var(--suave); font-size: .8rem; line-height: 1.35; }
+.cx.lojas { grid-template-columns: 1fr 1fr; } .cx .lj img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: .6rem; margin-bottom: .3rem; }
+.cx .lj .preco { font-size: 1.15rem; }
 
 </style>
 </head>
