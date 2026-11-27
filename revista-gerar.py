@@ -83,12 +83,12 @@ fam.sort(key=lambda p: p[3])
 
 # ---------- notícias do mês, novidades e loja ----------
 noticias = [n for n in json.load(open("noticias/lista.json")) if n.get("pub", "").startswith(f"{ANO}-{MES:02d}")][:8]
-nov = re.findall(r'<a class="nova" href="(/[^"]+)"><span class="eti">[^<]*</span><span class="ico">([^<]*)</span><span><b>([^<]+)</b><small>([^<]*)</small>', open("novidades.html", encoding="utf-8").read())[:4]
+nov = re.findall(r'<a class="nova" href="(/[^"]+)"><span class="eti">[^<]*</span><span class="ico">([^<]*)</span><span><b>([^<]+)</b><small>([^<]*)</small>', open("novidades.html", encoding="utf-8").read())[:8]
 loja = []
 for bloco in re.findall(r"\{[^{}]*?destaque:\s*true[^{}]*?\}", open("produtos.js", encoding="utf-8").read(), re.S):
     g = lambda k: (re.search(k + r':\s*"([^"]*)"', bloco) or [None, ""])[1]
-    loja.append((g("nome"), g("preco"), g("pagina") or "/loja"))
-loja = loja[:3]
+    loja.append((g("nome"), g("preco"), g("pagina") or "/loja", g("foto")))
+loja = loja[:4]
 
 # ---------- a carta do mês (só depois do directo) ----------
 cartas = json.load(open("revista-cartas.json")) if os.path.exists("revista-cartas.json") else {}
@@ -127,8 +127,14 @@ pag("numeros", "🔢 O seu Mês Pessoal", f'<p>Em {NOME_MES}, a vibração muda 
 for k, bloco in enumerate(partes(fam, 6)):
     pag(f"famosos{k + 1}", f"🎂 Fazem anos em {NOME_MES}" + (f" ({k + 1})" if len(fam) > 6 else ""), '<ul class="famosos">' + "".join(f'<li><b>{"🇵🇹" if p[5] == "PT" else "🇧🇷"} {e(p[0])}</b><small>{p[3]:02d}/{p[2]:02d}/{p[1]} · {e(p[4])}</small></li>' for p in bloco) + '</ul>' + ('<p class="fonte">Com quem partilha o seu céu? <a href="/famosos-ceu">Famosos com o seu céu</a>.</p>' if k == len(partes(fam, 6)) - 1 else ""), indice=k == 0)
 pag("noticias", "📰 Notícias do céu", ('<ul class="ceu-mes noticias">' + "".join(f'<li><a href="/noticias/{e(n["slug"])}">{e(n["titulo"])}</a></li>' for n in noticias) + "</ul>") if noticias else f'<p>As notícias do céu de {NOME_MES} entram nesta página à medida que saem, de manhã e à tarde.</p><p>Até lá, veja as últimas em <a href="/noticias-do-ceu">Notícias do Céu</a>.</p>')
-pag("novo", "✨ Novo no site", '<div class="cx">' + "".join(f'<div><b><a href="{h}">{i} {e(t)}</a></b><small>{e(d)}</small></div>' for h, i, t, d in nov) + '</div><p class="fonte"><a href="/novidades">Todas as novidades</a></p>')
-pag("loja", "🛍️ Da loja", '<div class="cx">' + "".join(f'<div><b><a href="{pg}">{e(n)}</a></b><span class="preco">{e(pr)}</span></div>' for n, pr, pg in loja) + '</div><p style="text-align:center"><a class="cta" href="/loja">Ver a loja</a></p>')
+# 27/11 (ele): «mais novidades do site na revista» — 8 novidades em 2 páginas, as ferramentas grátis e a loja com fotos
+for k, bloco in enumerate(partes(nov, 4)):
+    pag(f"novo{k + 1}", "✨ Novo no site" + (f" ({k + 1})" if len(nov) > 4 else ""), '<div class="cx novas">' + "".join(f'<a class="nv" href="{h}"><span class="ic">{i}</span><b>{e(t)}</b><small>{e(d)}</small></a>' for h, i, t, d in bloco) + '</div>' + ('<p class="fonte"><a href="/novidades">Todas as novidades</a></p>' if k == len(partes(nov, 4)) - 1 else ""), indice=k == 0)
+GRATIS = [("/tarot-gratis", "🃏", "Tarot grátis", "Tire as suas cartas agora"), ("/o-meu-dia", "☀️", "O meu dia", "O seu signo, a sua carta e a Lua de hoje"),
+          ("/horoscopo-de-amanha", "🌙", "A antevisão do Mestre", "O céu de amanhã para os 12 signos"), ("/numerologia-2027", "🔢", "O seu Ano 2027", "A calculadora da numerologia"),
+          ("/ascendente", "✨", "O seu Ascendente", "Sol, Lua e Ascendente ao minuto"), ("/carta-da-semana", "✉️", "A Carta da Semana", "Todos os domingos")]
+pag("gratis", "🎁 Grátis no site", '<div class="cx novas">' + "".join(f'<a class="nv" href="{h}"><span class="ic">{i}</span><b>{e(t)}</b><small>{e(d)}</small></a>' for h, i, t, d in GRATIS) + '</div>')
+pag("loja", "🛍️ Da loja", '<div class="cx lojas">' + "".join(f'<a class="lj" href="{pg}">' + (f'<img src="/{e(ft)}" alt="" loading="lazy">' if ft else "") + f'<b>{e(n)}</b><span class="preco">{e(pr)}</span></a>' for n, pr, pg, ft in loja) + '</div><p style="text-align:center"><a class="cta" href="/loja">Ver a loja</a></p>')
 pag("fim", "📩 Até ao próximo mês", f'<p>A revista do mês seguinte sai três dias antes de o mês acabar e vai-se completando ao longo do mês, com as notícias do céu e a carta do directo. As edições anteriores ficam todas guardadas.</p><p style="text-align:center"><a class="cta" href="/vip">Receber a revista no email</a></p><p style="text-align:center"><a class="cta azul" href="/consulta-de-tarot-online">Marcar uma consulta</a></p><p class="fonte">Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.</p>', indice=False)
 
 # --- a capa e o índice ---
