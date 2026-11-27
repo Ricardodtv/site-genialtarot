@@ -12,13 +12,13 @@
     ["🔮", "Horóscopo", "/horoscopo-do-dia", [["Do dia", "/horoscopo-do-dia"], ["De amanhã", "/horoscopo-de-amanha"], ["Semanal", "/horoscopo-semanal"], ["Fim de semana", "/fimdesemana"],
       ["Horóscopo 2027", "/horoscopo-2027"], ["Os 12 signos", "/signos-do-zodiaco"], ["Compatibilidade", "/compatibilidade"], ["Horóscopo chinês", "/horoscopo-chines"]], /^\/(horoscopo|signo\/|fimdesemana|signos-|compat|melhores-signos)/],
     ["🃏", "Tarot", "/tarot-gratis", [["Tarot grátis", "/tarot-gratis"], ["A carta do dia", "/tiragem-carta-do-dia"], ["Os Arcanos Maiores", "/arcanos"], ["Os Arcanos Menores", "/arcanos-menores"],
-      ["Tarot do amor", "/tarot-do-amor"], ["Tarot por tema", "/tarot-por-tema"], ["Tarot terapêutico", "/tarot-terapeutico"], ["Tarot cigano", "/tarot-cigano"]], /^\/(tarot|tiragem|arcano|carta-|amor-do-dia|leia-o-tarot)/],
+      ["Tarot do amor", "/tarot-do-amor"], ["Tarot por tema", "/tarot-por-tema"], ["Tarot terapêutico", "/tarot-terapeutico"], ["Tarot cigano", "/tarot-cigano"]], /^\/(tarot|tiragem|arcano|carta-(?!da-semana)|amor-do-dia|leia-o-tarot)/],
     ["🪐", "Astrologia", "/mapa-astral", [["Mapa astral", "/mapa-astral"], ["Ascendente", "/ascendente"], ["Calendário lunar", "/lua"], ["Notícias do céu", "/noticias-do-ceu"],
       ["Efemérides", "/efemerides"], ["Retrógrados 2027", "/retrogrados-2027"], ["Eclipses 2027", "/eclipses-2027"], ["Famosos com o seu céu", "/famosos-ceu"]], /^\/(mapa-astral|ascendente|lua|noticias|efemerides|retrogrados|eclipses|mercurio|famosos|astrolog|alinhamento|decanatos)/],
     ["🔢", "Numerologia", "/numerologia", [["Os números da sua vida", "/numerologia"], ["Calculadora 2027", "/numerologia-2027"]].concat([1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (n) { return ["Ano Pessoal " + n, "/ano-pessoal-" + n + "-2027"]; })), /^\/(numerolog|ano-pessoal)/],
     ["🙏", "Fé e tradição", "/rezas-e-oracoes", [["Rezas e orações", "/rezas-e-oracoes"], ["Benzimentos", "/benzimentos"], ["Rezas de proteção", "/rezas-de-protecao"], ["Salmos", "/salmos"],
       ["Anjo da guarda", "/anjo-da-guarda"], ["Sonhos", "/sonhos"], ["Pêndulo", "/pendulo"], ["Quiromancia", "/quiromancia"]], /^\/(reza|benz|salmo|anjo|sonho|pendulo|quiromancia)/],
-    ["📖", "Revista", "/revista", [["A revista do mês", "/revista"]], /^\/revista/]
+    ["📖", "Revista", "/revista", [["A revista do mês", "/revista"], ["✉️ A Carta da Semana", "/carta-da-semana"]], /^\/(revista|carta-da-semana)/]
   ];
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
   var meu = -1; TEMAS.forEach(function (t, i) { if (meu < 0 && (t[4].test(P) || t[3].some(function (x) { return x[1] === P; }))) meu = i; });

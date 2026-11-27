@@ -231,10 +231,10 @@ background:linear-gradient(135deg,#2a1245,#170830);border:1px solid #f2c96b99;bo
 .rv-casa .rv-capa{{flex:none;width:6.4rem;aspect-ratio:1094/1438;border-radius:.3rem .7rem .7rem .3rem;background:url(/revista-capa-mini.webp) center/cover;box-shadow:inset 6px 0 8px -6px #000a,0 8px 18px #000a;transform:rotate(-3deg);border:1px solid #f2c96b}}
 .rv-casa small{{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#f2c96b;font-weight:800}}.rv-casa b{{display:block;font-family:Cinzel,Georgia,serif;font-size:clamp(1.15rem,4.5vw,1.5rem);color:#ffe2a0;margin:.2rem 0}}
 .rv-casa span.t{{display:block;font-size:.92rem;color:#d9cbe9;line-height:1.4}}.rv-casa .rv-bt{{display:inline-block;margin-top:.6rem;padding:.55rem 1.1rem;border-radius:999px;font-weight:800;color:#2a1245;background:linear-gradient(135deg,#ffe2a0,#f2c96b 55%,#d9a441)}}
-.rv-casa .rv-ant{{display:block;text-align:right;margin-top:.4rem;font-size:.85rem;color:#d9cbe9}}</style>
+.rv-casa .rv-ant{{display:block;text-align:right;margin-top:.4rem;font-size:.85rem;color:#d9cbe9}}.rv-casa .rv-ant a{{color:#d9cbe9}}</style>
 <a class="rv" href="/{s_}"><span class="rv-capa" role="img" aria-label="Capa da Revista Genial"></span><span><small>📖 Revista do mês · N.º {(a_ - 2026) * 12 + m_ - 11}</small><b>Revista Genial · {MESES[m_ - 1].capitalize()} {a_}</b>
 <span class="t">As luas, o céu do mês, os 12 signos, o seu Mês Pessoal e a carta do Mestre. Folheie como uma revista.</span><span class="rv-bt">Ler a nossa revista mensal →</span></span></a>
-<a class="rv-ant" href="/revista">Edições anteriores →</a></section><!-- revista-casa:fim -->"""
+<span class="rv-ant"><a href="/carta-da-semana">✉️ A Carta da Semana</a> · <a href="/revista">Edições anteriores →</a></span></section><!-- revista-casa:fim -->"""
     ih = open("index.html", encoding="utf-8").read()
     novo = re.sub(r"<!-- revista-casa:inicio -->.*?<!-- revista-casa:fim -->", lambda _m: bloco, ih, count=1, flags=re.S)
     if novo != ih: open("index.html", "w", encoding="utf-8").write(novo); print("index.html · a revista em destaque:", s_)

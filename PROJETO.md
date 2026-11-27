@@ -144,3 +144,6 @@ dia, compatibilidade e na app (carta do dia + costas). **Os 56 Menores também, 
 ## Menu único (27/11/2026)
 - `menu.js`, carregado pelo `vivo.js` em todas as páginas menos o início, o consultório, a app e o pagamento: barra (logótipo, temas no computador, Consulta, pesquisa, ☰), gaveta por temas no telemóvel, e «Início › Tema › Página». Esconde o «‹ genialtarot.com» e a pesquisa antiga do topo; desce a etiqueta «Loja Online» para baixo da barra. Os temas e as ligações: a lista TEMAS no próprio menu.js.
 - 27/11 (ele): a revista usa as imagens dele (`revista-capa/interior/contracapa(.webp|-mini.webp)`, base para ~6 edições); a do mês SEGUINTE nasce 3 dias antes do fim do mês (`~/revista-mensal.sh`, timer diário às 19:00); a página inicial tem o bloco `revista-casa` (marcadores no index.html, refeito pelo gerador) «Ler a nossa revista mensal»; o menu.js entra também na página inicial (esconde a barra antiga).
+
+## A Carta da Semana (27/11/2026)
+- Newsletter no site, ao domingo: `carta-semana-gerar.py [segunda]` → `carta-da-semana-<segunda>.html` + arquivo `carta-da-semana.html`. Alimenta-se do horoscopo-semana/, famosos, notícias, revista e produtos.js. Corre no `~/revista-mensal.sh` (domingo às 07:00 e 19:00). No menu (Revista) e na página inicial (bloco revista-casa). Envio por email: só quando ele decidir.
