@@ -87,7 +87,7 @@ nov = re.findall(r'<a class="nova" href="(/[^"]+)"><span class="eti">[^<]*</span
 loja = []
 for bloco in re.findall(r"\{[^{}]*?destaque:\s*true[^{}]*?\}", open("produtos.js", encoding="utf-8").read(), re.S):
     g = lambda k: (re.search(k + r':\s*"([^"]*)"', bloco) or [None, ""])[1]
-    loja.append((g("nome"), g("preco"), g("pagina") or "/loja", g("foto")))
+    loja.append((g("nome"), g("preco"), g("pagina") or "/loja", g("foto")))   # sem preço = pedirInfo (os rituais, decisão dele): mostra «Pedir informações»
 loja = loja[:4]
 
 # ---------- a carta do mês (só depois do directo) ----------
@@ -134,7 +134,7 @@ GRATIS = [("/tarot-gratis", "🃏", "Tarot grátis", "Tire as suas cartas agora"
           ("/horoscopo-de-amanha", "🌙", "A antevisão do Mestre", "O céu de amanhã para os 12 signos"), ("/numerologia-2027", "🔢", "O seu Ano 2027", "A calculadora da numerologia"),
           ("/ascendente", "✨", "O seu Ascendente", "Sol, Lua e Ascendente ao minuto"), ("/carta-da-semana", "✉️", "A Carta da Semana", "Todos os domingos")]
 pag("gratis", "🎁 Grátis no site", '<div class="cx novas">' + "".join(f'<a class="nv" href="{h}"><span class="ic">{i}</span><b>{e(t)}</b><small>{e(d)}</small></a>' for h, i, t, d in GRATIS) + '</div>')
-pag("loja", "🛍️ Da loja", '<div class="cx lojas">' + "".join(f'<a class="lj" href="{pg}">' + (f'<img src="/{e(ft)}" alt="" loading="lazy">' if ft else "") + f'<b>{e(n)}</b><span class="preco">{e(pr)}</span></a>' for n, pr, pg, ft in loja) + '</div><p style="text-align:center"><a class="cta" href="/loja">Ver a loja</a></p>')
+pag("loja", "🛍️ Da loja", '<div class="cx lojas">' + "".join(f'<a class="lj" href="{pg}">' + (f'<img src="/{e(ft)}" alt="" loading="lazy">' if ft else "") + f'<b>{e(n)}</b>' + (f'<span class="preco">{e(pr)}</span>' if pr.strip() else '<span class="info">💬 Pedir informações</span>') + '</a>' for n, pr, pg, ft in loja) + '</div><p style="text-align:center"><a class="cta" href="/loja">Ver a loja</a></p>')
 pag("fim", "📩 Até ao próximo mês", f'<p>A revista do mês seguinte sai três dias antes de o mês acabar e vai-se completando ao longo do mês, com as notícias do céu e a carta do directo. As edições anteriores ficam todas guardadas.</p><p style="text-align:center"><a class="cta" href="/vip">Receber a revista no email</a></p><p style="text-align:center"><a class="cta azul" href="/consulta-de-tarot-online">Marcar uma consulta</a></p><p class="fonte">Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.</p>', indice=False)
 
 # --- a capa e o índice ---
@@ -155,7 +155,7 @@ indice = '<ol class="indice">' + "".join(f'<li><a href="#{i}" data-ir="{i}">{e(t
 folhas = [("capa", None, capa), ("indice", "Nesta edição", indice + f'<p class="fonte">Toque nas setas, deslize com o dedo ou use as teclas ← →.</p>')] + [(i, t, h) for i, t, _ix, h in PAGS]
 livro = "".join(f'<article class="folha{ {"capa": " capa", "fim": " contracapa"}.get(i, "") }" id="{i}" data-n="{n + 1}">' + (f'<h2>{e(t)}</h2>' if t else "") + (f'<div class="corpo">{h}</div>' if i == "capa" else f'<div class="corpo vidro">{h}</div>') + (f'<div class="rodape-pag"><span><b>Genial</b> · {mes_t} {ANO}</span><span>{n + 1} / {len(folhas)}</span></div>' if i != "capa" else "") + ('<button class="vira" type="button" aria-label="Virar a página"></button>' if n < len(folhas) - 1 else "") + '</article>' for n, (i, t, h) in enumerate(folhas))
 corpo = f"""<h1 class="so-leitores">Revista Genial · {mes_t} {ANO}</h1>
-  <div class="leitura-barra"><a href="/" id="voltar-site">← <b>Voltar ao site</b></a><button type="button" id="som-folha" aria-pressed="true" aria-label="Som das páginas">🔊 Som</button></div>
+  <div class="leitura-barra"><a href="/" id="voltar-site">← <b>Voltar ao site</b></a><span><button type="button" id="musica" aria-pressed="true" aria-label="Música">🎵 Música</button> <button type="button" id="som-folha" aria-pressed="true" aria-label="Som das páginas">🔊 Som</button></span></div>
   <div class="revista" id="revista" data-total="{len(folhas)}">{livro}</div>
   <nav class="comandos" aria-label="Folhear a revista"><button id="ant" aria-label="Página anterior">‹</button><span id="pagnum">1 / {len(folhas)}</span><button id="seg" aria-label="Página seguinte">›</button></nav>
   <p class="arquivo"><a href="/revista">Todas as edições</a></p>"""

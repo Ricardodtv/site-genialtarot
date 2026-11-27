@@ -41,6 +41,26 @@
       var p = somF.play(); if (p && p.catch) p.catch(function () {});
     } catch (e) {}
   }
+  // 27/11 (ele): música relaxante a tocar logo ao abrir, em tom baixo — a mesma do Tarot Grátis (ambient.mp3), em repetição.
+  // Os navegadores não deixam tocar som antes de a pessoa mexer na página: tenta logo; se for bloqueado, começa ao 1.º toque/tecla.
+  var musLigada = true, mus = null, btM = document.getElementById("musica");
+  try { musLigada = localStorage.getItem("revista-musica") !== "0"; } catch (e) {}
+  function pintaMus() { if (btM) { btM.textContent = musLigada ? "🎵 Música" : "🎵 Sem música"; btM.setAttribute("aria-pressed", musLigada ? "true" : "false"); } }
+  function tocaMus() {
+    if (!musLigada) return;
+    try {
+      if (!mus) { mus = new Audio("/ambient.mp3"); mus.loop = true; mus.volume = 0.12; mus.preload = "auto"; }
+      var p = mus.play(); if (p && p.catch) p.catch(function () {});
+    } catch (e) {}
+  }
+  pintaMus(); tocaMus();
+  function primeiro() { tocaMus(); ["pointerdown", "keydown", "touchstart"].forEach(function (t) { removeEventListener(t, primeiro, true); }); }
+  ["pointerdown", "keydown", "touchstart"].forEach(function (t) { addEventListener(t, primeiro, true); });
+  if (btM) btM.addEventListener("click", function (ev) {
+    ev.stopPropagation(); musLigada = !musLigada; try { localStorage.setItem("revista-musica", musLigada ? "1" : "0"); } catch (e) {}
+    pintaMus(); if (musLigada) tocaMus(); else if (mus) mus.pause();
+  });
+  document.addEventListener("visibilitychange", function () { if (!mus) return; if (document.hidden) mus.pause(); else if (musLigada) tocaMus(); });
   // a ponta da folha que se dobra: vira a página
   r.addEventListener("click", function (ev) { if (ev.target.closest(".vira")) { ev.stopPropagation(); mostra(i + 1, true); } }, true);
   ant.addEventListener("click", function () { mostra(i - 1, true); });
