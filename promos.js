@@ -13,7 +13,7 @@ window.PROMOS = {
     titulo: "Black Friday: 3 mapas pelo preço de 1",
     subtitulo: "Compre o Ano 2027 e receba de oferta o Mapa Astral e o Mapa do Amor",
     inicio: "2026-11-27T00:00:00Z",
-    fim: "2026-11-29T23:59:59Z",                     // ele: «até domingo às 23:59»
+    fim: "2026-11-30T23:59:59Z",                     // ele: «até domingo às 23:59»; 27/11 16h: «deixa aberta até segunda às 23:59» (o assunto do envio dizia segunda)
     valor: "25.00", preco: "25 €", antes: "50 €", poupa: "Poupa 50%",
     imagem: "/black-friday-2026.webp",
     itens: [
