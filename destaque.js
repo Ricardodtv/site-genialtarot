@@ -20,7 +20,18 @@
     + '<ellipse class="dso" cx="57" cy="86" rx="3.5" ry="4.5" fill="#ffd34d"/><ellipse class="dso" cx="73" cy="86" rx="3.5" ry="4.5" fill="#ffd34d"/></svg>';
 
   /* ── a lista dos destaques ── cada um: id, activo() → true/false, titulo, texto, botao, link, arte (svg), e opcional pagina (onde NÃO aparece) */
+  /* 27/11/2026 (ele): Black Friday −30% em tudo até domingo 23:59 — só com a promoção ligada no black-friday.js (todos os botões novos) */
+  var ETIQ = '<svg viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-12 60 60)"><path d="M60 6l9 12 15-4 2 15 15 5-6 14 10 12-13 8 1 15-15 1-6 14-14-6-13 9-8-13-15 1 1-15-13-8 10-12-6-14 15-5 2-15 15 4z" fill="#d81f2a" stroke="#ffd978" stroke-width="3"/>'
+    + '<text x="60" y="58" text-anchor="middle" font-family="Cinzel,Georgia,serif" font-weight="900" font-size="30" fill="#fff">−30%</text>'
+    + '<text x="60" y="80" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="11" letter-spacing="1" fill="#ffd978">BLACK FRIDAY</text></g></svg>';
   var DESTAQUES = [
+    { id: "blackfriday", classe: "dst-bf", antes: "section.hero form.gtp", pagina: /^\/loja(\.html)?$/,
+      activo: function () { return !!(window.BF && window.BF.ativo); },
+      titulo: "Black Friday: −30% em tudo",
+      texto: "Consultas, mapas, amuletos e cursos com 30% de desconto. Só até domingo à meia-noite.",
+      botao: "Ver as ofertas →",
+      link: "/loja?de=site&c=destaque-black-friday",
+      arte: ETIQ, marca: "%" },
     { id: "sexta13", pagina: /^\/sexta-feira-13(\.html)?$/,
       activo: function () {
         var f = q.get("sexta13"); if (f === "hoje" || f === "amanha") { this.modo = f; return true; }
@@ -76,6 +87,9 @@
     + '.dst-bola b{position:absolute;right:-4px;top:-4px;min-width:22px;height:22px;border-radius:11px;background:linear-gradient(135deg,#ffe9a6,#e2a93a);color:#2a0c18;font:900 11px/22px Cinzel,serif;text-align:center}'
     + '@keyframes dste{from{transform:translateY(120%);opacity:0}to{transform:none;opacity:1}}'
     + '@media (max-width:560px){.dst-grande{flex-direction:column;text-align:center}.dst-grande svg{width:6.5rem;height:6.5rem}}'
+    + '.dst.dst-bf,.dst-bola.dst-bf{background:radial-gradient(ellipse at 15% 0%,#3a0a0e 0%,#140608 45%,#000 100%);box-shadow:0 0 0 1px rgba(255,217,120,.2),0 18px 50px -10px rgba(216,31,42,.7)}'
+    + '.dst-grande.dst-bf{animation:dstbf 1.7s ease-in-out infinite;border:2px solid #ffd978;text-align:left}'
+    + '@keyframes dstbf{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(216,31,42,.75),0 18px 50px -10px rgba(216,31,42,.7)}50%{transform:scale(1.015);box-shadow:0 0 0 14px rgba(216,31,42,0),0 18px 60px -6px rgba(255,120,60,.85)}}'
     + '@media (prefers-reduced-motion:reduce){.dst *,.dst,.dst-bola{animation:none!important;transition:none!important}}';
 
   function conteudo() {
@@ -86,14 +100,15 @@
     var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
     var link = val(D.link, D);
     if (inicio) {
-      var g = document.createElement("a"); g.href = link; g.className = "dst dst-grande";
+      var g = document.createElement("a"); g.href = link; g.className = "dst dst-grande" + (D.classe ? " " + D.classe : "");
       g.innerHTML = conteudo() + (D.marca ? '<span class="dn" aria-hidden="true">' + D.marca + '</span>' : "");
-      var heroi = document.querySelector("section.hero");
-      if (heroi && heroi.parentNode) heroi.parentNode.insertBefore(g, heroi.nextSibling); else document.body.insertBefore(g, document.body.firstChild);
+      var heroi = document.querySelector("section.hero"), ant = D.antes && document.querySelector(D.antes);
+      if (ant && ant.parentNode) ant.parentNode.insertBefore(g, ant);   // 27/11: a Black Friday vai acima da pesquisa, à vista logo ao abrir
+      else if (heroi && heroi.parentNode) heroi.parentNode.insertBefore(g, heroi.nextSibling); else document.body.insertBefore(g, document.body.firstChild);
     }
-    var f = document.createElement("a"); f.href = link; f.className = "dst dst-flut" + (fechado ? " sai" : "");
+    var f = document.createElement("a"); f.href = link; f.className = "dst dst-flut" + (D.classe ? " " + D.classe : "") + (fechado ? " sai" : "");
     f.innerHTML = conteudo() + '<button class="dstx" aria-label="Fechar">×</button><span class="dtempo"></span>';
-    var b = document.createElement("button"); b.className = "dst-bola"; b.setAttribute("aria-label", val(D.titulo, D));
+    var b = document.createElement("button"); b.className = "dst-bola" + (D.classe ? " " + D.classe : ""); b.setAttribute("aria-label", val(D.titulo, D));
     b.innerHTML = D.arte + (D.marca ? "<b>" + D.marca + "</b>" : "");
     document.body.appendChild(f); document.body.appendChild(b);
     var temp = null;

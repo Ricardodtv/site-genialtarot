@@ -53,6 +53,7 @@
   <div class="apagado">Pagamento seguro · myPOS</div>
 </div>
 
+<script src="/black-friday.js"></script>
 <script>
 /* --- os servicos, com nome curto para o endereco --------------------- */
 const SERVICOS = {
@@ -101,6 +102,9 @@ if (!s) {
     s = { nome: p.get("n") || "Pagamento", preco: p.get("v") || "", link: u };
   }
 }
+/* 27/11/2026 Black Friday (black-friday.js): se o produto tem botão novo com −30%, paga-se esse e mostra-se o preço riscado */
+let bfAntes = "";
+if (s && window.BF && !BF.ver) { const e = BF.entrada(s.link); if (e && e.link) { s = Object.assign({}, s, { link: e.link }); if ((s.preco || "").trim() === e.de || !s.preco) { bfAntes = s.preco; s.preco = e.para; } } }
 const nome = document.getElementById("nome");
 const preco = document.getElementById("preco");
 const zona = document.getElementById("zona");
@@ -118,6 +122,7 @@ if (s && s.pedirInfo) {
 } else {
   nome.textContent = s.nome;
   preco.textContent = s.preco;
+  if (bfAntes) preco.innerHTML = '<s style="font-size:18px;color:#8a849c;font-weight:500">' + bfAntes + '</s> ' + s.preco + '<div style="font-size:13px;color:#d81f2a;letter-spacing:.06em">BLACK FRIDAY −30%</div>';
 
   const ua = navigator.userAgent || "";
   const app = /WhatsApp|FBAN|FBAV|FB_IAB|Instagram|Line\/|MicroMessenger|Snapchat/i.test(ua);
