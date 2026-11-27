@@ -31,7 +31,7 @@
       texto: "Consultas, mapas, amuletos e cursos com 30% de desconto. Só até domingo à meia-noite.",
       botao: "Ver as ofertas →",
       link: "/loja?de=site&c=destaque-black-friday",
-      arte: ETIQ, marca: "%" },
+      arte: ETIQ, imagem: "/black-friday-2026.webp", imagemMini: "/black-friday-2026-mini.webp", marca: "%" },   // a imagem é a dele (27/11)
     { id: "sexta13", pagina: /^\/sexta-feira-13(\.html)?$/,
       activo: function () {
         var f = q.get("sexta13"); if (f === "hoje" || f === "amanha") { this.modo = f; return true; }
@@ -87,13 +87,17 @@
     + '.dst-bola b{position:absolute;right:-4px;top:-4px;min-width:22px;height:22px;border-radius:11px;background:linear-gradient(135deg,#ffe9a6,#e2a93a);color:#2a0c18;font:900 11px/22px Cinzel,serif;text-align:center}'
     + '@keyframes dste{from{transform:translateY(120%);opacity:0}to{transform:none;opacity:1}}'
     + '@media (max-width:560px){.dst-grande{flex-direction:column;text-align:center}.dst-grande svg{width:6.5rem;height:6.5rem}}'
-    + '.dst.dst-bf,.dst-bola.dst-bf{background:radial-gradient(ellipse at 15% 0%,#3a0a0e 0%,#140608 45%,#000 100%);box-shadow:0 0 0 1px rgba(255,217,120,.2),0 18px 50px -10px rgba(216,31,42,.7)}'
+    + '.dst.dst-bf,.dst-bola.dst-bf{background:radial-gradient(ellipse at 15% 0%,#4a1470 0%,#1c0630 45%,#07010d 100%);box-shadow:0 0 0 1px rgba(255,217,120,.2),0 18px 50px -10px rgba(170,60,255,.7)}'
+    + '.dst .dst-img{flex:none;display:block;border-radius:.9rem;border:1px solid rgba(255,217,120,.5);box-shadow:0 0 18px rgba(190,90,255,.55)}'
+    + '.dst-grande .dst-img{width:min(24rem,42%);height:auto}.dst-flut .dst-img{width:6.5rem;height:auto;border-radius:.6rem}'
+    + '@media (max-width:560px){.dst-grande .dst-img{width:100%}}'
     + '.dst-grande.dst-bf{animation:dstbf 1.7s ease-in-out infinite;border:2px solid #ffd978;text-align:left}'
     + '@keyframes dstbf{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(216,31,42,.75),0 18px 50px -10px rgba(216,31,42,.7)}50%{transform:scale(1.015);box-shadow:0 0 0 14px rgba(216,31,42,0),0 18px 60px -6px rgba(255,120,60,.85)}}'
     + '@media (prefers-reduced-motion:reduce){.dst *,.dst,.dst-bola{animation:none!important;transition:none!important}}';
 
-  function conteudo() {
-    return D.arte + '<span><span class="dt">' + val(D.titulo, D) + '</span><span class="dp">' + val(D.texto, D) + '</span><span class="db">' + D.botao + '</span></span>';
+  function conteudo(grande) {
+    var arte = D.imagem ? '<img class="dst-img" alt="" src="' + (grande ? D.imagem : (D.imagemMini || D.imagem)) + '">' : D.arte;
+    return arte + '<span><span class="dt">' + val(D.titulo, D) + '</span><span class="dp">' + val(D.texto, D) + '</span><span class="db">' + D.botao + '</span></span>';
   }
   function montar() {
     if (document.querySelector(".dst-flut,.dst-bola")) return;
@@ -101,7 +105,7 @@
     var link = val(D.link, D);
     if (inicio) {
       var g = document.createElement("a"); g.href = link; g.className = "dst dst-grande" + (D.classe ? " " + D.classe : "");
-      g.innerHTML = conteudo() + (D.marca ? '<span class="dn" aria-hidden="true">' + D.marca + '</span>' : "");
+      g.innerHTML = conteudo(true) + (D.marca ? '<span class="dn" aria-hidden="true">' + D.marca + '</span>' : "");
       var heroi = document.querySelector("section.hero"), ant = D.antes && document.querySelector(D.antes);
       if (ant && ant.parentNode) ant.parentNode.insertBefore(g, ant);   // 27/11: a Black Friday vai acima da pesquisa, à vista logo ao abrir
       else if (heroi && heroi.parentNode) heroi.parentNode.insertBefore(g, heroi.nextSibling); else document.body.insertBefore(g, document.body.firstChild);

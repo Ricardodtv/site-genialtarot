@@ -102,6 +102,15 @@
     f.innerHTML = '<b>BLACK FRIDAY</b><span class="bf-pct">−30%</span><span>em tudo na loja</span>'
       + '<span class="bf-sub">· termina em <span class="bf-t">' + falta() + '</span></span><span class="bf-ir">Ver ofertas →</span>';
     document.body.insertBefore(f, document.body.firstChild);
+    // na loja: a imagem dele (27/11) por cima das categorias
+    var nav = /^\/loja(-brasil|-portugal)?(\.html)?$/.test(location.pathname) && document.getElementById("nav-cat");
+    if (nav && nav.parentNode) {
+      var ban = document.createElement("div");
+      ban.style.cssText = "max-width:46rem;margin:1rem auto 1.4rem;padding:0 1rem;text-align:center";
+      ban.innerHTML = '<img src="/black-friday-2026.webp" alt="Black Friday: 30% de desconto em tudo" style="width:100%;height:auto;border-radius:1.2rem;border:2px solid #ffd978;box-shadow:0 0 40px rgba(170,60,255,.6)">'
+        + '<div style="margin-top:.7rem;font:700 1.05rem/1.4 Inter,system-ui,sans-serif;color:#ffe9a6">−30% em todos os produtos com preço · os preços abaixo já têm o desconto · termina domingo às 23:59</div>';
+      nav.parentNode.insertBefore(ban, nav);
+    }
     var t = f.querySelector(".bf-t");
     setInterval(function () { if (Date.now() > FIM) { f.remove(); return; } t.textContent = falta(); }, 1000);
   }
