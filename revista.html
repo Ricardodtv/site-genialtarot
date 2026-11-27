@@ -192,6 +192,39 @@ footer a { color: inherit; }
 .comandos button { width: 3.2rem; height: 3.2rem; border-radius: 50%; border: 1.5px solid var(--ouro); background: oklch(0.22 0.06 270 / .9); color: var(--ouro); font-size: 2rem; line-height: 1; cursor: pointer; }
 .comandos button:disabled { opacity: .3; cursor: default; } #pagnum { font-family: var(--titulo); color: var(--lavanda); min-width: 4.5rem; text-align: center; }
 .arquivo { text-align: center; position: relative; z-index: 1; }
+/* ---------- 27/11 (ele): as imagens dele — capa, interior e contracapa, base para as próximas ~6 edições ---------- */
+.folha { aspect-ratio: 1094 / 1438; background: #2a1150 url(/revista-interior-mini.webp) center top / cover no-repeat; border-color: #f2c96b99; padding: 1.4rem 1.2rem 2.6rem; }
+@media (min-width: 600px) { .folha { background-image: url(/revista-interior.webp); } }
+.folha h2 { border: 0; text-align: center; font-size: clamp(1.6rem, 6.4vw, 2.2rem); line-height: 1.1; margin: .4rem 0 1rem;
+  background: linear-gradient(180deg, #fff3c4 0%, #f2c96b 50%, #c48a2c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 2px 3px #000c) drop-shadow(0 0 14px #2a0e4a); }
+.corpo.vidro { background: #160a2ccc; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid #f2c96b66; border-radius: 1rem; padding: 1rem 1rem .4rem; box-shadow: 0 10px 30px #0009; }
+.rodape-pag { color: #f2e6ff; text-shadow: 0 1px 3px #000; }
+/* a capa: a imagem dele já traz o «Genial» em dourado */
+.folha.capa { background: #1a0a33 url(/revista-capa-mini.webp) center / cover no-repeat; }
+@media (min-width: 600px) { .folha.capa { background-image: url(/revista-capa.webp); } }
+.folha.capa .capa-in { min-height: 0; height: 100%; padding: .7rem .9rem 1rem; }
+.folha.capa .topo-capa { background: #12062688; border-radius: 999px; padding: .3rem .8rem; border: 0; }
+.folha.capa .sub-mast { margin-top: 18%; font-size: clamp(.95rem, 3.6vw, 1.15rem); color: #fff; text-shadow: 0 2px 6px #000, 0 0 12px #3a0d6a; }
+.folha.capa .carimbo { position: absolute; right: 4%; top: 29%; }
+.chamadas-cx { margin: auto 0 22%; background: #12062699; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid #f2c96b80; border-radius: 1rem; padding: .8rem 1rem; }
+.manchete { font-family: "Cinzel", serif; font-weight: 900; font-size: clamp(1.45rem, 6.2vw, 2.1rem); line-height: 1.08; text-transform: uppercase;
+  background: linear-gradient(180deg, #fff3c4, #f2c96b 55%, #c48a2c); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 2px 3px #000b); }
+.folha.capa .chamadas { margin: .5rem 0 0; } .folha.capa .chamadas li { font-size: clamp(.9rem, 3.6vw, 1.08rem); padding: .2rem 0 .2rem 1.1rem; }
+.folha.capa .pe-capa { color: #fff; text-shadow: 0 1px 4px #000; margin-top: 0; }
+/* a contracapa */
+.folha.contracapa { background: #1a0a33 url(/revista-contracapa-mini.webp) center / cover no-repeat; }
+@media (min-width: 600px) { .folha.contracapa { background-image: url(/revista-contracapa.webp); } }
+.folha.contracapa .corpo.vidro { margin-top: 30%; }
+.revista.js .folha { min-height: 0; }
+/* a página cresce com o texto (a imagem cobre o que for preciso) e o botão dourado tem letra escura */
+.revista.js .folha { min-height: auto; }
+.folha .cta { color: #2a1245 !important; } .folha .cta.azul { color: #fff !important; }
+.folha.contracapa p.fonte { font-size: .85rem; }
+/* a proporção da imagem sem alargar a página quando o texto é comprido (o aspect-ratio puxava a largura) */
+.revista.js { grid-template-columns: minmax(0, 1fr); }
+.folha { aspect-ratio: auto; width: 100%; min-width: 0; min-height: calc(min(34rem, 100vw - 2rem) * 1.314); }
+.revista.js .folha { min-height: calc(min(34rem, 100vw - 2rem) * 1.314); }
 
 </style>
 </head>

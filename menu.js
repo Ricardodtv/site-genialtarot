@@ -1,12 +1,12 @@
 /* menu.js — 27/11/2026, pedido dele: «o site está desorganizado, não consigo navegar por todo o site». Medido: 614 das 659
    páginas só tinham o «‹ genialtarot.com». Este é o MENU ÚNICO de todas as páginas (aprovado pela maquete no Telegram):
    barra no topo (logótipo, temas no computador, Consulta, pesquisa, ☰), gaveta com os temas no telemóvel, e a linha
-   «Início › Tema › Página». Carregado pelo vivo.js — fora da página inicial (tem o seu menu), do consultório, da app e do
-   pagamento. Para mudar o menu: só a lista TEMAS aqui em baixo. Para o tirar: a linha do menu.js no vivo.js. */
+   «Início › Tema › Página». Carregado pelo vivo.js — em todas, a página inicial incluída (27/11, ele: «deveriam aparecer na página principal»;
+   lá substitui a barra antiga); fora do consultório, da app e do pagamento. Para mudar o menu: só a lista TEMAS aqui em baixo. Para o tirar: a linha do menu.js no vivo.js. */
 (function () {
   if (window.__gtm) return; window.__gtm = 1;
   var P = location.pathname.replace(/\.html$/, "").replace(/\/$/, "") || "/";
-  if (P === "/" || P === "/index" || /^\/(consultorio|o-teu-ceu|pagar|30-dias|gerar-pix)(\/|-sala|-autorizacao|$)/.test(P)) return;
+  if (/^\/(consultorio|o-teu-ceu|pagar|30-dias|gerar-pix)(\/|-sala|-autorizacao|$)/.test(P)) return;
 
   var TEMAS = [
     ["🔮", "Horóscopo", "/horoscopo-do-dia", [["Do dia", "/horoscopo-do-dia"], ["De amanhã", "/horoscopo-de-amanha"], ["Semanal", "/horoscopo-semanal"], ["Fim de semana", "/fimdesemana"],
@@ -41,7 +41,7 @@
     ".gtm-base{display:grid;gap:.6rem;margin-top:1.2rem}.gtm-base a{display:block;text-align:center;text-decoration:none;font-weight:800;border-radius:999px;padding:.75rem}" +
     ".gtm-base .c{color:#2a1245;background:linear-gradient(135deg,#ffe2a0,#f2c96b 55%,#d9a441)}.gtm-base .w{color:#d8ffe6;background:rgba(37,211,102,.16);border:1px solid rgba(37,211,102,.55)}" +
     /* o menu substitui o «‹ genialtarot.com» e a pesquisa do topo; o resto do topo (Entrar, som) fica onde estava */
-    "html.gtm-on .topo .backlink,html.gtm-on .gtp-topo,html.gtm-on .voltar-barra .voltar,html.gtm-on a.voltar{display:none!important}html.gtm-on header.topo{min-height:0;padding:0}";
+    "html.gtm-on .topo .backlink,html.gtm-on .gtp-topo,html.gtm-on .voltar-barra .voltar,html.gtm-on a.voltar{display:none!important}html.gtm-on header.topo{min-height:0;padding:0}html.gtm-on body>header:has(>nav.container.nav){display:none}";
 
   function monta() {
     if (document.querySelector(".gtm-barra")) return;
@@ -57,9 +57,10 @@
     document.body.insertBefore(barra, ref);
     // «Início › Tema › Página» (o nome da página é o H1 dela)
     var h1 = document.querySelector("h1"), nome = h1 ? h1.textContent.replace(/\s+/g, " ").trim() : document.title.split(/[|·—:]/)[0].trim();
+    var inicio = P === "/" || P === "/index";   // na página inicial não há «Início › …»
     var mig = document.createElement("nav"); mig.className = "gtm-migalhas"; mig.setAttribute("aria-label", "Onde está");
     mig.innerHTML = '<a href="/">Início</a> › ' + (meu >= 0 && TEMAS[meu][2] !== P ? '<a href="' + TEMAS[meu][2] + '">' + esc(TEMAS[meu][1]) + "</a> › " : "") + "<b>" + esc(nome.slice(0, 70)) + "</b>";
-    barra.parentNode.insertBefore(mig, barra.nextSibling);
+    if (!inicio) barra.parentNode.insertBefore(mig, barra.nextSibling);
     // a gaveta
     var veu = document.createElement("div"); veu.className = "gtm-veu";
     var g = document.createElement("aside"); g.className = "gtm-gaveta"; g.setAttribute("aria-label", "Menu");

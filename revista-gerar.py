@@ -129,7 +129,7 @@ for k, bloco in enumerate(partes(fam, 6)):
 pag("noticias", "📰 Notícias do céu", ('<ul class="ceu-mes noticias">' + "".join(f'<li><a href="/noticias/{e(n["slug"])}">{e(n["titulo"])}</a></li>' for n in noticias) + "</ul>") if noticias else f'<p>As notícias do céu de {NOME_MES} entram nesta página à medida que saem, de manhã e à tarde.</p><p>Até lá, veja as últimas em <a href="/noticias-do-ceu">Notícias do Céu</a>.</p>')
 pag("novo", "✨ Novo no site", '<div class="cx">' + "".join(f'<div><b><a href="{h}">{i} {e(t)}</a></b><small>{e(d)}</small></div>' for h, i, t, d in nov) + '</div><p class="fonte"><a href="/novidades">Todas as novidades</a></p>')
 pag("loja", "🛍️ Da loja", '<div class="cx">' + "".join(f'<div><b><a href="{pg}">{e(n)}</a></b><span class="preco">{e(pr)}</span></div>' for n, pr, pg in loja) + '</div><p style="text-align:center"><a class="cta" href="/loja">Ver a loja</a></p>')
-pag("fim", "📩 Até ao próximo mês", f'<p>A revista sai no dia 1 de cada mês e vai-se completando ao longo do mês, com as notícias do céu e a carta do directo.</p><p style="text-align:center"><a class="cta" href="/vip">Receber a revista no email</a></p><p style="text-align:center"><a class="cta azul" href="/consulta-de-tarot-online">Marcar uma consulta</a></p><p class="fonte">Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.</p>', indice=False)
+pag("fim", "📩 Até ao próximo mês", f'<p>A revista do mês seguinte sai três dias antes de o mês acabar e vai-se completando ao longo do mês, com as notícias do céu e a carta do directo. As edições anteriores ficam todas guardadas.</p><p style="text-align:center"><a class="cta" href="/vip">Receber a revista no email</a></p><p style="text-align:center"><a class="cta azul" href="/consulta-de-tarot-online">Marcar uma consulta</a></p><p class="fonte">Genial Tarot · Mestre Alberto · Leituras simbólicas, não substituem aconselhamento profissional.</p>', indice=False)
 
 # --- a capa e o índice ---
 chamadas = []
@@ -140,13 +140,13 @@ for t, c, d, s in estacoes:
     if c in (5, 6) or d == "R": chamadas.append(f"{CORPOS[c]} {'retrógrado' if d == 'R' else 'directo'} em {SIG[s]}"); break
 chamadas.append("O seu Mês Pessoal"); chamadas.append("Fazem anos: " + ", ".join(p[0] for p in fam[:3] if len(p[0]) < 20)[:60])
 capa = f"""<div class="capa-in"><div class="topo-capa"><span>N.º {EDICAO}</span><span>{mes_t} {ANO}</span><span>Grátis</span></div>
-  <div class="masthead">GENIAL</div><div class="sub-mast">a revista do Tarot, dos astros e dos números</div>
-  <div class="foto-capa"><img src="/mestre-principal.jpg" alt="Mestre Alberto, tarólogo e astrólogo do Genial Tarot" width="800" height="800"><span class="carimbo">A carta<br>do mês</span></div>
-  <ul class="chamadas">{"".join(f"<li>{e(c)}</li>" for c in chamadas)}</ul>
+  <div class="sub-mast">a revista do Tarot, dos astros e dos números</div>
+  <span class="carimbo">A carta<br>do mês</span>
+  <div class="chamadas-cx"><div class="manchete">{e(chamadas[0]) if chamadas else ""}</div><ul class="chamadas">{"".join(f"<li>{e(c)}</li>" for c in chamadas[1:])}</ul></div>
   <div class="pe-capa">Mestre Alberto · genialtarot.com</div></div>"""
 indice = '<ol class="indice">' + "".join(f'<li><a href="#{i}" data-ir="{i}">{e(t)}</a><span>{n + 3}</span></li>' for n, (i, _t, t, _h) in enumerate(PAGS) if t) + '</ol>'
 folhas = [("capa", None, capa), ("indice", "Nesta edição", indice + f'<p class="fonte">Toque nas setas, deslize com o dedo ou use as teclas ← →.</p>')] + [(i, t, h) for i, t, _ix, h in PAGS]
-livro = "".join(f'<article class="folha{" capa" if i == "capa" else ""}" id="{i}" data-n="{n + 1}">' + (f'<h2>{e(t)}</h2>' if t else "") + f'<div class="corpo">{h}</div>' + (f'<div class="rodape-pag"><span>Genial · {mes_t} {ANO}</span><span>{n + 1}</span></div>' if i != "capa" else "") + '</article>' for n, (i, t, h) in enumerate(folhas))
+livro = "".join(f'<article class="folha{ {"capa": " capa", "fim": " contracapa"}.get(i, "") }" id="{i}" data-n="{n + 1}">' + (f'<h2>{e(t)}</h2>' if t else "") + (f'<div class="corpo">{h}</div>' if i == "capa" else f'<div class="corpo vidro">{h}</div>') + (f'<div class="rodape-pag"><span>Genial · {mes_t} {ANO}</span><span>{n + 1}</span></div>' if i != "capa" else "") + '</article>' for n, (i, t, h) in enumerate(folhas))
 corpo = f"""<h1 class="so-leitores">Revista Genial · {mes_t} {ANO}</h1>
   <div class="revista" id="revista" data-total="{len(folhas)}">{livro}</div>
   <nav class="comandos" aria-label="Folhear a revista"><button id="ant" aria-label="Página anterior">‹</button><span id="pagnum">1 / {len(folhas)}</span><button id="seg" aria-label="Página seguinte">›</button></nav>
@@ -220,3 +220,20 @@ arq += f"""<body><div class="estrelas" aria-hidden="true"></div><div class="caix
 {FIM}"""
 open("revista.html", "w", encoding="utf-8").write(arq)
 print("revista.html ·", len(eds), "edição(ões)")
+
+# ---------- a página inicial: a revista SEMPRE em destaque (27/11, ele: «Ler a nossa revista mensal»), pequena ----------
+if eds:
+    a_, m_, s_ = eds[0]
+    bloco = f"""<!-- revista-casa:inicio --><section class="rv-casa" aria-label="A revista do mês"><style>
+.rv-casa{{max-width:46rem;margin:0 auto 1.4rem;padding:0}}.rv-casa a.rv{{display:flex;gap:1rem;align-items:center;text-decoration:none;color:#f7f0fb;padding:.9rem;border-radius:1.2rem;
+background:linear-gradient(135deg,#2a1245,#170830);border:1px solid #f2c96b99;box-shadow:0 14px 40px #0008}}
+.rv-casa .rv-capa{{flex:none;width:6.4rem;aspect-ratio:1094/1438;border-radius:.3rem .7rem .7rem .3rem;background:url(/revista-capa-mini.webp) center/cover;box-shadow:inset 6px 0 8px -6px #000a,0 8px 18px #000a;transform:rotate(-3deg);border:1px solid #f2c96b}}
+.rv-casa small{{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#f2c96b;font-weight:800}}.rv-casa b{{display:block;font-family:Cinzel,Georgia,serif;font-size:clamp(1.15rem,4.5vw,1.5rem);color:#ffe2a0;margin:.2rem 0}}
+.rv-casa span.t{{display:block;font-size:.92rem;color:#d9cbe9;line-height:1.4}}.rv-casa .rv-bt{{display:inline-block;margin-top:.6rem;padding:.55rem 1.1rem;border-radius:999px;font-weight:800;color:#2a1245;background:linear-gradient(135deg,#ffe2a0,#f2c96b 55%,#d9a441)}}
+.rv-casa .rv-ant{{display:block;text-align:right;margin-top:.4rem;font-size:.85rem;color:#d9cbe9}}</style>
+<a class="rv" href="/{s_}"><span class="rv-capa" role="img" aria-label="Capa da Revista Genial"></span><span><small>📖 Revista do mês · N.º {(a_ - 2026) * 12 + m_ - 11}</small><b>Revista Genial · {MESES[m_ - 1].capitalize()} {a_}</b>
+<span class="t">As luas, o céu do mês, os 12 signos, o seu Mês Pessoal e a carta do Mestre. Folheie como uma revista.</span><span class="rv-bt">Ler a nossa revista mensal →</span></span></a>
+<a class="rv-ant" href="/revista">Edições anteriores →</a></section><!-- revista-casa:fim -->"""
+    ih = open("index.html", encoding="utf-8").read()
+    novo = re.sub(r"<!-- revista-casa:inicio -->.*?<!-- revista-casa:fim -->", lambda _m: bloco, ih, count=1, flags=re.S)
+    if novo != ih: open("index.html", "w", encoding="utf-8").write(novo); print("index.html · a revista em destaque:", s_)

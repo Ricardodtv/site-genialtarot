@@ -36,15 +36,14 @@
     /* 27/11/2026 (ele): a Revista do mês (revista-gerar.py, sai sozinha no dia 1) — em destaque do dia 1 ao dia 10 de cada mês.
        Nunca na própria revista. Liga sozinho a 01/12/2026 (a Black Friday acaba a 29/11). */
     { id: "revista", pagina: /^\/revista/,
-      activo: function () { return hoje >= "2026-12-01" && agora.getDate() <= 10 && (agora.getDate() > 1 || agora.getHours() >= 6); },   // no dia 1 só a partir das 6h: a revista nasce às 00:05 e o site leva uns minutos a publicar
-      titulo: function () { return "Já saiu a Revista de " + ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"][agora.getMonth()]; },
+      // 27/11 (ele): a edição do mês seguinte sai 3 dias antes do fim do mês → o canto mostra-a desde aí até ao dia 10
+      alvo: function () { var a = new Date(agora); a.setDate(a.getDate() + 3); return a; },
+      activo: function () { var a = this.alvo(); return hoje >= "2026-11-30" && (a.getMonth() !== agora.getMonth() || agora.getDate() <= 10); },
+      titulo: function () { return "Já saiu a Revista de " + ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"][this.alvo().getMonth()]; },
       texto: "As luas, o céu do mês, os 12 signos, o seu Mês Pessoal e a carta do Mestre. Folheie como uma revista.",
       botao: "Abrir a revista →",
-      link: function () { return "/revista-" + ["janeiro","fevereiro","marco","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"][agora.getMonth()] + "-" + agora.getFullYear() + "?de=site&c=destaque-revista"; },
-      arte: '<svg viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-8 60 60)"><rect x="26" y="14" width="68" height="92" rx="5" fill="#3a1670" stroke="#f2c96b" stroke-width="4"/>'
-        + '<text x="60" y="42" text-anchor="middle" font-family="Cinzel,Georgia,serif" font-weight="900" font-size="17" fill="#f2c96b">GENIAL</text>'
-        + '<circle cx="60" cy="70" r="17" fill="#f2c96b"/><circle cx="66" cy="65" r="13" fill="#3a1670"/><path d="M36 94h48M36 100h30" stroke="#f2c96b" stroke-width="3"/></g></svg>',
-      marca: "N.º" },
+      link: function () { var a = this.alvo(); return "/revista-" + ["janeiro","fevereiro","marco","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"][a.getMonth()] + "-" + a.getFullYear() + "?de=site&c=destaque-revista"; },
+      imagem: "/revista-capa-mini.webp", imagemMini: "/revista-capa-mini.webp", marca: "N.º" },
     { id: "sexta13", pagina: /^\/sexta-feira-13(\.html)?$/,
       activo: function () {
         var f = q.get("sexta13"); if (f === "hoje" || f === "amanha") { this.modo = f; return true; }
