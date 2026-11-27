@@ -225,6 +225,34 @@ footer a { color: inherit; }
 .revista.js { grid-template-columns: minmax(0, 1fr); }
 .folha { aspect-ratio: auto; width: 100%; min-width: 0; min-height: calc(min(34rem, 100vw - 2rem) * 1.314); }
 .revista.js .folha { min-height: calc(min(34rem, 100vw - 2rem) * 1.314); }
+/* 27/11 (ele): uma foto dele na capa, e o «Mestre Alberto · genialtarot.com» em baixo de tudo, numa faixa escura */
+.folha.capa .capa-in { position: relative; }
+.meio-capa { display: flex; gap: .6rem; align-items: flex-end; margin: auto 0 16%; }
+.meio-capa .chamadas-cx { flex: 1; margin: 0; padding: .7rem .8rem; min-width: 0; }
+.foto-arco { flex: none; width: 38%; margin: 0; position: relative; }
+.foto-arco img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 999px 999px 1rem 1rem; border: 3px solid #f2c96b; box-shadow: 0 0 0 5px #f2c96b33, 0 14px 30px #000c; }
+.foto-arco figcaption { position: absolute; left: 50%; bottom: -.7rem; transform: translateX(-50%); white-space: nowrap; font: 800 .62rem/1 Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase;
+  color: #2a1245; background: linear-gradient(135deg, #ffe2a0, #f2c96b 55%, #d9a441); padding: .3rem .6rem; border-radius: 999px; box-shadow: 0 4px 10px #0008; }
+.folha.capa .manchete { font-size: clamp(1.2rem, 5.2vw, 1.9rem); }
+.folha.capa .pe-capa { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 1.6rem .8rem .7rem; border-radius: 0 0 1rem .4rem;
+  background: linear-gradient(180deg, transparent, #0c0418cc 45%, #0c0418f2); font-weight: 800; letter-spacing: .22em; font-size: .78rem; color: #ffe2a0; text-shadow: 0 1px 3px #000; }
+/* 27/11: a capa nunca corta o «Genial» (a imagem encosta em cima, à largura toda) e a foto é mais pequena */
+.folha.capa { background-size: 100% auto; background-position: center top; }
+.foto-arco { width: 33%; }
+.meio-capa { margin: auto 0 12%; }
+.folha.capa .chamadas li { font-size: clamp(.8rem, 3.2vw, 1rem); padding: .12rem 0 .12rem 1rem; }
+.folha.capa .manchete { font-size: clamp(1.05rem, 4.6vw, 1.7rem); }
+.folha.capa .sub-mast { margin-top: 17%; }
+/* 27/11 (ele): o rodapé de cada página bem à vista — «Genial · Dezembro 2026» e a página onde se está */
+.rodape-pag { left: 0; right: 0; bottom: 0; padding: 1.4rem 1.1rem .65rem; border-radius: 0 0 1.1rem .5rem;
+  background: linear-gradient(180deg, transparent, #0c0418d9 40%, #0c0418f5); color: #ffe2a0; font-weight: 800; font-size: .8rem; letter-spacing: .16em; text-shadow: 0 1px 3px #000; }
+.rodape-pag span:last-child { font-family: var(--titulo); font-size: 1rem; letter-spacing: 0; color: #fff; background: #f2c96b33; border: 1px solid #f2c96b; border-radius: 999px; min-width: 2rem; text-align: center; padding: .1rem .5rem; }
+.folha { padding-bottom: 3.6rem; }
+.foto-arco img { height: auto; }
+.revista.js .folha { align-self: start; }   /* cada página com a sua altura (antes todas esticavam até à mais comprida) */
+.folha.capa { display: flex; flex-direction: column; } .folha.capa .capa-in { flex: 1; height: auto; }
+.folha.capa { padding: 0 !important; }
+.folha.capa > .corpo { flex: 1; display: flex; flex-direction: column; } .folha.capa > .corpo > .capa-in { flex: 1; }
 
 </style>
 </head>
