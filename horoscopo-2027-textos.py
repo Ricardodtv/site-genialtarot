@@ -100,7 +100,7 @@ H2027 = [
 
  {"slug": "balanca",
   "titulo": "Horóscopo 2027 Balança (Libra): amor, dinheiro e trabalho",
-  "desc": "Horóscopo 2027 para Balança (Libra): Saturno na casa das relações, Júpiter favorece amizades e projectos. Amor, dinheiro, trabalho e datas do ano.",
+  "desc": "Balança 2027: o horóscopo e as previsões do ano para Balança (Libra). Saturno na casa das relações, Júpiter a favor de amigos e projectos, e 5 datas-chave.",
   "resumo": "Ano de compromissos a sério. Saturno passa o ano na sua casa 7 e põe as relações à prova, para as tornar mais sólidas. Júpiter traz amigos e projectos colectivos até Julho e depois pede recolhimento e preparação para um novo ciclo.",
   "amor": "Saturno no sector das relações é o grande tema do seu ano: casais firmes tendem a assumir compromissos, e relações frágeis mostram as falhas. Para quem está só, o ano favorece alguém mais maduro e uma relação séria, sem jogos. O eclipse total de 2 de Agosto, em Leão, toca a casa 11 e pode transformar uma amizade em algo mais. Entre 9 de Agosto e 24 de Dezembro, com Saturno retrógrado, revêem-se acordos e expectativas a dois. Escolha a verdade em vez da harmonia aparente.",
   "dinheiro": "Até 26 de Julho, Júpiter na casa 11 favorece ganhos através de redes, grupos e contactos. O eclipse lunar de 18 de Julho, em Capricórnio, toca a casa 4 e pode trazer gastos ou decisões ligadas à casa e à família. Contratos e sociedades pedem leitura atenta, sobretudo com Mercúrio retrógrado a terminar no seu signo a 28 de Outubro.",

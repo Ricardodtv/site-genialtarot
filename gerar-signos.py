@@ -967,7 +967,9 @@ if os.path.exists("horoscopo-2027-textos.py"):
 """
         # 19/11/2026 (pedido dele): «amor, dinheiro e trabalho» não dava motivo para clicar; o número de datas-chave é o da lista da página
         # 23/11/2026 (O-661): «carneiro 2027» pos. 9,1 (32 apar.), «previsoes carneiro 2027» 10,7 → título começa pela pesquisa
-        TIT_2027 = {"carneiro": "Carneiro 2027: horóscopo e previsões de Carneiro (Áries), 6 datas"}
+        TIT_2027 = {"carneiro": "Carneiro 2027: horóscopo e previsões de Carneiro (Áries), 6 datas",
+                    # 27/11/2026 (ronda SEO): «balança 2027» pos. 9,2 (18 apar., 0 cliques), «horoscopo balança 2027» 8,7, «libra para 2027» 8,5
+                    "balanca": "Balança 2027: horóscopo e previsões de Balança (Libra), 5 datas"}
         pagina(f"horoscopo-2027-{s0['slug']}", TIT_2027.get(s0["slug"]) or next(x for x in (f"Horóscopo 2027 {nm(s0)}: amor, dinheiro e {len(t['datas'])} datas-chave", f"Horóscopo 2027 {nm(s0)}: amor, dinheiro e datas-chave", f"Horóscopo 2027 {s0['pt']}: amor, dinheiro e {len(t['datas'])} datas-chave") if len(x) <= 65), t["desc"], f"{SITE}/signos/{SIGIMG[i]}", [("Horóscopo 2027", "/horoscopo-2027")], corpo)
     grelha = "".join(f'<a href="/horoscopo-2027-{x["slug"]}"><img src="/signos/{SIGIMG[j]}" alt="" width="58" height="58" loading="lazy"><span><b>{GLIFO[j]}︎ {E(nm(x))}</b><small>{E(H7[j]["resumo"][:90])}</small></span></a>' for j, x in enumerate(S))
     pagina("horoscopo-2027", "Horóscopo 2027: as previsões para os 12 signos", "O horóscopo de 2027 para os 12 signos — amor, dinheiro e trabalho — com o céu real do ano: Júpiter em Virgem, Saturno em Carneiro e o grande eclipse de agosto.", SITE + "/og-image.jpg", [],

@@ -44,4 +44,14 @@ FAQ = {
   ("Quais são as datas mais importantes de 2027 para Touro?",
    "6 de fevereiro (eclipse do Sol em Aquário), 20 de fevereiro (eclipse da Lua em Virgem), 13 de abril (Júpiter fica directo em Leão), 26 de julho (Júpiter entra em Virgem) e 2 de agosto (eclipse total do Sol em Leão)."),
  ],
+ "horoscopo-2027-balanca": [   # 27/11/2026 ronda SEO: «balança 2027» 9,2 (18 apar.), «signo balança 2027» 10,7, «previsão libra 2027» 10
+  ("Quais são as previsões de 2027 para o signo Balança (Libra)?",
+   "É um ano de compromissos a sério. Saturno passa o ano na sua casa 7 e põe as relações e os acordos à prova, para os tornar mais sólidos; Júpiter, em Leão até 26 de julho, favorece amigos, grupos e projetos coletivos, e depois, em Virgem, pede recolhimento e preparação para um novo ciclo."),
+  ("Como está o amor para Balança em 2027?",
+   "Com Saturno no sector das relações, casais firmes tendem a assumir compromissos e relações frágeis mostram as falhas. Para quem está só, o ano favorece alguém mais maduro e uma relação séria. O eclipse total do Sol de 2 de agosto, na casa 11, pode transformar uma amizade em algo mais."),
+  ("Como está o dinheiro e o trabalho para Balança em 2027?",
+   "Até 26 de julho, Júpiter favorece ganhos através de redes, grupos e contactos. Contratos e sociedades pedem leitura atenta e regras claras. Marte entra no seu signo a 15 de julho e dá energia para tomar a iniciativa."),
+  ("Quais são as datas mais importantes de 2027 para Balança?",
+   "6 de fevereiro (eclipse do Sol em Aquário), 15 de julho (Marte entra em Balança), 2 de agosto (eclipse total do Sol em Leão), 9 de agosto (Saturno retrógrado na casa 7) e 28 de outubro (Mercúrio fica direto no seu signo)."),
+ ],
 }
