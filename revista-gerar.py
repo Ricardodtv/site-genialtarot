@@ -144,10 +144,10 @@ capa = f"""<div class="capa-in"><div class="topo-capa"><span>N.º {EDICAO}</span
   <span class="carimbo">A carta<br>do mês</span>
   <div class="meio-capa"><div class="chamadas-cx"><div class="manchete">{e(chamadas[0]) if chamadas else ""}</div><ul class="chamadas">{"".join(f"<li>{e(c)}</li>" for c in chamadas[1:])}</ul></div>
   <figure class="foto-arco"><img src="/revista-mestre.webp" alt="Mestre Alberto com a carta do Sol" width="540" height="720"><figcaption>Mestre Alberto</figcaption></figure></div>
-  <div class="pe-capa">Mestre Alberto · genialtarot.com</div></div>"""
+  <div class="pe-capa"><b>Mestre Alberto</b> · genialtarot.com</div></div>"""
 indice = '<ol class="indice">' + "".join(f'<li><a href="#{i}" data-ir="{i}">{e(t)}</a><span>{n + 3}</span></li>' for n, (i, _t, t, _h) in enumerate(PAGS) if t) + '</ol>'
 folhas = [("capa", None, capa), ("indice", "Nesta edição", indice + f'<p class="fonte">Toque nas setas, deslize com o dedo ou use as teclas ← →.</p>')] + [(i, t, h) for i, t, _ix, h in PAGS]
-livro = "".join(f'<article class="folha{ {"capa": " capa", "fim": " contracapa"}.get(i, "") }" id="{i}" data-n="{n + 1}">' + (f'<h2>{e(t)}</h2>' if t else "") + (f'<div class="corpo">{h}</div>' if i == "capa" else f'<div class="corpo vidro">{h}</div>') + (f'<div class="rodape-pag"><span>Genial · {mes_t} {ANO}</span><span>{n + 1} / {len(folhas)}</span></div>' if i != "capa" else "") + '</article>' for n, (i, t, h) in enumerate(folhas))
+livro = "".join(f'<article class="folha{ {"capa": " capa", "fim": " contracapa"}.get(i, "") }" id="{i}" data-n="{n + 1}">' + (f'<h2>{e(t)}</h2>' if t else "") + (f'<div class="corpo">{h}</div>' if i == "capa" else f'<div class="corpo vidro">{h}</div>') + (f'<div class="rodape-pag"><span><b>Genial</b> · {mes_t} {ANO}</span><span>{n + 1} / {len(folhas)}</span></div>' if i != "capa" else "") + '</article>' for n, (i, t, h) in enumerate(folhas))
 corpo = f"""<h1 class="so-leitores">Revista Genial · {mes_t} {ANO}</h1>
   <div class="revista" id="revista" data-total="{len(folhas)}">{livro}</div>
   <nav class="comandos" aria-label="Folhear a revista"><button id="ant" aria-label="Página anterior">‹</button><span id="pagnum">1 / {len(folhas)}</span><button id="seg" aria-label="Página seguinte">›</button></nav>
