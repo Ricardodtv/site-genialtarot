@@ -129,3 +129,6 @@ dia, compatibilidade e na app (carta do dia + costas). **Os 56 Menores também, 
 ## Ano Pessoal 2027 (27/11/2026)
 - `ano-pessoal-1-2027.html` … `ano-pessoal-9-2027.html`: uma página por número (abertura e oportunidades iguais às da calculadora, amor, trabalho e dinheiro, desafio, 3 gestos, os 12 Meses Pessoais, como se calcula, FAQ + FAQPage). **Geradas**: textos em `ano-pessoal-2027-textos.py`, gerador `ano-pessoal-2027-gerar.py` (molde: estilo, gt-casa e rodapé de `eclipses-2027.html`). Mudar o texto na fonte e correr o gerador.
 - Ligadas a partir de `numerologia.html` (fonte: `temas-textos.py`, «O seu 2027») e da calculadora `numerologia-2027.html` (o resultado liga à página do número calculado, `#ler-ano`).
+
+## Favicon (27/11/2026)
+- `favicon.ico` = monograma **GT** dourado (letra Cinzel) sobre roxo com anel dourado (escolha dele, proposta B); 8 tamanhos de 16 a 256 (o 16 e o 32 sem estrela, para se ler). `apple-touch-icon.png` 180 na raiz (o iPhone pede-o sozinho). O antigo (o rosto) está em `~/_copias-claude/favicon.antes-gt-27nov.ico` no cerebro.
