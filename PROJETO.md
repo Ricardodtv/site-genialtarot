@@ -140,3 +140,6 @@ dia, compatibilidade e na app (carta do dia + costas). **Os 56 Menores também, 
 ## Revista Genial do mês (27/11/2026)
 - `revista-gerar.py AAAA-MM` → `revista-<mes>-<ano>.html` (revista que se folheia: capa, índice, páginas; `revista.css` + `revista-folhear.js`) e o arquivo `revista.html`. Alimenta-se sozinha: efemérides, famosos, notícias, novidades, produtos. A carta do mês entra por `revista-cartas.json` ({"2026-12": {carta, texto, pergunta, video}}) depois do directo.
 - Publica sozinha: `~/revista-mensal.sh` (cerebro, timer `revista-mensal.timer`: dia 1 às 00:05 e todos os dias às 19:00). Destaque no canto (`destaque.js`, id `revista`) do dia 1 (a partir das 6h) ao dia 10.
+
+## Menu único (27/11/2026)
+- `menu.js`, carregado pelo `vivo.js` em todas as páginas menos o início, o consultório, a app e o pagamento: barra (logótipo, temas no computador, Consulta, pesquisa, ☰), gaveta por temas no telemóvel, e «Início › Tema › Página». Esconde o «‹ genialtarot.com» e a pesquisa antiga do topo; desce a etiqueta «Loja Online» para baixo da barra. Os temas e as ligações: a lista TEMAS no próprio menu.js.
