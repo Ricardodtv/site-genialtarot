@@ -283,7 +283,7 @@ const PRODUTOS = [
     nome: "💰 Ritual de Prosperidade Financeira – Pelo Mestre Alberto ✨",
     categoria: "Rituais",
     preco: "",
-    foto: "prosperidade-financeira.jpg",
+    foto: "prosperidade-financeira-loja.jpg",
     descricao: "O grande ritual da abundância pessoal: um trabalho completo para desbloquear a sua vida financeira e atrair dinheiro e oportunidades, realizado com Buda dourado, velas e oferendas. Inclui registo do processo.",
     pedirInfo: true,   // 07/11/2026 (ele): sem preço à vista, «Pedir informações» pelo WhatsApp
     destaque: true,
