@@ -73,6 +73,8 @@
   };
   if (window.__bfFeito) return; window.__bfFeito = 1;
   if (!dentro) return;
+  // 27/11: quem tiver a página aberta à meia-noite de domingo vê-a recarregar já sem a Black Friday (preços, faixa, destaque, imagem)
+  if (!ver) setTimeout(function () { location.reload(); }, Math.max(0, FIM - Date.now()) + 1500);
 
   function falta() {
     var s = Math.max(0, Math.floor((FIM - Date.now()) / 1000)), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), x = s % 60;
