@@ -370,6 +370,7 @@ body { background: radial-gradient(ellipse at top, oklch(0.36 0.10 185) 0%, oklc
     <div class="tema"><span class="num">Tema 1</span><h3 id="h-motiv">A sua motivação para 2027</h3><p id="t-motiv"></p></div>
     <div class="tema"><span class="num">Tema 2</span><h3 id="h-oport">As suas oportunidades mais fortes</h3><div class="chips" id="t-oport"></div></div>
     <div class="caminho"><span class="n" id="n-caminho"></span><p id="t-caminho"></p></div>
+    <p style="text-align:center;margin:.8rem 0"><a id="ler-ano" href="/numerologia">Leia tudo sobre o seu Ano Pessoal de 2027 →</a></p>
 
     <div class="fecho">
       <div class="vidro"><div class="linha-tempo" id="linha-teaser"></div></div>
@@ -584,6 +585,7 @@ body { background: radial-gradient(ellipse at top, oklch(0.36 0.10 185) 0%, oklc
     $("t-motiv").textContent = comNome(MOTIVACAO[anoP], primeiro);
     $("h-oport").textContent = `${primeiro}, as suas oportunidades mais fortes`;
     $("t-oport").innerHTML = OPORTUNIDADES[anoP].map((o) => `<span class="chip">${esc(o)}</span>`).join("");
+    $("ler-ano").href = `/ano-pessoal-${anoP}-2027`; $("ler-ano").textContent = `Leia tudo sobre o Ano Pessoal ${anoP} em 2027 →`;
     $("n-caminho").textContent = caminho;
     $("t-caminho").innerHTML = `<b>Caminho de Vida ${caminho}</b> · ${esc(primeiro)}, o seu é ${esc(CAMINHO[caminho])} Em 2027 é esta missão que dá o tom ao seu ano.`;
     $("fecho-titulo").textContent = `${primeiro}, a sua Linha do Tempo de 2027 está pronta`;
