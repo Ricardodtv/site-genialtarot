@@ -20,6 +20,18 @@ somaAlg = lambda n: sum(int(d) for d in str(n))
 def reduz(n):
     while n > 9: n = somaAlg(n)
     return n
+# Famosos (27/11, ideia do My Zen Moment): a mesma lista da /famosos-ceu (Wikidata, CC0, ordenada por notoriedade).
+# Sem política, para não pôr o leitor contra a página; 6 de Portugal e 6 do Brasil por número.
+_fj = open("famosos-ceu-dados.js", encoding="utf-8").read(); FAMOSOS = json.loads(_fj[_fj.index("["):_fj.rindex("]") + 1])
+GRUPO = {"futebol": "Futebol", "desporto": "Desporto", "musica": "Música", "tv": "Actor, TV e cinema", "cultura": "Cultura e negócios", "outros": "Figura pública"}
+def famosos(n, por_pais=6):
+    out = {"PT": [], "BR": []}
+    for f in FAMOSOS:
+        nome, a, m, d, desc, pais, _s, g = f[:8]
+        if g == "politica" or pais not in out or len(out[pais]) >= por_pais: continue
+        if reduz(d + m + ANO) != n or sum(1 for x in out[pais] if x[5] == g) >= 2: continue   # no máximo 2 por área: senão só dá futebol
+        out[pais].append((nome, a, m, d, desc or GRUPO.get(g, ""), g))
+    return out["PT"] + out["BR"]
 MESES = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
 
 molde = open("eclipses-2027.html", encoding="utf-8").read()
@@ -75,6 +87,12 @@ def pagina(n):
     <div class="perfil meses">{tabela}</div>
   </section>
   <section class="cartao texto">
+    <h2>Famosos que vivem o Ano Pessoal {n} em 2027</h2>
+    <p>Fizemos a conta à data de nascimento de algumas figuras conhecidas de Portugal e do Brasil. Em 2027, todas partilham consigo a energia do {n}: {e(x['chave'])}.</p>
+    <ul class="famosos">{"".join(f'<li><b>{"🇵🇹" if i < 6 else "🇧🇷"} {e(nome)}</b><small>{d:02d}/{m:02d}/{a} · {e(desc)}</small></li>' for i, (nome, a, m, d, desc, _g) in enumerate(famosos(n)))}</ul>
+    <p class="fonte">Datas públicas do Wikidata. Veja com quem partilha o Sol e a Lua em <a href="/famosos-ceu">Famosos com o seu céu</a>.</p>
+  </section>
+  <section class="cartao texto">
     <h2>Como se calcula o Ano Pessoal</h2>
     <p>Some o dia e o mês do seu nascimento com o ano de 2027, e reduza o resultado somando os algarismos até ficar um só número. Por exemplo, quem nasceu a {d} de {MESES[m-1]}: {d} + {m} + 2027 = {" → ".join(passos)}. Está no Ano Pessoal {n}.</p>
     <p>2027 é, para todos, um Ano Universal 11 (2 + 0 + 2 + 7), um número mestre que se reduz a 2: um ano colectivo de intuição, de alianças e de sensibilidade, que dá um fundo de cooperação a todos os Anos Pessoais. A numerologia mostra tendências e ritmos, não um destino fechado: o que faz com elas é sempre seu.</p>
@@ -90,6 +108,9 @@ def pagina(n):
 .texto h3 { font-family: var(--serifa); font-size: 1.2rem; color: var(--ouro); margin: 1rem 0 .2rem; }
 .texto ul { font-family: var(--serifa); font-size: 1.08rem; color: var(--lavanda); padding-left: 1.2rem; } .texto li { margin: .3rem 0; }
 .meses div.forte { border-color: var(--ouro); box-shadow: 0 0 18px oklch(0.85 0.13 88 / .3); color: var(--ouro); }
+.famosos { list-style: none; padding: 0; display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+.famosos li { background: var(--vidro); border: 1px solid var(--borda); border-radius: .9rem; padding: .55rem .8rem; font-family: Inter, sans-serif; font-size: .95rem; }
+.famosos small { display: block; color: var(--suave); font-size: .8rem; }
 .anos a { flex-direction: column; align-items: flex-start; gap: 0; font-weight: 700; }
 </style>"""
     return f"""<!doctype html>

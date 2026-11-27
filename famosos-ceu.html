@@ -281,6 +281,8 @@ footer a { color: inherit; }
   const F = (window.FAMOSOS || []).map(p => ({ n: p[0], a: p[1], m: p[2], d: p[3], desc: p[4], pais: p[5], sexo: p[6], g: p[7],
     s: [...p[8]].map(c => c.charCodeAt(0) - 97), alt: [...p[9]].map(c => c === "." ? -1 : c.charCodeAt(0) - 97), r: p[10], q: p[11] }));
   const pad = n => String(n).padStart(2, "0");
+  // 27/11/2026: o Ano Pessoal de 2027 de cada famoso (a mesma conta da calculadora: dia + mês + 2027, reduzido) → a página do número
+  const anoP = p => { let n = p.d + p.m + 2027; while (n > 9) n = [...String(n)].reduce((t, c) => t + +c, 0); return n; };
   const opts = (o) => Object.entries(o).map(([v, t]) => `<option value="${v}">${t}</option>`).join("");
   $("m-grupo").innerHTML = opts(GRUPOS); $("p-grupo").innerHTML = opts(GRUPOS);
   $("p-dist").innerHTML = CP.map(([g, n], i) => `<option value="${i}">${n}</option>`).join("");
@@ -293,7 +295,7 @@ footer a { color: inherit; }
     // a idade de hoje, antes dos pontos (pedido dele, 28/10/2026)
     const h = new Date(), idade = h.getFullYear() - p.a - ((h.getMonth() + 1 < p.m || (h.getMonth() + 1 === p.m && h.getDate() < p.d)) ? 1 : 0);
     return `<li>${pts != null ? `<span class="pts">${pts} pts</span>` : ""}<span class="idade">${idade} anos</span><a class="n" href="${link(p)}" target="_blank" rel="noopener">${esc(p.n)}</a>
-      <div class="info">${bandeira(p)} ${pad(p.d)}/${pad(p.m)}/${p.a} · ${esc(p.desc)}</div>
+      <div class="info">${bandeira(p)} ${pad(p.d)}/${pad(p.m)}/${p.a} · ${esc(p.desc)} · <a href="/ano-pessoal-${anoP(p)}-2027">Ano Pessoal ${anoP(p)} em 2027</a></div>
       <div class="chips">${mostrar.map(i => chipSig(p, i, iguais && iguais.has(i))).join("")}</div></li>`;
   }
   function falhou(msg) { const a = $("aviso-fim"); a.textContent = msg; a.classList.add("ver"); }

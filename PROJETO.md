@@ -132,3 +132,7 @@ dia, compatibilidade e na app (carta do dia + costas). **Os 56 Menores também, 
 
 ## Favicon (27/11/2026)
 - `favicon.ico` = monograma **GT** dourado (letra Cinzel) sobre roxo com anel dourado (escolha dele, proposta B); 8 tamanhos de 16 a 256 (o 16 e o 32 sem estrela, para se ler). `apple-touch-icon.png` 180 na raiz (o iPhone pede-o sozinho). O antigo (o rosto) está em `~/_copias-claude/favicon.antes-gt-27nov.ico` no cerebro.
+- 27/11: as 9 páginas do Ano Pessoal mostram **12 famosos** (6 PT + 6 BR, sem política, no máximo 2 por área) da `famosos-ceu-dados.js`; e a `/famosos-ceu` mostra em cada cartão o Ano Pessoal 2027 com ligação à página do número.
+
+## Tarot terapêutico (27/11/2026)
+- `tarot-terapeutico.html`, **gerada** por `tarot-terapeutico-gerar.py` (molde de `eclipses-2027.html`). O Tarot como espelho e autoconhecimento, com o aviso de que não substitui psicólogo nem médico. Ligada de `/consulta-de-tarot-online`.
