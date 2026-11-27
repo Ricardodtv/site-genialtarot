@@ -17,24 +17,25 @@
     "BXHAKT4BHSD02": { pag: "/numerologia-2027", n:  4, de: "25 €", para: "17,50 €", link: "https://mypos.com/@genialtarot/17.50" },   // Ano 2027
     "BUQ28DVM5JR98": { pag: "/tarot-semestral", n:  5, de: "15 €", para: "10,50 €", link: "https://mypos.com/@genialtarot/10.50" },   // Tarot Semestral
     "BBGBCIOKNQY86": { n:  6, de: "45 €", para: "31,50 €", link: "https://mypos.com/@genialtarot/31.50" },   // Tarot Semestral
-    "BQMNGTHSAHA83": { pag: "/mapa-astral", n:  7, de: "15 €", para: "10,50 €", link: "https://mypos.com/@genialtarot/10.50" },   // Mapa Astral
-    "BKXR2JQ2BEB19": { n:  8, de: "25 €", para: "17,50 €", link: "https://mypos.com/@genialtarot/17.50" },   // 1 Pergunta de Tarot por Escrito
+    "BQMNGTHSAHA83": { pag: "/mapa-astral", n:  7, de: "15 €", para: "10,49 €", link: "https://mypos.com/@genialtarot/10.49" },   // Mapa Astral
+    "BKXR2JQ2BEB19": { n:  8, de: "25 €", para: "17,49 €", link: "https://mypos.com/@genialtarot/17.49" },   // 1 Pergunta de Tarot por Escrito
     "BTSGROA5LPZ61": { n:  9, de: "65 €", para: "45,50 €", link: "https://mypos.com/@genialtarot/45.50" },   // Consulta de Tarot Online
     "B35PHJ9OQMU04": { n: 10, de: "85 €", para: "59,50 €", link: "https://mypos.com/@genialtarot/59.50" },   // Consulta de Tarot Online
     "B5IA82S63VN50": { n: 11, de: "185 €", para: "129,50 €", link: "https://mypos.com/@genialtarot/129.50" },   // Previsão Anual para 12 Meses
-    "B1CMBQSYWEW69": { n: 12, de: "185 €", para: "129,50 €", link: "https://mypos.com/@genialtarot/129.50" },   // Consulta de Terapia de Casais Online
+    "B1CMBQSYWEW69": { n: 12, de: "185 €", para: "129,49 €", link: "https://mypos.com/@genialtarot/129.49" },   // Consulta de Terapia de Casais Online
     "BLQ1NIUDJ2K11": { n: 13, de: "125 €", para: "87,50 €", link: "https://mypos.com/@genialtarot/87.50" },   // Parecer sobre Qualquer Assunto pelas Cartas
     "BG2QB2ADANJ52": { n: 14, de: "80 €", para: "56,00 €", link: "https://mypos.com/@genialtarot/56.00" },   // Leitura da Sua Mão por Quiromancia Online
     "BNNCED4W9IU06": { n: 15, de: "40 €", para: "28,00 €", link: "https://mypos.com/@genialtarot/28.00" },   // Consulta de Pêndulo
-    "BVQ7RWY5ITA62": { n: 16, de: "65 €", para: "45,50 €", link: "https://mypos.com/@genialtarot/45.50" },   // Consulta de Pêndulo
+    "BVQ7RWY5ITA62": { n: 16, de: "65 €", para: "45,49 €", link: "https://mypos.com/@genialtarot/45.49" },   // Consulta de Pêndulo
     "BKXKXFVMT7M49": { n: 17, de: "110 €", para: "77,00 €", link: "https://mypos.com/@genialtarot/77.00" },   // Consulta de Emergência com Mestre Alberto (Respost
     "B5588K5PTFM42": { n: 18, de: "145 €", para: "101,50 €", link: "https://mypos.com/@genialtarot/101.50" },   // Amuleto Cruz da Boa Energia e Sucesso
     "B2PA7QQ3QA346": { n: 19, de: "165 €", para: "115,50 €", link: "https://mypos.com/@genialtarot/115.50" },   // Amuleto Pentagrama de Equilíbrio com Ritual
     "BF6O2I7O68M52": { n: 20, de: "195 €", para: "136,50 €", link: "https://mypos.com/@genialtarot/136.50" },   // Mapa Astral Conheça Sua Personalidade
-    "BWEHSTP6TUV40": { n: 21, de: "145 €", para: "101,50 €", link: "https://mypos.com/@genialtarot/101.50" },   // Análise ao Seu Signo e Personalidade
+    "BWEHSTP6TUV40": { n: 21, de: "145 €", para: "101,49 €", link: "https://mypos.com/@genialtarot/101.49" },   // Análise ao Seu Signo e Personalidade
     "B8Q8NUM8CSD06": { n: 22, de: "2450 €", para: "1715,00 €", link: "https://mypos.com/@genialtarot/1715.00" },   // Curso de Tarot Online 3 Meses com Mestre Alberto
     "BTY99VSJMLA69": { n: 23, de: "19 €", para: "13,30 €", link: "https://mypos.com/@genialtarot/13.30" },   // Astrologia 2027
   };
+  // 27/11 (ele): cada valor só pode ser UM produto — nos pares iguais o 2.º leva −1 cêntimo (Mapa Astral, 1 Pergunta, Pêndulo 50, Análise ao Signo, Terapia de Casais)
   // sem botão myPOS (compra pelo WhatsApp): o preço com desconto vale assim que a promoção estiver ligada
   var WHATSAPP = [
     { nome: "Respondida em Áudio", de: "15 €", para: "10,50 €" },

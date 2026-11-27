@@ -32,7 +32,7 @@
           box-shadow:0 8px 30px rgba(60,30,110,.10);text-align:center}
   h1{font-size:19px;margin:14px 0 4px;font-weight:600}
   .preco{font-size:34px;font-weight:700;color:#5b2c9e;margin:6px 0 18px}
-  .btn{display:block;background:#5b2c9e;color:#fff;text-decoration:none;padding:16px;
+  .btn{display:block;box-sizing:border-box;background:#5b2c9e;color:#fff;text-decoration:none;padding:16px;
        border-radius:12px;font-size:16px;font-weight:700;border:0;width:100%;margin-top:8px}
   .aviso{background:#fff8e6;border:1px solid #f0dfae;border-radius:12px;padding:14px;
          font-size:14px;line-height:1.55;color:#5a5470;margin:16px 0;text-align:left}
@@ -129,7 +129,25 @@ if (s && s.pedirInfo) {
   const android = /Android/i.test(ua);
   const ios = /iPhone|iPad|iPod/i.test(ua);
 
-  if (!app) {
+  /* 27/11/2026 (ele): na Black Friday paga-se pela etiqueta mypos.com/@genialtarot/<valor>, que tem o campo «Motivo do pagamento»
+     VAZIO e não aceita que o preencham de fora (medido: o myPOS ignora ?reason= e afins). Por isso mostra-se o nome do produto,
+     o botão copia-o, e a pessoa só tem de colar no Motivo. Fora da etiqueta (botões normais) tudo segue como antes. */
+  const etiqueta = /mypos\.com\/@genialtarot\//.test(s.link);
+  const motivo = String(s.nome || "").replace(/\s+/g, " ").trim().slice(0, 90);
+  const copiaMotivo = () => (navigator.clipboard ? navigator.clipboard.writeText(motivo) : Promise.reject()).catch(() => {
+    try { const t = document.createElement("textarea"); t.value = motivo; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); } catch (e) {}
+  });
+  const caixaMotivo = '<div style="margin:14px 0 4px;text-align:left;font-size:13px;color:#5b2c9e;font-weight:700">Motivo do pagamento</div>'
+    + '<div id="motivo" style="text-align:left;background:#f4effc;border:1.5px dashed #b79be6;border-radius:12px;padding:10px 12px;font-size:15px;color:#2a1650;user-select:all">' + motivo.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]) + '</div>'
+    + '<div class="aviso" style="display:block;margin-top:8px">No ecrã seguinte, toque no campo <b>«Motivo do pagamento»</b> e escolha <b>Colar</b>.</div>';
+
+  if (!app && etiqueta) {
+    zona.innerHTML = caixaMotivo + '<a class="btn" id="cp" href="' + s.link + '">Copiar motivo e pagar</a>';
+    document.getElementById("cp").onclick = function (ev) {
+      ev.preventDefault(); const h = this.href;
+      copiaMotivo().finally(() => { this.textContent = "Motivo copiado ✓"; setTimeout(() => location.href = h, 500); });
+    };
+  } else if (!app) {
     /* navegador normal: segue sozinho, sem incomodar o cliente */
     zona.innerHTML = '<a class="btn" href="' + s.link + '">Continuar para o pagamento</a>';
     setTimeout(() => location.href = s.link, 900);
@@ -172,14 +190,18 @@ if (s && s.pedirInfo) {
       }, 1400);
     };
 
-    document.getElementById("ir").onclick = saltar;
+    if (etiqueta) {
+      zona.insertAdjacentHTML("afterbegin", caixaMotivo);
+      document.getElementById("ir").textContent = "Copiar motivo e pagar";
+    }
+    document.getElementById("ir").onclick = () => etiqueta ? copiaMotivo().finally(saltar) : saltar();
     document.getElementById("copiar").onclick = function () {
       const b = this;
       (navigator.clipboard ? navigator.clipboard.writeText(s.link) : Promise.reject())
         .then(() => b.textContent = "Link copiado ✓")
         .catch(() => window.prompt("Copie o link:", s.link));
     };
-    saltar();   /* tenta logo, sem esperar pelo clique */
+    if (!etiqueta) saltar();   /* tenta logo, sem esperar pelo clique (na etiqueta espera: o motivo só se copia com um toque) */
   }
 }
 </script>
