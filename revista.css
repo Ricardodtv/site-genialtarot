@@ -124,3 +124,27 @@
 .rodape-pag b, .folha.capa .pe-capa b { font-family: "Cinzel", Georgia, serif; font-style: normal; font-weight: 600; font-size: .95rem; letter-spacing: .12em;
   background: linear-gradient(180deg, #fff3c4, #f2c96b 55%, #c48a2c); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .rodape-pag span:last-child { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; font-weight: 600; font-size: 1.05rem; color: #ffe2a0; background: transparent; border: 1px solid #f2c96b99; padding: 0 .55rem; }
+/* ========== 27/11 (ele): MODO LEITURA — a revista abre sozinha, sem nada do site à volta, só «Voltar ao site» ========== */
+body.leitura .bf-faixa, body.leitura #vip-faixa, body.leitura .gtm-barra, body.leitura .gtm-migalhas, body.leitura #gtc-btn, body.leitura #loja-etq,
+body.leitura .dst, body.leitura .dst-bola, body.leitura #duvidas-wa, body.leitura .gt-casa, body.leitura footer, body.leitura header.topo, body.leitura .gtp-topo { display: none !important; }
+html body.leitura { padding-top: 0 !important; }
+.leitura-barra { position: relative; z-index: 5; display: flex; justify-content: space-between; align-items: center; max-width: 34rem; margin: .8rem auto .8rem; padding: 0 .2rem; }
+.leitura-barra a, .leitura-barra button { display: inline-flex; align-items: center; gap: .4rem; font: 600 .95rem/1 "Cormorant Garamond", Georgia, serif; font-style: italic; color: #ffe2a0; text-decoration: none;
+  background: #160a2ccc; border: 1px solid #f2c96b88; border-radius: 999px; padding: .5rem .95rem; cursor: pointer; }
+.leitura-barra a b { font-family: "Cinzel", serif; font-style: normal; font-size: .8rem; letter-spacing: .1em; }
+/* ========== a ponta da folha que se dobra (ele: «uma aba tipo um gif a mostrar que vai virar a página») ========== */
+.vira { position: absolute; right: 0; bottom: 0; width: 4.2rem; height: 4.2rem; border: 0; padding: 0; background: none; cursor: pointer; z-index: 6; border-radius: 0 0 1.1rem 0; overflow: hidden; }
+.vira::before { content: ""; position: absolute; right: 0; bottom: 0; width: 2.2rem; height: 2.2rem;
+  background: linear-gradient(315deg, #12062600 0 50%, #fff3c4 50%, #f2c96b 68%, #b8822a 100%); border-radius: .6rem 0 0 0;
+  box-shadow: -4px -4px 10px #0009; transform-origin: 100% 100%; animation: dobra 2.6s ease-in-out infinite; }
+.vira::after { content: "›"; position: absolute; right: .35rem; bottom: .05rem; font: 700 1.1rem/1 Inter, sans-serif; color: #2a1245; animation: dobra-seta 2.6s ease-in-out infinite; }
+@keyframes dobra { 0%, 55%, 100% { width: 2.2rem; height: 2.2rem; } 70% { width: 3.6rem; height: 3.6rem; } 80% { width: 3.1rem; height: 3.1rem; } }
+@keyframes dobra-seta { 0%, 55%, 100% { transform: none; } 70% { transform: translate(-.4rem, -.4rem); } }
+.vira:hover::before { width: 3.6rem; height: 3.6rem; animation: none; }
+@media (prefers-reduced-motion: reduce) { .vira::before, .vira::after { animation: none; } }
+.folha .rodape-pag { right: 3.6rem; }
+/* as setas sempre à mão, presas ao fundo do ecrã (a revista tem a altura da página mais comprida) */
+body.leitura .revista.js ~ .comandos { position: fixed; left: 50%; bottom: .8rem; transform: translateX(-50%); z-index: 50; margin: 0; padding: .3rem .5rem; gap: .8rem;
+  background: #160a2ce6; border: 1px solid #f2c96b88; border-radius: 999px; box-shadow: 0 10px 30px #000c; }
+body.leitura .comandos button { width: 2.8rem; height: 2.8rem; font-size: 1.7rem; }
+body.leitura .arquivo { margin-bottom: 5rem; }

@@ -147,8 +147,9 @@ capa = f"""<div class="capa-in"><div class="topo-capa"><span>N.º {EDICAO}</span
   <div class="pe-capa"><b>Mestre Alberto</b> · genialtarot.com</div></div>"""
 indice = '<ol class="indice">' + "".join(f'<li><a href="#{i}" data-ir="{i}">{e(t)}</a><span>{n + 3}</span></li>' for n, (i, _t, t, _h) in enumerate(PAGS) if t) + '</ol>'
 folhas = [("capa", None, capa), ("indice", "Nesta edição", indice + f'<p class="fonte">Toque nas setas, deslize com o dedo ou use as teclas ← →.</p>')] + [(i, t, h) for i, t, _ix, h in PAGS]
-livro = "".join(f'<article class="folha{ {"capa": " capa", "fim": " contracapa"}.get(i, "") }" id="{i}" data-n="{n + 1}">' + (f'<h2>{e(t)}</h2>' if t else "") + (f'<div class="corpo">{h}</div>' if i == "capa" else f'<div class="corpo vidro">{h}</div>') + (f'<div class="rodape-pag"><span><b>Genial</b> · {mes_t} {ANO}</span><span>{n + 1} / {len(folhas)}</span></div>' if i != "capa" else "") + '</article>' for n, (i, t, h) in enumerate(folhas))
+livro = "".join(f'<article class="folha{ {"capa": " capa", "fim": " contracapa"}.get(i, "") }" id="{i}" data-n="{n + 1}">' + (f'<h2>{e(t)}</h2>' if t else "") + (f'<div class="corpo">{h}</div>' if i == "capa" else f'<div class="corpo vidro">{h}</div>') + (f'<div class="rodape-pag"><span><b>Genial</b> · {mes_t} {ANO}</span><span>{n + 1} / {len(folhas)}</span></div>' if i != "capa" else "") + ('<button class="vira" type="button" aria-label="Virar a página"></button>' if n < len(folhas) - 1 else "") + '</article>' for n, (i, t, h) in enumerate(folhas))
 corpo = f"""<h1 class="so-leitores">Revista Genial · {mes_t} {ANO}</h1>
+  <div class="leitura-barra"><a href="/" id="voltar-site">← <b>Voltar ao site</b></a><button type="button" id="som-folha" aria-pressed="true" aria-label="Som das páginas">🔊 Som</button></div>
   <div class="revista" id="revista" data-total="{len(folhas)}">{livro}</div>
   <nav class="comandos" aria-label="Folhear a revista"><button id="ant" aria-label="Página anterior">‹</button><span id="pagnum">1 / {len(folhas)}</span><button id="seg" aria-label="Página seguinte">›</button></nav>
   <p class="arquivo"><a href="/revista">Todas as edições</a></p>"""
@@ -188,7 +189,7 @@ pagina = f"""<!doctype html>
 {extra}
 </style>
 </head>
-<body class="pag-revista">
+<body class="pag-revista leitura">
 <div class="estrelas" aria-hidden="true"></div>
 <div class="caixa">
   <header class="topo">
@@ -208,7 +209,7 @@ for f in glob.glob("revista-*-*.html"):
     nm = [x.replace("ç", "c") for x in MESES].index(m.group(1)) + 1 if m.group(1) in [x.replace("ç", "c") for x in MESES] else 0
     if nm: eds.append((int(m.group(2)), nm, f[:-5]))
 eds.sort(reverse=True)
-lista = "".join(f'<a class="ed" href="/{s_}"><span class="n">N.º {(a_ - 2026) * 12 + m_ - 11}</span><b>{MESES[m_ - 1].capitalize()} {a_}</b><small>Folhear →</small></a>' for a_, m_, s_ in eds)
+lista = "".join(f'<a class="ed" href="/{s_}" target="_blank" rel="noopener"><span class="n">N.º {(a_ - 2026) * 12 + m_ - 11}</span><b>{MESES[m_ - 1].capitalize()} {a_}</b><small>Folhear →</small></a>' for a_, m_, s_ in eds)
 arq = pagina.split("<body")[0]
 arq = re.sub(r"<title>.*?</title>", "<title>Revista Genial — todas as edições · Mestre Alberto</title>", arq, flags=re.S)
 arq = re.sub(r'<meta name="description" content="[^"]*"', '<meta name="description" content="Todas as edições da Revista Genial, a revista do mês do Genial Tarot: o céu, as luas, os signos e os números de cada mês."', arq)
@@ -232,7 +233,7 @@ background:linear-gradient(135deg,#2a1245,#170830);border:1px solid #f2c96b99;bo
 .rv-casa small{{display:block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#f2c96b;font-weight:800}}.rv-casa b{{display:block;font-family:Cinzel,Georgia,serif;font-size:clamp(1.15rem,4.5vw,1.5rem);color:#ffe2a0;margin:.2rem 0}}
 .rv-casa span.t{{display:block;font-size:.92rem;color:#d9cbe9;line-height:1.4}}.rv-casa .rv-bt{{display:inline-block;margin-top:.6rem;padding:.55rem 1.1rem;border-radius:999px;font-weight:800;color:#2a1245;background:linear-gradient(135deg,#ffe2a0,#f2c96b 55%,#d9a441)}}
 .rv-casa .rv-ant{{display:block;text-align:right;margin-top:.4rem;font-size:.85rem;color:#d9cbe9}}.rv-casa .rv-ant a{{color:#d9cbe9}}</style>
-<a class="rv" href="/{s_}"><span class="rv-capa" role="img" aria-label="Capa da Revista Genial"></span><span><small>📖 Revista do mês · N.º {(a_ - 2026) * 12 + m_ - 11}</small><b>Revista Genial · {MESES[m_ - 1].capitalize()} {a_}</b>
+<a class="rv" href="/{s_}" target="_blank" rel="noopener"><span class="rv-capa" role="img" aria-label="Capa da Revista Genial"></span><span><small>📖 Revista do mês · N.º {(a_ - 2026) * 12 + m_ - 11}</small><b>Revista Genial · {MESES[m_ - 1].capitalize()} {a_}</b>
 <span class="t">As luas, o céu do mês, os 12 signos, o seu Mês Pessoal e a carta do Mestre. Folheie como uma revista.</span><span class="rv-bt">Ler a nossa revista mensal →</span></span></a>
 <span class="rv-ant"><a href="/carta-da-semana">✉️ A Carta da Semana</a> · <a href="/revista">Edições anteriores →</a></span></section><!-- revista-casa:fim -->"""
     ih = open("index.html", encoding="utf-8").read()
