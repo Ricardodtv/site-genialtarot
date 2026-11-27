@@ -269,6 +269,16 @@ function pickBest(candidates) {
     const byDate = String(b.published).localeCompare(String(a.published));
     return byDate !== 0 ? byDate : (a.index ?? 0) - (b.index ?? 0);
   });
+  // 27/11/2026 (pedido dele): cada directo sai em DUAS emissões, horizontal e vertical, publicadas com segundos de
+  // diferença; ganhava a que chegasse por último (a vertical, com barras pretas no leitor 16:9 do site). A horizontal
+  // é a que leva 🔴 no início do título (MARCA_H do ~/directo-auto/prepara.py, desde 24/11): entre as do MESMO directo
+  // (até 3 h da mais recente) fica a horizontal. Sem 🔴, tudo como antes.
+  const novo = valid[0];
+  if (novo) {
+    const t0 = Date.parse(novo.published) || 0;
+    const h = valid.find((c) => /^\s*🔴/u.test(c.title) && Math.abs(t0 - (Date.parse(c.published) || 0)) <= 3 * 3600e3);
+    if (h) return h;
+  }
   return valid[0] ?? null;
 }
 
