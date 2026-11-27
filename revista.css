@@ -1,0 +1,60 @@
+/* A Revista do mês que se folheia (27/11/2026). Lido pelo revista-gerar.py e posto dentro da página. */
+.so-leitores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.revista { position: relative; width: min(34rem, 100%); margin: 0 auto; perspective: 2200px; z-index: 1; }
+.folha { position: relative; margin: 0 0 1.5rem; border-radius: .5rem 1.1rem 1.1rem .5rem; padding: 1.3rem 1.3rem 2.6rem;
+  background: linear-gradient(100deg, oklch(0.24 0.08 275) 0%, oklch(0.27 0.09 270) 4%, oklch(0.25 0.08 272) 100%);
+  border: 1px solid oklch(0.82 0.12 85 / .45); box-shadow: inset 14px 0 18px -12px #0009, 0 22px 50px #000a; color: var(--texto); }
+.folha h2 { font-family: var(--titulo); text-align: left; font-size: clamp(1.25rem, 4.6vw, 1.6rem); color: var(--ouro); margin: 0 0 .9rem;
+  padding-bottom: .5rem; border-bottom: 1px solid oklch(0.82 0.12 85 / .35); }
+.folha p { font-family: var(--serifa); font-size: 1.12rem; line-height: 1.5; color: var(--lavanda); margin: 0 0 .8rem; }
+.folha a { color: var(--ouro); }
+.rodape-pag { position: absolute; left: 1.3rem; right: 1.3rem; bottom: .8rem; display: flex; justify-content: space-between;
+  font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--suave); }
+.chave { font-family: var(--serifa); font-size: 1.45rem !important; color: var(--ouro) !important; font-style: italic; }
+.verso { text-align: center; } .verso img { width: 46%; max-width: 11rem; border-radius: .6rem; box-shadow: 0 10px 30px #000a; transform: rotate(-4deg); }
+.pergunta b { display: block; color: var(--ouro); font-family: Inter, sans-serif; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; }
+.cx { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); margin: 0 0 .8rem; }
+.cx div { background: oklch(0.18 0.06 272 / .7); border: 1px solid var(--borda); border-radius: .9rem; padding: .7rem .85rem; }
+.cx b { display: block; font-size: 1rem; } .cx b a { text-decoration: none; } .cx small { display: block; color: var(--suave); font-size: .85rem; line-height: 1.4; }
+.luas .ic { font-size: 1.6rem; float: right; } .preco { display: block; font-family: var(--titulo); font-size: 1.4rem; color: var(--ouro); margin-top: .3rem; }
+.cx.num { grid-template-columns: repeat(3, 1fr); } .cx.num div { text-align: center; padding: .55rem .3rem; }
+.cx.num b { font-size: .78rem; color: var(--suave); text-transform: uppercase; letter-spacing: .08em; } .cx.num .big { display: block; font-family: var(--titulo); font-size: 1.9rem; color: var(--ouro); line-height: 1.1; }
+.ceu-mes { list-style: none; padding: 0; margin: 0 0 .8rem; font-family: var(--serifa); font-size: 1.08rem; color: var(--lavanda); }
+.ceu-mes li { padding: .32rem 0; border-bottom: 1px dashed oklch(0.75 0.10 260 / .25); } .ceu-mes b { color: var(--ouro); font-family: Inter, sans-serif; font-size: .85rem; margin-right: .6rem; }
+.noticias li a { text-decoration: none; color: var(--lavanda); }
+.sgs { display: grid; gap: .5rem; } .sgs a { display: flex; gap: .7rem; align-items: flex-start; text-decoration: none; color: var(--texto);
+  background: oklch(0.18 0.06 272 / .7); border: 1px solid var(--borda); border-radius: .9rem; padding: .55rem .8rem; }
+.sgs .gl { font-size: 1.7rem; color: var(--ouro); line-height: 1; width: 2rem; text-align: center; flex: none; } .sgs b { display: block; } .sgs small { color: var(--suave); font-size: .85rem; line-height: 1.4; }
+.famosos { list-style: none; padding: 0; display: grid; gap: .5rem; margin: 0 0 .8rem; } .famosos li { background: oklch(0.18 0.06 272 / .7); border: 1px solid var(--borda); border-radius: .9rem; padding: .6rem .85rem; }
+.famosos small { display: block; color: var(--suave); font-size: .82rem; }
+.video { position: relative; aspect-ratio: 16/9; border-radius: .8rem; overflow: hidden; margin-top: .8rem; } .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.indice { list-style: none; padding: 0; margin: 0 0 1rem; counter-reset: x; } .indice li { display: flex; align-items: baseline; gap: .4rem; padding: .45rem 0; font-family: var(--serifa); font-size: 1.2rem; }
+.indice li a { text-decoration: none; color: var(--texto); } .indice li a:hover { color: var(--ouro); }
+.indice li::after { content: ""; flex: 1; border-bottom: 1px dotted var(--suave); order: 1; } .indice li span { order: 2; color: var(--ouro); font-family: var(--titulo); }
+.cta.azul { background: var(--grad-azul); color: white; }
+/* ---------- a capa ---------- */
+.folha.capa { padding: 0; overflow: hidden; border-radius: .5rem 1.1rem 1.1rem .5rem; border: 2px solid var(--ouro);
+  background: radial-gradient(120% 70% at 50% 35%, oklch(0.42 0.17 300) 0%, oklch(0.24 0.10 290) 55%, oklch(0.13 0.05 285) 100%); }
+.capa-in { position: relative; padding: 1rem 1.1rem 1.2rem; min-height: 40rem; display: flex; flex-direction: column; }
+.topo-capa { display: flex; justify-content: space-between; font-size: .72rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--ouro); border-bottom: 1px solid oklch(0.85 0.13 88 / .5); padding-bottom: .4rem; }
+.masthead { font-family: "Cinzel", serif; font-weight: 900; font-size: clamp(3.4rem, 16.5vw, 7rem); line-height: .95; text-align: center; letter-spacing: .04em; margin: .5rem 0 0;
+  background: linear-gradient(180deg, #fff3c4 0%, #f2c96b 45%, #b8822a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 4px 10px #0009); }
+.sub-mast { text-align: center; font-family: var(--serifa); font-style: italic; font-size: 1.05rem; color: var(--lavanda); margin-bottom: .8rem; }
+.foto-capa { position: relative; width: 72%; margin: 0 auto; aspect-ratio: 1; }
+.foto-capa img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 4px solid var(--ouro); box-shadow: 0 0 0 8px oklch(0.85 0.13 88 / .15), 0 20px 50px #000c; }
+.carimbo { position: absolute; right: -6%; top: 4%; width: 5.4rem; height: 5.4rem; border-radius: 50%; display: grid; place-items: center; text-align: center;
+  font-weight: 900; font-size: .78rem; line-height: 1.1; text-transform: uppercase; color: oklch(0.2 0.05 280); background: var(--grad-ouro); transform: rotate(12deg); box-shadow: 0 8px 20px #000a; }
+.chamadas { list-style: none; padding: 0; margin: 1rem 0 .6rem; } .chamadas li { font-family: var(--titulo); font-size: clamp(.95rem, 3.8vw, 1.15rem); font-weight: 700; color: var(--texto); padding: .28rem 0 .28rem 1.1rem; position: relative; text-shadow: 0 2px 6px #000a; }
+.chamadas li::before { content: "✦"; position: absolute; left: 0; color: var(--ouro); } .chamadas li:first-child { font-size: clamp(1.15rem, 4.8vw, 1.45rem); color: var(--ouro); }
+.pe-capa { margin-top: auto; text-align: center; font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--suave); }
+/* ---------- o folhear (só com JavaScript) ---------- */
+.revista.js { display: grid; } .revista.js .folha { grid-area: 1 / 1; margin: 0; min-height: 40rem; visibility: hidden; transform-origin: left center; transition: transform .7s cubic-bezier(.3,.7,.3,1), opacity .5s; backface-visibility: hidden; }
+.revista.js .folha.ativa { visibility: visible; z-index: 2; }
+.revista.js .folha.sai { visibility: visible; z-index: 3; transform: rotateY(-105deg); opacity: .2; }
+.revista.js .folha.volta { visibility: visible; z-index: 3; animation: volta .7s cubic-bezier(.3,.7,.3,1); }
+@keyframes volta { from { transform: rotateY(-105deg); opacity: .2; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .revista.js .folha { transition: none; } .revista.js .folha.volta { animation: none; } }
+.comandos { display: none; } .revista.js ~ .comandos { display: flex; justify-content: center; align-items: center; gap: 1.2rem; margin: 1rem 0 .4rem; position: relative; z-index: 1; }
+.comandos button { width: 3.2rem; height: 3.2rem; border-radius: 50%; border: 1.5px solid var(--ouro); background: oklch(0.22 0.06 270 / .9); color: var(--ouro); font-size: 2rem; line-height: 1; cursor: pointer; }
+.comandos button:disabled { opacity: .3; cursor: default; } #pagnum { font-family: var(--titulo); color: var(--lavanda); min-width: 4.5rem; text-align: center; }
+.arquivo { text-align: center; position: relative; z-index: 1; }

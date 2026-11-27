@@ -136,3 +136,7 @@ dia, compatibilidade e na app (carta do dia + costas). **Os 56 Menores também, 
 
 ## Tarot terapêutico (27/11/2026)
 - `tarot-terapeutico.html`, **gerada** por `tarot-terapeutico-gerar.py` (molde de `eclipses-2027.html`). O Tarot como espelho e autoconhecimento, com o aviso de que não substitui psicólogo nem médico. Ligada de `/consulta-de-tarot-online`.
+
+## Revista Genial do mês (27/11/2026)
+- `revista-gerar.py AAAA-MM` → `revista-<mes>-<ano>.html` (revista que se folheia: capa, índice, páginas; `revista.css` + `revista-folhear.js`) e o arquivo `revista.html`. Alimenta-se sozinha: efemérides, famosos, notícias, novidades, produtos. A carta do mês entra por `revista-cartas.json` ({"2026-12": {carta, texto, pergunta, video}}) depois do directo.
+- Publica sozinha: `~/revista-mensal.sh` (cerebro, timer `revista-mensal.timer`: dia 1 às 00:05 e todos os dias às 19:00). Destaque no canto (`destaque.js`, id `revista`) do dia 1 (a partir das 6h) ao dia 10.
