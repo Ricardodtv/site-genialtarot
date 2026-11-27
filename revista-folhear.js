@@ -23,25 +23,22 @@
     try { history.replaceState(null, "", i ? "#" + F[i].id : location.pathname + location.search); } catch (e) {}
     if (anima) { var top = r.getBoundingClientRect().top + scrollY - 70; if (scrollY > top) scrollTo({ top: top, behavior: "smooth" }); }
   }
-  // 27/11 (ele): o som de uma folha a virar — feito na hora com o WebAudio (ruído filtrado), sem ficheiro; desliga-se no 🔊
-  var somLigado = true, ctx = null;
+  // 27/11 (ele): o som de uma folha a virar; desliga-se no 🔊 (fica guardado neste aparelho)
+  var somLigado = true;
   try { somLigado = localStorage.getItem("revista-som") !== "0"; } catch (e) {}
   var bt = document.getElementById("som-folha");
   function pintaSom() { if (bt) { bt.textContent = somLigado ? "🔊 Som" : "🔇 Sem som"; bt.setAttribute("aria-pressed", somLigado ? "true" : "false"); } }
   pintaSom();
   if (bt) bt.addEventListener("click", function () { somLigado = !somLigado; try { localStorage.setItem("revista-som", somLigado ? "1" : "0"); } catch (e) {} pintaSom(); if (somLigado) folha(); });
+  // 27/11 (ele: «o som é horrível, não tens outro mais suave?»): agora é uma GRAVAÇÃO de uma folha de papel verdadeira
+  // (pacote «Book Flip Sounds», OpenGameArt, CC0), suavizada (sem agudos, fim em esvaimento) — revista-folha.mp3, 12 KB.
+  var somF = null;
   function folha() {
     if (!somLigado) return;
     try {
-      ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
-      if (ctx.state === "suspended") ctx.resume();
-      var dur = 0.42, n = Math.floor(ctx.sampleRate * dur), buf = ctx.createBuffer(1, n, ctx.sampleRate), d = buf.getChannelData(0);
-      for (var k = 0; k < n; k++) { var t = k / n; d[k] = (Math.random() * 2 - 1) * Math.pow(Math.sin(Math.PI * t), 1.6) * (0.55 + 0.45 * Math.random()); }
-      var src = ctx.createBufferSource(); src.buffer = buf;
-      var bp = ctx.createBiquadFilter(); bp.type = "bandpass"; bp.Q.value = 0.9;
-      bp.frequency.setValueAtTime(900, ctx.currentTime); bp.frequency.exponentialRampToValueAtTime(3800, ctx.currentTime + dur * 0.6); bp.frequency.exponentialRampToValueAtTime(1600, ctx.currentTime + dur);
-      var g = ctx.createGain(); g.gain.setValueAtTime(0.0001, ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.5, ctx.currentTime + 0.05); g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
-      src.connect(bp); bp.connect(g); g.connect(ctx.destination); src.start();
+      if (!somF) { somF = new Audio("/revista-folha.mp3"); somF.preload = "auto"; }
+      somF.volume = 0.55; somF.currentTime = 0;
+      var p = somF.play(); if (p && p.catch) p.catch(function () {});
     } catch (e) {}
   }
   // a ponta da folha que se dobra: vira a página
