@@ -31,7 +31,8 @@
       texto: "Consultas, mapas, amuletos e cursos com 30% de desconto. Só até domingo à meia-noite.",
       botao: "Ver as ofertas →",
       link: "/loja?de=site&c=destaque-black-friday",
-      arte: ETIQ, imagem: "/black-friday-2026.webp", imagemMini: "/black-friday-2026-mini.webp", marca: "%" },   // a imagem é a dele (27/11)
+      arte: ETIQ, imagem: "/black-friday-2026.webp", imagemMini: "/black-friday-2026-mini.webp", marca: "%",
+      fim: function () { return window.BF && window.BF.fim; } },   // 27/11 (ele): contagem decrescente por cima da imagem   // a imagem é a dele (27/11)
     { id: "sexta13", pagina: /^\/sexta-feira-13(\.html)?$/,
       activo: function () {
         var f = q.get("sexta13"); if (f === "hoje" || f === "amanha") { this.modo = f; return true; }
@@ -93,14 +94,31 @@
     + '@media (max-width:560px){.dst-grande .dst-img{width:100%}}'
     + '.dst-grande.dst-bf{animation:dstbf 1.7s ease-in-out infinite;border:2px solid #ffd978;text-align:left}'
     + '@keyframes dstbf{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(216,31,42,.75),0 18px 50px -10px rgba(216,31,42,.7)}50%{transform:scale(1.015);box-shadow:0 0 0 14px rgba(216,31,42,0),0 18px 60px -6px rgba(255,120,60,.85)}}'
+    + '.dst-cxi{position:relative;flex:none;display:block;line-height:0}.dst-grande .dst-cxi{width:min(24rem,42%)}.dst-grande .dst-cxi .dst-img{width:100%}'
+    + '.dst-cd{position:absolute;left:50%;top:.6rem;transform:translateX(-50%);white-space:nowrap;line-height:1.15;text-align:center;padding:.35rem .9rem;border-radius:.8rem;'
+    + 'background:rgba(10,2,16,.82);border:1.5px solid #ffd978;box-shadow:0 0 18px rgba(216,31,42,.75);color:#ffe9a6;font:700 1rem/1.15 Inter,system-ui,sans-serif;font-variant-numeric:tabular-nums}'
+    + '.dst-cd small{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#ff8a8a;font-weight:800}'
+    + '.dst-cd b{font-family:Cinzel,Georgia,serif;font-size:1.35em;font-weight:900;color:#fff}'
+    + '.dst-flut .dst-cd{top:auto;bottom:.25rem;padding:.1rem .35rem;font-size:.6rem;border-width:1px;border-radius:.4rem}'
+    + '@media (max-width:560px){.dst-grande .dst-cxi{width:100%}}'
     + '@media (prefers-reduced-motion:reduce){.dst *,.dst,.dst-bola{animation:none!important;transition:none!important}}';
 
   function conteudo(grande) {
     var arte = D.imagem ? '<img class="dst-img" alt="" src="' + (grande ? D.imagem : (D.imagemMini || D.imagem)) + '">' : D.arte;
+    if (D.imagem && D.fim && val(D.fim, D)) arte = '<span class="dst-cxi">' + arte + '<span class="dst-cd" aria-label="Tempo até ao fim">'
+      + (grande ? '<small>Termina em</small>' : '') + '<span class="dst-cdt">' + contagem() + '</span></span></span>';
     return arte + '<span><span class="dt">' + val(D.titulo, D) + '</span><span class="dp">' + val(D.texto, D) + '</span><span class="db">' + D.botao + '</span></span>';
+  }
+  function contagem() {
+    var s = Math.max(0, Math.floor((val(D.fim, D) - Date.now()) / 1000)), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), x = s % 60;
+    var z = function (n) { return ("0" + n).slice(-2); };
+    return (d ? '<b>' + d + '</b>d ' : '') + '<b>' + z(h) + '</b>h <b>' + z(m) + '</b>m <b>' + z(x) + '</b>s';
   }
   function montar() {
     if (document.querySelector(".dst-flut,.dst-bola")) return;
+    if (D.fim && val(D.fim, D)) setInterval(function () {
+      var c = contagem(); Array.prototype.forEach.call(document.querySelectorAll(".dst-cdt"), function (e) { e.innerHTML = c; });
+    }, 1000);
     var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
     var link = val(D.link, D);
     if (inicio) {
