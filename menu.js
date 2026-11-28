@@ -46,15 +46,31 @@
     "html.gtm-on .topo .backlink,html.gtm-on .gtp-topo,html.gtm-on .voltar-barra .voltar,html.gtm-on a.voltar{display:none!important}html.gtm-on header.topo{min-height:0;padding:0}html.gtm-on body>header:has(>nav.container.nav){display:none}" +
     /* 28/11/2026 (o Portal, pedido dele): no telemóvel UMA faixa no topo (a da Black Friday, enquanto estiver ligada) e só a chamada
        «Tire as suas Dúvidas» a flutuar; a bolinha verde, a etiqueta da Loja e a bola −30% saem (a faixa já anuncia a promoção) */
-    "@media (max-width:760px){body:has(.bf-faixa) #vip-faixa,html.gtm-on a.float-wa,html.gtm-on #loja-etq,html.gtm-on .dst-flut,html.gtm-on .dst-bola{display:none!important}}";
+    "@media (max-width:760px){body:has(.bf-faixa) #vip-faixa,html.gtm-on a.float-wa,html.gtm-on #loja-etq,html.gtm-on .dst-flut,html.gtm-on .dst-bola{display:none!important}}" +
+    /* 28/11/2026 (pedido dele): «etiqueta reformulada e mais bonita a dizer Loja Online em todo o portal, para as pessoas entrarem rapidamente
+       na loja». Substitui a etiqueta rosa vertical da margem (#loja-etq, vip-faixa.js), que tapava texto: um botão dourado na barra
+       e, quando a barra sai do ecrã, a mesma pílula no canto de baixo à ESQUERDA (o direito é da chamada do WhatsApp). Fora da própria loja. */
+    "html.gtm-on #loja-etq{display:none!important}" +
+    ".gtm-loja,.gtm-lojaf{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:.4rem;flex:none;text-decoration:none;white-space:nowrap;font:800 .88rem/1 Inter,system-ui,sans-serif;color:#2a1245;" +
+    "background:linear-gradient(135deg,#fff1c4,#f2c96b 45%,#d9a441);border:1px solid #fff3cf;border-radius:999px;padding:.5rem .85rem .5rem .6rem;box-shadow:0 0 0 1px #d9a44166,0 4px 14px #f2c96b55,inset 0 1px 0 #fff8}" +
+    ".gtm-loja b,.gtm-lojaf b{font-weight:800;color:#7a1f6b}.gtm-loja .i,.gtm-lojaf .i{display:grid;place-items:center;width:1.55rem;height:1.55rem;border-radius:50%;background:#2a1245;font-size:.85rem;box-shadow:0 0 8px #f2c96b}" +
+    ".gtm-loja::after,.gtm-lojaf::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffffb0,transparent);transform:skewX(-20deg);animation:gtmBrilho 3.6s ease-in-out infinite}" +
+    "@keyframes gtmBrilho{0%,62%{left:-60%}100%{left:140%}}" +
+    ".gtm-loja:hover,.gtm-lojaf:hover{filter:brightness(1.07);transform:translateY(-1px)}.gtm-loja.aqui{outline:2px solid #ffe2a0;outline-offset:2px}" +
+    ".gtm-lojaf{position:fixed;left:14px;bottom:18px;z-index:9989;font-size:.9rem;padding:.6rem 1rem .6rem .6rem;box-shadow:0 8px 24px #000a,0 0 0 1px #d9a44188,0 0 18px #f2c96b66;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .35s,transform .35s}" +
+    ".gtm-lojaf.on{opacity:1;transform:none;pointer-events:auto}" +
+    "@media (max-width:560px){.gtm-logo .gtm-nome{display:none}.gtm-barra .gtm-loja{font-size:.74rem;line-height:1.05;padding:.32rem .65rem .32rem .35rem;gap:.35rem}.gtm-barra .gtm-loja>span:last-child{display:flex;flex-direction:column}" +
+    /* o «Entrar» (conta.js) é fixo e procura lugar à esquerda da 🔍: o botão da Loja deixa-lhe esse lugar livre */
+    "body:has(#gtc-btn) .gtm-barra .gtm-loja{margin-right:6.2rem}}" +
+    "@media (prefers-reduced-motion:reduce){.gtm-loja::after,.gtm-lojaf::after{animation:none;display:none}}";
 
   function monta() {
     if (document.querySelector(".gtm-barra")) return;
     var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
     var barra = document.createElement("header"); barra.className = "gtm-barra";
-    barra.innerHTML = '<a class="gtm-logo" href="/"><img src="/apple-touch-icon.png" alt="" width="32" height="32">Genial Tarot</a>' +
-      '<nav class="gtm-links" aria-label="Temas">' + TEMAS.map(function (t, i) { return '<a href="' + t[2] + '"' + (i === meu ? ' class="aqui"' : "") + ">" + (t[1] === "Revista" ? "📖 " : "") + esc(t[1]) + "</a>"; }).join("") + '<a href="/loja">Loja</a></nav>' +
-      '<span class="gtm-esp"></span><a class="gtm-cons" href="/consulta-de-tarot-online">💬 Consulta</a>' +
+    barra.innerHTML = '<a class="gtm-logo" href="/" aria-label="Genial Tarot — início"><img src="/apple-touch-icon.png" alt="" width="32" height="32"><span class="gtm-nome">Genial Tarot</span></a>' +
+      '<nav class="gtm-links" aria-label="Temas">' + TEMAS.map(function (t, i) { return '<a href="' + t[2] + '"' + (i === meu ? ' class="aqui"' : "") + ">" + (t[1] === "Revista" ? "📖 " : "") + esc(t[1]) + "</a>"; }).join("") + '</nav>' +
+      '<span class="gtm-esp"></span><a class="gtm-loja' + (/^\/loja/.test(P) ? " aqui" : "") + '" href="/loja" aria-label="Loja Online"><span class="i">🛍️</span><span>Loja <b>Online</b></span></a><a class="gtm-cons" href="/consulta-de-tarot-online">💬 Consulta</a>' +
       '<a class="gtm-bt" href="/pesquisa" aria-label="Pesquisar no site">🔍</a><a class="gtm-bt ham" href="#menu" role="button" aria-label="Abrir o menu" aria-expanded="false">☰</a>';
     // as faixas (Black Friday, Lista VIP) ficam POR CIMA do menu, como no resto do site: o menu entra antes do 1.º elemento da página
     var ref = document.body.firstElementChild;
@@ -84,6 +100,11 @@
     veu.addEventListener("click", function () { abre(false); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") abre(false); });
     document.documentElement.classList.add("gtm-on");
+    if (!/^\/loja/.test(P)) {
+      var lf = document.createElement("a"); lf.className = "gtm-lojaf"; lf.href = "/loja"; lf.setAttribute("aria-label", "Loja Online");
+      lf.innerHTML = '<span class="i">🛍️</span><span>Loja <b>Online</b></span>'; document.body.appendChild(lf);
+      if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { lf.classList.toggle("on", !e[0].isIntersecting); }).observe(barra);
+    }
     // a etiqueta rosa «Loja Online» (vip-faixa.js, fixa à direita) desce para baixo da barra, senão tapa o 🔍 e o ☰
     function etiqueta() {
       var t = document.getElementById("loja-etq"); if (!t) return;
