@@ -49,15 +49,15 @@
     "@media (max-width:760px){body:has(.bf-faixa) #vip-faixa,html.gtm-on a.float-wa,html.gtm-on #loja-etq,html.gtm-on .dst-flut,html.gtm-on .dst-bola{display:none!important}}" +
     /* 28/11/2026 (pedido dele): «etiqueta reformulada e mais bonita a dizer Loja Online em todo o portal, para as pessoas entrarem rapidamente
        na loja». Substitui a etiqueta rosa vertical da margem (#loja-etq, vip-faixa.js), que tapava texto: um botão dourado na barra
-       e, quando a barra sai do ecrã, a mesma pílula no canto de baixo à ESQUERDA (o direito é da chamada do WhatsApp). Fora da própria loja. */
+       (verde-esmeralda, escolha dele 28/11 — contrasta com o roxo e o dourado) e, quando a barra sai do ecrã, a mesma pílula no canto de baixo à ESQUERDA (o direito é da chamada do WhatsApp). Fora da própria loja. */
     "html.gtm-on #loja-etq{display:none!important}" +
-    ".gtm-loja,.gtm-lojaf{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:.4rem;flex:none;text-decoration:none;white-space:nowrap;font:800 .88rem/1 Inter,system-ui,sans-serif;color:#2a1245;" +
-    "background:linear-gradient(135deg,#fff1c4,#f2c96b 45%,#d9a441);border:1px solid #fff3cf;border-radius:999px;padding:.5rem .85rem .5rem .6rem;box-shadow:0 0 0 1px #d9a44166,0 4px 14px #f2c96b55,inset 0 1px 0 #fff8}" +
-    ".gtm-loja b,.gtm-lojaf b{font-weight:800;color:#7a1f6b}.gtm-loja .i,.gtm-lojaf .i{display:grid;place-items:center;width:1.55rem;height:1.55rem;border-radius:50%;background:#2a1245;font-size:.85rem;box-shadow:0 0 8px #f2c96b}" +
+    ".gtm-loja,.gtm-lojaf{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:.4rem;flex:none;text-decoration:none;white-space:nowrap;font:800 .88rem/1 Inter,system-ui,sans-serif;color:#fff;text-shadow:0 1px 1px #0005;" +
+    "background:linear-gradient(135deg,#5ef0b0,#13b47a 50%,#0a7a52);border:1px solid #c8ffe6;border-radius:999px;padding:.5rem .85rem .5rem .6rem;box-shadow:0 0 0 1px #0006,0 4px 16px #13b47a66,inset 0 1px 0 #fff6}" +
+    ".gtm-loja b,.gtm-lojaf b{font-weight:800;color:#fff3b0}.gtm-loja .i,.gtm-lojaf .i{display:grid;place-items:center;width:1.55rem;height:1.55rem;border-radius:50%;background:#053a27;font-size:.85rem;box-shadow:0 0 8px #5ef0b0}" +
     ".gtm-loja::after,.gtm-lojaf::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffffb0,transparent);transform:skewX(-20deg);animation:gtmBrilho 3.6s ease-in-out infinite}" +
     "@keyframes gtmBrilho{0%,62%{left:-60%}100%{left:140%}}" +
-    ".gtm-loja:hover,.gtm-lojaf:hover{filter:brightness(1.07);transform:translateY(-1px)}.gtm-loja.aqui{outline:2px solid #ffe2a0;outline-offset:2px}" +
-    ".gtm-lojaf{position:fixed;left:14px;bottom:18px;z-index:9989;font-size:.9rem;padding:.6rem 1rem .6rem .6rem;box-shadow:0 8px 24px #000a,0 0 0 1px #d9a44188,0 0 18px #f2c96b66;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .35s,transform .35s}" +
+    ".gtm-loja:hover,.gtm-lojaf:hover{filter:brightness(1.07);transform:translateY(-1px)}.gtm-loja.aqui{outline:2px solid #c8ffe6;outline-offset:2px}" +
+    ".gtm-lojaf{position:fixed;left:14px;bottom:18px;z-index:9989;font-size:.9rem;padding:.6rem 1rem .6rem .6rem;box-shadow:0 8px 24px #000a,0 0 0 1px #0a7a52,0 0 18px #13b47a88;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .35s,transform .35s}" +
     ".gtm-lojaf.on{opacity:1;transform:none;pointer-events:auto}" +
     "@media (max-width:560px){.gtm-logo .gtm-nome{display:none}.gtm-barra .gtm-loja{font-size:.74rem;line-height:1.05;padding:.32rem .65rem .32rem .35rem;gap:.35rem}.gtm-barra .gtm-loja>span:last-child{display:flex;flex-direction:column}" +
     /* o «Entrar» (conta.js) é fixo e procura lugar à esquerda da 🔍: o botão da Loja deixa-lhe esse lugar livre */
