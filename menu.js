@@ -9,15 +9,17 @@
   if (/^\/(consultorio|o-teu-ceu|pagar|30-dias|gerar-pix)(\/|-sala|-autorizacao|$)/.test(P)) return;
 
   var TEMAS = [
-    ["🔮", "Horóscopo", "/horoscopo-do-dia", [["Do dia", "/horoscopo-do-dia"], ["De amanhã", "/horoscopo-de-amanha"], ["Semanal", "/horoscopo-semanal"], ["Fim de semana", "/fimdesemana"],
+    ["🔮", "Horóscopo", "/horoscopo", [["Do dia", "/horoscopo-do-dia"], ["De amanhã", "/horoscopo-de-amanha"], ["Semanal", "/horoscopo-semanal"], ["Fim de semana", "/fimdesemana"],
       ["Horóscopo 2027", "/horoscopo-2027"], ["Os 12 signos", "/signos-do-zodiaco"], ["Compatibilidade", "/compatibilidade"], ["Horóscopo chinês", "/horoscopo-chines"]], /^\/(horoscopo|signo\/|fimdesemana|signos-|compat|melhores-signos)/],
-    ["🃏", "Tarot", "/tarot-gratis", [["Tarot grátis", "/tarot-gratis"], ["A carta do dia", "/tiragem-carta-do-dia"], ["Os Arcanos Maiores", "/arcanos"], ["Os Arcanos Menores", "/arcanos-menores"],
+    ["🃏", "Tarot", "/tarot", [["Tarot grátis", "/tarot-gratis"], ["A carta do dia", "/tiragem-carta-do-dia"], ["Os Arcanos Maiores", "/arcanos"], ["Os Arcanos Menores", "/arcanos-menores"],
       ["Tarot do amor", "/tarot-do-amor"], ["Tarot por tema", "/tarot-por-tema"], ["Tarot terapêutico", "/tarot-terapeutico"], ["Tarot cigano", "/tarot-cigano"]], /^\/(tarot|tiragem|arcano|carta-(?!da-semana)|amor-do-dia|leia-o-tarot)/],
-    ["🪐", "Astrologia", "/mapa-astral", [["Mapa astral", "/mapa-astral"], ["Ascendente", "/ascendente"], ["Calendário lunar", "/lua"], ["Notícias do céu", "/noticias-do-ceu"],
+    ["🪐", "Astrologia", "/astrologia", [["Mapa astral", "/mapa-astral"], ["Ascendente", "/ascendente"], ["Calendário lunar", "/lua"], ["Notícias do céu", "/noticias-do-ceu"],
       ["Efemérides", "/efemerides"], ["Retrógrados 2027", "/retrogrados-2027"], ["Eclipses 2027", "/eclipses-2027"], ["Famosos com o seu céu", "/famosos-ceu"]], /^\/(mapa-astral|ascendente|lua|noticias|efemerides|retrogrados|eclipses|mercurio|famosos|astrolog|alinhamento|decanatos)/],
     ["🔢", "Numerologia", "/numerologia", [["Os números da sua vida", "/numerologia"], ["Calculadora 2027", "/numerologia-2027"]].concat([1, 2, 3, 4, 5, 6, 7, 8, 9].map(function (n) { return ["Ano Pessoal " + n, "/ano-pessoal-" + n + "-2027"]; })), /^\/(numerolog|ano-pessoal)/],
-    ["🙏", "Fé e tradição", "/rezas-e-oracoes", [["Rezas e orações", "/rezas-e-oracoes"], ["Benzimentos", "/benzimentos"], ["Rezas de proteção", "/rezas-de-protecao"], ["Salmos", "/salmos"],
-      ["Anjo da guarda", "/anjo-da-guarda"], ["Sonhos", "/sonhos"], ["Pêndulo", "/pendulo"], ["Quiromancia", "/quiromancia"]], /^\/(reza|benz|salmo|anjo|sonho|pendulo|quiromancia)/],
+    ["🙏", "Fé e tradição", "/fe-e-tradicao", [["Rezas e orações", "/rezas-e-oracoes"], ["Benzimentos", "/benzimentos"], ["Rezas de proteção", "/rezas-de-protecao"], ["Salmos", "/salmos"],
+      ["Anjo da guarda", "/anjo-da-guarda"], ["Sonhos", "/sonhos"], ["Pêndulo", "/pendulo"], ["Quiromancia", "/quiromancia"]], /^\/(fe-e-tradicao|reza|benz|salmo|anjo|sonho|pendulo|quiromancia|oracao|responso|talhar|sao-|santa-|santo|linha|montes-da-mao|tipos-de-mao|como-ler-a-mao)/],
+    ["📜", "Histórias", "/historias", [["Parábolas", "/parabolas"], ["Parábolas de Jesus", "/parabolas-de-jesus"], ["Fábulas", "/fabulas-de-esopo"], ["Contos tradicionais", "/contos-tradicionais"],
+      ["Lendas", "/historias-e-lendas"], ["Lendas de Lisboa", "/lendas-de-lisboa"], ["Lendas brasileiras", "/lendas-brasileiras"], ["Lendas urbanas", "/lendas-urbanas"]], /^\/(historias|parabola|fabula|conto|lenda|historia-)/],
     ["📖", "Revista", "/revista", [["A revista do mês", "/revista"], ["✉️ A Carta da Semana", "/carta-da-semana"]], /^\/(revista|carta-da-semana)/]
   ];
   var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
@@ -41,7 +43,10 @@
     ".gtm-base{display:grid;gap:.6rem;margin-top:1.2rem}.gtm-base a{display:block;text-align:center;text-decoration:none;font-weight:800;border-radius:999px;padding:.75rem}" +
     ".gtm-base .c{color:#2a1245;background:linear-gradient(135deg,#ffe2a0,#f2c96b 55%,#d9a441)}.gtm-base .w{color:#d8ffe6;background:rgba(37,211,102,.16);border:1px solid rgba(37,211,102,.55)}" +
     /* o menu substitui o «‹ genialtarot.com» e a pesquisa do topo; o resto do topo (Entrar, som) fica onde estava */
-    "html.gtm-on .topo .backlink,html.gtm-on .gtp-topo,html.gtm-on .voltar-barra .voltar,html.gtm-on a.voltar{display:none!important}html.gtm-on header.topo{min-height:0;padding:0}html.gtm-on body>header:has(>nav.container.nav){display:none}";
+    "html.gtm-on .topo .backlink,html.gtm-on .gtp-topo,html.gtm-on .voltar-barra .voltar,html.gtm-on a.voltar{display:none!important}html.gtm-on header.topo{min-height:0;padding:0}html.gtm-on body>header:has(>nav.container.nav){display:none}" +
+    /* 28/11/2026 (o Portal, pedido dele): no telemóvel UMA faixa no topo (a da Black Friday, enquanto estiver ligada) e só a chamada
+       «Tire as suas Dúvidas» a flutuar; a bolinha verde, a etiqueta da Loja e a bola −30% saem (a faixa já anuncia a promoção) */
+    "@media (max-width:760px){body:has(.bf-faixa) #vip-faixa,html.gtm-on a.float-wa,html.gtm-on #loja-etq,html.gtm-on .dst-flut,html.gtm-on .dst-bola{display:none!important}}";
 
   function monta() {
     if (document.querySelector(".gtm-barra")) return;
@@ -68,7 +73,7 @@
       '<a class="gtm-pesq" href="/pesquisa">🔍 Pesquisar no site…</a>' +
       TEMAS.map(function (t, i) {
         return '<details class="gtm-sec"' + (i === meu ? " open" : "") + "><summary>" + t[0] + " " + esc(t[1]) + '</summary><div class="itens">' +
-          t[3].map(function (x) { return '<a href="' + x[1] + '"' + (x[1] === P ? ' class="aqui"' : "") + ">" + esc(x[0]) + (x[1] === P ? " ✓" : "") + "</a>"; }).join("") + "</div></details>";
+          [["Ver tudo de " + t[1] + " ›", t[2]]].concat(t[3].filter(function (x) { return x[1] !== t[2]; })).map(function (x) { return '<a href="' + x[1] + '"' + (x[1] === P ? ' class="aqui"' : "") + ">" + esc(x[0]) + (x[1] === P ? " ✓" : "") + "</a>"; }).join("") + "</div></details>";
       }).join("") +
       '<div class="gtm-base"><a class="c" href="/loja">🛍️ Loja</a><a class="c" href="/consulta-de-tarot-online">💬 Marcar consulta</a><a class="w" href="https://wa.me/351914920427" target="_blank" rel="noopener">WhatsApp</a></div>';
     document.body.appendChild(veu); document.body.appendChild(g);
